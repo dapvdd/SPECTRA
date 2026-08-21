@@ -1,5 +1,10 @@
 from backend.app.database import Base, engine
-from backend.app.models import Hardware, CPUSpecification
+from backend.app.models import (
+    BenchmarkResult,
+    CPUSpecification,
+    Hardware,
+    Source,
+)
 
 
 def init_database() -> None:
