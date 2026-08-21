@@ -8,6 +8,7 @@ from backend.app.database import Base
 
 if TYPE_CHECKING:
     from backend.app.models.cpu import CPUSpecification
+    from backend.app.models.benchmark import BenchmarkResult
 
 
 class Hardware(Base):
@@ -48,3 +49,7 @@ class Hardware(Base):
         back_populates="hardware",
         uselist=False,
     )
+
+    benchmark_results: Mapped[list["BenchmarkResult"]] = relationship(
+    back_populates="hardware",
+)
