@@ -9,6 +9,7 @@ from backend.app.database import Base
 if TYPE_CHECKING:
     from backend.app.models.cpu import CPUSpecification
     from backend.app.models.benchmark import BenchmarkResult
+    from backend.app.models.external_identifier import ExternalIdentifier
 
 
 class Hardware(Base):
@@ -51,5 +52,9 @@ class Hardware(Base):
     )
 
     benchmark_results: Mapped[list["BenchmarkResult"]] = relationship(
-    back_populates="hardware",
-)
+        back_populates="hardware",
+    )
+
+    external_identifiers: Mapped[list["ExternalIdentifier"]] = relationship(
+        back_populates="hardware",
+    )
