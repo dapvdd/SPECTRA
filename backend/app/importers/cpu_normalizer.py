@@ -52,6 +52,28 @@ def parse_int(value: str | None) -> int | None:
 
     return int(match.group(1))
 
+def build_amd_identifiers(row: dict[str, str]) -> list[dict[str, str]]:
+    identifiers = []
+
+    identifier_mapping = {
+        "Product ID Tray": "product_id_tray",
+        "Product ID Boxed": "product_id_boxed",
+        "Product ID MPK": "product_id_mpk",
+    }
+
+    for field, identifier_type in identifier_mapping.items():
+        value = row.get(field, "").strip()
+
+        if value:
+            identifiers.append(
+                {
+                    "type": identifier_type,
+                    "value": value,
+                }
+            )
+
+    return identifiers
+
 def normalize_amd_row(row: dict[str, str]) -> dict[str, object | None]:
     return {
         "name": normalize_name(row.get("Model")),
@@ -64,6 +86,7 @@ def normalize_amd_row(row: dict[str, str]) -> dict[str, object | None]:
         "tdp_w": parse_watt(row.get("Default TDP")),
         "socket": normalize_name(row.get("CPU Socket")),
         "release_date": normalize_name(row.get("Launch Date")),
+        "external_identifiers": build_amd_identifiers(row),
     }
 
 def normalize_intel_row(row: dict[str, str]) -> dict[str, object | None]:
@@ -77,5 +100,10 @@ def normalize_intel_row(row: dict[str, str]) -> dict[str, object | None]:
         "boost_clock_ghz": parse_ghz(row.get("ClockSpeedMax")),
         "tdp_w": parse_watt(row.get("MaxTDP")),
         "process_node_nm": parse_int(row.get("Lithography", "").replace("nm", "").strip()),
-        "external_id": row.get("CpuId"),
+        "external_identifiers": [
+            {
+                "type": "intel_cpu_id",
+                "value": row["CpuId"].strip(),
+            }
+        ] if row.get("CpuId", "").strip() else [],
     }

@@ -13,21 +13,44 @@ def import_cpu(
     data: dict[str, object | None],
     source_id: int,
 ) -> bool:
+    identifiers = data.get("external_identifiers", [])
+
+    if not isinstance(identifiers, list):
+        return False
+
     with SessionLocal() as session:
-        external_id = data.get("external_id")
-
-        if not external_id:
-            return False
-
-        existing_identifier = session.scalar(
-            select(ExternalIdentifier).where(
-                ExternalIdentifier.source_id == source_id,
-                ExternalIdentifier.external_id == str(external_id),
+        if not identifiers:
+            existing_hardware = session.scalar(
+                select(Hardware).where(
+                    Hardware.name == str(data["name"]),
+                    Hardware.manufacturer == str(data["manufacturer"]),
+                    Hardware.type == str(data["type"]),
+                )
             )
-        )
 
-        if existing_identifier:
-            return False
+            if existing_hardware:
+                return False
+
+        for identifier in identifiers:
+            if not isinstance(identifier, dict):
+                continue
+
+            identifier_type = identifier.get("type")
+            external_id = identifier.get("value")
+
+            if not identifier_type or not external_id:
+                continue
+
+            existing_identifier = session.scalar(
+                select(ExternalIdentifier).where(
+                    ExternalIdentifier.source_id == source_id,
+                    ExternalIdentifier.identifier_type == str(identifier_type),
+                    ExternalIdentifier.external_id == str(external_id),
+                )
+            )
+
+            if existing_identifier:
+                return False
 
         hardware = Hardware(
             name=str(data["name"]),
@@ -45,14 +68,27 @@ def import_cpu(
             socket=data.get("socket"),
         )
 
-        identifier = ExternalIdentifier(
-            hardware=hardware,
-            source_id=source_id,
-            external_id=str(external_id),
-        )
-
         session.add(hardware)
-        session.add(identifier)
+
+        for identifier in identifiers:
+            if not isinstance(identifier, dict):
+                continue
+
+            identifier_type = identifier.get("type")
+            external_id = identifier.get("value")
+
+            if not identifier_type or not external_id:
+                continue
+
+            session.add(
+                ExternalIdentifier(
+                    hardware=hardware,
+                    source_id=source_id,
+                    external_id=str(external_id),
+                    identifier_type=str(identifier_type),
+                )
+            )
+
         session.commit()
 
         return True

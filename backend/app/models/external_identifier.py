@@ -38,12 +38,16 @@ class ExternalIdentifier(Base):
         back_populates="external_identifiers",
     )
 
+    identifier_type: Mapped[str] = mapped_column(
+    String(50),
+    nullable=False,
+    )
+
     source: Mapped["Source"] = relationship()
 
-    __table_args__ = (
-        UniqueConstraint(
-            "source_id",
-            "external_id",
-            name="uq_external_identifier_source_external_id",
-        ),
-    )
+    UniqueConstraint(
+    "source_id",
+    "identifier_type",
+    "external_id",
+    name="uq_external_identifier_source_type_external_id",
+),
