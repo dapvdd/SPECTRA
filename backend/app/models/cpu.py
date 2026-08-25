@@ -20,18 +20,18 @@ class CPUSpecification(Base):
 
     hardware_id: Mapped[int] = mapped_column(
         ForeignKey("hardware.id"),
-        nullable=False,
+        nullable=True,
         unique=True,
     )
 
     cores: Mapped[int] = mapped_column(
         Integer,
-        nullable=False,
+        nullable=True,
     )
 
     threads: Mapped[int] = mapped_column(
         Integer,
-        nullable=False,
+        nullable=True,
     )
 
     base_clock_ghz: Mapped[float | None] = mapped_column(
@@ -58,7 +58,7 @@ class CPUSpecification(Base):
         String(50),
         nullable=True,
     )
-
+    
     hardware: Mapped["Hardware"] = relationship(
         back_populates="cpu_specification",
     )

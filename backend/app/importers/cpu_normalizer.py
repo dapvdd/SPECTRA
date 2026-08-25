@@ -61,16 +61,25 @@ def build_amd_identifiers(row: dict[str, str]) -> list[dict[str, str]]:
         "Product ID MPK": "product_id_mpk",
     }
 
+    invalid_values = {
+        "",
+        "n/a",
+        "na",
+        "-",
+    }
+
     for field, identifier_type in identifier_mapping.items():
         value = row.get(field, "").strip()
 
-        if value:
-            identifiers.append(
-                {
-                    "type": identifier_type,
-                    "value": value,
-                }
-            )
+        if value.lower() in invalid_values:
+            continue
+
+        identifiers.append(
+            {
+                "type": identifier_type,
+                "value": value,
+            }
+        )
 
     return identifiers
 

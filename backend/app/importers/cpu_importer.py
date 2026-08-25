@@ -28,9 +28,9 @@ def import_cpu(
                 )
             )
 
-            if existing_hardware:
-                return False
-
+        if existing_hardware:
+            return False    
+        
         for identifier in identifiers:
             if not isinstance(identifier, dict):
                 continue

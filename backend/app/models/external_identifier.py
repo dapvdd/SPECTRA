@@ -39,15 +39,18 @@ class ExternalIdentifier(Base):
     )
 
     identifier_type: Mapped[str] = mapped_column(
-    String(50),
-    nullable=False,
+        String(50),
+        nullable=False,
     )
 
     source: Mapped["Source"] = relationship()
 
-    UniqueConstraint(
-    "source_id",
-    "identifier_type",
-    "external_id",
-    name="uq_external_identifier_source_type_external_id",
-),
+    __table_args__ = (
+        UniqueConstraint(
+            "hardware_id",
+            "source_id",
+            "identifier_type",
+            "external_id",
+            name="uq_external_identifier_hardware_source_type_external_id",
+        ),
+    )
