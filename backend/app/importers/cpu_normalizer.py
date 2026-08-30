@@ -5,7 +5,15 @@ def normalize_name(value: str | None) -> str | None:
     if not value:
         return None
 
-    value = value.replace("™", "").replace("®", "")
+    value = (
+        value.replace("IntelÂ®", "Intel")
+        .replace("AMDÂ®", "AMD")
+        .replace("Â®", "")
+        .replace("â„¢", "")
+        .replace("™", "")
+        .replace("®", "")
+    )
+
     value = re.sub(r"\s+", " ", value)
 
     return value.strip()
@@ -33,7 +41,11 @@ def parse_watt(value: str | None) -> float | None:
     if not value:
         return None
 
-    match = re.search(r"(\d+(?:\.\d+)?)\s*W", value, re.IGNORECASE)
+    match = re.search(
+        r"(\d+(?:\.\d+)?)\s*W",
+        value,
+        re.IGNORECASE,
+    )
 
     if not match:
         return None
@@ -52,7 +64,10 @@ def parse_int(value: str | None) -> int | None:
 
     return int(match.group(1))
 
-def build_amd_identifiers(row: dict[str, str]) -> list[dict[str, str]]:
+
+def build_amd_identifiers(
+    row: dict[str, str],
+) -> list[dict[str, str]]:
     identifiers = []
 
     identifier_mapping = {
@@ -83,7 +98,10 @@ def build_amd_identifiers(row: dict[str, str]) -> list[dict[str, str]]:
 
     return identifiers
 
-def normalize_amd_row(row: dict[str, str]) -> dict[str, object | None]:
+
+def normalize_amd_row(
+    row: dict[str, str],
+) -> dict[str, object | None]:
     return {
         "name": normalize_name(row.get("Model")),
         "manufacturer": "AMD",
@@ -91,28 +109,48 @@ def normalize_amd_row(row: dict[str, str]) -> dict[str, object | None]:
         "cores": parse_int(row.get("# of CPU Cores")),
         "threads": parse_int(row.get("# of Threads")),
         "base_clock_ghz": parse_ghz(row.get("Base Clock")),
-        "boost_clock_ghz": parse_ghz(row.get("Max. Boost Clock ¹ ²")),
+        "boost_clock_ghz": parse_ghz(
+            row.get("Max. Boost Clock Â¹ Â²")
+        ),
         "tdp_w": parse_watt(row.get("Default TDP")),
         "socket": normalize_name(row.get("CPU Socket")),
         "release_date": normalize_name(row.get("Launch Date")),
         "external_identifiers": build_amd_identifiers(row),
     }
 
-def normalize_intel_row(row: dict[str, str]) -> dict[str, object | None]:
+
+def normalize_intel_row(
+    row: dict[str, str],
+) -> dict[str, object | None]:
+    cpu_id = row.get("CpuId", "").strip()
+
     return {
         "name": normalize_name(row.get("CpuName")),
         "manufacturer": "Intel",
         "type": "CPU",
         "cores": parse_int(row.get("CoreCount")),
         "threads": parse_int(row.get("ThreadCount")),
-        "base_clock_ghz": parse_ghz(row.get("ClockSpeed")),
-        "boost_clock_ghz": parse_ghz(row.get("ClockSpeedMax")),
-        "tdp_w": parse_watt(row.get("MaxTDP")),
-        "process_node_nm": parse_int(row.get("Lithography", "").replace("nm", "").strip()),
+        "base_clock_ghz": parse_ghz(
+            row.get("ClockSpeed")
+        ),
+        "boost_clock_ghz": parse_ghz(
+            row.get("ClockSpeedMax")
+        ),
+        "tdp_w": parse_watt(
+            row.get("MaxTDP")
+        ),
+        "process_node_nm": parse_int(
+            row.get("Lithography", "")
+            .replace("nm", "")
+            .strip()
+        ),
+        "socket": normalize_name(
+            row.get("SocketsSupported")
+        ),
         "external_identifiers": [
             {
                 "type": "intel_cpu_id",
-                "value": row["CpuId"].strip(),
+                "value": cpu_id,
             }
-        ] if row.get("CpuId", "").strip() else [],
+        ] if cpu_id else [],
     }
