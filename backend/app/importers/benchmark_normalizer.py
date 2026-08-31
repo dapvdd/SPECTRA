@@ -9,6 +9,30 @@ def normalize_name(value: str | None) -> str | None:
 
     return value.strip()
 
+def normalize_benchmark_cpu_name(
+    value: str | None,
+) -> str | None:
+    if not value:
+        return None
+
+    value = normalize_name(value)
+
+    if not value:
+        return None
+
+    # Remove multi-CPU configuration prefixes
+    # Examples:
+    # [Dual CPU] AMD EPYC 7252
+    # [Quad CPU] AMD Opteron 6276
+    # [5-Way] AMD Ryzen 9 5950X
+    value = re.sub(
+        r"^\[(?:Dual CPU|Quad CPU|\d+-Way)\]\s*",
+        "",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    return value.strip()
 
 def parse_benchmark_ghz(value: str | None) -> float | None:
     if not value:
@@ -104,7 +128,9 @@ def detect_manufacturer(name: str | None) -> str:
 def normalize_benchmark_row(
     row: dict[str, str],
 ) -> dict[str, object | None]:
-    name = normalize_name(row.get("CpuName"))
+    name = normalize_benchmark_cpu_name(
+    row.get("CpuName")
+)
 
     return {
         "name": name,
