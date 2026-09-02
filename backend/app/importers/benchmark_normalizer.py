@@ -25,12 +25,12 @@ def normalize_benchmark_cpu_name(
     # [Dual CPU] AMD EPYC 7252
     # [Quad CPU] AMD Opteron 6276
     # [5-Way] AMD Ryzen 9 5950X
-    value = re.sub(
-        r"^\[(?:Dual CPU|Quad CPU|\d+-Way)\]\s*",
-        "",
-        value,
-        flags=re.IGNORECASE,
-    )
+    name = re.sub(
+    r"^\[(?:Dual CPU|Quad CPU|\d+-Way)\]\s*",
+    "",
+    name,
+    flags=re.IGNORECASE,
+)
 
     return value.strip()
 
