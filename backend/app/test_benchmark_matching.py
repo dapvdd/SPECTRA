@@ -8,7 +8,6 @@ from backend.app.importers.benchmark_matcher import (
 )
 from backend.app.importers.benchmark_normalizer import (
     detect_manufacturer,
-    normalize_benchmark_cpu_name,
 )
 
 
@@ -31,9 +30,7 @@ unmatched = []
 
 
 for row in rows:
-    name = normalize_benchmark_cpu_name(
-        row.get("CpuName")
-    )
+    name = row.get("CpuName")
 
     manufacturer = detect_manufacturer(name)
 
