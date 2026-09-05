@@ -1,3 +1,8 @@
+from sqlalchemy import select
+
+from backend.app.database import SessionLocal
+from backend.app.models import Hardware
+
 from fastapi import FastAPI
 
 
@@ -21,3 +26,20 @@ def health_check():
     return {
         "status": "healthy",
     }
+
+@app.get("/hardware")
+def get_hardware():
+    with SessionLocal() as session:
+        hardware_list = session.scalars(
+            select(Hardware)
+        ).all()
+
+        return [
+            {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+            }
+            for hardware in hardware_list
+        ]
