@@ -4,7 +4,8 @@ import "./App.css";
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
-  
+  const [search, setSearch] = useState("");
+
 useEffect(() => {
   fetch("http://127.0.0.1:8000/")
     .then((response) => response.json())
@@ -24,6 +25,10 @@ useEffect(() => {
       console.error("Failed to load hardware:", error);
     });
 }, []);
+
+  const filteredHardware = hardware.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="app">
@@ -60,6 +65,8 @@ useEffect(() => {
             <input
               type="text"
               placeholder="Search for a CPU..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
             />
           </div>
 
@@ -70,7 +77,7 @@ useEffect(() => {
             <h2>Explore Hardware</h2>
 
             <div className="hardware-grid">
-              {hardware.slice(0, 6).map((item) => (
+            {filteredHardware.slice(0, 6).map((item) => (
                 <div
                   className="hardware-card"
                   key={item.id}
