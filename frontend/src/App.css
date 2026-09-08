@@ -88,3 +88,8 @@ h1 {
 .search-box input::placeholder {
   color: #64748b;
 }
+
+.api-status {
+  margin-top: 1.5rem;
+  color: #94a3b8;
+}

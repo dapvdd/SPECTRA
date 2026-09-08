@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const [apiStatus, setApiStatus] = useState("Checking...");
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/")
+      .then((response) => response.json())
+      .then((data) => {
+        setApiStatus(data.status);
+      })
+      .catch(() => {
+        setApiStatus("offline");
+      });
+  }, []);
+
   return (
     <div className="app">
       <nav className="navbar">
@@ -38,6 +52,10 @@ function App() {
               placeholder="Search for a CPU..."
             />
           </div>
+
+          <p className="api-status">
+            API Status: {apiStatus}
+          </p>
         </div>
       </main>
     </div>
