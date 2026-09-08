@@ -3,17 +3,27 @@ import "./App.css";
 
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
+  const [hardware, setHardware] = useState([]);
+  
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/")
+    .then((response) => response.json())
+    .then((data) => {
+      setApiStatus(data.status);
+    })
+    .catch(() => {
+      setApiStatus("offline");
+    });
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
-      .then((response) => response.json())
-      .then((data) => {
-        setApiStatus(data.status);
-      })
-      .catch(() => {
-        setApiStatus("offline");
-      });
-  }, []);
+  fetch("http://127.0.0.1:8000/hardware")
+    .then((response) => response.json())
+    .then((data) => {
+      setHardware(data);
+    })
+    .catch((error) => {
+      console.error("Failed to load hardware:", error);
+    });
+}, []);
 
   return (
     <div className="app">
@@ -56,6 +66,24 @@ function App() {
           <p className="api-status">
             API Status: {apiStatus}
           </p>
+          <section className="hardware-section">
+            <h2>Explore Hardware</h2>
+
+            <div className="hardware-grid">
+              {hardware.slice(0, 6).map((item) => (
+                <div
+                  className="hardware-card"
+                  key={item.id}
+                >
+                  <h3>{item.name}</h3>
+
+                  <p>{item.manufacturer}</p>
+
+                  <span>{item.type}</span>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
     </div>
