@@ -5,6 +5,29 @@ function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedHardware, setSelectedHardware] = useState(null);
+
+  const showHardwareDetail = (id) => {
+  console.log("CLICKED:", id);
+
+  fetch(`http://127.0.0.1:8000/hardware/${id}`)
+    .then((response) => {
+      console.log("STATUS:", response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log("DETAIL:", data);
+      setSelectedHardware(data);
+    })
+    .catch((error) => {
+      console.error("Failed to load hardware detail:", error);
+    });
+};
 
 useEffect(() => {
   fetch("http://127.0.0.1:8000/")
@@ -26,9 +49,28 @@ useEffect(() => {
     });
 }, []);
 
-  const filteredHardware = hardware.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
-  );
+useEffect(() => {
+  if (selectedHardware) {
+    document
+      .querySelector(".hardware-detail")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+  }
+}, [selectedHardware]);
+
+const normalizeSearch = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+const filteredHardware = hardware.filter((item) =>
+  normalizeSearch(item.name).includes(normalizeSearch(search))
+);
 
   return (
     <div className="app">
@@ -81,15 +123,78 @@ useEffect(() => {
                 <div
                   className="hardware-card"
                   key={item.id}
+                  onClick={() => showHardwareDetail(item.id)}
                 >
                   <h3>{item.name}</h3>
-
                   <p>{item.manufacturer}</p>
-
                   <span>{item.type}</span>
                 </div>
               ))}
             </div>
+
+          {selectedHardware && (
+            <section className="hardware-detail">
+              <p className="eyebrow">HARDWARE DETAIL</p>
+
+              <h2>{selectedHardware.name}</h2>
+
+              <p>
+                {selectedHardware.manufacturer} •{" "}
+                {selectedHardware.type}
+              </p>
+
+              <div className="spec-grid">
+                <div>
+                  <span>Cores</span>
+                  <strong>
+                    {selectedHardware.specifications.cores}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Threads</span>
+                  <strong>
+                    {selectedHardware.specifications.threads}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Base Clock</span>
+                  <strong>
+                    {selectedHardware.specifications.base_clock_ghz} GHz
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Boost Clock</span>
+                  <strong>
+                    {selectedHardware.specifications.boost_clock_ghz} GHz
+                  </strong>
+                </div>
+
+                <div>
+                  <span>TDP</span>
+                  <strong>
+                    {selectedHardware.specifications.tdp_w} W
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Process Node</span>
+                  <strong>
+                    {selectedHardware.specifications.process_node_nm} nm
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Socket</span>
+                  <strong>
+                    {selectedHardware.specifications.socket}
+                  </strong>
+                </div>
+              </div>
+            </section>
+          )}
           </section>
         </div>
       </main>

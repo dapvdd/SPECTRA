@@ -133,3 +133,52 @@ h1 {
   font-size: 0.8rem;
   font-weight: bold;
 }
+
+.hardware-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hardware-card:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+}
+
+.hardware-detail {
+  margin-top: 4rem;
+  padding: 2rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+}
+
+.hardware-detail h2 {
+  margin-bottom: 0.5rem;
+}
+
+.spec-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  );
+  gap: 1rem;
+}
+
+.spec-grid div {
+  padding: 1rem;
+  background: #0f172a;
+  border-radius: 10px;
+}
+
+.spec-grid span {
+  display: block;
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.spec-grid strong {
+  font-size: 1.1rem;
+}
