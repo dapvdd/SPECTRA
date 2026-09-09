@@ -8,30 +8,43 @@ function App() {
   const [selectedHardware, setSelectedHardware] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
+  const [compareList, setCompareList] = useState([]);
 
-const showHardwareDetail = (id) => {
-  setDetailLoading(true);
-  setDetailError("");
+  const showHardwareDetail = (id) => {
+    setDetailLoading(true);
+    setDetailError("");
 
-  fetch(`http://127.0.0.1:8000/hardware/${id}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
+    fetch(`http://127.0.0.1:8000/hardware/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
 
-      return response.json();
-    })
-    .then((data) => {
-      setSelectedHardware(data);
-    })
-    .catch((error) => {
-      console.error("Failed to load hardware detail:", error);
-      setDetailError("Failed to load hardware details.");
-    })
-    .finally(() => {
-      setDetailLoading(false);
-    });
-};
+        return response.json();
+      })
+      .then((data) => {
+        setSelectedHardware(data);
+      })
+      .catch((error) => {
+        console.error("Failed to load hardware detail:", error);
+        setDetailError("Failed to load hardware details.");
+      })
+      .finally(() => {
+        setDetailLoading(false);
+      });
+  };
+
+  const addToCompare = (item) => {
+    if (compareList.some((hardware) => hardware.id === item.id)) {
+      return;
+    }
+
+    if (compareList.length >= 2) {
+      return;
+    }
+
+    setCompareList([...compareList, item]);
+  };
 
 useEffect(() => {
   fetch("http://127.0.0.1:8000/")
@@ -124,15 +137,25 @@ const filteredHardware = hardware.filter((item) =>
 
             <div className="hardware-grid">
             {filteredHardware.slice(0, 6).map((item) => (
-                <div
-                  className="hardware-card"
-                  key={item.id}
-                  onClick={() => showHardwareDetail(item.id)}
+              <div
+                className="hardware-card"
+                key={item.id}
+                onClick={() => showHardwareDetail(item.id)}
+              >
+                <h3>{item.name}</h3>
+                <p>{item.manufacturer}</p>
+                <span>{item.type}</span>
+
+                <button
+                  className="compare-button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    addToCompare(item);
+                  }}
                 >
-                  <h3>{item.name}</h3>
-                  <p>{item.manufacturer}</p>
-                  <span>{item.type}</span>
-                </div>
+                  Compare
+                </button>
+              </div>
               ))}
             </div>
 
@@ -214,6 +237,22 @@ const filteredHardware = hardware.filter((item) =>
                     {selectedHardware.specifications.socket}
                   </strong>
                 </div>
+              </div>
+            </section>
+          )}
+          {compareList.length > 0 && (
+            <section className="comparison-section">
+              <p className="eyebrow">HARDWARE COMPARISON</p>
+
+              <h2>Compare Hardware</h2>
+
+              <div className="comparison-grid">
+                {compareList.map((item) => (
+                  <div className="comparison-card" key={item.id}>
+                    <h3>{item.name}</h3>
+                    <p>{item.manufacturer}</p>
+                  </div>
+                ))}
               </div>
             </section>
           )}

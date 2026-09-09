@@ -209,3 +209,51 @@ h1 {
   margin-top: 2rem;
   color: #f87171;
 }
+
+.compare-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.compare-button:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.comparison-section {
+  margin-top: 4rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.comparison-card {
+  padding: 1.5rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.comparison-card p {
+  color: #94a3b8;
+}
+
+.compare-button {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.hardware-card {
+  position: relative;
+}
