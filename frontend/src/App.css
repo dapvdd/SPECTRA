@@ -199,3 +199,13 @@ h1 {
   color: white;
   border-color: #38bdf8;
 }
+
+.detail-status {
+  margin-top: 2rem;
+  color: #94a3b8;
+}
+
+.detail-error {
+  margin-top: 2rem;
+  color: #f87171;
+}

@@ -6,14 +6,15 @@ function App() {
   const [hardware, setHardware] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedHardware, setSelectedHardware] = useState(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState("");
 
-  const showHardwareDetail = (id) => {
-  console.log("CLICKED:", id);
+const showHardwareDetail = (id) => {
+  setDetailLoading(true);
+  setDetailError("");
 
   fetch(`http://127.0.0.1:8000/hardware/${id}`)
     .then((response) => {
-      console.log("STATUS:", response.status);
-
       if (!response.ok) {
         throw new Error(`HTTP error: ${response.status}`);
       }
@@ -21,11 +22,14 @@ function App() {
       return response.json();
     })
     .then((data) => {
-      console.log("DETAIL:", data);
       setSelectedHardware(data);
     })
     .catch((error) => {
       console.error("Failed to load hardware detail:", error);
+      setDetailError("Failed to load hardware details.");
+    })
+    .finally(() => {
+      setDetailLoading(false);
     });
 };
 
@@ -131,6 +135,18 @@ const filteredHardware = hardware.filter((item) =>
                 </div>
               ))}
             </div>
+
+          {detailLoading && (
+            <p className="detail-status">
+              Loading hardware details...
+            </p>
+          )}
+
+          {detailError && (
+            <p className="detail-error">
+              {detailError}
+            </p>
+          )}
 
           {selectedHardware && (
             <section className="hardware-detail">
