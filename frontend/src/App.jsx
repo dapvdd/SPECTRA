@@ -134,6 +134,12 @@ const filteredHardware = hardware.filter((item) =>
 
           {selectedHardware && (
             <section className="hardware-detail">
+              <button
+                className="back-button"
+                onClick={() => setSelectedHardware(null)}
+              >
+                ← Back to hardware
+              </button>
               <p className="eyebrow">HARDWARE DETAIL</p>
 
               <h2>{selectedHardware.name}</h2>

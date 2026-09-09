@@ -182,3 +182,20 @@ h1 {
 .spec-grid strong {
   font-size: 1.1rem;
 }
+
+.back-button {
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  color: white;
+  border-color: #38bdf8;
+}
