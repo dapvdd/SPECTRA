@@ -257,3 +257,36 @@ h1 {
 .hardware-card {
   position: relative;
 }
+
+.comparison-table-wrapper {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+}
+
+.comparison-table th {
+  color: white;
+  font-weight: 700;
+}
+
+.comparison-table td:first-child {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.comparison-table td {
+  color: white;
+}

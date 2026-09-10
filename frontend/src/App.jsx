@@ -9,6 +9,7 @@ function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
   const [compareList, setCompareList] = useState([]);
+  const [compareDetails, setCompareDetails] = useState([]);
 
   const showHardwareDetail = (id) => {
     setDetailLoading(true);
@@ -35,16 +36,31 @@ function App() {
   };
 
   const addToCompare = (item) => {
-    if (compareList.some((hardware) => hardware.id === item.id)) {
-      return;
-    }
+  if (compareList.some((hardware) => hardware.id === item.id)) {
+    return;
+  }
 
-    if (compareList.length >= 2) {
-      return;
-    }
+  if (compareList.length >= 2) {
+    return;
+  }
 
-    setCompareList([...compareList, item]);
-  };
+  setCompareList([...compareList, item]);
+
+  fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      setCompareDetails((prev) => [...prev, data]);
+    })
+    .catch((error) => {
+      console.error("Failed to load comparison data:", error);
+    });
+};
 
 useEffect(() => {
   fetch("http://127.0.0.1:8000/")
@@ -240,22 +256,102 @@ const filteredHardware = hardware.filter((item) =>
               </div>
             </section>
           )}
-          {compareList.length > 0 && (
+          {compareDetails.length > 0 && (
             <section className="comparison-section">
               <p className="eyebrow">HARDWARE COMPARISON</p>
 
               <h2>Compare Hardware</h2>
 
-              <div className="comparison-grid">
-                {compareList.map((item) => (
-                  <div className="comparison-card" key={item.id}>
-                    <h3>{item.name}</h3>
-                    <p>{item.manufacturer}</p>
-                  </div>
-                ))}
+              <div className="comparison-table-wrapper">
+                <table className="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Specification</th>
+
+                      {compareDetails.map((item) => (
+                        <th key={item.id}>
+                          {item.name}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Cores</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.cores}
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Threads</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.threads}
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Base Clock</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.base_clock_ghz} GHz
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Boost Clock</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.boost_clock_ghz} GHz
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>TDP</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.tdp_w} W
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Process Node</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.process_node_nm} nm
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Socket</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.specifications.socket}
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
-          )}
+)}
+
           </section>
         </div>
       </main>
