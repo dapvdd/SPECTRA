@@ -219,7 +219,7 @@ function App() {
       </main>
 
       <section id="explore" className="hardware-section">
-        <h2>Explore Hardware</h2>
+        <h2 id="explore-top">Explore Hardware</h2>
 
         <div className="hardware-grid">
           {filteredHardware.slice(0, visibleCount).map((item) => (
@@ -278,78 +278,112 @@ function App() {
           <section className="hardware-detail">
             <button
               className="back-button"
-              onClick={() => setSelectedHardware(null)}
+              onClick={() => {
+                setSelectedHardware(null);
+
+                setTimeout(() => {
+                  document
+                    .getElementById("explore-top")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                }, 0);
+              }}
             >
-              ← Back to hardware
+              ← Back to Explore
             </button>
 
-            <p className="eyebrow">
-              HARDWARE DETAIL
-            </p>
-
-            <h2>{selectedHardware.name}</h2>
-
-            <p>
-              {selectedHardware.manufacturer} •{" "}
-              {selectedHardware.type}
-            </p>
-
-            <div className="spec-grid">
+            <div className="hardware-detail-header">
               <div>
-                <span>Cores</span>
-                <strong>
-                  {selectedHardware.specifications.cores ?? "N/A"}
-                </strong>
+                <p className="eyebrow">
+                  {selectedHardware.type}
+                </p>
+
+                <h2>{selectedHardware.name}</h2>
+
+                <p className="hardware-meta">
+                  {selectedHardware.manufacturer}
+                </p>
               </div>
 
-              <div>
-                <span>Threads</span>
-                <strong>
-                  {selectedHardware.specifications.threads ?? "N/A"}
-                </strong>
+              <button
+                className="detail-compare-button"
+                onClick={() => addToCompare(selectedHardware)}
+              >
+                Add to Comparison
+              </button>
+            </div>
+
+
+            <div className="detail-specifications">
+              <p className="detail-section-label">
+                KEY SPECIFICATIONS
+              </p>
+
+              <div className="spec-grid">
+                <div>
+                  <span>Cores</span>
+                  <strong>
+                    {selectedHardware.specifications.cores ?? "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Threads</span>
+                  <strong>
+                    {selectedHardware.specifications.threads ?? "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Base Clock</span>
+                  <strong>
+                    {selectedHardware.specifications.base_clock_ghz != null
+                      ? `${selectedHardware.specifications.base_clock_ghz} GHz`
+                      : "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Boost Clock</span>
+                  <strong>
+                    {selectedHardware.specifications.boost_clock_ghz != null
+                      ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
+                      : "N/A"}
+                  </strong>
+                </div>
               </div>
 
-              <div>
-                <span>Base Clock</span>
-                <strong>
-                  {selectedHardware.specifications.base_clock_ghz != null
-                    ? `${selectedHardware.specifications.base_clock_ghz} GHz`
-                    : "N/A"}
-                </strong>
-              </div>
+              <p className="detail-section-label technical-label">
+                TECHNICAL SPECIFICATIONS
+              </p>
 
-              <div>
-                <span>Boost Clock</span>
-                <strong>
-                  {selectedHardware.specifications.boost_clock_ghz != null
-                    ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
-                    : "N/A"}
-                </strong>
-              </div>
+              <div className="spec-grid">
+                <div>
+                  <span>TDP</span>
+                  <strong>
+                    {selectedHardware.specifications.tdp_w != null
+                      ? `${selectedHardware.specifications.tdp_w} W`
+                      : "N/A"}
+                  </strong>
+                </div>
 
-              <div>
-                <span>TDP</span>
-                <strong>
-                  {selectedHardware.specifications.tdp_w != null
-                    ? `${selectedHardware.specifications.tdp_w} W`
-                    : "N/A"}
-                </strong>
-              </div>
+                <div>
+                  <span>Process Node</span>
+                  <strong>
+                    {selectedHardware.specifications.process_node_nm != null
+                      ? `${selectedHardware.specifications.process_node_nm} nm`
+                      : "N/A"}
+                  </strong>
+                </div>
 
-              <div>
-                <span>Process Node</span>
-                <strong>
-                  {selectedHardware.specifications.process_node_nm != null
-                    ? `${selectedHardware.specifications.process_node_nm} nm`
-                    : "N/A"}
-                </strong>
-              </div>
-
-              <div>
-                <span>Socket</span>
-                <strong>
-                  {selectedHardware.specifications.socket ?? "N/A"}
-                </strong>
+                <div>
+                  <span>Socket</span>
+                  <strong>
+                    {selectedHardware.specifications.socket ?? "N/A"}
+                  </strong>
+                </div>
               </div>
             </div>
           </section>
