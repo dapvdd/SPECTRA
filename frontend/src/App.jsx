@@ -5,6 +5,8 @@ function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
   const [search, setSearch] = useState("");
+  const [manufacturerFilter, setManufacturerFilter] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(12);
   const [selectedHardware, setSelectedHardware] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
@@ -108,6 +110,10 @@ function App() {
     }
   }, [selectedHardware]);
 
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [search, manufacturerFilter]);
+
   const normalizeSearch = (text) => {
     return text
       .toLowerCase()
@@ -116,11 +122,17 @@ function App() {
       .trim();
   };
 
-  const filteredHardware = hardware.filter((item) =>
-    normalizeSearch(item.name).includes(
+  const filteredHardware = hardware.filter((item) => {
+    const matchesSearch = normalizeSearch(item.name).includes(
       normalizeSearch(search)
-    )
-  );
+    );
+
+    const matchesManufacturer =
+      manufacturerFilter === "All" ||
+      item.manufacturer === manufacturerFilter;
+
+    return matchesSearch && matchesManufacturer;
+  });
 
   return (
     <div className="app">
@@ -184,6 +196,22 @@ function App() {
             />
           </div>
 
+          <div className="filter-buttons">
+            {["All", "Intel", "AMD"].map((manufacturer) => (
+              <button
+                key={manufacturer}
+                className={
+                  manufacturerFilter === manufacturer
+                    ? "filter-button active"
+                    : "filter-button"
+                }
+                onClick={() => setManufacturerFilter(manufacturer)}
+              >
+                {manufacturer}
+              </button>
+            ))}
+          </div>
+
           <p className="api-status">
             API Status: {apiStatus}
           </p>
@@ -194,7 +222,7 @@ function App() {
         <h2>Explore Hardware</h2>
 
         <div className="hardware-grid">
-          {filteredHardware.slice(0, 6).map((item) => (
+          {filteredHardware.slice(0, visibleCount).map((item) => (
             <div
               className="hardware-card"
               key={item.id}
@@ -218,6 +246,21 @@ function App() {
             </div>
           ))}
         </div>
+
+        {visibleCount < filteredHardware.length && (
+          <div className="load-more-container">
+            <button
+              className="load-more-button"
+              onClick={() =>
+                setVisibleCount((prev) =>
+                  Math.min(prev + 12, filteredHardware.length)
+                )
+              }
+            >
+              Load More
+            </button>
+          </div>
+        )}
 
         {detailLoading && (
           <p className="detail-status">
