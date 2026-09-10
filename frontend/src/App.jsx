@@ -36,89 +36,91 @@ function App() {
   };
 
   const addToCompare = (item) => {
-  if (compareList.some((hardware) => hardware.id === item.id)) {
-    return;
-  }
+    if (compareList.some((hardware) => hardware.id === item.id)) {
+      return;
+    }
 
-  if (compareList.length >= 2) {
-    return;
-  }
+    if (compareList.length >= 2) {
+      return;
+    }
 
-  setCompareList([...compareList, item]);
+    setCompareList([...compareList, item]);
 
-  fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
+    fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
 
-      return response.json();
-    })
-    .then((data) => {
-      setCompareDetails((prev) => [...prev, data]);
-    })
-    .catch((error) => {
-      console.error("Failed to load comparison data:", error);
-    });
-};
-
-const removeFromCompare = (id) => {
-  setCompareList((prev) =>
-    prev.filter((item) => item.id !== id)
-  );
-
-  setCompareDetails((prev) =>
-    prev.filter((item) => item.id !== id)
-  );
-};
-
-const clearComparison = () => {
-  setCompareList([]);
-  setCompareDetails([]);
-};
-
-useEffect(() => {
-  fetch("http://127.0.0.1:8000/")
-    .then((response) => response.json())
-    .then((data) => {
-      setApiStatus(data.status);
-    })
-    .catch(() => {
-      setApiStatus("offline");
-    });
-
-  fetch("http://127.0.0.1:8000/hardware")
-    .then((response) => response.json())
-    .then((data) => {
-      setHardware(data);
-    })
-    .catch((error) => {
-      console.error("Failed to load hardware:", error);
-    });
-}, []);
-
-useEffect(() => {
-  if (selectedHardware) {
-    document
-      .querySelector(".hardware-detail")
-      ?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+        return response.json();
+      })
+      .then((data) => {
+        setCompareDetails((prev) => [...prev, data]);
+      })
+      .catch((error) => {
+        console.error("Failed to load comparison data:", error);
       });
-  }
-}, [selectedHardware]);
+  };
 
-const normalizeSearch = (text) => {
-  return text
-    .toLowerCase()
-    .replace(/[-_]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-};
+  const removeFromCompare = (id) => {
+    setCompareList((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
 
-const filteredHardware = hardware.filter((item) =>
-  normalizeSearch(item.name).includes(normalizeSearch(search))
-);
+    setCompareDetails((prev) =>
+      prev.filter((item) => item.id !== id)
+    );
+  };
+
+  const clearComparison = () => {
+    setCompareList([]);
+    setCompareDetails([]);
+  };
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/")
+      .then((response) => response.json())
+      .then((data) => {
+        setApiStatus(data.status);
+      })
+      .catch(() => {
+        setApiStatus("offline");
+      });
+
+    fetch("http://127.0.0.1:8000/hardware")
+      .then((response) => response.json())
+      .then((data) => {
+        setHardware(data);
+      })
+      .catch((error) => {
+        console.error("Failed to load hardware:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedHardware) {
+      document
+        .querySelector(".hardware-detail")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    }
+  }, [selectedHardware]);
+
+  const normalizeSearch = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[-_]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const filteredHardware = hardware.filter((item) =>
+    normalizeSearch(item.name).includes(
+      normalizeSearch(search)
+    )
+  );
 
   return (
     <div className="app">
@@ -130,7 +132,9 @@ const filteredHardware = hardware.filter((item) =>
             onClick={() => {
               document
                 .getElementById("explore")
-                ?.scrollIntoView({ behavior: "smooth" });
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                });
             }}
           >
             Explore
@@ -140,7 +144,9 @@ const filteredHardware = hardware.filter((item) =>
             onClick={() => {
               document
                 .getElementById("compare")
-                ?.scrollIntoView({ behavior: "smooth" });
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                });
             }}
           >
             Compare
@@ -181,119 +187,144 @@ const filteredHardware = hardware.filter((item) =>
           <p className="api-status">
             API Status: {apiStatus}
           </p>
-          <section id="explore" className="hardware-section">
-            <h2>Explore Hardware</h2>
+        </div>
+      </main>
 
-            <div className="hardware-grid">
-            {filteredHardware.slice(0, 6).map((item) => (
-              <div
-                className="hardware-card"
-                key={item.id}
-                onClick={() => showHardwareDetail(item.id)}
-              >
-                <h3>{item.name}</h3>
-                <p>{item.manufacturer}</p>
-                <span>{item.type}</span>
+      <section id="explore" className="hardware-section">
+        <h2>Explore Hardware</h2>
 
-                <button
-                  className="compare-button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    addToCompare(item);
-                  }}
-                >
-                  Compare
-                </button>
-              </div>
-              ))}
-            </div>
+        <div className="hardware-grid">
+          {filteredHardware.slice(0, 6).map((item) => (
+            <div
+              className="hardware-card"
+              key={item.id}
+              onClick={() => showHardwareDetail(item.id)}
+            >
+              <h3>{item.name}</h3>
 
-          {detailLoading && (
-            <p className="detail-status">
-              Loading hardware details...
-            </p>
-          )}
+              <p>{item.manufacturer}</p>
 
-          {detailError && (
-            <p className="detail-error">
-              {detailError}
-            </p>
-          )}
+              <span>{item.type}</span>
 
-          {selectedHardware && (
-            <section className="hardware-detail">
               <button
-                className="back-button"
-                onClick={() => setSelectedHardware(null)}
+                className="compare-button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  addToCompare(item);
+                }}
               >
-                ← Back to hardware
+                Compare
               </button>
-              <p className="eyebrow">HARDWARE DETAIL</p>
+            </div>
+          ))}
+        </div>
 
-              <h2>{selectedHardware.name}</h2>
+        {detailLoading && (
+          <p className="detail-status">
+            Loading hardware details...
+          </p>
+        )}
 
-              <p>
-                {selectedHardware.manufacturer} •{" "}
-                {selectedHardware.type}
-              </p>
+        {detailError && (
+          <p className="detail-error">
+            {detailError}
+          </p>
+        )}
 
-              <div className="spec-grid">
-                <div>
-                  <span>Cores</span>
-                  <strong>
-                    {selectedHardware.specifications.cores}
-                  </strong>
-                </div>
+        {selectedHardware && (
+          <section className="hardware-detail">
+            <button
+              className="back-button"
+              onClick={() => setSelectedHardware(null)}
+            >
+              ← Back to hardware
+            </button>
 
-                <div>
-                  <span>Threads</span>
-                  <strong>
-                    {selectedHardware.specifications.threads}
-                  </strong>
-                </div>
+            <p className="eyebrow">
+              HARDWARE DETAIL
+            </p>
 
-                <div>
-                  <span>Base Clock</span>
-                  <strong>
-                    {selectedHardware.specifications.base_clock_ghz} GHz
-                  </strong>
-                </div>
+            <h2>{selectedHardware.name}</h2>
 
-                <div>
-                  <span>Boost Clock</span>
-                  <strong>
-                    {selectedHardware.specifications.boost_clock_ghz} GHz
-                  </strong>
-                </div>
+            <p>
+              {selectedHardware.manufacturer} •{" "}
+              {selectedHardware.type}
+            </p>
 
-                <div>
-                  <span>TDP</span>
-                  <strong>
-                    {selectedHardware.specifications.tdp_w} W
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Process Node</span>
-                  <strong>
-                    {selectedHardware.specifications.process_node_nm} nm
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Socket</span>
-                  <strong>
-                    {selectedHardware.specifications.socket}
-                  </strong>
-                </div>
+            <div className="spec-grid">
+              <div>
+                <span>Cores</span>
+                <strong>
+                  {selectedHardware.specifications.cores ?? "N/A"}
+                </strong>
               </div>
-            </section>
-          )}
-          {compareDetails.length > 0 && (
-            <section id="compare" className="comparison-section">
-              <p className="eyebrow">HARDWARE COMPARISON</p>
 
-              <h2>Compare Hardware</h2>
+              <div>
+                <span>Threads</span>
+                <strong>
+                  {selectedHardware.specifications.threads ?? "N/A"}
+                </strong>
+              </div>
+
+              <div>
+                <span>Base Clock</span>
+                <strong>
+                  {selectedHardware.specifications.base_clock_ghz != null
+                    ? `${selectedHardware.specifications.base_clock_ghz} GHz`
+                    : "N/A"}
+                </strong>
+              </div>
+
+              <div>
+                <span>Boost Clock</span>
+                <strong>
+                  {selectedHardware.specifications.boost_clock_ghz != null
+                    ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
+                    : "N/A"}
+                </strong>
+              </div>
+
+              <div>
+                <span>TDP</span>
+                <strong>
+                  {selectedHardware.specifications.tdp_w != null
+                    ? `${selectedHardware.specifications.tdp_w} W`
+                    : "N/A"}
+                </strong>
+              </div>
+
+              <div>
+                <span>Process Node</span>
+                <strong>
+                  {selectedHardware.specifications.process_node_nm != null
+                    ? `${selectedHardware.specifications.process_node_nm} nm`
+                    : "N/A"}
+                </strong>
+              </div>
+
+              <div>
+                <span>Socket</span>
+                <strong>
+                  {selectedHardware.specifications.socket ?? "N/A"}
+                </strong>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section id="compare" className="comparison-section">
+          <p className="eyebrow">
+            HARDWARE COMPARISON
+          </p>
+
+          <h2>Compare Hardware</h2>
+
+          {compareDetails.length === 0 ? (
+            <p className="comparison-empty">
+              Select up to 2 CPUs to compare.
+            </p>
+          ) : (
+            <div className="comparison-content">
               <button
                 className="clear-compare-button"
                 onClick={clearComparison}
@@ -314,7 +345,9 @@ const filteredHardware = hardware.filter((item) =>
 
                             <button
                               className="remove-compare-button"
-                              onClick={() => removeFromCompare(item.id)}
+                              onClick={() =>
+                                removeFromCompare(item.id)
+                              }
                             >
                               Remove
                             </button>
@@ -330,7 +363,7 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.cores}
+                          {item.specifications.cores ?? "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -340,7 +373,7 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.threads}
+                          {item.specifications.threads ?? "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -350,7 +383,9 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.base_clock_ghz} GHz
+                          {item.specifications.base_clock_ghz != null
+                            ? `${item.specifications.base_clock_ghz} GHz`
+                            : "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -360,7 +395,9 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.boost_clock_ghz} GHz
+                          {item.specifications.boost_clock_ghz != null
+                            ? `${item.specifications.boost_clock_ghz} GHz`
+                            : "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -370,7 +407,9 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.tdp_w} W
+                          {item.specifications.tdp_w != null
+                            ? `${item.specifications.tdp_w} W`
+                            : "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -380,7 +419,9 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.process_node_nm} nm
+                          {item.specifications.process_node_nm != null
+                            ? `${item.specifications.process_node_nm} nm`
+                            : "N/A"}
                         </td>
                       ))}
                     </tr>
@@ -390,19 +431,17 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <td key={item.id}>
-                          {item.specifications.socket}
+                          {item.specifications.socket ?? "N/A"}
                         </td>
                       ))}
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </section>
-)}
-
-          </section>
-        </div>
-      </main>
+            </div>
+          )}
+        </section>
+      </section>
     </div>
   );
 }
