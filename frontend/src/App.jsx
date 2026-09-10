@@ -126,8 +126,26 @@ const filteredHardware = hardware.filter((item) =>
         <div className="logo">SPECTRA</div>
 
         <div className="nav-links">
-          <span>Explore</span>
-          <span>Compare</span>
+          <span
+            onClick={() => {
+              document
+                .getElementById("explore")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Explore
+          </span>
+
+          <span
+            onClick={() => {
+              document
+                .getElementById("compare")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Compare
+          </span>
+
           <span>About</span>
         </div>
       </nav>
@@ -163,7 +181,7 @@ const filteredHardware = hardware.filter((item) =>
           <p className="api-status">
             API Status: {apiStatus}
           </p>
-          <section className="hardware-section">
+          <section id="explore" className="hardware-section">
             <h2>Explore Hardware</h2>
 
             <div className="hardware-grid">
@@ -272,7 +290,7 @@ const filteredHardware = hardware.filter((item) =>
             </section>
           )}
           {compareDetails.length > 0 && (
-            <section className="comparison-section">
+            <section id="compare" className="comparison-section">
               <p className="eyebrow">HARDWARE COMPARISON</p>
 
               <h2>Compare Hardware</h2>
