@@ -79,9 +79,6 @@ SPECTRA follows:
 
 The AI layer should interpret structured data and computed results rather than being the primary source of hardware specifications or benchmark numbers.
 
-## Project Philosophy
-
-SPECTRA is primarily built for personal use.
 
 If it becomes useful to other people, that is a bonus.
 
