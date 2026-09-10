@@ -290,3 +290,40 @@ h1 {
 .comparison-table td {
   color: white;
 }
+
+.comparison-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.remove-compare-button {
+  width: fit-content;
+  padding: 0.4rem 0.7rem;
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.remove-compare-button:hover {
+  color: white;
+  border-color: #f87171;
+}
+
+.clear-compare-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.clear-compare-button:hover {
+  color: white;
+  border-color: #f87171;
+}

@@ -62,6 +62,21 @@ function App() {
     });
 };
 
+const removeFromCompare = (id) => {
+  setCompareList((prev) =>
+    prev.filter((item) => item.id !== id)
+  );
+
+  setCompareDetails((prev) =>
+    prev.filter((item) => item.id !== id)
+  );
+};
+
+const clearComparison = () => {
+  setCompareList([]);
+  setCompareDetails([]);
+};
+
 useEffect(() => {
   fetch("http://127.0.0.1:8000/")
     .then((response) => response.json())
@@ -261,6 +276,12 @@ const filteredHardware = hardware.filter((item) =>
               <p className="eyebrow">HARDWARE COMPARISON</p>
 
               <h2>Compare Hardware</h2>
+              <button
+                className="clear-compare-button"
+                onClick={clearComparison}
+              >
+                Clear Comparison
+              </button>
 
               <div className="comparison-table-wrapper">
                 <table className="comparison-table">
@@ -270,7 +291,16 @@ const filteredHardware = hardware.filter((item) =>
 
                       {compareDetails.map((item) => (
                         <th key={item.id}>
-                          {item.name}
+                          <div className="comparison-header">
+                            <span>{item.name}</span>
+
+                            <button
+                              className="remove-compare-button"
+                              onClick={() => removeFromCompare(item.id)}
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </th>
                       ))}
                     </tr>
