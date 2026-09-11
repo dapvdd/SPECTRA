@@ -257,27 +257,43 @@ function App() {
             {filteredHardware
               .slice(0, visibleCount)
               .map((item) => (
-                <div
-                  className="hardware-card"
-                  key={item.id}
-                  onClick={() => showHardwareDetail(item.id)}
-                >
-                  <h3>{item.name}</h3>
+          <div
+            className={`hardware-card ${
+              compareList.some((hardware) => hardware.id === item.id)
+                ? "in-comparison"
+                : ""
+            }`}
+            key={item.id}
+            onClick={() => showHardwareDetail(item.id)}
+          >
+            <h3>{item.name}</h3>
 
-                  <p>{item.manufacturer}</p>
+            <p>{item.manufacturer}</p>
 
-                  <span>{item.type}</span>
+            <span>{item.type}</span>
 
-                  <button
-                    className="compare-button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      addToCompare(item);
-                    }}
-                  >
-                    Compare
-                  </button>
-                </div>
+            <button
+              className={`compare-button ${
+                compareList.some((hardware) => hardware.id === item.id)
+                  ? "added"
+                  : ""
+              }`}
+              onClick={(event) => {
+                event.stopPropagation();
+                addToCompare(item);
+              }}
+              disabled={
+                !compareList.some((hardware) => hardware.id === item.id) &&
+                compareList.length >= 2
+              }
+            >
+              {compareList.some((hardware) => hardware.id === item.id)
+                ? "✓ In Comparison"
+                : compareList.length >= 2
+                  ? "Comparison Full"
+                  : "Compare"}
+            </button>
+          </div>
               ))}
           </div>
         )}

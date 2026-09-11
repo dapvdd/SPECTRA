@@ -560,3 +560,24 @@ h1 {
   color: white;
   border-color: #38bdf8;
 }
+
+.compare-button.added {
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+.compare-button.added:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.compare-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.compare-button:disabled:hover {
+  color: #94a3b8;
+  border-color: #334155;
+  background: transparent;
+}
