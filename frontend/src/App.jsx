@@ -218,34 +218,69 @@ function App() {
         </div>
       </main>
 
+      <p className="hardware-result-count">
+        Showing{" "}
+        {Math.min(visibleCount, filteredHardware.length)}{" "}
+        of {filteredHardware.length}{" "}
+        {manufacturerFilter === "All"
+          ? "CPUs"
+          : `${manufacturerFilter} CPUs`}
+      </p>
+
       <section id="explore" className="hardware-section">
         <h2 id="explore-top">Explore Hardware</h2>
 
-        <div className="hardware-grid">
-          {filteredHardware.slice(0, visibleCount).map((item) => (
-            <div
-              className="hardware-card"
-              key={item.id}
-              onClick={() => showHardwareDetail(item.id)}
+        {filteredHardware.length === 0 ? (
+          <div className="hardware-empty">
+            <span className="hardware-empty-icon">
+              ◈
+            </span>
+
+            <h3>No hardware found</h3>
+
+            <p>
+              Try another search term or change your filter.
+            </p>
+
+            <button
+              className="clear-search-button"
+              onClick={() => {
+                setSearch("");
+                setManufacturerFilter("All");
+              }}
             >
-              <h3>{item.name}</h3>
+              Clear Search
+            </button>
+          </div>
+        ) : (
+          <div className="hardware-grid">
+            {filteredHardware
+              .slice(0, visibleCount)
+              .map((item) => (
+                <div
+                  className="hardware-card"
+                  key={item.id}
+                  onClick={() => showHardwareDetail(item.id)}
+                >
+                  <h3>{item.name}</h3>
 
-              <p>{item.manufacturer}</p>
+                  <p>{item.manufacturer}</p>
 
-              <span>{item.type}</span>
+                  <span>{item.type}</span>
 
-              <button
-                className="compare-button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  addToCompare(item);
-                }}
-              >
-                Compare
-              </button>
-            </div>
-          ))}
-        </div>
+                  <button
+                    className="compare-button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      addToCompare(item);
+                    }}
+                  >
+                    Compare
+                  </button>
+                </div>
+              ))}
+          </div>
+        )}
 
         {visibleCount < filteredHardware.length && (
           <div className="load-more-container">

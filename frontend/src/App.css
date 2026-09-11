@@ -508,3 +508,55 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.12em;
 }
+
+.hardware-result-count {
+  margin: 1.5rem 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.hardware-empty {
+  margin-top: 2rem;
+  padding: 4rem 2rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.hardware-empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  border: 1px solid #334155;
+  border-radius: 50%;
+  color: #38bdf8;
+}
+
+.hardware-empty h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.hardware-empty p {
+  margin: 0 auto 1.5rem;
+  color: #64748b;
+}
+
+.clear-search-button {
+  padding: 0.65rem 1rem;
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-search-button:hover {
+  color: white;
+  border-color: #38bdf8;
+}
