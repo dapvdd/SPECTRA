@@ -352,6 +352,44 @@ function App() {
 
             <div className="detail-specifications">
               <p className="detail-section-label">
+                OVERVIEW
+              </p>
+
+              <div className="spec-grid">
+                <div>
+                  <span>Manufacturer</span>
+
+                  <strong>
+                    {selectedHardware.manufacturer ?? "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Type</span>
+
+                  <strong>
+                    {selectedHardware.type ?? "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Release Date</span>
+
+                  <strong>
+                    {selectedHardware.release_date ?? "N/A"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Architecture</span>
+
+                  <strong>
+                    {selectedHardware.architecture ?? "N/A"}
+                  </strong>
+                </div>
+              </div>
+
+              <p className="detail-section-label technical-label">
                 KEY SPECIFICATIONS
               </p>
 
@@ -453,7 +491,7 @@ function App() {
               </div>
             </div>
           </section>
-        )}
+          )}
 
         <section id="compare" className="comparison-section">
           <p className="eyebrow">
