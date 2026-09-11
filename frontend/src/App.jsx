@@ -315,7 +315,6 @@ function App() {
               </button>
             </div>
 
-
             <div className="detail-specifications">
               <p className="detail-section-label">
                 KEY SPECIFICATIONS
@@ -324,6 +323,7 @@ function App() {
               <div className="spec-grid">
                 <div>
                   <span>Cores</span>
+
                   <strong>
                     {selectedHardware.specifications.cores ?? "N/A"}
                   </strong>
@@ -331,6 +331,7 @@ function App() {
 
                 <div>
                   <span>Threads</span>
+
                   <strong>
                     {selectedHardware.specifications.threads ?? "N/A"}
                   </strong>
@@ -338,6 +339,7 @@ function App() {
 
                 <div>
                   <span>Base Clock</span>
+
                   <strong>
                     {selectedHardware.specifications.base_clock_ghz != null
                       ? `${selectedHardware.specifications.base_clock_ghz} GHz`
@@ -347,6 +349,7 @@ function App() {
 
                 <div>
                   <span>Boost Clock</span>
+
                   <strong>
                     {selectedHardware.specifications.boost_clock_ghz != null
                       ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
@@ -362,6 +365,7 @@ function App() {
               <div className="spec-grid">
                 <div>
                   <span>TDP</span>
+
                   <strong>
                     {selectedHardware.specifications.tdp_w != null
                       ? `${selectedHardware.specifications.tdp_w} W`
@@ -371,6 +375,7 @@ function App() {
 
                 <div>
                   <span>Process Node</span>
+
                   <strong>
                     {selectedHardware.specifications.process_node_nm != null
                       ? `${selectedHardware.specifications.process_node_nm} nm`
@@ -380,10 +385,36 @@ function App() {
 
                 <div>
                   <span>Socket</span>
+
                   <strong>
                     {selectedHardware.specifications.socket ?? "N/A"}
                   </strong>
                 </div>
+              </div>
+            </div>
+
+            <div className="performance-section">
+              <p className="detail-section-label">
+                PERFORMANCE
+              </p>
+
+              <div className="performance-empty">
+                <span className="performance-icon">
+                  ◈
+                </span>
+
+                <h3>
+                  Benchmark data is not available yet.
+                </h3>
+
+                <p>
+                  SPECTRA is currently building its hardware
+                  performance dataset.
+                </p>
+
+                <span className="coming-soon-badge">
+                  COMING SOON
+                </span>
               </div>
             </div>
           </section>
