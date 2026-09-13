@@ -83,7 +83,3 @@ The AI layer should interpret structured data and computed results rather than b
 If it becomes useful to other people, that is a bonus.
 
 The project is intended to evolve incrementally as a long-term engineering project.
-
----
-
-**Status:** Day 1 — Foundation
