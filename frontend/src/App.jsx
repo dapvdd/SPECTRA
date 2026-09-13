@@ -517,11 +517,36 @@ function App() {
           <h2>Compare Hardware</h2>
 
           {compareDetails.length === 0 ? (
-            <p className="comparison-empty">
-              Select up to 2 CPUs to compare.
-            </p>
+            <div className="comparison-empty">
+              <p className="comparison-status">
+                <strong>0 of 2</strong> hardware selected
+              </p>
+
+              <p className="comparison-instruction">
+                Select up to 2 CPUs from the hardware explorer
+                to compare their specifications side by side.
+              </p>
+            </div>
           ) : (
             <div className="comparison-content">
+              {compareDetails.length === 1 && (
+                <div className="comparison-empty">
+                  <p className="comparison-status">
+                    <strong>1 of 2</strong> hardware selected
+                  </p>
+
+                  <p className="comparison-instruction">
+                    Select another CPU to start comparing hardware.
+                  </p>
+                </div>
+              )}
+
+              {compareDetails.length === 2 && (
+                <p className="comparison-status">
+                  <strong>2 of 2</strong> hardware selected
+                </p>
+              )}
+
               <button
                 className="clear-compare-button"
                 onClick={clearComparison}
@@ -555,6 +580,26 @@ function App() {
                   </thead>
 
                   <tbody>
+                    <tr>
+                      <td>Manufacturer</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.manufacturer ?? "N/A"}
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Architecture</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.architecture ?? "N/A"}
+                        </td>
+                      ))}
+                    </tr>
+
                     <tr>
                       <td>Cores</td>
 
@@ -629,6 +674,16 @@ function App() {
                       {compareDetails.map((item) => (
                         <td key={item.id}>
                           {item.specifications.socket ?? "N/A"}
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <td>Release Date</td>
+
+                      {compareDetails.map((item) => (
+                        <td key={item.id}>
+                          {item.release_date ?? "N/A"}
                         </td>
                       ))}
                     </tr>
