@@ -361,8 +361,19 @@ function App() {
               <button
                 className="detail-compare-button"
                 onClick={() => addToCompare(selectedHardware)}
+                disabled={
+                  !compareList.some(
+                    (hardware) => hardware.id === selectedHardware.id
+                  ) && compareList.length >= 2
+                }
               >
-                Add to Comparison
+                {compareList.some(
+                  (hardware) => hardware.id === selectedHardware.id
+                )
+                  ? "✓ In Comparison"
+                  : compareList.length >= 2
+                    ? "Comparison Full"
+                    : "Add to Comparison"}
               </button>
             </div>
 
@@ -487,23 +498,37 @@ function App() {
                 PERFORMANCE
               </p>
 
-              <div className="performance-empty">
-                <span className="performance-icon">
-                  ◈
-                </span>
-
-                <h3>
-                  Benchmark data is not available yet.
-                </h3>
+              <div className="performance-intro">
+                <h3>Benchmark insights are coming soon</h3>
 
                 <p>
                   SPECTRA is currently building its hardware
                   performance dataset.
                 </p>
+              </div>
 
-                <span className="coming-soon-badge">
-                  COMING SOON
-                </span>
+              <div className="performance-grid">
+                {[
+                  "CPU Performance",
+                  "Single-Core Performance",
+                  "Multi-Core Performance",
+                  "Gaming Performance",
+                ].map((category) => (
+                  <div className="performance-card" key={category}>
+                    <div className="performance-card-header">
+                      <h3>{category}</h3>
+
+                      <span className="performance-badge">
+                        COMING SOON
+                      </span>
+                    </div>
+
+                    <p>
+                      Benchmark data for this category is not
+                      available yet.
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -516,34 +541,19 @@ function App() {
 
           <h2>Compare Hardware</h2>
 
-          {compareDetails.length === 0 ? (
-            <div className="comparison-empty">
-              <p className="comparison-status">
-                <strong>0 of 2</strong> hardware selected
-              </p>
+          <p className="comparison-status">
+            <strong>{compareList.length} of 2</strong> hardware selected
+          </p>
 
-              <p className="comparison-instruction">
-                Select up to 2 CPUs from the hardware explorer
-                to compare their specifications side by side.
-              </p>
-            </div>
+          {compareList.length === 0 ? (
+            <p className="comparison-empty">
+              Select up to 2 CPUs to compare.
+            </p>
           ) : (
             <div className="comparison-content">
-              {compareDetails.length === 1 && (
-                <div className="comparison-empty">
-                  <p className="comparison-status">
-                    <strong>1 of 2</strong> hardware selected
-                  </p>
-
-                  <p className="comparison-instruction">
-                    Select another CPU to start comparing hardware.
-                  </p>
-                </div>
-              )}
-
-              {compareDetails.length === 2 && (
-                <p className="comparison-status">
-                  <strong>2 of 2</strong> hardware selected
+              {compareList.length === 1 && (
+                <p className="comparison-instruction">
+                  Select another CPU to start comparing hardware.
                 </p>
               )}
 
@@ -580,26 +590,6 @@ function App() {
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td>Manufacturer</td>
-
-                      {compareDetails.map((item) => (
-                        <td key={item.id}>
-                          {item.manufacturer ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Architecture</td>
-
-                      {compareDetails.map((item) => (
-                        <td key={item.id}>
-                          {item.architecture ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
                     <tr>
                       <td>Cores</td>
 
@@ -674,16 +664,6 @@ function App() {
                       {compareDetails.map((item) => (
                         <td key={item.id}>
                           {item.specifications.socket ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Release Date</td>
-
-                      {compareDetails.map((item) => (
-                        <td key={item.id}>
-                          {item.release_date ?? "N/A"}
                         </td>
                       ))}
                     </tr>
