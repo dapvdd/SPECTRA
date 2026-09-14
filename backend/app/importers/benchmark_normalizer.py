@@ -20,19 +20,20 @@ def normalize_benchmark_cpu_name(
     if not value:
         return None
 
+    name = value
     # Remove multi-CPU configuration prefixes
     # Examples:
     # [Dual CPU] AMD EPYC 7252
     # [Quad CPU] AMD Opteron 6276
     # [5-Way] AMD Ryzen 9 5950X
     name = re.sub(
-    r"^\[(?:Dual CPU|Quad CPU|\d+-Way)\]\s*",
-    "",
-    name,
-    flags=re.IGNORECASE,
-)
+        r"^\[(?:Dual CPU|Quad CPU|\d+-Way)\]\s*",
+        "",
+        name,
+        flags=re.IGNORECASE,
+    )
 
-    return value.strip()
+    return name.strip()
 
 def parse_benchmark_ghz(value: str | None) -> float | None:
     if not value:
