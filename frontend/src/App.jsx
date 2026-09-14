@@ -596,6 +596,27 @@ function App() {
                 Clear Comparison
               </button>
 
+              {compareDetails.length === 2 && (
+                <div
+                  className="comparison-legend"
+                  aria-label="Comparison guidance"
+                >
+                  <span className="comparison-legend-title">
+                    <span
+                      className="comparison-legend-swatch"
+                      aria-hidden="true"
+                    />
+                    Highlighted value is better
+                  </span>
+
+                  <span>
+                    Higher is better: Cores, Threads, Base Clock, Boost Clock.
+                  </span>
+
+                  <span>Lower is better: TDP.</span>
+                </div>
+              )}
+
               <div className="comparison-table-wrapper">
                 <table className="comparison-table">
                   <thead>

@@ -284,6 +284,33 @@ h1 {
   margin-top: 1.5rem;
 }
 
+.comparison-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.comparison-legend-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.comparison-legend-swatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 1px solid rgba(125, 211, 252, 0.7);
+  border-radius: 2px;
+  background: rgba(56, 189, 248, 0.12);
+}
+
 .clear-compare-button {
   padding: 0.6rem 1rem;
   background: transparent;
@@ -351,6 +378,7 @@ h1 {
 
 .comparison-table td.comparison-winner {
   background: rgba(56, 189, 248, 0.12);
+  box-shadow: inset 3px 0 0 rgba(56, 189, 248, 0.8);
   color: #7dd3fc;
   font-weight: 700;
 }
