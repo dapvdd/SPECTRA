@@ -134,6 +134,38 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
+  const getComparisonCellClass = (
+    specification,
+    itemIndex,
+    lowerIsBetter = false
+  ) => {
+    if (compareDetails.length !== 2) {
+      return "";
+    }
+
+    const values = compareDetails.map(
+      (item) => item.specifications?.[specification]
+    );
+    const numericValues = values.filter(
+      (value) => typeof value === "number" && Number.isFinite(value)
+    );
+    const value = values[itemIndex];
+
+    if (
+      typeof value !== "number" ||
+      !Number.isFinite(value) ||
+      numericValues.length !== 2
+    ) {
+      return "";
+    }
+
+    const winner = lowerIsBetter
+      ? Math.min(...numericValues)
+      : Math.max(...numericValues);
+
+    return value === winner ? "comparison-winner" : "";
+  };
+
   return (
     <div className="app">
       <nav className="navbar">
@@ -594,7 +626,13 @@ function App() {
                       <td>Cores</td>
 
                       {compareDetails.map((item) => (
-                        <td key={item.id}>
+                        <td
+                          key={item.id}
+                          className={getComparisonCellClass(
+                            "cores",
+                            compareDetails.indexOf(item)
+                          )}
+                        >
                           {item.specifications.cores ?? "N/A"}
                         </td>
                       ))}
@@ -604,7 +642,13 @@ function App() {
                       <td>Threads</td>
 
                       {compareDetails.map((item) => (
-                        <td key={item.id}>
+                        <td
+                          key={item.id}
+                          className={getComparisonCellClass(
+                            "threads",
+                            compareDetails.indexOf(item)
+                          )}
+                        >
                           {item.specifications.threads ?? "N/A"}
                         </td>
                       ))}
@@ -614,7 +658,13 @@ function App() {
                       <td>Base Clock</td>
 
                       {compareDetails.map((item) => (
-                        <td key={item.id}>
+                        <td
+                          key={item.id}
+                          className={getComparisonCellClass(
+                            "base_clock_ghz",
+                            compareDetails.indexOf(item)
+                          )}
+                        >
                           {item.specifications.base_clock_ghz != null
                             ? `${item.specifications.base_clock_ghz} GHz`
                             : "N/A"}
@@ -626,7 +676,13 @@ function App() {
                       <td>Boost Clock</td>
 
                       {compareDetails.map((item) => (
-                        <td key={item.id}>
+                        <td
+                          key={item.id}
+                          className={getComparisonCellClass(
+                            "boost_clock_ghz",
+                            compareDetails.indexOf(item)
+                          )}
+                        >
                           {item.specifications.boost_clock_ghz != null
                             ? `${item.specifications.boost_clock_ghz} GHz`
                             : "N/A"}
@@ -638,7 +694,14 @@ function App() {
                       <td>TDP</td>
 
                       {compareDetails.map((item) => (
-                        <td key={item.id}>
+                        <td
+                          key={item.id}
+                          className={getComparisonCellClass(
+                            "tdp_w",
+                            compareDetails.indexOf(item),
+                            true
+                          )}
+                        >
                           {item.specifications.tdp_w != null
                             ? `${item.specifications.tdp_w} W`
                             : "N/A"}

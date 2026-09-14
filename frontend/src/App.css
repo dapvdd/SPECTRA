@@ -349,6 +349,12 @@ h1 {
   line-height: 1.5;
 }
 
+.comparison-table td.comparison-winner {
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-weight: 700;
+}
+
 .comparison-header {
   display: flex;
   flex-direction: column;
