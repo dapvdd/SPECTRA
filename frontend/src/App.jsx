@@ -1,124 +1,146 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-
-const PERFORMANCE_METRICS = [
-  {
-    key: "cpu",
-    title: "CPU Performance",
-    description: "A broad view of processor performance across supported tests.",
-    aliases: ["cpu", "overall", "cpu performance"],
-  },
-  {
-    key: "single_core",
-    title: "Single-Core Performance",
-    description: "How the processor performs on workloads using one core.",
-    aliases: ["single core", "single-core", "single_core"],
-  },
-  {
-    key: "multi_core",
-    title: "Multi-Core Performance",
-    description: "How the processor performs when work is spread across cores.",
-    aliases: ["multi core", "multi-core", "multi_core"],
-  },
-  {
-    key: "gaming",
-    title: "Gaming Performance",
-    description: "Gaming-focused results from supported benchmark sources.",
-    aliases: ["gaming", "gaming performance"],
-  },
-];
-
-const normalizeMetricName = (value) =>
-  String(value ?? "")
-    .toLowerCase()
-    .replace(/[-_]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const getPerformanceResults = (hardware) => {
-  if (Array.isArray(hardware?.benchmark_results)) {
-    return hardware.benchmark_results;
-  }
-
-  if (Array.isArray(hardware?.benchmarks)) {
-    return hardware.benchmarks;
-  }
-
-  if (Array.isArray(hardware?.performance?.results)) {
-    return hardware.performance.results;
-  }
-
-  return null;
-};
-
-const getPerformanceState = (hardware, isLoading, error) => {
-  if (isLoading) {
-    return { status: "loading", results: {} };
-  }
-
-  const performanceError =
-    hardware?.performance_error || hardware?.performance?.error || error;
-
-  if (performanceError) {
-    return {
-      status: "error",
-      message:
-        typeof performanceError === "string"
-          ? performanceError
-          : "Performance data could not be loaded.",
-      results: {},
-    };
-  }
-
-  const benchmarkResults = getPerformanceResults(hardware);
-
-  if (!benchmarkResults) {
-    return { status: "unavailable", results: {} };
-  }
-
-  const results = PERFORMANCE_METRICS.reduce((metricResults, metric) => {
-    const result = benchmarkResults.find((benchmark) => {
-      const name = normalizeMetricName(
-        benchmark.metric ??
-          benchmark.category ??
-          benchmark.test_type ??
-          benchmark.benchmark_name
-      );
-      return metric.aliases.some(
-        (alias) => normalizeMetricName(alias) === name
-      );
-    });
-
-    const score = result?.score ?? result?.value;
-
-    if (typeof score === "number" && Number.isFinite(score)) {
-      metricResults[metric.key] = {
-        ...result,
-        score,
-        unit: result.unit || "score",
-      };
-    }
-
-    return metricResults;
-  }, {});
-
-  const resultCount = Object.keys(results).length;
-
-  return {
-    status:
-      resultCount === 0
-        ? "unavailable"
-        : resultCount === PERFORMANCE_METRICS.length
-          ? "available"
-          : "partial",
-    results,
-  };
-};
+import {
+  getPerformanceState,
+  PERFORMANCE_METRICS,
+} from "./performance.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
     maximumFractionDigits: 2,
   });
+
+const PERFORMANCE_STATUS_LABELS = {
+  available: "DATA AVAILABLE",
+  partial: "PARTIAL DATA",
+  unavailable: "NOT AVAILABLE",
+  loading: "LOADING",
+  error: "UNAVAILABLE",
+};
+
+function PerformanceSection({ benchmarkState }) {
+  const performanceState = getPerformanceState(benchmarkState);
+
+  return (
+    <div className="performance-section">
+      <p className="detail-section-label">PERFORMANCE</p>
+
+      <div className="performance-intro">
+        <div>
+          <h3>Performance signals, when verified</h3>
+
+          <p>
+            Benchmark scores are shown only when returned by a verified data
+            source. No score is estimated or substituted here.
+          </p>
+        </div>
+
+        <span
+          className={`performance-status performance-status-${performanceState.status}`}
+        >
+          {PERFORMANCE_STATUS_LABELS[performanceState.status]}
+        </span>
+      </div>
+
+      {performanceState.status === "unavailable" && (
+        <div className="performance-notice">
+          <strong>Benchmark data is not available yet.</strong>
+          <span>
+            No supported Geekbench 7 result has been returned for this CPU.
+          </span>
+        </div>
+      )}
+
+      {performanceState.status === "partial" && (
+        <div className="performance-notice">
+          <strong>Some benchmark data is unavailable.</strong>
+          <span>
+            Available results are shown below; missing metrics remain clearly
+            marked until verified data is returned.
+          </span>
+        </div>
+      )}
+
+      {performanceState.status === "loading" && (
+        <div className="performance-notice performance-notice-loading">
+          <strong>Loading performance data</strong>
+          <span>Waiting for the benchmark data source to respond.</span>
+        </div>
+      )}
+
+      {performanceState.status === "error" && (
+        <div className="performance-notice performance-notice-error">
+          <strong>Performance data could not be loaded.</strong>
+          <span>{performanceState.message}</span>
+        </div>
+      )}
+
+      <div className="performance-grid">
+        {PERFORMANCE_METRICS.map((metric, index) => {
+          const result = performanceState.results[metric.key];
+          const sourceName = result?.source?.name || result?.source_name;
+
+          return (
+            <article
+              className={`performance-card ${
+                result ? "performance-card-available" : ""
+              }`}
+              key={metric.key}
+            >
+              <div className="performance-card-header">
+                <div>
+                  <span className="performance-card-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{metric.title}</h3>
+                </div>
+
+                <span
+                  className={`performance-badge ${
+                    result ? "performance-badge-available" : ""
+                  }`}
+                >
+                  {result ? "AVAILABLE" : "NO DATA"}
+                </span>
+              </div>
+
+              {result ? (
+                <div className="performance-result">
+                  <div className="performance-value">
+                    <strong>{formatBenchmarkScore(result.score)}</strong>
+                    <span>{result.unit}</span>
+                  </div>
+
+                  <p>{metric.description}</p>
+
+                  {(result.benchmark_name || sourceName || result.recorded_at) && (
+                    <small>
+                      {result.benchmark_name || "Benchmark result"}
+                      {sourceName ? ` · ${sourceName}` : ""}
+                    </small>
+                  )}
+                </div>
+              ) : (
+                <div className="performance-result performance-result-unavailable">
+                  <div className="performance-value">
+                    <strong>--</strong>
+                    <span>score</span>
+                  </div>
+
+                  <p>{metric.description}</p>
+
+                  <small>
+                    No verified result has been returned for this metric.
+                  </small>
+                </div>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
@@ -131,10 +153,45 @@ function App() {
   const [detailError, setDetailError] = useState("");
   const [compareList, setCompareList] = useState([]);
   const [compareDetails, setCompareDetails] = useState([]);
+  const [benchmarkStates, setBenchmarkStates] = useState({});
+
+  const loadBenchmarks = (hardwareId) => {
+    setBenchmarkStates((prev) => ({
+      ...prev,
+      [hardwareId]: { status: "loading", results: null },
+    }));
+
+    fetch(`http://127.0.0.1:8000/hardware/${hardwareId}/benchmarks`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setBenchmarkStates((prev) => ({
+          ...prev,
+          [hardwareId]: { status: "success", results: data },
+        }));
+      })
+      .catch((error) => {
+        console.error("Failed to load benchmark data:", error);
+        setBenchmarkStates((prev) => ({
+          ...prev,
+          [hardwareId]: {
+            status: "error",
+            message: "Benchmark data could not be loaded.",
+            results: null,
+          },
+        }));
+      });
+  };
 
   const showHardwareDetail = (id) => {
     setDetailLoading(true);
     setDetailError("");
+    loadBenchmarks(id);
 
     fetch(`http://127.0.0.1:8000/hardware/${id}`)
       .then((response) => {
@@ -166,6 +223,7 @@ function App() {
     }
 
     setCompareList([...compareList, item]);
+    loadBenchmarks(item.id);
 
     fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
       .then((response) => {
@@ -191,11 +249,19 @@ function App() {
     setCompareDetails((prev) =>
       prev.filter((item) => item.id !== id)
     );
+
+    setBenchmarkStates((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
   };
 
   const clearComparison = () => {
     setCompareList([]);
     setCompareDetails([]);
+
+    setBenchmarkStates({});
   };
 
   useEffect(() => {
@@ -644,158 +710,9 @@ function App() {
               </div>
             </div>
 
-            <div className="performance-section">
-              <p className="detail-section-label">
-                PERFORMANCE
-              </p>
-
-              {(() => {
-                const performanceState = getPerformanceState(
-                  selectedHardware,
-                  detailLoading,
-                  detailError
-                );
-
-                const statusLabels = {
-                  available: "DATA AVAILABLE",
-                  partial: "PARTIAL DATA",
-                  unavailable: "NOT AVAILABLE",
-                  loading: "LOADING",
-                  error: "UNAVAILABLE",
-                };
-
-                return (
-                  <>
-                    <div className="performance-intro">
-                      <div>
-                        <h3>Performance signals, when verified</h3>
-
-                        <p>
-                          Benchmark scores are shown only when returned by a
-                          verified data source. No score is estimated or
-                          substituted here.
-                        </p>
-                      </div>
-
-                      <span
-                        className={`performance-status performance-status-${performanceState.status}`}
-                      >
-                        {statusLabels[performanceState.status]}
-                      </span>
-                    </div>
-
-                    {performanceState.status === "unavailable" && (
-                      <div className="performance-notice">
-                        <strong>Benchmark data is not available yet.</strong>
-                        <span>
-                          This section is ready for BenchmarkResult data from
-                          the API. The hardware specifications above are not
-                          performance scores.
-                        </span>
-                      </div>
-                    )}
-
-                    {performanceState.status === "partial" && (
-                      <div className="performance-notice">
-                        <strong>Some benchmark data is unavailable.</strong>
-                        <span>
-                          Available results are shown below; missing metrics
-                          remain clearly marked until verified data is returned.
-                        </span>
-                      </div>
-                    )}
-
-                    {performanceState.status === "loading" && (
-                      <div className="performance-notice performance-notice-loading">
-                        <strong>Loading performance data</strong>
-                        <span>
-                          Waiting for the hardware data source to respond.
-                        </span>
-                      </div>
-                    )}
-
-                    {performanceState.status === "error" && (
-                      <div className="performance-notice performance-notice-error">
-                        <strong>Performance data could not be loaded.</strong>
-                        <span>{performanceState.message}</span>
-                      </div>
-                    )}
-
-                    <div className="performance-grid">
-                      {PERFORMANCE_METRICS.map((metric, index) => {
-                        const result = performanceState.results[metric.key];
-
-                        return (
-                          <article
-                            className={`performance-card ${
-                              result ? "performance-card-available" : ""
-                            }`}
-                            key={metric.key}
-                          >
-                            <div className="performance-card-header">
-                              <div>
-                                <span className="performance-card-index">
-                                  {String(index + 1).padStart(2, "0")}
-                                </span>
-                                <h3>{metric.title}</h3>
-                              </div>
-
-                              <span
-                                className={`performance-badge ${
-                                  result
-                                    ? "performance-badge-available"
-                                    : ""
-                                }`}
-                              >
-                                {result ? "AVAILABLE" : "NO DATA"}
-                              </span>
-                            </div>
-
-                            {result ? (
-                              <div className="performance-result">
-                                <div className="performance-value">
-                                  <strong>
-                                    {formatBenchmarkScore(result.score)}
-                                  </strong>
-                                  <span>{result.unit}</span>
-                                </div>
-
-                                <p>{metric.description}</p>
-
-                                {(result.benchmark_name ||
-                                  result.source_name ||
-                                  result.recorded_at) && (
-                                  <small>
-                                    {result.benchmark_name || "Benchmark result"}
-                                    {result.source_name
-                                      ? ` · ${result.source_name}`
-                                      : ""}
-                                  </small>
-                                )}
-                              </div>
-                            ) : (
-                              <div className="performance-result performance-result-unavailable">
-                                <div className="performance-value">
-                                  <strong>--</strong>
-                                  <span>score</span>
-                                </div>
-
-                                <p>{metric.description}</p>
-
-                                <small>
-                                  No verified result has been returned for this
-                                  metric.
-                                </small>
-                              </div>
-                            )}
-                          </article>
-                        );
-                      })}
-                    </div>
-                  </>
-                );
-              })()}
-            </div>
+            <PerformanceSection
+              benchmarkState={benchmarkStates[selectedHardware.id]}
+            />
           </section>
           )}
 
@@ -849,6 +766,18 @@ function App() {
                   <span>Lower is better: TDP.</span>
                 </div>
               )}
+
+              <div className="comparison-performance">
+                {compareDetails.map((item) => (
+                  <section className="comparison-performance-card" key={item.id}>
+                    <p className="detail-section-label">PERFORMANCE</p>
+                    <h3>{item.name}</h3>
+                    <PerformanceSection
+                      benchmarkState={benchmarkStates[item.id]}
+                    />
+                  </section>
+                ))}
+              </div>
 
               <div className="comparison-table-wrapper">
                 <table className="comparison-table">
