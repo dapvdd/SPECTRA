@@ -3,8 +3,13 @@ from sqlalchemy import select
 from backend.app.database import SessionLocal
 from backend.app.models import Hardware
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.services.benchmark_service import (
+    get_benchmarks_for_hardware,
+)
 
 
 app = FastAPI(
@@ -116,3 +121,16 @@ def get_hardware_detail(hardware_id: int):
                 ),
             },
         }
+
+
+@app.get(
+    "/hardware/{hardware_id}/benchmarks",
+    response_model=list[BenchmarkResultResponse],
+)
+def get_hardware_benchmarks(
+    hardware_id: int,
+) -> list[BenchmarkResultResponse]:
+    try:
+        return get_benchmarks_for_hardware(hardware_id)
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error

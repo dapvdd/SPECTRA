@@ -1,31 +1,32 @@
 from datetime import datetime
 
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from backend.app.database import SessionLocal
 from backend.app.models import BenchmarkResult, Hardware, Source
 
 def get_benchmarks_for_hardware(
-    hardware_name: str,
+    hardware_id: int,
 ) -> list[BenchmarkResult]:
 
     with SessionLocal() as session:
         hardware = session.scalar(
-            select(Hardware).where(
-                Hardware.name == hardware_name
-            )
+            select(Hardware).where(Hardware.id == hardware_id)
         )
 
         if hardware is None:
             raise ValueError(
-                f"Hardware not found: {hardware_name}"
+                f"Hardware not found: {hardware_id}"
             )
 
         return session.scalars(
             select(BenchmarkResult)
+            .options(selectinload(BenchmarkResult.source))
             .where(
                 BenchmarkResult.hardware_id == hardware.id
             )
+            .order_by(BenchmarkResult.id)
         ).all()
 
 def add_benchmark_result(
