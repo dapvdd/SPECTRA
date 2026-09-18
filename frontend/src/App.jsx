@@ -115,8 +115,8 @@ function PerformanceSection({ benchmarkState }) {
 
                   {(result.benchmark_name || sourceName || result.recorded_at) && (
                     <small>
-                      {result.benchmark_name || "Benchmark result"}
-                      {sourceName ? ` · ${sourceName}` : ""}
+                      <span>{result.benchmark_name || "Benchmark result"}</span>
+                      {sourceName && <span>Source: {sourceName}</span>}
                     </small>
                   )}
                 </div>
@@ -145,6 +145,8 @@ function PerformanceSection({ benchmarkState }) {
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
+  const [hardwareLoading, setHardwareLoading] = useState(true);
+  const [hardwareError, setHardwareError] = useState("");
   const [search, setSearch] = useState("");
   const [manufacturerFilter, setManufacturerFilter] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
@@ -275,12 +277,22 @@ function App() {
       });
 
     fetch("http://127.0.0.1:8000/hardware")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        return response.json();
+      })
       .then((data) => {
         setHardware(data);
       })
       .catch((error) => {
         console.error("Failed to load hardware:", error);
+        setHardwareError("Hardware catalog could not be loaded.");
+      })
+      .finally(() => {
+        setHardwareLoading(false);
       });
   }, []);
 
@@ -357,31 +369,17 @@ function App() {
         <div className="logo">SPECTRA</div>
 
         <div className="nav-links">
-          <span
-            onClick={() => {
-              document
-                .getElementById("explore")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                });
-            }}
-          >
+          <a href="#explore" className="nav-link">
             Explore
-          </span>
+          </a>
 
-          <span
-            onClick={() => {
-              document
-                .getElementById("compare")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                });
-            }}
-          >
+          <a href="#compare" className="nav-link">
             Compare
-          </span>
+          </a>
 
-          <span>About</span>
+          <a href="#about" className="nav-link">
+            About
+          </a>
         </div>
       </nav>
 
@@ -403,19 +401,32 @@ function App() {
           </p>
 
           <div className="search-box">
-            <span>⌕</span>
+            <span aria-hidden="true">⌕</span>
 
             <input
               type="text"
+              aria-label="Search CPUs"
               placeholder="Search for a CPU..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
+
+            {search && (
+              <button
+                type="button"
+                className="clear-search-icon"
+                aria-label="Clear CPU search"
+                onClick={() => setSearch("")}
+              >
+                ×
+              </button>
+            )}
           </div>
 
           <div className="filter-buttons">
             {["All", "Intel", "AMD"].map((manufacturer) => (
               <button
+                type="button"
                 key={manufacturer}
                 className={
                   manufacturerFilter === manufacturer
@@ -429,25 +440,49 @@ function App() {
             ))}
           </div>
 
-          <p className="api-status">
-            API Status: {apiStatus}
+          <p
+            className={`api-status ${
+              apiStatus === "online" ? "api-status-online" : ""
+            }`}
+          >
+            <span className="status-dot" aria-hidden="true" />
+            Catalog {apiStatus === "online" ? "connected" : apiStatus}
           </p>
         </div>
       </main>
 
-      <p className="hardware-result-count">
-        Showing{" "}
-        {Math.min(visibleCount, filteredHardware.length)}{" "}
-        of {filteredHardware.length}{" "}
-        {manufacturerFilter === "All"
-          ? "CPUs"
-          : `${manufacturerFilter} CPUs`}
+      <p className="hardware-result-count" aria-live="polite">
+        {hardwareLoading
+          ? "Loading hardware catalog..."
+          : hardwareError
+            ? "Hardware catalog unavailable"
+            : `Showing ${Math.min(visibleCount, filteredHardware.length)} of ${
+                filteredHardware.length
+              } ${manufacturerFilter === "All" ? "CPUs" : `${manufacturerFilter} CPUs`}`}
       </p>
 
       <section id="explore" className="hardware-section">
         <h2 id="explore-top">Explore Hardware</h2>
 
-        {filteredHardware.length === 0 ? (
+        {hardwareLoading ? (
+          <div className="catalog-state" role="status" aria-live="polite">
+            <span className="state-spinner" aria-hidden="true" />
+            <h3>Loading the catalog</h3>
+            <p>Fetching verified hardware records.</p>
+          </div>
+        ) : hardwareError ? (
+          <div className="catalog-state catalog-state-error" role="alert">
+            <h3>Catalog unavailable</h3>
+            <p>{hardwareError}</p>
+            <button
+              type="button"
+              className="clear-search-button"
+              onClick={() => window.location.reload()}
+            >
+              Try Again
+            </button>
+          </div>
+        ) : filteredHardware.length === 0 ? (
           <div className="hardware-empty">
             <span className="hardware-empty-icon">
               ◈
@@ -459,8 +494,9 @@ function App() {
               Try another search term or change your filter.
             </p>
 
-            <button
-              className="clear-search-button"
+             <button
+               type="button"
+               className="clear-search-button"
               onClick={() => {
                 setSearch("");
                 setManufacturerFilter("All");
@@ -481,7 +517,16 @@ function App() {
                 : ""
             }`}
             key={item.id}
+            role="button"
+            tabIndex={0}
+            aria-label={`View details for ${item.name}`}
             onClick={() => showHardwareDetail(item.id)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                showHardwareDetail(item.id);
+              }
+            }}
           >
             <h3>{item.name}</h3>
 
@@ -517,8 +562,9 @@ function App() {
 
         {visibleCount < filteredHardware.length && (
           <div className="load-more-container">
-            <button
-              className="load-more-button"
+             <button
+               type="button"
+               className="load-more-button"
               onClick={() =>
                 setVisibleCount((prev) =>
                   Math.min(prev + 12, filteredHardware.length)
@@ -531,21 +577,22 @@ function App() {
         )}
 
         {detailLoading && (
-          <p className="detail-status">
+          <p className="detail-status" role="status" aria-live="polite">
             Loading hardware details...
           </p>
         )}
 
         {detailError && (
-          <p className="detail-error">
+          <p className="detail-error" role="alert">
             {detailError}
           </p>
         )}
 
         {selectedHardware && (
           <section className="hardware-detail">
-            <button
-              className="back-button"
+             <button
+               type="button"
+               className="back-button"
               onClick={() => {
                 setSelectedHardware(null);
 
@@ -564,19 +611,23 @@ function App() {
 
             <div className="hardware-detail-header">
               <div>
-                <p className="eyebrow">
+                <p className="eyebrow detail-type">
                   {selectedHardware.type}
                 </p>
 
                 <h2>{selectedHardware.name}</h2>
 
                 <p className="hardware-meta">
+                  <span className="manufacturer-mark" aria-hidden="true">
+                    {selectedHardware.manufacturer?.slice(0, 1)}
+                  </span>
                   {selectedHardware.manufacturer}
                 </p>
               </div>
 
-              <button
-                className="detail-compare-button"
+               <button
+                 type="button"
+                 className="detail-compare-button"
                 onClick={() => addToCompare(selectedHardware)}
                 disabled={
                   !compareList.some(
@@ -642,7 +693,7 @@ function App() {
                   <span>Cores</span>
 
                   <strong>
-                    {selectedHardware.specifications.cores ?? "N/A"}
+                    {selectedHardware.specifications?.cores ?? "N/A"}
                   </strong>
                 </div>
 
@@ -650,7 +701,7 @@ function App() {
                   <span>Threads</span>
 
                   <strong>
-                    {selectedHardware.specifications.threads ?? "N/A"}
+                    {selectedHardware.specifications?.threads ?? "N/A"}
                   </strong>
                 </div>
 
@@ -658,7 +709,7 @@ function App() {
                   <span>Base Clock</span>
 
                   <strong>
-                    {selectedHardware.specifications.base_clock_ghz != null
+                    {selectedHardware.specifications?.base_clock_ghz != null
                       ? `${selectedHardware.specifications.base_clock_ghz} GHz`
                       : "N/A"}
                   </strong>
@@ -668,7 +719,7 @@ function App() {
                   <span>Boost Clock</span>
 
                   <strong>
-                    {selectedHardware.specifications.boost_clock_ghz != null
+                    {selectedHardware.specifications?.boost_clock_ghz != null
                       ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
                       : "N/A"}
                   </strong>
@@ -684,7 +735,7 @@ function App() {
                   <span>TDP</span>
 
                   <strong>
-                    {selectedHardware.specifications.tdp_w != null
+                    {selectedHardware.specifications?.tdp_w != null
                       ? `${selectedHardware.specifications.tdp_w} W`
                       : "N/A"}
                   </strong>
@@ -694,7 +745,7 @@ function App() {
                   <span>Process Node</span>
 
                   <strong>
-                    {selectedHardware.specifications.process_node_nm != null
+                    {selectedHardware.specifications?.process_node_nm != null
                       ? `${selectedHardware.specifications.process_node_nm} nm`
                       : "N/A"}
                   </strong>
@@ -704,7 +755,7 @@ function App() {
                   <span>Socket</span>
 
                   <strong>
-                    {selectedHardware.specifications.socket ?? "N/A"}
+                    {selectedHardware.specifications?.socket ?? "N/A"}
                   </strong>
                 </div>
               </div>
@@ -729,7 +780,8 @@ function App() {
 
           {compareList.length === 0 ? (
             <p className="comparison-empty">
-              Select up to 2 CPUs to compare.
+               Choose up to two CPUs from Explore Hardware. Your selected CPUs
+               will appear here with verified specs and benchmark results.
             </p>
           ) : (
             <div className="comparison-content">
@@ -740,6 +792,7 @@ function App() {
               )}
 
               <button
+                type="button"
                 className="clear-compare-button"
                 onClick={clearComparison}
               >
@@ -767,6 +820,13 @@ function App() {
                 </div>
               )}
 
+              {compareDetails.length < compareList.length && (
+                <div className="comparison-loading" role="status">
+                  <span className="state-spinner" aria-hidden="true" />
+                  Loading selected CPU details...
+                </div>
+              )}
+
               <div className="comparison-performance">
                 {compareDetails.map((item) => (
                   <section className="comparison-performance-card" key={item.id}>
@@ -779,8 +839,12 @@ function App() {
                 ))}
               </div>
 
-              <div className="comparison-table-wrapper">
-                <table className="comparison-table">
+               {compareDetails.length === 2 && (
+                 <div className="comparison-table-wrapper">
+                 <table className="comparison-table">
+                   <caption className="sr-only">
+                     Side-by-side CPU specification comparison
+                   </caption>
                   <thead>
                     <tr>
                       <th>Specification</th>
@@ -791,6 +855,7 @@ function App() {
                             <span>{item.name}</span>
 
                             <button
+                              type="button"
                               className="remove-compare-button"
                               onClick={() =>
                                 removeFromCompare(item.id)
@@ -798,9 +863,9 @@ function App() {
                             >
                               Remove
                             </button>
-                          </div>
-                        </th>
-                      ))}
+                           </div>
+                         </th>
+                       ))}
                     </tr>
                   </thead>
 
@@ -913,13 +978,22 @@ function App() {
                         </td>
                       ))}
                     </tr>
-                  </tbody>
+                 </tbody>
                 </table>
               </div>
-            </div>
-          )}
+           )}
+             </div>
+           )}
+          </section>
+
+        <section id="about" className="about-section">
+          <p className="eyebrow">ABOUT SPECTRA</p>
+          <p>
+            A focused way to inspect hardware specifications and compare verified
+            performance data without filling gaps with estimates.
+          </p>
         </section>
-      </section>
+       </section>
     </div>
   );
 }
