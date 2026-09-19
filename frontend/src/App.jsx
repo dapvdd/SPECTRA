@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import {
+  getBenchmarkComparisonData,
   getPerformanceState,
   PERFORMANCE_METRICS,
 } from "./performance.js";
@@ -143,6 +144,97 @@ function PerformanceSection({ benchmarkState }) {
         })}
       </div>
     </div>
+  );
+}
+
+function BenchmarkComparison({ comparisonData, compareDetails }) {
+  if (comparisonData.status === "loading") {
+    return (
+      <section className="benchmark-comparison" aria-labelledby="benchmark-comparison-title">
+        <div className="benchmark-comparison-header">
+          <div>
+            <p className="detail-section-label">BENCHMARK COMPARISON</p>
+            <h3 id="benchmark-comparison-title">Geekbench 7 scores</h3>
+          </div>
+          <span className="performance-status performance-status-loading">LOADING</span>
+        </div>
+        <div className="benchmark-comparison-notice" role="status">
+          <span className="state-spinner" aria-hidden="true" />
+          Waiting for verified benchmark data.
+        </div>
+      </section>
+    );
+  }
+
+  const hasAvailableScore = comparisonData.metrics.some((metric) =>
+    metric.rows.some((row) => row.value != null)
+  );
+
+  return (
+    <section className="benchmark-comparison" aria-labelledby="benchmark-comparison-title">
+      <div className="benchmark-comparison-header">
+        <div>
+          <p className="detail-section-label">BENCHMARK COMPARISON</p>
+          <h3 id="benchmark-comparison-title">Geekbench 7 scores</h3>
+        </div>
+        <span className="performance-status">
+          {hasAvailableScore ? "VERIFIED DATA" : "NO DATA"}
+        </span>
+      </div>
+
+      {!hasAvailableScore ? (
+        <p className="benchmark-comparison-notice">
+          Benchmark data unavailable.
+        </p>
+      ) : (
+        <div className="benchmark-comparison-grid">
+          {comparisonData.metrics.map((metric) => (
+            <article className="benchmark-comparison-card" key={metric.key}>
+              <div className="benchmark-comparison-card-heading">
+                <h4>{metric.title}</h4>
+                {metric.winner === "tie" && (
+                  <span className="benchmark-comparison-result">TIE</span>
+                )}
+                {metric.winner && metric.winner !== "tie" && (
+                  <span className="benchmark-comparison-result">
+                    {metric.winner === "cpuA" ? compareDetails[0].name : compareDetails[1].name} leads
+                  </span>
+                )}
+              </div>
+
+              <div className="benchmark-bars">
+                {metric.rows.map((row, index) => {
+                  const cpu = compareDetails[index];
+                  const isWinner = metric.winner === row.cpu;
+
+                  return (
+                    <div className="benchmark-bar-row" key={row.cpu}>
+                      <div className="benchmark-bar-label">
+                        <span title={cpu.name}>{cpu.name}</span>
+                        {row.value != null ? (
+                          <strong>{formatBenchmarkScore(row.value)} points</strong>
+                        ) : (
+                          <strong className="benchmark-bar-unavailable">No data</strong>
+                        )}
+                      </div>
+                      <div className="benchmark-bar-track" aria-hidden="true">
+                        {row.width != null && (
+                          <span
+                            className={`benchmark-bar-fill ${isWinner ? "benchmark-bar-fill-winner" : ""}`}
+                            style={{ width: `${row.width}%` }}
+                          />
+                        )}
+                      </div>
+                      {isWinner && <span className="sr-only">Higher score</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -452,6 +544,10 @@ function App() {
   });
 
   const comparisonInsights = calculateComparisonInsights(
+    compareDetails,
+    benchmarkStates
+  );
+  const benchmarkComparison = getBenchmarkComparisonData(
     compareDetails,
     benchmarkStates
   );
@@ -1019,13 +1115,6 @@ function App() {
                  </div>
                )}
 
-               {compareDetails.length === 2 && (
-                 <ComparisonInsights
-                   insights={comparisonInsights}
-                   compareDetails={compareDetails}
-                 />
-               )}
-
                <div className="comparison-performance">
                 {compareDetails.map((item) => (
                   <section className="comparison-performance-card" key={item.id}>
@@ -1035,8 +1124,22 @@ function App() {
                       benchmarkState={benchmarkStates[item.id]}
                     />
                   </section>
-                ))}
-              </div>
+                 ))}
+               </div>
+
+               {compareDetails.length === 2 && (
+                 <BenchmarkComparison
+                   comparisonData={benchmarkComparison}
+                   compareDetails={compareDetails}
+                 />
+               )}
+
+               {compareDetails.length === 2 && (
+                 <ComparisonInsights
+                   insights={comparisonInsights}
+                   compareDetails={compareDetails}
+                 />
+               )}
 
                {compareDetails.length === 2 && (
                  <div className="comparison-table-wrapper">

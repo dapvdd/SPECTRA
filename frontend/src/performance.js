@@ -28,8 +28,49 @@ const GEEKBENCH_TEST_TYPES = {
   "multi-core": "multi_core",
 };
 
-const hasFiniteScore = (benchmark) =>
-  typeof benchmark?.score === "number" && Number.isFinite(benchmark.score);
+export const BENCHMARK_COMPARISON_METRICS = [
+  {
+    key: "multi_core",
+    title: "Geekbench 7 Multi-Core",
+  },
+  {
+    key: "single_core",
+    title: "Geekbench 7 Single-Core",
+  },
+];
+
+const hasValidScore = (benchmark) =>
+  typeof benchmark?.score === "number" &&
+  Number.isFinite(benchmark.score) &&
+  benchmark.score > 0;
+
+const getBenchmarkRecords = (payload) => {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (!payload || typeof payload !== "object") {
+    return [];
+  }
+
+  if (Array.isArray(payload.benchmark_results)) {
+    return payload.benchmark_results;
+  }
+
+  if (Array.isArray(payload.benchmarks)) {
+    return payload.benchmarks;
+  }
+
+  if (Array.isArray(payload.results)) {
+    return payload.results;
+  }
+
+  if (payload.performance && Array.isArray(payload.performance.results)) {
+    return payload.performance.results;
+  }
+
+  return [];
+};
 
 const isEarlierResult = (candidate, current) => {
   const candidateId = candidate?.id;
@@ -48,16 +89,12 @@ const isEarlierResult = (candidate, current) => {
 };
 
 export const normalizeBenchmarkResults = (benchmarks) => {
-  if (!Array.isArray(benchmarks)) {
-    return {};
-  }
-
-  return benchmarks.reduce((results, benchmark) => {
+  return getBenchmarkRecords(benchmarks).reduce((results, benchmark) => {
     if (
       benchmark?.benchmark_name !== GEEKBENCH_NAME ||
       benchmark?.unit !== GEEKBENCH_UNIT ||
       !Object.hasOwn(GEEKBENCH_TEST_TYPES, benchmark?.test_type) ||
-      !hasFiniteScore(benchmark)
+      !hasValidScore(benchmark)
     ) {
       return results;
     }
@@ -86,7 +123,9 @@ export const getPerformanceState = (benchmarkState) => {
     };
   }
 
-  const results = normalizeBenchmarkResults(benchmarkState.results);
+  const results = normalizeBenchmarkResults(
+    benchmarkState.results ?? benchmarkState
+  );
   const resultCount = Object.keys(results).length;
 
   return {
@@ -97,5 +136,66 @@ export const getPerformanceState = (benchmarkState) => {
           ? "available"
           : "partial",
     results,
+  };
+};
+
+const roundBarWidth = (value) => Math.round(value * 10) / 10;
+
+export const getBenchmarkComparisonData = (
+  compareDetails,
+  benchmarkStates = {}
+) => {
+  if (!Array.isArray(compareDetails) || compareDetails.length !== 2) {
+    return { status: "unavailable", metrics: [] };
+  }
+
+  const states = compareDetails.map((hardware) =>
+    getPerformanceState(benchmarkStates[hardware.id])
+  );
+  const isLoading = states.some((state) => state.status === "loading");
+
+  const metrics = BENCHMARK_COMPARISON_METRICS.map((metric) => {
+    const values = states.map((state) => state.results[metric.key]?.score ?? null);
+    const validValues = values.filter(
+      (value) => typeof value === "number" && Number.isFinite(value) && value > 0
+    );
+    const maximum = validValues.length > 0 ? Math.max(...validValues) : null;
+    const hasBothValues = validValues.length === 2;
+    const winner = hasBothValues
+      ? values[0] === values[1]
+        ? "tie"
+        : values[0] > values[1]
+          ? "cpuA"
+          : "cpuB"
+      : null;
+
+    return {
+      ...metric,
+      winner,
+      rows: values.map((value, index) => ({
+        cpu: index === 0 ? "cpuA" : "cpuB",
+        value,
+        width: value != null && maximum != null
+          ? roundBarWidth((value / maximum) * 100)
+          : null,
+      })),
+    };
+  });
+
+  const availableValueCount = metrics.reduce(
+    (count, metric) =>
+      count + metric.rows.filter((row) => row.value != null).length,
+    0
+  );
+
+  return {
+    status: isLoading
+      ? "loading"
+      : availableValueCount === 0
+        ? "unavailable"
+        : availableValueCount === metrics.length * 2
+          ? "available"
+          : "partial",
+    metrics,
   };
 };
