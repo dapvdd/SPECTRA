@@ -461,6 +461,66 @@ function App() {
               } ${manufacturerFilter === "All" ? "CPUs" : `${manufacturerFilter} CPUs`}`}
       </p>
 
+      {compareList.length > 0 && (
+        <section
+          className="comparison-selection"
+          aria-labelledby="comparison-selection-title"
+        >
+          <div className="comparison-selection-heading">
+            <div>
+              <p className="eyebrow">COMPARISON SET</p>
+              <h2 id="comparison-selection-title">Ready to compare</h2>
+            </div>
+
+            <a className="comparison-jump-link" href="#compare">
+              View comparison <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div className="comparison-selection-list">
+            {compareList.map((item, index) => (
+              <div className="comparison-selection-item" key={item.id}>
+                <span className="comparison-selection-index">
+                  CPU {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <strong>{item.name}</strong>
+                  <span>
+                    {item.manufacturer} · {item.type || "Processor"}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="selection-remove-button"
+                  aria-label={`Remove ${item.name} from comparison`}
+                  onClick={() => removeFromCompare(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            {compareList.length === 1 && (
+              <div className="comparison-selection-item comparison-selection-slot">
+                <span className="comparison-selection-index">CPU 02</span>
+                <div>
+                  <strong>Choose a second CPU</strong>
+                  <span>Use Explore Hardware below to complete the comparison.</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <button
+            type="button"
+            className="selection-clear-button"
+            onClick={clearComparison}
+          >
+            Clear selection
+          </button>
+        </section>
+      )}
+
       <section id="explore" className="hardware-section">
         <h2 id="explore-top">Explore Hardware</h2>
 
@@ -510,32 +570,32 @@ function App() {
             {filteredHardware
               .slice(0, visibleCount)
               .map((item) => (
-          <div
-            className={`hardware-card ${
-              compareList.some((hardware) => hardware.id === item.id)
-                ? "in-comparison"
-                : ""
-            }`}
-            key={item.id}
-            role="button"
-            tabIndex={0}
-            aria-label={`View details for ${item.name}`}
-            onClick={() => showHardwareDetail(item.id)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                showHardwareDetail(item.id);
-              }
-            }}
-          >
-            <h3>{item.name}</h3>
+           <article
+             className={`hardware-card ${
+               compareList.some((hardware) => hardware.id === item.id)
+                 ? "in-comparison"
+                 : ""
+             }`}
+             key={item.id}
+           >
+             <button
+               type="button"
+               className="hardware-card-main"
+               onClick={() => showHardwareDetail(item.id)}
+             >
+               <span className="hardware-card-kicker">{item.type || "CPU"}</span>
+               <h3>{item.name}</h3>
+               <span className="hardware-card-manufacturer">
+                 {item.manufacturer}
+               </span>
+               <span className="hardware-card-action">
+                 View specifications <span aria-hidden="true">→</span>
+               </span>
+             </button>
 
-            <p>{item.manufacturer}</p>
-
-            <span>{item.type}</span>
-
-            <button
-              className={`compare-button ${
+             <button
+               type="button"
+               className={`compare-button ${
                 compareList.some((hardware) => hardware.id === item.id)
                   ? "added"
                   : ""
@@ -555,7 +615,7 @@ function App() {
                   ? "Comparison Full"
                   : "Compare"}
             </button>
-          </div>
+           </article>
               ))}
           </div>
         )}
@@ -778,12 +838,21 @@ function App() {
             <strong>{compareList.length} of 2</strong> hardware selected
           </p>
 
-          {compareList.length === 0 ? (
-            <p className="comparison-empty">
-               Choose up to two CPUs from Explore Hardware. Your selected CPUs
-               will appear here with verified specs and benchmark results.
-            </p>
-          ) : (
+           {compareList.length === 0 ? (
+             <div className="comparison-empty">
+               <div>
+                 <span className="comparison-empty-index">01 — 02</span>
+                 <h3>Build a side-by-side view</h3>
+                 <p>
+                   Choose up to two CPUs from Explore Hardware. Selected CPUs
+                   will appear here with verified specs and benchmark results.
+                 </p>
+               </div>
+               <a className="comparison-explore-link" href="#explore">
+                 Browse CPUs <span aria-hidden="true">→</span>
+               </a>
+             </div>
+           ) : (
             <div className="comparison-content">
               {compareList.length === 1 && (
                 <p className="comparison-instruction">
@@ -799,8 +868,8 @@ function App() {
                 Clear Comparison
               </button>
 
-              {compareDetails.length === 2 && (
-                <div
+               {compareDetails.length === 2 && (
+                 <div
                   className="comparison-legend"
                   aria-label="Comparison guidance"
                 >
@@ -816,9 +885,16 @@ function App() {
                     Higher is better: Cores, Threads, Base Clock, Boost Clock.
                   </span>
 
-                  <span>Lower is better: TDP.</span>
-                </div>
-              )}
+                   <span>Lower is better: TDP.</span>
+                 </div>
+               )}
+
+               {compareDetails.length === 2 && (
+                 <p className="comparison-scroll-hint">
+                   <span aria-hidden="true">↔</span> Scroll horizontally to
+                   view the full comparison on smaller screens.
+                 </p>
+               )}
 
               {compareDetails.length < compareList.length && (
                 <div className="comparison-loading" role="status">

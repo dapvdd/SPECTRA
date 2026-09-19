@@ -1093,6 +1093,226 @@ h1 {
   border: 0;
 }
 
+/* Keep the catalog and comparison content aligned with the hero. */
+.hardware-result-count,
+.hardware-section,
+.comparison-section {
+  width: min(1180px, calc(100% - 4rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hardware-result-count {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.comparison-selection {
+  width: min(1180px, calc(100% - 4rem));
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  background: linear-gradient(120deg, #172033, #12243a);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 16px;
+}
+
+.comparison-selection-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.comparison-selection-heading .eyebrow {
+  margin: 0 0 0.45rem;
+}
+
+.comparison-selection-heading h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.comparison-jump-link,
+.comparison-explore-link {
+  color: #7dd3fc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.comparison-jump-link:hover,
+.comparison-explore-link:hover {
+  color: white;
+}
+
+.comparison-selection-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.comparison-selection-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+.comparison-selection-index,
+.comparison-empty-index {
+  color: #38bdf8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.comparison-selection-item div {
+  min-width: 0;
+}
+
+.comparison-selection-item strong,
+.comparison-selection-item div > span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comparison-selection-item strong {
+  color: #f8fafc;
+}
+
+.comparison-selection-item div > span {
+  margin-top: 0.25rem;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.comparison-selection-slot {
+  border-style: dashed;
+  background: transparent;
+}
+
+.selection-remove-button,
+.selection-clear-button {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.selection-remove-button:hover,
+.selection-clear-button:hover {
+  border-color: #f87171;
+  color: #fca5a5;
+}
+
+.selection-clear-button {
+  margin-top: 0.85rem;
+}
+
+.hardware-card.in-comparison {
+  border-color: rgba(56, 189, 248, 0.65);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12),
+    0 12px 30px rgba(2, 6, 23, 0.14);
+}
+
+.hardware-card-main {
+  display: flex;
+  width: 100%;
+  min-height: 150px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hardware-card-main:focus-visible {
+  outline: 3px solid rgba(125, 211, 252, 0.8);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+.hardware-card-kicker {
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hardware-card-main h3 {
+  margin: 0.7rem 0 0.4rem;
+  color: #f8fafc;
+  line-height: 1.35;
+}
+
+.hardware-card-manufacturer {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.hardware-card-action {
+  display: inline-flex;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.hardware-card-main:hover .hardware-card-action {
+  color: #7dd3fc;
+}
+
+.comparison-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.comparison-empty h3 {
+  margin: 0.65rem 0 0.5rem;
+  color: #e2e8f0;
+  font-size: 1.2rem;
+}
+
+.comparison-empty p {
+  max-width: 600px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.comparison-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.8rem 0 0;
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.comparison-scroll-hint span {
+  color: #38bdf8;
+  font-size: 1rem;
+}
+
 @media (max-width: 700px) {
   .navbar {
     height: auto;
@@ -1147,5 +1367,35 @@ h1 {
     margin-right: -1.25rem;
     border-right: 0;
     border-radius: 12px 0 0 12px;
+  }
+
+  .hardware-result-count,
+  .hardware-section,
+  .comparison-section,
+  .comparison-selection {
+    width: calc(100% - 2.5rem);
+  }
+
+  .comparison-selection {
+    padding: 1.25rem;
+  }
+
+  .comparison-selection-heading,
+  .comparison-empty {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .comparison-selection-list {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-selection-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .selection-remove-button {
+    grid-column: 2;
+    justify-self: start;
   }
 }
