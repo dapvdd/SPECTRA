@@ -210,6 +210,40 @@ h1 {
   color: #f87171;
 }
 
+.detail-hidden {
+  display: none;
+}
+
+.catalog-content {
+  min-height: 1px;
+}
+
+.detail-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #172033;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.detail-state strong {
+  color: #e2e8f0;
+}
+
+.detail-state-error {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.detail-state-error strong {
+  color: #fca5a5;
+}
+
 .compare-button {
   margin-top: 1rem;
   padding: 0.6rem 1rem;

@@ -9,6 +9,10 @@ import {
   calculateComparisonInsights,
   getComparisonWinner,
 } from "./comparison.js";
+import {
+  getCpuDetailViewModel,
+  getDetailComparisonAction,
+} from "./detail.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -238,6 +242,89 @@ function BenchmarkComparison({ comparisonData, compareDetails }) {
   );
 }
 
+function DetailSpecGrid({ items }) {
+  return (
+    <div className="spec-grid">
+      {items.map((item) => (
+        <div key={item.label}>
+          <span>{item.label}</span>
+          <strong>{item.value}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CpuDetailView({
+  hardware,
+  benchmarkState,
+  compareList,
+  onBack,
+  onCompare,
+  detailError,
+}) {
+  const viewModel = getCpuDetailViewModel(hardware);
+  const comparisonAction = getDetailComparisonAction(compareList, hardware.id);
+
+  return (
+    <section className="hardware-detail" aria-labelledby="cpu-detail-title">
+      <button type="button" className="back-button" onClick={onBack}>
+        ← Back to CPUs
+      </button>
+
+      {detailError && (
+        <div className="detail-state detail-state-error" role="alert">
+          <strong>CPU details unavailable</strong>
+          <span>{detailError}</span>
+        </div>
+      )}
+
+      <div className="hardware-detail-header">
+        <div>
+          <p className="eyebrow detail-type">CPU DETAIL</p>
+          <h2 id="cpu-detail-title">{viewModel.name}</h2>
+          <p className="hardware-meta">
+            <span className="manufacturer-mark" aria-hidden="true">
+              {viewModel.manufacturer.slice(0, 1)}
+            </span>
+            {viewModel.manufacturer} · {viewModel.type}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="detail-compare-button"
+          onClick={onCompare}
+          disabled={comparisonAction.comparisonFull}
+        >
+          {comparisonAction.alreadySelected
+            ? `✓ CPU ${comparisonAction.comparisonSlot} selected`
+            : comparisonAction.comparisonFull
+              ? "Comparison Full"
+              : "Compare CPU"}
+        </button>
+      </div>
+
+      <div className="detail-specifications">
+        <p className="detail-section-label">OVERVIEW</p>
+        <DetailSpecGrid items={viewModel.overview} />
+
+        <p className="detail-section-label technical-label">
+          KEY SPECIFICATIONS
+        </p>
+        <DetailSpecGrid items={viewModel.keySpecifications} />
+
+        <p className="detail-section-label technical-label">
+          TECHNICAL SPECIFICATIONS
+        </p>
+        <DetailSpecGrid items={viewModel.technicalSpecifications} />
+      </div>
+
+      <PerformanceSection benchmarkState={benchmarkState} />
+    </section>
+  );
+}
+
 const formatInsightValue = (value, format, unit) => {
   const formattedValue =
     format === "integer"
@@ -363,6 +450,7 @@ function App() {
   const [manufacturerFilter, setManufacturerFilter] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
   const [selectedHardware, setSelectedHardware] = useState(null);
+  const [detailView, setDetailView] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
   const [compareList, setCompareList] = useState([]);
@@ -405,6 +493,8 @@ function App() {
   const showHardwareDetail = (id) => {
     setDetailLoading(true);
     setDetailError("");
+    setSelectedHardware(null);
+    setDetailView(true);
     loadBenchmarks(id);
 
     fetch(`http://127.0.0.1:8000/hardware/${id}`)
@@ -476,6 +566,47 @@ function App() {
     setCompareDetails([]);
 
     setBenchmarkStates({});
+  };
+
+  const returnToCatalog = () => {
+    setSelectedHardware(null);
+    setDetailError("");
+    setDetailView(false);
+
+    setTimeout(() => {
+      document.getElementById("explore-top")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 0);
+  };
+
+  const compareSelectedHardware = () => {
+    if (!selectedHardware) {
+      return;
+    }
+
+    const comparisonAction = getDetailComparisonAction(
+      compareList,
+      selectedHardware.id
+    );
+
+    if (comparisonAction.alreadySelected || comparisonAction.comparisonFull) {
+      return;
+    }
+
+    addToCompare(selectedHardware);
+
+    if (comparisonAction.shouldNavigateToComparison) {
+      setSelectedHardware(null);
+      setDetailView(false);
+      setTimeout(() => {
+        document.getElementById("compare")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 0);
+    }
   };
 
   useEffect(() => {
@@ -734,9 +865,12 @@ function App() {
       )}
 
       <section id="explore" className="hardware-section">
-        <h2 id="explore-top">Explore Hardware</h2>
+        <h2 id="explore-top" className={detailView ? "detail-hidden" : ""}>
+          Explore Hardware
+        </h2>
 
-        {hardwareLoading ? (
+        <div className={detailView ? "catalog-content detail-hidden" : "catalog-content"}>
+          {hardwareLoading ? (
           <div className="catalog-state" role="status" aria-live="polite">
             <span className="state-spinner" aria-hidden="true" />
             <h3>Loading the catalog</h3>
@@ -830,9 +964,10 @@ function App() {
            </article>
               ))}
           </div>
-        )}
+          )}
+        </div>
 
-        {visibleCount < filteredHardware.length && (
+        {!detailView && visibleCount < filteredHardware.length && (
           <div className="load-more-container">
              <button
                type="button"
@@ -848,198 +983,51 @@ function App() {
           </div>
         )}
 
-        {detailLoading && (
+        {!detailView && detailLoading && (
           <p className="detail-status" role="status" aria-live="polite">
             Loading hardware details...
           </p>
         )}
 
-        {detailError && (
+        {!detailView && detailError && (
           <p className="detail-error" role="alert">
             {detailError}
           </p>
         )}
 
-        {selectedHardware && (
-          <section className="hardware-detail">
-             <button
-               type="button"
-               className="back-button"
-              onClick={() => {
-                setSelectedHardware(null);
+        {detailView && detailLoading && (
+          <div className="detail-state" role="status" aria-live="polite">
+            <span className="state-spinner" aria-hidden="true" />
+            <strong>Loading CPU details</strong>
+            <span>Fetching verified specifications and benchmark data.</span>
+          </div>
+        )}
 
-                setTimeout(() => {
-                  document
-                    .getElementById("explore-top")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                }, 0);
-              }}
-            >
-              ← Back to Explore
+        {detailView && detailError && !selectedHardware && (
+          <div className="detail-state detail-state-error" role="alert">
+            <strong>CPU details unavailable</strong>
+            <span>{detailError}</span>
+            <button type="button" className="clear-search-button" onClick={returnToCatalog}>
+              Back to CPUs
             </button>
+          </div>
+        )}
 
-            <div className="hardware-detail-header">
-              <div>
-                <p className="eyebrow detail-type">
-                  {selectedHardware.type}
-                </p>
+        {detailView && selectedHardware && (
+          <CpuDetailView
+            hardware={selectedHardware}
+            benchmarkState={benchmarkStates[selectedHardware.id]}
+            compareList={compareList}
+            onBack={returnToCatalog}
+            onCompare={compareSelectedHardware}
+            detailError={detailError}
+          />
+        )}
 
-                <h2>{selectedHardware.name}</h2>
-
-                <p className="hardware-meta">
-                  <span className="manufacturer-mark" aria-hidden="true">
-                    {selectedHardware.manufacturer?.slice(0, 1)}
-                  </span>
-                  {selectedHardware.manufacturer}
-                </p>
-              </div>
-
-               <button
-                 type="button"
-                 className="detail-compare-button"
-                onClick={() => addToCompare(selectedHardware)}
-                disabled={
-                  !compareList.some(
-                    (hardware) => hardware.id === selectedHardware.id
-                  ) && compareList.length >= 2
-                }
-              >
-                {compareList.some(
-                  (hardware) => hardware.id === selectedHardware.id
-                )
-                  ? "✓ In Comparison"
-                  : compareList.length >= 2
-                    ? "Comparison Full"
-                    : "Add to Comparison"}
-              </button>
-            </div>
-
-            <div className="detail-specifications">
-              <p className="detail-section-label">
-                OVERVIEW
-              </p>
-
-              <div className="spec-grid">
-                <div>
-                  <span>Manufacturer</span>
-
-                  <strong>
-                    {selectedHardware.manufacturer ?? "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Type</span>
-
-                  <strong>
-                    {selectedHardware.type ?? "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Release Date</span>
-
-                  <strong>
-                    {selectedHardware.release_date ?? "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Architecture</span>
-
-                  <strong>
-                    {selectedHardware.architecture ?? "N/A"}
-                  </strong>
-                </div>
-              </div>
-
-              <p className="detail-section-label technical-label">
-                KEY SPECIFICATIONS
-              </p>
-
-              <div className="spec-grid">
-                <div>
-                  <span>Cores</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.cores ?? "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Threads</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.threads ?? "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Base Clock</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.base_clock_ghz != null
-                      ? `${selectedHardware.specifications.base_clock_ghz} GHz`
-                      : "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Boost Clock</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.boost_clock_ghz != null
-                      ? `${selectedHardware.specifications.boost_clock_ghz} GHz`
-                      : "N/A"}
-                  </strong>
-                </div>
-              </div>
-
-              <p className="detail-section-label technical-label">
-                TECHNICAL SPECIFICATIONS
-              </p>
-
-              <div className="spec-grid">
-                <div>
-                  <span>TDP</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.tdp_w != null
-                      ? `${selectedHardware.specifications.tdp_w} W`
-                      : "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Process Node</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.process_node_nm != null
-                      ? `${selectedHardware.specifications.process_node_nm} nm`
-                      : "N/A"}
-                  </strong>
-                </div>
-
-                <div>
-                  <span>Socket</span>
-
-                  <strong>
-                    {selectedHardware.specifications?.socket ?? "N/A"}
-                  </strong>
-                </div>
-              </div>
-            </div>
-
-            <PerformanceSection
-              benchmarkState={benchmarkStates[selectedHardware.id]}
-            />
-          </section>
-          )}
-
-        <section id="compare" className="comparison-section">
+        <section
+          id="compare"
+          className={`comparison-section ${detailView ? "detail-hidden" : ""}`}
+        >
           <p className="eyebrow">
             HARDWARE COMPARISON
           </p>
