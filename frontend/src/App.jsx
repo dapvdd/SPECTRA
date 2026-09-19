@@ -4,6 +4,10 @@ import {
   getPerformanceState,
   PERFORMANCE_METRICS,
 } from "./performance.js";
+import {
+  calculateComparisonInsights,
+  getComparisonWinner,
+} from "./comparison.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -139,6 +143,122 @@ function PerformanceSection({ benchmarkState }) {
         })}
       </div>
     </div>
+  );
+}
+
+const formatInsightValue = (value, format, unit) => {
+  const formattedValue =
+    format === "integer"
+      ? value.toLocaleString()
+      : value.toLocaleString(undefined, { maximumFractionDigits: 2 });
+
+  return unit ? `${formattedValue} ${unit}` : formattedValue;
+};
+
+function ComparisonInsights({ insights, compareDetails }) {
+  if (insights.pendingMetrics.length > 0) {
+    return (
+      <section className="comparison-insights" aria-labelledby="insights-title">
+        <div className="comparison-insights-header">
+          <div>
+            <p className="detail-section-label">COMPARISON INSIGHTS</p>
+            <h3 id="insights-title">Waiting for comparable data</h3>
+          </div>
+          <span className="comparison-insights-mark" aria-hidden="true">?</span>
+        </div>
+        <p className="comparison-insights-message">
+          Verified benchmark data is still loading. Insights will appear when
+          both CPUs have finished loading their supported metrics.
+        </p>
+      </section>
+    );
+  }
+
+  if (insights.measurableCount === 0) {
+    return (
+      <section className="comparison-insights" aria-labelledby="insights-title">
+        <div className="comparison-insights-header">
+          <div>
+            <p className="detail-section-label">COMPARISON INSIGHTS</p>
+            <h3 id="insights-title">No measurable lead yet</h3>
+          </div>
+          <span className="comparison-insights-mark" aria-hidden="true">—</span>
+        </div>
+        <p className="comparison-insights-message">
+          Not enough comparable data to generate insights.
+        </p>
+      </section>
+    );
+  }
+
+  const [cpuA, cpuB] = compareDetails;
+  const unavailableLabel =
+    insights.unavailableMetrics.length === 1
+      ? "1 metric could not be compared because data is unavailable."
+      : `${insights.unavailableMetrics.length} metrics could not be compared because data is unavailable.`;
+
+  return (
+    <section className="comparison-insights" aria-labelledby="insights-title">
+      <div className="comparison-insights-header">
+        <div>
+          <p className="detail-section-label">COMPARISON INSIGHTS</p>
+          <h3 id="insights-title">Why the numbers differ</h3>
+        </div>
+        <span className="comparison-insights-mark" aria-hidden="true">+</span>
+      </div>
+
+      <div className="comparison-insights-summary">
+        {insights.wins.cpuA > 0 && (
+          <p>
+            <strong>{cpuA.name}</strong> leads in {insights.wins.cpuA} of{" "}
+            {insights.measurableCount} measurable metrics.
+          </p>
+        )}
+        {insights.wins.cpuB > 0 && (
+          <p>
+            <strong>{cpuB.name}</strong> leads in {insights.wins.cpuB} of{" "}
+            {insights.measurableCount} measurable metrics.
+          </p>
+        )}
+        {insights.wins.cpuA === 0 && insights.wins.cpuB === 0 && (
+          <p>All {insights.measurableCount} measurable metrics are tied.</p>
+        )}
+      </div>
+
+      {insights.insights.length > 0 && (
+        <ul className="comparison-insight-list">
+          {insights.insights.map((insight) => (
+            <li className="comparison-insight-item" key={insight.metricKey}>
+              <span className="comparison-insight-icon" aria-hidden="true">+</span>
+              <div>
+                <strong>{insight.metric}</strong>
+                <span>{insight.winnerName}</span>
+              </div>
+              <span className="comparison-insight-difference">
+                {insight.direction === "lower" ? "" : "+"}
+                {insight.differencePercent.toFixed(1)}%{" "}
+                {insight.direction === "lower" ? "lower" : "higher"}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {insights.tieDetails.length > 0 && (
+        <div className="comparison-insight-ties">
+          <strong>Ties</strong>
+          {insights.tieDetails.map((tie) => (
+            <span key={tie.metricKey}>
+              {tie.metric} — Tie at {formatInsightValue(tie.value, tie.format, tie.unit)}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {insights.unavailableMetrics.length > 0 && (
+        <p className="comparison-insights-unavailable">{unavailableLabel}</p>
+      )}
+    </section>
   );
 }
 
@@ -331,6 +451,11 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
+  const comparisonInsights = calculateComparisonInsights(
+    compareDetails,
+    benchmarkStates
+  );
+
   const getComparisonCellClass = (
     specification,
     itemIndex,
@@ -343,24 +468,15 @@ function App() {
     const values = compareDetails.map(
       (item) => item.specifications?.[specification]
     );
-    const numericValues = values.filter(
-      (value) => typeof value === "number" && Number.isFinite(value)
+    const winner = getComparisonWinner(
+      values[0],
+      values[1],
+      lowerIsBetter ? "lower" : "higher"
     );
-    const value = values[itemIndex];
 
-    if (
-      typeof value !== "number" ||
-      !Number.isFinite(value) ||
-      numericValues.length !== 2
-    ) {
-      return "";
-    }
-
-    const winner = lowerIsBetter
-      ? Math.min(...numericValues)
-      : Math.max(...numericValues);
-
-    return value === winner ? "comparison-winner" : "";
+    return winner === "tie" || winner === (itemIndex === 0 ? "cpuA" : "cpuB")
+      ? "comparison-winner"
+      : "";
   };
 
   return (
@@ -896,14 +1012,21 @@ function App() {
                  </p>
                )}
 
-              {compareDetails.length < compareList.length && (
-                <div className="comparison-loading" role="status">
-                  <span className="state-spinner" aria-hidden="true" />
-                  Loading selected CPU details...
-                </div>
-              )}
+               {compareDetails.length < compareList.length && (
+                 <div className="comparison-loading" role="status">
+                   <span className="state-spinner" aria-hidden="true" />
+                   Loading selected CPU details...
+                 </div>
+               )}
 
-              <div className="comparison-performance">
+               {compareDetails.length === 2 && (
+                 <ComparisonInsights
+                   insights={comparisonInsights}
+                   compareDetails={compareDetails}
+                 />
+               )}
+
+               <div className="comparison-performance">
                 {compareDetails.map((item) => (
                   <section className="comparison-performance-card" key={item.id}>
                     <p className="detail-section-label">PERFORMANCE</p>
