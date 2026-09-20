@@ -7,8 +7,13 @@ import {
 } from "./performance.js";
 import {
   calculateComparisonInsights,
+  buildComparisonFacts,
   getComparisonWinner,
 } from "./comparison.js";
+import {
+  AI_ANALYSIS_STATUS,
+  requestComparisonExplanation,
+} from "./comparisonExplanation.js";
 import {
   getCpuDetailViewModel,
   getDetailComparisonAction,
@@ -441,6 +446,54 @@ function ComparisonInsights({ insights, compareDetails }) {
   );
 }
 
+function AiAnalysis({ analysis, onGenerate }) {
+  return (
+    <section className="ai-analysis" aria-labelledby="ai-analysis-title">
+      <div className="ai-analysis-header">
+        <div>
+          <p className="detail-section-label">AI ANALYSIS</p>
+          <h3 id="ai-analysis-title">A concise explanation of the comparison</h3>
+        </div>
+        <span className="ai-analysis-mark" aria-hidden="true">AI</span>
+      </div>
+
+      {analysis.status === AI_ANALYSIS_STATUS.idle && (
+        <div className="ai-analysis-empty">
+          <p>Generate an AI explanation of this comparison.</p>
+          <button type="button" className="ai-analysis-button" onClick={onGenerate}>
+            Generate Analysis
+          </button>
+        </div>
+      )}
+
+      {analysis.status === AI_ANALYSIS_STATUS.loading && (
+        <div className="ai-analysis-message" role="status">
+          <span className="state-spinner" aria-hidden="true" />
+          <span>Analyzing comparison...</span>
+        </div>
+      )}
+
+      {analysis.status === AI_ANALYSIS_STATUS.success && (
+        <div className="ai-analysis-result">
+          <p>{analysis.explanation}</p>
+          <button type="button" className="ai-analysis-button" onClick={onGenerate}>
+            Regenerate Analysis
+          </button>
+        </div>
+      )}
+
+      {analysis.status === AI_ANALYSIS_STATUS.error && (
+        <div className="ai-analysis-error" role="alert">
+          <p>Unable to generate analysis.</p>
+          <button type="button" className="ai-analysis-button" onClick={onGenerate}>
+            Try Again
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
@@ -456,6 +509,10 @@ function App() {
   const [compareList, setCompareList] = useState([]);
   const [compareDetails, setCompareDetails] = useState([]);
   const [benchmarkStates, setBenchmarkStates] = useState({});
+  const [aiAnalysis, setAiAnalysis] = useState({
+    status: AI_ANALYSIS_STATUS.idle,
+    explanation: "",
+  });
 
   const loadBenchmarks = (hardwareId) => {
     setBenchmarkStates((prev) => ({
@@ -526,6 +583,7 @@ function App() {
       return;
     }
 
+    setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList([...compareList, item]);
     loadBenchmarks(item.id);
 
@@ -546,6 +604,7 @@ function App() {
   };
 
   const removeFromCompare = (id) => {
+    setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList((prev) =>
       prev.filter((item) => item.id !== id)
     );
@@ -562,6 +621,7 @@ function App() {
   };
 
   const clearComparison = () => {
+    setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList([]);
     setCompareDetails([]);
 
@@ -682,6 +742,23 @@ function App() {
     compareDetails,
     benchmarkStates
   );
+  const comparisonFacts = buildComparisonFacts(compareDetails, benchmarkStates);
+
+  const generateAiAnalysis = () => {
+    if (!comparisonFacts) {
+      return;
+    }
+
+    setAiAnalysis({ status: AI_ANALYSIS_STATUS.loading, explanation: "" });
+    requestComparisonExplanation(comparisonFacts)
+      .then((explanation) => {
+        setAiAnalysis({ status: AI_ANALYSIS_STATUS.success, explanation });
+      })
+      .catch((error) => {
+        console.error("Failed to generate AI analysis:", error);
+        setAiAnalysis({ status: AI_ANALYSIS_STATUS.error, explanation: "" });
+      });
+  };
 
   const getComparisonCellClass = (
     specification,
@@ -1122,14 +1199,21 @@ function App() {
                  />
                )}
 
-               {compareDetails.length === 2 && (
-                 <ComparisonInsights
+                {compareDetails.length === 2 && (
+                  <ComparisonInsights
                    insights={comparisonInsights}
                    compareDetails={compareDetails}
-                 />
-               )}
+                  />
+                )}
 
-               {compareDetails.length === 2 && (
+                {compareDetails.length === 2 && (
+                  <AiAnalysis
+                    analysis={aiAnalysis}
+                    onGenerate={generateAiAnalysis}
+                  />
+                )}
+
+                {compareDetails.length === 2 && (
                  <div className="comparison-table-wrapper">
                  <table className="comparison-table">
                    <caption className="sr-only">

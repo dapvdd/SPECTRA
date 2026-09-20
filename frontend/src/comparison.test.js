@@ -3,14 +3,16 @@ import assert from "node:assert/strict";
 
 import {
   calculateComparisonInsights,
+  buildComparisonFacts,
   COMPARISON_METRICS,
   getComparisonWinner,
   isValidComparisonValue,
 } from "./comparison.js";
 
-const cpu = (name, specifications = {}) => ({
+const cpu = (name, specifications = {}, manufacturer = "Vendor") => ({
   id: name,
   name,
+  manufacturer,
   specifications,
 });
 
@@ -207,4 +209,26 @@ test("only supported metrics are generated; no CPU or gaming aggregate is invent
     false
   );
   assert.equal(result.insights.some((insight) => insight.metricKey === "socket"), false);
+});
+
+test("builds AI facts from deterministic metrics and preserves unavailable data", () => {
+  const facts = buildComparisonFacts([
+    cpu("CPU A", { cores: 8 }),
+    cpu("CPU B", { cores: 6 }),
+  ]);
+
+  assert.deepEqual(facts.cpu_a, {
+    name: "CPU A",
+    manufacturer: "Vendor",
+  });
+  assert.equal(facts.metrics[0].name, "Cores");
+  assert.equal(facts.metrics[0].value_a, 8);
+  assert.equal(facts.metrics[0].value_b, 6);
+  assert.equal(facts.metrics[0].winner, "cpu_a");
+  assert.equal(facts.metrics[0].difference_percent, 33.3);
+  assert.equal(facts.unavailable_metrics.some((metric) => metric.metric_key === "multi_core"), true);
+});
+
+test("does not build AI facts until two CPUs are selected", () => {
+  assert.equal(buildComparisonFacts([cpu("CPU A")]), null);
 });

@@ -1,4 +1,17 @@
+from pathlib import Path
+
+from dotenv import load_dotenv
 from sqlalchemy import select
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def load_backend_environment():
+    load_dotenv(PROJECT_ROOT / ".env", override=False)
+
+
+load_backend_environment()
 
 from backend.app.database import SessionLocal
 from backend.app.models import Hardware
@@ -7,9 +20,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.schemas.explanation import (
+    ExplanationRequest,
+    ExplanationResponse,
+)
 from backend.app.services.benchmark_service import (
     get_benchmarks_for_hardware,
 )
+from backend.app.services import explanation_service
 
 
 app = FastAPI(
@@ -134,3 +152,22 @@ def get_hardware_benchmarks(
         return get_benchmarks_for_hardware(hardware_id)
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.post(
+    "/comparison/explanation",
+    response_model=ExplanationResponse,
+)
+def generate_comparison_explanation(
+    request_data: ExplanationRequest,
+) -> ExplanationResponse:
+    try:
+        explanation = explanation_service.generate_explanation(
+            request_data.comparison
+        )
+    except explanation_service.ProviderUnavailableError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+
+    return ExplanationResponse(explanation=explanation)

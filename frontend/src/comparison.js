@@ -69,6 +69,9 @@ const emptyInsights = () => ({
   pendingMetrics: [],
 });
 
+const getMetricDefinition = (metricKey) =>
+  COMPARISON_METRICS.find((metric) => metric.key === metricKey);
+
 export const isValidComparisonValue = (value) =>
   typeof value === "number" && Number.isFinite(value) && value > 0;
 
@@ -194,4 +197,83 @@ export const calculateComparisonInsights = (
   }
 
   return result;
+};
+
+const getFactWinner = (winner) => {
+  if (winner === "cpuA") {
+    return "cpu_a";
+  }
+
+  if (winner === "cpuB") {
+    return "cpu_b";
+  }
+
+  return "tie";
+};
+
+export const buildComparisonFacts = (compareDetails, benchmarkStates = {}) => {
+  if (!Array.isArray(compareDetails) || compareDetails.length !== 2) {
+    return null;
+  }
+
+  const [cpuA, cpuB] = compareDetails;
+  const insights = calculateComparisonInsights(compareDetails, benchmarkStates);
+  const facts = {
+    cpu_a: {
+      name: cpuA.name,
+      manufacturer: cpuA.manufacturer,
+    },
+    cpu_b: {
+      name: cpuB.name,
+      manufacturer: cpuB.manufacturer,
+    },
+    metrics: insights.insights.map((insight) => {
+      const metric = getMetricDefinition(insight.metricKey);
+      const valueA = insight.winner === "cpuA" ? insight.winnerValue : insight.loserValue;
+      const valueB = insight.winner === "cpuB" ? insight.winnerValue : insight.loserValue;
+
+      return {
+        metric_key: insight.metricKey,
+        name: insight.metric,
+        value_a: valueA,
+        value_b: valueB,
+        unit: insight.unit,
+        source: metric.source,
+        direction: insight.direction,
+        winner: getFactWinner(insight.winner),
+        difference_percent: insight.differencePercent,
+      };
+    }),
+    ties: insights.tieDetails.map((tie) => {
+      const metric = getMetricDefinition(tie.metricKey);
+
+      return {
+        metric_key: tie.metricKey,
+        name: tie.metric,
+        value_a: tie.value,
+        value_b: tie.value,
+        unit: tie.unit,
+        source: metric.source,
+        direction: metric.direction,
+        winner: "tie",
+        difference_percent: 0,
+      };
+    }),
+    unavailable_metrics: [
+      ...insights.unavailableMetrics.map((metric) => ({
+        metric_key: metric.key,
+        name: metric.label,
+        source: metric.source,
+        reason: "unavailable",
+      })),
+      ...insights.pendingMetrics.map((metric) => ({
+        metric_key: metric.key,
+        name: metric.label,
+        source: metric.source,
+        reason: "pending",
+      })),
+    ],
+  };
+
+  return facts;
 };
