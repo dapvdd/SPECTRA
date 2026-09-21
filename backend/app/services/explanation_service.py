@@ -1,13 +1,23 @@
 import json
+import logging
 import os
+import re
+import time
 from urllib import error, request
 from urllib.parse import quote
 
 from backend.app.schemas.explanation import ComparisonFacts
 
 
+logger = logging.getLogger(__name__)
+
 SYSTEM_PROMPT = """You are SPECTRA's comparison explanation assistant.
 Only use the structured comparison facts supplied by SPECTRA. Never invent missing data, calculate new metrics or percentages, fabricate benchmarks, or infer performance for unsupported workloads such as gaming, temperatures, power consumption, or productivity. Treat unavailable and pending values as unavailable. Distinguish benchmark results from specifications. Explain the measurable differences and relevant trade-offs without deciding which CPU is universally better or making up use cases. Keep the response concise, readable, and factual."""
+
+_MAX_LOG_MESSAGE_LENGTH = 2000
+_MAX_RETRIES = 3
+_RETRYABLE_HTTP_STATUS_CODES = frozenset({408, 429, 500, 502, 503, 504})
+_RETRY_DELAYS = (1, 2, 4)
 
 
 class ProviderUnavailableError(RuntimeError):
@@ -16,6 +26,42 @@ class ProviderUnavailableError(RuntimeError):
 
 class ProviderError(RuntimeError):
     pass
+
+
+def _sanitize_provider_message(message: object, api_key: str) -> str:
+    sanitized = str(message)
+    if api_key:
+        sanitized = sanitized.replace(api_key, "[REDACTED_API_KEY]")
+    sanitized = re.sub(
+        r"(?i)([?&]key=)[^&\s\"']+",
+        r"\1[REDACTED_API_KEY]",
+        sanitized,
+    )
+    sanitized = re.sub(r"https?://[^\s\"']+", "[REDACTED_URL]", sanitized)
+    sanitized = sanitized.replace("\r", " ").replace("\n", " ")
+    if len(sanitized) > _MAX_LOG_MESSAGE_LENGTH:
+        sanitized = sanitized[:_MAX_LOG_MESSAGE_LENGTH] + "..."
+    return sanitized
+
+
+def _read_http_error_message(provider_error: error.HTTPError) -> str:
+    try:
+        response_body = provider_error.read()
+    except (AttributeError, OSError, ValueError):
+        response_body = b""
+
+    if isinstance(response_body, bytes):
+        message = response_body.decode("utf-8", errors="replace").strip()
+    else:
+        message = str(response_body).strip() if response_body else ""
+
+    return message or str(provider_error.reason)
+
+
+def _is_retryable_request_error(provider_error: BaseException) -> bool:
+    if isinstance(provider_error, error.URLError):
+        return True
+    return isinstance(provider_error, (TimeoutError, ConnectionError))
 
 
 class GeminiProvider:
@@ -52,11 +98,51 @@ class GeminiProvider:
             method="POST",
         )
 
-        try:
-            with request.urlopen(http_request, timeout=30) as response:
-                response_payload = json.load(response)
-        except (error.HTTPError, error.URLError, TimeoutError, ValueError) as provider_error:
-            raise ProviderError("The AI provider request failed.") from provider_error
+        for attempt in range(_MAX_RETRIES + 1):
+            try:
+                with request.urlopen(http_request, timeout=30) as response:
+                    response_payload = json.load(response)
+                break
+            except error.HTTPError as provider_error:
+                should_retry = provider_error.code in _RETRYABLE_HTTP_STATUS_CODES
+                if should_retry and attempt < _MAX_RETRIES:
+                    delay = _RETRY_DELAYS[attempt]
+                    logger.warning(
+                        "Gemini request returned transient HTTP status=%s; "
+                        "retrying in %s seconds",
+                        provider_error.code,
+                        delay,
+                    )
+                    time.sleep(delay)
+                    continue
+
+                logger.error(
+                    "Gemini request failed: HTTP status=%s, response=%s",
+                    provider_error.code,
+                    _sanitize_provider_message(
+                        _read_http_error_message(provider_error),
+                        self.api_key,
+                    ),
+                )
+                raise ProviderError("The AI provider request failed.") from provider_error
+            except (error.URLError, OSError, TimeoutError) as provider_error:
+                if _is_retryable_request_error(provider_error) and attempt < _MAX_RETRIES:
+                    delay = _RETRY_DELAYS[attempt]
+                    logger.warning(
+                        "Gemini request failed with a transient network error; "
+                        "retrying in %s seconds",
+                        delay,
+                    )
+                    time.sleep(delay)
+                    continue
+
+                logger.error(
+                    "Gemini request failed before receiving an HTTP response: %s",
+                    _sanitize_provider_message(str(provider_error), self.api_key),
+                )
+                raise ProviderError("The AI provider request failed.") from provider_error
+            except ValueError as provider_error:
+                raise ProviderError("The AI provider request failed.") from provider_error
 
         try:
             parts = response_payload["candidates"][0]["content"]["parts"]

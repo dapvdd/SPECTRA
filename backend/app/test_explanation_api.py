@@ -124,6 +124,32 @@ def _comparison_facts():
     )
 
 
+def _http_error(http_request, status, message):
+    response = explanation_service.error.HTTPError(
+        http_request.full_url,
+        status,
+        message,
+        {},
+        None,
+    )
+    response.read = lambda: message.encode("utf-8")
+    return response
+
+
+def _successful_response():
+    return _FakeResponse(
+        {
+            "candidates": [
+                {
+                    "content": {
+                        "parts": [{"text": "Transient issue recovered."}]
+                    }
+                }
+            ]
+        }
+    )
+
+
 class TestGeminiProvider:
     def setup_method(self):
         self.original_urlopen = explanation_service.request.urlopen
@@ -193,16 +219,148 @@ class TestGeminiProvider:
         ):
             provider.generate(_comparison_facts())
 
-    def test_converts_gemini_api_error_to_provider_error(self):
+    def test_retries_503_then_succeeds(self, monkeypatch):
+        calls = []
+        delays = []
+
         def urlopen(http_request, timeout):
-            raise explanation_service.error.HTTPError(
-                http_request.full_url,
-                429,
-                "rate limited",
-                {},
-                None,
+            calls.append(timeout)
+            if len(calls) == 1:
+                raise _http_error(http_request, 503, "model is currently experiencing high demand")
+            return _successful_response()
+
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider("test-key", "test-model")
+
+        assert provider.generate(_comparison_facts()) == "Transient issue recovered."
+        assert calls == [30, 30]
+        assert delays == [1]
+
+    def test_retries_503_until_exhausted(self, monkeypatch):
+        calls = []
+        delays = []
+
+        def urlopen(http_request, timeout):
+            calls.append(timeout)
+            raise _http_error(http_request, 503, "model is currently experiencing high demand")
+
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider("test-key", "test-model")
+
+        with pytest.raises(explanation_service.ProviderError, match="request failed"):
+            provider.generate(_comparison_facts())
+
+        assert len(calls) == 4
+        assert delays == [1, 2, 4]
+
+    def test_retries_429(self, monkeypatch):
+        calls = []
+        delays = []
+
+        def urlopen(http_request, timeout):
+            calls.append(timeout)
+            if len(calls) == 1:
+                raise _http_error(http_request, 429, "rate limited")
+            return _successful_response()
+
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider("test-key", "test-model")
+
+        assert provider.generate(_comparison_facts()) == "Transient issue recovered."
+        assert len(calls) == 2
+        assert delays == [1]
+
+    def test_does_not_retry_permanent_400(self, monkeypatch):
+        calls = []
+        delays = []
+
+        def urlopen(http_request, timeout):
+            calls.append(timeout)
+            raise _http_error(http_request, 400, "invalid request")
+
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider("test-key", "test-model")
+
+        with pytest.raises(explanation_service.ProviderError, match="request failed"):
+            provider.generate(_comparison_facts())
+
+        assert len(calls) == 1
+        assert delays == []
+
+    def test_retries_timeout(self, monkeypatch):
+        calls = []
+        delays = []
+
+        def urlopen(http_request, timeout):
+            calls.append(timeout)
+            if len(calls) == 1:
+                raise TimeoutError("read operation timed out")
+            return _successful_response()
+
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider("test-key", "test-model")
+
+        assert provider.generate(_comparison_facts()) == "Transient issue recovered."
+        assert len(calls) == 2
+        assert delays == [1]
+
+    def test_logs_sanitized_gemini_api_error(self, caplog, monkeypatch):
+        api_key = "secret-test-key"
+        delays = []
+
+        def urlopen(http_request, timeout):
+            raise _http_error(
+                http_request,
+                503,
+                '{"error":{"message":"high demand; key=secret-test-key"}}',
             )
 
+        monkeypatch.setattr(explanation_service.time, "sleep", delays.append)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider(api_key, "test-model")
+
+        with caplog.at_level("ERROR"):
+            with pytest.raises(explanation_service.ProviderError, match="request failed"):
+                provider.generate(_comparison_facts())
+
+        assert "HTTP status=503" in caplog.text
+        assert "high demand" in caplog.text
+        assert api_key not in caplog.text
+        assert "key=[REDACTED_API_KEY]" in caplog.text
+        assert "generativelanguage.googleapis.com" not in caplog.text
+        assert delays == [1, 2, 4]
+
+    def test_logs_sanitized_non_http_provider_error(self, caplog, monkeypatch):
+        api_key = "secret-test-key"
+
+        def urlopen(http_request, timeout):
+            raise explanation_service.error.URLError(
+                f"connection failed for https://example.test/?key={api_key}"
+            )
+
+        monkeypatch.setattr(explanation_service.time, "sleep", lambda delay: None)
+        explanation_service.request.urlopen = urlopen
+        provider = explanation_service.GeminiProvider(api_key, "test-model")
+
+        with caplog.at_level("ERROR"):
+            with pytest.raises(explanation_service.ProviderError, match="request failed"):
+                provider.generate(_comparison_facts())
+
+        assert "before receiving an HTTP response" in caplog.text
+        assert "connection failed" in caplog.text
+        assert api_key not in caplog.text
+        assert "[REDACTED_URL]" in caplog.text
+
+    def test_converts_gemini_api_error_to_provider_error(self, monkeypatch):
+        def urlopen(http_request, timeout):
+            raise _http_error(http_request, 400, "invalid request")
+
+        monkeypatch.setattr(explanation_service.time, "sleep", lambda delay: None)
         explanation_service.request.urlopen = urlopen
         provider = explanation_service.GeminiProvider("test-key", "test-model")
 
