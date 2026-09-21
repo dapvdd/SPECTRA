@@ -18,6 +18,7 @@ import {
   getCpuDetailViewModel,
   getDetailComparisonAction,
 } from "./detail.js";
+import { parseMarkdown } from "./markdown.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -475,7 +476,39 @@ function AiAnalysis({ analysis, onGenerate }) {
 
       {analysis.status === AI_ANALYSIS_STATUS.success && (
         <div className="ai-analysis-result">
-          <p>{analysis.explanation}</p>
+          <div className="ai-analysis-content">
+            {parseMarkdown(analysis.explanation).map((block, blockIndex) => {
+              const renderInline = (parts) =>
+                parts.map((part, partIndex) =>
+                  part.type === "bold" ? (
+                    <strong key={`${blockIndex}-${partIndex}`}>{part.value}</strong>
+                  ) : (
+                    <span key={`${blockIndex}-${partIndex}`}>{part.value}</span>
+                  ),
+                );
+
+              if (block.type === "heading") {
+                const Heading = block.level === 2 ? "h2" : "h3";
+                return (
+                  <Heading key={blockIndex}>
+                    {renderInline(block.children)}
+                  </Heading>
+                );
+              }
+
+              if (block.type === "list") {
+                return (
+                  <ul key={blockIndex}>
+                    {block.items.map((item, itemIndex) => (
+                      <li key={itemIndex}>{renderInline(item)}</li>
+                    ))}
+                  </ul>
+                );
+              }
+
+              return <p key={blockIndex}>{renderInline(block.children)}</p>;
+            })}
+          </div>
           <button type="button" className="ai-analysis-button" onClick={onGenerate}>
             Regenerate Analysis
           </button>

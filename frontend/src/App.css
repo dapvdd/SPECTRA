@@ -1670,11 +1670,52 @@ h1 {
 }
 
 .ai-analysis-empty p,
-.ai-analysis-result p,
 .ai-analysis-error p {
   margin: 0;
   color: #cbd5e1;
   line-height: 1.6;
+}
+
+.ai-analysis-content {
+  color: #cbd5e1;
+  line-height: 1.65;
+}
+
+.ai-analysis-content p {
+  margin: 0 0 1rem;
+}
+
+.ai-analysis-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-analysis-content h2,
+.ai-analysis-content h3 {
+  margin: 1.35rem 0 0.55rem;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.ai-analysis-content h2 {
+  font-size: 1.15rem;
+}
+
+.ai-analysis-content h3 {
+  font-size: 1rem;
+}
+
+.ai-analysis-content h2:first-child,
+.ai-analysis-content h3:first-child {
+  margin-top: 0;
+}
+
+.ai-analysis-content ul {
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+}
+
+.ai-analysis-content li + li {
+  margin-top: 0.45rem;
 }
 
 .ai-analysis-button {
