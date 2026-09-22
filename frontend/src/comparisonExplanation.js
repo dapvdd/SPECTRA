@@ -1,3 +1,5 @@
+import { apiUrl } from "./api.js";
+
 export const AI_ANALYSIS_STATUS = {
   idle: "idle",
   loading: "loading",
@@ -5,7 +7,7 @@ export const AI_ANALYSIS_STATUS = {
   error: "error",
 };
 
-const EXPLANATION_ENDPOINT = "http://127.0.0.1:8000/comparison/explanation";
+const EXPLANATION_ENDPOINT = apiUrl("/comparison/explanation");
 
 export const requestComparisonExplanation = async (
   comparison,

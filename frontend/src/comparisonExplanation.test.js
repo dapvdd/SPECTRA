@@ -5,6 +5,7 @@ import {
   AI_ANALYSIS_STATUS,
   requestComparisonExplanation,
 } from "./comparisonExplanation.js";
+import { apiUrl } from "./api.js";
 
 const comparison = {
   cpu_a: { name: "CPU A", manufacturer: "Vendor A" },
@@ -31,7 +32,7 @@ test("comparison explanation client posts structured facts and returns text", as
     }
   );
 
-  assert.equal(receivedRequest.url, "http://127.0.0.1:8000/comparison/explanation");
+  assert.equal(receivedRequest.url, apiUrl("/comparison/explanation"));
   assert.equal(receivedRequest.options.method, "POST");
   assert.deepEqual(JSON.parse(receivedRequest.options.body), { comparison });
   assert.equal(explanation, "The supplied facts show a specification difference.");

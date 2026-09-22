@@ -34,6 +34,7 @@ import {
   validateComparisonDetailPayload,
   validateHardwareDetailPayload,
 } from "./apiValidation.js";
+import { apiUrl } from "./api.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -584,7 +585,7 @@ function App() {
       [hardwareId]: { status: "loading", results: null },
     }));
 
-    fetch(`http://127.0.0.1:8000/hardware/${hardwareId}/benchmarks`)
+    fetch(apiUrl(`/hardware/${hardwareId}/benchmarks`))
       .then((response) => {
         return assertSuccessfulResponse(response).json();
       })
@@ -626,7 +627,7 @@ function App() {
     setDetailView(true);
     loadBenchmarks(id);
 
-    fetch(`http://127.0.0.1:8000/hardware/${id}`)
+    fetch(apiUrl(`/hardware/${id}`))
       .then((response) => {
         return assertSuccessfulResponse(response).json();
       })
@@ -661,7 +662,7 @@ function App() {
       startComparisonDetailRequest(prev, item.id, requestId),
     );
 
-    fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
+    fetch(apiUrl(`/hardware/${item.id}`))
       .then((response) => {
         return assertSuccessfulResponse(response).json();
       })
@@ -774,7 +775,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
+    fetch(apiUrl("/"))
       .then((response) => response.json())
       .then((data) => {
         setApiStatus(data.status);
@@ -783,7 +784,7 @@ function App() {
         setApiStatus("offline");
       });
 
-    fetch("http://127.0.0.1:8000/hardware")
+    fetch(apiUrl("/hardware"))
       .then((response) => {
         return assertSuccessfulResponse(response).json();
       })
