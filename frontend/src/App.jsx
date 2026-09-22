@@ -35,6 +35,23 @@ import {
   validateHardwareDetailPayload,
 } from "./apiValidation.js";
 import { apiUrl } from "./api.js";
+import {
+  addComparisonSelection,
+  clearComparisonSelection,
+  completeCatalogLoad,
+  completeDetailNavigation,
+  createCatalogState,
+  createDetailNavigationState,
+  failCatalogLoad,
+  failDetailNavigation,
+  removeBenchmarkState,
+  removeComparisonSelection,
+  returnToCatalogState,
+  setBenchmarkError,
+  setBenchmarkLoading,
+  setBenchmarkSuccess,
+  startDetailNavigation,
+} from "./appState.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -580,10 +597,7 @@ function App() {
       [hardwareId]: requestId,
     };
 
-    setBenchmarkStates((prev) => ({
-      ...prev,
-      [hardwareId]: { status: "loading", results: null },
-    }));
+    setBenchmarkStates((prev) => setBenchmarkLoading(prev, hardwareId));
 
     fetch(apiUrl(`/hardware/${hardwareId}/benchmarks`))
       .then((response) => {
@@ -596,10 +610,7 @@ function App() {
           return;
         }
 
-        setBenchmarkStates((prev) => ({
-          ...prev,
-          [hardwareId]: { status: "success", results: data },
-        }));
+        setBenchmarkStates((prev) => setBenchmarkSuccess(prev, hardwareId, data));
       })
       .catch((error) => {
         if (benchmarkRequestIdsRef.current[hardwareId] !== requestId) {
@@ -607,24 +618,25 @@ function App() {
         }
 
         console.error("Failed to load benchmark data:", error);
-        setBenchmarkStates((prev) => ({
-          ...prev,
-          [hardwareId]: {
-            status: "error",
-            message: "Benchmark data could not be loaded.",
-            results: null,
-          },
-        }));
+        setBenchmarkStates((prev) =>
+          setBenchmarkError(prev, hardwareId, "Benchmark data could not be loaded."),
+        );
       });
   };
 
   const showHardwareDetail = (id) => {
     const requestId = detailRequestIdRef.current + 1;
     detailRequestIdRef.current = requestId;
-    setDetailLoading(true);
-    setDetailError("");
-    setSelectedHardware(null);
-    setDetailView(true);
+    const detailState = startDetailNavigation({
+      selected: selectedHardware,
+      view: detailView,
+      loading: detailLoading,
+      error: detailError,
+    });
+    setDetailLoading(detailState.loading);
+    setDetailError(detailState.error);
+    setSelectedHardware(detailState.selected);
+    setDetailView(detailState.view);
     loadBenchmarks(id);
 
     fetch(apiUrl(`/hardware/${id}`))
@@ -638,7 +650,13 @@ function App() {
           return;
         }
 
-        setSelectedHardware(data);
+        const detailState = completeDetailNavigation(
+          { ...createDetailNavigationState(), view: true },
+          data,
+        );
+        setSelectedHardware(detailState.selected);
+        setDetailLoading(detailState.loading);
+        setDetailError(detailState.error);
       })
       .catch((error) => {
         if (detailRequestIdRef.current !== requestId) {
@@ -646,7 +664,12 @@ function App() {
         }
 
         console.error("Failed to load hardware detail:", error);
-        setDetailError("Failed to load hardware details.");
+        const detailState = failDetailNavigation(
+          { ...createDetailNavigationState(), view: true },
+          "Failed to load hardware details.",
+        );
+        setDetailError(detailState.error);
+        setDetailLoading(detailState.loading);
       })
       .finally(() => {
         if (detailRequestIdRef.current === requestId) {
@@ -682,25 +705,20 @@ function App() {
   };
 
   const addToCompare = (item) => {
-    if (compareList.some((hardware) => hardware.id === item.id)) {
-      return;
-    }
-
-    if (compareList.length >= 2) {
+    const nextCompareList = addComparisonSelection(compareList, item);
+    if (nextCompareList === compareList) {
       return;
     }
 
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
-    setCompareList((prev) => [...prev, item]);
+    setCompareList(nextCompareList);
     loadBenchmarks(item.id);
     loadComparisonDetail(item);
   };
 
   const removeFromCompare = (id) => {
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
-    setCompareList((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setCompareList((prev) => removeComparisonSelection(prev, id));
 
     setComparisonDetailState((prev) =>
       removeComparisonDetail(prev, id),
@@ -712,15 +730,13 @@ function App() {
     };
 
     setBenchmarkStates((prev) => {
-      const next = { ...prev };
-      delete next[id];
-      return next;
+      return removeBenchmarkState(prev, id);
     });
   };
 
   const clearComparison = () => {
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
-    setCompareList([]);
+    setCompareList(clearComparisonSelection());
     setComparisonDetailState(createComparisonDetailState());
 
     benchmarkRequestIdsRef.current = Object.fromEntries(
@@ -734,9 +750,16 @@ function App() {
 
   const returnToCatalog = () => {
     detailRequestIdRef.current += 1;
-    setSelectedHardware(null);
-    setDetailError("");
-    setDetailView(false);
+    const catalogState = returnToCatalogState({
+      selected: selectedHardware,
+      view: detailView,
+      loading: detailLoading,
+      error: detailError,
+    });
+    setSelectedHardware(catalogState.selected);
+    setDetailError(catalogState.error);
+    setDetailLoading(catalogState.loading);
+    setDetailView(catalogState.view);
 
     setTimeout(() => {
       document.getElementById("explore-top")?.scrollIntoView({
@@ -790,11 +813,11 @@ function App() {
       })
       .then((data) => {
         validateCatalogPayload(data);
-        setHardware(data);
+        setHardware(completeCatalogLoad(createCatalogState(), data).items);
       })
       .catch((error) => {
         console.error("Failed to load hardware:", error);
-        setHardwareError("Hardware catalog could not be loaded.");
+        setHardwareError(failCatalogLoad(createCatalogState(), "Hardware catalog could not be loaded.").error);
       })
       .finally(() => {
         setHardwareLoading(false);
