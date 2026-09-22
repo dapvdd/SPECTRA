@@ -6,6 +6,7 @@ import {
   buildComparisonFacts,
   COMPARISON_METRICS,
   getComparisonWinner,
+  getComparisonWinnerClass,
   isValidComparisonValue,
 } from "./comparison.js";
 
@@ -42,6 +43,42 @@ test("CPU A wins lower-is-better TDP", () => {
 
 test("CPU B wins lower-is-better TDP", () => {
   assert.equal(getComparisonWinner(125, 65, "lower"), "cpuB");
+});
+
+test("higher-is-better winner highlighting only marks CPU A", () => {
+  const winner = getComparisonWinner(16, 12, "higher");
+
+  assert.equal(getComparisonWinnerClass(winner, 0), "comparison-winner");
+  assert.equal(getComparisonWinnerClass(winner, 1), "");
+});
+
+test("higher-is-better ties do not highlight either CPU", () => {
+  const winner = getComparisonWinner(16, 16, "higher");
+
+  assert.equal(getComparisonWinnerClass(winner, 0), "");
+  assert.equal(getComparisonWinnerClass(winner, 1), "");
+});
+
+test("lower-is-better TDP winner highlighting only marks the lower value", () => {
+  const winner = getComparisonWinner(65, 105, "lower");
+
+  assert.equal(getComparisonWinnerClass(winner, 0), "comparison-winner");
+  assert.equal(getComparisonWinnerClass(winner, 1), "");
+});
+
+test("lower-is-better TDP ties do not highlight either CPU", () => {
+  const winner = getComparisonWinner(65, 65, "lower");
+
+  assert.equal(getComparisonWinnerClass(winner, 0), "");
+  assert.equal(getComparisonWinnerClass(winner, 1), "");
+});
+
+test("unavailable comparison values do not receive winner highlighting", () => {
+  const winner = getComparisonWinner(undefined, 65, "lower");
+
+  assert.equal(winner, null);
+  assert.equal(getComparisonWinnerClass(winner, 0), "");
+  assert.equal(getComparisonWinnerClass(winner, 1), "");
 });
 
 test("calculates higher-is-better percentage from the loser value", () => {

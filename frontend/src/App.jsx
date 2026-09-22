@@ -9,6 +9,7 @@ import {
   calculateComparisonInsights,
   buildComparisonFacts,
   getComparisonWinner,
+  getComparisonWinnerClass,
 } from "./comparison.js";
 import {
   AI_ANALYSIS_STATUS,
@@ -903,9 +904,7 @@ function App() {
       lowerIsBetter ? "lower" : "higher"
     );
 
-    return winner === "tie" || winner === (itemIndex === 0 ? "cpuA" : "cpuB")
-      ? "comparison-winner"
-      : "";
+    return getComparisonWinnerClass(winner, itemIndex);
   };
 
   return (

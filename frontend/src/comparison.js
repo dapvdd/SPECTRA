@@ -94,6 +94,11 @@ export const getComparisonWinner = (firstValue, secondValue, direction) => {
   return firstValue > secondValue ? "cpuA" : "cpuB";
 };
 
+export const getComparisonWinnerClass = (winner, itemIndex) =>
+  winner === (itemIndex === 0 ? "cpuA" : "cpuB")
+    ? "comparison-winner"
+    : "";
+
 const getSpecificationValue = (hardware, metric) =>
   hardware?.specifications?.[metric.key];
 
