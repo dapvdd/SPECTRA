@@ -27,6 +27,13 @@ import {
   removeComparisonDetail,
   startComparisonDetailRequest,
 } from "./comparisonDetails.js";
+import {
+  assertSuccessfulResponse,
+  validateBenchmarkPayload,
+  validateCatalogPayload,
+  validateComparisonDetailPayload,
+  validateHardwareDetailPayload,
+} from "./apiValidation.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -579,13 +586,11 @@ function App() {
 
     fetch(`http://127.0.0.1:8000/hardware/${hardwareId}/benchmarks`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
+        return assertSuccessfulResponse(response).json();
       })
       .then((data) => {
+        validateBenchmarkPayload(data);
+
         if (benchmarkRequestIdsRef.current[hardwareId] !== requestId) {
           return;
         }
@@ -623,13 +628,11 @@ function App() {
 
     fetch(`http://127.0.0.1:8000/hardware/${id}`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
+        return assertSuccessfulResponse(response).json();
       })
       .then((data) => {
+        validateHardwareDetailPayload(data, id);
+
         if (detailRequestIdRef.current !== requestId) {
           return;
         }
@@ -660,13 +663,11 @@ function App() {
 
     fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
+        return assertSuccessfulResponse(response).json();
       })
       .then((data) => {
+        validateComparisonDetailPayload(data, item.id);
+
         setComparisonDetailState((prev) =>
           completeComparisonDetailRequest(prev, item.id, requestId, data),
         );
@@ -784,13 +785,10 @@ function App() {
 
     fetch("http://127.0.0.1:8000/hardware")
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
+        return assertSuccessfulResponse(response).json();
       })
       .then((data) => {
+        validateCatalogPayload(data);
         setHardware(data);
       })
       .catch((error) => {

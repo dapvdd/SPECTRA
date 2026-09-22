@@ -9,6 +9,7 @@ import {
   removeComparisonDetail,
   startComparisonDetailRequest,
 } from "./comparisonDetails.js";
+import { validateComparisonDetailPayload } from "./apiValidation.js";
 
 const cpu = (id) => ({ id, name: `CPU ${id}` });
 const detail = (id) => ({ id, name: `CPU ${id}`, specifications: {} });
@@ -116,4 +117,54 @@ test("a successful CPU remains selectable when the second CPU fails", () => {
     [detail(1)],
   );
   assert.equal(state.requestStatesById[2].status, "error");
+});
+
+test("a malformed comparison detail becomes a per-CPU error state", () => {
+  let state = createComparisonDetailState();
+  state = startComparisonDetailRequest(state, 2, 1);
+
+  assert.throws(
+    () => validateComparisonDetailPayload({ id: 2, name: "CPU 2" }, 2),
+    /missing specifications/,
+  );
+  state = failComparisonDetailRequest(state, 2, 1);
+
+  assert.equal(state.requestStatesById[2].status, "error");
+});
+
+test("a valid CPU remains visible when the second comparison payload is malformed", () => {
+  let state = createComparisonDetailState();
+  state = startComparisonDetailRequest(state, 1, 1);
+  state = completeComparisonDetailRequest(state, 1, 1, detail(1));
+  state = startComparisonDetailRequest(state, 2, 2);
+  state = failComparisonDetailRequest(state, 2, 2);
+
+  assert.deepEqual(
+    getComparisonDetailsInSelectionOrder([cpu(1), cpu(2)], state.detailsById),
+    [detail(1)],
+  );
+  assert.equal(state.requestStatesById[2].status, "error");
+});
+
+test("retry remains available after a malformed comparison payload", () => {
+  let state = createComparisonDetailState();
+  state = startComparisonDetailRequest(state, 2, 1);
+  state = failComparisonDetailRequest(state, 2, 1);
+  state = startComparisonDetailRequest(state, 2, 2);
+  state = completeComparisonDetailRequest(state, 2, 2, detail(2));
+
+  assert.deepEqual(state.detailsById[2], detail(2));
+  assert.equal(state.requestStatesById[2].status, "success");
+});
+
+test("removal remains available after a malformed comparison payload", () => {
+  let state = createComparisonDetailState();
+  state = startComparisonDetailRequest(state, 1, 1);
+  state = completeComparisonDetailRequest(state, 1, 1, detail(1));
+  state = startComparisonDetailRequest(state, 2, 2);
+  state = failComparisonDetailRequest(state, 2, 2);
+  state = removeComparisonDetail(state, 2);
+
+  assert.deepEqual(state.detailsById[1], detail(1));
+  assert.equal(state.requestStatesById[2], undefined);
 });
