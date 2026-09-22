@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import {
   getBenchmarkComparisonData,
@@ -19,6 +19,14 @@ import {
   getDetailComparisonAction,
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
+import {
+  completeComparisonDetailRequest,
+  createComparisonDetailState,
+  failComparisonDetailRequest,
+  getComparisonDetailsInSelectionOrder,
+  removeComparisonDetail,
+  startComparisonDetailRequest,
+} from "./comparisonDetails.js";
 
 const formatBenchmarkScore = (score) =>
   Number.isInteger(score) ? score.toLocaleString() : score.toLocaleString(undefined, {
@@ -540,14 +548,30 @@ function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
   const [compareList, setCompareList] = useState([]);
-  const [compareDetails, setCompareDetails] = useState([]);
+  const [comparisonDetailState, setComparisonDetailState] = useState(
+    createComparisonDetailState,
+  );
   const [benchmarkStates, setBenchmarkStates] = useState({});
   const [aiAnalysis, setAiAnalysis] = useState({
     status: AI_ANALYSIS_STATUS.idle,
     explanation: "",
   });
+  const detailRequestIdRef = useRef(0);
+  const comparisonRequestIdRef = useRef(0);
+  const benchmarkRequestIdsRef = useRef({});
+
+  const compareDetails = getComparisonDetailsInSelectionOrder(
+    compareList,
+    comparisonDetailState.detailsById,
+  );
 
   const loadBenchmarks = (hardwareId) => {
+    const requestId = (benchmarkRequestIdsRef.current[hardwareId] || 0) + 1;
+    benchmarkRequestIdsRef.current = {
+      ...benchmarkRequestIdsRef.current,
+      [hardwareId]: requestId,
+    };
+
     setBenchmarkStates((prev) => ({
       ...prev,
       [hardwareId]: { status: "loading", results: null },
@@ -562,12 +586,20 @@ function App() {
         return response.json();
       })
       .then((data) => {
+        if (benchmarkRequestIdsRef.current[hardwareId] !== requestId) {
+          return;
+        }
+
         setBenchmarkStates((prev) => ({
           ...prev,
           [hardwareId]: { status: "success", results: data },
         }));
       })
       .catch((error) => {
+        if (benchmarkRequestIdsRef.current[hardwareId] !== requestId) {
+          return;
+        }
+
         console.error("Failed to load benchmark data:", error);
         setBenchmarkStates((prev) => ({
           ...prev,
@@ -581,6 +613,8 @@ function App() {
   };
 
   const showHardwareDetail = (id) => {
+    const requestId = detailRequestIdRef.current + 1;
+    detailRequestIdRef.current = requestId;
     setDetailLoading(true);
     setDetailError("");
     setSelectedHardware(null);
@@ -596,14 +630,52 @@ function App() {
         return response.json();
       })
       .then((data) => {
+        if (detailRequestIdRef.current !== requestId) {
+          return;
+        }
+
         setSelectedHardware(data);
       })
       .catch((error) => {
+        if (detailRequestIdRef.current !== requestId) {
+          return;
+        }
+
         console.error("Failed to load hardware detail:", error);
         setDetailError("Failed to load hardware details.");
       })
       .finally(() => {
-        setDetailLoading(false);
+        if (detailRequestIdRef.current === requestId) {
+          setDetailLoading(false);
+        }
+      });
+  };
+
+  const loadComparisonDetail = (item) => {
+    const requestId = comparisonRequestIdRef.current + 1;
+    comparisonRequestIdRef.current = requestId;
+    setComparisonDetailState((prev) =>
+      startComparisonDetailRequest(prev, item.id, requestId),
+    );
+
+    fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setComparisonDetailState((prev) =>
+          completeComparisonDetailRequest(prev, item.id, requestId, data),
+        );
+      })
+      .catch((error) => {
+        console.error("Failed to load comparison data:", error);
+        setComparisonDetailState((prev) =>
+          failComparisonDetailRequest(prev, item.id, requestId),
+        );
       });
   };
 
@@ -617,23 +689,9 @@ function App() {
     }
 
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
-    setCompareList([...compareList, item]);
+    setCompareList((prev) => [...prev, item]);
     loadBenchmarks(item.id);
-
-    fetch(`http://127.0.0.1:8000/hardware/${item.id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        return response.json();
-      })
-      .then((data) => {
-        setCompareDetails((prev) => [...prev, data]);
-      })
-      .catch((error) => {
-        console.error("Failed to load comparison data:", error);
-      });
+    loadComparisonDetail(item);
   };
 
   const removeFromCompare = (id) => {
@@ -642,9 +700,14 @@ function App() {
       prev.filter((item) => item.id !== id)
     );
 
-    setCompareDetails((prev) =>
-      prev.filter((item) => item.id !== id)
+    setComparisonDetailState((prev) =>
+      removeComparisonDetail(prev, id),
     );
+
+    benchmarkRequestIdsRef.current = {
+      ...benchmarkRequestIdsRef.current,
+      [id]: (benchmarkRequestIdsRef.current[id] || 0) + 1,
+    };
 
     setBenchmarkStates((prev) => {
       const next = { ...prev };
@@ -656,12 +719,19 @@ function App() {
   const clearComparison = () => {
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList([]);
-    setCompareDetails([]);
+    setComparisonDetailState(createComparisonDetailState());
 
+    benchmarkRequestIdsRef.current = Object.fromEntries(
+      Object.entries(benchmarkRequestIdsRef.current).map(([id, requestId]) => [
+        id,
+        requestId + 1,
+      ]),
+    );
     setBenchmarkStates({});
   };
 
   const returnToCatalog = () => {
+    detailRequestIdRef.current += 1;
     setSelectedHardware(null);
     setDetailError("");
     setDetailView(false);
@@ -1206,24 +1276,70 @@ function App() {
                  </p>
                )}
 
-               {compareDetails.length < compareList.length && (
-                 <div className="comparison-loading" role="status">
-                   <span className="state-spinner" aria-hidden="true" />
-                   Loading selected CPU details...
-                 </div>
-               )}
+                <div className="comparison-performance">
+                 {compareList.map((item) => {
+                   const requestState =
+                     comparisonDetailState.requestStatesById[item.id];
+                   const detail = comparisonDetailState.detailsById[item.id];
 
-               <div className="comparison-performance">
-                {compareDetails.map((item) => (
-                  <section className="comparison-performance-card" key={item.id}>
-                    <p className="detail-section-label">PERFORMANCE</p>
-                    <h3>{item.name}</h3>
-                    <PerformanceSection
-                      benchmarkState={benchmarkStates[item.id]}
-                    />
-                  </section>
-                 ))}
-               </div>
+                   if (requestState?.status === "error") {
+                     return (
+                       <section
+                         className="comparison-performance-card comparison-detail-error"
+                         key={item.id}
+                         role="alert"
+                       >
+                         <p className="detail-section-label">CPU DETAIL</p>
+                         <h3>{item.name}</h3>
+                         <p>Unable to load CPU details.</p>
+                         <div className="comparison-detail-actions">
+                           <button
+                             type="button"
+                             className="clear-search-button"
+                             onClick={() => loadComparisonDetail(item)}
+                           >
+                             Retry
+                           </button>
+                           <button
+                             type="button"
+                             className="remove-compare-button"
+                             onClick={() => removeFromCompare(item.id)}
+                           >
+                             Remove
+                           </button>
+                         </div>
+                       </section>
+                     );
+                   }
+
+                   if (!detail || requestState?.status === "loading") {
+                     return (
+                       <section
+                         className="comparison-performance-card"
+                         key={item.id}
+                         role="status"
+                       >
+                         <p className="detail-section-label">CPU DETAIL</p>
+                         <h3>{item.name}</h3>
+                         <div className="comparison-loading">
+                           <span className="state-spinner" aria-hidden="true" />
+                           Loading selected CPU details...
+                         </div>
+                       </section>
+                     );
+                   }
+
+                   return (
+                     <section className="comparison-performance-card" key={item.id}>
+                       <p className="detail-section-label">PERFORMANCE</p>
+                       <h3>{detail.name}</h3>
+                       <PerformanceSection
+                         benchmarkState={benchmarkStates[detail.id]}
+                       />
+                     </section>
+                   );
+                 })}
+                </div>
 
                {compareDetails.length === 2 && (
                  <BenchmarkComparison

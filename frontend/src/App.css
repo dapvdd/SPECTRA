@@ -629,6 +629,28 @@ h1 {
   margin: 0;
   color: white;
   font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.comparison-detail-error {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.comparison-detail-error > p:not(.detail-section-label) {
+  margin: 0.75rem 0 0;
+  color: #fca5a5;
+  line-height: 1.5;
+}
+
+.comparison-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.comparison-detail-actions button {
+  margin-top: 0;
 }
 
 .comparison-performance-card .performance-section {
