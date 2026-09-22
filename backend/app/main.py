@@ -24,10 +24,15 @@ from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
 )
+from backend.app.schemas.hardware_chat import (
+    HardwareChatRequest,
+    HardwareChatResponse,
+)
 from backend.app.services.benchmark_service import (
     get_benchmarks_for_hardware,
 )
 from backend.app.services import explanation_service
+from backend.app.services import hardware_chat_service
 
 
 app = FastAPI(
@@ -171,3 +176,20 @@ def generate_comparison_explanation(
         raise HTTPException(status_code=502, detail=str(error)) from error
 
     return ExplanationResponse(explanation=explanation)
+
+
+@app.post(
+    "/hardware/chat",
+    response_model=HardwareChatResponse,
+)
+def generate_hardware_chat_answer(
+    request_data: HardwareChatRequest,
+) -> HardwareChatResponse:
+    try:
+        answer = hardware_chat_service.generate_chat_answer(request_data)
+    except explanation_service.ProviderUnavailableError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+
+    return HardwareChatResponse(answer=answer)

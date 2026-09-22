@@ -70,19 +70,25 @@ class GeminiProvider:
         self.model = model
 
     def generate(self, comparison: ComparisonFacts) -> str:
+        return self.generate_text(
+            SYSTEM_PROMPT,
+            json.dumps(
+                comparison.model_dump(),
+                separators=(",", ":"),
+            ),
+        )
+
+    def generate_text(self, system_prompt: str, user_text: str) -> str:
         payload = {
             "systemInstruction": {
-                "parts": [{"text": SYSTEM_PROMPT}],
+                "parts": [{"text": system_prompt}],
             },
             "contents": [
                 {
                     "role": "user",
                     "parts": [
                         {
-                            "text": json.dumps(
-                                comparison.model_dump(),
-                                separators=(",", ":"),
-                            ),
+                            "text": user_text,
                         }
                     ],
                 },
@@ -174,3 +180,7 @@ def _get_provider() -> GeminiProvider:
 
 def generate_explanation(comparison: ComparisonFacts) -> str:
     return _get_provider().generate(comparison)
+
+
+def generate_chat_response(system_prompt: str, user_text: str) -> str:
+    return _get_provider().generate_text(system_prompt, user_text)
