@@ -5,6 +5,9 @@ import {
   calculateComparisonInsights,
   buildComparisonFacts,
   COMPARISON_METRICS,
+  GPU_METRICS,
+  GPU_TABLE_SPECS,
+  getComparisonMetrics,
   getComparisonWinner,
   getComparisonWinnerClass,
   isValidComparisonValue,
@@ -13,6 +16,14 @@ import {
 const cpu = (name, specifications = {}, manufacturer = "Vendor") => ({
   id: name,
   name,
+  manufacturer,
+  specifications,
+});
+
+const gpu = (name, specifications = {}, manufacturer = "Vendor") => ({
+  id: name,
+  name,
+  type: "GPU",
   manufacturer,
   specifications,
 });
@@ -268,4 +279,185 @@ test("builds AI facts from deterministic metrics and preserves unavailable data"
 
 test("does not build AI facts until two CPUs are selected", () => {
   assert.equal(buildComparisonFacts([cpu("CPU A")]), null);
+});
+
+test("GPU metric definitions cover exactly the six deterministic metrics", () => {
+  assert.deepEqual(
+    GPU_METRICS.map((metric) => metric.key),
+    [
+      "memory_gb",
+      "vram_bandwidth_gbps",
+      "core_clock_mhz",
+      "boost_clock_mhz",
+      "tdp_w",
+      "length_mm",
+    ],
+  );
+  assert.equal(
+    GPU_METRICS.filter((metric) => metric.direction === "higher").length,
+    4,
+  );
+  assert.equal(
+    GPU_METRICS.filter((metric) => metric.direction === "lower").length,
+    2,
+  );
+  for (const key of [
+    "shader",
+    "texture",
+    "tensor",
+    "transistor",
+    "gaming",
+    "ray",
+  ]) {
+    assert.equal(GPU_METRICS.some((metric) => metric.key.includes(key)), false);
+  }
+});
+
+test("comparison metrics are selected by hardware type", () => {
+  assert.strictEqual(getComparisonMetrics("GPU"), GPU_METRICS);
+  assert.strictEqual(getComparisonMetrics("CPU"), COMPARISON_METRICS);
+  assert.strictEqual(getComparisonMetrics(undefined), COMPARISON_METRICS);
+});
+
+test("GPU higher-is-better VRAM winner", () => {
+  assert.equal(getComparisonWinner(24, 16, "higher"), "cpuA");
+  assert.equal(getComparisonWinner(16, 24, "higher"), "cpuB");
+});
+
+test("GPU lower-is-better TDP winner", () => {
+  assert.equal(getComparisonWinner(300, 575, "lower"), "cpuA");
+  assert.equal(getComparisonWinner(575, 300, "lower"), "cpuB");
+});
+
+test("GPU equal metric values produce a tie", () => {
+  assert.equal(getComparisonWinner(16, 16, "higher"), "tie");
+});
+
+test("GPU missing and invalid values are unavailable, never zero", () => {
+  assert.equal(getComparisonWinner(undefined, 16, "higher"), null);
+  assert.equal(getComparisonWinner(0, 16, "higher"), null);
+  assert.equal(getComparisonWinner(null, 24, "higher"), null);
+  assert.equal(getComparisonWinner(Number.NaN, 24, "higher"), null);
+});
+
+test("GPU percentage difference uses the loser value", () => {
+  const result = calculateComparisonInsights([
+    gpu("GPU A", { memory_gb: 32 }),
+    gpu("GPU B", { memory_gb: 16 }),
+  ]);
+
+  assert.equal(result.insights[0].metricKey, "memory_gb");
+  assert.equal(result.insights[0].differencePercent, 100);
+});
+
+test("GPU lower-is-better percentage uses the loser value", () => {
+  const result = calculateComparisonInsights([
+    gpu("GPU A", { tdp_w: 300 }),
+    gpu("GPU B", { tdp_w: 575 }),
+  ]);
+
+  assert.equal(result.insights[0].metricKey, "tdp_w");
+  assert.equal(result.insights[0].direction, "lower");
+  assert.equal(result.insights[0].differencePercent, 47.8);
+});
+
+test("GPU comparison insights are deterministic and metric-by-metric", () => {
+  const result = calculateComparisonInsights([
+    gpu("GPU A", {
+      memory_gb: 24,
+      vram_bandwidth_gbps: 960,
+      core_clock_mhz: 2155,
+      boost_clock_mhz: 2498,
+      tdp_w: 355,
+      length_mm: 287,
+    }),
+    gpu("GPU B", {
+      memory_gb: 12,
+      vram_bandwidth_gbps: 448,
+      core_clock_mhz: 1860,
+      boost_clock_mhz: 2430,
+      tdp_w: 220,
+      length_mm: 242,
+    }),
+  ]);
+
+  assert.equal(result.measurableCount, 6);
+  assert.deepEqual(result.wins, { cpuA: 4, cpuB: 2 });
+  assert.deepEqual(
+    result.insights.map((insight) => insight.metricKey),
+    [
+      "memory_gb",
+      "vram_bandwidth_gbps",
+      "core_clock_mhz",
+      "boost_clock_mhz",
+      "tdp_w",
+      "length_mm",
+    ],
+  );
+});
+
+test("GPU null fields are unavailable, never treated as zero", () => {
+  const result = calculateComparisonInsights([
+    gpu("GPU A", { memory_gb: null }),
+    gpu("GPU B", { memory_gb: 24 }),
+  ]);
+
+  assert.equal(result.measurableCount, 0);
+  assert.deepEqual(result.wins, { cpuA: 0, cpuB: 0 });
+  assert.equal(result.unavailableMetrics.length, GPU_METRICS.length);
+});
+
+test("GPU ties are reported without a universal winner", () => {
+  const result = calculateComparisonInsights([
+    gpu("GPU A", { tdp_w: 300 }),
+    gpu("GPU B", { tdp_w: 300 }),
+  ]);
+
+  assert.equal(result.ties, 1);
+  assert.deepEqual(result.insights, []);
+  assert.equal(result.tieDetails[0].metricKey, "tdp_w");
+});
+
+test("GPU buildComparisonFacts uses specification source without inventing data", () => {
+  const facts = buildComparisonFacts([
+    gpu("GPU A", { memory_gb: 32 }),
+    gpu("GPU B", { memory_gb: 16 }),
+  ]);
+
+  assert.equal(facts.metrics[0].name, "VRAM");
+  assert.equal(facts.metrics[0].source, "specification");
+  assert.equal(facts.metrics[0].difference_percent, 100);
+});
+
+test("GPU comparison table specs separate winner metrics from informational rows", () => {
+  assert.deepEqual(
+    GPU_TABLE_SPECS.map((spec) => spec.key),
+    [
+      "memory_gb",
+      "memory_type",
+      "vram_bandwidth_gbps",
+      "core_clock_mhz",
+      "boost_clock_mhz",
+      "tdp_w",
+      "length_mm",
+      "interface",
+      "architecture",
+      "release_date",
+    ],
+  );
+  assert.equal(GPU_TABLE_SPECS.filter((spec) => spec.direction).length, 6);
+  assert.deepEqual(
+    GPU_TABLE_SPECS.filter((spec) => !spec.direction).map((spec) => spec.key),
+    ["memory_type", "interface", "architecture", "release_date"],
+  );
+});
+
+test("CPU comparison remains CPU-metric based even with GPU fields present", () => {
+  const result = calculateComparisonInsights([
+    cpu("CPU A", { cores: 8, memory_gb: 32 }),
+    cpu("CPU B", { cores: 6, memory_gb: 16 }),
+  ]);
+
+  assert.equal(result.insights.some((insight) => insight.metricKey === "memory_gb"), false);
+  assert.equal(result.insights.some((insight) => insight.metricKey === "cores"), true);
 });

@@ -1440,6 +1440,17 @@ h1 {
   margin-top: 0.85rem;
 }
 
+.comparison-selection-notice {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 1rem;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 .hardware-card.in-comparison {
   border-color: rgba(56, 189, 248, 0.65);
   box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12),

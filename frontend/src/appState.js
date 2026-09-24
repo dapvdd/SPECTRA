@@ -53,10 +53,35 @@ export const returnToCatalogState = (state) => ({
   error: "",
 });
 
+export const COMPARISON_TYPES = ["CPU", "GPU"];
+
+export const getComparisonTypeConflict = (compareList, item) => {
+  const itemType = item?.type;
+
+  if (itemType && !COMPARISON_TYPES.includes(itemType)) {
+    return `${itemType} hardware is not supported for comparison yet.`;
+  }
+
+  if (compareList.length === 0) {
+    return null;
+  }
+
+  const selectedType = compareList[0]?.type;
+
+  if (selectedType !== itemType) {
+    return `${selectedType || "Selected"} and ${
+      itemType || "this item"
+    } hardware cannot be compared together.`;
+  }
+
+  return null;
+};
+
 export const addComparisonSelection = (compareList, item) => {
   if (
     compareList.some((hardware) => hardware.id === item.id) ||
-    compareList.length >= 2
+    compareList.length >= 2 ||
+    getComparisonTypeConflict(compareList, item)
   ) {
     return compareList;
   }

@@ -258,3 +258,21 @@ test("recognizes supported benchmark response wrapper shapes", () => {
     );
   }
 });
+
+test("GPU with no benchmark results stays in the unavailable no-data state", () => {
+  const state = getPerformanceState({ status: "success", results: [] });
+
+  assert.equal(state.status, "unavailable");
+  assert.deepEqual(state.results, {});
+
+  const data = getBenchmarkComparisonData(
+    [{ id: 100, type: "GPU" }, { id: 101, type: "GPU" }],
+    {
+      100: { status: "success", results: [] },
+      101: { status: "success", results: [] },
+    }
+  );
+
+  assert.equal(data.status, "unavailable");
+  assert.equal(data.metrics[0].rows[0].value, null);
+});

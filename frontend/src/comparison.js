@@ -59,6 +59,78 @@ export const COMPARISON_METRICS = [
   },
 ];
 
+export const GPU_METRICS = [
+  {
+    key: "memory_gb",
+    label: "VRAM",
+    direction: "higher",
+    source: "specification",
+    unit: "GB",
+    format: "integer",
+  },
+  {
+    key: "vram_bandwidth_gbps",
+    label: "Memory Bandwidth",
+    direction: "higher",
+    source: "specification",
+    unit: "GB/s",
+    format: "decimal",
+  },
+  {
+    key: "core_clock_mhz",
+    label: "Core Clock",
+    direction: "higher",
+    source: "specification",
+    unit: "MHz",
+    format: "integer",
+  },
+  {
+    key: "boost_clock_mhz",
+    label: "Boost Clock",
+    direction: "higher",
+    source: "specification",
+    unit: "MHz",
+    format: "integer",
+  },
+  {
+    key: "tdp_w",
+    label: "TDP",
+    direction: "lower",
+    source: "specification",
+    unit: "W",
+    format: "integer",
+  },
+  {
+    key: "length_mm",
+    label: "Length",
+    direction: "lower",
+    source: "specification",
+    unit: "mm",
+    format: "integer",
+  },
+];
+
+export const GPU_TABLE_SPECS = [
+  { key: "memory_gb", label: "VRAM", unit: "GB", direction: "higher" },
+  { key: "memory_type", label: "Memory Type", unit: "" },
+  {
+    key: "vram_bandwidth_gbps",
+    label: "Memory Bandwidth",
+    unit: "GB/s",
+    direction: "higher",
+  },
+  { key: "core_clock_mhz", label: "Core Clock", unit: "MHz", direction: "higher" },
+  { key: "boost_clock_mhz", label: "Boost Clock", unit: "MHz", direction: "higher" },
+  { key: "tdp_w", label: "TDP", unit: "W", direction: "lower" },
+  { key: "length_mm", label: "Length", unit: "mm", direction: "lower" },
+  { key: "interface", label: "Interface", unit: "" },
+  { key: "architecture", label: "Architecture", unit: "", source: "hardware" },
+  { key: "release_date", label: "Release Date", unit: "", source: "hardware" },
+];
+
+export const getComparisonMetrics = (hardwareType) =>
+  hardwareType === "GPU" ? GPU_METRICS : COMPARISON_METRICS;
+
 const emptyInsights = () => ({
   measurableCount: 0,
   wins: { cpuA: 0, cpuB: 0 },
@@ -70,7 +142,8 @@ const emptyInsights = () => ({
 });
 
 const getMetricDefinition = (metricKey) =>
-  COMPARISON_METRICS.find((metric) => metric.key === metricKey);
+  COMPARISON_METRICS.find((metric) => metric.key === metricKey) ??
+  GPU_METRICS.find((metric) => metric.key === metricKey);
 
 export const isValidComparisonValue = (value) =>
   typeof value === "number" && Number.isFinite(value) && value > 0;
@@ -144,9 +217,10 @@ export const calculateComparisonInsights = (
   }
 
   const [cpuA, cpuB] = compareDetails;
+  const metrics = getComparisonMetrics(cpuA?.type);
   const result = emptyInsights();
 
-  for (const metric of COMPARISON_METRICS) {
+  for (const metric of metrics) {
     const benchmarkStateA = benchmarkStates[cpuA.id];
     const benchmarkStateB = benchmarkStates[cpuB.id];
     const statusA = getMetricStatus(metric, benchmarkStateA);

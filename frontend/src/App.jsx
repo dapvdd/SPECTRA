@@ -10,6 +10,7 @@ import {
   buildComparisonFacts,
   getComparisonWinner,
   getComparisonWinnerClass,
+  GPU_TABLE_SPECS,
 } from "./comparison.js";
 import {
   AI_ANALYSIS_STATUS,
@@ -28,6 +29,7 @@ import {
 import {
   getGpuDetailViewModel,
   getHardwareCardPrimarySpecs,
+  formatReleaseDate,
 } from "./hardwareCard.js";
 import {
   createDetailRequestGuard,
@@ -65,6 +67,7 @@ import {
   completeDetailNavigation,
   createDetailNavigationState,
   failDetailNavigation,
+  getComparisonTypeConflict,
   removeBenchmarkState,
   removeComparisonSelection,
   returnToCatalogState,
@@ -87,7 +90,7 @@ const PERFORMANCE_STATUS_LABELS = {
   error: "UNAVAILABLE",
 };
 
-function PerformanceSection({ benchmarkState }) {
+function PerformanceSection({ benchmarkState, hardwareType = "CPU" }) {
   const performanceState = getPerformanceState(benchmarkState);
 
   return (
@@ -115,7 +118,9 @@ function PerformanceSection({ benchmarkState }) {
         <div className="performance-notice">
           <strong>Benchmark data is not available yet.</strong>
           <span>
-            No supported Geekbench 7 result has been returned for this CPU.
+            {hardwareType === "GPU"
+              ? "No verified GPU benchmark result has been returned for this GPU."
+              : "No supported Geekbench 7 result has been returned for this CPU."}
           </span>
         </div>
       )}
@@ -808,6 +813,8 @@ function App() {
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
   const [compareList, setCompareList] = useState([]);
+  const [comparisonSelectionNotice, setComparisonSelectionNotice] =
+    useState("");
   const [comparisonDetailState, setComparisonDetailState] = useState(
     createComparisonDetailState,
   );
@@ -830,6 +837,9 @@ function App() {
     compareList,
     comparisonDetailState.detailsById,
   );
+
+  const selectedComparisonType = compareList[0]?.type || null;
+  const isGpuComparison = selectedComparisonType === "GPU";
 
   const loadBenchmarks = (hardwareId) => {
     const requestId = (benchmarkRequestIdsRef.current[hardwareId] || 0) + 1;
@@ -942,11 +952,19 @@ function App() {
   };
 
   const addToCompare = (item) => {
+    const conflict = getComparisonTypeConflict(compareList, item);
+
+    if (conflict) {
+      setComparisonSelectionNotice(conflict);
+      return;
+    }
+
     const nextCompareList = addComparisonSelection(compareList, item);
     if (nextCompareList === compareList) {
       return;
     }
 
+    setComparisonSelectionNotice("");
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList(nextCompareList);
     loadBenchmarks(item.id);
@@ -954,6 +972,7 @@ function App() {
   };
 
   const removeFromCompare = (id) => {
+    setComparisonSelectionNotice("");
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList((prev) => removeComparisonSelection(prev, id));
 
@@ -972,6 +991,7 @@ function App() {
   };
 
   const clearComparison = () => {
+    setComparisonSelectionNotice("");
     setAiAnalysis({ status: AI_ANALYSIS_STATUS.idle, explanation: "" });
     setCompareList(clearComparisonSelection());
     setComparisonDetailState(createComparisonDetailState());
@@ -1242,6 +1262,18 @@ function App() {
       });
   };
 
+  const formatComparisonTableCell = (spec, value) => {
+    if (value === null || value === undefined || value === "") {
+      return "N/A";
+    }
+
+    if (spec.key === "release_date") {
+      return formatReleaseDate(value);
+    }
+
+    return spec.unit ? `${value} ${spec.unit}` : `${value}`;
+  };
+
   const getComparisonCellClass = (
     specification,
     itemIndex,
@@ -1402,7 +1434,8 @@ function App() {
             {compareList.map((item, index) => (
               <div className="comparison-selection-item" key={item.id}>
                 <span className="comparison-selection-index">
-                  CPU {String(index + 1).padStart(2, "0")}
+                  {selectedComparisonType || "CPU"}{" "}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
                   <strong>{item.name}</strong>
@@ -1423,14 +1456,22 @@ function App() {
 
             {compareList.length === 1 && (
               <div className="comparison-selection-item comparison-selection-slot">
-                <span className="comparison-selection-index">CPU 02</span>
+                <span className="comparison-selection-index">
+                  {selectedComparisonType || "CPU"} 02
+                </span>
                 <div>
-                  <strong>Choose a second CPU</strong>
+                  <strong>Choose a second {selectedComparisonType || "CPU"}</strong>
                   <span>Use Explore Hardware below to complete the comparison.</span>
                 </div>
               </div>
             )}
           </div>
+
+          {comparisonSelectionNotice && (
+            <p className="comparison-selection-notice" role="alert">
+              {comparisonSelectionNotice}
+            </p>
+          )}
 
           <button
             type="button"
@@ -1548,18 +1589,15 @@ function App() {
                 addToCompare(item);
               }}
               disabled={
-                item.type === "GPU" ||
-                (!compareList.some((hardware) => hardware.id === item.id) &&
-                compareList.length >= 2)
+                !compareList.some((hardware) => hardware.id === item.id) &&
+                compareList.length >= 2
               }
             >
               {compareList.some((hardware) => hardware.id === item.id)
                 ? "✓ In Comparison"
                 : compareList.length >= 2
                   ? "Comparison Full"
-                  : item.type === "GPU"
-                    ? "Comparable later"
-                    : "Compare"}
+                  : "Compare"}
             </button>
            </article>
                 );
@@ -1642,7 +1680,11 @@ function App() {
             HARDWARE COMPARISON
           </p>
 
-          <h2>Compare Hardware</h2>
+          <h2>
+            {selectedComparisonType
+              ? `${selectedComparisonType} Comparison`
+              : "Compare Hardware"}
+          </h2>
 
           <p className="comparison-status">
             <strong>{compareList.length} of 2</strong> hardware selected
@@ -1654,19 +1696,21 @@ function App() {
                  <span className="comparison-empty-index">01 — 02</span>
                  <h3>Build a side-by-side view</h3>
                  <p>
-                   Choose up to two CPUs from Explore Hardware. Selected CPUs
-                   will appear here with verified specs and benchmark results.
+                   Choose up to two CPUs or GPUs from Explore Hardware. Selected
+                   hardware will appear here with verified specs and benchmark
+                   results.
                  </p>
                </div>
                <a className="comparison-explore-link" href="#explore">
-                 Browse CPUs <span aria-hidden="true">→</span>
+                 Browse hardware <span aria-hidden="true">→</span>
                </a>
              </div>
            ) : (
             <div className="comparison-content">
               {compareList.length === 1 && (
                 <p className="comparison-instruction">
-                  Select another CPU to start comparing hardware.
+                  Select another {selectedComparisonType || "CPU"} to start
+                  comparing hardware.
                 </p>
               )}
 
@@ -1678,7 +1722,7 @@ function App() {
                 Clear Comparison
               </button>
 
-               {compareDetails.length === 2 && (
+               {compareDetails.length === 2 && !isGpuComparison && (
                  <div
                   className="comparison-legend"
                   aria-label="Comparison guidance"
@@ -1699,6 +1743,28 @@ function App() {
                  </div>
                )}
 
+               {compareDetails.length === 2 && isGpuComparison && (
+                 <div
+                  className="comparison-legend"
+                  aria-label="Comparison guidance"
+                >
+                  <span className="comparison-legend-title">
+                    <span
+                      className="comparison-legend-swatch"
+                      aria-hidden="true"
+                    />
+                    Highlighted value is better
+                  </span>
+
+                  <span>
+                    Higher is better: VRAM, Memory Bandwidth, Core Clock, Boost
+                    Clock.
+                  </span>
+
+                   <span>Lower is better: TDP, Length.</span>
+                 </div>
+               )}
+
                {compareDetails.length === 2 && (
                  <p className="comparison-scroll-hint">
                    <span aria-hidden="true">↔</span> Scroll horizontally to
@@ -1712,16 +1778,21 @@ function App() {
                      comparisonDetailState.requestStatesById[item.id];
                    const detail = comparisonDetailState.detailsById[item.id];
 
-                   if (requestState?.status === "error") {
-                     return (
-                       <section
-                         className="comparison-performance-card comparison-detail-error"
-                         key={item.id}
-                         role="alert"
-                       >
-                         <p className="detail-section-label">CPU DETAIL</p>
-                         <h3>{item.name}</h3>
-                         <p>Unable to load CPU details.</p>
+if (requestState?.status === "error") {
+                      return (
+                        <section
+                          className="comparison-performance-card comparison-detail-error"
+                          key={item.id}
+                          role="alert"
+                        >
+                          <p className="detail-section-label">
+                            {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
+                          </p>
+                          <h3>{item.name}</h3>
+                          <p>
+                            Unable to load{" "}
+                            {item.type === "GPU" ? "GPU" : "CPU"} details.
+                          </p>
                          <div className="comparison-detail-actions">
                            <button
                              type="button"
@@ -1742,40 +1813,65 @@ function App() {
                      );
                    }
 
-                   if (!detail || requestState?.status === "loading") {
-                     return (
-                       <section
-                         className="comparison-performance-card"
-                         key={item.id}
-                         role="status"
-                       >
-                         <p className="detail-section-label">CPU DETAIL</p>
-                         <h3>{item.name}</h3>
-                         <div className="comparison-loading">
-                           <span className="state-spinner" aria-hidden="true" />
-                           Loading selected CPU details...
-                         </div>
-                       </section>
-                     );
-                   }
+if (!detail || requestState?.status === "loading") {
+                      return (
+                        <section
+                          className="comparison-performance-card"
+                          key={item.id}
+                          role="status"
+                        >
+                          <p className="detail-section-label">
+                            {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
+                          </p>
+                          <h3>{item.name}</h3>
+                          <div className="comparison-loading">
+                            <span className="state-spinner" aria-hidden="true" />
+                            Loading selected{" "}
+                            {item.type === "GPU" ? "GPU" : "CPU"} details...
+                          </div>
+                        </section>
+                      );
+                    }
 
-                   return (
-                     <section className="comparison-performance-card" key={item.id}>
-                       <p className="detail-section-label">PERFORMANCE</p>
-                       <h3>{detail.name}</h3>
-                       <PerformanceSection
-                         benchmarkState={benchmarkStates[detail.id]}
-                       />
-                     </section>
-                   );
-                 })}
-                </div>
+                    return (
+                      <section className="comparison-performance-card" key={item.id}>
+                        <p className="detail-section-label">PERFORMANCE</p>
+                        <h3>{detail.name}</h3>
+                        <PerformanceSection
+                          benchmarkState={benchmarkStates[detail.id]}
+                          hardwareType={item.type || "CPU"}
+                        />
+                      </section>
+                    );
+                  })}
+                 </div>
 
-               {compareDetails.length === 2 && (
+               {compareDetails.length === 2 && !isGpuComparison && (
                  <BenchmarkComparison
                    comparisonData={benchmarkComparison}
                    compareDetails={compareDetails}
                  />
+               )}
+
+               {compareDetails.length === 2 && isGpuComparison && (
+                 <section
+                   className="benchmark-comparison"
+                   aria-labelledby="gpu-benchmark-comparison-title"
+                 >
+                   <div className="benchmark-comparison-header">
+                     <div>
+                       <p className="detail-section-label">GPU BENCHMARKS</p>
+                       <h3 id="gpu-benchmark-comparison-title">
+                         No GPU benchmark data
+                       </h3>
+                     </div>
+                     <span className="performance-status">NO DATA</span>
+                   </div>
+                   <p className="benchmark-comparison-notice">
+                     No verified GPU benchmark results are available for these
+                     GPUs yet.
+                   </p>
+                 </section>
                )}
 
                 {compareDetails.length === 2 && (
@@ -1785,7 +1881,7 @@ function App() {
                   />
                 )}
 
-                {compareDetails.length === 2 && (
+                {compareDetails.length === 2 && !isGpuComparison && (
                   <AiAnalysis
                     analysis={aiAnalysis}
                     onGenerate={generateAiAnalysis}
@@ -1796,7 +1892,8 @@ function App() {
                  <div className="comparison-table-wrapper">
                  <table className="comparison-table">
                    <caption className="sr-only">
-                     Side-by-side CPU specification comparison
+                     Side-by-side{" "}
+                     {isGpuComparison ? "GPU" : "CPU"} specification comparison
                    </caption>
                   <thead>
                     <tr>
@@ -1823,7 +1920,34 @@ function App() {
                   </thead>
 
                   <tbody>
-                    <tr>
+                    {isGpuComparison
+                      ? GPU_TABLE_SPECS.map((spec) => (
+                          <tr key={spec.key}>
+                            <td>{spec.label}</td>
+                            {compareDetails.map((item) => {
+                              const value =
+                                spec.source === "hardware"
+                                  ? item[spec.key]
+                                  : item.specifications?.[spec.key];
+                              const cellClass = spec.direction
+                                ? getComparisonCellClass(
+                                    spec.key,
+                                    compareDetails.indexOf(item),
+                                    spec.direction === "lower"
+                                  )
+                                : "";
+
+                              return (
+                                <td key={item.id} className={cellClass}>
+                                  {formatComparisonTableCell(spec, value)}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        ))
+                      : (
+                      <>
+                      <tr>
                       <td>Cores</td>
 
                       {compareDetails.map((item) => (
@@ -1931,6 +2055,8 @@ function App() {
                         </td>
                       ))}
                     </tr>
+                      </>
+                      )}
                  </tbody>
                 </table>
               </div>

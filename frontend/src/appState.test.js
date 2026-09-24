@@ -10,6 +10,7 @@ import {
   createDetailNavigationState,
   failCatalogLoad,
   failDetailNavigation,
+  getComparisonTypeConflict,
   removeComparisonSelection,
   returnToCatalogState,
   setBenchmarkError,
@@ -116,4 +117,58 @@ test("comparison details preserve selection order when the second response wins 
     selection.map((item) => detailsById[item.id]),
     [detailsById[1], detailsById[2]],
   );
+});
+
+const gpu = (id) => ({ id, name: `GPU ${id}`, type: "GPU" });
+const cpuTyped = (id) => ({ id, name: `CPU ${id}`, type: "CPU" });
+
+test("comparison selection allows GPU with GPU", () => {
+  const first = addComparisonSelection([], gpu(1));
+  const second = addComparisonSelection(first, gpu(2));
+
+  assert.deepEqual(second, [gpu(1), gpu(2)]);
+});
+
+test("comparison selection rejects a mixed CPU and GPU selection", () => {
+  const cpuSelected = addComparisonSelection([], cpuTyped(1));
+  assert.strictEqual(addComparisonSelection(cpuSelected, gpu(2)), cpuSelected);
+
+  const gpuSelected = addComparisonSelection([], gpu(2));
+  assert.strictEqual(addComparisonSelection(gpuSelected, cpuTyped(1)), gpuSelected);
+});
+
+test("comparison selection rejects a duplicate GPU", () => {
+  const first = addComparisonSelection([], gpu(1));
+
+  assert.strictEqual(addComparisonSelection(first, gpu(1)), first);
+});
+
+test("comparison selection enforces two-item capacity for GPUs", () => {
+  const two = addComparisonSelection(addComparisonSelection([], gpu(1)), gpu(2));
+
+  assert.strictEqual(addComparisonSelection(two, gpu(3)), two);
+});
+
+test("comparison selection rejects unknown hardware types", () => {
+  const ssd = { id: 9, name: "Drive", type: "SSD" };
+
+  assert.strictEqual(addComparisonSelection([], ssd), []);
+});
+
+test("comparison type conflict reports actionable messages", () => {
+  assert.equal(
+    getComparisonTypeConflict([cpuTyped(1)], gpu(2)),
+    "CPU and GPU hardware cannot be compared together.",
+  );
+  assert.equal(
+    getComparisonTypeConflict([gpu(1)], cpuTyped(2)),
+    "GPU and CPU hardware cannot be compared together.",
+  );
+  assert.equal(
+    getComparisonTypeConflict([], { type: "SSD" }),
+    "SSD hardware is not supported for comparison yet.",
+  );
+  assert.equal(getComparisonTypeConflict([], gpu(1)), null);
+  assert.equal(getComparisonTypeConflict([cpuTyped(1)], cpuTyped(2)), null);
+  assert.equal(getComparisonTypeConflict([gpu(1)], gpu(2)), null);
 });
