@@ -8,6 +8,7 @@ from backend.app.database import Base
 
 if TYPE_CHECKING:
     from backend.app.models.cpu import CPUSpecification
+    from backend.app.models.gpu import GPUSpecification
     from backend.app.models.benchmark import BenchmarkResult
     from backend.app.models.external_identifier import ExternalIdentifier
 
@@ -47,6 +48,11 @@ class Hardware(Base):
     )
 
     cpu_specification: Mapped["CPUSpecification | None"] = relationship(
+        back_populates="hardware",
+        uselist=False,
+    )
+
+    gpu_specification: Mapped["GPUSpecification | None"] = relationship(
         back_populates="hardware",
         uselist=False,
     )
