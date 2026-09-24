@@ -19,6 +19,9 @@ htmlcov/
 *.sqlite
 *.sqlite3
 
+# Raw external datasets (acquired, not versioned)
+data/raw/
+
 # IDE
 .vscode/
 
