@@ -1769,6 +1769,245 @@ h1 {
   color: #fda4af;
 }
 
+.hardware-chat {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #334155;
+}
+
+.hardware-chat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hardware-chat-header .detail-section-label {
+  margin-bottom: 0.5rem;
+}
+
+.hardware-chat-header h3 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 1.3rem;
+}
+
+.hardware-chat-mark {
+  display: grid;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.35rem;
+  place-items: center;
+  border: 1px solid rgba(196, 181, 253, 0.55);
+  border-radius: 999px;
+  color: #c4b5fd;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hardware-chat-intro {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.hardware-chat-qna {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.hardware-chat-question,
+.hardware-chat-answer {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+.hardware-chat-question span,
+.hardware-chat-answer-label {
+  color: #7dd3fc;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hardware-chat-question strong {
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+.hardware-chat-answer {
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.markdown-content {
+  color: #cbd5e1;
+  line-height: 1.65;
+}
+
+.markdown-content p {
+  margin: 0 0 1rem;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content h2,
+.markdown-content h3 {
+  margin: 1.35rem 0 0.55rem;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.markdown-content h2 {
+  font-size: 1.15rem;
+}
+
+.markdown-content h3 {
+  font-size: 1rem;
+}
+
+.markdown-content h2:first-child,
+.markdown-content h3:first-child {
+  margin-top: 0;
+}
+
+.markdown-content ul {
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+}
+
+.markdown-content li + li {
+  margin-top: 0.45rem;
+}
+
+.hardware-chat-message {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  background: #172033;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 10px;
+  color: #cbd5e1;
+}
+
+.hardware-chat-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  background: #172033;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 10px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.hardware-chat-error strong {
+  color: #fca5a5;
+}
+
+.hardware-chat-retry {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #475569;
+  border-radius: 7px;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.hardware-chat-retry:hover {
+  color: white;
+  border-color: #38bdf8;
+}
+
+.hardware-chat-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.hardware-chat-prompt {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.hardware-chat-prompt:hover:not(:disabled) {
+  color: white;
+  border-color: #38bdf8;
+}
+
+.hardware-chat-composer {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+.hardware-chat-composer input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.hardware-chat-composer input::placeholder {
+  color: #64748b;
+}
+
+.hardware-chat-composer button {
+  flex: 0 0 auto;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  background: #38bdf8;
+  color: #0f172a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hardware-chat-composer button:hover:not(:disabled) {
+  background: transparent;
+  color: #38bdf8;
+}
+
+.hardware-chat-composer button:disabled,
+.hardware-chat-prompt:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 @media (max-width: 700px) {
   .navbar {
     height: auto;
@@ -1866,5 +2105,13 @@ h1 {
   .comparison-insight-difference {
     grid-column: 2;
     justify-self: start;
+  }
+
+  .hardware-chat-composer {
+    flex-direction: column;
+  }
+
+  .hardware-chat-composer button {
+    width: 100%;
   }
 }

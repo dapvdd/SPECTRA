@@ -37,6 +37,17 @@ import {
 } from "./apiValidation.js";
 import { apiUrl } from "./api.js";
 import {
+  CHAT_ERROR_KIND,
+  CHAT_STATUS,
+  buildHardwareChatContext,
+  completeHardwareChatRequest,
+  createChatRequestGuard,
+  createHardwareChatState,
+  failHardwareChatRequest,
+  requestHardwareChatAnswer,
+  startHardwareChatRequest,
+} from "./hardwareChat.js";
+import {
   addComparisonSelection,
   clearComparisonSelection,
   completeCatalogLoad,
@@ -302,6 +313,8 @@ function CpuDetailView({
   onBack,
   onCompare,
   detailError,
+  chatState,
+  onAskQuestion,
 }) {
   const viewModel = getCpuDetailViewModel(hardware);
   const comparisonAction = getDetailComparisonAction(compareList, hardware.id);
@@ -361,6 +374,8 @@ function CpuDetailView({
       </div>
 
       <PerformanceSection benchmarkState={benchmarkState} />
+
+      <HardwareChatSection chatState={chatState} onAsk={onAskQuestion} />
     </section>
   );
 }
@@ -561,6 +576,169 @@ function AiAnalysis({ analysis, onGenerate }) {
   );
 }
 
+const CHAT_SUGGESTED_PROMPTS = [
+  "Kuat buat GTA V?",
+  "Cocok buat Figma?",
+  "Buat coding project gede?",
+  "Cocok buat Android Studio?",
+];
+
+const CHAT_ERROR_COPY = {
+  [CHAT_ERROR_KIND.validation]:
+    "The question could not be sent. Reword it and try again.",
+  [CHAT_ERROR_KIND.provider]:
+    "SPECTRA's AI provider could not answer right now.",
+  [CHAT_ERROR_KIND.empty]:
+    "SPECTRA returned an empty answer. Try again.",
+  [CHAT_ERROR_KIND.request]:
+    "The request could not be completed. Check the connection and try again.",
+};
+
+function MarkdownContent({ markdown }) {
+  return (
+    <div className="markdown-content">
+      {parseMarkdown(markdown).map((block, blockIndex) => {
+        const renderInline = (parts) =>
+          parts.map((part, partIndex) =>
+            part.type === "bold" ? (
+              <strong key={`${blockIndex}-${partIndex}`}>{part.value}</strong>
+            ) : (
+              <span key={`${blockIndex}-${partIndex}`}>{part.value}</span>
+            ),
+          );
+
+        if (block.type === "heading") {
+          const Heading = block.level === 2 ? "h2" : "h3";
+          return (
+            <Heading key={blockIndex}>
+              {renderInline(block.children)}
+            </Heading>
+          );
+        }
+
+        if (block.type === "list") {
+          return (
+            <ul key={blockIndex}>
+              {block.items.map((item, itemIndex) => (
+                <li key={itemIndex}>{renderInline(item)}</li>
+              ))}
+            </ul>
+          );
+        }
+
+        return <p key={blockIndex}>{renderInline(block.children)}</p>;
+      })}
+    </div>
+  );
+}
+
+function HardwareChatSection({ chatState, onAsk }) {
+  const [draft, setDraft] = useState("");
+  const loading = chatState.status === CHAT_STATUS.loading;
+
+  const submit = (question) => {
+    const trimmed = (question ?? draft).trim();
+    if (!trimmed || loading) {
+      return;
+    }
+
+    setDraft("");
+    onAsk(trimmed);
+  };
+
+  return (
+    <section className="hardware-chat" aria-labelledby="hardware-chat-title">
+      <div className="hardware-chat-header">
+        <div>
+          <p className="detail-section-label">ASK SPECTRA</p>
+          <h3 id="hardware-chat-title">Ask your hardware anything</h3>
+        </div>
+        <span className="hardware-chat-mark" aria-hidden="true">AI</span>
+      </div>
+
+      <p className="hardware-chat-intro">
+        Ask a natural-language question about this CPU. SPECTRA answers from
+        verified specifications and benchmark data only.
+      </p>
+
+      {chatState.answeredQuestion && (
+        <div className="hardware-chat-qna">
+          <div className="hardware-chat-question">
+            <span>You</span>
+            <strong>{chatState.answeredQuestion}</strong>
+          </div>
+          <div className="hardware-chat-answer">
+            <span className="hardware-chat-answer-label">SPECTRA</span>
+            <MarkdownContent markdown={chatState.answer} />
+          </div>
+        </div>
+      )}
+
+      {loading && (
+        <div className="hardware-chat-message" role="status">
+          <span className="state-spinner" aria-hidden="true" />
+          <span>
+            {chatState.answeredQuestion
+              ? "Asking a follow-up..."
+              : "Asking SPECTRA..."}
+          </span>
+        </div>
+      )}
+
+      {chatState.status === CHAT_STATUS.error && (
+        <div className="hardware-chat-error" role="alert">
+          <strong>Could not get an answer.</strong>
+          <span>
+            {CHAT_ERROR_COPY[chatState.error?.kind] ??
+              CHAT_ERROR_COPY[CHAT_ERROR_KIND.request]}
+          </span>
+          <button
+            type="button"
+            className="hardware-chat-retry"
+            onClick={() => submit(chatState.lastQuestion)}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
+      <div className="hardware-chat-prompts" aria-label="Suggested questions">
+        {CHAT_SUGGESTED_PROMPTS.map((prompt) => (
+          <button
+            type="button"
+            className="hardware-chat-prompt"
+            key={prompt}
+            disabled={loading}
+            onClick={() => submit(prompt)}
+          >
+            {prompt}
+          </button>
+        ))}
+      </div>
+
+      <form
+        className="hardware-chat-composer"
+        onSubmit={(event) => {
+          event.preventDefault();
+          submit();
+        }}
+      >
+        <input
+          type="text"
+          aria-label="Ask about this CPU"
+          placeholder="Ask about this CPU..."
+          value={draft}
+          disabled={loading}
+          onChange={(event) => setDraft(event.target.value)}
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Asking…" : "Ask"}
+        </button>
+      </form>
+    </section>
+  );
+}
+
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
@@ -585,6 +763,10 @@ function App() {
   const detailRequestIdRef = useRef(0);
   const comparisonRequestIdRef = useRef(0);
   const benchmarkRequestIdsRef = useRef({});
+  const chatGuardRef = useRef(createChatRequestGuard());
+  const [hardwareChatState, setHardwareChatState] = useState(
+    createHardwareChatState
+  );
 
   const compareDetails = getComparisonDetailsInSelectionOrder(
     compareList,
@@ -628,6 +810,8 @@ function App() {
   const showHardwareDetail = (id) => {
     const requestId = detailRequestIdRef.current + 1;
     detailRequestIdRef.current = requestId;
+    chatGuardRef.current.invalidate();
+    setHardwareChatState(createHardwareChatState());
     const detailState = startDetailNavigation({
       selected: selectedHardware,
       view: detailView,
@@ -751,6 +935,7 @@ function App() {
 
   const returnToCatalog = () => {
     detailRequestIdRef.current += 1;
+    chatGuardRef.current.invalidate();
     const catalogState = returnToCatalogState({
       selected: selectedHardware,
       view: detailView,
@@ -787,6 +972,7 @@ function App() {
     addToCompare(selectedHardware);
 
     if (comparisonAction.shouldNavigateToComparison) {
+      chatGuardRef.current.invalidate();
       setSelectedHardware(null);
       setDetailView(false);
       setTimeout(() => {
@@ -883,6 +1069,44 @@ function App() {
       .catch((error) => {
         console.error("Failed to generate AI analysis:", error);
         setAiAnalysis({ status: AI_ANALYSIS_STATUS.error, explanation: "" });
+      });
+  };
+
+  const askHardwareChat = (question) => {
+    const trimmedQuestion = (question ?? "").trim();
+    if (!trimmedQuestion || !selectedHardware) {
+      return;
+    }
+
+    const requestId = chatGuardRef.current.begin();
+    const context = buildHardwareChatContext(
+      selectedHardware,
+      benchmarkStates[selectedHardware.id]?.results ?? []
+    );
+
+    setHardwareChatState((prev) =>
+      startHardwareChatRequest(prev, trimmedQuestion)
+    );
+
+    requestHardwareChatAnswer(context, trimmedQuestion)
+      .then((answer) => {
+        if (!chatGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        setHardwareChatState((prev) =>
+          completeHardwareChatRequest(prev, answer)
+        );
+      })
+      .catch((error) => {
+        if (!chatGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        console.error("Failed to get hardware chat answer:", error);
+        setHardwareChatState((prev) =>
+          failHardwareChatRequest(prev, error)
+        );
       });
   };
 
@@ -1222,6 +1446,8 @@ function App() {
             onBack={returnToCatalog}
             onCompare={compareSelectedHardware}
             detailError={detailError}
+            chatState={hardwareChatState}
+            onAskQuestion={askHardwareChat}
           />
         )}
 
