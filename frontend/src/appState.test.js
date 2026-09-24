@@ -151,8 +151,12 @@ test("comparison selection enforces two-item capacity for GPUs", () => {
 
 test("comparison selection rejects unknown hardware types", () => {
   const ssd = { id: 9, name: "Drive", type: "SSD" };
+  const compareList = [];
 
-  assert.strictEqual(addComparisonSelection([], ssd), []);
+  assert.strictEqual(
+    addComparisonSelection(compareList, ssd),
+    compareList,
+  );
 });
 
 test("comparison type conflict reports actionable messages", () => {
