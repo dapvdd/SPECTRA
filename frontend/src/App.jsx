@@ -30,6 +30,10 @@ import {
   getHardwareCardPrimarySpecs,
 } from "./hardwareCard.js";
 import {
+  createDetailRequestGuard,
+  requestHardwareDetail,
+} from "./detailRequest.js";
+import {
   completeComparisonDetailRequest,
   createComparisonDetailState,
   failComparisonDetailRequest,
@@ -385,11 +389,20 @@ function CpuDetailView({
   );
 }
 
+function GpuDetailSection({ label, items }) {
+  return (
+    <section className="gpu-detail-section">
+      <p className="detail-section-label">{label}</p>
+      <DetailSpecGrid items={items} />
+    </section>
+  );
+}
+
 function GpuHardwareDetail({ hardware, onBack }) {
   const viewModel = getGpuDetailViewModel(hardware);
 
   return (
-    <section className="hardware-detail" aria-labelledby="gpu-detail-title">
+    <section className="hardware-detail gpu-detail" aria-labelledby="gpu-detail-title">
       <button type="button" className="back-button" onClick={onBack}>
         ← Back to catalog
       </button>
@@ -407,14 +420,15 @@ function GpuHardwareDetail({ hardware, onBack }) {
         </div>
       </div>
 
-      <div className="detail-specifications">
-        <p className="detail-section-label">OVERVIEW</p>
-        <DetailSpecGrid items={viewModel.overview} />
-
-        <p className="detail-section-label technical-label">
-          KEY SPECIFICATIONS
-        </p>
-        <DetailSpecGrid items={viewModel.keySpecifications} />
+      <div className="gpu-detail-sections">
+        <GpuDetailSection label="OVERVIEW" items={viewModel.overview} />
+        <GpuDetailSection label="MEMORY" items={viewModel.memory} />
+        <GpuDetailSection label="CLOCK SPEEDS" items={viewModel.clocks} />
+        <GpuDetailSection
+          label="POWER & PHYSICAL"
+          items={viewModel.powerPhysical}
+        />
+        <GpuDetailSection label="INTERFACE" items={viewModel.interface} />
       </div>
     </section>
   );
@@ -802,7 +816,7 @@ function App() {
     status: AI_ANALYSIS_STATUS.idle,
     explanation: "",
   });
-  const detailRequestIdRef = useRef(0);
+  const detailGuardRef = useRef(createDetailRequestGuard());
   const catalogGuardRef = useRef(createCatalogLoadGuard());
   const cardSpecRequestIdsRef = useRef({});
   const comparisonRequestIdRef = useRef(0);
@@ -852,8 +866,7 @@ function App() {
   };
 
   const showHardwareDetail = (id) => {
-    const requestId = detailRequestIdRef.current + 1;
-    detailRequestIdRef.current = requestId;
+    const requestId = detailGuardRef.current.begin();
     chatGuardRef.current.invalidate();
     setHardwareChatState(createHardwareChatState());
     const detailState = startDetailNavigation({
@@ -868,14 +881,9 @@ function App() {
     setDetailView(detailState.view);
     loadBenchmarks(id);
 
-    fetch(apiUrl(`/hardware/${id}`))
-      .then((response) => {
-        return assertSuccessfulResponse(response).json();
-      })
+    requestHardwareDetail(id)
       .then((data) => {
-        validateHardwareDetailPayload(data, id);
-
-        if (detailRequestIdRef.current !== requestId) {
+        if (!detailGuardRef.current.isCurrent(requestId)) {
           return;
         }
 
@@ -888,7 +896,7 @@ function App() {
         setDetailError(detailState.error);
       })
       .catch((error) => {
-        if (detailRequestIdRef.current !== requestId) {
+        if (!detailGuardRef.current.isCurrent(requestId)) {
           return;
         }
 
@@ -901,7 +909,7 @@ function App() {
         setDetailLoading(detailState.loading);
       })
       .finally(() => {
-        if (detailRequestIdRef.current === requestId) {
+        if (detailGuardRef.current.isCurrent(requestId)) {
           setDetailLoading(false);
         }
       });
@@ -978,7 +986,7 @@ function App() {
   };
 
   const returnToCatalog = () => {
-    detailRequestIdRef.current += 1;
+    detailGuardRef.current.invalidate();
     chatGuardRef.current.invalidate();
     const catalogState = returnToCatalogState({
       selected: selectedHardware,

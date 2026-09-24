@@ -10,6 +10,37 @@ const isNonEmptyString = (value) =>
 const isOptionalText = (value) =>
   value === null || value === undefined || typeof value === "string";
 
+const GPU_SPEC_FIELDS = [
+  "memory_gb",
+  "memory_type",
+  "core_clock_mhz",
+  "boost_clock_mhz",
+  "vram_bandwidth_gbps",
+  "tdp_w",
+  "interface",
+  "length_mm",
+];
+
+const isScalarSpecValue = (value) =>
+  value === null ||
+  value === undefined ||
+  typeof value === "number" ||
+  typeof value === "string" ||
+  typeof value === "boolean";
+
+const assertGpuSpecificationValues = (specifications) => {
+  for (const field of GPU_SPEC_FIELDS) {
+    if (
+      Object.hasOwn(specifications, field) &&
+      !isScalarSpecValue(specifications[field])
+    ) {
+      throw new Error(
+        "GPU hardware response has an invalid specification value."
+      );
+    }
+  }
+};
+
 export const assertSuccessfulResponse = (response) => {
   if (!response?.ok) {
     throw new Error(`HTTP error: ${response?.status ?? "unknown"}`);
@@ -70,6 +101,10 @@ export const validateHardwareDetailPayload = (payload, expectedId) => {
     !isRecord(payload.specifications)
   ) {
     throw new Error("Hardware response has invalid specifications.");
+  }
+
+  if (payload.type === "GPU" && isRecord(payload.specifications)) {
+    assertGpuSpecificationValues(payload.specifications);
   }
 
   return payload;

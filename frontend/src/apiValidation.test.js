@@ -29,6 +29,26 @@ const detailCpu = (overrides = {}) => ({
   ...overrides,
 });
 
+const detailGpu = (overrides = {}) => ({
+  id: 4031,
+  name: "Radeon RX 7900 XTX",
+  manufacturer: "AMD",
+  type: "GPU",
+  release_date: "2022-11-03",
+  architecture: "RDNA 3.0",
+  specifications: {
+    memory_gb: 24,
+    memory_type: "GDDR6",
+    core_clock_mhz: null,
+    boost_clock_mhz: 2498,
+    vram_bandwidth_gbps: 960,
+    tdp_w: 355,
+    interface: "PCIe 4.0 x16",
+    length_mm: 287,
+  },
+  ...overrides,
+});
+
 const benchmark = {
   benchmark_name: "Geekbench 7",
   score: 520,
@@ -161,5 +181,80 @@ test("accepts existing benchmark wrapper shapes", () => {
   assert.doesNotThrow(() => validateBenchmarkPayload({ benchmarks: [benchmark] }));
   assert.doesNotThrow(() =>
     validateBenchmarkPayload({ performance: { results: [benchmark] } }),
+  );
+});
+
+test("accepts a valid GPU detail payload", () => {
+  assert.deepEqual(validateHardwareDetailPayload(detailGpu(), 4031), detailGpu());
+});
+
+test("accepts GPU detail payloads with nullable specification fields", () => {
+  assert.doesNotThrow(() =>
+    validateHardwareDetailPayload(
+      detailGpu({
+        specifications: {
+          memory_gb: null,
+          memory_type: null,
+          core_clock_mhz: null,
+          boost_clock_mhz: null,
+          vram_bandwidth_gbps: null,
+          tdp_w: null,
+          interface: null,
+          length_mm: null,
+        },
+      }),
+      4031,
+    ),
+  );
+});
+
+test("rejects GPU detail payloads with malformed specification values", () => {
+  assert.throws(
+    () =>
+      validateHardwareDetailPayload(
+        detailGpu({ specifications: { memory_gb: ["nested"] } }),
+        4031,
+      ),
+    /invalid specification value/,
+  );
+  assert.throws(
+    () =>
+      validateHardwareDetailPayload(
+        detailGpu({ specifications: { tdp_w: { watts: 300 } } }),
+        4031,
+      ),
+    /invalid specification value/,
+  );
+});
+
+test("GPU specification validation does not reject scalar strings and numbers", () => {
+  assert.doesNotThrow(() =>
+    validateHardwareDetailPayload(
+      detailGpu({
+        specifications: {
+          memory_gb: 24,
+          memory_type: "GDDR6",
+          core_clock_mhz: 1405,
+          boost_clock_mhz: 2498,
+          vram_bandwidth_gbps: 960,
+          tdp_w: 355,
+          interface: "PCIe 4.0 x16",
+          length_mm: 287,
+        },
+      }),
+      4031,
+    ),
+  );
+});
+
+test("CPU detail validation is unaffected by GPU specification rules", () => {
+  assert.doesNotThrow(() =>
+    validateHardwareDetailPayload(detailCpu(), 1),
+  );
+  assert.doesNotThrow(() =>
+    validateHardwareDetailPayload(
+      detailCpu({ specifications: { cores: 8, extra_gpu_field: "ignored" } }),
+      1,
+    ),
   );
 });
