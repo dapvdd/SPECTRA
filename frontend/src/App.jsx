@@ -21,6 +21,15 @@ import {
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
 import {
+  HARDWARE_TYPES,
+  createCatalogLoadGuard,
+  requestHardwareCatalog,
+} from "./catalog.js";
+import {
+  getGpuDetailViewModel,
+  getHardwareCardPrimarySpecs,
+} from "./hardwareCard.js";
+import {
   completeComparisonDetailRequest,
   createComparisonDetailState,
   failComparisonDetailRequest,
@@ -31,7 +40,6 @@ import {
 import {
   assertSuccessfulResponse,
   validateBenchmarkPayload,
-  validateCatalogPayload,
   validateComparisonDetailPayload,
   validateHardwareDetailPayload,
 } from "./apiValidation.js";
@@ -50,11 +58,8 @@ import {
 import {
   addComparisonSelection,
   clearComparisonSelection,
-  completeCatalogLoad,
   completeDetailNavigation,
-  createCatalogState,
   createDetailNavigationState,
-  failCatalogLoad,
   failDetailNavigation,
   removeBenchmarkState,
   removeComparisonSelection,
@@ -376,6 +381,41 @@ function CpuDetailView({
       <PerformanceSection benchmarkState={benchmarkState} />
 
       <HardwareChatSection chatState={chatState} onAsk={onAskQuestion} />
+    </section>
+  );
+}
+
+function GpuHardwareDetail({ hardware, onBack }) {
+  const viewModel = getGpuDetailViewModel(hardware);
+
+  return (
+    <section className="hardware-detail" aria-labelledby="gpu-detail-title">
+      <button type="button" className="back-button" onClick={onBack}>
+        ← Back to catalog
+      </button>
+
+      <div className="hardware-detail-header">
+        <div>
+          <p className="eyebrow detail-type">GPU DETAIL</p>
+          <h2 id="gpu-detail-title">{viewModel.name}</h2>
+          <p className="hardware-meta">
+            <span className="manufacturer-mark" aria-hidden="true">
+              {viewModel.manufacturer.slice(0, 1)}
+            </span>
+            {viewModel.manufacturer} · {viewModel.type}
+          </p>
+        </div>
+      </div>
+
+      <div className="detail-specifications">
+        <p className="detail-section-label">OVERVIEW</p>
+        <DetailSpecGrid items={viewModel.overview} />
+
+        <p className="detail-section-label technical-label">
+          KEY SPECIFICATIONS
+        </p>
+        <DetailSpecGrid items={viewModel.keySpecifications} />
+      </div>
     </section>
   );
 }
@@ -744,6 +784,8 @@ function App() {
   const [hardware, setHardware] = useState([]);
   const [hardwareLoading, setHardwareLoading] = useState(true);
   const [hardwareError, setHardwareError] = useState("");
+  const [hardwareTypeFilter, setHardwareTypeFilter] = useState("All");
+  const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
   const [manufacturerFilter, setManufacturerFilter] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
@@ -761,6 +803,8 @@ function App() {
     explanation: "",
   });
   const detailRequestIdRef = useRef(0);
+  const catalogGuardRef = useRef(createCatalogLoadGuard());
+  const cardSpecRequestIdsRef = useRef({});
   const comparisonRequestIdRef = useRef(0);
   const benchmarkRequestIdsRef = useRef({});
   const chatGuardRef = useRef(createChatRequestGuard());
@@ -984,6 +1028,42 @@ function App() {
     }
   };
 
+  const loadHardwareCatalog = (type) => {
+    const requestId = catalogGuardRef.current.begin();
+
+    requestHardwareCatalog(type)
+      .then((items) => {
+        if (!catalogGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        setHardware(items);
+        setHardwareLoading(false);
+      })
+      .catch((error) => {
+        if (!catalogGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        console.error("Failed to load hardware catalog:", error);
+        setHardwareError("Hardware catalog could not be loaded.");
+        setHardwareLoading(false);
+      });
+  };
+
+  const changeHardwareTypeFilter = (type) => {
+    setHardwareTypeFilter(type);
+    setHardwareLoading(true);
+    setHardwareError("");
+    setCardSpecsById({});
+    cardSpecRequestIdsRef.current = {};
+    loadHardwareCatalog(type);
+  };
+
+  useEffect(() => {
+    loadHardwareCatalog("All");
+  }, []);
+
   useEffect(() => {
     fetch(apiUrl("/"))
       .then((response) => response.json())
@@ -992,22 +1072,6 @@ function App() {
       })
       .catch(() => {
         setApiStatus("offline");
-      });
-
-    fetch(apiUrl("/hardware"))
-      .then((response) => {
-        return assertSuccessfulResponse(response).json();
-      })
-      .then((data) => {
-        validateCatalogPayload(data);
-        setHardware(completeCatalogLoad(createCatalogState(), data).items);
-      })
-      .catch((error) => {
-        console.error("Failed to load hardware:", error);
-        setHardwareError(failCatalogLoad(createCatalogState(), "Hardware catalog could not be loaded.").error);
-      })
-      .finally(() => {
-        setHardwareLoading(false);
       });
   }, []);
 
@@ -1024,7 +1088,7 @@ function App() {
 
   useEffect(() => {
     setVisibleCount(12);
-  }, [search, manufacturerFilter]);
+  }, [search, manufacturerFilter, hardwareTypeFilter]);
 
   const normalizeSearch = (text) => {
     return text
@@ -1045,6 +1109,66 @@ function App() {
 
     return matchesSearch && matchesManufacturer;
   });
+
+  const catalogTypeLabel =
+    hardwareTypeFilter === "GPU"
+      ? "GPUs"
+      : hardwareTypeFilter === "CPU"
+        ? "CPUs"
+        : "hardware records";
+
+  useEffect(() => {
+    const visibleCards = filteredHardware.slice(0, visibleCount);
+
+    visibleCards.forEach((item) => {
+      if (item.type !== "GPU") {
+        return;
+      }
+
+      if (cardSpecsById[item.id] !== undefined) {
+        return;
+      }
+
+      if (cardSpecRequestIdsRef.current[item.id]) {
+        return;
+      }
+
+      const requestId =
+        (cardSpecRequestIdsRef.current[item.id] || 0) + 1;
+      cardSpecRequestIdsRef.current = {
+        ...cardSpecRequestIdsRef.current,
+        [item.id]: requestId,
+      };
+
+      fetch(apiUrl(`/hardware/${item.id}`))
+        .then((response) => {
+          return assertSuccessfulResponse(response).json();
+        })
+        .then((data) => {
+          validateHardwareDetailPayload(data, item.id);
+
+          if (cardSpecRequestIdsRef.current[item.id] !== requestId) {
+            return;
+          }
+
+          setCardSpecsById((prev) => ({
+            ...prev,
+            [item.id]: data.specifications || {},
+          }));
+        })
+        .catch((error) => {
+          if (cardSpecRequestIdsRef.current[item.id] !== requestId) {
+            return;
+          }
+
+          console.error("Failed to load card specifications:", error);
+          setCardSpecsById((prev) => ({
+            ...prev,
+            [item.id]: null,
+          }));
+        });
+    });
+  }, [filteredHardware, visibleCount, cardSpecsById]);
 
   const comparisonInsights = calculateComparisonInsights(
     compareDetails,
@@ -1173,8 +1297,8 @@ function App() {
 
             <input
               type="text"
-              aria-label="Search CPUs"
-              placeholder="Search for a CPU..."
+              aria-label="Search hardware"
+              placeholder="Search hardware..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
@@ -1183,12 +1307,29 @@ function App() {
               <button
                 type="button"
                 className="clear-search-icon"
-                aria-label="Clear CPU search"
+                aria-label="Clear hardware search"
                 onClick={() => setSearch("")}
               >
                 ×
               </button>
             )}
+          </div>
+
+          <div className="filter-buttons filter-buttons-type">
+            {HARDWARE_TYPES.map((type) => (
+              <button
+                type="button"
+                key={type}
+                className={
+                  hardwareTypeFilter === type
+                    ? "filter-button active"
+                    : "filter-button"
+                }
+                onClick={() => changeHardwareTypeFilter(type)}
+              >
+                {type}
+              </button>
+            ))}
           </div>
 
           <div className="filter-buttons">
@@ -1226,7 +1367,11 @@ function App() {
             ? "Hardware catalog unavailable"
             : `Showing ${Math.min(visibleCount, filteredHardware.length)} of ${
                 filteredHardware.length
-              } ${manufacturerFilter === "All" ? "CPUs" : `${manufacturerFilter} CPUs`}`}
+              } ${
+                manufacturerFilter === "All"
+                  ? ""
+                  : `${manufacturerFilter} `
+              }${catalogTypeLabel}`}
       </p>
 
       {compareList.length > 0 && (
@@ -1331,6 +1476,7 @@ function App() {
               onClick={() => {
                 setSearch("");
                 setManufacturerFilter("All");
+                setHardwareTypeFilter("All");
               }}
             >
               Clear Search
@@ -1340,7 +1486,13 @@ function App() {
           <div className="hardware-grid">
             {filteredHardware
               .slice(0, visibleCount)
-              .map((item) => (
+              .map((item) => {
+                const cardSpecRows = getHardwareCardPrimarySpecs(
+                  item.type,
+                  cardSpecsById[item.id]
+                );
+
+                return (
            <article
              className={`hardware-card ${
                compareList.some((hardware) => hardware.id === item.id)
@@ -1359,6 +1511,18 @@ function App() {
                <span className="hardware-card-manufacturer">
                  {item.manufacturer}
                </span>
+
+               {cardSpecRows.length > 0 && (
+                 <div className="hardware-card-specs">
+                   {cardSpecRows.map((row) => (
+                     <span key={row.label}>
+                       <em>{row.label}</em>
+                       <strong>{row.value}</strong>
+                     </span>
+                   ))}
+                 </div>
+               )}
+
                <span className="hardware-card-action">
                  View specifications <span aria-hidden="true">→</span>
                </span>
@@ -1376,18 +1540,22 @@ function App() {
                 addToCompare(item);
               }}
               disabled={
-                !compareList.some((hardware) => hardware.id === item.id) &&
-                compareList.length >= 2
+                item.type === "GPU" ||
+                (!compareList.some((hardware) => hardware.id === item.id) &&
+                compareList.length >= 2)
               }
             >
               {compareList.some((hardware) => hardware.id === item.id)
                 ? "✓ In Comparison"
                 : compareList.length >= 2
                   ? "Comparison Full"
-                  : "Compare"}
+                  : item.type === "GPU"
+                    ? "Comparable later"
+                    : "Compare"}
             </button>
            </article>
-              ))}
+                );
+              })}
           </div>
           )}
         </div>
@@ -1423,22 +1591,28 @@ function App() {
         {detailView && detailLoading && (
           <div className="detail-state" role="status" aria-live="polite">
             <span className="state-spinner" aria-hidden="true" />
-            <strong>Loading CPU details</strong>
+            <strong>Loading hardware details</strong>
             <span>Fetching verified specifications and benchmark data.</span>
           </div>
         )}
 
         {detailView && detailError && !selectedHardware && (
           <div className="detail-state detail-state-error" role="alert">
-            <strong>CPU details unavailable</strong>
+            <strong>Hardware details unavailable</strong>
             <span>{detailError}</span>
             <button type="button" className="clear-search-button" onClick={returnToCatalog}>
-              Back to CPUs
+              Back to catalog
             </button>
           </div>
         )}
 
         {detailView && selectedHardware && (
+          selectedHardware.type === "GPU" ? (
+            <GpuHardwareDetail
+              hardware={selectedHardware}
+              onBack={returnToCatalog}
+            />
+          ) : (
           <CpuDetailView
             hardware={selectedHardware}
             benchmarkState={benchmarkStates[selectedHardware.id]}
@@ -1449,6 +1623,7 @@ function App() {
             chatState={hardwareChatState}
             onAskQuestion={askHardwareChat}
           />
+          )
         )}
 
         <section
