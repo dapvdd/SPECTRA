@@ -16,7 +16,7 @@ load_backend_environment()
 from backend.app.database import SessionLocal
 from backend.app.models import Hardware
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
@@ -67,10 +67,19 @@ def health_check():
     }
 
 @app.get("/hardware")
-def get_hardware():
+def get_hardware(
+    hardware_type: str | None = Query(default=None, alias="type"),
+):
+    statement = select(Hardware)
+
+    if hardware_type is not None:
+        statement = statement.where(
+            Hardware.type == hardware_type
+        )
+
     with SessionLocal() as session:
         hardware_list = session.scalars(
-            select(Hardware)
+            statement
         ).all()
 
         return [
@@ -94,6 +103,61 @@ def get_hardware_detail(hardware_id: int):
         if not hardware:
             return {
                 "error": "Hardware not found"
+            }
+
+        if hardware.type == "GPU":
+            gpu_spec = hardware.gpu_specification
+
+            return {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
+
+                "specifications": {
+                    "memory_gb": (
+                        gpu_spec.memory_gb
+                        if gpu_spec
+                        else None
+                    ),
+                    "memory_type": (
+                        gpu_spec.memory_type
+                        if gpu_spec
+                        else None
+                    ),
+                    "core_clock_mhz": (
+                        gpu_spec.core_clock_mhz
+                        if gpu_spec
+                        else None
+                    ),
+                    "boost_clock_mhz": (
+                        gpu_spec.boost_clock_mhz
+                        if gpu_spec
+                        else None
+                    ),
+                    "vram_bandwidth_gbps": (
+                        gpu_spec.vram_bandwidth_gbps
+                        if gpu_spec
+                        else None
+                    ),
+                    "tdp_w": (
+                        gpu_spec.tdp_w
+                        if gpu_spec
+                        else None
+                    ),
+                    "interface": (
+                        gpu_spec.interface
+                        if gpu_spec
+                        else None
+                    ),
+                    "length_mm": (
+                        gpu_spec.length_mm
+                        if gpu_spec
+                        else None
+                    ),
+                },
             }
 
         cpu_spec = hardware.cpu_specification
