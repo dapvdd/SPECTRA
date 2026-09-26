@@ -62,6 +62,34 @@ import {
   startHardwareChatRequest,
 } from "./hardwareChat.js";
 import {
+  BUILD_DETAIL_STATUS,
+  BUILD_RESOLUTIONS,
+  BUILD_USE_CASES,
+  buildBuildChatContext,
+  calculateListedTdpSum,
+  clearBuildCpu,
+  clearBuildGpu,
+  clearBuildSlotDetail,
+  completeBuildDetailRequest,
+  createBuildConfig,
+  createBuildDetailState,
+  createBuildUserContext,
+  failBuildDetailRequest,
+  getBuildComponentAction,
+  getBuildComponentSpecs,
+  getBuildComponentSummary,
+  getBuildFacts,
+  getBuildSelection,
+  getBuildSlotDetail,
+  getBuildSlotRequestState,
+  getBuildSummary,
+  setBuildCpu,
+  setBuildGpu,
+  setBuildResolution,
+  setBuildUseCase,
+  startBuildDetailRequest,
+} from "./buildConfig.js";
+import {
   addComparisonSelection,
   clearComparisonSelection,
   completeDetailNavigation,
@@ -324,8 +352,10 @@ function CpuDetailView({
   hardware,
   benchmarkState,
   compareList,
+  buildAction,
   onBack,
   onCompare,
+  onAddToBuild,
   detailError,
   chatState,
   onAskQuestion,
@@ -358,18 +388,30 @@ function CpuDetailView({
           </p>
         </div>
 
-        <button
-          type="button"
-          className="detail-compare-button"
-          onClick={onCompare}
-          disabled={comparisonAction.comparisonFull}
-        >
-          {comparisonAction.alreadySelected
-            ? `✓ CPU ${comparisonAction.comparisonSlot} selected`
-            : comparisonAction.comparisonFull
-              ? "Comparison Full"
-              : "Compare CPU"}
-        </button>
+        <div className="detail-header-actions">
+          <button
+            type="button"
+            className="detail-compare-button"
+            onClick={onCompare}
+            disabled={comparisonAction.comparisonFull}
+          >
+            {comparisonAction.alreadySelected
+              ? `✓ CPU ${comparisonAction.comparisonSlot} selected`
+              : comparisonAction.comparisonFull
+                ? "Comparison Full"
+                : "Compare CPU"}
+          </button>
+
+          <button
+            type="button"
+            className={`detail-build-button ${
+              buildAction.alreadySelected ? "added" : ""
+            }`}
+            onClick={onAddToBuild}
+          >
+            {buildAction.actionLabel}
+          </button>
+        </div>
       </div>
 
       <div className="detail-specifications">
@@ -403,7 +445,7 @@ function GpuDetailSection({ label, items }) {
   );
 }
 
-function GpuHardwareDetail({ hardware, onBack }) {
+function GpuHardwareDetail({ hardware, buildAction, onBack, onAddToBuild }) {
   const viewModel = getGpuDetailViewModel(hardware);
 
   return (
@@ -422,6 +464,18 @@ function GpuHardwareDetail({ hardware, onBack }) {
             </span>
             {viewModel.manufacturer} · {viewModel.type}
           </p>
+        </div>
+
+        <div className="detail-header-actions">
+          <button
+            type="button"
+            className={`detail-build-button ${
+              buildAction.alreadySelected ? "added" : ""
+            }`}
+            onClick={onAddToBuild}
+          >
+            {buildAction.actionLabel}
+          </button>
         </div>
       </div>
 
@@ -798,6 +852,250 @@ function HardwareChatSection({ chatState, onAsk }) {
   );
 }
 
+function BuildComponentCard({
+  type,
+  selection,
+  detail,
+  requestState,
+  onChange,
+  onClear,
+  onRetry,
+}) {
+  const summary = getBuildComponentSummary(detail || selection);
+  const specs = getBuildComponentSpecs(detail);
+  const busy = requestState.status === BUILD_DETAIL_STATUS.loading;
+  const errored = requestState.status === BUILD_DETAIL_STATUS.error;
+
+  return (
+    <div className="build-component-card">
+      <p className="detail-section-label">{type}</p>
+
+      {!selection ? (
+        <div className="build-component-empty">
+          <strong>Select a {type}</strong>
+          <span>
+            Use Explore Hardware or a hardware detail page to choose one.
+          </span>
+        </div>
+      ) : (
+        <>
+          <div className="build-component-head">
+            <h3>{summary.name}</h3>
+            <span className="build-component-manufacturer">
+              {summary.manufacturer}
+            </span>
+            {summary.subtitle && (
+              <span className="build-component-subtitle">{summary.subtitle}</span>
+            )}
+          </div>
+
+          {busy && (
+            <p className="build-component-status" role="status" aria-live="polite">
+              Loading {type} details...
+            </p>
+          )}
+
+          {errored && (
+            <div className="build-component-error" role="alert">
+              <strong>{type} details unavailable</strong>
+              <span>{requestState.message}</span>
+              <button
+                type="button"
+                className="clear-search-button"
+                onClick={onRetry}
+              >
+                Retry
+              </button>
+            </div>
+          )}
+
+          {!busy && !errored && specs.length > 0 && (
+            <div className="spec-grid build-component-specs">
+              {specs.map((item) => (
+                <div key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="build-component-actions">
+            <button
+              type="button"
+              className="build-action-button"
+              onClick={onChange}
+            >
+              Change {type}
+            </button>
+
+            <button
+              type="button"
+              className="build-clear-button"
+              onClick={onClear}
+            >
+              Clear
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function BuildConfigurationSection({
+  buildConfig,
+  buildDetailState,
+  buildUserContext,
+  buildChatContext,
+  onSelectType,
+  onClearSlot,
+  onRetrySlot,
+  onUseCaseChange,
+  onResolutionChange,
+}) {
+  const summary = getBuildSummary(buildConfig);
+  const cpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
+  const gpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
+  const facts = getBuildFacts(cpuDetail, gpuDetail);
+  const tdpSum = calculateListedTdpSum(cpuDetail, gpuDetail);
+
+  return (
+    <section id="build" className="build-section" aria-labelledby="build-title">
+      <p className="eyebrow">BUILD CONFIGURATION</p>
+
+      <h2 id="build-title">Build Configuration</h2>
+
+      <p className="build-relationship">
+        <strong>{summary.relationshipLabel}</strong>
+        <span>
+          SPECTRA lists stored specifications for the selected components. It
+          does not assess motherboard, power supply, cooling, or case fit.
+        </span>
+      </p>
+
+      <div className="build-summary">
+        <div className="build-summary-item">
+          <span className="build-summary-label">CPU</span>
+          <strong>{summary.cpu.name}</strong>
+          {summary.cpu.isSelected && <span>{summary.cpu.manufacturer}</span>}
+        </div>
+
+        <span className="build-summary-join" aria-hidden="true">
+          +
+        </span>
+
+        <div className="build-summary-item">
+          <span className="build-summary-label">GPU</span>
+          <strong>{summary.gpu.name}</strong>
+          {summary.gpu.isSelected && <span>{summary.gpu.manufacturer}</span>}
+        </div>
+      </div>
+
+      <div className="build-components">
+        <BuildComponentCard
+          type="CPU"
+          selection={buildConfig.cpu}
+          detail={cpuDetail}
+          requestState={getBuildSlotRequestState(buildDetailState, "CPU")}
+          onChange={() => onSelectType("CPU")}
+          onClear={() => onClearSlot("CPU")}
+          onRetry={() => onRetrySlot("CPU")}
+        />
+
+        <BuildComponentCard
+          type="GPU"
+          selection={buildConfig.gpu}
+          detail={gpuDetail}
+          requestState={getBuildSlotRequestState(buildDetailState, "GPU")}
+          onChange={() => onSelectType("GPU")}
+          onClear={() => onClearSlot("GPU")}
+          onRetry={() => onRetrySlot("GPU")}
+        />
+      </div>
+
+      <div className="build-context">
+        <p className="detail-section-label">CONTEXT</p>
+
+        <p className="build-context-note">
+          Context is recorded for your own reference. SPECTRA does not generate
+          frame rate or performance estimates from it.
+        </p>
+
+        <div className="build-context-fields">
+          <label>
+            <span>Use case</span>
+            <select
+              value={buildUserContext.useCase}
+              onChange={(event) => onUseCaseChange(event.target.value)}
+            >
+              {BUILD_USE_CASES.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span>Resolution</span>
+            <select
+              value={buildUserContext.resolution}
+              onChange={(event) => onResolutionChange(event.target.value)}
+            >
+              {BUILD_RESOLUTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div className="build-facts">
+        <p className="detail-section-label">BUILD FACTS</p>
+
+        {facts.length === 0 ? (
+          <p className="build-facts-empty">
+            {summary.isComplete
+              ? "No listed specification values are available for these components."
+              : "Select a CPU and a GPU to list their stored specification values."}
+          </p>
+        ) : (
+          <div className="build-facts-list">
+            {facts.map((fact) => (
+              <div key={fact.id} className="build-fact">
+                <span>{fact.label}</span>
+                <strong>{fact.value}</strong>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tdpSum !== null && (
+          <p className="build-facts-note">
+            Listed component TDP values are summed for reference only. This is
+            not a measurement of system power draw and is not a power supply
+            requirement.
+          </p>
+        )}
+      </div>
+
+      {buildChatContext.cpu && buildChatContext.gpu && (
+        <div className="build-ai-note">
+          <p className="detail-section-label">AI BUILD ANALYSIS</p>
+          <p>
+            Build context is prepared for the hardware assistant, but combined
+            CPU and GPU chat is not available yet. The assistant currently
+            accepts a single hardware record per request.
+          </p>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function App() {
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
@@ -832,10 +1130,25 @@ function App() {
   const [hardwareChatState, setHardwareChatState] = useState(
     createHardwareChatState
   );
+  const [buildConfig, setBuildConfig] = useState(createBuildConfig);
+  const [buildDetailState, setBuildDetailState] = useState(
+    createBuildDetailState,
+  );
+  const [buildUserContext, setBuildUserContext] = useState(createBuildUserContext);
+  const buildCpuGuardRef = useRef(createDetailRequestGuard());
+  const buildGpuGuardRef = useRef(createDetailRequestGuard());
 
   const compareDetails = getComparisonDetailsInSelectionOrder(
     compareList,
     comparisonDetailState.detailsById,
+  );
+
+  const buildCpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
+  const buildGpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
+  const buildChatContext = buildBuildChatContext(
+    buildCpuDetail,
+    buildGpuDetail,
+    buildUserContext,
   );
 
   const selectedComparisonType = compareList[0]?.type || null;
@@ -1003,6 +1316,95 @@ function App() {
       ]),
     );
     setBenchmarkStates({});
+  };
+
+  const getBuildGuard = (type) =>
+    type === "GPU" ? buildGpuGuardRef.current : buildCpuGuardRef.current;
+
+  const loadBuildSlotDetail = (type, hardwareId) => {
+    const guard = getBuildGuard(type);
+    const requestId = guard.begin();
+
+    setBuildDetailState((prev) =>
+      startBuildDetailRequest(prev, type, requestId),
+    );
+
+    requestHardwareDetail(hardwareId)
+      .then((data) => {
+        if (!guard.isCurrent(requestId)) {
+          return;
+        }
+
+        setBuildDetailState((prev) =>
+          completeBuildDetailRequest(prev, type, requestId, data),
+        );
+      })
+      .catch((error) => {
+        if (!guard.isCurrent(requestId)) {
+          return;
+        }
+
+        console.error("Failed to load build hardware detail:", error);
+        setBuildDetailState((prev) =>
+          failBuildDetailRequest(
+            prev,
+            type,
+            requestId,
+            `Failed to load ${type} details for the build configuration.`,
+          ),
+        );
+      });
+  };
+
+  const addToBuild = (hardware) => {
+    if (hardware?.type !== "CPU" && hardware?.type !== "GPU") {
+      return;
+    }
+
+    const alreadySelected =
+      getBuildSelection(buildConfig, hardware.type)?.id === hardware.id;
+
+    setBuildConfig((prev) =>
+      hardware.type === "CPU"
+        ? setBuildCpu(prev, hardware)
+        : setBuildGpu(prev, hardware),
+    );
+
+    if (!alreadySelected) {
+      loadBuildSlotDetail(hardware.type, hardware.id);
+    }
+  };
+
+  const retryBuildSlot = (type) => {
+    const selection = getBuildSelection(buildConfig, type);
+
+    if (!selection) {
+      return;
+    }
+
+    loadBuildSlotDetail(type, selection.id);
+  };
+
+  const clearBuildSlot = (type) => {
+    getBuildGuard(type).invalidate();
+
+    setBuildConfig((prev) =>
+      type === "CPU" ? clearBuildCpu(prev) : clearBuildGpu(prev),
+    );
+    setBuildDetailState((prev) => clearBuildSlotDetail(prev, type));
+  };
+
+  const browseForBuildType = (type) => {
+    setManufacturerFilter("All");
+    setSearch("");
+    changeHardwareTypeFilter(type);
+
+    setTimeout(() => {
+      document.getElementById("explore-top")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 0);
   };
 
   const returnToCatalog = () => {
@@ -1309,6 +1711,10 @@ function App() {
             Compare
           </a>
 
+          <a href="#build" className="nav-link">
+            Build
+          </a>
+
           <a href="#about" className="nav-link">
             About
           </a>
@@ -1540,6 +1946,7 @@ function App() {
                   item.type,
                   cardSpecsById[item.id]
                 );
+                const buildAction = getBuildComponentAction(buildConfig, item);
 
                 return (
            <article
@@ -1599,6 +2006,21 @@ function App() {
                   ? "Comparison Full"
                   : "Compare"}
             </button>
+
+              {buildAction.isBuildSlot && (
+                <button
+                  type="button"
+                  className={`build-button ${
+                    buildAction.alreadySelected ? "added" : ""
+                  }`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    addToBuild(item);
+                  }}
+                >
+                  {buildAction.actionLabel}
+                </button>
+              )}
            </article>
                 );
               })}
@@ -1656,21 +2078,41 @@ function App() {
           selectedHardware.type === "GPU" ? (
             <GpuHardwareDetail
               hardware={selectedHardware}
+              buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
               onBack={returnToCatalog}
+              onAddToBuild={() => addToBuild(selectedHardware)}
             />
           ) : (
           <CpuDetailView
             hardware={selectedHardware}
             benchmarkState={benchmarkStates[selectedHardware.id]}
             compareList={compareList}
+            buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
             onBack={returnToCatalog}
             onCompare={compareSelectedHardware}
+            onAddToBuild={() => addToBuild(selectedHardware)}
             detailError={detailError}
             chatState={hardwareChatState}
             onAskQuestion={askHardwareChat}
           />
           )
         )}
+
+        <BuildConfigurationSection
+          buildConfig={buildConfig}
+          buildDetailState={buildDetailState}
+          buildUserContext={buildUserContext}
+          buildChatContext={buildChatContext}
+          onSelectType={browseForBuildType}
+          onClearSlot={clearBuildSlot}
+          onRetrySlot={retryBuildSlot}
+          onUseCaseChange={(value) =>
+            setBuildUserContext((prev) => setBuildUseCase(prev, value))
+          }
+          onResolutionChange={(value) =>
+            setBuildUserContext((prev) => setBuildResolution(prev, value))
+          }
+        />
 
         <section
           id="compare"

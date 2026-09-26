@@ -2196,3 +2196,310 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Build configuration ---------- */
+
+.build-section {
+  margin: 4rem 0 0;
+  padding: 2rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+
+.build-section h2 {
+  margin: 0 0 0.5rem;
+}
+
+.build-relationship {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 1.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.build-relationship strong {
+  color: #38bdf8;
+  letter-spacing: 0.04em;
+}
+
+.build-summary {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.build-summary-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.build-summary-label {
+  color: #94a3b8;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.build-summary-item strong {
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.build-summary-item span {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.build-summary-join {
+  align-self: center;
+  color: #38bdf8;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.build-components {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.build-component-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.build-component-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.build-component-empty strong {
+  color: #e2e8f0;
+}
+
+.build-component-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.build-component-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.build-component-manufacturer {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.build-component-subtitle {
+  color: #38bdf8;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.build-component-status {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.build-component-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  background: #1f2937;
+  border: 1px solid #b91c1c;
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.85rem;
+}
+
+.build-component-specs {
+  margin: 0;
+}
+
+.build-component-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.build-action-button,
+.build-clear-button,
+.build-button,
+.detail-build-button {
+  padding: 0.55rem 0.9rem;
+  background: transparent;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  color: #38bdf8;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.build-action-button:hover,
+.detail-build-button:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.build-clear-button {
+  border-color: #475569;
+  color: #94a3b8;
+}
+
+.build-clear-button:hover {
+  background: #475569;
+  color: #0f172a;
+}
+
+.build-button {
+  margin-top: 0.5rem;
+  border-color: #a78bfa;
+  color: #a78bfa;
+}
+
+.build-button:hover {
+  background: #a78bfa;
+  color: #0f172a;
+}
+
+.build-button.added,
+.detail-build-button.added {
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.build-button.added:hover,
+.detail-build-button.added:hover {
+  background: #22c55e;
+  color: #0f172a;
+}
+
+.detail-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.build-context,
+.build-facts,
+.build-ai-note {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #334155;
+}
+
+.build-context-note,
+.build-facts-note,
+.build-ai-note p {
+  margin: 0 0 1rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.build-context-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.build-context-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.build-context-fields select {
+  padding: 0.55rem 0.7rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.build-facts-empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.build-facts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.build-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0.9rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+
+.build-fact span {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
+
+.build-fact strong {
+  font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+  .build-section {
+    padding: 1.25rem;
+  }
+
+  .build-summary {
+    flex-direction: column;
+  }
+
+  .build-summary-join {
+    align-self: flex-start;
+  }
+
+  .build-components,
+  .build-context-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-header-actions {
+    width: 100%;
+  }
+}
