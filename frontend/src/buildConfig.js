@@ -652,12 +652,28 @@ export const buildBuildChatContext = (
 export const getBuildChatSnapshot = (cpuDetail, gpuDetail, userContext) => ({
   cpuId: cpuDetail?.id ?? null,
   gpuId: gpuDetail?.id ?? null,
-  useCase: userContext?.useCase ?? null,
-  resolution: userContext?.resolution ?? null,
+  useCase: userContext?.useCase ?? "Not specified",
+  resolution: userContext?.resolution ?? "Not specified",
 });
 
-export const isSameBuildChatSnapshot = (snapshot, other) =>
-  snapshot?.cpuId === other?.cpuId &&
-  snapshot?.gpuId === other?.gpuId &&
-  snapshot?.useCase === other?.useCase &&
-  snapshot?.resolution === other?.resolution;
+const UNSPECIFIED_CONTEXT_LABEL = "Not specified";
+
+export const getBuildChatContextSummary = (
+  cpuDetail,
+  gpuDetail,
+  userContext
+) => {
+  const useCase = userContext?.useCase ?? UNSPECIFIED_CONTEXT_LABEL;
+  const resolution = userContext?.resolution ?? UNSPECIFIED_CONTEXT_LABEL;
+  const contextLabel = [useCase, resolution]
+    .filter((value) => value !== UNSPECIFIED_CONTEXT_LABEL)
+    .join(" · ");
+
+  return {
+    cpuName: getBuildComponentSummary(cpuDetail).name,
+    gpuName: getBuildComponentSummary(gpuDetail).name,
+    useCase,
+    resolution,
+    contextLabel: contextLabel || "No use case or resolution selected",
+  };
+};

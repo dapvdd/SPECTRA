@@ -16,6 +16,7 @@ import {
   createBuildConfig,
   createBuildDetailState,
   createBuildUserContext,
+  getBuildChatContextSummary,
   getBuildChatSnapshot,
   getBuildComponentAction,
   getBuildComponentSpecs,
@@ -30,7 +31,6 @@ import {
   isBuildComplete,
   isBuildSlotBusy,
   isBuildSlotErrored,
-  isSameBuildChatSnapshot,
   setBuildCpu,
   setBuildGpu,
   setBuildResolution,
@@ -873,44 +873,62 @@ test("build chat snapshot identifies the build that produced an answer", () => {
     useCase: "Gaming",
     resolution: "1440p",
   });
+});
+
+test("build chat snapshot is stable for unchanged identity and null for empty build", () => {
+  assert.deepEqual(
+    getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
+      useCase: "Gaming",
+      resolution: "1440p",
+    }),
+    getBuildChatSnapshot(cpuDetail({ cores: 16 }), gpuDetail(), {
+      useCase: "Gaming",
+      resolution: "1440p",
+    })
+  );
+
+  assert.deepEqual(getBuildChatSnapshot(null, null, null), {
+    cpuId: null,
+    gpuId: null,
+    useCase: "Not specified",
+    resolution: "Not specified",
+  });
+});
+
+test("build chat context summary is a display-only build identity", () => {
+  assert.deepEqual(
+    getBuildChatContextSummary(cpuDetail(), gpuDetail(), {
+      useCase: "Gaming",
+      resolution: "1440p",
+    }),
+    {
+      cpuName: "Ryzen 7 7800X3D",
+      gpuName: "GeForce RTX 5070 Ti",
+      useCase: "Gaming",
+      resolution: "1440p",
+      contextLabel: "Gaming · 1440p",
+    }
+  );
+
+  assert.deepEqual(
+    getBuildChatContextSummary(cpuDetail(), gpuDetail(), {
+      useCase: "AI / Compute",
+      resolution: "Not specified",
+    }),
+    {
+      cpuName: "Ryzen 7 7800X3D",
+      gpuName: "GeForce RTX 5070 Ti",
+      useCase: "AI / Compute",
+      resolution: "Not specified",
+      contextLabel: "AI / Compute",
+    }
+  );
 
   assert.equal(
-    isSameBuildChatSnapshot(
-      snapshot,
-      getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
-        useCase: "Gaming",
-        resolution: "1440p",
-      })
-    ),
-    true
+    getBuildChatContextSummary(null, null, null).contextLabel,
+    "No use case or resolution selected"
   );
-  assert.equal(
-    isSameBuildChatSnapshot(
-      snapshot,
-      getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
-        useCase: "Gaming",
-        resolution: "1080p",
-      })
-    ),
-    false
-  );
-  assert.equal(
-    isSameBuildChatSnapshot(
-      snapshot,
-      getBuildChatSnapshot(cpuDetail({ cores: 16 }), gpuDetail(), {
-        useCase: "Gaming",
-        resolution: "1440p",
-      })
-    ),
-    true
-  );
-  assert.equal(
-    isSameBuildChatSnapshot(
-      snapshot,
-      getBuildChatSnapshot(null, null, null)
-    ),
-    false
-  );
+  assert.equal(getBuildChatContextSummary(null, null, null).cpuName, "Select hardware");
 });
 
 test("build chat state is independent from comparison state", () => {

@@ -109,6 +109,16 @@ export const getChatErrorKindFromError = (error) =>
     ? error.kind
     : CHAT_ERROR_KIND.request;
 
+export const getChatLoadingParts = (loadingMessage, pendingQuestion = "") => {
+  const detail =
+    typeof pendingQuestion === "string" ? pendingQuestion.trim() : "";
+
+  return {
+    label: loadingMessage,
+    detail: detail === loadingMessage ? "" : detail,
+  };
+};
+
 export const requestHardwareChatAnswer = async (
   context,
   question,

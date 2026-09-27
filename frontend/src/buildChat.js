@@ -3,6 +3,7 @@ import {
   BUILD_CHAT_ENDPOINT_PATH,
   BUILD_CHAT_INTEGRATION_STATUS,
   buildBuildChatContext,
+  toBuildUserContext,
 } from "./buildConfig.js";
 import {
   CHAT_ERROR_KIND,
@@ -10,6 +11,7 @@ import {
   createChatRequestGuard,
   getChatErrorKind,
   getChatErrorKindFromError,
+  getChatLoadingParts,
 } from "./hardwareChat.js";
 
 export {
@@ -17,11 +19,17 @@ export {
   BUILD_CHAT_INTEGRATION_STATUS,
   CHAT_ERROR_KIND,
   CHAT_STATUS,
+  getChatLoadingParts,
 };
 
 export const BUILD_CHAT_QUESTION_MAX_LENGTH = 2000;
 
 const CHAT_ENDPOINT = apiUrl(BUILD_CHAT_ENDPOINT_PATH);
+
+export const BUILD_CHAT_MESSAGE_ROLE = {
+  user: "user",
+  assistant: "assistant",
+};
 
 export const BUILD_CHAT_SUGGESTED_QUESTIONS = [
   "Bagaimana karakter build ini untuk gaming 1440p?",
@@ -125,44 +133,125 @@ export const requestBuildChatAnswer = async (
   return responsePayload.answer;
 };
 
-export const createBuildChatState = () => ({
+/* ---------- Build identity ---------- */
+
+export const getBuildChatToken = (snapshot) => {
+  if (!snapshot) {
+    return "";
+  }
+
+  const { use_case: useCase, resolution } = toBuildUserContext({
+    useCase: snapshot.useCase,
+    resolution: snapshot.resolution,
+  });
+
+  return [
+    snapshot.cpuId ?? "none",
+    snapshot.gpuId ?? "none",
+    useCase,
+    resolution,
+  ].join(":");
+};
+
+export const isSameBuildChatToken = (token, other) => token === other;
+
+/* ---------- Conversation state ---------- */
+
+export const createBuildChatState = (buildToken = "") => ({
+  buildToken,
   status: CHAT_STATUS.idle,
-  question: "",
-  lastQuestion: "",
-  answeredQuestion: "",
-  answer: "",
-  error: null,
-  buildSnapshot: null,
-});
-
-export const startBuildChatRequest = (state, question, buildSnapshot = null) => ({
-  ...state,
-  status: CHAT_STATUS.loading,
-  question,
-  lastQuestion: question,
-  answeredQuestion: "",
-  answer: "",
-  error: null,
-  buildSnapshot,
-});
-
-export const completeBuildChatRequest = (state, answer) => ({
-  ...state,
-  status: CHAT_STATUS.success,
-  question: "",
-  answeredQuestion: state.lastQuestion,
-  answer,
+  messages: [],
+  pendingQuestion: "",
   error: null,
 });
 
-export const failBuildChatRequest = (state, error) => ({
-  ...state,
-  status: CHAT_STATUS.error,
-  question: state.lastQuestion,
-  error: {
-    kind: getBuildChatErrorKindFromError(error),
-    message: error?.message || "The build chat request could not be completed.",
-  },
+export const getBuildChatMessages = (state) => state.messages;
+
+export const hasBuildChatConversation = (state) => state.messages.length > 0;
+
+export const isBuildChatBusy = (state) =>
+  state.status === CHAT_STATUS.loading;
+
+const createMessage = (role, content, index) => ({
+  id: `build-chat-message-${index}`,
+  role,
+  content,
 });
+
+const isResponseForThisConversation = (state, token) =>
+  token === undefined || token === state.buildToken;
+
+const canStartRequest = (state) =>
+  state.status !== CHAT_STATUS.loading &&
+  isValidBuildChatQuestion(state.pendingQuestion);
+
+export const startBuildChatRequest = (state, question, buildToken) => {
+  if (!isValidBuildChatQuestion(question)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    buildToken: buildToken ?? state.buildToken,
+    status: CHAT_STATUS.loading,
+    pendingQuestion: normalizeBuildChatQuestion(question),
+    error: null,
+  };
+};
+
+export const retryBuildChatRequest = (state) => {
+  if (!canStartRequest(state)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    status: CHAT_STATUS.loading,
+    error: null,
+  };
+};
+
+export const completeBuildChatRequest = (state, answer, token) => {
+  if (!isResponseForThisConversation(state, token)) {
+    return state;
+  }
+
+  if (!isValidBuildChatQuestion(state.pendingQuestion)) {
+    return state;
+  }
+
+  const nextIndex = state.messages.length;
+
+  return {
+    ...state,
+    status: CHAT_STATUS.success,
+    messages: [
+      ...state.messages,
+      createMessage(
+        BUILD_CHAT_MESSAGE_ROLE.user,
+        state.pendingQuestion,
+        nextIndex
+      ),
+      createMessage(BUILD_CHAT_MESSAGE_ROLE.assistant, answer, nextIndex + 1),
+    ],
+    pendingQuestion: "",
+    error: null,
+  };
+};
+
+export const failBuildChatRequest = (state, error, token) => {
+  if (!isResponseForThisConversation(state, token)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    status: CHAT_STATUS.error,
+    error: {
+      kind: getBuildChatErrorKindFromError(error),
+      message: error?.message || "The build chat request could not be completed.",
+    },
+  };
+};
 
 export { createChatRequestGuard };
