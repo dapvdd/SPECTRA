@@ -4,6 +4,9 @@ from collections.abc import Iterable
 from sqlalchemy import select
 
 from backend.app.database import SessionLocal
+from backend.app.importers.benchmark_normalizer import (
+    strip_invisible_characters,
+)
 from backend.app.models import Hardware
 
 
@@ -54,6 +57,7 @@ def normalize_match_name(name: str | None) -> str | None:
     )
 
     name = re.sub(r"\s+", " ", name)
+    name = strip_invisible_characters(name)
 
     return name.strip().lower()
 
