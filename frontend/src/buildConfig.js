@@ -12,6 +12,21 @@ export const BUILD_USE_CASES = [
 
 export const BUILD_RESOLUTIONS = ["Not specified", "1080p", "1440p", "4K"];
 
+export const BUILD_USE_CASE_VALUES = {
+  Gaming: "gaming",
+  Productivity: "productivity",
+  "AI / Compute": "ai_compute",
+  General: "general",
+  "Not specified": "unspecified",
+};
+
+export const BUILD_RESOLUTION_VALUES = {
+  "Not specified": "unspecified",
+  "1080p": "1080p",
+  "1440p": "1440p",
+  "4K": "4k",
+};
+
 export const BUILD_DETAIL_STATUS = {
   idle: "idle",
   loading: "loading",
@@ -456,15 +471,127 @@ export const getBuildSlotErrorMessage = (state, slot) =>
   getBuildSlotRequestState(state, slot).message || "";
 
 export const BUILD_CHAT_INTEGRATION_STATUS = {
-  blocked: "blocked-single-hardware-context",
+  ready: "ready-build-chat-endpoint",
 };
 
-export const BUILD_CHAT_CONTEXT_LIMITATION =
-  "POST /hardware/chat accepts HardwareChatRequest{hardware, question} with a " +
-  "single HardwareContext and extra='forbid'. A CPU + GPU + user-context " +
-  "payload cannot be transmitted without a backend contract change.";
+export const BUILD_CHAT_ENDPOINT_PATH = "/build/chat";
 
-const toChatComponentContext = (detail) => {
+const CPU_SPEC_FIELDS = [
+  "cores",
+  "threads",
+  "base_clock_ghz",
+  "boost_clock_ghz",
+  "tdp_w",
+  "process_node_nm",
+  "socket",
+];
+
+const GPU_SPEC_FIELDS = [
+  "memory_gb",
+  "memory_type",
+  "core_clock_mhz",
+  "boost_clock_mhz",
+  "vram_bandwidth_gbps",
+  "tdp_w",
+  "interface",
+  "length_mm",
+];
+
+const BENCHMARK_FIELDS = [
+  "id",
+  "hardware_id",
+  "benchmark_name",
+  "test_type",
+  "score",
+  "unit",
+  "source",
+  "recorded_at",
+];
+
+const isScalarSpecValue = (value) =>
+  value === null ||
+  (typeof value === "number" && Number.isFinite(value)) ||
+  typeof value === "string" ||
+  typeof value === "boolean";
+
+const isUsableHardwareId = (value) =>
+  typeof value === "number" && Number.isInteger(value) && value > 0;
+
+const isNonEmptyText = (value) =>
+  typeof value === "string" && value.trim() !== "";
+
+export const isBuildChatContextReady = (cpuDetail, gpuDetail) =>
+  isUsableHardwareId(cpuDetail?.id) &&
+  isNonEmptyText(cpuDetail?.name) &&
+  isUsableHardwareId(gpuDetail?.id) &&
+  isNonEmptyText(gpuDetail?.name);
+
+const pickBenchmarkRecords = (benchmarkPayload) => {
+  if (Array.isArray(benchmarkPayload)) {
+    return benchmarkPayload;
+  }
+
+  if (!benchmarkPayload || typeof benchmarkPayload !== "object") {
+    return [];
+  }
+
+  if (Array.isArray(benchmarkPayload.benchmark_results)) {
+    return benchmarkPayload.benchmark_results;
+  }
+
+  if (Array.isArray(benchmarkPayload.benchmarks)) {
+    return benchmarkPayload.benchmarks;
+  }
+
+  if (Array.isArray(benchmarkPayload.results)) {
+    return benchmarkPayload.results;
+  }
+
+  if (
+    benchmarkPayload.performance &&
+    Array.isArray(benchmarkPayload.performance.results)
+  ) {
+    return benchmarkPayload.performance.results;
+  }
+
+  return [];
+};
+
+const toBenchmarkContext = (records) =>
+  pickBenchmarkRecords(records)
+    .filter((record) => record !== null && typeof record === "object")
+    .map((record) => {
+      const benchmark = {};
+      for (const field of BENCHMARK_FIELDS) {
+        if (record[field] !== undefined) {
+          benchmark[field] = record[field];
+        }
+      }
+      return benchmark;
+    });
+
+const toSpecificationsContext = (detail, fields) => {
+  const specifications = detail?.specifications || {};
+  const context = {};
+
+  for (const field of fields) {
+    const value = specifications[field];
+
+    if (value === undefined) {
+      continue;
+    }
+
+    if (!isScalarSpecValue(value)) {
+      continue;
+    }
+
+    context[field] = value;
+  }
+
+  return context;
+};
+
+const toBuildComponentContext = (detail, type, specFields, benchmarks) => {
   if (!detail) {
     return null;
   }
@@ -473,21 +600,64 @@ const toChatComponentContext = (detail) => {
     id: detail.id,
     name: detail.name,
     manufacturer: detail.manufacturer ?? null,
-    type: detail.type ?? null,
+    type,
     architecture: detail.architecture ?? null,
     release_date: detail.release_date ?? null,
-    specifications: detail.specifications ?? {},
+    specifications: toSpecificationsContext(detail, specFields),
+    benchmarks: toBenchmarkContext(benchmarks),
   };
 };
 
-export const buildBuildChatContext = (cpuDetail, gpuDetail, userContext) => ({
-  integrationStatus: BUILD_CHAT_INTEGRATION_STATUS.blocked,
-  isTransmittable: false,
-  limitation: BUILD_CHAT_CONTEXT_LIMITATION,
-  cpu: toChatComponentContext(cpuDetail),
-  gpu: toChatComponentContext(gpuDetail),
-  userContext: {
-    useCase: userContext?.useCase ?? "Not specified",
-    resolution: userContext?.resolution ?? "Not specified",
-  },
+export const toBuildCpuContext = (detail, benchmarks) =>
+  toBuildComponentContext(detail, "CPU", CPU_SPEC_FIELDS, benchmarks);
+
+export const toBuildGpuContext = (detail, benchmarks) =>
+  toBuildComponentContext(detail, "GPU", GPU_SPEC_FIELDS, benchmarks);
+
+const toUserContextValue = (value, allowedValues) =>
+  typeof value === "string" && Object.hasOwn(allowedValues, value)
+    ? allowedValues[value]
+    : allowedValues["Not specified"];
+
+export const toBuildUserContext = (userContext) => ({
+  use_case: toUserContextValue(
+    userContext?.useCase,
+    BUILD_USE_CASE_VALUES
+  ),
+  resolution: toUserContextValue(
+    userContext?.resolution,
+    BUILD_RESOLUTION_VALUES
+  ),
 });
+
+export const buildBuildChatContext = (
+  cpuDetail,
+  gpuDetail,
+  userContext,
+  benchmarksBySlot = {}
+) => {
+  if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
+    throw new Error(
+      "Build chat context requires a CPU and a GPU with usable detail data."
+    );
+  }
+
+  return {
+    cpu: toBuildCpuContext(cpuDetail, benchmarksBySlot.CPU),
+    gpu: toBuildGpuContext(gpuDetail, benchmarksBySlot.GPU),
+    context: toBuildUserContext(userContext),
+  };
+};
+
+export const getBuildChatSnapshot = (cpuDetail, gpuDetail, userContext) => ({
+  cpuId: cpuDetail?.id ?? null,
+  gpuId: gpuDetail?.id ?? null,
+  useCase: userContext?.useCase ?? null,
+  resolution: userContext?.resolution ?? null,
+});
+
+export const isSameBuildChatSnapshot = (snapshot, other) =>
+  snapshot?.cpuId === other?.cpuId &&
+  snapshot?.gpuId === other?.gpuId &&
+  snapshot?.useCase === other?.useCase &&
+  snapshot?.resolution === other?.resolution;

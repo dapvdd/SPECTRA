@@ -2412,10 +2412,21 @@ h1 {
 
 .build-context,
 .build-facts,
-.build-ai-note {
+.build-ai-note,
+.build-chat {
   margin-top: 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px solid #334155;
+}
+
+.build-chat > .detail-section-label {
+  margin-bottom: 0.75rem;
+}
+
+.build-chat .hardware-chat {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .build-context-note,

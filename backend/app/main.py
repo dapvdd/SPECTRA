@@ -20,6 +20,10 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.schemas.build_chat import (
+    BuildHardwareChatRequest,
+    BuildHardwareChatResponse,
+)
 from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
@@ -31,6 +35,7 @@ from backend.app.schemas.hardware_chat import (
 from backend.app.services.benchmark_service import (
     get_benchmarks_for_hardware,
 )
+from backend.app.services import build_chat_service
 from backend.app.services import explanation_service
 from backend.app.services import hardware_chat_service
 
@@ -257,3 +262,20 @@ def generate_hardware_chat_answer(
         raise HTTPException(status_code=502, detail=str(error)) from error
 
     return HardwareChatResponse(answer=answer)
+
+
+@app.post(
+    "/build/chat",
+    response_model=BuildHardwareChatResponse,
+)
+def generate_build_chat_answer(
+    request_data: BuildHardwareChatRequest,
+) -> BuildHardwareChatResponse:
+    try:
+        answer = build_chat_service.generate_build_chat_answer(request_data)
+    except explanation_service.ProviderUnavailableError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+
+    return BuildHardwareChatResponse(answer=answer)

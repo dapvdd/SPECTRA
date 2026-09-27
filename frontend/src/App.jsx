@@ -22,6 +22,15 @@ import {
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
 import {
+  BUILD_CHAT_SUGGESTED_QUESTIONS,
+  buildChatPayload,
+  completeBuildChatRequest,
+  createBuildChatState,
+  failBuildChatRequest,
+  requestBuildChatAnswer,
+  startBuildChatRequest,
+} from "./buildChat.js";
+import {
   HARDWARE_TYPES,
   createCatalogLoadGuard,
   requestHardwareCatalog,
@@ -65,7 +74,6 @@ import {
   BUILD_DETAIL_STATUS,
   BUILD_RESOLUTIONS,
   BUILD_USE_CASES,
-  buildBuildChatContext,
   calculateListedTdpSum,
   clearBuildCpu,
   clearBuildGpu,
@@ -75,6 +83,7 @@ import {
   createBuildDetailState,
   createBuildUserContext,
   failBuildDetailRequest,
+  getBuildChatSnapshot,
   getBuildComponentAction,
   getBuildComponentSpecs,
   getBuildComponentSummary,
@@ -83,6 +92,8 @@ import {
   getBuildSlotDetail,
   getBuildSlotRequestState,
   getBuildSummary,
+  isBuildChatContextReady,
+  isSameBuildChatSnapshot,
   setBuildCpu,
   setBuildGpu,
   setBuildResolution,
@@ -745,7 +756,19 @@ function MarkdownContent({ markdown }) {
   );
 }
 
-function HardwareChatSection({ chatState, onAsk }) {
+function AiChatSection({
+  id,
+  eyebrow = "ASK SPECTRA",
+  title,
+  intro,
+  loadingMessage,
+  composerLabel,
+  composerPlaceholder,
+  submitLabel,
+  prompts,
+  chatState,
+  onAsk,
+}) {
   const [draft, setDraft] = useState("");
   const loading = chatState.status === CHAT_STATUS.loading;
 
@@ -760,19 +783,16 @@ function HardwareChatSection({ chatState, onAsk }) {
   };
 
   return (
-    <section className="hardware-chat" aria-labelledby="hardware-chat-title">
+    <section className="hardware-chat" aria-labelledby={id}>
       <div className="hardware-chat-header">
         <div>
-          <p className="detail-section-label">ASK SPECTRA</p>
-          <h3 id="hardware-chat-title">Ask your hardware anything</h3>
+          <p className="detail-section-label">{eyebrow}</p>
+          <h3 id={id}>{title}</h3>
         </div>
         <span className="hardware-chat-mark" aria-hidden="true">AI</span>
       </div>
 
-      <p className="hardware-chat-intro">
-        Ask a natural-language question about this CPU. SPECTRA answers from
-        verified specifications and benchmark data only.
-      </p>
+      <p className="hardware-chat-intro">{intro}</p>
 
       {chatState.answeredQuestion && (
         <div className="hardware-chat-qna">
@@ -793,7 +813,7 @@ function HardwareChatSection({ chatState, onAsk }) {
           <span>
             {chatState.answeredQuestion
               ? "Asking a follow-up..."
-              : "Asking SPECTRA..."}
+              : loadingMessage}
           </span>
         </div>
       )}
@@ -816,7 +836,7 @@ function HardwareChatSection({ chatState, onAsk }) {
       )}
 
       <div className="hardware-chat-prompts" aria-label="Suggested questions">
-        {CHAT_SUGGESTED_PROMPTS.map((prompt) => (
+        {prompts.map((prompt) => (
           <button
             type="button"
             className="hardware-chat-prompt"
@@ -838,17 +858,54 @@ function HardwareChatSection({ chatState, onAsk }) {
       >
         <input
           type="text"
-          aria-label="Ask about this CPU"
-          placeholder="Ask about this CPU..."
+          aria-label={composerLabel}
+          placeholder={composerPlaceholder}
           value={draft}
           disabled={loading}
           onChange={(event) => setDraft(event.target.value)}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "Asking…" : "Ask"}
+          {loading ? "Asking…" : submitLabel}
         </button>
       </form>
     </section>
+  );
+}
+
+function HardwareChatSection({ chatState, onAsk }) {
+  return (
+    <AiChatSection
+      id="hardware-chat-title"
+      title="Ask your hardware anything"
+      intro="Ask a natural-language question about this CPU. SPECTRA answers from verified specifications and benchmark data only."
+      loadingMessage="Asking SPECTRA..."
+      composerLabel="Ask about this CPU"
+      composerPlaceholder="Ask about this CPU..."
+      submitLabel="Ask"
+      prompts={CHAT_SUGGESTED_PROMPTS}
+      chatState={chatState}
+      onAsk={onAsk}
+    />
+  );
+}
+
+function BuildChatSection({ chatState, onAsk }) {
+  return (
+    <div className="build-chat">
+      <AiChatSection
+        id="build-chat-title"
+        eyebrow="ASK ABOUT THIS BUILD"
+        title="Ask SPECTRA about this build"
+        intro="Ask a question about the selected CPU and GPU together. SPECTRA answers only from the stored specifications and benchmark records in this build context."
+        loadingMessage="Asking SPECTRA about this build..."
+        composerLabel="Ask about this build"
+        composerPlaceholder="How is this build for 1440p gaming?"
+        submitLabel="Ask SPECTRA"
+        prompts={BUILD_CHAT_SUGGESTED_QUESTIONS}
+        chatState={chatState}
+        onAsk={onAsk}
+      />
+    </div>
   );
 }
 
@@ -947,12 +1004,14 @@ function BuildConfigurationSection({
   buildConfig,
   buildDetailState,
   buildUserContext,
-  buildChatContext,
+  buildChatReady,
+  buildChatState,
   onSelectType,
   onClearSlot,
   onRetrySlot,
   onUseCaseChange,
   onResolutionChange,
+  onAskBuildQuestion,
 }) {
   const summary = getBuildSummary(buildConfig);
   const cpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
@@ -1082,13 +1141,14 @@ function BuildConfigurationSection({
         )}
       </div>
 
-      {buildChatContext.cpu && buildChatContext.gpu && (
+      {buildChatReady ? (
+        <BuildChatSection chatState={buildChatState} onAsk={onAskBuildQuestion} />
+      ) : (
         <div className="build-ai-note">
-          <p className="detail-section-label">AI BUILD ANALYSIS</p>
+          <p className="detail-section-label">ASK ABOUT THIS BUILD</p>
           <p>
-            Build context is prepared for the hardware assistant, but combined
-            CPU and GPU chat is not available yet. The assistant currently
-            accepts a single hardware record per request.
+            Select a CPU and a GPU, and let their stored details finish
+            loading, before asking SPECTRA about this build.
           </p>
         </div>
       )}
@@ -1137,6 +1197,8 @@ function App() {
   const [buildUserContext, setBuildUserContext] = useState(createBuildUserContext);
   const buildCpuGuardRef = useRef(createDetailRequestGuard());
   const buildGpuGuardRef = useRef(createDetailRequestGuard());
+  const buildChatGuardRef = useRef(createChatRequestGuard());
+  const [buildChatState, setBuildChatState] = useState(createBuildChatState);
 
   const compareDetails = getComparisonDetailsInSelectionOrder(
     compareList,
@@ -1145,11 +1207,29 @@ function App() {
 
   const buildCpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
   const buildGpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
-  const buildChatContext = buildBuildChatContext(
+  const buildChatReady = isBuildChatContextReady(
+    buildCpuDetail,
+    buildGpuDetail
+  );
+  const currentBuildChatSnapshot = getBuildChatSnapshot(
     buildCpuDetail,
     buildGpuDetail,
-    buildUserContext,
+    buildUserContext
   );
+  const buildChatSnapshotRef = useRef(currentBuildChatSnapshot);
+
+  useEffect(() => {
+    buildChatSnapshotRef.current = currentBuildChatSnapshot;
+  });
+
+  const getBuildBenchmarksBySlot = () => ({
+    CPU: buildCpuDetail
+      ? benchmarkStates[buildCpuDetail.id]?.results ?? []
+      : [],
+    GPU: buildGpuDetail
+      ? benchmarkStates[buildGpuDetail.id]?.results ?? []
+      : [],
+  });
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
@@ -1356,6 +1436,11 @@ function App() {
       });
   };
 
+  const resetBuildChat = () => {
+    buildChatGuardRef.current.invalidate();
+    setBuildChatState(createBuildChatState());
+  };
+
   const addToBuild = (hardware) => {
     if (hardware?.type !== "CPU" && hardware?.type !== "GPU") {
       return;
@@ -1363,6 +1448,10 @@ function App() {
 
     const alreadySelected =
       getBuildSelection(buildConfig, hardware.type)?.id === hardware.id;
+
+    if (!alreadySelected) {
+      resetBuildChat();
+    }
 
     setBuildConfig((prev) =>
       hardware.type === "CPU"
@@ -1387,6 +1476,7 @@ function App() {
 
   const clearBuildSlot = (type) => {
     getBuildGuard(type).invalidate();
+    resetBuildChat();
 
     setBuildConfig((prev) =>
       type === "CPU" ? clearBuildCpu(prev) : clearBuildGpu(prev),
@@ -1661,6 +1751,59 @@ function App() {
         setHardwareChatState((prev) =>
           failHardwareChatRequest(prev, error)
         );
+      });
+  };
+
+  const askBuildChat = (question) => {
+    if (!buildChatReady) {
+      return;
+    }
+
+    let payload;
+
+    try {
+      payload = buildChatPayload(
+        buildCpuDetail,
+        buildGpuDetail,
+        buildUserContext,
+        question,
+        getBuildBenchmarksBySlot(),
+      );
+    } catch (error) {
+      setBuildChatState((prev) => failBuildChatRequest(prev, error));
+      return;
+    }
+
+    const requestId = buildChatGuardRef.current.begin();
+    const snapshot = currentBuildChatSnapshot;
+
+    setBuildChatState((prev) =>
+      startBuildChatRequest(prev, payload.question, snapshot),
+    );
+
+    requestBuildChatAnswer(payload)
+      .then((answer) => {
+        if (!buildChatGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatSnapshot(buildChatSnapshotRef.current, snapshot)) {
+          return;
+        }
+
+        setBuildChatState((prev) => completeBuildChatRequest(prev, answer));
+      })
+      .catch((error) => {
+        if (!buildChatGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatSnapshot(buildChatSnapshotRef.current, snapshot)) {
+          return;
+        }
+
+        console.error("Failed to get build chat answer:", error);
+        setBuildChatState((prev) => failBuildChatRequest(prev, error));
       });
   };
 
@@ -2102,16 +2245,20 @@ function App() {
           buildConfig={buildConfig}
           buildDetailState={buildDetailState}
           buildUserContext={buildUserContext}
-          buildChatContext={buildChatContext}
+          buildChatReady={buildChatReady}
+          buildChatState={buildChatState}
           onSelectType={browseForBuildType}
           onClearSlot={clearBuildSlot}
           onRetrySlot={retryBuildSlot}
-          onUseCaseChange={(value) =>
-            setBuildUserContext((prev) => setBuildUseCase(prev, value))
-          }
-          onResolutionChange={(value) =>
-            setBuildUserContext((prev) => setBuildResolution(prev, value))
-          }
+          onUseCaseChange={(value) => {
+            resetBuildChat();
+            setBuildUserContext((prev) => setBuildUseCase(prev, value));
+          }}
+          onResolutionChange={(value) => {
+            resetBuildChat();
+            setBuildUserContext((prev) => setBuildResolution(prev, value));
+          }}
+          onAskBuildQuestion={askBuildChat}
         />
 
         <section

@@ -3,8 +3,10 @@ import assert from "node:assert/strict";
 
 import {
   BUILD_CHAT_INTEGRATION_STATUS,
+  BUILD_RESOLUTION_VALUES,
   BUILD_RESOLUTIONS,
   BUILD_SLOTS,
+  BUILD_USE_CASE_VALUES,
   BUILD_USE_CASES,
   buildBuildChatContext,
   calculateListedTdpSum,
@@ -14,6 +16,7 @@ import {
   createBuildConfig,
   createBuildDetailState,
   createBuildUserContext,
+  getBuildChatSnapshot,
   getBuildComponentAction,
   getBuildComponentSpecs,
   getBuildComponentSummary,
@@ -23,9 +26,11 @@ import {
   getBuildSlotErrorMessage,
   getBuildSlotRequestState,
   getBuildSummary,
+  isBuildChatContextReady,
   isBuildComplete,
   isBuildSlotBusy,
   isBuildSlotErrored,
+  isSameBuildChatSnapshot,
   setBuildCpu,
   setBuildGpu,
   setBuildResolution,
@@ -576,34 +581,354 @@ test("unsupported build slots are rejected", () => {
   );
 });
 
-test("build chat context is prepared but explicitly not transmittable", () => {
+test("build chat context is a validated transmittable build block", () => {
   const context = buildBuildChatContext(cpuDetail(), gpuDetail(), {
     useCase: "Gaming",
     resolution: "1440p",
   });
 
-  assert.equal(context.isTransmittable, false);
-  assert.equal(context.integrationStatus, BUILD_CHAT_INTEGRATION_STATUS.blocked);
+  assert.equal(BUILD_CHAT_INTEGRATION_STATUS.ready, "ready-build-chat-endpoint");
+  assert.deepEqual(Object.keys(context).sort(), ["context", "cpu", "gpu"]);
   assert.equal(context.cpu.id, 1);
   assert.equal(context.gpu.id, 2);
+  assert.equal(context.cpu.type, "CPU");
+  assert.equal(context.gpu.type, "GPU");
   assert.equal(context.cpu.specifications.cores, 8);
   assert.equal(context.gpu.specifications.memory_gb, 16);
-  assert.deepEqual(context.userContext, {
+  assert.deepEqual(context.cpu.benchmarks, []);
+  assert.deepEqual(context.gpu.benchmarks, []);
+  assert.deepEqual(context.context, {
+    use_case: "gaming",
+    resolution: "1440p",
+  });
+});
+
+test("build chat context requires usable CPU and GPU detail data", () => {
+  assert.equal(isBuildChatContextReady(cpuDetail(), gpuDetail()), true);
+  assert.equal(isBuildChatContextReady(null, gpuDetail()), false);
+  assert.equal(isBuildChatContextReady(cpuDetail(), null), false);
+  assert.equal(
+    isBuildChatContextReady({ id: 0, name: "Bad" }, gpuDetail()),
+    false
+  );
+  assert.equal(
+    isBuildChatContextReady(cpuDetail(), { id: 2, name: "   " }),
+    false
+  );
+
+  assert.throws(
+    () => buildBuildChatContext(null, gpuDetail(), null),
+    /requires a CPU and a GPU/
+  );
+  assert.throws(
+    () => buildBuildChatContext(cpuDetail(), null, null),
+    /requires a CPU and a GPU/
+  );
+});
+
+test("build chat context whitelists CPU specification fields", () => {
+  const context = buildBuildChatContext(
+    {
+      ...cpuDetail(),
+      url: "https://example.invalid/secret",
+      price: 349,
+    },
+    gpuDetail()
+  );
+
+  assert.deepEqual(Object.keys(context.cpu.specifications).sort(), [
+    "base_clock_ghz",
+    "boost_clock_ghz",
+    "cores",
+    "process_node_nm",
+    "socket",
+    "tdp_w",
+    "threads",
+  ]);
+  assert.equal(context.cpu.url, undefined);
+  assert.equal(context.cpu.price, undefined);
+});
+
+test("build chat context whitelists GPU specification fields", () => {
+  const context = buildBuildChatContext(
+    cpuDetail(),
+    {
+      ...gpuDetail(),
+      url: "https://example.invalid/secret",
+      price: 799,
+    }
+  );
+
+  assert.deepEqual(Object.keys(context.gpu.specifications).sort(), [
+    "boost_clock_mhz",
+    "core_clock_mhz",
+    "interface",
+    "length_mm",
+    "memory_gb",
+    "memory_type",
+    "tdp_w",
+    "vram_bandwidth_gbps",
+  ]);
+  assert.equal(context.gpu.url, undefined);
+  assert.equal(context.gpu.price, undefined);
+});
+
+test("build chat context preserves null hardware specifications", () => {
+  const context = buildBuildChatContext(
+    cpuDetail({
+      cores: 8,
+      threads: 16,
+      base_clock_ghz: null,
+      boost_clock_ghz: null,
+      tdp_w: null,
+      process_node_nm: null,
+      socket: null,
+    }),
+    gpuDetail({ memory_gb: 16, tdp_w: null })
+  );
+
+  assert.equal(context.cpu.specifications.cores, 8);
+  assert.equal(context.cpu.specifications.threads, 16);
+  assert.equal(context.cpu.specifications.boost_clock_ghz, null);
+  assert.equal(context.cpu.specifications.tdp_w, null);
+  assert.equal(context.gpu.specifications.tdp_w, null);
+  assert.equal("tdp_w" in context.cpu.specifications, true);
+});
+
+test("build chat context drops non-scalar specification values", () => {
+  const context = buildBuildChatContext(
+    {
+      ...cpuDetail(),
+      specifications: {
+        cores: { value: 8 },
+        tdp_w: 120,
+        socket: null,
+      },
+    },
+    gpuDetail()
+  );
+
+  assert.deepEqual(context.cpu.specifications, { tdp_w: 120, socket: null });
+});
+
+test("build chat context drops non-finite numeric specification values", () => {
+  const context = buildBuildChatContext(
+    {
+      ...cpuDetail(),
+      specifications: {
+        cores: Number.NaN,
+        threads: Number.POSITIVE_INFINITY,
+        tdp_w: 120,
+      },
+    },
+    gpuDetail()
+  );
+
+  assert.deepEqual(context.cpu.specifications, { tdp_w: 120 });
+});
+
+test("user context lookups cannot reach inherited object properties", () => {
+  const context = buildBuildChatContext(cpuDetail(), gpuDetail(), {
+    useCase: "constructor",
+    resolution: "toString",
+  });
+
+  assert.deepEqual(context.context, {
+    use_case: "unspecified",
+    resolution: "unspecified",
+  });
+});
+
+test("build chat context whitelists benchmark record fields", () => {
+  const context = buildBuildChatContext(cpuDetail(), gpuDetail(), null, {
+    CPU: [
+      {
+        id: 7,
+        hardware_id: 1,
+        benchmark_name: "Geekbench 7",
+        test_type: "single-core",
+        score: 2100,
+        unit: "points",
+        recorded_at: "2026-09-16T00:00:00Z",
+        secret_token: "do-not-send",
+      },
+      {
+        benchmark_name: "Cinebench",
+        test_type: "multi-core",
+        score: 9000,
+        unit: "points",
+      },
+    ],
+    GPU: [],
+  });
+
+  assert.deepEqual(context.cpu.benchmarks, [
+    {
+      id: 7,
+      hardware_id: 1,
+      benchmark_name: "Geekbench 7",
+      test_type: "single-core",
+      score: 2100,
+      unit: "points",
+      recorded_at: "2026-09-16T00:00:00Z",
+    },
+    {
+      benchmark_name: "Cinebench",
+      test_type: "multi-core",
+      score: 9000,
+      unit: "points",
+    },
+  ]);
+});
+
+test("build chat context never fabricates GPU benchmark records", () => {
+  for (const gpuBenchmarks of [undefined, null, [], "no-data", 0, {}]) {
+    const context = buildBuildChatContext(cpuDetail(), gpuDetail(), null, {
+      CPU: [],
+      GPU: gpuBenchmarks,
+    });
+
+    assert.deepEqual(context.gpu.benchmarks, []);
+  }
+});
+
+test("build chat context reads benchmarks from wrapped payload shapes", () => {
+  for (const payload of [
+    [{ score: 1, benchmark_name: "B", test_type: "t", unit: "u" }],
+    { benchmark_results: [{ score: 2, benchmark_name: "B", test_type: "t", unit: "u" }] },
+    { benchmarks: [{ score: 3, benchmark_name: "B", test_type: "t", unit: "u" }] },
+    { results: [{ score: 4, benchmark_name: "B", test_type: "t", unit: "u" }] },
+    { performance: { results: [{ score: 5, benchmark_name: "B", test_type: "t", unit: "u" }] } },
+  ]) {
+    const context = buildBuildChatContext(cpuDetail(), gpuDetail(), null, {
+      CPU: payload,
+      GPU: [],
+    });
+
+    assert.equal(context.cpu.benchmarks.length, 1);
+    assert.equal(context.cpu.benchmarks[0].score > 0, true);
+  }
+});
+
+test("user context is mapped to the backend vocabulary", () => {
+  for (const useCase of BUILD_USE_CASES) {
+    const context = buildBuildChatContext(cpuDetail(), gpuDetail(), {
+      useCase,
+      resolution: "Not specified",
+    });
+
+    assert.equal(
+      Object.values(BUILD_USE_CASE_VALUES).includes(
+        context.context.use_case
+      ),
+      true
+    );
+  }
+
+  for (const resolution of BUILD_RESOLUTIONS) {
+    const context = buildBuildChatContext(cpuDetail(), gpuDetail(), {
+      useCase: "Not specified",
+      resolution,
+    });
+
+    assert.equal(
+      Object.values(BUILD_RESOLUTION_VALUES).includes(
+        context.context.resolution
+      ),
+      true
+    );
+  }
+
+  assert.deepEqual(
+    buildBuildChatContext(cpuDetail(), gpuDetail(), {
+      useCase: "AI / Compute",
+      resolution: "4K",
+    }).context,
+    { use_case: "ai_compute", resolution: "4k" }
+  );
+
+  assert.deepEqual(
+    buildBuildChatContext(cpuDetail(), gpuDetail(), null).context,
+    { use_case: "unspecified", resolution: "unspecified" }
+  );
+
+  assert.deepEqual(
+    buildBuildChatContext(cpuDetail(), gpuDetail(), {
+      useCase: "Kereta api",
+      resolution: "8K",
+    }).context,
+    { use_case: "unspecified", resolution: "unspecified" }
+  );
+});
+
+test("build chat snapshot identifies the build that produced an answer", () => {
+  const snapshot = getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
     useCase: "Gaming",
     resolution: "1440p",
   });
-  assert.match(context.limitation, /single HardwareContext/);
+
+  assert.deepEqual(snapshot, {
+    cpuId: 1,
+    gpuId: 2,
+    useCase: "Gaming",
+    resolution: "1440p",
+  });
+
+  assert.equal(
+    isSameBuildChatSnapshot(
+      snapshot,
+      getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
+        useCase: "Gaming",
+        resolution: "1440p",
+      })
+    ),
+    true
+  );
+  assert.equal(
+    isSameBuildChatSnapshot(
+      snapshot,
+      getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
+        useCase: "Gaming",
+        resolution: "1080p",
+      })
+    ),
+    false
+  );
+  assert.equal(
+    isSameBuildChatSnapshot(
+      snapshot,
+      getBuildChatSnapshot(cpuDetail({ cores: 16 }), gpuDetail(), {
+        useCase: "Gaming",
+        resolution: "1440p",
+      })
+    ),
+    true
+  );
+  assert.equal(
+    isSameBuildChatSnapshot(
+      snapshot,
+      getBuildChatSnapshot(null, null, null)
+    ),
+    false
+  );
 });
 
-test("build chat context tolerates missing components and context", () => {
-  const context = buildBuildChatContext(null, gpuDetail(), null);
+test("build chat state is independent from comparison state", () => {
+  const compareList = [cpuItem(1), cpuItem(3)];
+  const buildContext = buildBuildChatContext(cpuDetail(), gpuDetail(), null);
+  const before = JSON.stringify(compareList);
 
-  assert.equal(context.cpu, null);
-  assert.equal(context.gpu.id, 2);
-  assert.deepEqual(context.userContext, {
-    useCase: "Not specified",
-    resolution: "Not specified",
+  buildContext.cpu.benchmarks.push({
+    benchmark_name: "Geekbench 7",
+    test_type: "single-core",
+    score: 2100,
+    unit: "points",
   });
+
+  assert.equal(compareList.length, 2);
+  assert.equal(JSON.stringify(compareList), before);
+  assert.equal(compareList.some((item) => item.id === 2), false);
+  assert.deepEqual(createBuildConfig(), { cpu: null, gpu: null });
 });
 
 test("build configuration state is independent from comparison state", () => {
