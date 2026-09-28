@@ -33,6 +33,7 @@ import {
   isBuildChatBusy,
   isSameBuildChatToken,
   requestBuildChatAnswer,
+  resetBuildChatConversation,
   startBuildChatRequest,
 } from "./buildChat.js";
 import {
@@ -958,8 +959,9 @@ function HardwareChatSection({ chatState, onAsk }) {
   );
 }
 
-function BuildChatSection({ contextSummary, chatState, onAsk, onRetry }) {
+function BuildChatSection({ contextSummary, chatState, onAsk, onRetry, onReset }) {
   const started = chatState.messages.length > 0;
+  const finished = started || chatState.status !== CHAT_STATUS.idle;
 
   return (
     <div className="build-chat">
@@ -973,6 +975,15 @@ function BuildChatSection({ contextSummary, chatState, onAsk, onRetry }) {
         <span className="build-chat-context-values">
           {contextSummary.contextLabel}
         </span>
+        {finished && (
+          <button
+            type="button"
+            className="build-chat-reset"
+            onClick={onReset}
+          >
+            New conversation
+          </button>
+        )}
       </div>
 
       <AiChatSection
@@ -1101,6 +1112,7 @@ function BuildConfigurationSection({
   onResolutionChange,
   onAskBuildQuestion,
   onRetryBuildChat,
+  onNewBuildChat,
 }) {
   const summary = getBuildSummary(buildConfig);
   const cpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
@@ -1236,6 +1248,7 @@ function BuildConfigurationSection({
           chatState={buildChatState}
           onAsk={onAskBuildQuestion}
           onRetry={onRetryBuildChat}
+          onReset={onNewBuildChat}
         />
       ) : (
         <div className="build-ai-note">
@@ -1924,6 +1937,7 @@ function App() {
         buildUserContext,
         question,
         getBuildBenchmarksBySlot(),
+        buildChatState.messages,
       );
     } catch (error) {
       setBuildChatState((prev) =>
@@ -1971,6 +1985,11 @@ function App() {
 
   const retryBuildChat = () => {
     askBuildChat(buildChatState.pendingQuestion);
+  };
+
+  const startNewBuildChat = () => {
+    buildChatGuardRef.current.invalidate();
+    setBuildChatState((prev) => resetBuildChatConversation(prev));
   };
 
   const formatComparisonTableCell = (spec, value) => {
@@ -2421,6 +2440,7 @@ function App() {
           onResolutionChange={changeBuildResolution}
           onAskBuildQuestion={askBuildChat}
           onRetryBuildChat={retryBuildChat}
+          onNewBuildChat={startNewBuildChat}
         />
 
         <section

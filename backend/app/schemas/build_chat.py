@@ -6,6 +6,9 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 ScalarValue: TypeAlias = str | int | float | bool | None
 
+MAX_HISTORY_MESSAGES = 10
+MAX_HISTORY_MESSAGE_LENGTH = 4000
+
 
 class BuildUseCase(str, Enum):
     gaming = "gaming"
@@ -140,10 +143,34 @@ class BuildContext(BaseModel):
     context: BuildUserContext = Field(default_factory=BuildUserContext)
 
 
+class BuildChatMessageRole(str, Enum):
+    user = "user"
+    assistant = "assistant"
+
+
+class BuildChatMessage(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    role: BuildChatMessageRole
+    content: str = Field(min_length=1, max_length=MAX_HISTORY_MESSAGE_LENGTH)
+
+    @field_validator("content")
+    @classmethod
+    def strip_content(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("must not be blank")
+        return value
+
+
 class BuildHardwareChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     build: BuildContext
+    messages: list[BuildChatMessage] = Field(
+        default_factory=list,
+        max_length=MAX_HISTORY_MESSAGES,
+    )
     question: str = Field(min_length=1, max_length=2000)
 
     @field_validator("question")
@@ -152,6 +179,25 @@ class BuildHardwareChatRequest(BaseModel):
         value = value.strip()
         if not value:
             raise ValueError("must not be blank")
+        return value
+
+    @field_validator("messages")
+    @classmethod
+    def enforce_alternating_roles(
+        cls,
+        value: list[BuildChatMessage],
+    ) -> list[BuildChatMessage]:
+        for index, message in enumerate(value):
+            expected_role = (
+                BuildChatMessageRole.user
+                if index % 2 == 0
+                else BuildChatMessageRole.assistant
+            )
+            if message.role is not expected_role:
+                raise ValueError(
+                    "history must strictly alternate starting with 'user', "
+                    f"but message {index} has role '{message.role.value}'"
+                )
         return value
 
 

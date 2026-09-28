@@ -1,4 +1,8 @@
 from backend.app.schemas.build_chat import (
+    MAX_HISTORY_MESSAGE_LENGTH,
+    MAX_HISTORY_MESSAGES,
+    BuildChatMessage,
+    BuildChatMessageRole,
     BuildContext,
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
@@ -16,6 +20,10 @@ from backend.app.schemas.explanation import (
 )
 
 __all__ = [
+    "MAX_HISTORY_MESSAGES",
+    "MAX_HISTORY_MESSAGE_LENGTH",
+    "BuildChatMessage",
+    "BuildChatMessageRole",
     "BuildContext",
     "BuildHardwareChatRequest",
     "BuildHardwareChatResponse",

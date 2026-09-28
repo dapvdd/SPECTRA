@@ -2496,6 +2496,26 @@ h1 {
   font-size: 0.78rem;
 }
 
+.build-chat-reset {
+  margin-left: auto;
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  color: #7dd3fc;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.build-chat-reset:hover,
+.build-chat-reset:focus-visible {
+  border-color: #38bdf8;
+  color: #e0f2fe;
+}
+
 .build-chat-transcript {
   display: grid;
   gap: 0.65rem;

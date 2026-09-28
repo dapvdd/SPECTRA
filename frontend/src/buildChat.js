@@ -23,6 +23,8 @@ export {
 };
 
 export const BUILD_CHAT_QUESTION_MAX_LENGTH = 2000;
+export const BUILD_CHAT_HISTORY_MAX_MESSAGES = 10;
+export const BUILD_CHAT_HISTORY_MAX_MESSAGE_LENGTH = 4000;
 
 const CHAT_ENDPOINT = apiUrl(BUILD_CHAT_ENDPOINT_PATH);
 
@@ -47,12 +49,65 @@ export const isValidBuildChatQuestion = (question) => {
   return normalized.length > 0 && normalized.length <= BUILD_CHAT_QUESTION_MAX_LENGTH;
 };
 
+const truncateHistoryContent = (content) =>
+  content.length > BUILD_CHAT_HISTORY_MAX_MESSAGE_LENGTH
+    ? content.slice(0, BUILD_CHAT_HISTORY_MAX_MESSAGE_LENGTH)
+    : content;
+
+const expectedHistoryRole = (index) =>
+  index % 2 === 0
+    ? BUILD_CHAT_MESSAGE_ROLE.user
+    : BUILD_CHAT_MESSAGE_ROLE.assistant;
+
+const isStrictlyAlternating = (messages) =>
+  messages.every(
+    (message, index) =>
+      message !== null &&
+      typeof message === "object" &&
+      message.role === expectedHistoryRole(index)
+  );
+
+/* ---------- Bounded conversation history ---------- */
+
+export const buildBuildChatHistory = (messages) => {
+  if (!Array.isArray(messages) || !isStrictlyAlternating(messages)) {
+    return [];
+  }
+
+  const window = messages.slice(-BUILD_CHAT_HISTORY_MAX_MESSAGES);
+
+  if (window[0]?.role !== BUILD_CHAT_MESSAGE_ROLE.user) {
+    window.shift();
+  }
+
+  const history = [];
+  for (const message of window) {
+    const content =
+      typeof message?.content === "string" ? message.content.trim() : "";
+
+    if (!content) {
+      return [];
+    }
+
+    history.push({
+      role: message.role,
+      content: truncateHistoryContent(content),
+    });
+  }
+
+  return history;
+};
+
+export const getBuildChatHistory = (state) =>
+  buildBuildChatHistory(state?.messages);
+
 export const buildChatPayload = (
   cpuDetail,
   gpuDetail,
   userContext,
   question,
-  benchmarksBySlot = {}
+  benchmarksBySlot = {},
+  messages = []
 ) => {
   const normalizedQuestion = normalizeBuildChatQuestion(question);
 
@@ -62,15 +117,23 @@ export const buildChatPayload = (
     );
   }
 
-  return {
+  const history = buildBuildChatHistory(messages);
+  const payload = {
     build: buildBuildChatContext(
       cpuDetail,
       gpuDetail,
       userContext,
       benchmarksBySlot
     ),
-    question: normalizedQuestion,
   };
+
+  if (history.length > 0) {
+    payload.messages = history;
+  }
+
+  payload.question = normalizedQuestion;
+
+  return payload;
 };
 
 export class BuildChatError extends Error {
@@ -168,6 +231,9 @@ export const createBuildChatState = (buildToken = "") => ({
 export const getBuildChatMessages = (state) => state.messages;
 
 export const hasBuildChatConversation = (state) => state.messages.length > 0;
+
+export const resetBuildChatConversation = (state) =>
+  createBuildChatState(state?.buildToken ?? "");
 
 export const isBuildChatBusy = (state) =>
   state.status === CHAT_STATUS.loading;

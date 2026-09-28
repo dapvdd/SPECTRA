@@ -8,6 +8,10 @@ SPECTRA backend.
 
 ```
 CPU detail + GPU detail + user context
+        +
+bounded conversation history
++
+current question
         ↓
 structured Build AI Context
         ↓
@@ -16,8 +20,9 @@ POST /build/chat
 GeminiProvider (shared with /comparison/explanation and /hardware/chat)
 ```
 
-The assistant receives structured, factual context. It never receives frontend
-prose, and it is instructed to stay inside the supplied evidence.
+The assistant receives structured, factual context plus a bounded transcript of the
+conversation so far. It never receives frontend prose, and it is instructed to stay
+inside the supplied evidence.
 
 ## Request contract
 
@@ -81,6 +86,10 @@ POST /build/chat
       "resolution": "1440p"
     }
   },
+  "messages": [
+    { "role": "user", "content": "Apa yang diketahui dari build ini?" },
+    { "role": "assistant", "content": "Spesifikasi CPU dan GPU tersimpan." }
+  ],
   "question": "Bagaimana karakter build ini untuk gaming 1440p?"
 }
 ```
@@ -103,12 +112,54 @@ Response:
 | `context.use_case` | `gaming`, `productivity`, `ai_compute`, `general`, `unspecified`. |
 | `context.resolution` | `unspecified`, `1080p`, `1440p`, `4k`. |
 | `question` | Free-form user content. Trimmed, non-blank, 1-2000 characters. |
+| `messages` | Optional. Omitted or `[]` for a first turn. At most 10 entries. |
+| `messages[].role` | `user` or `assistant` only. |
+| `messages[].content` | Trimmed, non-blank, 1-4000 characters. |
 | extra fields | Rejected everywhere (`extra="forbid"`). |
 
 The frontend maps its display labels to the machine vocabulary:
 `"AI / Compute"` → `ai_compute`, `"4K"` → `4k`, `"Not specified"` → `unspecified`.
 Unknown values fall back to `unspecified`; arbitrary user strings are never sent
 for these two fields.
+
+## Conversation history
+
+History is a **bounded transcript**, not an instruction channel.
+
+| Rule | Value |
+| --- | --- |
+| Maximum messages | 10 |
+| Maximum length per message | 4000 characters |
+| Allowed roles | `user`, `assistant` |
+| Ordering | Strictly alternating, starting with `user` |
+| `system`, `developer`, `tool`, `function` | Rejected |
+| Blank content | Rejected |
+| Extra per-message fields | Rejected |
+| Zero messages | Valid |
+| Odd length ending in `user` | Valid |
+
+`question` is always separate from `messages`. The current question is never
+appended to the history by the client, and a previous turn is never replayed as
+the current one.
+
+The frontend keeps the ten **newest** messages and omits the `messages` key
+entirely when the conversation has no prior turns, so a first-turn request stays
+byte-identical to the pre-history contract.
+
+## Prompt structure
+
+The user turn is a single JSON object with a fixed key order:
+
+```
+SYSTEM INSTRUCTION   (fixed on the server, never derived from request data)
+BUILD CONTEXT        "build"
+CONVERSATION HISTORY "messages"
+CURRENT QUESTION     "question"
+```
+
+`build`, `messages`, and `question` stay structurally separate inside that object.
+History content is never concatenated into the system instruction, so no
+client-supplied string can become a system instruction.
 
 ## Benchmark rule
 
@@ -135,10 +186,15 @@ In scope for this contract:
 - `build` is serialized as JSON data. `question` is user content. The two are
   never merged into one free-form prompt field, so frontend-supplied strings
   cannot become system instructions.
+- Conversation history is data. It is serialized in its own `messages` field,
+  never appended to the system instruction, and never promoted into one.
+- A previous assistant claim is not evidence. The build context wins on conflict.
+- User messages cannot lift an evidence bound or change the assistant's rules.
 - The system instruction is fixed on the server and is never influenced by
   request data.
 - There is no database lookup. Component identity (`id`) is recorded, not
   verified, in this sprint.
+- History is in-memory only. Nothing is persisted and nothing is authenticated.
 
 Explicitly out of scope:
 
@@ -177,3 +233,16 @@ following, because SPECTRA does not hold the evidence:
 - Automatic hardware recommendations.
 - Motherboard, PSU, case, cooling, RAM, or PCIe compatibility claims.
 - Treating a sum of listed TDP values as measured system power draw.
+- Repeating an unsupported claim only because it appeared earlier in the
+  conversation.
+
+## Client-side conversation rules
+
+| Situation | Behaviour |
+| --- | --- |
+| Successful turn | `previous messages + user message + assistant answer` becomes the new state. |
+| Failed turn | The failed question is not appended, previous messages are preserved, and the question stays available for retry. |
+| Retry | Re-asks the pending question against the current build only, without duplicating the failed user message. |
+| New conversation | Clears messages, error, pending question, and loading state. Keeps CPU, GPU, use case, and resolution. |
+| CPU / GPU / use case / resolution change | Invalidates the conversation: clear messages, clear the pending request, clear the error, return to idle, keep the build. |
+| Stale success or failure | Ignored, via `createChatRequestGuard` and the build identity token. |
