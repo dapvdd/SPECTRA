@@ -116,6 +116,13 @@ const cpuBenchmarks = [
 const tokenFor = (cpu = cpuDetail, gpu = gpuDetail, context = userContext) =>
   getBuildChatToken(getBuildChatSnapshot(cpu, gpu, context));
 
+const OK_EVIDENCE = { known_facts: [], interpretation: [], unknown: [] };
+
+const okAnswer = (answer, overrides = {}) => ({
+  ok: true,
+  json: async () => ({ answer, evidence: OK_EVIDENCE, ...overrides }),
+});
+
 const BUILD_A_TOKEN = "1:3361:gaming:1440p";
 const BUILD_B_TOKEN = "1:3362:gaming:1440p";
 
@@ -750,7 +757,7 @@ test("hardware chat stays on its own endpoint and state shape", async () => {
 
   await answering(async (url, options) => {
     buildRequests.push({ url, options });
-    return { ok: true, json: async () => ({ answer: "Build answer." }) };
+    return { ok: true, json: async () => ({ answer: "Build answer.", evidence: OK_EVIDENCE }) };
   });
 
   const hardwareChatState = createHardwareChatState();
@@ -832,18 +839,33 @@ test("a user message stays plain text and is never markdown-parsed", () => {
   );
 });
 
-test("every conversation message carries only id, role, and content", () => {
+test("every conversation message carries only id, role, and a safe shape", () => {
   const state = answered("q", "a");
 
+  const [user, assistant] = state.messages;
+  assert.deepEqual(Object.keys(user).sort(), ["content", "id", "role"]);
+  assert.deepEqual(Object.keys(assistant).sort(), [
+    "content",
+    "evidence",
+    "id",
+    "role",
+  ]);
+
   for (const message of state.messages) {
-    assert.deepEqual(Object.keys(message).sort(), ["content", "id", "role"]);
     assert.equal(typeof message.id, "string");
     assert.equal(
       BUILD_CHAT_MESSAGE_ROLE.user === message.role ||
         BUILD_CHAT_MESSAGE_ROLE.assistant === message.role,
       true
     );
+    assert.equal(typeof message.content, "string");
   }
+
+  assert.deepEqual(assistant.evidence, {
+    knownFacts: [],
+    interpretation: [],
+    unknown: [],
+  });
 });
 
 /* ---------- client and error taxonomy (Sprint 11 coverage) ---------- */
@@ -860,13 +882,15 @@ test("the build chat client posts the payload to /build/chat", async () => {
   );
   const answer = await requestBuildChatAnswer(
     payload,
-    async () => ({
-      ok: true,
-      json: async () => ({ answer: "Hanya data yang tersimpan." }),
-    })
+    async () => okAnswer("Hanya data yang tersimpan.")
   );
 
-  assert.equal(answer, "Hanya data yang tersimpan.");
+  assert.equal(answer.answer, "Hanya data yang tersimpan.");
+  assert.deepEqual(answer.evidence, {
+    knownFacts: [],
+    interpretation: [],
+    unknown: [],
+  });
 });
 
 test("422, 502, 503, and network failures keep their classifications", async () => {
@@ -1012,14 +1036,21 @@ const createAskHarness = ({ fetchImplementation, cpu = cpuDetail, gpu = gpuDetai
     harness.apply(startBuildChatRequest(harness.state, payload.question, requestToken));
 
     requestBuildChatAnswer(payload, fetchImplementation).then(
-      (answer) => {
+      (result) => {
         if (!guard.isCurrent(requestId)) {
           return;
         }
         if (!isSameBuildChatToken(harness.token, requestToken)) {
           return;
         }
-        harness.apply(completeBuildChatRequest(harness.state, answer, requestToken));
+        harness.apply(
+          completeBuildChatRequest(
+            harness.state,
+            result.answer,
+            requestToken,
+            result.evidence
+          )
+        );
       },
       (error) => {
         if (!guard.isCurrent(requestId)) {
@@ -1058,6 +1089,7 @@ test("composed flow records a full turn and a follow-up for one build", async ()
         ok: true,
         json: async () => ({
           answer: `Jawaban untuk: ${question}`,
+          evidence: OK_EVIDENCE,
         }),
       };
     },
@@ -1102,7 +1134,7 @@ test("composed flow ignores a stale success when the GPU changes mid-flight", as
 
       return {
         ok: true,
-        json: async () => ({ answer: "Jawaban untuk build lama." }),
+        json: async () => ({ answer: "Jawaban untuk build lama.", evidence: OK_EVIDENCE }),
       };
     },
   });
@@ -1184,7 +1216,7 @@ test("composed flow ignores a stale failure when the use case changes mid-flight
 test("composed flow keeps a failed answer on the current build and retries it", async () => {
   const responses = [
     { ok: false, status: 503, json: async () => ({}) },
-    { ok: true, json: async () => ({ answer: "Jawaban setelah retry." }) },
+    okAnswer("Jawaban setelah retry."),
   ];
   let call = 0;
 
@@ -1220,7 +1252,7 @@ test("composed flow blocks a duplicate submission while loading", async () => {
     fetchImplementation: async () => {
       await pending;
 
-      return { ok: true, json: async () => ({ answer: "Jawaban." }) };
+      return okAnswer("Jawaban.");
     },
   });
 
@@ -1243,7 +1275,7 @@ test("composed flow does not touch catalog or comparison state", async () => {
   const harness = createAskHarness({
     fetchImplementation: async () => ({
       ok: true,
-      json: async () => ({ answer: "Jawaban." }),
+      json: async () => ({ answer: "Jawaban.", evidence: OK_EVIDENCE }),
     }),
   });
 

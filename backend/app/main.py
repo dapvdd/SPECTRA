@@ -272,10 +272,8 @@ def generate_build_chat_answer(
     request_data: BuildHardwareChatRequest,
 ) -> BuildHardwareChatResponse:
     try:
-        answer = build_chat_service.generate_build_chat_answer(request_data)
+        return build_chat_service.generate_build_chat_answer(request_data)
     except explanation_service.ProviderUnavailableError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
-
-    return BuildHardwareChatResponse(answer=answer)

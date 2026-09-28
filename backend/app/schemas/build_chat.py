@@ -1,13 +1,16 @@
 from enum import Enum
-from typing import Literal, TypeAlias
+from typing import Annotated, Literal, TypeAlias
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, field_validator
 
 
 ScalarValue: TypeAlias = str | int | float | bool | None
 
 MAX_HISTORY_MESSAGES = 10
 MAX_HISTORY_MESSAGE_LENGTH = 4000
+
+MAX_EVIDENCE_ITEMS = 10
+MAX_EVIDENCE_ITEM_LENGTH = 1000
 
 
 class BuildUseCase(str, Enum):
@@ -201,5 +204,47 @@ class BuildHardwareChatRequest(BaseModel):
         return value
 
 
+def _validate_evidence_item(value: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError("must be a string")
+    value = value.strip()
+    if not value:
+        raise ValueError("must not be blank")
+    if len(value) > MAX_EVIDENCE_ITEM_LENGTH:
+        raise ValueError(f"must be at most {MAX_EVIDENCE_ITEM_LENGTH} characters")
+    return value
+
+
+BuildEvidenceItem: TypeAlias = Annotated[str, AfterValidator(_validate_evidence_item)]
+
+
+class BuildEvidence(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    known_facts: list[BuildEvidenceItem] = Field(
+        default_factory=list,
+        max_length=MAX_EVIDENCE_ITEMS,
+    )
+    interpretation: list[BuildEvidenceItem] = Field(
+        default_factory=list,
+        max_length=MAX_EVIDENCE_ITEMS,
+    )
+    unknown: list[BuildEvidenceItem] = Field(
+        default_factory=list,
+        max_length=MAX_EVIDENCE_ITEMS,
+    )
+
+
 class BuildHardwareChatResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     answer: str = Field(min_length=1)
+    evidence: BuildEvidence
+
+    @field_validator("answer")
+    @classmethod
+    def strip_answer(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("must not be blank")
+        return value

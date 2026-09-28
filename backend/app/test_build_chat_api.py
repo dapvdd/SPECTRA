@@ -5,8 +5,19 @@ from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
 from backend.app import main
-from backend.app.schemas.build_chat import BuildHardwareChatRequest
+from backend.app.schemas.build_chat import (
+    BuildEvidence,
+    BuildHardwareChatRequest,
+    BuildHardwareChatResponse,
+)
 from backend.app.services import build_chat_service, explanation_service
+
+
+def _response(answer, **evidence):
+    return BuildHardwareChatResponse(
+        answer=answer,
+        evidence=BuildEvidence(**evidence),
+    )
 
 
 def _cpu_payload(**overrides):
@@ -79,6 +90,19 @@ def _build_payload(**overrides):
     return payload
 
 
+def _provider_text(answer="Jawaban berbasis bukti.", **evidence):
+    return json.dumps(
+        {
+            "answer": answer,
+            "evidence": {
+                "known_facts": evidence.get("known_facts", []),
+                "interpretation": evidence.get("interpretation", []),
+                "unknown": evidence.get("unknown", []),
+            },
+        }
+    )
+
+
 class TestBuildChatAPI:
     def setup_method(self):
         self.client = TestClient(main.app)
@@ -90,15 +114,22 @@ class TestBuildChatAPI:
         build_chat_service.generate_build_chat_answer = self.original_generator
 
     def test_accepts_a_complete_cpu_and_gpu_build(self):
-        build_chat_service.generate_build_chat_answer = (
-            lambda request: "Karikernya didominasi komponen yang tersedia."
+        build_chat_service.generate_build_chat_answer = lambda request: _response(
+            "Karikernya didominasi komponen yang tersedia.",
+            known_facts=["CPU 6 cores / 12 threads."],
+            unknown=["FPS pada 1440p."],
         )
 
         response = self.client.post("/build/chat", json=_build_payload())
 
         assert response.status_code == 200
         assert response.json() == {
-            "answer": "Karikernya didominasi komponen yang tersedia."
+            "answer": "Karikernya didominasi komponen yang tersedia.",
+            "evidence": {
+                "known_facts": ["CPU 6 cores / 12 threads."],
+                "interpretation": [],
+                "unknown": ["FPS pada 1440p."],
+            },
         }
 
     def test_missing_build_is_rejected(self):
@@ -241,7 +272,7 @@ class TestBuildChatAPI:
     )
     def test_supported_context_vocabulary_is_accepted(self, use_case, resolution):
         build_chat_service.generate_build_chat_answer = (
-            lambda request: "Konteks diterima."
+            lambda request: _response("Konteks diterima.")
         )
 
         response = self.client.post(
@@ -324,7 +355,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["question"] = request.question
-            return "ok"
+            return _response("ok")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -373,7 +404,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["payload"] = request
-            return "Tidak ada benchmark GPU yang tersedia."
+            return _response("Tidak ada benchmark GPU yang tersedia.")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -387,7 +418,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["payload"] = request
-            return "Benchmark CPU tersimpan."
+            return _response("Benchmark CPU tersimpan.")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -407,7 +438,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["payload"] = request
-            return "Beberapa nilai tidak diketahui."
+            return _response("Beberapa nilai tidak diketahui.")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -444,7 +475,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["payload"] = request
-            return "Spesifikasi minimal."
+            return _response("Spesifikasi minimal.")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -470,7 +501,7 @@ class TestBuildChatAPI:
 
         def generate(request):
             captured["payload"] = request
-            return "Tidak ada data benchmark GPU."
+            return _response("Tidak ada data benchmark GPU.")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -518,15 +549,15 @@ class TestBuildChatService:
         def generate(system_prompt, user_text):
             captured["system_prompt"] = system_prompt
             captured["user_text"] = user_text
-            return "Jawaban berbasis bukti."
+            return _provider_text()
 
         explanation_service.generate_chat_response = generate
         request = BuildHardwareChatRequest.model_validate(_build_payload())
 
-        assert (
-            build_chat_service.generate_build_chat_answer(request)
-            == "Jawaban berbasis bukti."
-        )
+        result = build_chat_service.generate_build_chat_answer(request)
+
+        assert isinstance(result, BuildHardwareChatResponse)
+        assert result.answer == "Jawaban berbasis bukti."
 
         context = json.loads(captured["user_text"])
         assert context["build"]["cpu"]["name"] == "AMD Ryzen 5 5600"
@@ -566,7 +597,7 @@ class TestBuildChatService:
 
         def generate(system_prompt, user_text):
             captured["user_text"] = user_text
-            return "ok"
+            return _provider_text()
 
         explanation_service.generate_chat_response = generate
         request = BuildHardwareChatRequest.model_validate(
@@ -599,7 +630,7 @@ class TestBuildChatService:
 
         def generate(system_prompt, user_text):
             captured["user_text"] = user_text
-            return "ok"
+            return _provider_text()
 
         explanation_service.generate_chat_response = generate
         request = BuildHardwareChatRequest.model_validate(_build_payload())
@@ -624,14 +655,13 @@ class TestBuildChatService:
             def generate_text(self, system_prompt, user_text):
                 captured["system_prompt"] = system_prompt
                 captured["user_text"] = user_text
-                return "Provider answer."
+                return _provider_text("Provider answer.")
 
         monkeypatch.setattr(explanation_service, "_get_provider", lambda: FakeProvider())
         request = BuildHardwareChatRequest.model_validate(_build_payload())
 
-        assert (
-            build_chat_service.generate_build_chat_answer(request)
-            == "Provider answer."
+        assert build_chat_service.generate_build_chat_answer(request).answer == (
+            "Provider answer."
         )
         assert "AMD Ryzen 5 5600" in captured["user_text"]
         assert "NVIDIA GeForce RTX 5070 Ti" in captured["user_text"]

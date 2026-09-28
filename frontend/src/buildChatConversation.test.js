@@ -169,14 +169,21 @@ const createConversationHarness = ({
     harness.apply(startBuildChatRequest(harness.state, payload.question, requestToken));
 
     requestBuildChatAnswer(payload, fetchImplementation).then(
-      (answer) => {
+      (result) => {
         if (!guard.isCurrent(requestId)) {
           return;
         }
         if (!isSameBuildChatToken(harness.token, requestToken)) {
           return;
         }
-        harness.apply(completeBuildChatRequest(harness.state, answer, requestToken));
+        harness.apply(
+          completeBuildChatRequest(
+            harness.state,
+            result.answer,
+            requestToken,
+            result.evidence
+          )
+        );
       },
       (error) => {
         if (!guard.isCurrent(requestId)) {
@@ -215,7 +222,10 @@ const createConversationHarness = ({
 
 const alwaysAnswer = (answer = "Jawaban.") => async () => ({
   ok: true,
-  json: async () => ({ answer }),
+  json: async () => ({
+    answer,
+    evidence: { known_facts: [], interpretation: [], unknown: [] },
+  }),
 });
 
 /* ---------- history bounds ---------- */
@@ -486,7 +496,7 @@ test("a new conversation action discards an in-flight answer", async () => {
   const harness = createConversationHarness({
     fetchImplementation: async () => {
       await pending;
-      return { ok: true, json: async () => ({ answer: "Jawaban basi." }) };
+      return { ok: true, json: async () => ({ answer: "Jawaban basi.", evidence: { known_facts: [], interpretation: [], unknown: [] } }) };
     },
   });
 
@@ -508,7 +518,7 @@ test("a new conversation action discards an in-flight answer", async () => {
 test("a failed question is retried once without duplicating the user message", async () => {
   const responses = [
     { ok: false, status: 503, json: async () => ({}) },
-    { ok: true, json: async () => ({ answer: "Jawaban setelah retry." }) },
+    { ok: true, json: async () => ({ answer: "Jawaban setelah retry.", evidence: { known_facts: [], interpretation: [], unknown: [] } }) },
   ];
   let call = 0;
   const harness = createConversationHarness({
@@ -536,9 +546,9 @@ test("a failed question is retried once without duplicating the user message", a
 
 test("a failed follow-up retry keeps the earlier turns and adds one turn", async () => {
   const responses = [
-    { ok: true, json: async () => ({ answer: "Jawaban pertama." }) },
+    { ok: true, json: async () => ({ answer: "Jawaban pertama.", evidence: { known_facts: [], interpretation: [], unknown: [] } }) },
     { ok: false, status: 502, json: async () => ({}) },
-    { ok: true, json: async () => ({ answer: "Jawaban ketiga." }) },
+    { ok: true, json: async () => ({ answer: "Jawaban ketiga.", evidence: { known_facts: [], interpretation: [], unknown: [] } }) },
   ];
   let call = 0;
   const harness = createConversationHarness({
@@ -650,7 +660,7 @@ test("a stale success is ignored and never becomes history", async () => {
   const harness = createConversationHarness({
     fetchImplementation: async () => {
       await pending;
-      return { ok: true, json: async () => ({ answer: "Jawaban build lama." }) };
+      return { ok: true, json: async () => ({ answer: "Jawaban build lama.", evidence: { known_facts: [], interpretation: [], unknown: [] } }) };
     },
   });
 
@@ -693,7 +703,7 @@ test("a composed conversation sends the previous turns with every follow-up", as
   const harness = createConversationHarness({
     fetchImplementation: async () => ({
       ok: true,
-      json: async () => ({ answer: "Jawaban." }),
+      json: async () => ({ answer: "Jawaban.", evidence: { known_facts: [], interpretation: [], unknown: [] } }),
     }),
   });
 

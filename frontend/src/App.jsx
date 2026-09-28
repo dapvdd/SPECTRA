@@ -29,6 +29,7 @@ import {
   createBuildChatState,
   failBuildChatRequest,
   getBuildChatToken,
+  getBuildChatEvidenceSections,
   getChatLoadingParts,
   isBuildChatBusy,
   isSameBuildChatToken,
@@ -781,6 +782,36 @@ function HardwareChatTranscript({ chatState }) {
   );
 }
 
+function BuildChatEvidence({ evidence }) {
+  const sections = getBuildChatEvidenceSections(evidence).filter(
+    (section) => section.items.length > 0
+  );
+
+  if (sections.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="build-chat-evidence">
+      {sections.map((section) => (
+        <section className="build-chat-evidence-section" key={section.key}>
+          <h4 className="build-chat-evidence-label">{section.label}</h4>
+          <ul className="build-chat-evidence-list">
+            {section.items.map((item, index) => (
+              <li
+                className="build-chat-evidence-item"
+                key={`${section.key}-${index}`}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function BuildChatTranscript({ messages }) {
   if (messages.length === 0) {
     return null;
@@ -808,6 +839,7 @@ function BuildChatTranscript({ messages }) {
             <div className="build-chat-message-text">
               <MarkdownContent markdown={message.content} />
             </div>
+            <BuildChatEvidence evidence={message.evidence} />
           </li>
         )
       )}
@@ -1954,7 +1986,7 @@ function App() {
     );
 
     requestBuildChatAnswer(payload)
-      .then((answer) => {
+      .then((result) => {
         if (!buildChatGuardRef.current.isCurrent(requestId)) {
           return;
         }
@@ -1964,7 +1996,12 @@ function App() {
         }
 
         setBuildChatState((prev) =>
-          completeBuildChatRequest(prev, answer, requestToken)
+          completeBuildChatRequest(
+            prev,
+            result.answer,
+            requestToken,
+            result.evidence
+          )
         );
       })
       .catch((error) => {

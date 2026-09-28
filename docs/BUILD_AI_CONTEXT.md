@@ -97,8 +97,55 @@ POST /build/chat
 Response:
 
 ```json
-{ "answer": "..." }
+{
+  "answer": "...",
+  "evidence": {
+    "known_facts": ["..."],
+    "interpretation": ["..."],
+    "unknown": ["..."]
+  }
+}
 ```
+
+## Evidence contract
+
+Every answer is classified into exactly three sections so the user can see what
+SPECTRA actually knows, what the AI is reasoning about, and what cannot be
+concluded.
+
+| Section | Contents |
+| --- | --- |
+| `known_facts` | Values directly present in the supplied SPECTRA build context. No inference. |
+| `interpretation` | Qualitative reasoning that follows from known facts. No invented measurements. |
+| `unknown` | Important information that cannot be established from the supplied context. |
+
+| Field rule | Value |
+| --- | --- |
+| `answer` | Trimmed, non-empty string. |
+| `evidence.known_facts`, `.interpretation`, `.unknown` | Array of strings. |
+| Items per section | At most 10. |
+| Characters per item | At most 1000. |
+| Blank items | Rejected. |
+| Nested objects | Rejected. |
+| Extra keys | Rejected (`extra="forbid"`). |
+
+Evidence priority, highest first: current supplied build context, current supplied
+benchmark records, current user context, conversation history, general model
+knowledge. General model knowledge is never presented as a SPECTRA fact and is
+never silently merged into `known_facts`.
+
+GPU benchmark count in SPECTRA is currently zero, so `known_facts` must not
+contain GPU benchmark scores, and `unknown` states measured GPU benchmark data is
+not available when relevant. CPU benchmark values appear as known facts only when
+that exact record is supplied. The backend strictly validates the structured
+response; malformed or non-JSON provider output is a provider failure (502) and is
+never rendered raw.
+
+The frontend renders the three evidence fields directly as labelled sections under
+each assistant message. They are displayed as plain data strings (no Markdown, no
+`dangerouslySetInnerHTML`). Conversation history continues to send only the
+`user`/`assistant` text content; evidence is a presentational detail and never
+becomes conversation context.
 
 ## Field rules
 
@@ -137,6 +184,9 @@ History is a **bounded transcript**, not an instruction channel.
 | Extra per-message fields | Rejected |
 | Zero messages | Valid |
 | Odd length ending in `user` | Valid |
+
+The history is plain conversational text only. Evidence sections attached to an
+assistant message are presentational and are excluded from the `messages` payload.
 
 `question` is always separate from `messages`. The current question is never
 appended to the history by the client, and a previous turn is never replayed as
@@ -240,7 +290,7 @@ following, because SPECTRA does not hold the evidence:
 
 | Situation | Behaviour |
 | --- | --- |
-| Successful turn | `previous messages + user message + assistant answer` becomes the new state. |
+| Successful turn | `previous messages + user message + assistant answer + evidence sections` becomes the new state. |
 | Failed turn | The failed question is not appended, previous messages are preserved, and the question stays available for retry. |
 | Retry | Re-asks the pending question against the current build only, without duplicating the failed user message. |
 | New conversation | Clears messages, error, pending question, and loading state. Keeps CPU, GPU, use case, and resolution. |

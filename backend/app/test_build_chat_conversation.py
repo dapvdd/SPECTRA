@@ -7,10 +7,31 @@ from backend.app import main
 from backend.app.schemas.build_chat import (
     MAX_HISTORY_MESSAGE_LENGTH,
     MAX_HISTORY_MESSAGES,
-    BuildChatMessage,
+    BuildEvidence,
     BuildHardwareChatRequest,
+    BuildHardwareChatResponse,
 )
 from backend.app.services import build_chat_service, explanation_service
+
+
+def _response(answer, **evidence):
+    return BuildHardwareChatResponse(
+        answer=answer,
+        evidence=BuildEvidence(**evidence),
+    )
+
+
+def _provider_text(answer="Jawaban berbasis bukti.", **evidence):
+    return json.dumps(
+        {
+            "answer": answer,
+            "evidence": {
+                "known_facts": evidence.get("known_facts", []),
+                "interpretation": evidence.get("interpretation", []),
+                "unknown": evidence.get("unknown", []),
+            },
+        }
+    )
 
 
 def _cpu_payload(**overrides):
@@ -126,7 +147,7 @@ class TestBuildChatHistoryAcceptance:
 
     def _accept(self, payload):
         build_chat_service.generate_build_chat_answer = (
-            lambda request: "Jawaban berbasis bukti."
+            lambda request: _response("Jawaban berbasis bukti.")
         )
         return self.client.post("/build/chat", json=payload)
 
@@ -314,7 +335,7 @@ class TestBuildChatHistoryAcceptance:
 
         def generate(request):
             captured["request"] = request
-            return "ok"
+            return _response("ok")
 
         build_chat_service.generate_build_chat_answer = generate
 
@@ -348,7 +369,7 @@ class TestBuildChatConversationProvider:
         def generate(system_prompt, user_text):
             captured["system_prompt"] = system_prompt
             captured["user_text"] = user_text
-            return "Jawaban berbasis bukti."
+            return _provider_text()
 
         explanation_service.generate_chat_response = generate
         return captured
@@ -422,10 +443,10 @@ class TestBuildChatConversationProvider:
             _build_payload(question="Bagaimana karakter build ini?")
         )
 
-        assert (
-            build_chat_service.generate_build_chat_answer(request)
-            == "Jawaban berbasis bukti."
-        )
+        result = build_chat_service.generate_build_chat_answer(request)
+
+        assert isinstance(result, BuildHardwareChatResponse)
+        assert result.answer == "Jawaban berbasis bukti."
 
         payload = json.loads(captured["user_text"])
         assert payload == {
@@ -602,7 +623,7 @@ class TestBuildChatConversationProviderFailures:
         def urlopen(http_request, timeout):
             captured["request"] = http_request
             captured["timeout"] = timeout
-            return _text_response("Jawaban.")
+            return _text_response(_provider_text())
 
         explanation_service.request.urlopen = urlopen
         explanation_service._get_provider().generate_text(
