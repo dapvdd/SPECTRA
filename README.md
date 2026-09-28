@@ -2,84 +2,549 @@
 
 **Hardware Intelligence & Comparison Platform**
 
-SPECTRA is a long-term personal engineering project for comparing computer hardware through specifications, benchmarks, gaming performance, rendering performance, pricing, value analysis, and AI-assisted summaries.
+SPECTRA is a long-term personal engineering project for exploring hardware intelligence through structured hardware data, deterministic comparison, benchmark evidence, configurable CPU + GPU builds, and evidence-aware AI assistance.
 
-## Problem
+The project started as a simple CPU comparison tool and has evolved into a hardware intelligence platform with support for CPU and GPU catalogs, hardware detail views, comparison workflows, build configuration, and conversational AI.
 
-Comparing computer hardware often requires checking multiple websites for specifications, benchmark results, gaming performance, and current prices.
+---
 
-SPECTRA aims to centralize this information into a single comparison platform.
+## What is SPECTRA?
 
-## Core Goals
+Choosing computer hardware often means jumping between multiple sources for specifications, benchmarks, and technical context.
 
-- Compare computer hardware side by side
-- Aggregate hardware specifications
-- Compare benchmark performance
-- Compare gaming performance across resolutions and graphics settings
-- Estimate rendering and productivity performance
-- Compare current hardware prices
-- Calculate performance-to-price value
-- Generate AI-assisted hardware analysis
-- Provide clear recommendations based on user requirements
+SPECTRA aims to bring structured hardware information and reasoning into a single interface.
 
-## Initial Scope — v0.1
+The core philosophy is:
 
-The first development milestone focuses on CPU comparison.
+> **DATA → COMPUTATION → AI**
 
-### v0.1 capabilities
+SPECTRA treats structured hardware data as the foundation. Deterministic computations and comparison logic operate on that data, while AI is used to explain and contextualize the available evidence rather than inventing hardware facts.
 
-- CPU hardware data
-- Basic CPU specifications
-- CPU-to-CPU comparison
-- Basic performance scoring
-- Comparison result output
+---
 
-Initial test hardware:
+## Current Capabilities
 
-- AMD Ryzen 5 5600
-- Intel Core i5-12400F
+### Hardware Catalog
 
-## Planned Development
+SPECTRA currently supports:
 
-### Phase 1 — Foundation
-- Project architecture
-- Database
-- Hardware data model
-- Comparison engine
+* CPU hardware catalog
+* GPU hardware catalog
+* Hardware search
+* Manufacturer filtering
+* CPU / GPU type filtering
+* Hardware detail views
+* Structured hardware specifications
+* Source-aware benchmark data
 
-### Phase 2 — Performance
-- Synthetic benchmarks
-- Gaming benchmarks
-- Rendering benchmarks
-- Performance scoring
+### CPU Comparison
 
-### Phase 3 — Market Data
-- Hardware pricing
-- Price history
-- Performance-to-price analysis
-- Value scoring
+CPU comparison currently supports:
 
-### Phase 4 — AI
-- AI-generated comparison summaries
-- Use-case recommendations
-- Hardware selection assistance
+* Side-by-side specification comparison
+* Cores
+* Threads
+* Base clock
+* Boost clock
+* TDP
+* Geekbench 7 single-core
+* Geekbench 7 multi-core
+* Deterministic metric winners
+* Tie handling
+* Percentage differences
+* Comparison Insights
+* Benchmark visualization
 
-### Phase 5 — Platform
-- Web frontend
-- Hardware search
-- Interactive comparison
-- Visualization
-- Automated data ingestion
+### GPU Comparison
 
-## Design Principle
+GPU comparison currently supports:
 
-SPECTRA follows:
+* VRAM
+* Memory type
+* Memory bandwidth
+* Core clock
+* Boost clock
+* TDP
+* Physical length
+* Interface
+* Architecture
+* Release date
+* Deterministic higher-is-better / lower-is-better metrics
+* Tie handling
+* GPU-specific comparison tables
 
-**DATA → COMPUTATION → AI**
+CPU and GPU comparisons are intentionally kept type-safe:
 
-The AI layer should interpret structured data and computed results rather than being the primary source of hardware specifications or benchmark numbers.
+* CPU ↔ CPU is supported
+* GPU ↔ GPU is supported
+* CPU ↔ GPU comparison is rejected
 
+GPU benchmark comparison is not currently presented because SPECTRA does not yet have a validated external GPU benchmark dataset.
 
-If it becomes useful to other people, that is a bonus.
+---
 
-The project is intended to evolve incrementally as a long-term engineering project.
+## Build Configuration
+
+SPECTRA also provides a CPU + GPU build configuration workflow.
+
+A build can contain:
+
+* CPU
+* GPU
+* Use case
+* Resolution
+* Build-specific hardware context
+
+The build configuration is intentionally separated from the normal hardware comparison workflow.
+
+Current build intelligence focuses on **available evidence**, not fabricated system-level conclusions.
+
+For example, listed CPU and GPU TDP values may be displayed as context, but they are **not treated as total system power consumption or PSU requirements**.
+
+---
+
+## AI Hardware Assistant
+
+SPECTRA includes an AI-assisted hardware conversation layer powered by Gemini.
+
+The AI can answer questions using the hardware context supplied by SPECTRA.
+
+Examples:
+
+* "Kuat buat GTA V nggak?"
+* "Apa kelebihan CPU ini?"
+* "Cocok buat build ini?"
+* "Apa yang perlu diperhatikan dari konfigurasi ini?"
+
+The AI is instructed to distinguish between:
+
+* Known facts
+* Qualitative interpretation
+* Unknown or unavailable information
+
+It should not fabricate:
+
+* Hardware specifications
+* Benchmark scores
+* FPS measurements
+* Rendering timings
+* PSU requirements
+* Thermal measurements
+* Compatibility claims unsupported by available data
+
+---
+
+## Build AI
+
+The build configuration has its own AI conversation flow for reasoning about a selected CPU + GPU configuration.
+
+Build AI supports:
+
+* CPU context
+* GPU context
+* Use case
+* Resolution
+* User questions
+* Bounded conversation history
+* Evidence-aware responses
+
+### Conversation Context
+
+Build conversations maintain a bounded history.
+
+The current implementation:
+
+* Keeps up to 10 recent messages
+* Limits individual message length
+* Validates message roles
+* Resets conversation state when the selected build identity changes
+* Prevents stale asynchronous responses from contaminating a newer conversation
+
+Conversation history is sent as context to the existing AI provider infrastructure rather than being treated as persistent application data.
+
+---
+
+## Evidence-Aware AI Responses
+
+Build AI responses are structured into three evidence categories:
+
+```json
+{
+  "answer": "...",
+  "evidence": {
+    "known_facts": [],
+    "interpretation": [],
+    "unknown": []
+  }
+}
+```
+
+### Known Facts
+
+Facts directly supported by the hardware and build data supplied by SPECTRA.
+
+### Interpretation
+
+Qualitative reasoning derived from the available facts.
+
+### Unknown
+
+Relevant information that SPECTRA does not currently have enough evidence to determine.
+
+This separation is intentional.
+
+AI output should remain an **interpretation layer**, not become a new source of hardware truth.
+
+Evidence generated by the AI is therefore not inserted into the conversation history as factual hardware context.
+
+---
+
+## Current Data
+
+The current local SPECTRA database contains approximately:
+
+| Dataset               | Records |
+| --------------------- | ------: |
+| CPU hardware          |   3,360 |
+| GPU hardware          |   1,879 |
+| CPU specifications    |   3,360 |
+| GPU specifications    |   1,879 |
+| Benchmark results     |   1,040 |
+| GPU benchmark results |       0 |
+| Sources               |       3 |
+
+The current benchmark dataset consists of CPU Geekbench 7 results.
+
+GPU benchmark data has **not** been imported because the evaluated external sources did not currently provide a sufficiently safe combination of:
+
+* Licensing
+* Accessibility
+* Provenance
+* Benchmark semantics
+* Hardware identity mapping
+* Reproducibility
+
+This is deliberate. SPECTRA prefers having **no GPU benchmark result** over presenting questionable or incorrectly attributed measurements.
+
+---
+
+## Data Quality Principles
+
+SPECTRA places significant emphasis on deterministic data handling.
+
+Current safeguards include:
+
+* Hardware identity normalization
+* Duplicate detection
+* Input validation
+* Idempotent imports
+* Benchmark validation
+* Explicit source tracking
+* API payload validation
+* Strict AI request schemas
+* Evidence-aware AI responses
+
+Malformed values are corrected only when there is sufficient evidence to determine the intended value.
+
+For example, legitimate low-power processors are not discarded simply because their TDP is unusually low.
+
+---
+
+## Architecture
+
+SPECTRA currently consists of a React frontend, FastAPI backend, SQLAlchemy data layer, SQLite database, ingestion utilities, and Gemini-based AI services.
+
+```text
+                    ┌──────────────────────┐
+                    │      React / Vite    │
+                    │       Frontend       │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │      FastAPI API     │
+                    └──────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              ▼                ▼                ▼
+       Hardware APIs     Benchmark APIs      AI APIs
+              │                │                │
+              └────────────────┼────────────────┘
+                               ▼
+                    ┌──────────────────────┐
+                    │      SQLAlchemy      │
+                    │        SQLite        │
+                    └──────────────────────┘
+
+                         AI Provider
+                              │
+                              ▼
+                       Gemini REST API
+```
+
+### Frontend
+
+```text
+frontend/
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── api.js
+│   ├── appState.js
+│   ├── comparison.js
+│   ├── comparisonExplanation.js
+│   ├── performance.js
+│   ├── buildConfig.js
+│   ├── buildChat.js
+│   ├── hardwareChat.js
+│   ├── detail.js
+│   ├── markdown.js
+│   └── ...
+```
+
+### Backend
+
+```text
+backend/
+└── app/
+    ├── main.py
+    ├── database.py
+    ├── models/
+    ├── schemas/
+    ├── services/
+    ├── importers/
+    └── tests/
+```
+
+### Data
+
+```text
+data/
+├── spectra.db
+├── raw/
+├── samples/
+└── backups/
+```
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* CSS
+* Oxlint
+
+### Backend
+
+* Python
+* FastAPI
+* Pydantic
+* SQLAlchemy
+* SQLite
+
+### AI
+
+* Google Gemini API
+* Structured JSON responses
+* Evidence-aware prompting
+* Bounded conversational context
+
+### Development
+
+* Git
+* GitHub
+* pytest
+* Vitest
+* Local SQLite database
+
+---
+
+## API Surface
+
+Some of the current backend capabilities include:
+
+```text
+GET  /
+GET  /health
+
+GET  /hardware
+GET  /hardware/{hardware_id}
+GET  /hardware/{hardware_id}/benchmarks
+
+POST /comparison/explanation
+POST /hardware/chat
+POST /build/chat
+```
+
+The API layer also performs strict validation for AI request payloads and hardware-related responses.
+
+---
+
+## Testing
+
+SPECTRA currently has a substantial automated regression suite.
+
+Latest Sprint 15 verification:
+
+```text
+Frontend tests: 334 passed
+Backend tests:  377 passed
+--------------------------------
+Total:          711 passed
+```
+
+Additional verification:
+
+* Frontend production build: passed
+* Lint: 0 errors
+* Existing lint warning: 1
+* `git diff --check`: clean
+* Database unchanged during Sprint 15 verification
+* No migrations introduced during Sprint 15
+* No benchmark imports performed during Sprint 15
+
+The test suite covers both deterministic application logic and API contracts, including:
+
+* Hardware comparison
+* GPU comparison
+* Comparison ties
+* API payload validation
+* Benchmark handling
+* AI request validation
+* AI response parsing
+* Markdown rendering
+* Hardware chat
+* Build configuration
+* Build chat
+* Conversation history
+* Evidence contracts
+* Stale asynchronous response protection
+
+---
+
+## AI Safety & Trust Boundary
+
+SPECTRA intentionally keeps AI below the structured-data layer.
+
+```text
+Hardware Data
+     │
+     ▼
+Deterministic Logic
+     │
+     ▼
+Structured Context
+     │
+     ▼
+     AI
+     │
+     ▼
+Explanation / Interpretation
+```
+
+The AI is not treated as an authoritative hardware database.
+
+When information is unavailable, the intended behavior is to say that it is unavailable rather than manufacture a value.
+
+This is particularly important for performance questions such as FPS, rendering time, thermal behavior, and system power.
+
+---
+
+## GPU Benchmark Status
+
+GPU benchmark integration is intentionally incomplete.
+
+Several external benchmark sources were investigated, but the current research found significant issues involving licensing, accessibility, provenance, benchmark semantics, and hardware mapping.
+
+As a result:
+
+> **SPECTRA currently has 0 imported GPU benchmark results.**
+
+This is an explicit product decision rather than an implementation accident.
+
+Future GPU benchmark integration should only proceed when a source satisfies the required data and provenance constraints.
+
+---
+
+## Roadmap
+
+### Completed
+
+* [x] CPU hardware catalog
+* [x] GPU hardware catalog
+* [x] Hardware detail views
+* [x] CPU comparison
+* [x] GPU comparison
+* [x] Benchmark API
+* [x] Geekbench 7 CPU benchmark import
+* [x] Benchmark visualization
+* [x] Comparison Insights
+* [x] AI comparison explanation
+* [x] Hardware AI chat
+* [x] CPU + GPU build configuration
+* [x] Build AI chat
+* [x] Bounded AI conversation history
+* [x] Evidence-aware AI responses
+* [x] Hardware data normalization improvements
+* [x] Extensive frontend/backend regression testing
+
+### In Progress / Future
+
+* [ ] Validated GPU benchmark source
+* [ ] Richer benchmark schema
+* [ ] Additional performance datasets
+* [ ] Gaming performance data
+* [ ] Rendering performance data
+* [ ] Price data
+* [ ] Price history
+* [ ] Performance-to-price analysis
+* [ ] More sophisticated build analysis
+* [ ] Persistent AI conversations
+* [ ] Production deployment architecture
+
+Some roadmap items depend on obtaining data sources with appropriate licensing, provenance, and reproducibility.
+
+---
+
+## Engineering Philosophy
+
+SPECTRA is built incrementally.
+
+The project prioritizes:
+
+1. **Real data over fabricated data**
+2. **Deterministic computation over opaque scoring**
+3. **Evidence over unsupported AI claims**
+4. **Explicit unknowns over false precision**
+5. **Small verifiable changes over large rewrites**
+6. **Regression tests alongside feature development**
+
+The goal is not to build a giant hardware database overnight.
+
+The goal is to gradually build a system where:
+
+> **Hardware data → computation → evidence → AI explanation**
+
+forms a reliable chain.
+
+---
+
+## Project Status
+
+SPECTRA is an actively developed personal engineering project.
+
+It is currently focused on building the underlying hardware intelligence foundation rather than being a production-ready public hardware recommendation service.
+
+The project is intentionally evolving through small, tested increments.
+
+If it becomes useful to other people, that's a bonus.
+
+---
+
+## License
+
+License information will be added when the project's distribution model is finalized.
