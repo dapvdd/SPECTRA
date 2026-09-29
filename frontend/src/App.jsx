@@ -29,6 +29,7 @@ import {
   createBuildChatState,
   failBuildChatRequest,
   getBuildChatToken,
+  getBuildChatAnalysisSections,
   getBuildChatEvidenceSections,
   getChatLoadingParts,
   isBuildChatBusy,
@@ -812,6 +813,37 @@ function BuildChatEvidence({ evidence }) {
   );
 }
 
+function BuildChatAnalysis({ analysis }) {
+  const sections = getBuildChatAnalysisSections(analysis).filter(
+    (section) => section.items.length > 0
+  );
+
+  if (sections.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="build-chat-analysis">
+      <h4 className="build-chat-analysis-title">Build analysis</h4>
+      {sections.map((section) => (
+        <section className="build-chat-analysis-section" key={section.key}>
+          <h5 className="build-chat-analysis-label">{section.label}</h5>
+          <ul className="build-chat-analysis-list">
+            {section.items.map((item, index) => (
+              <li
+                className="build-chat-analysis-item"
+                key={`${section.key}-${index}`}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function BuildChatTranscript({ messages }) {
   if (messages.length === 0) {
     return null;
@@ -840,6 +872,7 @@ function BuildChatTranscript({ messages }) {
               <MarkdownContent markdown={message.content} />
             </div>
             <BuildChatEvidence evidence={message.evidence} />
+            <BuildChatAnalysis analysis={message.analysis} />
           </li>
         )
       )}
@@ -2000,7 +2033,8 @@ function App() {
             prev,
             result.answer,
             requestToken,
-            result.evidence
+            result.evidence,
+            result.analysis
           )
         );
       })

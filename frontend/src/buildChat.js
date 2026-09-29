@@ -27,6 +27,8 @@ export const BUILD_CHAT_HISTORY_MAX_MESSAGES = 10;
 export const BUILD_CHAT_HISTORY_MAX_MESSAGE_LENGTH = 4000;
 export const BUILD_CHAT_EVIDENCE_MAX_ITEMS = 10;
 export const BUILD_CHAT_EVIDENCE_MAX_ITEM_LENGTH = 1000;
+export const BUILD_CHAT_ANALYSIS_MAX_ITEMS = 5;
+export const BUILD_CHAT_ANALYSIS_MAX_ITEM_LENGTH = 500;
 
 export const BUILD_CHAT_EVIDENCE_SECTION = {
   knownFacts: "known_facts",
@@ -38,6 +40,18 @@ export const BUILD_CHAT_EVIDENCE_LABELS = {
   knownFacts: "Known facts",
   interpretation: "Interpretation",
   unknown: "Unknown / not provided",
+};
+
+export const BUILD_CHAT_ANALYSIS_SECTION = {
+  strengths: "strengths",
+  considerations: "considerations",
+  dataGaps: "data_gaps",
+};
+
+export const BUILD_CHAT_ANALYSIS_LABELS = {
+  strengths: "Strengths",
+  considerations: "Considerations",
+  dataGaps: "Data gaps",
 };
 
 const CHAT_ENDPOINT = apiUrl(BUILD_CHAT_ENDPOINT_PATH);
@@ -246,6 +260,86 @@ export const normalizeBuildChatEvidence = (evidence) => {
   return normalized;
 };
 
+/* ---------- Analysis ---------- */
+
+export const createEmptyBuildChatAnalysis = () => ({
+  strengths: [],
+  considerations: [],
+  dataGaps: [],
+});
+
+export const getBuildChatAnalysisSections = (analysis) => {
+  const source = analysis ?? createEmptyBuildChatAnalysis();
+
+  return [
+    {
+      key: "strengths",
+      section: BUILD_CHAT_ANALYSIS_SECTION.strengths,
+      label: BUILD_CHAT_ANALYSIS_LABELS.strengths,
+      items: source.strengths ?? [],
+    },
+    {
+      key: "considerations",
+      section: BUILD_CHAT_ANALYSIS_SECTION.considerations,
+      label: BUILD_CHAT_ANALYSIS_LABELS.considerations,
+      items: source.considerations ?? [],
+    },
+    {
+      key: "dataGaps",
+      section: BUILD_CHAT_ANALYSIS_SECTION.dataGaps,
+      label: BUILD_CHAT_ANALYSIS_LABELS.dataGaps,
+      items: source.dataGaps ?? [],
+    },
+  ];
+};
+
+const ANALYSIS_KEY_MAP = {
+  strengths: "strengths",
+  considerations: "considerations",
+  data_gaps: "dataGaps",
+  dataGaps: "dataGaps",
+};
+
+const isAnalysisItem = (item) =>
+  typeof item === "string" &&
+  item.trim() !== "" &&
+  item.length <= BUILD_CHAT_ANALYSIS_MAX_ITEM_LENGTH;
+
+export const normalizeBuildChatAnalysis = (analysis) => {
+  if (analysis === null || typeof analysis !== "object" || Array.isArray(analysis)) {
+    return null;
+  }
+
+  const givenKeys = Object.keys(analysis);
+  const allowedKeys = Object.keys(ANALYSIS_KEY_MAP);
+
+  if (givenKeys.some((key) => !allowedKeys.includes(key))) {
+    return null;
+  }
+
+  const normalized = createEmptyBuildChatAnalysis();
+
+  for (const key of allowedKeys) {
+    const items = analysis[key];
+
+    if (items === undefined) {
+      continue;
+    }
+
+    if (!Array.isArray(items) || items.length > BUILD_CHAT_ANALYSIS_MAX_ITEMS) {
+      return null;
+    }
+
+    if (!items.every(isAnalysisItem)) {
+      return null;
+    }
+
+    normalized[ANALYSIS_KEY_MAP[key]] = items.map((item) => item.trim());
+  }
+
+  return normalized;
+};
+
 export const requestBuildChatAnswer = async (
   payload,
   fetchImplementation = fetch
@@ -299,6 +393,9 @@ export const requestBuildChatAnswer = async (
   return {
     answer: responsePayload.answer,
     evidence,
+    analysis:
+      normalizeBuildChatAnalysis(responsePayload.analysis) ??
+      createEmptyBuildChatAnalysis(),
   };
 };
 
@@ -350,11 +447,12 @@ const createUserMessage = (content, index) => ({
   content,
 });
 
-const createAssistantMessage = (content, evidence, index) => ({
+const createAssistantMessage = (content, evidence, analysis, index) => ({
   id: `build-chat-message-${index}`,
   role: BUILD_CHAT_MESSAGE_ROLE.assistant,
   content,
   evidence: normalizeBuildChatEvidence(evidence) ?? createEmptyBuildChatEvidence(),
+  analysis: normalizeBuildChatAnalysis(analysis) ?? createEmptyBuildChatAnalysis(),
 });
 
 const isResponseForThisConversation = (state, token) =>
@@ -390,7 +488,7 @@ export const retryBuildChatRequest = (state) => {
   };
 };
 
-export const completeBuildChatRequest = (state, answer, token, evidence) => {
+export const completeBuildChatRequest = (state, answer, token, evidence, analysis) => {
   if (!isResponseForThisConversation(state, token)) {
     return state;
   }
@@ -407,7 +505,7 @@ export const completeBuildChatRequest = (state, answer, token, evidence) => {
     messages: [
       ...state.messages,
       createUserMessage(state.pendingQuestion, nextIndex),
-      createAssistantMessage(answer, evidence, nextIndex + 1),
+      createAssistantMessage(answer, evidence, analysis, nextIndex + 1),
     ],
     pendingQuestion: "",
     error: null,

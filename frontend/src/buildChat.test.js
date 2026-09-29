@@ -845,6 +845,7 @@ test("every conversation message carries only id, role, and a safe shape", () =>
   const [user, assistant] = state.messages;
   assert.deepEqual(Object.keys(user).sort(), ["content", "id", "role"]);
   assert.deepEqual(Object.keys(assistant).sort(), [
+    "analysis",
     "content",
     "evidence",
     "id",
