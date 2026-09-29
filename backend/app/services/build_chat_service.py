@@ -116,7 +116,47 @@ Evidence rules:
 33. If a previous assistant response contained an unsupported claim, correct it instead
     of repeating it.
 34. Do not repeat the same statement in more than one section. Every item belongs to
-    exactly one section and must not be duplicated in the answer text.
+    exactly one section and must not be duplicated in the answer text."""
+
+ANALYSIS_PROMPT = """Classify the build analysis into exactly three sections.
+
+STRENGTHS
+- Positive characteristics of the selected build that are directly supported by the
+  supplied SPECTRA context.
+- Examples: a supplied high core count can be described as strong multi-threaded
+  hardware characteristics; a supplied larger VRAM capacity can be described as more
+  available VRAM than another explicitly supplied GPU.
+- Never invent a benchmark result, a frame rate, a score, or any measurement.
+- An empty list is correct when the supplied context supports no strength.
+
+CONSIDERATIONS
+- Qualitative trade-offs or points the user should pay attention to, derived from the
+  available evidence.
+- Examples: the available data does not include actual game FPS; the selected resolution
+  increases the importance of GPU-side performance; only CPU and GPU TDP values are
+  available, so total system power cannot be determined.
+- Never turn a consideration into an unsupported measurement.
+
+DATA GAPS
+- Information that is materially missing from SPECTRA and limits this analysis.
+- Examples: gaming FPS; a benchmark result for the selected GPU; RAM capacity; storage
+  information; thermal measurements; the actual PSU requirement; current price.
+- Never list irrelevant missing information only to fill the list.
+
+Analysis rules:
+35. Analysis is evidence-bounded. Every strength must be supported by the supplied
+    context, and every consideration must follow from the available evidence.
+36. Never state FPS, a benchmark score, a render time, a PSU wattage, a total system
+    power figure, a bottleneck percentage, a temperature, a price, a price/performance
+    ratio, a compatibility guarantee, or any other gaming performance number unless that
+    exact value is explicitly present in the supplied SPECTRA context.
+37. Never state a bottleneck percentage. SPECTRA performs no bottleneck calculation.
+38. Never state a PSU requirement, a recommended wattage, or a total system power figure
+    unless it is explicitly supplied.
+39. When a measurement is missing, name it as a data gap instead of estimating it.
+40. An empty analysis list is correct when there is nothing to report. Never invent
+    content to fill a list, and never duplicate the evidence sections.
+41. The analysis must never extend the answer with a new unsupported claim.
 
 RESPONSE FORMAT
 Reply with a single JSON object and nothing else. No prose before or after it, and no
@@ -128,13 +168,22 @@ Markdown code fence.
     "known_facts": ["<string>", "..."],
     "interpretation": ["<string>", "..."],
     "unknown": ["<string>", "..."]
+  },
+  "analysis": {
+    "strengths": ["<string>", "..."],
+    "considerations": ["<string>", "..."],
+    "data_gaps": ["<string>", "..."]
   }
 }
 
-Each list holds at most 10 items, each item is a non-empty string of at most 1000
-characters, and no key other than "answer" and "evidence" is allowed."""
+Each evidence list holds at most 10 items and each analysis list holds at most 5 items.
+Every item is a non-empty string: at most 1000 characters in evidence and at most 500
+characters in analysis. No key other than "answer", "evidence", and "analysis" is
+allowed."""
 
-SYSTEM_PROMPT = f"{_CHAT_PROMPT}\n\n{CONVERSATION_PROMPT}\n\n{EVIDENCE_PROMPT}"
+SYSTEM_PROMPT = (
+    f"{_CHAT_PROMPT}\n\n{CONVERSATION_PROMPT}\n\n{EVIDENCE_PROMPT}\n\n{ANALYSIS_PROMPT}"
+)
 
 _RESPONSE_ADAPTER = TypeAdapter(BuildHardwareChatResponse)
 

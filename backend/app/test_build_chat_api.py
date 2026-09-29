@@ -6,6 +6,7 @@ from pydantic import ValidationError
 
 from backend.app import main
 from backend.app.schemas.build_chat import (
+    BuildAnalysis,
     BuildEvidence,
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
@@ -13,10 +14,11 @@ from backend.app.schemas.build_chat import (
 from backend.app.services import build_chat_service, explanation_service
 
 
-def _response(answer, **evidence):
+def _response(answer, analysis=None, **evidence):
     return BuildHardwareChatResponse(
         answer=answer,
         evidence=BuildEvidence(**evidence),
+        analysis=BuildAnalysis(**(analysis or {})),
     )
 
 
@@ -90,7 +92,7 @@ def _build_payload(**overrides):
     return payload
 
 
-def _provider_text(answer="Jawaban berbasis bukti.", **evidence):
+def _provider_text(answer="Jawaban berbasis bukti.", analysis=None, **evidence):
     return json.dumps(
         {
             "answer": answer,
@@ -98,6 +100,11 @@ def _provider_text(answer="Jawaban berbasis bukti.", **evidence):
                 "known_facts": evidence.get("known_facts", []),
                 "interpretation": evidence.get("interpretation", []),
                 "unknown": evidence.get("unknown", []),
+            },
+            "analysis": {
+                "strengths": (analysis or {}).get("strengths", []),
+                "considerations": (analysis or {}).get("considerations", []),
+                "data_gaps": (analysis or {}).get("data_gaps", []),
             },
         }
     )
@@ -129,6 +136,11 @@ class TestBuildChatAPI:
                 "known_facts": ["CPU 6 cores / 12 threads."],
                 "interpretation": [],
                 "unknown": ["FPS pada 1440p."],
+            },
+            "analysis": {
+                "strengths": [],
+                "considerations": [],
+                "data_gaps": [],
             },
         }
 

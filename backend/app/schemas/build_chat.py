@@ -12,6 +12,9 @@ MAX_HISTORY_MESSAGE_LENGTH = 4000
 MAX_EVIDENCE_ITEMS = 10
 MAX_EVIDENCE_ITEM_LENGTH = 1000
 
+MAX_ANALYSIS_ITEMS = 5
+MAX_ANALYSIS_ITEM_LENGTH = 500
+
 
 class BuildUseCase(str, Enum):
     gaming = "gaming"
@@ -235,11 +238,43 @@ class BuildEvidence(BaseModel):
     )
 
 
+def _validate_analysis_item(value: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError("must be a string")
+    value = value.strip()
+    if not value:
+        raise ValueError("must not be blank")
+    if len(value) > MAX_ANALYSIS_ITEM_LENGTH:
+        raise ValueError(f"must be at most {MAX_ANALYSIS_ITEM_LENGTH} characters")
+    return value
+
+
+BuildAnalysisItem: TypeAlias = Annotated[str, AfterValidator(_validate_analysis_item)]
+
+
+class BuildAnalysis(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    strengths: list[BuildAnalysisItem] = Field(
+        default_factory=list,
+        max_length=MAX_ANALYSIS_ITEMS,
+    )
+    considerations: list[BuildAnalysisItem] = Field(
+        default_factory=list,
+        max_length=MAX_ANALYSIS_ITEMS,
+    )
+    data_gaps: list[BuildAnalysisItem] = Field(
+        default_factory=list,
+        max_length=MAX_ANALYSIS_ITEMS,
+    )
+
+
 class BuildHardwareChatResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     answer: str = Field(min_length=1)
     evidence: BuildEvidence
+    analysis: BuildAnalysis
 
     @field_validator("answer")
     @classmethod

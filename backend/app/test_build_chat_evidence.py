@@ -73,13 +73,18 @@ def _build_payload(**overrides):
     return payload
 
 
-def _structured(answer="Berdasarkan data tersimpan.", **evidence):
+def _structured(answer="Berdasarkan data tersimpan.", analysis=None, **evidence):
     return {
         "answer": answer,
         "evidence": {
             "known_facts": evidence.get("known_facts", []),
             "interpretation": evidence.get("interpretation", []),
             "unknown": evidence.get("unknown", []),
+        },
+        "analysis": {
+            "strengths": (analysis or {}).get("strengths", []),
+            "considerations": (analysis or {}).get("considerations", []),
+            "data_gaps": (analysis or {}).get("data_gaps", []),
         },
     }
 
@@ -124,6 +129,11 @@ class TestBuildEvidenceResponse:
                 "known_facts": ["CPU 6 cores / 12 threads."],
                 "interpretation": ["Build menggabungkan CPU dengan GPU diskrit."],
                 "unknown": ["FPS pada 1440p.", "kebutuhan PSU."],
+            },
+            "analysis": {
+                "strengths": [],
+                "considerations": [],
+                "data_gaps": [],
             },
         }
 
@@ -495,3 +505,16 @@ class TestBuildEvidenceSchemaLimits:
     def test_response_requires_evidence(self):
         with pytest.raises(ValidationError):
             BuildHardwareChatResponse.model_validate({"answer": "ok"})
+
+    def test_response_requires_analysis(self):
+        with pytest.raises(ValidationError):
+            BuildHardwareChatResponse.model_validate(
+                {
+                    "answer": "ok",
+                    "evidence": {
+                        "known_facts": [],
+                        "interpretation": [],
+                        "unknown": [],
+                    },
+                }
+            )
