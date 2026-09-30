@@ -1,6 +1,8 @@
 from backend.app.database import Base, engine
 from backend.app.models import (
     BenchmarkResult,
+    BuildConversation,
+    BuildMessage,
     CPUSpecification,
     GPUSpecification,
     Hardware,

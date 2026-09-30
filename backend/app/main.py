@@ -24,6 +24,14 @@ from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
 )
+from backend.app.schemas.build_conversation import (
+    BuildConversationCreateRequest,
+    BuildConversationResponse,
+    BuildMessageCreateRequest,
+    BuildMessageResponse,
+    BuildTurnCreateRequest,
+    BuildTurnResponse,
+)
 from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
@@ -36,6 +44,7 @@ from backend.app.services.benchmark_service import (
     get_benchmarks_for_hardware,
 )
 from backend.app.services import build_chat_service
+from backend.app.services import build_conversation_service
 from backend.app.services import explanation_service
 from backend.app.services import hardware_chat_service
 
@@ -277,3 +286,95 @@ def generate_build_chat_answer(
         raise HTTPException(status_code=503, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
+
+
+@app.post(
+    "/build/conversations",
+    response_model=BuildConversationResponse,
+)
+def create_build_conversation(
+    request_data: BuildConversationCreateRequest,
+) -> BuildConversationResponse:
+    try:
+        return build_conversation_service.create_or_get_conversation(
+            request_data
+        )
+    except build_conversation_service.BuildIdentityError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+
+@app.get(
+    "/build/conversations/{conversation_id}",
+    response_model=BuildConversationResponse,
+)
+def get_build_conversation(
+    conversation_id: int,
+) -> BuildConversationResponse:
+    try:
+        return build_conversation_service.get_conversation(conversation_id)
+    except build_conversation_service.ConversationNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/build/conversations/{conversation_id}/messages",
+    response_model=list[BuildMessageResponse],
+)
+def get_build_conversation_messages(
+    conversation_id: int,
+) -> list[BuildMessageResponse]:
+    try:
+        return build_conversation_service.list_messages(conversation_id)
+    except build_conversation_service.ConversationNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except build_conversation_service.StoredConversationDataError as error:
+        raise HTTPException(status_code=500, detail=str(error)) from error
+
+
+@app.post(
+    "/build/conversations/{conversation_id}/messages",
+    response_model=BuildMessageResponse,
+    status_code=201,
+)
+def append_build_conversation_message(
+    conversation_id: int,
+    request_data: BuildMessageCreateRequest,
+) -> BuildMessageResponse:
+    try:
+        return build_conversation_service.append_message(
+            conversation_id,
+            request_data,
+        )
+    except build_conversation_service.ConversationNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.post(
+    "/build/conversations/{conversation_id}/turn",
+    response_model=BuildTurnResponse,
+    status_code=201,
+)
+def append_build_conversation_turn(
+    conversation_id: int,
+    request_data: BuildTurnCreateRequest,
+) -> BuildTurnResponse:
+    try:
+        return build_conversation_service.append_turn(
+            conversation_id,
+            request_data,
+        )
+    except build_conversation_service.ConversationNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.post(
+    "/build/conversations/{conversation_id}/reset",
+    response_model=BuildConversationResponse,
+)
+def reset_build_conversation(
+    conversation_id: int,
+) -> BuildConversationResponse:
+    try:
+        return build_conversation_service.reset_conversation(conversation_id)
+    except build_conversation_service.ConversationNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error

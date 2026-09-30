@@ -4,6 +4,10 @@ from backend.app.models.gpu import GPUSpecification
 from backend.app.models.benchmark import BenchmarkResult
 from backend.app.models.source import Source
 from backend.app.models.external_identifier import ExternalIdentifier
+from backend.app.models.build_conversation import (
+    BuildConversation,
+    BuildMessage,
+)
 
 __all__ = [
     "Hardware",
@@ -11,4 +15,6 @@ __all__ = [
     "GPUSpecification",
     "BenchmarkResult",
     "Source",
+    "BuildConversation",
+    "BuildMessage",
 ]
