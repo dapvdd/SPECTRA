@@ -164,6 +164,35 @@ Conversation history is sent as context to the existing AI provider infrastructu
 
 ---
 
+## Persistent Build AI Conversations
+
+Build AI conversations are stored in SQLite so a conversation survives a frontend
+reload.
+
+A conversation belongs to one CPU + GPU build identity. Selecting a different CPU
+or GPU starts a different conversation, so a restored transcript can never mix
+two builds.
+
+The stored transcript keeps the Sprint 16 structured response intact: the answer
+is stored with its evidence and analysis sections, so a restored assistant
+message renders exactly like a live one.
+
+Current implementation:
+
+* Creates or reuses one conversation per CPU + GPU pair
+* Stores both the user question and the assistant answer
+* Restores the previous messages when the build is selected again
+* Verifies both hardware references against the stored catalog
+* Bounded history is unchanged: at most 10 messages reach the AI provider
+* A failed load shows a recoverable error instead of an invented history
+
+Persistence wraps the existing build chat flow. `POST /build/chat`, the Gemini
+provider, the prompt, and the evidence contract are unchanged.
+
+The full contract is documented in `docs/BUILD_AI_PERSISTENCE.md`.
+
+---
+
 ## Evidence-Aware AI Responses
 
 Build AI responses are structured into three evidence categories:
@@ -212,6 +241,7 @@ The current local SPECTRA database contains approximately:
 | Benchmark results     |   1,040 |
 | GPU benchmark results |       0 |
 | Sources               |       3 |
+| Build conversations   |       0 |
 
 The current benchmark dataset consists of CPU Geekbench 7 results.
 
@@ -296,6 +326,7 @@ frontend/
 │   ├── performance.js
 │   ├── buildConfig.js
 │   ├── buildChat.js
+│   ├── buildConversation.js
 │   ├── hardwareChat.js
 │   ├── detail.js
 │   ├── markdown.js
@@ -378,6 +409,13 @@ GET  /hardware/{hardware_id}/benchmarks
 POST /comparison/explanation
 POST /hardware/chat
 POST /build/chat
+
+POST /build/conversations
+GET  /build/conversations/{conversation_id}
+GET  /build/conversations/{conversation_id}/messages
+POST /build/conversations/{conversation_id}/messages
+POST /build/conversations/{conversation_id}/turn
+POST /build/conversations/{conversation_id}/reset
 ```
 
 The API layer also performs strict validation for AI request payloads and hardware-related responses.
@@ -388,13 +426,13 @@ The API layer also performs strict validation for AI request payloads and hardwa
 
 SPECTRA currently has a substantial automated regression suite.
 
-Latest Sprint 15 verification:
+Latest Sprint 17 verification:
 
 ```text
-Frontend tests: 334 passed
-Backend tests:  377 passed
+Frontend tests: 386 passed
+Backend tests:  478 passed
 --------------------------------
-Total:          711 passed
+Total:          864 passed
 ```
 
 Additional verification:
@@ -403,9 +441,10 @@ Additional verification:
 * Lint: 0 errors
 * Existing lint warning: 1
 * `git diff --check`: clean
-* Database unchanged during Sprint 15 verification
-* No migrations introduced during Sprint 15
-* No benchmark imports performed during Sprint 15
+* Database schema extended with additive tables only
+* No migrations introduced during Sprint 17
+* No benchmark imports performed during Sprint 17
+* CPU and GPU catalog counts unchanged during Sprint 17
 
 The test suite covers both deterministic application logic and API contracts, including:
 
@@ -423,6 +462,8 @@ The test suite covers both deterministic application logic and API contracts, in
 * Conversation history
 * Evidence contracts
 * Stale asynchronous response protection
+* Build conversation persistence and restoration
+* Build identity separation between conversations
 
 ---
 
@@ -489,12 +530,15 @@ Future GPU benchmark integration should only proceed when a source satisfies the
 * [x] Build AI chat
 * [x] Bounded AI conversation history
 * [x] Evidence-aware AI responses
+* [x] Persistent build conversations
 * [x] Hardware data normalization improvements
 * [x] Extensive frontend/backend regression testing
 
 ### In Progress / Future
 
 * [ ] Validated GPU benchmark source
+* [ ] Persistent hardware chat conversations
+* [ ] Conversation list, rename, and delete UI
 * [ ] Richer benchmark schema
 * [ ] Additional performance datasets
 * [ ] Gaming performance data
@@ -503,7 +547,6 @@ Future GPU benchmark integration should only proceed when a source satisfies the
 * [ ] Price history
 * [ ] Performance-to-price analysis
 * [ ] More sophisticated build analysis
-* [ ] Persistent AI conversations
 * [ ] Production deployment architecture
 
 Some roadmap items depend on obtaining data sources with appropriate licensing, provenance, and reproducibility.

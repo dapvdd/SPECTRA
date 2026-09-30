@@ -22,22 +22,41 @@ import {
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
 import {
+  BUILD_CHAT_CONVERSATION_ERROR_KIND,
+  BUILD_CHAT_CONVERSATION_STATUS,
   BUILD_CHAT_MESSAGE_ROLE,
   BUILD_CHAT_SUGGESTED_QUESTIONS,
   buildChatPayload,
+  completeBuildChatConversationLoad,
+  completeBuildChatConversationSave,
   completeBuildChatRequest,
   createBuildChatState,
+  failBuildChatConversationLoad,
+  failBuildChatConversationReset,
+  failBuildChatConversationSave,
   failBuildChatRequest,
   getBuildChatToken,
   getBuildChatAnalysisSections,
+  getBuildChatConversationError,
   getBuildChatEvidenceSections,
   getChatLoadingParts,
+  getLastBuildChatTurn,
   isBuildChatBusy,
+  isBuildChatRestoringConversation,
   isSameBuildChatToken,
   requestBuildChatAnswer,
   resetBuildChatConversation,
+  startBuildChatConversationLoad,
   startBuildChatRequest,
 } from "./buildChat.js";
+import {
+  appendBuildConversationTurn,
+  buildBuildTurnPayload,
+  ensureBuildConversation,
+  requestBuildConversation,
+  requestBuildConversationMessages,
+  resetBuildConversationMessages,
+} from "./buildConversation.js";
 import {
   HARDWARE_TYPES,
   createCatalogLoadGuard,
@@ -1024,7 +1043,65 @@ function HardwareChatSection({ chatState, onAsk }) {
   );
 }
 
-function BuildChatSection({ contextSummary, chatState, onAsk, onRetry, onReset }) {
+const BUILD_CONVERSATION_ERROR_COPY = {
+  [BUILD_CHAT_CONVERSATION_ERROR_KIND.load]: {
+    title: "Saved conversation unavailable",
+    message:
+      "The stored conversation for this build could not be loaded, so no previous messages are shown. You can retry or ask a new question.",
+  },
+  [BUILD_CHAT_CONVERSATION_ERROR_KIND.save]: {
+    title: "Answer not saved",
+    message:
+      "This exchange is shown here but was not stored, so it may be missing after a reload.",
+  },
+  [BUILD_CHAT_CONVERSATION_ERROR_KIND.reset]: {
+    title: "New conversation not started",
+    message:
+      "The previous messages are still stored for this build and may reappear after a reload.",
+  },
+};
+
+function BuildConversationNotice({ conversation, onRetry }) {
+  if (isBuildChatRestoringConversation({ conversation })) {
+    return (
+      <p className="build-conversation-status" role="status">
+        <span className="state-spinner" aria-hidden="true" />
+        Loading the saved conversation for this build...
+      </p>
+    );
+  }
+
+  if (conversation?.status !== BUILD_CHAT_CONVERSATION_STATUS.error) {
+    return null;
+  }
+
+  const copy =
+    BUILD_CONVERSATION_ERROR_COPY[conversation.error?.kind] ??
+    BUILD_CONVERSATION_ERROR_COPY[BUILD_CHAT_CONVERSATION_ERROR_KIND.load];
+
+  return (
+    <div className="build-conversation-notice" role="alert">
+      <strong>{copy.title}</strong>
+      <span>{conversation.error?.message || copy.message}</span>
+      <button
+        type="button"
+        className="build-conversation-retry"
+        onClick={onRetry}
+      >
+        Retry
+      </button>
+    </div>
+  );
+}
+
+function BuildChatSection({
+  contextSummary,
+  chatState,
+  onAsk,
+  onRetry,
+  onReset,
+  onRetryConversation,
+}) {
   const started = chatState.messages.length > 0;
   const finished = started || chatState.status !== CHAT_STATUS.idle;
 
@@ -1050,6 +1127,11 @@ function BuildChatSection({ contextSummary, chatState, onAsk, onRetry, onReset }
           </button>
         )}
       </div>
+
+      <BuildConversationNotice
+        conversation={chatState.conversation}
+        onRetry={onRetryConversation}
+      />
 
       <AiChatSection
         id="build-chat-title"
@@ -1178,6 +1260,7 @@ function BuildConfigurationSection({
   onAskBuildQuestion,
   onRetryBuildChat,
   onNewBuildChat,
+  onRetryBuildConversation,
 }) {
   const summary = getBuildSummary(buildConfig);
   const cpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
@@ -1314,6 +1397,7 @@ function BuildConfigurationSection({
           onAsk={onAskBuildQuestion}
           onRetry={onRetryBuildChat}
           onReset={onNewBuildChat}
+          onRetryConversation={onRetryBuildConversation}
         />
       ) : (
         <div className="build-ai-note">
@@ -1370,6 +1454,8 @@ function App() {
   const buildCpuGuardRef = useRef(createDetailRequestGuard());
   const buildGpuGuardRef = useRef(createDetailRequestGuard());
   const buildChatGuardRef = useRef(createChatRequestGuard());
+  const buildConversationGuardRef = useRef(createChatRequestGuard());
+  const buildConversationIdRef = useRef(null);
 
   const compareDetails = getComparisonDetailsInSelectionOrder(
     compareList,
@@ -1578,6 +1664,83 @@ function App() {
     setBenchmarkStates({});
   };
 
+  const loadBuildConversation = (requestToken, cpuId, gpuId) => {
+    if (
+      typeof cpuId !== "number" ||
+      typeof gpuId !== "number" ||
+      cpuId <= 0 ||
+      gpuId <= 0
+    ) {
+      return;
+    }
+
+    const requestId = buildConversationGuardRef.current.begin();
+
+    setBuildChatState((prev) =>
+      startBuildChatConversationLoad(prev, requestToken)
+    );
+
+    requestBuildConversation(cpuId, gpuId)
+      .then((conversation) =>
+        requestBuildConversationMessages(conversation.id).then((messages) => ({
+          conversation,
+          messages,
+        }))
+      )
+      .then(({ conversation, messages }) => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        buildConversationIdRef.current = conversation.id;
+        setBuildChatState((prev) =>
+          completeBuildChatConversationLoad(
+            prev,
+            conversation.id,
+            messages,
+            requestToken
+          )
+        );
+      })
+      .catch((error) => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        console.error("Failed to load the build conversation:", error);
+        setBuildChatState((prev) =>
+          failBuildChatConversationLoad(prev, error, requestToken)
+        );
+      });
+  };
+
+  const restoreBuildConversationForSlot = (type, detail) => {
+    const otherSlot = type === "CPU" ? "GPU" : "CPU";
+    const otherDetail = getBuildSlotDetail(buildDetailState, otherSlot);
+    const cpuDetail = type === "CPU" ? detail : otherDetail;
+    const gpuDetail = type === "GPU" ? detail : otherDetail;
+
+    if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
+      return;
+    }
+
+    loadBuildConversation(
+      getBuildChatToken(
+        getBuildChatSnapshot(cpuDetail, gpuDetail, buildUserContext)
+      ),
+      cpuDetail.id,
+      gpuDetail.id
+    );
+  };
+
   const getBuildGuard = (type) =>
     type === "GPU" ? buildGpuGuardRef.current : buildCpuGuardRef.current;
 
@@ -1598,6 +1761,8 @@ function App() {
         setBuildDetailState((prev) =>
           completeBuildDetailRequest(prev, type, requestId, data),
         );
+
+        restoreBuildConversationForSlot(type, data);
       })
       .catch((error) => {
         if (!guard.isCurrent(requestId)) {
@@ -1624,6 +1789,8 @@ function App() {
 
   const resetBuildChat = (nextBuildToken) => {
     buildChatGuardRef.current.invalidate();
+    buildConversationGuardRef.current.invalidate();
+    buildConversationIdRef.current = null;
     setBuildChatState(createBuildChatState(nextBuildToken));
   };
 
@@ -1988,6 +2155,61 @@ function App() {
       });
   };
 
+  const saveBuildChatTurn = (requestToken, question, result) => {
+    const cpuId = buildCpuDetail?.id ?? null;
+    const gpuId = buildGpuDetail?.id ?? null;
+    const requestId = buildConversationGuardRef.current.begin();
+
+    let turn;
+
+    try {
+      turn = buildBuildTurnPayload(question, result);
+    } catch (error) {
+      console.error("Failed to save the build conversation:", error);
+      setBuildChatState((prev) =>
+        failBuildChatConversationSave(prev, error, requestToken)
+      );
+      return;
+    }
+
+    ensureBuildConversation(buildConversationIdRef.current, cpuId, gpuId)
+      .then((conversationId) => {
+        buildConversationIdRef.current = conversationId;
+        return appendBuildConversationTurn(conversationId, turn);
+      })
+      .then(() => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        setBuildChatState((prev) =>
+          completeBuildChatConversationSave(
+            prev,
+            buildConversationIdRef.current,
+            requestToken
+          )
+        );
+      })
+      .catch((error) => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        console.error("Failed to save the build conversation:", error);
+        setBuildChatState((prev) =>
+          failBuildChatConversationSave(prev, error, requestToken)
+        );
+      });
+  };
+
   const askBuildChat = (question) => {
     if (!buildChatReady || isBuildChatBusy(buildChatState)) {
       return;
@@ -2037,6 +2259,8 @@ function App() {
             result.analysis
           )
         );
+
+        saveBuildChatTurn(requestToken, payload.question, result);
       })
       .catch((error) => {
         if (!buildChatGuardRef.current.isCurrent(requestId)) {
@@ -2058,9 +2282,79 @@ function App() {
     askBuildChat(buildChatState.pendingQuestion);
   };
 
+  const clearStoredBuildConversation = (requestToken) => {
+    const conversationId = buildConversationIdRef.current;
+
+    if (conversationId === null) {
+      return;
+    }
+
+    const requestId = buildConversationGuardRef.current.begin();
+
+    resetBuildConversationMessages(conversationId)
+      .then(() => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        setBuildChatState((prev) =>
+          completeBuildChatConversationSave(prev, conversationId, requestToken)
+        );
+      })
+      .catch((error) => {
+        if (!buildConversationGuardRef.current.isCurrent(requestId)) {
+          return;
+        }
+
+        if (!isSameBuildChatToken(buildChatTokenRef.current, requestToken)) {
+          return;
+        }
+
+        console.error("Failed to start a new build conversation:", error);
+        setBuildChatState((prev) =>
+          failBuildChatConversationReset(prev, error, requestToken)
+        );
+      });
+  };
+
+  const retryBuildConversation = () => {
+    const conversationError = getBuildChatConversationError(buildChatState);
+
+    if (
+      conversationError?.kind ===
+      BUILD_CHAT_CONVERSATION_ERROR_KIND.save
+    ) {
+      const turn = getLastBuildChatTurn(buildChatState);
+
+      if (turn) {
+        saveBuildChatTurn(buildChatToken, turn.question, turn);
+      }
+
+      return;
+    }
+
+    if (
+      conversationError?.kind ===
+      BUILD_CHAT_CONVERSATION_ERROR_KIND.reset
+    ) {
+      clearStoredBuildConversation(buildChatToken);
+      return;
+    }
+
+    loadBuildConversation(buildChatToken);
+  };
+
   const startNewBuildChat = () => {
+    const requestToken = buildChatToken;
+
     buildChatGuardRef.current.invalidate();
+    buildConversationGuardRef.current.invalidate();
     setBuildChatState((prev) => resetBuildChatConversation(prev));
+    clearStoredBuildConversation(requestToken);
   };
 
   const formatComparisonTableCell = (spec, value) => {
@@ -2512,6 +2806,7 @@ function App() {
           onAskBuildQuestion={askBuildChat}
           onRetryBuildChat={retryBuildChat}
           onNewBuildChat={startNewBuildChat}
+          onRetryBuildConversation={retryBuildConversation}
         />
 
         <section

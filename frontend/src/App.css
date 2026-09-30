@@ -2516,6 +2516,57 @@ h1 {
   color: #e0f2fe;
 }
 
+.build-conversation-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.build-conversation-notice {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  background: #1c1917;
+  border: 1px solid #78350f;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.build-conversation-notice strong {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.build-conversation-notice span {
+  color: #cbd5f5;
+}
+
+.build-conversation-retry {
+  justify-self: start;
+  margin-top: 0.2rem;
+  padding: 0.3rem 0.7rem;
+  background: transparent;
+  color: #7dd3fc;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.build-conversation-retry:hover,
+.build-conversation-retry:focus-visible {
+  border-color: #38bdf8;
+  color: #e0f2fe;
+}
+
 .build-chat-transcript {
   display: grid;
   gap: 0.65rem;

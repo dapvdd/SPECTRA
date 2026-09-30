@@ -244,7 +244,10 @@ In scope for this contract:
   request data.
 - There is no database lookup. Component identity (`id`) is recorded, not
   verified, in this sprint.
-- History is in-memory only. Nothing is persisted and nothing is authenticated.
+- This endpoint keeps no state. The bounded history is supplied by the client on
+  every request, and nothing is authenticated. A separate persistence layer
+  stores the transcript for reload recovery; it is documented in
+  `BUILD_AI_PERSISTENCE.md` and does not change this contract.
 
 Explicitly out of scope:
 
@@ -293,6 +296,6 @@ following, because SPECTRA does not hold the evidence:
 | Successful turn | `previous messages + user message + assistant answer + evidence sections` becomes the new state. |
 | Failed turn | The failed question is not appended, previous messages are preserved, and the question stays available for retry. |
 | Retry | Re-asks the pending question against the current build only, without duplicating the failed user message. |
-| New conversation | Clears messages, error, pending question, and loading state. Keeps CPU, GPU, use case, and resolution. |
+| New conversation | Clears messages, error, pending question, and loading state. Keeps CPU, GPU, use case, and resolution. Also clears the stored transcript for the same build identity. |
 | CPU / GPU / use case / resolution change | Invalidates the conversation: clear messages, clear the pending request, clear the error, return to idle, keep the build. |
 | Stale success or failure | Ignored, via `createChatRequestGuard` and the build identity token. |

@@ -423,8 +423,28 @@ export const isSameBuildChatToken = (token, other) => token === other;
 
 /* ---------- Conversation state ---------- */
 
+export const BUILD_CHAT_CONVERSATION_STATUS = {
+  idle: "idle",
+  loading: "loading",
+  ready: "ready",
+  error: "error",
+};
+
+export const BUILD_CHAT_CONVERSATION_ERROR_KIND = {
+  load: "load",
+  save: "save",
+  reset: "reset",
+};
+
+export const createBuildChatConversationState = () => ({
+  status: BUILD_CHAT_CONVERSATION_STATUS.idle,
+  error: null,
+});
+
 export const createBuildChatState = (buildToken = "") => ({
   buildToken,
+  conversationId: null,
+  conversation: createBuildChatConversationState(),
   status: CHAT_STATUS.idle,
   messages: [],
   pendingQuestion: "",
@@ -435,11 +455,170 @@ export const getBuildChatMessages = (state) => state.messages;
 
 export const hasBuildChatConversation = (state) => state.messages.length > 0;
 
+export const getBuildChatConversationId = (state) => state.conversationId ?? null;
+
+export const isBuildChatRestoringConversation = (state) =>
+  state?.conversation?.status === BUILD_CHAT_CONVERSATION_STATUS.loading;
+
+export const getBuildChatConversationError = (state) =>
+  state?.conversation?.error ?? null;
+
 export const resetBuildChatConversation = (state) =>
   createBuildChatState(state?.buildToken ?? "");
 
 export const isBuildChatBusy = (state) =>
   state.status === CHAT_STATUS.loading;
+
+const isUsableConversationId = (value) =>
+  typeof value === "number" && Number.isInteger(value) && value > 0;
+
+const isRestorableMessageList = (messages) =>
+  Array.isArray(messages) &&
+  messages.every(
+    (message) =>
+      message !== null &&
+      typeof message === "object" &&
+      (message.role === BUILD_CHAT_MESSAGE_ROLE.user ||
+        message.role === BUILD_CHAT_MESSAGE_ROLE.assistant) &&
+      typeof message.content === "string" &&
+      message.content.trim() !== ""
+  );
+
+const isBuildResponseForThisConversation = (state, token) =>
+  token === undefined || token === state.buildToken;
+
+const withConversationError = (state, kind, fallbackMessage, error) => ({
+  ...state,
+  conversation: {
+    status: BUILD_CHAT_CONVERSATION_STATUS.error,
+    error: {
+      kind,
+      message: error?.message || fallbackMessage,
+    },
+  },
+});
+
+export const startBuildChatConversationLoad = (state, buildToken) => ({
+  ...state,
+  buildToken: buildToken ?? state.buildToken,
+  conversationId: null,
+  conversation: {
+    status: BUILD_CHAT_CONVERSATION_STATUS.loading,
+    error: null,
+  },
+});
+
+export const completeBuildChatConversationLoad = (
+  state,
+  conversationId,
+  messages,
+  buildToken
+) => {
+  if (!isBuildResponseForThisConversation(state, buildToken)) {
+    return state;
+  }
+
+  if (!isUsableConversationId(conversationId) || !isRestorableMessageList(messages)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    conversationId,
+    conversation: {
+      status: BUILD_CHAT_CONVERSATION_STATUS.ready,
+      error: null,
+    },
+    messages,
+  };
+};
+
+export const failBuildChatConversationLoad = (state, error, buildToken) => {
+  if (!isBuildResponseForThisConversation(state, buildToken)) {
+    return state;
+  }
+
+  return withConversationError(
+    state,
+    BUILD_CHAT_CONVERSATION_ERROR_KIND.load,
+    "The saved conversation could not be loaded.",
+    error
+  );
+};
+
+export const completeBuildChatConversationSave = (
+  state,
+  conversationId,
+  buildToken
+) => {
+  if (!isBuildResponseForThisConversation(state, buildToken)) {
+    return state;
+  }
+
+  if (!isUsableConversationId(conversationId)) {
+    return state;
+  }
+
+  return {
+    ...state,
+    conversationId,
+    conversation: {
+      status: BUILD_CHAT_CONVERSATION_STATUS.ready,
+      error: null,
+    },
+  };
+};
+
+export const failBuildChatConversationSave = (state, error, buildToken) => {
+  if (!isBuildResponseForThisConversation(state, buildToken)) {
+    return state;
+  }
+
+  return withConversationError(
+    state,
+    BUILD_CHAT_CONVERSATION_ERROR_KIND.save,
+    "This exchange could not be saved.",
+    error
+  );
+};
+
+export const failBuildChatConversationReset = (state, error, buildToken) => {
+  if (!isBuildResponseForThisConversation(state, buildToken)) {
+    return state;
+  }
+
+  return withConversationError(
+    state,
+    BUILD_CHAT_CONVERSATION_ERROR_KIND.reset,
+    "A new conversation could not be started.",
+    error
+  );
+};
+
+export const getLastBuildChatTurn = (state) => {
+  const messages = state?.messages ?? [];
+
+  if (messages.length < 2) {
+    return null;
+  }
+
+  const answer = messages[messages.length - 1];
+  const question = messages[messages.length - 2];
+
+  if (
+    question?.role !== BUILD_CHAT_MESSAGE_ROLE.user ||
+    answer?.role !== BUILD_CHAT_MESSAGE_ROLE.assistant
+  ) {
+    return null;
+  }
+
+  return {
+    question: question.content,
+    answer: answer.content,
+    evidence: answer.evidence ?? createEmptyBuildChatEvidence(),
+    analysis: answer.analysis ?? createEmptyBuildChatAnalysis(),
+  };
+};
 
 const createUserMessage = (content, index) => ({
   id: `build-chat-message-${index}`,
