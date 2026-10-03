@@ -576,6 +576,118 @@ forms a reliable chain.
 
 ---
 
+## Production / Deployment Configuration
+
+> **WARNING: `.env` must never be committed to version control.**
+
+### Backend Environment Variables
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `SPECTRA_DATABASE_URL` | No | `sqlite:///./data/spectra.db` | SQLAlchemy database URL |
+| `SPECTRA_CORS_ORIGINS` | No | `http://localhost:5173` | Comma-separated allowed CORS origins |
+| `GEMINI_API_KEY` | Yes (for AI) | — | Gemini API key |
+| `GEMINI_MODEL` | Yes (for AI) | — | Gemini model name |
+
+### Frontend Environment Variables
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `VITE_API_BASE_URL` | No | `http://127.0.0.1:8000` | Backend API base URL |
+
+### Database Configuration
+
+The database path is configurable via `SPECTRA_DATABASE_URL`. By default, SPECTRA uses a local SQLite database at `data/spectra.db`.
+
+```bash
+# Default (local development)
+export SPECTRA_DATABASE_URL="sqlite:///./data/spectra.db"
+
+# Custom path
+export SPECTRA_DATABASE_URL="sqlite:///var/lib/spectra/spectra.db"
+```
+
+### CORS Configuration
+
+Allowed origins are configurable via `SPECTRA_CORS_ORIGINS` (comma-separated):
+
+```bash
+# Default (local development)
+export SPECTRA_CORS_ORIGINS="http://localhost:5173"
+
+# Multiple origins
+export SPECTRA_CORS_ORIGINS="https://example.com,https://app.example.com"
+```
+
+### Backend Startup
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Initialize database (additive only — does not destroy existing data)
+python -m backend.app.init_db
+
+# Start server
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+```
+
+### Frontend Production Build
+
+```bash
+# Install dependencies
+npm install
+
+# Build for production
+npm run build
+
+# Output is in dist/
+```
+
+### Health Check
+
+```bash
+curl http://localhost:8000/health
+# {"status":"healthy"}
+```
+
+### Gemini Configuration
+
+Gemini is only required for AI functionality. The backend starts without Gemini credentials, but AI endpoints return 503 until configured.
+
+```bash
+export GEMINI_API_KEY="your-api-key"
+export GEMINI_MODEL="gemini-2.0-flash"
+```
+
+### Docker Deployment (Local / Self-Hosted)
+
+> **Notice**: This provides a portable containerized deployment for local/self-hosted use. It is **NOT** a production cloud deployment.
+
+SPECTRA includes a Docker Compose setup for local containerized deployment:
+
+```bash
+# Build images
+docker compose build
+
+# Start services (backend + frontend with persistent SQLite storage)
+docker compose up -d
+
+# Verify health
+curl http://localhost:8000/health
+
+# Stop services (database volume preserved)
+docker compose down
+```
+
+- **Frontend**: `http://localhost:8080` (Nginx serving production Vite build)
+- **Backend**: `http://localhost:8000` (FastAPI with Uvicorn)
+- **Database Volume**: `spectra-sqlite-data` (SQLite database with automatic template initialization to prevent empty volume masking)
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full deployment documentation, environment variables, and operational details.
+
+---
+
 ## Project Status
 
 SPECTRA is an actively developed personal engineering project.

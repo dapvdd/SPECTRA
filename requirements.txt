@@ -1,4 +1,7 @@
-greenlet==3.5.5
+fastapi==0.128.1
+uvicorn==0.41.1
+pydantic==2.12.5
 SQLAlchemy==2.0.52
+greenlet==3.5.5
 typing_extensions==4.16.0
 python-dotenv==1.2.3
