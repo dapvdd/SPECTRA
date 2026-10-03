@@ -8,10 +8,12 @@ import {
 import {
   calculateComparisonInsights,
   buildComparisonFacts,
-  getComparisonWinner,
-  getComparisonWinnerClass,
-  GPU_TABLE_SPECS,
 } from "./comparison.js";
+import {
+  DECISION_STATUS,
+  buildComparisonDecisionSummary,
+  buildComparisonSpecRows,
+} from "./comparisonDecision.js";
 import {
   AI_ANALYSIS_STATUS,
   requestComparisonExplanation,
@@ -69,7 +71,6 @@ import {
 import {
   getGpuDetailViewModel,
   getHardwareCardPrimarySpecs,
-  formatReleaseDate,
 } from "./hardwareCard.js";
 import {
   createDetailRequestGuard,
@@ -313,6 +314,156 @@ function PerformanceSection({
   );
 }
 
+
+const DECISION_COMPLETENESS_CLASS = {
+  complete: "performance-status-available",
+  partial: "performance-status-partial",
+  unavailable: "performance-status-error",
+  loading: "performance-status-loading",
+};
+
+function ComparisonDecisionSupport({ summary }) {
+  if (summary.status === DECISION_STATUS.empty) {
+    return null;
+  }
+
+  const { availability, benchmarkSupport, lead, overview } = summary;
+  const isLoading = summary.status === DECISION_STATUS.loading;
+
+  return (
+    <section
+      className="comparison-decision"
+      aria-labelledby="decision-support-title"
+      aria-busy={isLoading}
+    >
+      <div className="comparison-decision-header">
+        <div>
+          <p className="detail-section-label">DECISION SUPPORT</p>
+          <h3 id="decision-support-title">What this comparison covers</h3>
+          <p className="comparison-decision-subhead">{overview.headline}</p>
+        </div>
+
+        <span
+          className={`performance-status ${
+            DECISION_COMPLETENESS_CLASS[availability.completeness]
+          }`}
+        >
+          {availability.statusLabel}
+        </span>
+      </div>
+
+      <div className="comparison-overview">
+        {overview.participants.map((participant, index) => (
+          <div className="comparison-overview-side" key={participant.side}>
+            <span className="comparison-overview-slot">
+              {overview.noun} {String(index + 1).padStart(2, "0")}
+            </span>
+            <strong>{participant.name}</strong>
+            <span className="comparison-overview-meta">
+              {participant.manufacturer} · {participant.type}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <dl className="decision-facts">
+        <div className="decision-fact">
+          <dt>Measurable metrics</dt>
+          <dd>
+            {summary.measurableCount} of {availability.totalCount}
+          </dd>
+        </div>
+
+        <div className="decision-fact">
+          <dt>Tied metrics</dt>
+          <dd>{summary.tieCount}</dd>
+        </div>
+
+        <div className="decision-fact">
+          <dt>Unavailable metrics</dt>
+          <dd>{summary.unavailableCount}</dd>
+        </div>
+
+        <div className="decision-fact">
+          <dt>Benchmark support</dt>
+          <dd>{benchmarkSupport.label}</dd>
+        </div>
+      </dl>
+
+      <div className="comparison-decision-block">
+        <h4>Where each side leads</h4>
+
+        {isLoading ? (
+          <p className="comparison-decision-note" role="status">
+            <span className="state-spinner" aria-hidden="true" />
+            Waiting for verified benchmark data before any lead is reported.
+          </p>
+        ) : summary.canCompare ? (
+          <>
+            {summary.leadLines.map((line, index) => (
+              <p className="comparison-decision-note" key={`${index}-${line}`}>
+                {line}
+              </p>
+            ))}
+
+            <ul className="decision-lead-list">
+              {lead.groups.map((group) => (
+                <li className="decision-lead-group" key={group.winner}>
+                  <div className="decision-lead-heading">
+                    <strong>{group.winnerName}</strong>
+                    <span>
+                      leads {group.count} of {summary.measurableCount} measurable
+                      metrics
+                    </span>
+                  </div>
+
+                  <ul className="decision-lead-metrics">
+                    {group.metrics.map((metric) => (
+                      <li key={metric.key}>
+                        <span>{metric.label}</span>
+                        <span>{metric.differenceLabel}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="comparison-decision-note">
+            No verified value is available on both sides yet, so no lead can be
+            reported for this comparison.
+          </p>
+        )}
+      </div>
+
+      {lead.tieCount > 0 && (
+        <div className="comparison-decision-block">
+          <h4>Tied metrics</h4>
+
+          <ul className="decision-tie-list">
+            {lead.ties.map((tie) => (
+              <li key={tie.key}>
+                <span>{tie.label}</span>
+                <span>tie at {tie.valueLabel}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="comparison-decision-block">
+        <h4>Data availability</h4>
+
+        <ul className="decision-limitation-list">
+          {summary.limitations.map((limitation) => (
+            <li key={limitation}>{limitation}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
 function BenchmarkComparison({ comparisonData, compareDetails }) {
   if (comparisonData.status === "loading") {
@@ -2212,6 +2363,10 @@ function App() {
     benchmarkStates
   );
   const comparisonFacts = buildComparisonFacts(compareDetails, benchmarkStates);
+  const decisionSummary = buildComparisonDecisionSummary(
+    compareDetails,
+    benchmarkStates
+  );
 
   const generateAiAnalysis = () => {
     if (!comparisonFacts) {
@@ -2469,38 +2624,7 @@ function App() {
     clearStoredBuildConversation(requestToken);
   };
 
-  const formatComparisonTableCell = (spec, value) => {
-    if (value === null || value === undefined || value === "") {
-      return "N/A";
-    }
-
-    if (spec.key === "release_date") {
-      return formatReleaseDate(value);
-    }
-
-    return spec.unit ? `${value} ${spec.unit}` : `${value}`;
-  };
-
-  const getComparisonCellClass = (
-    specification,
-    itemIndex,
-    lowerIsBetter = false
-  ) => {
-    if (compareDetails.length !== 2) {
-      return "";
-    }
-
-    const values = compareDetails.map(
-      (item) => item.specifications?.[specification]
-    );
-    const winner = getComparisonWinner(
-      values[0],
-      values[1],
-      lowerIsBetter ? "lower" : "higher"
-    );
-
-    return getComparisonWinnerClass(winner, itemIndex);
-  };
+  const comparisonSpecRows = buildComparisonSpecRows(compareDetails);
 
   return (
     <div className="app">
@@ -3132,12 +3256,16 @@ function App() {
               </div>
 
 
-               {compareDetails.length === 2 && !isGpuComparison && (
-                 <BenchmarkComparison
-                   comparisonData={benchmarkComparison}
-                   compareDetails={compareDetails}
-                 />
-               )}
+{compareDetails.length === 2 && (
+                <ComparisonDecisionSupport summary={decisionSummary} />
+              )}
+
+              {compareDetails.length === 2 && !isGpuComparison && (
+                <BenchmarkComparison
+                  comparisonData={benchmarkComparison}
+                  compareDetails={compareDetails}
+                />
+              )}
 
                {compareDetails.length === 2 && isGpuComparison && (
                  <section
@@ -3207,143 +3335,41 @@ function App() {
                     </thead>
 
                     <tbody>
-                      {isGpuComparison
-                        ? GPU_TABLE_SPECS.map((spec) => (
-                            <tr key={spec.key}>
-                              <th scope="row">{spec.label}</th>
-                              {compareDetails.map((item) => {
-                                const value =
-                                  spec.source === "hardware"
-                                    ? item[spec.key]
-                                    : item.specifications?.[spec.key];
-                                const cellClass = spec.direction
-                                  ? getComparisonCellClass(
-                                      spec.key,
-                                      compareDetails.indexOf(item),
-                                      spec.direction === "lower"
-                                    )
-                                  : "";
+                      {comparisonSpecRows.map((row) => (
+                        <tr key={row.key}>
+                          <th scope="row">
+                            <span className="comparison-row-label">
+                              {row.label}
+                            </span>
 
-                                return (
-                                  <td key={item.id} className={cellClass}>
-                                    {formatComparisonTableCell(spec, value)}
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                          ))
-                        : (
-                            <>
-                              <tr>
-                                <th scope="row">Cores</th>
+                            {row.direction && (
+                              <span className="comparison-row-direction">
+                                {row.direction === "lower"
+                                  ? "Lower is better"
+                                  : "Higher is better"}
+                              </span>
+                            )}
 
-                                {compareDetails.map((item) => (
-                                  <td
-                                    key={item.id}
-                                    className={getComparisonCellClass(
-                                      "cores",
-                                      compareDetails.indexOf(item)
-                                    )}
-                                  >
-                                    {item.specifications.cores ?? "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
+                            <span className="comparison-row-summary">
+                              {row.summary}
+                            </span>
+                          </th>
 
-                              <tr>
-                                <th scope="row">Threads</th>
+                          {row.cells.map((cell) => (
+                            <td key={cell.side} className={cell.className}>
+                              <span className="comparison-cell-value">
+                                {cell.display}
+                              </span>
 
-                                {compareDetails.map((item) => (
-                                  <td
-                                    key={item.id}
-                                    className={getComparisonCellClass(
-                                      "threads",
-                                      compareDetails.indexOf(item)
-                                    )}
-                                  >
-                                    {item.specifications.threads ?? "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Base Clock</th>
-
-                                {compareDetails.map((item) => (
-                                  <td
-                                    key={item.id}
-                                    className={getComparisonCellClass(
-                                      "base_clock_ghz",
-                                      compareDetails.indexOf(item)
-                                    )}
-                                  >
-                                    {item.specifications.base_clock_ghz != null
-                                      ? `${item.specifications.base_clock_ghz} GHz`
-                                      : "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Boost Clock</th>
-
-                                {compareDetails.map((item) => (
-                                  <td
-                                    key={item.id}
-                                    className={getComparisonCellClass(
-                                      "boost_clock_ghz",
-                                      compareDetails.indexOf(item)
-                                    )}
-                                  >
-                                    {item.specifications.boost_clock_ghz != null
-                                      ? `${item.specifications.boost_clock_ghz} GHz`
-                                      : "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-
-                              <tr>
-                                <th scope="row">TDP</th>
-
-                                {compareDetails.map((item) => (
-                                  <td
-                                    key={item.id}
-                                    className={getComparisonCellClass(
-                                      "tdp_w",
-                                      compareDetails.indexOf(item),
-                                      true
-                                    )}
-                                  >
-                                    {item.specifications.tdp_w != null
-                                      ? `${item.specifications.tdp_w} W`
-                                      : "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Process Node</th>
-
-                                {compareDetails.map((item) => (
-                                  <td key={item.id}>
-                                    {item.specifications.process_node_nm != null
-                                      ? `${item.specifications.process_node_nm} nm`
-                                      : "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Socket</th>
-
-                                {compareDetails.map((item) => (
-                                  <td key={item.id}>
-                                    {item.specifications.socket ?? "N/A"}
-                                  </td>
-                                ))}
-                              </tr>
-                            </>
-                          )}
+                              {cell.marker && (
+                                <span className="comparison-cell-marker">
+                                  {cell.marker}
+                                </span>
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
