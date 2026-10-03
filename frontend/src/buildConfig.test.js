@@ -25,6 +25,7 @@ import {
   getBuildSelection,
   getBuildSlotDetail,
   getBuildSlotErrorMessage,
+  getBuildSlotChecklistItem,
   getBuildSlotRequestState,
   getBuildSummary,
   isBuildChatContextReady,
@@ -964,4 +965,63 @@ test("build configuration state is independent from comparison state", () => {
   build = clearBuildCpu(build);
   assert.equal(compareList.length, 2);
   assert.equal(build.cpu, null);
+});
+
+test("build AI chat checklist asks for a missing slot first", () => {
+  const detailState = createBuildDetailState();
+
+  assert.deepEqual(
+    getBuildSlotChecklistItem("CPU", null, getBuildSlotRequestState(detailState, "CPU")),
+    { type: "CPU", state: "empty", label: "Select a CPU to continue" }
+  );
+  assert.deepEqual(
+    getBuildSlotChecklistItem("GPU", null, getBuildSlotRequestState(detailState, "GPU")),
+    { type: "GPU", state: "empty", label: "Select a GPU to continue" }
+  );
+});
+
+test("build AI chat checklist marks a selected slot as pending until details load", () => {
+  const idleState = getBuildSlotRequestState(createBuildDetailState(), "CPU");
+  const loadingState = getBuildSlotRequestState(
+    startBuildDetailRequest(createBuildDetailState(), "CPU", 1),
+    "CPU"
+  );
+
+  assert.deepEqual(getBuildSlotChecklistItem("CPU", cpuItem(1), idleState), {
+    type: "CPU",
+    state: "pending",
+    label: "Loading stored CPU details",
+  });
+  assert.equal(
+    getBuildSlotChecklistItem("CPU", cpuItem(1), loadingState).state,
+    "pending"
+  );
+});
+
+test("build AI chat checklist reports a slot error as retryable", () => {
+  const detailState = failBuildDetailRequest(
+    startBuildDetailRequest(createBuildDetailState(), "CPU", 1),
+    "CPU",
+    1,
+    "Failed to load CPU details for the build configuration."
+  );
+
+  assert.deepEqual(
+    getBuildSlotChecklistItem("CPU", cpuItem(1), getBuildSlotRequestState(detailState, "CPU")),
+    { type: "CPU", state: "error", label: "Retry the CPU details" }
+  );
+});
+
+test("build AI chat checklist confirms a slot once its details are stored", () => {
+  const detailState = completeBuildDetailRequest(
+    startBuildDetailRequest(createBuildDetailState(), "GPU", 1),
+    "GPU",
+    1,
+    gpuDetail()
+  );
+
+  assert.deepEqual(
+    getBuildSlotChecklistItem("GPU", gpuItem(2), getBuildSlotRequestState(detailState, "GPU")),
+    { type: "GPU", state: "ready", label: `${gpuItem(2).name} is ready` }
+  );
 });

@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import {
   formatDetailValue,
   getCpuDetailViewModel,
+  getDetailBackLabel,
   getDetailComparisonAction,
 } from "./detail.js";
 
@@ -62,6 +63,12 @@ test("CPU detail view model represents missing values as N/A", () => {
 test("formatDetailValue preserves real zero values", () => {
   assert.equal(formatDetailValue(0), "0");
   assert.equal(formatDetailValue(0, "W"), "0 W");
+});
+
+test("detail back navigation names the catalog the visitor came from", () => {
+  assert.equal(getDetailBackLabel("CPU"), "Back to CPUs");
+  assert.equal(getDetailBackLabel("GPU"), "Back to GPUs");
+  assert.equal(getDetailBackLabel(undefined), "Back to hardware");
 });
 
 test("detail comparison action assigns CPU 01 when no CPU is selected", () => {

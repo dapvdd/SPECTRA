@@ -42,6 +42,12 @@ export const getCpuDetailViewModel = (hardware) => {
   };
 };
 
+export const getDetailBackLabel = (type) => {
+  const noun = type === "CPU" ? "CPUs" : type === "GPU" ? "GPUs" : "hardware";
+
+  return `Back to ${noun}`;
+};
+
 export const getDetailComparisonAction = (compareList, hardwareId) => {
   const selectedIndex = compareList.findIndex((item) => item.id === hardwareId);
   const alreadySelected = selectedIndex !== -1;

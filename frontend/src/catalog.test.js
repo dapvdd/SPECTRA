@@ -4,7 +4,11 @@ import assert from "node:assert/strict";
 import { apiUrl } from "./api.js";
 import {
   HARDWARE_TYPES,
+  MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
+  getCatalogFilterState,
+  getCatalogResultSummary,
+  getCatalogTypeLabel,
   getHardwareCatalogUrl,
   requestHardwareCatalog,
 } from "./catalog.js";
@@ -18,6 +22,78 @@ const gpuItem = {
 
 test("catalog exposes All, CPU, and GPU type filters", () => {
   assert.deepEqual(HARDWARE_TYPES, ["All", "CPU", "GPU"]);
+});
+
+test("catalog exposes the All, Intel, and AMD manufacturer filters", () => {
+  assert.deepEqual(MANUFACTURER_FILTERS, ["All", "Intel", "AMD"]);
+});
+
+test("catalog type labels pluralize known types and fall back generically", () => {
+  assert.equal(getCatalogTypeLabel("CPU"), "CPUs");
+  assert.equal(getCatalogTypeLabel("GPU"), "GPUs");
+  assert.equal(getCatalogTypeLabel("All"), "hardware records");
+});
+
+test("catalog filter state marks only the active filter as pressed", () => {
+  assert.deepEqual(getCatalogFilterState("GPU", "GPU"), {
+    isActive: true,
+    className: "filter-button active",
+    pressed: true,
+  });
+
+  assert.deepEqual(getCatalogFilterState("CPU", "GPU"), {
+    isActive: false,
+    className: "filter-button",
+    pressed: false,
+  });
+});
+
+test("catalog result summary reports the loading and error states first", () => {
+  assert.equal(
+    getCatalogResultSummary({ loading: true, totalCount: 12 }),
+    "Loading hardware catalog..."
+  );
+
+  assert.equal(
+    getCatalogResultSummary({ error: "Hardware catalog could not be loaded." }),
+    "Hardware catalog unavailable"
+  );
+});
+
+test("catalog result summary counts visible results against the filtered total", () => {
+  assert.equal(
+    getCatalogResultSummary({ visibleCount: 12, totalCount: 40, typeFilter: "GPU" }),
+    "Showing 12 of 40 GPUs"
+  );
+
+  assert.equal(
+    getCatalogResultSummary({ visibleCount: 40, totalCount: 40 }),
+    "Showing 40 of 40 hardware records"
+  );
+});
+
+test("catalog result summary scopes the count to the manufacturer filter", () => {
+  assert.equal(
+    getCatalogResultSummary({
+      visibleCount: 3,
+      totalCount: 3,
+      manufacturerFilter: "AMD",
+      typeFilter: "CPU",
+    }),
+    "Showing 3 of 3 AMD CPUs"
+  );
+});
+
+test("catalog result summary explains an empty filtered result set", () => {
+  assert.equal(
+    getCatalogResultSummary({
+      visibleCount: 0,
+      totalCount: 0,
+      manufacturerFilter: "Intel",
+      typeFilter: "GPU",
+    }),
+    "No Intel GPUs match the current filters"
+  );
 });
 
 test("catalog URL defaults to the full hardware list", () => {

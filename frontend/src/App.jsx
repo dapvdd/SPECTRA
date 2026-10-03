@@ -18,6 +18,7 @@ import {
 } from "./comparisonExplanation.js";
 import {
   getCpuDetailViewModel,
+  getDetailBackLabel,
   getDetailComparisonAction,
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
@@ -59,7 +60,10 @@ import {
 } from "./buildConversation.js";
 import {
   HARDWARE_TYPES,
+  MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
+  getCatalogFilterState,
+  getCatalogResultSummary,
   requestHardwareCatalog,
 } from "./catalog.js";
 import {
@@ -118,6 +122,7 @@ import {
   getBuildFacts,
   getBuildSelection,
   getBuildSlotDetail,
+  getBuildSlotChecklistItem,
   getBuildSlotRequestState,
   getBuildSummary,
   isBuildChatContextReady,
@@ -133,6 +138,7 @@ import {
   completeDetailNavigation,
   createDetailNavigationState,
   failDetailNavigation,
+  getComparisonSelectionSummary,
   getComparisonTypeConflict,
   removeBenchmarkState,
   removeComparisonSelection,
@@ -148,6 +154,22 @@ const formatBenchmarkScore = (score) =>
     maximumFractionDigits: 2,
   });
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const getScrollBehavior = () => (prefersReducedMotion() ? "auto" : "smooth");
+
+const scrollToSection = (id, block = "start") => {
+  window.setTimeout(() => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: getScrollBehavior(),
+      block,
+    });
+  }, 0);
+};
+
 const PERFORMANCE_STATUS_LABELS = {
   available: "DATA AVAILABLE",
   partial: "PARTIAL DATA",
@@ -156,16 +178,25 @@ const PERFORMANCE_STATUS_LABELS = {
   error: "UNAVAILABLE",
 };
 
-function PerformanceSection({ benchmarkState, hardwareType = "CPU" }) {
+function PerformanceSection({
+  benchmarkState,
+  hardwareType = "CPU",
+  titleId,
+}) {
   const performanceState = getPerformanceState(benchmarkState);
+  const isLoading = performanceState.status === "loading";
 
   return (
-    <div className="performance-section">
+    <section
+      className="performance-section"
+      aria-busy={isLoading}
+      aria-labelledby={titleId}
+    >
       <p className="detail-section-label">PERFORMANCE</p>
 
       <div className="performance-intro">
         <div>
-          <h3>Performance signals, when verified</h3>
+          <h3 id={titleId}>Performance signals, when verified</h3>
 
           <p>
             Benchmark scores are shown only when returned by a verified data
@@ -278,9 +309,10 @@ function PerformanceSection({ benchmarkState, hardwareType = "CPU" }) {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
+
 
 function BenchmarkComparison({ comparisonData, compareDetails }) {
   if (comparisonData.status === "loading") {
@@ -400,11 +432,17 @@ function CpuDetailView({
 }) {
   const viewModel = getCpuDetailViewModel(hardware);
   const comparisonAction = getDetailComparisonAction(compareList, hardware.id);
+  const backLabel = getDetailBackLabel("CPU");
 
   return (
     <section className="hardware-detail" aria-labelledby="cpu-detail-title">
-      <button type="button" className="back-button" onClick={onBack}>
-        ← Back to CPUs
+      <button
+        type="button"
+        className="back-button"
+        onClick={onBack}
+        aria-label={`${backLabel} and close this detail view`}
+      >
+        <span aria-hidden="true">←</span> {backLabel}
       </button>
 
       {detailError && (
@@ -417,7 +455,9 @@ function CpuDetailView({
       <div className="hardware-detail-header">
         <div>
           <p className="eyebrow detail-type">CPU DETAIL</p>
-          <h2 id="cpu-detail-title">{viewModel.name}</h2>
+          <h2 id="cpu-detail-title" tabIndex={-1}>
+            {viewModel.name}
+          </h2>
           <p className="hardware-meta">
             <span className="manufacturer-mark" aria-hidden="true">
               {viewModel.manufacturer.slice(0, 1)}
@@ -429,9 +469,12 @@ function CpuDetailView({
         <div className="detail-header-actions">
           <button
             type="button"
-            className="detail-compare-button"
+            className={`detail-compare-button ${
+              comparisonAction.alreadySelected ? "added" : ""
+            }`}
             onClick={onCompare}
             disabled={comparisonAction.comparisonFull}
+            aria-pressed={comparisonAction.alreadySelected}
           >
             {comparisonAction.alreadySelected
               ? `✓ CPU ${comparisonAction.comparisonSlot} selected`
@@ -446,6 +489,7 @@ function CpuDetailView({
               buildAction.alreadySelected ? "added" : ""
             }`}
             onClick={onAddToBuild}
+            aria-pressed={buildAction.alreadySelected}
           >
             {buildAction.actionLabel}
           </button>
@@ -467,7 +511,10 @@ function CpuDetailView({
         <DetailSpecGrid items={viewModel.technicalSpecifications} />
       </div>
 
-      <PerformanceSection benchmarkState={benchmarkState} />
+      <PerformanceSection
+        benchmarkState={benchmarkState}
+        titleId="cpu-performance-title"
+      />
 
       <HardwareChatSection chatState={chatState} onAsk={onAskQuestion} />
     </section>
@@ -485,17 +532,25 @@ function GpuDetailSection({ label, items }) {
 
 function GpuHardwareDetail({ hardware, buildAction, onBack, onAddToBuild }) {
   const viewModel = getGpuDetailViewModel(hardware);
+  const backLabel = getDetailBackLabel("GPU");
 
   return (
     <section className="hardware-detail gpu-detail" aria-labelledby="gpu-detail-title">
-      <button type="button" className="back-button" onClick={onBack}>
-        ← Back to catalog
+      <button
+        type="button"
+        className="back-button"
+        onClick={onBack}
+        aria-label={`${backLabel} and close this detail view`}
+      >
+        <span aria-hidden="true">←</span> {backLabel}
       </button>
 
       <div className="hardware-detail-header">
         <div>
           <p className="eyebrow detail-type">GPU DETAIL</p>
-          <h2 id="gpu-detail-title">{viewModel.name}</h2>
+          <h2 id="gpu-detail-title" tabIndex={-1}>
+            {viewModel.name}
+          </h2>
           <p className="hardware-meta">
             <span className="manufacturer-mark" aria-hidden="true">
               {viewModel.manufacturer.slice(0, 1)}
@@ -511,6 +566,7 @@ function GpuHardwareDetail({ hardware, buildAction, onBack, onAddToBuild }) {
               buildAction.alreadySelected ? "added" : ""
             }`}
             onClick={onAddToBuild}
+            aria-pressed={buildAction.alreadySelected}
           >
             {buildAction.actionLabel}
           </button>
@@ -648,6 +704,8 @@ function ComparisonInsights({ insights, compareDetails }) {
 }
 
 function AiAnalysis({ analysis, onGenerate }) {
+  const isLoading = analysis.status === AI_ANALYSIS_STATUS.loading;
+
   return (
     <section className="ai-analysis" aria-labelledby="ai-analysis-title">
       <div className="ai-analysis-header">
@@ -660,14 +718,17 @@ function AiAnalysis({ analysis, onGenerate }) {
 
       {analysis.status === AI_ANALYSIS_STATUS.idle && (
         <div className="ai-analysis-empty">
-          <p>Generate an AI explanation of this comparison.</p>
+          <p>
+            SPECTRA can summarise this comparison in plain language, using only
+            the verified values shown above.
+          </p>
           <button type="button" className="ai-analysis-button" onClick={onGenerate}>
             Generate Analysis
           </button>
         </div>
       )}
 
-      {analysis.status === AI_ANALYSIS_STATUS.loading && (
+      {isLoading && (
         <div className="ai-analysis-message" role="status">
           <span className="state-spinner" aria-hidden="true" />
           <span>Analyzing comparison...</span>
@@ -676,40 +737,12 @@ function AiAnalysis({ analysis, onGenerate }) {
 
       {analysis.status === AI_ANALYSIS_STATUS.success && (
         <div className="ai-analysis-result">
-          <div className="ai-analysis-content">
-            {parseMarkdown(analysis.explanation).map((block, blockIndex) => {
-              const renderInline = (parts) =>
-                parts.map((part, partIndex) =>
-                  part.type === "bold" ? (
-                    <strong key={`${blockIndex}-${partIndex}`}>{part.value}</strong>
-                  ) : (
-                    <span key={`${blockIndex}-${partIndex}`}>{part.value}</span>
-                  ),
-                );
-
-              if (block.type === "heading") {
-                const Heading = block.level === 2 ? "h2" : "h3";
-                return (
-                  <Heading key={blockIndex}>
-                    {renderInline(block.children)}
-                  </Heading>
-                );
-              }
-
-              if (block.type === "list") {
-                return (
-                  <ul key={blockIndex}>
-                    {block.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>{renderInline(item)}</li>
-                    ))}
-                  </ul>
-                );
-              }
-
-              return <p key={blockIndex}>{renderInline(block.children)}</p>;
-            })}
-          </div>
-          <button type="button" className="ai-analysis-button" onClick={onGenerate}>
+          <MarkdownContent markdown={analysis.explanation} headingOffset={2} />
+          <button
+            type="button"
+            className="ai-analysis-button"
+            onClick={onGenerate}
+          >
             Regenerate Analysis
           </button>
         </div>
@@ -718,6 +751,9 @@ function AiAnalysis({ analysis, onGenerate }) {
       {analysis.status === AI_ANALYSIS_STATUS.error && (
         <div className="ai-analysis-error" role="alert">
           <p>Unable to generate analysis.</p>
+          <p className="ai-analysis-error-hint">
+            The comparison itself is unaffected. Try again in a moment.
+          </p>
           <button type="button" className="ai-analysis-button" onClick={onGenerate}>
             Try Again
           </button>
@@ -745,9 +781,13 @@ const CHAT_ERROR_COPY = {
     "The request could not be completed. Check the connection and try again.",
 };
 
-function MarkdownContent({ markdown }) {
+function MarkdownContent({ markdown, headingOffset = 0, className = "" }) {
+  const blockClassName = className
+    ? `markdown-content ${className}`
+    : "markdown-content";
+
   return (
-    <div className="markdown-content">
+    <div className={blockClassName}>
       {parseMarkdown(markdown).map((block, blockIndex) => {
         const renderInline = (parts) =>
           parts.map((part, partIndex) =>
@@ -759,7 +799,7 @@ function MarkdownContent({ markdown }) {
           );
 
         if (block.type === "heading") {
-          const Heading = block.level === 2 ? "h2" : "h3";
+          const Heading = `h${Math.min(6, Math.max(1, block.level + headingOffset))}`;
           return (
             <Heading key={blockIndex}>
               {renderInline(block.children)}
@@ -864,38 +904,55 @@ function BuildChatAnalysis({ analysis }) {
 }
 
 function BuildChatTranscript({ messages }) {
-  if (messages.length === 0) {
+  const endOfTranscriptRef = useRef(null);
+  const messageCount = messages.length;
+
+  useEffect(() => {
+    endOfTranscriptRef.current?.scrollIntoView({
+      block: "nearest",
+      behavior: "smooth",
+    });
+  }, [messageCount]);
+
+  if (messageCount === 0) {
     return null;
   }
 
   return (
-    <ol
-      className="build-chat-transcript"
-      aria-label="Build conversation"
-      aria-live="polite"
-      role="log"
-    >
-      {messages.map((message) =>
-        message.role === BUILD_CHAT_MESSAGE_ROLE.user ? (
-          <li className="build-chat-message build-chat-message-user" key={message.id}>
-            <span className="build-chat-message-label">You</span>
-            <span className="build-chat-message-text">{message.content}</span>
-          </li>
-        ) : (
-          <li
-            className="build-chat-message build-chat-message-assistant"
-            key={message.id}
-          >
-            <span className="build-chat-message-label">SPECTRA</span>
-            <div className="build-chat-message-text">
-              <MarkdownContent markdown={message.content} />
-            </div>
-            <BuildChatEvidence evidence={message.evidence} />
-            <BuildChatAnalysis analysis={message.analysis} />
-          </li>
-        )
-      )}
-    </ol>
+    <>
+      <ol
+        className="build-chat-transcript"
+        aria-label="Build conversation"
+        aria-live="polite"
+        role="log"
+      >
+        {messages.map((message) =>
+          message.role === BUILD_CHAT_MESSAGE_ROLE.user ? (
+            <li className="build-chat-message build-chat-message-user" key={message.id}>
+              <span className="build-chat-message-label">You</span>
+              <span className="build-chat-message-text">{message.content}</span>
+            </li>
+          ) : (
+            <li
+              className="build-chat-message build-chat-message-assistant"
+              key={message.id}
+            >
+              <span className="build-chat-message-label">SPECTRA</span>
+              <div className="build-chat-message-text">
+                <MarkdownContent markdown={message.content} headingOffset={2} />
+              </div>
+              <BuildChatEvidence evidence={message.evidence} />
+              <BuildChatAnalysis analysis={message.analysis} />
+            </li>
+          )
+        )}
+      </ol>
+      <div
+        aria-hidden="true"
+        className="build-chat-transcript-end"
+        ref={endOfTranscriptRef}
+      />
+    </>
   );
 }
 
@@ -904,11 +961,13 @@ function AiChatSection({
   eyebrow = "ASK SPECTRA",
   title,
   intro,
+  introId,
   loadingMessage,
   composerLabel,
   composerPlaceholder,
   submitLabel,
   prompts,
+  promptsLabel = "Suggested questions",
   transcript,
   loadingDetail = "",
   promptsSecondary = false,
@@ -919,6 +978,7 @@ function AiChatSection({
   const [draft, setDraft] = useState("");
   const loading = chatState.status === CHAT_STATUS.loading;
   const loadingParts = getChatLoadingParts(loadingMessage, loadingDetail);
+  const resolvedIntroId = introId || `${id}-intro`;
 
   const submit = (question) => {
     const trimmed = (question ?? draft).trim();
@@ -931,7 +991,7 @@ function AiChatSection({
   };
 
   return (
-    <section className="hardware-chat" aria-labelledby={id}>
+    <section className="hardware-chat" aria-busy={loading} aria-labelledby={id}>
       <div className="hardware-chat-header">
         <div>
           <p className="detail-section-label">{eyebrow}</p>
@@ -940,7 +1000,9 @@ function AiChatSection({
         <span className="hardware-chat-mark" aria-hidden="true">AI</span>
       </div>
 
-      <p className="hardware-chat-intro">{intro}</p>
+      <p className="hardware-chat-intro" id={resolvedIntroId}>
+        {intro}
+      </p>
 
       {transcript}
 
@@ -987,7 +1049,8 @@ function AiChatSection({
             ? "hardware-chat-prompts hardware-chat-prompts-secondary"
             : "hardware-chat-prompts"
         }
-        aria-label="Suggested questions"
+        aria-label={promptsLabel}
+        role="group"
       >
         {prompts.map((prompt) => (
           <button
@@ -1009,14 +1072,22 @@ function AiChatSection({
           submit();
         }}
       >
+        <label className="sr-only" htmlFor={`${id}-composer`}>
+          {composerLabel}
+        </label>
+
         <input
+          id={`${id}-composer`}
           type="text"
-          aria-label={composerLabel}
+          aria-describedby={resolvedIntroId}
+          autoComplete="off"
+          enterKeyHint="send"
           placeholder={composerPlaceholder}
           value={draft}
           disabled={loading}
           onChange={(event) => setDraft(event.target.value)}
         />
+
         <button type="submit" disabled={loading}>
           {loading ? "Asking…" : submitLabel}
         </button>
@@ -1036,6 +1107,7 @@ function HardwareChatSection({ chatState, onAsk }) {
       composerPlaceholder="Ask about this CPU..."
       submitLabel="Ask"
       prompts={CHAT_SUGGESTED_PROMPTS}
+      promptsLabel="Suggested questions for this CPU"
       transcript={<HardwareChatTranscript chatState={chatState} />}
       chatState={chatState}
       onAsk={onAsk}
@@ -1144,6 +1216,7 @@ function BuildChatSection({
         composerPlaceholder="Ask a follow-up..."
         submitLabel="Ask SPECTRA"
         prompts={BUILD_CHAT_SUGGESTED_QUESTIONS}
+        promptsLabel="Suggested questions about this build"
         promptsSecondary={started}
         transcript={<BuildChatTranscript messages={chatState.messages} />}
         chatState={chatState}
@@ -1169,8 +1242,10 @@ function BuildComponentCard({
   const errored = requestState.status === BUILD_DETAIL_STATUS.error;
 
   return (
-    <div className="build-component-card">
-      <p className="detail-section-label">{type}</p>
+    <section className="build-component-card" aria-labelledby={`build-slot-${type}`}>
+      <p className="detail-section-label" id={`build-slot-${type}`}>
+        {type}
+      </p>
 
       {!selection ? (
         <div className="build-component-empty">
@@ -1178,6 +1253,13 @@ function BuildComponentCard({
           <span>
             Use Explore Hardware or a hardware detail page to choose one.
           </span>
+          <button
+            type="button"
+            className="build-component-select-button"
+            onClick={onChange}
+          >
+            Browse {type} catalog
+          </button>
         </div>
       ) : (
         <>
@@ -1193,6 +1275,7 @@ function BuildComponentCard({
 
           {busy && (
             <p className="build-component-status" role="status" aria-live="polite">
+              <span className="state-spinner" aria-hidden="true" />
               Loading {type} details...
             </p>
           )}
@@ -1203,7 +1286,7 @@ function BuildComponentCard({
               <span>{requestState.message}</span>
               <button
                 type="button"
-                className="clear-search-button"
+                className="build-retry-button"
                 onClick={onRetry}
               >
                 Retry
@@ -1241,7 +1324,7 @@ function BuildComponentCard({
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 }
 
@@ -1265,8 +1348,17 @@ function BuildConfigurationSection({
   const summary = getBuildSummary(buildConfig);
   const cpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
   const gpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
+  const cpuRequestState = getBuildSlotRequestState(buildDetailState, "CPU");
+  const gpuRequestState = getBuildSlotRequestState(buildDetailState, "GPU");
   const facts = getBuildFacts(cpuDetail, gpuDetail);
   const tdpSum = calculateListedTdpSum(cpuDetail, gpuDetail);
+  const buildChatChecklist = ["CPU", "GPU"].map((type) =>
+    getBuildSlotChecklistItem(
+      type,
+      type === "CPU" ? buildConfig.cpu : buildConfig.gpu,
+      type === "CPU" ? cpuRequestState : gpuRequestState
+    )
+  );
 
   return (
     <section id="build" className="build-section" aria-labelledby="build-title">
@@ -1286,7 +1378,11 @@ function BuildConfigurationSection({
         <div className="build-summary-item">
           <span className="build-summary-label">CPU</span>
           <strong>{summary.cpu.name}</strong>
-          {summary.cpu.isSelected && <span>{summary.cpu.manufacturer}</span>}
+          {summary.cpu.isSelected ? (
+            <span>{summary.cpu.manufacturer}</span>
+          ) : (
+            <span className="build-summary-empty">Empty slot</span>
+          )}
         </div>
 
         <span className="build-summary-join" aria-hidden="true">
@@ -1296,7 +1392,11 @@ function BuildConfigurationSection({
         <div className="build-summary-item">
           <span className="build-summary-label">GPU</span>
           <strong>{summary.gpu.name}</strong>
-          {summary.gpu.isSelected && <span>{summary.gpu.manufacturer}</span>}
+          {summary.gpu.isSelected ? (
+            <span>{summary.gpu.manufacturer}</span>
+          ) : (
+            <span className="build-summary-empty">Empty slot</span>
+          )}
         </div>
       </div>
 
@@ -1305,7 +1405,7 @@ function BuildConfigurationSection({
           type="CPU"
           selection={buildConfig.cpu}
           detail={cpuDetail}
-          requestState={getBuildSlotRequestState(buildDetailState, "CPU")}
+          requestState={cpuRequestState}
           onChange={() => onSelectType("CPU")}
           onClear={() => onClearSlot("CPU")}
           onRetry={() => onRetrySlot("CPU")}
@@ -1315,7 +1415,7 @@ function BuildConfigurationSection({
           type="GPU"
           selection={buildConfig.gpu}
           detail={gpuDetail}
-          requestState={getBuildSlotRequestState(buildDetailState, "GPU")}
+          requestState={gpuRequestState}
           onChange={() => onSelectType("GPU")}
           onClear={() => onClearSlot("GPU")}
           onRetry={() => onRetrySlot("GPU")}
@@ -1325,15 +1425,16 @@ function BuildConfigurationSection({
       <div className="build-context">
         <p className="detail-section-label">CONTEXT</p>
 
-        <p className="build-context-note">
+        <p className="build-context-note" id="build-context-note">
           Context is recorded for your own reference. SPECTRA does not generate
           frame rate or performance estimates from it.
         </p>
 
         <div className="build-context-fields">
-          <label>
+          <label htmlFor="build-use-case">
             <span>Use case</span>
             <select
+              id="build-use-case"
               value={buildUserContext.useCase}
               onChange={(event) => onUseCaseChange(event.target.value)}
             >
@@ -1345,9 +1446,10 @@ function BuildConfigurationSection({
             </select>
           </label>
 
-          <label>
+          <label htmlFor="build-resolution">
             <span>Resolution</span>
             <select
+              id="build-resolution"
               value={buildUserContext.resolution}
               onChange={(event) => onResolutionChange(event.target.value)}
             >
@@ -1373,7 +1475,12 @@ function BuildConfigurationSection({
         ) : (
           <div className="build-facts-list">
             {facts.map((fact) => (
-              <div key={fact.id} className="build-fact">
+              <div
+                key={fact.id}
+                className={`build-fact${
+                  fact.id === "listed-tdp-sum" ? " build-fact-highlight" : ""
+                }`}
+              >
                 <span>{fact.label}</span>
                 <strong>{fact.value}</strong>
               </div>
@@ -1383,9 +1490,9 @@ function BuildConfigurationSection({
 
         {tdpSum !== null && (
           <p className="build-facts-note">
-            Listed component TDP values are summed for reference only. This is
-            not a measurement of system power draw and is not a power supply
-            requirement.
+            Listed component TDP values ({`${tdpSum} W`}) are summed for reference
+            only. This is not a measurement of system power draw and is not a
+            power supply requirement.
           </p>
         )}
       </div>
@@ -1402,9 +1509,23 @@ function BuildConfigurationSection({
       ) : (
         <div className="build-ai-note">
           <p className="detail-section-label">ASK ABOUT THIS BUILD</p>
-          <p>
-            Select a CPU and a GPU, and let their stored details finish
-            loading, before asking SPECTRA about this build.
+          <h3 className="build-ai-note-title">
+            Build AI Chat unlocks when both slots are ready
+          </h3>
+          <ul className="build-ai-note-list">
+            {buildChatChecklist.map((item) => (
+              <li
+                className={`build-ai-note-item build-ai-note-item-${item.state}`}
+                key={item.type}
+              >
+                <span className="build-ai-note-slot">{item.type}</span>
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="build-ai-note-hint">
+            SPECTRA answers only from the stored specifications and benchmark
+            records of the selected components.
           </p>
         </div>
       )}
@@ -1890,12 +2011,7 @@ function App() {
     setSearch("");
     changeHardwareTypeFilter(type);
 
-    setTimeout(() => {
-      document.getElementById("explore-top")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 0);
+    scrollToSection("explore-top");
   };
 
   const returnToCatalog = () => {
@@ -1912,12 +2028,7 @@ function App() {
     setDetailLoading(catalogState.loading);
     setDetailView(catalogState.view);
 
-    setTimeout(() => {
-      document.getElementById("explore-top")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 0);
+    scrollToSection("explore-top");
   };
 
   const compareSelectedHardware = () => {
@@ -1940,12 +2051,7 @@ function App() {
       chatGuardRef.current.invalidate();
       setSelectedHardware(null);
       setDetailView(false);
-      setTimeout(() => {
-        document.getElementById("compare")?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 0);
+      scrollToSection("compare");
     }
   };
 
@@ -1997,14 +2103,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedHardware) {
-      document
-        .querySelector(".hardware-detail")
-        ?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+    if (!selectedHardware) {
+      return;
     }
+
+    const detail = document.querySelector(".hardware-detail");
+    detail?.scrollIntoView({
+      behavior: getScrollBehavior(),
+      block: "start",
+    });
+    detail?.querySelector("h2")?.focus({ preventScroll: true });
   }, [selectedHardware]);
 
   useEffect(() => {
@@ -2031,12 +2139,16 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
-  const catalogTypeLabel =
-    hardwareTypeFilter === "GPU"
-      ? "GPUs"
-      : hardwareTypeFilter === "CPU"
-        ? "CPUs"
-        : "hardware records";
+  const catalogResultSummary = getCatalogResultSummary({
+    loading: hardwareLoading,
+    error: hardwareError,
+    visibleCount,
+    totalCount: filteredHardware.length,
+    manufacturerFilter,
+    typeFilter: hardwareTypeFilter,
+  });
+
+  const comparisonSummary = getComparisonSelectionSummary(compareList);
 
   useEffect(() => {
     const visibleCards = filteredHardware.slice(0, visibleCount);
@@ -2392,7 +2504,11 @@ function App() {
 
   return (
     <div className="app">
-      <nav className="navbar">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
+
+      <nav className="navbar" aria-label="Primary">
         <div className="logo">SPECTRA</div>
 
         <div className="nav-links">
@@ -2414,7 +2530,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="hero">
+      <main className="hero" id="main-content">
         <div className="hero-content">
           <p className="eyebrow">
             HARDWARE INTELLIGENCE PLATFORM
@@ -2434,9 +2550,14 @@ function App() {
           <div className="search-box">
             <span aria-hidden="true">⌕</span>
 
+            <label className="sr-only" htmlFor="catalog-search">
+              Search hardware by name
+            </label>
+
             <input
-              type="text"
-              aria-label="Search hardware"
+              id="catalog-search"
+              type="search"
+              autoComplete="off"
               placeholder="Search hardware..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
@@ -2454,44 +2575,81 @@ function App() {
             )}
           </div>
 
-          <div className="filter-buttons filter-buttons-type">
-            {HARDWARE_TYPES.map((type) => (
-              <button
-                type="button"
-                key={type}
-                className={
-                  hardwareTypeFilter === type
-                    ? "filter-button active"
-                    : "filter-button"
-                }
-                onClick={() => changeHardwareTypeFilter(type)}
-              >
-                {type}
-              </button>
-            ))}
-          </div>
+          <div className="catalog-filters">
+            <div
+              className="filter-group"
+              role="group"
+              aria-label="Filter hardware by type"
+            >
+              <span className="filter-group-label" id="filter-type-label">
+                Hardware type
+              </span>
 
-          <div className="filter-buttons">
-            {["All", "Intel", "AMD"].map((manufacturer) => (
-              <button
-                type="button"
-                key={manufacturer}
-                className={
-                  manufacturerFilter === manufacturer
-                    ? "filter-button active"
-                    : "filter-button"
-                }
-                onClick={() => setManufacturerFilter(manufacturer)}
+              <div
+                className="filter-buttons filter-buttons-type"
+                aria-labelledby="filter-type-label"
               >
-                {manufacturer}
-              </button>
-            ))}
+                {HARDWARE_TYPES.map((type) => {
+                  const filterState = getCatalogFilterState(
+                    type,
+                    hardwareTypeFilter
+                  );
+
+                  return (
+                    <button
+                      type="button"
+                      key={type}
+                      className={filterState.className}
+                      aria-pressed={filterState.pressed}
+                      onClick={() => changeHardwareTypeFilter(type)}
+                    >
+                      {type === "All" ? "All hardware" : type}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div
+              className="filter-group"
+              role="group"
+              aria-label="Filter hardware by manufacturer"
+            >
+              <span className="filter-group-label" id="filter-maker-label">
+                Manufacturer
+              </span>
+
+              <div
+                className="filter-buttons"
+                aria-labelledby="filter-maker-label"
+              >
+                {MANUFACTURER_FILTERS.map((manufacturer) => {
+                  const filterState = getCatalogFilterState(
+                    manufacturer,
+                    manufacturerFilter
+                  );
+
+                  return (
+                    <button
+                      type="button"
+                      key={manufacturer}
+                      className={filterState.className}
+                      aria-pressed={filterState.pressed}
+                      onClick={() => setManufacturerFilter(manufacturer)}
+                    >
+                      {manufacturer}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           <p
             className={`api-status ${
               apiStatus === "online" ? "api-status-online" : ""
             }`}
+            role="status"
           >
             <span className="status-dot" aria-hidden="true" />
             Catalog {apiStatus === "online" ? "connected" : apiStatus}
@@ -2499,18 +2657,8 @@ function App() {
         </div>
       </main>
 
-      <p className="hardware-result-count" aria-live="polite">
-        {hardwareLoading
-          ? "Loading hardware catalog..."
-          : hardwareError
-            ? "Hardware catalog unavailable"
-            : `Showing ${Math.min(visibleCount, filteredHardware.length)} of ${
-                filteredHardware.length
-              } ${
-                manufacturerFilter === "All"
-                  ? ""
-                  : `${manufacturerFilter} `
-              }${catalogTypeLabel}`}
+      <p className="hardware-result-count" aria-live="polite" id="catalog-count">
+        {catalogResultSummary}
       </p>
 
       {compareList.length > 0 && (
@@ -2522,6 +2670,9 @@ function App() {
             <div>
               <p className="eyebrow">COMPARISON SET</p>
               <h2 id="comparison-selection-title">Ready to compare</h2>
+              <p className="comparison-selection-status" role="status">
+                {comparisonSummary.status}
+              </p>
             </div>
 
             <a className="comparison-jump-link" href="#compare">
@@ -2533,8 +2684,7 @@ function App() {
             {compareList.map((item, index) => (
               <div className="comparison-selection-item" key={item.id}>
                 <span className="comparison-selection-index">
-                  {selectedComparisonType || "CPU"}{" "}
-                  {String(index + 1).padStart(2, "0")}
+                  {comparisonSummary.slotLabel(index + 1)}
                 </span>
                 <div>
                   <strong>{item.name}</strong>
@@ -2553,14 +2703,14 @@ function App() {
               </div>
             ))}
 
-            {compareList.length === 1 && (
+            {comparisonSummary.emptySlot && (
               <div className="comparison-selection-item comparison-selection-slot">
                 <span className="comparison-selection-index">
-                  {selectedComparisonType || "CPU"} 02
+                  {comparisonSummary.emptySlot.indexLabel}
                 </span>
                 <div>
-                  <strong>Choose a second {selectedComparisonType || "CPU"}</strong>
-                  <span>Use Explore Hardware below to complete the comparison.</span>
+                  <strong>{comparisonSummary.emptySlot.title}</strong>
+                  <span>{comparisonSummary.emptySlot.hint}</span>
                 </div>
               </div>
             )}
@@ -2583,156 +2733,167 @@ function App() {
       )}
 
       <section id="explore" className="hardware-section">
-        <h2 id="explore-top" className={detailView ? "detail-hidden" : ""}>
+        <h2 id="explore-top" tabIndex={-1} className={detailView ? "detail-hidden" : ""}>
           Explore Hardware
         </h2>
 
-        <div className={detailView ? "catalog-content detail-hidden" : "catalog-content"}>
+        <div
+          className={detailView ? "catalog-content detail-hidden" : "catalog-content"}
+          aria-busy={hardwareLoading}
+        >
           {hardwareLoading ? (
-          <div className="catalog-state" role="status" aria-live="polite">
-            <span className="state-spinner" aria-hidden="true" />
-            <h3>Loading the catalog</h3>
-            <p>Fetching verified hardware records.</p>
-          </div>
-        ) : hardwareError ? (
-          <div className="catalog-state catalog-state-error" role="alert">
-            <h3>Catalog unavailable</h3>
-            <p>{hardwareError}</p>
-            <button
-              type="button"
-              className="clear-search-button"
-              onClick={() => window.location.reload()}
-            >
-              Try Again
-            </button>
-          </div>
-        ) : filteredHardware.length === 0 ? (
-          <div className="hardware-empty">
-            <span className="hardware-empty-icon">
-              ◈
-            </span>
+            <div className="catalog-state" role="status" aria-live="polite">
+              <span className="state-spinner" aria-hidden="true" />
+              <h3>Loading the catalog</h3>
+              <p>Fetching verified hardware records.</p>
+            </div>
+          ) : hardwareError ? (
+            <div className="catalog-state catalog-state-error" role="alert">
+              <h3>Catalog unavailable</h3>
+              <p>{hardwareError}</p>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => window.location.reload()}
+              >
+                Try Again
+              </button>
+            </div>
+          ) : filteredHardware.length === 0 ? (
+            <div className="hardware-empty">
+              <span className="hardware-empty-icon" aria-hidden="true">
+                ◈
+              </span>
 
-            <h3>No hardware found</h3>
+              <h3>No hardware found</h3>
 
-            <p>
-              Try another search term or change your filter.
-            </p>
+              <p>
+                Try another search term or change your filter.
+              </p>
 
-             <button
-               type="button"
-               className="clear-search-button"
-              onClick={() => {
-                setSearch("");
-                setManufacturerFilter("All");
-                setHardwareTypeFilter("All");
-              }}
-            >
-              Clear Search
-            </button>
-          </div>
-        ) : (
-          <div className="hardware-grid">
-            {filteredHardware
-              .slice(0, visibleCount)
-              .map((item) => {
-                const cardSpecRows = getHardwareCardPrimarySpecs(
-                  item.type,
-                  cardSpecsById[item.id]
-                );
-                const buildAction = getBuildComponentAction(buildConfig, item);
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => {
+                  setSearch("");
+                  setManufacturerFilter("All");
+                  setHardwareTypeFilter("All");
+                }}
+              >
+                Clear all filters
+              </button>
+            </div>
+          ) : (
+            <div className="hardware-grid">
+              {filteredHardware
+                .slice(0, visibleCount)
+                .map((item) => {
+                  const cardSpecRows = getHardwareCardPrimarySpecs(
+                    item.type,
+                    cardSpecsById[item.id]
+                  );
+                  const buildAction = getBuildComponentAction(buildConfig, item);
+                  const inComparison = compareList.some(
+                    (hardware) => hardware.id === item.id
+                  );
+                  const comparisonFull = !inComparison && compareList.length >= 2;
 
-                return (
-           <article
-             className={`hardware-card ${
-               compareList.some((hardware) => hardware.id === item.id)
-                 ? "in-comparison"
-                 : ""
-             }`}
-             key={item.id}
-           >
-             <button
-               type="button"
-               className="hardware-card-main"
-               onClick={() => showHardwareDetail(item.id)}
-             >
-               <span className="hardware-card-kicker">{item.type || "CPU"}</span>
-               <h3>{item.name}</h3>
-               <span className="hardware-card-manufacturer">
-                 {item.manufacturer}
-               </span>
+                  return (
+                    <article
+                      className={`hardware-card ${
+                        inComparison ? "in-comparison" : ""
+                      }`}
+                      key={item.id}
+                    >
+                      <button
+                        type="button"
+                        className="hardware-card-main"
+                        onClick={() => showHardwareDetail(item.id)}
+                      >
+                        <span className="hardware-card-kicker">
+                          {item.type || "CPU"}
+                        </span>
+                        <h3>{item.name}</h3>
+                        <span className="hardware-card-manufacturer">
+                          {item.manufacturer}
+                        </span>
 
-               {cardSpecRows.length > 0 && (
-                 <div className="hardware-card-specs">
-                   {cardSpecRows.map((row) => (
-                     <span key={row.label}>
-                       <em>{row.label}</em>
-                       <strong>{row.value}</strong>
-                     </span>
-                   ))}
-                 </div>
-               )}
+                        {cardSpecRows.length > 0 ? (
+                          <div className="hardware-card-specs">
+                            {cardSpecRows.map((row) => (
+                              <span key={row.label}>
+                                <em>{row.label}</em>
+                                <strong>{row.value}</strong>
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="hardware-card-specs hardware-card-specs-pending">
+                            <span>
+                              <em>Specs</em>
+                              <strong>Loading…</strong>
+                            </span>
+                          </div>
+                        )}
 
-               <span className="hardware-card-action">
-                 View specifications <span aria-hidden="true">→</span>
-               </span>
-             </button>
+                        <span className="hardware-card-action">
+                          View specifications <span aria-hidden="true">→</span>
+                        </span>
+                      </button>
 
-             <button
-               type="button"
-               className={`compare-button ${
-                compareList.some((hardware) => hardware.id === item.id)
-                  ? "added"
-                  : ""
-              }`}
-              onClick={(event) => {
-                event.stopPropagation();
-                addToCompare(item);
-              }}
-              disabled={
-                !compareList.some((hardware) => hardware.id === item.id) &&
-                compareList.length >= 2
-              }
-            >
-              {compareList.some((hardware) => hardware.id === item.id)
-                ? "✓ In Comparison"
-                : compareList.length >= 2
-                  ? "Comparison Full"
-                  : "Compare"}
-            </button>
+                      <div className="hardware-card-actions">
+                        <button
+                          type="button"
+                          className={`compare-button ${inComparison ? "added" : ""}`}
+                          aria-pressed={inComparison}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            addToCompare(item);
+                          }}
+                          disabled={comparisonFull}
+                        >
+                          {inComparison
+                            ? "✓ In Comparison"
+                            : comparisonFull
+                              ? "Comparison Full"
+                              : "Compare"}
+                        </button>
 
-              {buildAction.isBuildSlot && (
-                <button
-                  type="button"
-                  className={`build-button ${
-                    buildAction.alreadySelected ? "added" : ""
-                  }`}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    addToBuild(item);
-                  }}
-                >
-                  {buildAction.actionLabel}
-                </button>
-              )}
-           </article>
-                );
-              })}
-          </div>
+                        {buildAction.isBuildSlot && (
+                          <button
+                            type="button"
+                            className={`build-button ${
+                              buildAction.alreadySelected ? "added" : ""
+                            }`}
+                            aria-pressed={buildAction.alreadySelected}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              addToBuild(item);
+                            }}
+                          >
+                            {buildAction.actionLabel}
+                          </button>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+            </div>
           )}
         </div>
 
         {!detailView && visibleCount < filteredHardware.length && (
           <div className="load-more-container">
-             <button
-               type="button"
-               className="load-more-button"
+            <button
+              type="button"
+              className="secondary-button load-more-button"
               onClick={() =>
                 setVisibleCount((prev) =>
                   Math.min(prev + 12, filteredHardware.length)
                 )
               }
             >
-              Load More
+              Load more hardware
             </button>
           </div>
         )}
@@ -2761,7 +2922,11 @@ function App() {
           <div className="detail-state detail-state-error" role="alert">
             <strong>Hardware details unavailable</strong>
             <span>{detailError}</span>
-            <button type="button" className="clear-search-button" onClick={returnToCatalog}>
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={returnToCatalog}
+            >
               Back to catalog
             </button>
           </div>
@@ -2776,18 +2941,18 @@ function App() {
               onAddToBuild={() => addToBuild(selectedHardware)}
             />
           ) : (
-          <CpuDetailView
-            hardware={selectedHardware}
-            benchmarkState={benchmarkStates[selectedHardware.id]}
-            compareList={compareList}
-            buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
-            onBack={returnToCatalog}
-            onCompare={compareSelectedHardware}
-            onAddToBuild={() => addToBuild(selectedHardware)}
-            detailError={detailError}
-            chatState={hardwareChatState}
-            onAskQuestion={askHardwareChat}
-          />
+            <CpuDetailView
+              hardware={selectedHardware}
+              benchmarkState={benchmarkStates[selectedHardware.id]}
+              compareList={compareList}
+              buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
+              onBack={returnToCatalog}
+              onCompare={compareSelectedHardware}
+              onAddToBuild={() => addToBuild(selectedHardware)}
+              detailError={detailError}
+              chatState={hardwareChatState}
+              onAskQuestion={askHardwareChat}
+            />
           )
         )}
 
@@ -2812,39 +2977,36 @@ function App() {
         <section
           id="compare"
           className={`comparison-section ${detailView ? "detail-hidden" : ""}`}
+          aria-labelledby="compare-title"
         >
           <p className="eyebrow">
             HARDWARE COMPARISON
           </p>
 
-          <h2>
-            {selectedComparisonType
-              ? `${selectedComparisonType} Comparison`
-              : "Compare Hardware"}
-          </h2>
+          <h2 id="compare-title">{comparisonSummary.heading}</h2>
 
-          <p className="comparison-status">
-            <strong>{compareList.length} of 2</strong> hardware selected
+          <p className="comparison-status" role="status">
+            {comparisonSummary.status}
           </p>
 
-           {compareList.length === 0 ? (
-             <div className="comparison-empty">
-               <div>
-                 <span className="comparison-empty-index">01 — 02</span>
-                 <h3>Build a side-by-side view</h3>
-                 <p>
-                   Choose up to two CPUs or GPUs from Explore Hardware. Selected
-                   hardware will appear here with verified specs and benchmark
-                   results.
-                 </p>
-               </div>
-               <a className="comparison-explore-link" href="#explore">
-                 Browse hardware <span aria-hidden="true">→</span>
-               </a>
-             </div>
-           ) : (
+          {compareList.length === 0 ? (
+            <div className="comparison-empty">
+              <div>
+                <span className="comparison-empty-index">01 — 02</span>
+                <h3>Build a side-by-side view</h3>
+                <p>
+                  Choose up to two CPUs or GPUs from Explore Hardware. Selected
+                  hardware will appear here with verified specs and benchmark
+                  results.
+                </p>
+              </div>
+              <a className="comparison-explore-link" href="#explore">
+                Browse hardware <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          ) : (
             <div className="comparison-content">
-              {compareList.length === 1 && (
+              {comparisonSummary.needsSecondItem && (
                 <p className="comparison-instruction">
                   Select another {selectedComparisonType || "CPU"} to start
                   comparing hardware.
@@ -2859,8 +3021,8 @@ function App() {
                 Clear Comparison
               </button>
 
-               {compareDetails.length === 2 && !isGpuComparison && (
-                 <div
+              {compareDetails.length === 2 && (
+                <div
                   className="comparison-legend"
                   aria-label="Comparison guidance"
                 >
@@ -2873,115 +3035,102 @@ function App() {
                   </span>
 
                   <span>
-                    Higher is better: Cores, Threads, Base Clock, Boost Clock.
-                  </span>
-
-                   <span>Lower is better: TDP.</span>
-                 </div>
-               )}
-
-               {compareDetails.length === 2 && isGpuComparison && (
-                 <div
-                  className="comparison-legend"
-                  aria-label="Comparison guidance"
-                >
-                  <span className="comparison-legend-title">
-                    <span
-                      className="comparison-legend-swatch"
-                      aria-hidden="true"
-                    />
-                    Highlighted value is better
+                    Higher is better:{" "}
+                    {isGpuComparison
+                      ? "VRAM, Memory Bandwidth, Core Clock, Boost Clock."
+                      : "Cores, Threads, Base Clock, Boost Clock."}
                   </span>
 
                   <span>
-                    Higher is better: VRAM, Memory Bandwidth, Core Clock, Boost
-                    Clock.
+                    Lower is better:{" "}
+                    {isGpuComparison ? "TDP, Length." : "TDP."}
                   </span>
+                </div>
+              )}
 
-                   <span>Lower is better: TDP, Length.</span>
-                 </div>
-               )}
+              {compareDetails.length === 2 && (
+                <p className="comparison-scroll-hint">
+                  <span aria-hidden="true">↔</span> Scroll horizontally to
+                  view the full comparison on smaller screens.
+                </p>
+              )}
 
-               {compareDetails.length === 2 && (
-                 <p className="comparison-scroll-hint">
-                   <span aria-hidden="true">↔</span> Scroll horizontally to
-                   view the full comparison on smaller screens.
-                 </p>
-               )}
+              <div className="comparison-performance">
+                {compareList.map((item) => {
+                  const requestState =
+                    comparisonDetailState.requestStatesById[item.id];
+                  const detail = comparisonDetailState.detailsById[item.id];
 
-                <div className="comparison-performance">
-                 {compareList.map((item) => {
-                   const requestState =
-                     comparisonDetailState.requestStatesById[item.id];
-                   const detail = comparisonDetailState.detailsById[item.id];
-
-if (requestState?.status === "error") {
-                      return (
-                        <section
-                          className="comparison-performance-card comparison-detail-error"
-                          key={item.id}
-                          role="alert"
-                        >
-                          <p className="detail-section-label">
-                            {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
-                          </p>
-                          <h3>{item.name}</h3>
-                          <p>
-                            Unable to load{" "}
-                            {item.type === "GPU" ? "GPU" : "CPU"} details.
-                          </p>
-                         <div className="comparison-detail-actions">
-                           <button
-                             type="button"
-                             className="clear-search-button"
-                             onClick={() => loadComparisonDetail(item)}
-                           >
-                             Retry
-                           </button>
-                           <button
-                             type="button"
-                             className="remove-compare-button"
-                             onClick={() => removeFromCompare(item.id)}
-                           >
-                             Remove
-                           </button>
-                         </div>
-                       </section>
-                     );
-                   }
-
-if (!detail || requestState?.status === "loading") {
-                      return (
-                        <section
-                          className="comparison-performance-card"
-                          key={item.id}
-                          role="status"
-                        >
-                          <p className="detail-section-label">
-                            {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
-                          </p>
-                          <h3>{item.name}</h3>
-                          <div className="comparison-loading">
-                            <span className="state-spinner" aria-hidden="true" />
-                            Loading selected{" "}
-                            {item.type === "GPU" ? "GPU" : "CPU"} details...
-                          </div>
-                        </section>
-                      );
-                    }
-
+                  if (requestState?.status === "error") {
                     return (
-                      <section className="comparison-performance-card" key={item.id}>
-                        <p className="detail-section-label">PERFORMANCE</p>
-                        <h3>{detail.name}</h3>
-                        <PerformanceSection
-                          benchmarkState={benchmarkStates[detail.id]}
-                          hardwareType={item.type || "CPU"}
-                        />
+                      <section
+                        className="comparison-performance-card comparison-detail-error"
+                        key={item.id}
+                        role="alert"
+                      >
+                        <p className="detail-section-label">
+                          {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
+                        </p>
+                        <h3>{item.name}</h3>
+                        <p>
+                          Unable to load{" "}
+                          {item.type === "GPU" ? "GPU" : "CPU"} details.
+                        </p>
+                        <div className="comparison-detail-actions">
+                          <button
+                            type="button"
+                            className="secondary-button"
+                            onClick={() => loadComparisonDetail(item)}
+                          >
+                            Retry
+                          </button>
+                          <button
+                            type="button"
+                            className="remove-compare-button"
+                            onClick={() => removeFromCompare(item.id)}
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </section>
                     );
-                  })}
-                 </div>
+                  }
+
+                  if (!detail || requestState?.status === "loading") {
+                    return (
+                      <section
+                        className="comparison-performance-card"
+                        key={item.id}
+                        aria-busy={true}
+                        role="status"
+                      >
+                        <p className="detail-section-label">
+                          {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
+                        </p>
+                        <h3>{item.name}</h3>
+                        <div className="comparison-loading">
+                          <span className="state-spinner" aria-hidden="true" />
+                          Loading selected{" "}
+                          {item.type === "GPU" ? "GPU" : "CPU"} details...
+                        </div>
+                      </section>
+                    );
+                  }
+
+                  return (
+                    <section className="comparison-performance-card" key={item.id}>
+                      <p className="detail-section-label">PERFORMANCE</p>
+                      <h3>{detail.name}</h3>
+                      <PerformanceSection
+                        benchmarkState={benchmarkStates[detail.id]}
+                        hardwareType={item.type || "CPU"}
+                        titleId={`comparison-performance-${detail.id}`}
+                      />
+                    </section>
+                  );
+                })}
+              </div>
+
 
                {compareDetails.length === 2 && !isGpuComparison && (
                  <BenchmarkComparison
@@ -3011,207 +3160,212 @@ if (!detail || requestState?.status === "loading") {
                  </section>
                )}
 
-                {compareDetails.length === 2 && (
-                  <ComparisonInsights
-                   insights={comparisonInsights}
-                   compareDetails={compareDetails}
-                  />
-                )}
+              {compareDetails.length === 2 && (
+                <ComparisonInsights
+                  insights={comparisonInsights}
+                  compareDetails={compareDetails}
+                />
+              )}
 
-                {compareDetails.length === 2 && !isGpuComparison && (
-                  <AiAnalysis
-                    analysis={aiAnalysis}
-                    onGenerate={generateAiAnalysis}
-                  />
-                )}
+              {compareDetails.length === 2 && !isGpuComparison && (
+                <AiAnalysis
+                  analysis={aiAnalysis}
+                  onGenerate={generateAiAnalysis}
+                />
+              )}
 
-                {compareDetails.length === 2 && (
-                 <div className="comparison-table-wrapper">
-                 <table className="comparison-table">
-                   <caption className="sr-only">
-                     Side-by-side{" "}
-                     {isGpuComparison ? "GPU" : "CPU"} specification comparison
-                   </caption>
-                  <thead>
-                    <tr>
-                      <th>Specification</th>
-
-                      {compareDetails.map((item) => (
-                        <th key={item.id}>
-                          <div className="comparison-header">
-                            <span>{item.name}</span>
-
-                            <button
-                              type="button"
-                              className="remove-compare-button"
-                              onClick={() =>
-                                removeFromCompare(item.id)
-                              }
-                            >
-                              Remove
-                            </button>
-                           </div>
-                         </th>
-                       ))}
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {isGpuComparison
-                      ? GPU_TABLE_SPECS.map((spec) => (
-                          <tr key={spec.key}>
-                            <td>{spec.label}</td>
-                            {compareDetails.map((item) => {
-                              const value =
-                                spec.source === "hardware"
-                                  ? item[spec.key]
-                                  : item.specifications?.[spec.key];
-                              const cellClass = spec.direction
-                                ? getComparisonCellClass(
-                                    spec.key,
-                                    compareDetails.indexOf(item),
-                                    spec.direction === "lower"
-                                  )
-                                : "";
-
-                              return (
-                                <td key={item.id} className={cellClass}>
-                                  {formatComparisonTableCell(spec, value)}
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        ))
-                      : (
-                      <>
+              {compareDetails.length === 2 && (
+                <div className="comparison-table-wrapper" tabIndex={0} role="group" aria-label={`${isGpuComparison ? "GPU" : "CPU"} specification table, scrollable horizontally`}>
+                  <table className="comparison-table">
+                    <caption className="sr-only">
+                      Side-by-side{" "}
+                      {isGpuComparison ? "GPU" : "CPU"} specification comparison
+                    </caption>
+                    <thead>
                       <tr>
-                      <td>Cores</td>
+                        <th scope="col">Specification</th>
 
-                      {compareDetails.map((item) => (
-                        <td
-                          key={item.id}
-                          className={getComparisonCellClass(
-                            "cores",
-                            compareDetails.indexOf(item)
+                        {compareDetails.map((item) => (
+                          <th scope="col" key={item.id}>
+                            <div className="comparison-header">
+                              <span>{item.name}</span>
+
+                              <button
+                                type="button"
+                                className="remove-compare-button"
+                                aria-label={`Remove ${item.name} from comparison`}
+                                onClick={() =>
+                                  removeFromCompare(item.id)
+                                }
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {isGpuComparison
+                        ? GPU_TABLE_SPECS.map((spec) => (
+                            <tr key={spec.key}>
+                              <th scope="row">{spec.label}</th>
+                              {compareDetails.map((item) => {
+                                const value =
+                                  spec.source === "hardware"
+                                    ? item[spec.key]
+                                    : item.specifications?.[spec.key];
+                                const cellClass = spec.direction
+                                  ? getComparisonCellClass(
+                                      spec.key,
+                                      compareDetails.indexOf(item),
+                                      spec.direction === "lower"
+                                    )
+                                  : "";
+
+                                return (
+                                  <td key={item.id} className={cellClass}>
+                                    {formatComparisonTableCell(spec, value)}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          ))
+                        : (
+                            <>
+                              <tr>
+                                <th scope="row">Cores</th>
+
+                                {compareDetails.map((item) => (
+                                  <td
+                                    key={item.id}
+                                    className={getComparisonCellClass(
+                                      "cores",
+                                      compareDetails.indexOf(item)
+                                    )}
+                                  >
+                                    {item.specifications.cores ?? "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Threads</th>
+
+                                {compareDetails.map((item) => (
+                                  <td
+                                    key={item.id}
+                                    className={getComparisonCellClass(
+                                      "threads",
+                                      compareDetails.indexOf(item)
+                                    )}
+                                  >
+                                    {item.specifications.threads ?? "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Base Clock</th>
+
+                                {compareDetails.map((item) => (
+                                  <td
+                                    key={item.id}
+                                    className={getComparisonCellClass(
+                                      "base_clock_ghz",
+                                      compareDetails.indexOf(item)
+                                    )}
+                                  >
+                                    {item.specifications.base_clock_ghz != null
+                                      ? `${item.specifications.base_clock_ghz} GHz`
+                                      : "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Boost Clock</th>
+
+                                {compareDetails.map((item) => (
+                                  <td
+                                    key={item.id}
+                                    className={getComparisonCellClass(
+                                      "boost_clock_ghz",
+                                      compareDetails.indexOf(item)
+                                    )}
+                                  >
+                                    {item.specifications.boost_clock_ghz != null
+                                      ? `${item.specifications.boost_clock_ghz} GHz`
+                                      : "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">TDP</th>
+
+                                {compareDetails.map((item) => (
+                                  <td
+                                    key={item.id}
+                                    className={getComparisonCellClass(
+                                      "tdp_w",
+                                      compareDetails.indexOf(item),
+                                      true
+                                    )}
+                                  >
+                                    {item.specifications.tdp_w != null
+                                      ? `${item.specifications.tdp_w} W`
+                                      : "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Process Node</th>
+
+                                {compareDetails.map((item) => (
+                                  <td key={item.id}>
+                                    {item.specifications.process_node_nm != null
+                                      ? `${item.specifications.process_node_nm} nm`
+                                      : "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Socket</th>
+
+                                {compareDetails.map((item) => (
+                                  <td key={item.id}>
+                                    {item.specifications.socket ?? "N/A"}
+                                  </td>
+                                ))}
+                              </tr>
+                            </>
                           )}
-                        >
-                          {item.specifications.cores ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
 
-                    <tr>
-                      <td>Threads</td>
-
-                      {compareDetails.map((item) => (
-                        <td
-                          key={item.id}
-                          className={getComparisonCellClass(
-                            "threads",
-                            compareDetails.indexOf(item)
-                          )}
-                        >
-                          {item.specifications.threads ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Base Clock</td>
-
-                      {compareDetails.map((item) => (
-                        <td
-                          key={item.id}
-                          className={getComparisonCellClass(
-                            "base_clock_ghz",
-                            compareDetails.indexOf(item)
-                          )}
-                        >
-                          {item.specifications.base_clock_ghz != null
-                            ? `${item.specifications.base_clock_ghz} GHz`
-                            : "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Boost Clock</td>
-
-                      {compareDetails.map((item) => (
-                        <td
-                          key={item.id}
-                          className={getComparisonCellClass(
-                            "boost_clock_ghz",
-                            compareDetails.indexOf(item)
-                          )}
-                        >
-                          {item.specifications.boost_clock_ghz != null
-                            ? `${item.specifications.boost_clock_ghz} GHz`
-                            : "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>TDP</td>
-
-                      {compareDetails.map((item) => (
-                        <td
-                          key={item.id}
-                          className={getComparisonCellClass(
-                            "tdp_w",
-                            compareDetails.indexOf(item),
-                            true
-                          )}
-                        >
-                          {item.specifications.tdp_w != null
-                            ? `${item.specifications.tdp_w} W`
-                            : "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Process Node</td>
-
-                      {compareDetails.map((item) => (
-                        <td key={item.id}>
-                          {item.specifications.process_node_nm != null
-                            ? `${item.specifications.process_node_nm} nm`
-                            : "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-
-                    <tr>
-                      <td>Socket</td>
-
-                      {compareDetails.map((item) => (
-                        <td key={item.id}>
-                          {item.specifications.socket ?? "N/A"}
-                        </td>
-                      ))}
-                    </tr>
-                      </>
-                      )}
-                 </tbody>
-                </table>
-              </div>
-           )}
-             </div>
-           )}
-          </section>
-
-        <section id="about" className="about-section">
+        <section id="about" className="about-section" aria-labelledby="about-title">
           <p className="eyebrow">ABOUT SPECTRA</p>
+          <h2 id="about-title" className="sr-only">
+            About SPECTRA
+          </h2>
           <p>
             A focused way to inspect hardware specifications and compare verified
             performance data without filling gaps with estimates.
           </p>
         </section>
-       </section>
+      </section>
     </div>
   );
 }
 
 export default App;
+

@@ -94,6 +94,34 @@ export const removeComparisonSelection = (compareList, id) =>
 
 export const clearComparisonSelection = () => [];
 
+export const COMPARISON_SLOT_COUNT = 2;
+
+export const getComparisonSelectionSummary = (compareList) => {
+  const selectedCount = Array.isArray(compareList) ? compareList.length : 0;
+  const slotType = compareList?.[0]?.type || null;
+  const noun = slotType || "hardware";
+  const isComplete = selectedCount >= COMPARISON_SLOT_COUNT;
+
+  return {
+    selectedCount,
+    totalCount: COMPARISON_SLOT_COUNT,
+    isComplete,
+    needsSecondItem: selectedCount === 1,
+    slotType,
+    heading: slotType ? `${slotType} Comparison` : "Compare Hardware",
+    status: `${selectedCount} of ${COMPARISON_SLOT_COUNT} ${noun} selected`,
+    slotLabel: (slotNumber) =>
+      `${noun} ${String(slotNumber).padStart(2, "0")}`,
+    emptySlot: isComplete
+      ? null
+      : {
+          indexLabel: `${noun} ${String(selectedCount + 1).padStart(2, "0")}`,
+          title: `Choose a second ${noun}`,
+          hint: "Use Explore Hardware below to complete the comparison.",
+        },
+  };
+};
+
 export const setBenchmarkLoading = (states, hardwareId) => ({
   ...states,
   [hardwareId]: { status: "loading", results: null },

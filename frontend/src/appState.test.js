@@ -10,6 +10,7 @@ import {
   createDetailNavigationState,
   failCatalogLoad,
   failDetailNavigation,
+  getComparisonSelectionSummary,
   getComparisonTypeConflict,
   removeComparisonSelection,
   returnToCatalogState,
@@ -176,3 +177,49 @@ test("comparison type conflict reports actionable messages", () => {
   assert.equal(getComparisonTypeConflict([cpuTyped(1)], cpuTyped(2)), null);
   assert.equal(getComparisonTypeConflict([gpu(1)], gpu(2)), null);
 });
+
+test("comparison selection summary starts empty and generic", () => {
+  const summary = getComparisonSelectionSummary([]);
+
+  assert.equal(summary.selectedCount, 0);
+  assert.equal(summary.totalCount, 2);
+  assert.equal(summary.isComplete, false);
+  assert.equal(summary.needsSecondItem, false);
+  assert.equal(summary.heading, "Compare Hardware");
+  assert.equal(summary.status, "0 of 2 hardware selected");
+  assert.equal(summary.emptySlot.indexLabel, "hardware 01");
+});
+
+test("comparison selection summary prompts for a second item of the same type", () => {
+  const summary = getComparisonSelectionSummary([{ id: 1, type: "GPU" }]);
+
+  assert.equal(summary.needsSecondItem, true);
+  assert.equal(summary.slotType, "GPU");
+  assert.equal(summary.heading, "GPU Comparison");
+  assert.equal(summary.status, "1 of 2 GPU selected");
+  assert.equal(summary.slotLabel(1), "GPU 01");
+  assert.deepEqual(summary.emptySlot, {
+    indexLabel: "GPU 02",
+    title: "Choose a second GPU",
+    hint: "Use Explore Hardware below to complete the comparison.",
+  });
+});
+
+test("comparison selection summary drops the empty slot once two items are selected", () => {
+  const summary = getComparisonSelectionSummary([
+    { id: 1, type: "CPU" },
+    { id: 2, type: "CPU" },
+  ]);
+
+  assert.equal(summary.isComplete, true);
+  assert.equal(summary.emptySlot, null);
+  assert.equal(summary.status, "2 of 2 CPU selected");
+});
+
+test("comparison selection summary tolerates a missing comparison list", () => {
+  const summary = getComparisonSelectionSummary(undefined);
+
+  assert.equal(summary.selectedCount, 0);
+  assert.equal(summary.status, "0 of 2 hardware selected");
+});
+

@@ -350,6 +350,28 @@ export const getBuildSummary = (state) => ({
   relationshipLabel: "CPU + GPU configuration",
 });
 
+export const getBuildSlotChecklistItem = (type, selection, requestState) => {
+  const status = requestState?.status || BUILD_DETAIL_STATUS.idle;
+
+  if (!selection) {
+    return { type, state: "empty", label: `Select a ${type} to continue` };
+  }
+
+  if (status === BUILD_DETAIL_STATUS.loading || status === BUILD_DETAIL_STATUS.idle) {
+    return {
+      type,
+      state: "pending",
+      label: `Loading stored ${type} details`,
+    };
+  }
+
+  if (status === BUILD_DETAIL_STATUS.error) {
+    return { type, state: "error", label: `Retry the ${type} details` };
+  }
+
+  return { type, state: "ready", label: `${selection.name} is ready` };
+};
+
 export const createBuildUserContext = () => ({
   useCase: "Not specified",
   resolution: "Not specified",
