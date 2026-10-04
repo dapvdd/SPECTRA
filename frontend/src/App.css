@@ -2541,6 +2541,217 @@ h1 {
   line-height: 1.55;
 }
 
+/* ---------- Build intelligence ---------- */
+
+.build-intelligence {
+  margin: 0 0 1.5rem;
+  padding: 1.35rem;
+  background: linear-gradient(145deg, #12243a, var(--surface-inset) 72%);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  border-radius: var(--radius-xl);
+}
+
+.build-intelligence-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.build-intelligence-header .detail-section-label {
+  margin-bottom: 0.5rem;
+}
+
+.build-intelligence-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+}
+
+.build-intelligence-headline {
+  margin: 0.4rem 0 0;
+  overflow-wrap: anywhere;
+  color: var(--accent-soft);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.build-intelligence-slot {
+  margin: 0.15rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.build-intelligence-boundary,
+.build-intelligence-notice,
+.build-intelligence-empty {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.build-intelligence-empty {
+  color: var(--text-secondary);
+}
+
+.build-intelligence-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.build-intelligence-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1.1rem 0 0;
+  overflow: hidden;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.build-intelligence-fact {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.8rem 0.9rem;
+  background: var(--surface-app);
+}
+
+.build-intelligence-fact dt {
+  overflow-wrap: anywhere;
+  color: var(--text-faint);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.build-intelligence-fact dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.build-intelligence-group {
+  margin-top: 1.25rem;
+}
+
+.build-intelligence-group > .detail-section-label {
+  margin-bottom: 0.6rem;
+}
+
+.build-intelligence-signals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.build-intelligence-signal {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.8rem 0.9rem;
+  background: rgba(15, 23, 42, 0.48);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius-md);
+}
+
+.build-intelligence-signal-available {
+  border-left-color: rgba(74, 222, 128, 0.7);
+}
+
+.build-intelligence-signal-partial,
+.build-intelligence-signal-loading {
+  border-left-color: var(--warning);
+}
+
+.build-intelligence-signal-errored,
+.build-intelligence-signal-unavailable {
+  border-left-color: rgba(248, 113, 113, 0.65);
+}
+
+.build-intelligence-signal-notCollected,
+.build-intelligence-signal-notLoaded,
+.build-intelligence-signal-notSelected {
+  border-left-color: var(--border-strong);
+}
+
+.build-intelligence-signal-label {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.build-intelligence-signal-value {
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.build-intelligence-signal-state {
+  color: var(--accent-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.build-intelligence-signal-detail {
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.build-intelligence-block {
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border-default);
+}
+
+.build-intelligence-block h4 {
+  margin: 0 0 0.7rem;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.build-intelligence-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.build-intelligence-list li {
+  overflow-wrap: anywhere;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-strong);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
 /* ---------- Chat ---------- */
 
 .hardware-chat {
@@ -3079,6 +3290,7 @@ h1 {
   .comparison-insight-list,
   .decision-lead-list,
   .decision-facts,
+  .build-intelligence-facts,
   .comparison-overview,
   .build-components,
   .build-context-fields,
@@ -3199,6 +3411,7 @@ h1 {
   .comparison-selection-heading,
   .comparison-empty,
   .comparison-decision-header,
+  .build-intelligence-header,
   .performance-intro {
     flex-direction: column;
     align-items: flex-start;

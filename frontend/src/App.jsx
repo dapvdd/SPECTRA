@@ -15,6 +15,13 @@ import {
   buildComparisonSpecRows,
 } from "./comparisonDecision.js";
 import {
+  BUILD_INTELLIGENCE_STATUS,
+  BUILD_LIST_SECTIONS,
+  BUILD_SIGNAL_CATEGORY_LABELS,
+  BUILD_SIGNAL_CATEGORY_ORDER,
+  buildBuildIntelligence,
+} from "./buildIntelligence.js";
+import {
   AI_ANALYSIS_STATUS,
   requestComparisonExplanation,
 } from "./comparisonExplanation.js";
@@ -1479,9 +1486,176 @@ function BuildComponentCard({
   );
 }
 
+const BUILD_INTELLIGENCE_STATUS_CLASS = {
+  ready: "performance-status-available",
+  partial: "performance-status-partial",
+  loading: "performance-status-loading",
+  unavailable: "performance-status-error",
+  empty: "performance-status-loading",
+};
+
+function BuildIntelligenceSignalList({ signals, titleId }) {
+  return (
+    <ul className="build-intelligence-signals" aria-labelledby={titleId}>
+      {signals.map((signal) => (
+        <li
+          key={signal.key}
+          className={`build-intelligence-signal build-intelligence-signal-${signal.state}`}
+        >
+          <span className="build-intelligence-signal-label">{signal.label}</span>
+          <strong className="build-intelligence-signal-value">
+            {signal.display}
+          </strong>
+          <span className="build-intelligence-signal-state">
+            {signal.stateLabel}
+          </span>
+          <span className="build-intelligence-signal-detail">{signal.detail}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function BuildIntelligenceSection({ intelligence }) {
+  const { overview, power, completeness, benchmarkCoverage } = intelligence;
+  const isEmpty = intelligence.status === BUILD_INTELLIGENCE_STATUS.empty;
+
+  return (
+    <section
+      className="build-intelligence"
+      aria-labelledby="build-intelligence-title"
+      aria-busy={intelligence.isLoading}
+    >
+      <div className="build-intelligence-header">
+        <div>
+          <p className="detail-section-label">BUILD INTELLIGENCE</p>
+          <h3 id="build-intelligence-title">What SPECTRA can verify</h3>
+          <p className="build-intelligence-headline">{overview.headline}</p>
+          <p className="build-intelligence-slot">{overview.slotLabel}</p>
+        </div>
+
+        <span
+          className={`performance-status ${
+            BUILD_INTELLIGENCE_STATUS_CLASS[intelligence.status]
+          }`}
+        >
+          {intelligence.statusLabel}
+        </span>
+      </div>
+
+      <p className="build-intelligence-boundary">
+        Build Intelligence reports only stored specifications and benchmark
+        records for the selected components. It does not estimate frame rate,
+        component balance, thermals, or measured power.
+      </p>
+
+      {isEmpty ? (
+        <p className="build-intelligence-empty">
+          Select a CPU or a GPU to build verified intelligence for this build.
+        </p>
+      ) : (
+        <>
+          <dl className="build-intelligence-facts">
+            <div className="build-intelligence-fact">
+              <dt>Reportable signals</dt>
+              <dd>
+                {completeness.availableCount} of {completeness.expectedCount}
+              </dd>
+            </div>
+
+            <div className="build-intelligence-fact">
+              <dt>Verified benchmark metrics</dt>
+              <dd>
+                {benchmarkCoverage.totalExpectedCount === 0
+                  ? "Not collected"
+                  : `${benchmarkCoverage.totalAvailableCount} of ${benchmarkCoverage.totalExpectedCount}`}
+              </dd>
+            </div>
+
+            <div className="build-intelligence-fact">
+              <dt>Populated slots</dt>
+              <dd>{overview.populatedSlotCount} of 2</dd>
+            </div>
+
+            <div className="build-intelligence-fact">
+              <dt>{power.label}</dt>
+              <dd>
+                {power.listedComponentTdp === null
+                  ? "Not available"
+                  : `${power.listedComponentTdp} W`}
+              </dd>
+            </div>
+          </dl>
+
+          {intelligence.isLoading && (
+            <p className="build-intelligence-status" role="status">
+              <span className="state-spinner" aria-hidden="true" />
+              Waiting for stored component data before reporting build signals.
+            </p>
+          )}
+
+          {BUILD_SIGNAL_CATEGORY_ORDER.map((category) => (
+            <section
+              className="build-intelligence-group"
+              key={category}
+              aria-labelledby={`build-intelligence-group-${category}`}
+            >
+              <h4
+                className="detail-section-label"
+                id={`build-intelligence-group-${category}`}
+              >
+                {BUILD_SIGNAL_CATEGORY_LABELS[category]}
+              </h4>
+
+              <BuildIntelligenceSignalList
+                signals={intelligence.signals[category]}
+                titleId={`build-intelligence-group-${category}`}
+              />
+            </section>
+          ))}
+
+          <p className="build-intelligence-notice">{power.notice}</p>
+
+          <div className="build-intelligence-block">
+            <h4>What the available data shows</h4>
+            <ul className="build-intelligence-list">
+              {intelligence.interpretations.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </div>
+
+          {intelligence.known.length > 0 && (
+            <div className="build-intelligence-block">
+              <h4>Known</h4>
+              <ul className="build-intelligence-list">
+                {intelligence.known.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {BUILD_LIST_SECTIONS.map((section) => (
+            <div className="build-intelligence-block" key={section.key}>
+              <h4>{section.label}</h4>
+              <ul className="build-intelligence-list">
+                {intelligence[section.key].map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </>
+      )}
+    </section>
+  );
+}
+
 function BuildConfigurationSection({
   buildConfig,
   buildDetailState,
+  buildBenchmarkStates,
   buildUserContext,
   buildChatReady,
   buildChatState,
@@ -1510,6 +1684,14 @@ function BuildConfigurationSection({
       type === "CPU" ? cpuRequestState : gpuRequestState
     )
   );
+  const buildIntelligence = buildBuildIntelligence(cpuDetail, gpuDetail, {
+    cpuSelected: buildConfig.cpu,
+    gpuSelected: buildConfig.gpu,
+    cpuRequestStatus: cpuRequestState.status,
+    gpuRequestStatus: gpuRequestState.status,
+    cpuBenchmarkState: buildBenchmarkStates.CPU,
+    gpuBenchmarkState: buildBenchmarkStates.GPU,
+  });
 
   return (
     <section id="build" className="build-section" aria-labelledby="build-title">
@@ -1550,6 +1732,8 @@ function BuildConfigurationSection({
           )}
         </div>
       </div>
+
+      <BuildIntelligenceSection intelligence={buildIntelligence} />
 
       <div className="build-components">
         <BuildComponentCard
@@ -1768,6 +1952,11 @@ function App() {
       ? benchmarkStates[buildGpuDetail.id]?.results ?? []
       : [],
   });
+
+  const buildBenchmarkStates = {
+    CPU: buildCpuDetail ? (benchmarkStates[buildCpuDetail.id] ?? null) : null,
+    GPU: buildGpuDetail ? (benchmarkStates[buildGpuDetail.id] ?? null) : null,
+  };
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
@@ -3083,6 +3272,7 @@ function App() {
         <BuildConfigurationSection
           buildConfig={buildConfig}
           buildDetailState={buildDetailState}
+          buildBenchmarkStates={buildBenchmarkStates}
           buildUserContext={buildUserContext}
           buildChatReady={buildChatReady}
           buildChatState={buildChatState}
