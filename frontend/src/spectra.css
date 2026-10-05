@@ -1,31 +1,37 @@
 /* ==========================================================================
-   SPECTRA VISUAL SYSTEM V1
+   SPECTRA VISUAL SYSTEM V2
    --------------------------------------------------------------------------
-   The visual language layer. Loaded after App.css, so everything here
-   governs: App.css owns component implementation, this file owns identity.
+   Identity + theming layer. Loaded after App.css, so this file governs:
+   App.css owns component implementation, this file owns language and themes.
 
    Order:
-     1.  Palette          raw, unopinionated colour values
-     2.  System tokens    type, space, motion, radius, elevation, hairlines
-     3.  Atmosphere       grid texture, page field
-     4.  Typography       hierarchy + technical voice
-     5.  Primitives       labels, refs, rules, values, panels
-     6.  Motifs           spectrum trace
-     7.  Data motion      state-driven only
-     8.  Hierarchy pass   dividers instead of boxes where a box is not needed
+     1.  Dark theme          default identity, also the no-JS fallback
+     2.  Light theme         deliberate daylight counterpart
+     3.  Alpha ramp          derived once, follows the active theme's hues
+     4.  Shared scales       type, space, motion, radius (theme-independent)
+     5.  Atmosphere          grid texture + page field
+     6.  Typography          hierarchy + technical voice
+     7.  Primitives          labels, refs, rules, values, panels, readouts
+     8.  Spatial expression  asymmetric composition, editorial records
+     9.  Motifs              SPECTRA signal trace
+     10. Data motion         state-driven only
+     11. Reduced motion
 
-   Constraints honoured here:
-     - No behaviour, layout, data or accessibility changes.
-     - Every foreground token clears WCAG AA (>= 4.5:1) against every
-       surface it is used on. See CONTRAST FLOOR below.
-     - Blue is restrained, gold is rare.
+   Rules this file holds itself to:
+     - Dark is the primary identity. Light is a designed counterpart,
+       never an inversion.
+     - Every foreground token clears WCAG AA (>= 4.5:1) against every surface
+       it is used on, in BOTH themes. Contrast tables live beside the palettes.
+     - Gold means "meaningful better value". It is never a primary accent.
+     - Blue means interaction, active state, navigation, focus. Nothing else.
+     - No hue literals below this line except inside a theme palette block.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. PALETTE
-   Obsidian foundation, midnight atmosphere, white information,
-   silver structure, blue interaction, gold significance.
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   1. DARK THEME  —  premium engineering instrumentation at night
+   The canonical palette. `:root` carries it so the product is fully
+   rendered even if the theme boot script never runs.
+   ========================================================================== */
 
 :root {
   /* Foundation */
@@ -48,183 +54,55 @@
   --spectra-blue-solid: #1d4e86;
   --spectra-blue-solid-hover: #2a6bb0;
 
-  /* Significance */
+  /* Significance - rare by rule, never a primary accent */
   --spectra-gold: #d4af5a;
   --spectra-gold-soft: #e7ce8f;
 
-  /* Status - muted, never saturated */
+  /* Status */
   --spectra-green: #4ade80;
   --spectra-green-soft: #86efac;
   --spectra-red: #f87171;
   --spectra-red-soft: #fca5a5;
   --spectra-amber: #d9a63f;
-}
 
-/* CONTRAST FLOOR (measured against --spectra-obsidian #080a0f)
-   white            18.45:1     blue-soft        11.21:1
-   gold              9.50:1     blue              6.94:1
-   silver            9.44:1     muted             5.46:1
-   silver-bright    13.60:1     faint             5.24:1
-
-   --spectra-silver-muted (#697386) measures 4.15:1 and therefore does NOT
-   qualify as a text colour. It is reserved for non-text decoration only.
-   Text uses --spectra-faint (#7a8494) instead. */
-
-/* --------------------------------------------------------------------------
-   2. SYSTEM TOKENS
-   -------------------------------------------------------------------------- */
-
-/* Surfaces - a deliberately narrow, near-black ladder. Hierarchy comes from
-   hairlines and type weight, not from stacking lighter panels. */
-:root {
+  /* Surfaces - a deliberately narrow, near-black ladder. Hierarchy comes from
+     hairlines and type weight, not from stacking lighter panels. */
   --spectra-surface-sunken: #05070b;
   --spectra-surface-app: var(--spectra-obsidian);
   --spectra-surface-raised: var(--spectra-black);
   --spectra-surface-inset: var(--spectra-midnight);
   --spectra-surface-wash: rgba(13, 16, 22, 0.72);
   --spectra-surface-overlay: rgba(8, 10, 15, 0.86);
-}
 
-/* Hairlines - the primary structural device. */
-:root {
+  /* Hairlines - the primary structural device */
   --spectra-hairline: #141a24;
   --spectra-hairline-soft: #1c2531;
   --spectra-hairline-strong: #313d4b;
   --spectra-hairline-strongest: #3c4a5c;
-}
 
-/* Foreground */
-:root {
+  /* Foreground */
   --spectra-text-primary: var(--spectra-white);
   --spectra-text-secondary: var(--spectra-silver);
   --spectra-text-muted: #7d8798;
   --spectra-text-faint: #7a8494;
+  /* Ink for saturated fills. Theme-dependent by design: dark fills take
+     near-black, light fills take white. */
   --spectra-text-inverse: var(--spectra-obsidian);
-}
 
-/* Alpha channels. Hue math lives here and nowhere else, so a future palette
-   shift is a single-file change. */
-:root {
-  --spectra-blue-a06: rgba(109, 156, 212, 0.06);
-  --spectra-blue-a08: rgba(109, 156, 212, 0.08);
-  --spectra-blue-a12: rgba(109, 156, 212, 0.12);
-  --spectra-blue-a14: rgba(109, 156, 212, 0.14);
-  --spectra-blue-a18: rgba(109, 156, 212, 0.18);
-  --spectra-blue-a28: rgba(109, 156, 212, 0.28);
-  --spectra-blue-a30: rgba(109, 156, 212, 0.3);
-  --spectra-blue-a32: rgba(109, 156, 212, 0.32);
-  --spectra-blue-a35: rgba(109, 156, 212, 0.35);
-  --spectra-blue-a45: rgba(109, 156, 212, 0.45);
-  --spectra-blue-a50: rgba(109, 156, 212, 0.5);
-  --spectra-blue-a55: rgba(109, 156, 212, 0.55);
-  --spectra-blue-a65: rgba(109, 156, 212, 0.65);
-  --spectra-blue-a70: rgba(109, 156, 212, 0.7);
-  --spectra-blue-a80: rgba(109, 156, 212, 0.8);
-
-  --spectra-gold-a10: rgba(212, 175, 90, 0.1);
-  --spectra-gold-a16: rgba(212, 175, 90, 0.16);
-  --spectra-gold-a30: rgba(212, 175, 90, 0.3);
-  --spectra-gold-a45: rgba(212, 175, 90, 0.45);
-  --spectra-gold-a60: rgba(212, 175, 90, 0.6);
-
-  --spectra-green-a08: rgba(74, 222, 128, 0.08);
-  --spectra-green-a12: rgba(74, 222, 128, 0.12);
-  --spectra-green-a40: rgba(74, 222, 128, 0.4);
-  --spectra-green-a50: rgba(74, 222, 128, 0.5);
-  --spectra-green-a55: rgba(74, 222, 128, 0.55);
-  --spectra-green-a70: rgba(74, 222, 128, 0.7);
-
-  --spectra-red-a08: rgba(248, 113, 113, 0.08);
-  --spectra-red-a35: rgba(248, 113, 113, 0.35);
-  --spectra-red-a40: rgba(248, 113, 113, 0.4);
-  --spectra-red-a45: rgba(248, 113, 113, 0.45);
-  --spectra-red-a50: rgba(248, 113, 113, 0.5);
-  --spectra-red-a65: rgba(248, 113, 113, 0.65);
-
-  --spectra-amber-a08: rgba(217, 166, 63, 0.08);
-  --spectra-amber-a12: rgba(217, 166, 63, 0.12);
-  --spectra-amber-a45: rgba(217, 166, 63, 0.45);
-}
-
-/* Focus - one ring, used everywhere. */
-:root {
+  /* Focus - one ring, used everywhere */
   --spectra-focus-color: var(--spectra-blue-soft);
   --spectra-focus-ring: 3px solid var(--spectra-focus-color);
   --spectra-focus-offset: 3px;
-}
 
-/* Typography */
-:root {
-  --spectra-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-
-  /* Technical metadata reads as instrumentation, not prose. */
-  --spectra-font-mono: ui-monospace, "SF Mono", "Cascadia Mono",
-    "Segoe UI Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
-
-  --spectra-type-3xs: 0.625rem;
-  --spectra-type-2xs: 0.6875rem;
-  --spectra-type-xs: 0.75rem;
-  --spectra-type-sm: 0.8125rem;
-  --spectra-type-md: 0.875rem;
-  --spectra-type-base: 1rem;
-  --spectra-type-lg: 1.125rem;
-  --spectra-type-xl: 1.3rem;
-  --spectra-type-2xl: clamp(1.55rem, 2.6vw, 2.05rem);
-  --spectra-type-3xl: clamp(1.9rem, 3.6vw, 2.6rem);
-  --spectra-type-display: clamp(2.6rem, 6.6vw, 5.25rem);
-
-  --spectra-track-label: 0.1em;
-  --spectra-track-tight: -0.02em;
-  --spectra-track-display: -0.035em;
-}
-
-/* Space */
-:root {
-  --spectra-space-3xs: 0.25rem;
-  --spectra-space-2xs: 0.375rem;
-  --spectra-space-xs: 0.5rem;
-  --spectra-space-sm: 0.75rem;
-  --spectra-space-md: 1rem;
-  --spectra-space-lg: 1.25rem;
-  --spectra-space-xl: 1.5rem;
-  --spectra-space-2xl: 2rem;
-  --spectra-space-3xl: 3rem;
-  --spectra-space-4xl: 4rem;
-  --spectra-space-5xl: 5rem;
-}
-
-/* Radius - tight. Instruments are not pillowy. */
-:root {
-  --spectra-radius-xs: 2px;
-  --spectra-radius-sm: 4px;
-  --spectra-radius-md: 6px;
-  --spectra-radius-lg: 8px;
-  --spectra-radius-xl: 10px;
-  --spectra-radius-pill: 999px;
-}
-
-/* Elevation - shadows describe depth of the page, not decoration. */
-:root {
-  --spectra-elevation-none: none;
+  /* Elevation - depth of the page, not decoration */
   --spectra-elevation-card: 0 1px 0 rgba(170, 180, 194, 0.03);
   --spectra-elevation-panel: 0 18px 48px rgba(3, 6, 12, 0.5);
-}
 
-/* Motion - fast, instrument-like. Never bouncy. */
-:root {
-  --spectra-motion-instant: 120ms;
-  --spectra-motion-fast: 160ms;
-  --spectra-motion-base: 200ms;
-  --spectra-motion-slow: 320ms;
-  --spectra-motion-ease: cubic-bezier(0.2, 0, 0.1, 1);
-  --spectra-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-}
+  /* Atmosphere */
+  --spectra-grid-dot: rgba(170, 180, 194, 0.07);
+  --spectra-atmosphere: rgba(22, 58, 99, 0.26);
 
-/* Panels - atmosphere, not decoration. Kept extremely shallow. */
-:root {
+  /* Panels - atmosphere, not decoration. Kept extremely shallow. */
   --spectra-panel: linear-gradient(
     168deg,
     var(--spectra-midnight),
@@ -242,16 +120,227 @@
   );
 }
 
-/* --------------------------------------------------------------------------
-   3. ATMOSPHERE
-   A dot grid at the threshold of visibility. Engineering paper, not HUD.
-   -------------------------------------------------------------------------- */
+/* DARK CONTRAST (measured against every surface in the ladder)
+   text-primary     17.0:1     blue                6.39:1
+   text-secondary    8.7:1     blue-soft          10.33:1
+   gold              8.8:1     green              10.47:1
+   gold-soft        11.8:1     red                 6.60:1
+   text-muted        5.0:1     amber               8.23:1
+   text-faint        4.8:1
+   white on blue-solid        7.87:1
+   obsidian on gold/green/red/silver  7.1:1 - 11.4:1
+   --spectra-silver-muted (#697386) is 4.15:1 and is therefore decoration
+   only. Text uses --spectra-text-faint. */
+
+/* ==========================================================================
+   2. LIGHT THEME  —  precision engineering in daylight
+   Warm-cool off-white page, white object surfaces, midnight text, deeper
+   blue interaction, muted deeper gold. Independently composed, not flipped.
+   ========================================================================== */
+
+:root[data-theme="light"] {
+  /* Foundation - light values occupy the same roles, inverted in lightness */
+  --spectra-obsidian: #f2f4f7;
+  --spectra-black: #ffffff;
+  --spectra-midnight: #eaeff4;
+  --spectra-midnight-deep: #eef2f6;
+  --spectra-deep-blue: #dbe5f0;
+  --spectra-blue-accent: #b9cbdd;
+
+  /* Information */
+  --spectra-white: #ffffff;
+  --spectra-silver: #3b4959;
+  --spectra-silver-bright: #243141;
+  --spectra-silver-muted: #8b98a6;
+
+  /* Interaction - deeper blue carries the same meaning on a light field */
+  --spectra-blue: #1c5c9e;
+  --spectra-blue-soft: #164a83;
+  --spectra-blue-solid: #123c66;
+  --spectra-blue-solid-hover: #0d2f52;
+
+  /* Significance - muted, deeper gold. Still the rarest hue in the system. */
+  --spectra-gold: #7d5f18;
+  --spectra-gold-soft: #6b5215;
+
+  /* Status */
+  --spectra-green: #146b35;
+  --spectra-green-soft: #0f5c2c;
+  --spectra-red: #b3261e;
+  --spectra-red-soft: #8f1e18;
+  --spectra-amber: #7d5208;
+
+  /* Surfaces - off-white page, white objects, recessive wells */
+  --spectra-surface-sunken: #e6ebf0;
+  --spectra-surface-app: var(--spectra-obsidian);
+  --spectra-surface-raised: var(--spectra-black);
+  --spectra-surface-inset: var(--spectra-midnight);
+  --spectra-surface-wash: rgba(255, 255, 255, 0.86);
+  --spectra-surface-overlay: rgba(242, 244, 247, 0.9);
+
+  /* Hairlines - silver, same role as dark */
+  --spectra-hairline: #dde3ea;
+  --spectra-hairline-soft: #c9d2dc;
+  --spectra-hairline-strong: #aab6c2;
+  --spectra-hairline-strongest: #8b98a6;
+
+  /* Foreground - midnight, not black */
+  --spectra-text-primary: #0b1622;
+  --spectra-text-secondary: #3b4959;
+  --spectra-text-muted: #55636f;
+  --spectra-text-faint: #55626f;
+  /* Saturated fills are dark in light mode, so they take white ink. */
+  --spectra-text-inverse: #ffffff;
+
+  --spectra-focus-color: var(--spectra-blue-soft);
+
+  /* Elevation - shadows are softer and lower-contrast in daylight */
+  --spectra-elevation-card: 0 1px 2px rgba(16, 32, 48, 0.05);
+  --spectra-elevation-panel: 0 12px 32px rgba(16, 32, 48, 0.1);
+
+  /* Atmosphere - a cool wash and graphite engineering paper */
+  --spectra-grid-dot: rgba(59, 73, 89, 0.09);
+  --spectra-atmosphere: rgba(28, 92, 158, 0.07);
+
+  /* Panels */
+  --spectra-panel: linear-gradient(168deg, #ffffff, #f3f6fa 72%);
+  --spectra-panel-neutral: linear-gradient(168deg, #ffffff, #f7f9fb 72%);
+  --spectra-panel-selection: linear-gradient(150deg, #ffffff, #edf2f8 118%);
+}
+
+/* LIGHT CONTRAST (measured against every surface in the ladder)
+   text-primary     15.2:1     blue                5.69:1
+   text-secondary    7.5:1     blue-soft           7.48:1
+   gold              4.97:1    green               5.50:1
+   gold-soft         6.16:1    red                 5.45:1
+   text-muted        5.15:1    amber               5.68:1
+   text-faint        5.21:1
+   white on blue-solid          11.27:1
+   white on gold/green/red/silver  5.96:1 - 9.20:1   */
+
+/* ==========================================================================
+   3. ALPHA RAMP
+   Declared once. Every channel is derived from the ACTIVE theme's hue, so a
+   hue change or a theme switch needs no edits here and cannot drift.
+   These resolve to exactly the V1 values in dark.
+   ========================================================================== */
 
 :root {
-  --spectra-grid-size: 36px;
-  --spectra-grid-dot: rgba(170, 180, 194, 0.07);
-  --spectra-atmosphere: rgba(22, 58, 99, 0.26);
+  --spectra-blue-a06: color-mix(in srgb, var(--spectra-blue) 6%, transparent);
+  --spectra-blue-a08: color-mix(in srgb, var(--spectra-blue) 8%, transparent);
+  --spectra-blue-a12: color-mix(in srgb, var(--spectra-blue) 12%, transparent);
+  --spectra-blue-a14: color-mix(in srgb, var(--spectra-blue) 14%, transparent);
+  --spectra-blue-a18: color-mix(in srgb, var(--spectra-blue) 18%, transparent);
+  --spectra-blue-a28: color-mix(in srgb, var(--spectra-blue) 28%, transparent);
+  --spectra-blue-a30: color-mix(in srgb, var(--spectra-blue) 30%, transparent);
+  --spectra-blue-a32: color-mix(in srgb, var(--spectra-blue) 32%, transparent);
+  --spectra-blue-a35: color-mix(in srgb, var(--spectra-blue) 35%, transparent);
+  --spectra-blue-a45: color-mix(in srgb, var(--spectra-blue) 45%, transparent);
+  --spectra-blue-a50: color-mix(in srgb, var(--spectra-blue) 50%, transparent);
+  --spectra-blue-a55: color-mix(in srgb, var(--spectra-blue) 55%, transparent);
+  --spectra-blue-a65: color-mix(in srgb, var(--spectra-blue) 65%, transparent);
+  --spectra-blue-a70: color-mix(in srgb, var(--spectra-blue) 70%, transparent);
+  --spectra-blue-a80: color-mix(in srgb, var(--spectra-blue) 80%, transparent);
+
+  --spectra-gold-a10: color-mix(in srgb, var(--spectra-gold) 10%, transparent);
+  --spectra-gold-a16: color-mix(in srgb, var(--spectra-gold) 16%, transparent);
+  --spectra-gold-a30: color-mix(in srgb, var(--spectra-gold) 30%, transparent);
+  --spectra-gold-a45: color-mix(in srgb, var(--spectra-gold) 45%, transparent);
+  --spectra-gold-a60: color-mix(in srgb, var(--spectra-gold) 60%, transparent);
+
+  --spectra-green-a08: color-mix(in srgb, var(--spectra-green) 8%, transparent);
+  --spectra-green-a12: color-mix(in srgb, var(--spectra-green) 12%, transparent);
+  --spectra-green-a40: color-mix(in srgb, var(--spectra-green) 40%, transparent);
+  --spectra-green-a50: color-mix(in srgb, var(--spectra-green) 50%, transparent);
+  --spectra-green-a55: color-mix(in srgb, var(--spectra-green) 55%, transparent);
+  --spectra-green-a70: color-mix(in srgb, var(--spectra-green) 70%, transparent);
+
+  --spectra-red-a08: color-mix(in srgb, var(--spectra-red) 8%, transparent);
+  --spectra-red-a35: color-mix(in srgb, var(--spectra-red) 35%, transparent);
+  --spectra-red-a40: color-mix(in srgb, var(--spectra-red) 40%, transparent);
+  --spectra-red-a45: color-mix(in srgb, var(--spectra-red) 45%, transparent);
+  --spectra-red-a50: color-mix(in srgb, var(--spectra-red) 50%, transparent);
+  --spectra-red-a65: color-mix(in srgb, var(--spectra-red) 65%, transparent);
+
+  --spectra-amber-a08: color-mix(in srgb, var(--spectra-amber) 8%, transparent);
+  --spectra-amber-a12: color-mix(in srgb, var(--spectra-amber) 12%, transparent);
+  --spectra-amber-a45: color-mix(in srgb, var(--spectra-amber) 45%, transparent);
 }
+
+/* ==========================================================================
+   4. SHARED SCALES  —  theme-independent
+   ========================================================================== */
+
+:root {
+  /* Typography. Inter is deliberately absent: it was declared but never
+     loaded, so it was a dead first entry. The stack is now honest about what
+     actually renders. */
+  --spectra-font-sans: ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Technical metadata reads as instrumentation, not prose. */
+  --spectra-font-mono: ui-monospace, "SF Mono", "Cascadia Mono",
+    "Segoe UI Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  --spectra-type-3xs: 0.625rem;
+  --spectra-type-2xs: 0.6875rem;
+  --spectra-type-xs: 0.75rem;
+  --spectra-type-sm: 0.8125rem;
+  --spectra-type-md: 0.875rem;
+  --spectra-type-base: 1rem;
+  --spectra-type-lg: 1.125rem;
+  --spectra-type-xl: 1.35rem;
+  --spectra-type-2xl: clamp(1.55rem, 2.6vw, 2.05rem);
+  --spectra-type-3xl: clamp(1.9rem, 3.6vw, 2.6rem);
+  --spectra-type-4xl: clamp(2.1rem, 4vw, 3rem);
+  /* Display is deliberately a little tighter than V1: the hero is now two
+     columns, so the headline shares the width instead of claiming it. */
+  --spectra-type-display: clamp(2.75rem, 6.4vw, 5.5rem);
+
+  --spectra-track-label: 0.1em;
+  --spectra-track-tight: -0.02em;
+  --spectra-track-display: -0.035em;
+
+  /* Space */
+  --spectra-space-3xs: 0.25rem;
+  --spectra-space-2xs: 0.375rem;
+  --spectra-space-xs: 0.5rem;
+  --spectra-space-sm: 0.75rem;
+  --spectra-space-md: 1rem;
+  --spectra-space-lg: 1.25rem;
+  --spectra-space-xl: 1.5rem;
+  --spectra-space-2xl: 2rem;
+  --spectra-space-3xl: 3rem;
+  --spectra-space-4xl: 4rem;
+  --spectra-space-5xl: 5rem;
+  --spectra-space-6xl: 7rem;
+
+  /* Radius - tight. Instruments are not pillowy. */
+  --spectra-radius-xs: 2px;
+  --spectra-radius-sm: 4px;
+  --spectra-radius-md: 6px;
+  --spectra-radius-lg: 8px;
+  --spectra-radius-xl: 10px;
+  --spectra-radius-pill: 999px;
+
+  --spectra-grid-size: 36px;
+
+  /* Motion - fast, instrument-like. Never bouncy. */
+  --spectra-motion-instant: 120ms;
+  --spectra-motion-fast: 160ms;
+  --spectra-motion-base: 200ms;
+  --spectra-motion-slow: 320ms;
+  --spectra-motion-reveal: 420ms;
+  --spectra-motion-ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --spectra-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   5. ATMOSPHERE
+   A dot grid at the threshold of visibility. Engineering paper, not HUD.
+   ========================================================================== */
 
 .app {
   background-color: var(--spectra-surface-app);
@@ -270,14 +359,24 @@
   background-repeat: no-repeat, repeat;
 }
 
-/* --------------------------------------------------------------------------
-   4. TYPOGRAPHY
-   Hardware names and metrics carry weight; metadata reads compact and precise.
-   -------------------------------------------------------------------------- */
+/* The navbar is the one surface that must stay legible over scrolling
+   content, so it gets its own thin backdrop rather than a filled bar. */
+.navbar {
+  background: color-mix(in srgb, var(--spectra-surface-app) 88%, transparent);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+}
+
+/* ==========================================================================
+   6. TYPOGRAPHY
+   Seven levels: display, page, section, object name, metric, metadata,
+   micro-label. Each has one job.
+   ========================================================================== */
 
 h1 {
   font-weight: 800;
   letter-spacing: var(--spectra-track-display);
+  text-wrap: balance;
 }
 
 h2 {
@@ -299,10 +398,8 @@ h4 {
   letter-spacing: var(--spectra-track-tight);
 }
 
-/* Technical micro-labels.
-   Every existing micro-label in the product is consolidated onto one voice:
-   monospaced, tracked, uppercase, silver. This is the single largest
-   contributor to the instrument feel and costs no layout change. */
+/* Technical micro-labels. Every existing micro-label in the product is
+   consolidated onto one voice: monospaced, tracked, silver. */
 .eyebrow,
 .detail-section-label,
 .filter-group-label,
@@ -349,11 +446,13 @@ h4 {
 .build-component-head h3,
 .build-summary-item strong,
 .build-component-error,
-.api-status {
+.api-status,
+.signal-value,
+.signal-channel dd {
   font-variant-numeric: tabular-nums;
 }
 
-/* Hardware identity - the product's primary information. */
+/* Object identity - hardware names are the product's primary information. */
 .hardware-card-main h3,
 .comparison-header span,
 .build-component-head h3,
@@ -362,12 +461,11 @@ h4 {
   letter-spacing: var(--spectra-track-tight);
 }
 
-/* --------------------------------------------------------------------------
-   5. PRIMITIVES
-   Reusable, semantic, and safe to drop into any future screen.
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   7. PRIMITIVES
+   Reusable, semantic, safe to drop into any future screen.
+   ========================================================================== */
 
-/* Technical micro-label. */
 .spectra-label {
   display: block;
   margin: 0;
@@ -388,10 +486,9 @@ h4 {
   color: var(--spectra-gold);
 }
 
-/* Small identifier - P-01, S-02, D-03. Quietly present, never decorative
-   clutter. Opt-in only.
-   Colour is --spectra-text-faint, not --spectra-silver-muted: the latter sits
-   at 4.15:1 on obsidian and does not qualify as text. */
+/* Small identifier - P-01, S-02, D-03. Quietly present, never clutter.
+   Colour is --spectra-text-faint because --spectra-silver-muted is 4.15:1 in
+   dark and does not qualify as text. */
 .spectra-ref {
   display: inline-flex;
   align-items: center;
@@ -482,11 +579,585 @@ h4 {
   text-transform: uppercase;
 }
 
-/* --------------------------------------------------------------------------
-   6. MOTIFS
+/* Instrument readout - a large figure with its unit, used where data is the
+   point rather than prose. */
+.readout {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spectra-space-xs);
+}
+
+.readout-value {
+  color: var(--spectra-text-primary);
+  font-family: var(--spectra-font-sans);
+  font-size: var(--spectra-type-3xl);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-display);
+  line-height: 1;
+}
+
+.readout-unit {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+/* Proportional bar. Communicates share of a real total, never progress. */
+.meter {
+  position: relative;
+  height: 4px;
+  overflow: hidden;
+  background: var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-xs);
+}
+
+.meter-fill {
+  display: block;
+  height: 100%;
+  background: var(--spectra-blue);
+  border-radius: inherit;
+  transform-origin: left center;
+  animation: spectra-meter-grow var(--spectra-motion-reveal)
+    var(--spectra-motion-ease-out) backwards;
+}
+
+.meter-fill-significant {
+  background: var(--spectra-gold);
+}
+
+@keyframes spectra-meter-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ==========================================================================
+   8. SPATIAL EXPRESSION
+   Hierarchy from typography, whitespace, rules and alignment. A card is
+   reserved for an object or an interactive unit, never for a section.
+   ========================================================================== */
+
+/* ---- Hero: asymmetric two-column composition ------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding-right: max(8%, calc((100vw - var(--shell-width)) / 2));
+  padding-left: max(8%, calc((100vw - var(--shell-width)) / 2));
+}
+
+.hero-content {
+  max-width: 40rem;
+}
+
+.logo {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  color: var(--spectra-text-primary);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spectra-space-md);
+}
+
+/* Nav and hero controls sit in components this pass touched, so their hit
+   areas are brought up to a comfortable size while we are here. */
+.nav-link {
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+}
+
+.search-box input {
+  min-height: 2.25rem;
+}
+
+.hero .eyebrow {
+  color: var(--spectra-silver);
+}
+
+.hero h1 {
+  font-size: var(--spectra-type-display);
+  margin-top: var(--spectra-space-lg);
+  margin-bottom: 0;
+}
+
+.hero .description {
+  max-width: 34rem;
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-base);
+  line-height: 1.65;
+}
+
+/* ---- SPECTRA SIGNAL ---------------------------------------------------
+   An instrument, not a dashboard card: no fill, no radius, no shadow.
+   Structure carries hierarchy. The trace is decorative (aria-hidden at the
+   call site); the figures beside it are real catalog composition. */
+
+.signal {
+  min-width: 0;
+  padding-top: var(--spectra-space-md);
+  border-top: 1px solid var(--spectra-hairline-strong);
+}
+
+.signal-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spectra-space-md);
+}
+
+.signal-total {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spectra-space-sm);
+  margin: var(--spectra-space-lg) 0 0;
+}
+
+.signal-value {
+  color: var(--spectra-text-primary);
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-display);
+  line-height: 0.9;
+}
+
+.signal-total-label {
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-xs);
+  line-height: 1.3;
+  max-width: 7rem;
+}
+
+.signal-channels {
+  display: grid;
+  gap: var(--spectra-space-md);
+  margin: var(--spectra-space-xl) 0 0;
+  padding: var(--spectra-space-lg) 0 0;
+  border-top: 1px solid var(--spectra-hairline);
+}
+
+.signal-channel {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--spectra-space-sm);
+}
+
+.signal-channel dt {
+  color: var(--spectra-text-secondary);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  font-weight: 600;
+  letter-spacing: var(--spectra-track-label);
+}
+
+.signal-channel dd {
+  margin: 0;
+  color: var(--spectra-text-primary);
+  font-size: var(--spectra-type-base);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.signal-channel-meter {
+  grid-column: 2 / -1;
+}
+
+.signal-manufacturers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spectra-space-2xs) var(--spectra-space-lg);
+  margin: var(--spectra-space-lg) 0 0;
+  padding: var(--spectra-space-md) 0 0;
+  border-top: 1px solid var(--spectra-hairline);
+  list-style: none;
+}
+
+.signal-manufacturers li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spectra-space-2xs);
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: var(--spectra-track-label);
+}
+
+.signal-manufacturers strong {
+  color: var(--spectra-text-secondary);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.signal-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spectra-space-md);
+  margin-top: var(--spectra-space-lg);
+}
+
+.hero-content .spectra-spectrum {
+  max-width: 34rem;
+}
+
+/* ---- Section transitions ---------------------------------------------
+   A single hairline with a micro-label marks the boundary between major
+   zones. Whitespace does the rest. */
+
+.zone-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--spectra-space-md);
+  margin: var(--spectra-space-5xl) 0 var(--spectra-space-3xl);
+}
+
+.zone-rule::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--spectra-hairline-soft);
+}
+
+/* ---- Section head: label + title + meta on one baseline ---------------- */
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spectra-space-lg);
+  padding-bottom: var(--spectra-space-sm);
+  border-bottom: 1px solid var(--spectra-hairline-soft);
+}
+
+.section-head-text {
+  min-width: 0;
+}
+
+.section-head h2 {
+  margin: var(--spectra-space-2xs) 0 0;
+}
+
+.section-head-status {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  letter-spacing: var(--spectra-track-label);
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* Same role, for metadata that is not a live status region. */
+.section-head-meta {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  letter-spacing: var(--spectra-track-label);
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* ---- Record count: a readout, not a sentence -------------------------- */
+
+.catalog-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spectra-space-sm) var(--spectra-space-lg);
+  margin-top: var(--spectra-space-3xl);
+  padding-bottom: var(--spectra-space-sm);
+  border-bottom: 1px solid var(--spectra-hairline-strong);
+}
+
+.catalog-readout-figure {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spectra-space-sm);
+}
+
+.catalog-readout-value {
+  color: var(--spectra-text-primary);
+  font-size: var(--spectra-type-2xl);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-tight);
+  line-height: 1;
+}
+
+.catalog-readout-label {
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-sm);
+}
+
+.catalog-readout-meta {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   9. SPATIAL COMPOSITION
+   The asymmetric layouts, and the rules by which they collapse. Desktop
+   earns the asymmetry; below 1024px every workspace becomes one intentional
+   column in source order, never a squeezed two-column layout.
+   ========================================================================== */
+
+/* ---- Build workspace: configuration left, live analysis right ---------- */
+
+.build-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: start;
+}
+
+.build-column {
+  min-width: 0;
+}
+
+/* ---- Build lower zone: context narrow, conversation wide -------------- */
+
+.build-lower {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: start;
+}
+
+.build-lower > * {
+  min-width: 0;
+}
+
+.build-conversation {
+  min-width: 0;
+}
+
+/* The lower zone's own top rule belongs to the grid, not to each child, so
+   the two columns read as one band. */
+.build-lower > .build-context,
+.build-lower > .build-conversation {
+  margin-top: var(--spectra-space-2xl);
+}
+
+/* ---- Comparison: an A vs B pair -------------------------------------- */
+
+/* Slot letters give the pair a relationship. Pure CSS, so no extra markup
+   and no chance of the letter disagreeing with the data. */
+.comparison-performance-card::before {
+  content: attr(data-slot);
+  position: absolute;
+  top: var(--spectra-space-md);
+  left: var(--spectra-space-lg);
+  color: var(--spectra-text-faint);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-3xs);
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-label);
+}
+
+.comparison-performance-card > h3 {
+  padding-top: var(--spectra-space-md);
+}
+
+.comparison-performance {
+  position: relative;
+  gap: var(--spectra-space-lg);
+}
+
+/* A single hairline between the two sides reads as a divider rather than a
+   gutter, which is what makes the pair feel like one comparison. */
+.comparison-performance::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--spectra-hairline);
+  transform: translateX(-0.5px);
+}
+
+/* ---- Responsive collapse ----------------------------------------------
+   Breakpoints are chosen where the composition stops reading, not where a
+   number happens to round. */
+
+@media (max-width: 1180px) {
+  .hardware-card-main {
+    grid-template-columns: 4.75rem minmax(10rem, 1.1fr) minmax(0, 1.4fr);
+    grid-template-areas:
+      'kicker name specs'
+      'kicker maker specs';
+  }
+
+  .hardware-card-action {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spectra-space-3xl);
+    align-items: start;
+  }
+
+  .hero-content {
+    max-width: none;
+  }
+
+  .signal {
+    max-width: 32rem;
+  }
+
+  .build-workspace,
+  .build-lower {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spectra-space-2xl);
+  }
+
+  /* The A/B divider only makes sense while the pair is side by side. */
+  .comparison-performance::before {
+    display: none;
+  }
+
+  .comparison-performance {
+    gap: var(--spectra-space-md);
+  }
+}
+
+@media (max-width: 860px) {
+  /* Rows stack: identity above, data below, actions last. */
+  .hardware-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spectra-space-md);
+    align-items: stretch;
+  }
+
+  .hardware-card-main {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    grid-template-areas:
+      'kicker name'
+      'kicker maker'
+      '. specs';
+    gap: var(--spectra-space-xs) var(--spectra-space-md);
+  }
+
+  .hardware-card-specs {
+    margin-top: var(--spectra-space-2xs);
+    padding-top: var(--spectra-space-sm);
+    border-top: 1px solid var(--spectra-hairline);
+  }
+
+  .hardware-card-actions {
+    justify-content: flex-start;
+  }
+
+  .hardware-card-actions button {
+    flex: 1 1 8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hardware-card-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .build-components,
+  .build-context-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-head,
+  .catalog-readout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-head-status,
+  .section-head-meta {
+    text-align: left;
+  }
+
+  .signal-value {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+}
+
+/* ---- Navbar on small screens ------------------------------------------
+   Five interactive targets plus the wordmark cannot share one 390px row.
+   Rather than shrink every control, the navbar becomes two deliberate rows:
+   identity and theme on top, navigation beneath. Touch targets stay
+   comfortable and nothing is hidden. */
+
+@media (max-width: 760px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: var(--spectra-space-2xs) var(--spectra-space-md);
+    padding-top: var(--spectra-space-2xs);
+    padding-bottom: var(--spectra-space-2xs);
+  }
+
+  .nav-links {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .theme-switch {
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* The visible labels collapse to their glyphs, but each option keeps an
+     accessible name, so the control is never reduced to a set of symbols. */
+  .theme-switch-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .theme-switch-option {
+    min-width: 2.5rem;
+    justify-content: center;
+    padding: 0 var(--spectra-space-2xs);
+  }
+}
+
+/* ==========================================================================
+   10. MOTIFS  —  the SPECTRA signal trace
    Identity, never data. Purely decorative and therefore aria-hidden at the
-   call site.
-   -------------------------------------------------------------------------- */
+   call site. Thin, technical, restrained. Not a HUD.
+   ========================================================================== */
 
 .spectra-spectrum {
   display: block;
@@ -553,34 +1224,27 @@ h4 {
   transform-origin: bottom left;
 }
 
-/* The hero is the identity anchor. Give the motif room and keep the wordmark
-   precise. */
-.logo {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: 0.26em;
-  color: var(--spectra-text-primary);
+/* Taller variant for the signal instrument. */
+.spectra-spectrum-tall {
+  height: 4.5rem;
+  margin-top: var(--spectra-space-xl);
 }
 
-.hero-eyebrow {
-  display: flex;
-  align-items: baseline;
-  gap: var(--spectra-space-md);
+.spectra-spectrum-tall::after {
+  opacity: 0.7;
 }
 
-.hero .eyebrow {
-  color: var(--spectra-silver);
+/* The trace brightens as real data arrives, so the motif tracks state
+   without ever being the data itself. */
+.signal[data-loaded="false"] .spectra-spectrum::after {
+  opacity: 0.22;
 }
 
-.hero-content .spectra-spectrum {
-  max-width: 34rem;
-}
-
-/* --------------------------------------------------------------------------
-   7. DATA MOTION
+/* ==========================================================================
+   10. DATA MOTION
    Motion communicates state or a real value. No entrance fades, no parallax,
    no fake progress.
-   -------------------------------------------------------------------------- */
+   ========================================================================== */
 
 /* Benchmark bars grow into the width they actually represent. transform-based
    so it works with the inline width the component already renders. */
@@ -618,16 +1282,143 @@ h4 {
   }
 }
 
-/* Reduced motion: land immediately on the true value. Removing the animation
-   outright guarantees the bar and the metric render at their real values
-   rather than depending on a duration override. */
+/* Signal figures count up to the value they already hold. Purely a readout
+   settling; the end state is the real number either way. */
+.signal-value,
+.catalog-readout-value {
+  animation: spectra-value-settle var(--spectra-motion-reveal)
+    var(--spectra-motion-ease-out) backwards;
+}
+
+/* Build Intelligence groups resolve as their data lands. Scoped to that one
+   analytical surface so the effect never becomes a page-wide fade-in. */
+.build-intelligence-signal {
+  animation: spectra-group-resolve var(--spectra-motion-reveal)
+    var(--spectra-motion-ease-out) backwards;
+}
+
+@keyframes spectra-group-resolve {
+  from {
+    opacity: 0.35;
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Selection transition: a hairline draws in on the edge of the chosen
+   record. Communicates the state change, adds no motion of its own. */
+.hardware-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--spectra-blue);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.hardware-card.in-comparison::after {
+  transform: scaleY(1);
+}
+
+/* Hover: metadata emphasis, not movement. */
+.hardware-card-main h3,
+.hardware-card-manufacturer,
+.hardware-card-specs strong,
+.build-fact span,
+.build-fact strong {
+  transition: color var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.hardware-card:hover .hardware-card-specs strong,
+.hardware-card:hover .hardware-card-action {
+  color: var(--spectra-text-primary);
+}
+
+/* ==========================================================================
+   11. THEME CONTROL
+   A three-state segmented control: System, Dark, Light.
+   ========================================================================== */
+
+.theme-switch {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--spectra-surface-wash);
+  border: 1px solid var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-md);
+}
+
+.theme-switch-option {
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+  gap: var(--spectra-space-3xs);
+  padding: 0 var(--spectra-space-sm);
+  background: transparent;
+  border: 0;
+  border-radius: var(--spectra-radius-sm);
+  color: var(--spectra-text-muted);
+  cursor: pointer;
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-3xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    background var(--spectra-motion-fast) var(--spectra-motion-ease),
+    color var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+.theme-switch-option:hover {
+  color: var(--spectra-text-primary);
+}
+
+.theme-switch-option[aria-pressed="true"] {
+  background: var(--spectra-blue-a14);
+  color: var(--spectra-blue);
+}
+
+/* The pressed option is also conveyed by the visible glyph, so the control
+   does not rely on colour alone. */
+.theme-switch-glyph {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.theme-switch-option[aria-pressed="true"] .theme-switch-glyph {
+  color: var(--spectra-blue);
+}
+
+/* ==========================================================================
+   12. REDUCED MOTION
+   Land immediately on the true value. Removing the animation outright
+   guarantees nothing renders mid-interpolation.
+   ========================================================================== */
+
 @media (prefers-reduced-motion: reduce) {
-  .benchmark-bar-fill {
+  .benchmark-bar-fill,
+  .performance-value strong,
+  .signal-value,
+  .catalog-readout-value,
+  .meter-fill,
+  .build-intelligence-signal {
     animation: none;
   }
 
-  .performance-value strong {
-    animation: none;
+  .hardware-card::after {
+    transition: none;
+  }
+
+  .hardware-card.in-comparison::after {
+    transform: scaleY(1);
   }
 
   .spectra-spectrum::after {

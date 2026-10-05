@@ -12,11 +12,19 @@
   -webkit-text-size-adjust: 100%;
 }
 
+/* The boot script sets data-theme, but color-scheme has no token to fall
+   back on, so the default keeps form controls and scrollbars in the dark
+   identity until it runs. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
   background: var(--spectra-surface-app);
+  color: var(--spectra-text-primary);
 }
 
 button,
@@ -40,4 +48,11 @@ textarea:focus-visible,
 ::selection {
   background: var(--spectra-blue-a30);
   color: var(--spectra-text-primary);
+}
+
+/* Scrollbars follow the theme so the chrome does not stay dark over a light
+   page. */
+* {
+  scrollbar-color: var(--spectra-hairline-strong) var(--spectra-surface-app);
+  scrollbar-width: thin;
 }

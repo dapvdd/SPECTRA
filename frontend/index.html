@@ -4,12 +4,49 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080a0f" />
+    <meta name="theme-color" content="#080a0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)" />
     <meta
       name="description"
       content="SPECTRA — explore CPU and GPU specifications, compare verified benchmark data, and ask questions about a hardware build."
     />
     <title>SPECTRA — Hardware Intelligence</title>
+
+    <!--
+      Theme boot. Runs before first paint so the correct palette is painted
+      once and never flips. Deliberately a mirror of the resolution rules in
+      src/theme.js rather than an import, because a module script cannot run
+      early enough to prevent the flash. Keep the two in step.
+      Defaults to dark, the product identity, whenever nothing is known.
+    -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var preference = "system";
+
+        try {
+          var stored = window.localStorage.getItem("spectra-theme");
+          if (stored === "system" || stored === "dark" || stored === "light") {
+            preference = stored;
+          }
+        } catch (error) {
+          // Storage can be unavailable. The system preference still applies.
+        }
+
+        var theme = preference;
+
+        if (preference === "system") {
+          var prefersDark =
+            typeof window.matchMedia === "function" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+          theme = prefersDark === false ? "light" : "dark";
+        }
+
+        root.setAttribute("data-theme", theme);
+        root.setAttribute("data-theme-preference", preference);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

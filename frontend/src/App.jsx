@@ -32,6 +32,22 @@ import {
 } from "./detail.js";
 import { parseMarkdown } from "./markdown.js";
 import {
+  THEME_PREFERENCES,
+  applyThemeToDocument,
+  createThemePreferenceState,
+  getPrefersColorSchemeDark,
+  normalizeThemePreference,
+  readStoredThemePreference,
+  selectThemePreference,
+  writeStoredThemePreference,
+} from "./theme.js";
+import {
+  buildSignalProfile,
+  formatSignalCount,
+  getSignalPrimaryLabel,
+  getSignalStatusLabel,
+} from "./signalProfile.js";
+import {
   BUILD_CHAT_CONVERSATION_ERROR_KIND,
   BUILD_CHAT_CONVERSATION_STATUS,
   BUILD_CHAT_MESSAGE_ROLE,
@@ -178,6 +194,141 @@ const scrollToSection = (id, block = "start") => {
   }, 0);
 };
 
+const prefersColorSchemeDark = () =>
+  typeof window !== "undefined" &&
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+const THEME_OPTION_COPY = {
+  system: { glyph: "◐", label: "System" },
+  dark: { glyph: "◑", label: "Dark" },
+  light: { glyph: "○", label: "Light" },
+};
+
+/* Theme is a tri-state preference, so the control is a segmented group of
+   toggle buttons rather than a single switch. `aria-pressed` carries state
+   and the visible glyph carries it independently of colour. */
+function ThemeControl({ preference, onSelect }) {
+  return (
+    <div
+      className="theme-switch"
+      role="group"
+      aria-label="Colour theme"
+    >
+      {THEME_PREFERENCES.map((option) => {
+        const copy = THEME_OPTION_COPY[option];
+        const isActive = preference === option;
+
+        return (
+          <button
+            type="button"
+            className="theme-switch-option"
+            key={option}
+            aria-pressed={isActive}
+            aria-label={`${copy.label} theme`}
+            title={`${copy.label} theme`}
+            onClick={() => onSelect(option)}
+          >
+            <span className="theme-switch-glyph" aria-hidden="true">
+              {copy.glyph}
+            </span>
+            <span className="theme-switch-label">{copy.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* SPECTRA SIGNAL
+   The hero's right half. Reads real composition out of the catalog payload the
+   app has already loaded - nothing is estimated, and no benchmark figure is
+   involved. The trace beneath it is decorative identity, which is why it is
+   aria-hidden and never described as a measurement. */
+function SignalReadout({ profile, loading, error }) {
+  const status = getSignalStatusLabel(profile, { loading, error });
+  const isLoaded = !profile.isEmpty && !loading && !error;
+
+  return (
+    <aside
+      className="signal"
+      aria-labelledby="signal-title"
+      data-loaded={isLoaded ? "true" : "false"}
+    >
+      <div className="signal-head">
+        <p className="spectra-label">{getSignalPrimaryLabel(profile)}</p>
+        <p className="section-head-status" role="status">
+          {status}
+        </p>
+      </div>
+
+      <h2 id="signal-title" className="sr-only">
+        Catalog composition
+      </h2>
+
+      <p className="signal-total">
+        <span className="signal-value">
+          {formatSignalCount(profile.total)}
+        </span>
+        <span className="signal-total-label">
+          records
+          <br />
+          indexed
+        </span>
+      </p>
+
+      <dl className="signal-channels">
+        {profile.channels.map((channel) => (
+          <div className="signal-channel" key={channel.label}>
+            <dt>{channel.label}</dt>
+            <dd>
+              {formatSignalCount(channel.value)}
+              <span className="signal-channel-share">
+                {` ${Math.round(channel.share)}%`}
+              </span>
+            </dd>
+            <div className="signal-channel-meter">
+              <div
+                className="meter"
+                role="presentation"
+              >
+                <span
+                  className="meter-fill"
+                  style={{ width: `${channel.share}%` }}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </dl>
+
+      {profile.manufacturers.length > 0 && (
+        <ul className="signal-manufacturers">
+          {profile.manufacturers.map((manufacturer) => (
+            <li key={manufacturer.label}>
+              {manufacturer.label}
+              <strong>{formatSignalCount(manufacturer.value)}</strong>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="signal-foot">
+        <p className="spectra-label">Share of catalog</p>
+        <span className="spectra-ref">S-00</span>
+      </div>
+
+      <span
+        className="spectra-spectrum spectra-spectrum-tall"
+        aria-hidden="true"
+      />
+    </aside>
+  );
+}
+
+/* Slot letters for the A vs B pair in comparison. Two slots is a product
+   constraint, not a coincidence, so the letters are fixed rather than derived. */
+const COMPARISON_SLOT_LETTERS = ["A", "B"];
 const PERFORMANCE_STATUS_LABELS = {
   available: "DATA AVAILABLE",
   partial: "PARTIAL DATA",
@@ -1695,106 +1846,76 @@ function BuildConfigurationSection({
 
   return (
     <section id="build" className="build-section" aria-labelledby="build-title">
-      <p className="eyebrow">BUILD CONFIGURATION</p>
+      <header className="build-head">
+        <p className="eyebrow">BUILD CONFIGURATION</p>
 
-      <h2 id="build-title">Build Configuration</h2>
+        <h2 id="build-title">Build Configuration</h2>
 
-      <p className="build-relationship">
-        <strong>{summary.relationshipLabel}</strong>
-        <span>
-          SPECTRA lists stored specifications for the selected components. It
-          does not assess motherboard, power supply, cooling, or case fit.
-        </span>
-      </p>
-
-      <div className="build-summary">
-        <div className="build-summary-item">
-          <span className="build-summary-label">CPU</span>
-          <strong>{summary.cpu.name}</strong>
-          {summary.cpu.isSelected ? (
-            <span>{summary.cpu.manufacturer}</span>
-          ) : (
-            <span className="build-summary-empty">Empty slot</span>
-          )}
-        </div>
-
-        <span className="build-summary-join" aria-hidden="true">
-          +
-        </span>
-
-        <div className="build-summary-item">
-          <span className="build-summary-label">GPU</span>
-          <strong>{summary.gpu.name}</strong>
-          {summary.gpu.isSelected ? (
-            <span>{summary.gpu.manufacturer}</span>
-          ) : (
-            <span className="build-summary-empty">Empty slot</span>
-          )}
-        </div>
-      </div>
-
-      <BuildIntelligenceSection intelligence={buildIntelligence} />
-
-      <div className="build-components">
-        <BuildComponentCard
-          type="CPU"
-          selection={buildConfig.cpu}
-          detail={cpuDetail}
-          requestState={cpuRequestState}
-          onChange={() => onSelectType("CPU")}
-          onClear={() => onClearSlot("CPU")}
-          onRetry={() => onRetrySlot("CPU")}
-        />
-
-        <BuildComponentCard
-          type="GPU"
-          selection={buildConfig.gpu}
-          detail={gpuDetail}
-          requestState={gpuRequestState}
-          onChange={() => onSelectType("GPU")}
-          onClear={() => onClearSlot("GPU")}
-          onRetry={() => onRetrySlot("GPU")}
-        />
-      </div>
-
-      <div className="build-context">
-        <p className="detail-section-label">CONTEXT</p>
-
-        <p className="build-context-note" id="build-context-note">
-          Context is recorded for your own reference. SPECTRA does not generate
-          frame rate or performance estimates from it.
+        <p className="build-relationship">
+          <strong>{summary.relationshipLabel}</strong>
+          <span>
+            SPECTRA lists stored specifications for the selected components. It
+            does not assess motherboard, power supply, cooling, or case fit.
+          </span>
         </p>
+      </header>
 
-        <div className="build-context-fields">
-          <label htmlFor="build-use-case">
-            <span>Use case</span>
-            <select
-              id="build-use-case"
-              value={buildUserContext.useCase}
-              onChange={(event) => onUseCaseChange(event.target.value)}
-            >
-              {BUILD_USE_CASES.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
+      {/* Workspace: configuration on the left, live analysis on the right.
+          DOM order matches reading order, so keyboard and screen-reader
+          traversal follow the same path as the eye. */}
+      <div className="build-workspace">
+        <div className="build-column build-column-configuration">
+          <div className="build-summary">
+            <div className="build-summary-item">
+              <span className="build-summary-label">CPU</span>
+              <strong>{summary.cpu.name}</strong>
+              {summary.cpu.isSelected ? (
+                <span>{summary.cpu.manufacturer}</span>
+              ) : (
+                <span className="build-summary-empty">Empty slot</span>
+              )}
+            </div>
 
-          <label htmlFor="build-resolution">
-            <span>Resolution</span>
-            <select
-              id="build-resolution"
-              value={buildUserContext.resolution}
-              onChange={(event) => onResolutionChange(event.target.value)}
-            >
-              {BUILD_RESOLUTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
+            <span className="build-summary-join" aria-hidden="true">
+              +
+            </span>
+
+            <div className="build-summary-item">
+              <span className="build-summary-label">GPU</span>
+              <strong>{summary.gpu.name}</strong>
+              {summary.gpu.isSelected ? (
+                <span>{summary.gpu.manufacturer}</span>
+              ) : (
+                <span className="build-summary-empty">Empty slot</span>
+              )}
+            </div>
+          </div>
+
+          <div className="build-components">
+            <BuildComponentCard
+              type="CPU"
+              selection={buildConfig.cpu}
+              detail={cpuDetail}
+              requestState={cpuRequestState}
+              onChange={() => onSelectType("CPU")}
+              onClear={() => onClearSlot("CPU")}
+              onRetry={() => onRetrySlot("CPU")}
+            />
+
+            <BuildComponentCard
+              type="GPU"
+              selection={buildConfig.gpu}
+              detail={gpuDetail}
+              requestState={gpuRequestState}
+              onChange={() => onSelectType("GPU")}
+              onClear={() => onClearSlot("GPU")}
+              onRetry={() => onRetrySlot("GPU")}
+            />
+          </div>
+        </div>
+
+        <div className="build-column build-column-intelligence">
+          <BuildIntelligenceSection intelligence={buildIntelligence} />
         </div>
       </div>
 
@@ -1832,43 +1953,96 @@ function BuildConfigurationSection({
         )}
       </div>
 
-      {buildChatReady ? (
-        <BuildChatSection
-          contextSummary={buildChatContextSummary}
-          chatState={buildChatState}
-          onAsk={onAskBuildQuestion}
-          onRetry={onRetryBuildChat}
-          onReset={onNewBuildChat}
-          onRetryConversation={onRetryBuildConversation}
-        />
-      ) : (
-        <div className="build-ai-note">
-          <p className="detail-section-label">ASK ABOUT THIS BUILD</p>
-          <h3 className="build-ai-note-title">
-            Build AI Chat unlocks when both slots are ready
-          </h3>
-          <ul className="build-ai-note-list">
-            {buildChatChecklist.map((item) => (
-              <li
-                className={`build-ai-note-item build-ai-note-item-${item.state}`}
-                key={item.type}
-              >
-                <span className="build-ai-note-slot">{item.type}</span>
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="build-ai-note-hint">
-            SPECTRA answers only from the stored specifications and benchmark
-            records of the selected components.
+      <div className="build-lower">
+        <div className="build-context">
+          <p className="detail-section-label">CONTEXT</p>
+
+          <p className="build-context-note" id="build-context-note">
+            Context is recorded for your own reference. SPECTRA does not generate
+            frame rate or performance estimates from it.
           </p>
+
+          <div className="build-context-fields">
+            <label htmlFor="build-use-case">
+              <span>Use case</span>
+              <select
+                id="build-use-case"
+                value={buildUserContext.useCase}
+                onChange={(event) => onUseCaseChange(event.target.value)}
+              >
+                {BUILD_USE_CASES.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label htmlFor="build-resolution">
+              <span>Resolution</span>
+              <select
+                id="build-resolution"
+                value={buildUserContext.resolution}
+                onChange={(event) => onResolutionChange(event.target.value)}
+              >
+                {BUILD_RESOLUTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+
+        {buildChatReady ? (
+        <div className="build-conversation">
+          <BuildChatSection
+            contextSummary={buildChatContextSummary}
+            chatState={buildChatState}
+            onAsk={onAskBuildQuestion}
+            onRetry={onRetryBuildChat}
+            onReset={onNewBuildChat}
+            onRetryConversation={onRetryBuildConversation}
+          />
+        </div>
+      ) : (
+        <div className="build-conversation">
+          <div className="build-ai-note">
+            <p className="detail-section-label">ASK ABOUT THIS BUILD</p>
+            <h3 className="build-ai-note-title">
+              Build AI Chat unlocks when both slots are ready
+            </h3>
+            <ul className="build-ai-note-list">
+              {buildChatChecklist.map((item) => (
+                <li
+                  className={`build-ai-note-item build-ai-note-item-${item.state}`}
+                  key={item.type}
+                >
+                  <span className="build-ai-note-slot">{item.type}</span>
+                  <span>{item.label}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="build-ai-note-hint">
+              SPECTRA answers only from the stored specifications and benchmark
+              records of the selected components.
+            </p>
+          </div>
         </div>
       )}
+      </div>
     </section>
   );
 }
 
 function App() {
+  const [themeState, setThemeState] = useState(() =>
+    createThemePreferenceState(
+      readStoredThemePreference(typeof window === "undefined" ? null : window.localStorage),
+      prefersColorSchemeDark()
+    )
+  );
   const [apiStatus, setApiStatus] = useState("Checking...");
   const [hardware, setHardware] = useState([]);
   const [hardwareLoading, setHardwareLoading] = useState(true);
@@ -1960,6 +2134,48 @@ function App() {
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
+
+  const signalProfile = buildSignalProfile(hardware);
+
+  /* One effect owns the theme: it writes the attribute, persists an explicit
+     choice, and follows the OS while the preference stays on "system". */
+  useEffect(() => {
+    applyThemeToDocument(themeState.theme, document, themeState.preference);
+  }, [themeState.theme, themeState.preference]);
+
+  useEffect(() => {
+    const query =
+      typeof window.matchMedia === "function"
+        ? window.matchMedia("(prefers-color-scheme: dark)")
+        : null;
+
+    if (!query || typeof query.addEventListener !== "function") {
+      return undefined;
+    }
+
+    const handleChange = () => {
+      setThemeState((prev) =>
+        prev.preference === "system"
+          ? createThemePreferenceState("system", getPrefersColorSchemeDark(query))
+          : prev
+      );
+    };
+
+    query.addEventListener("change", handleChange);
+
+    return () => query.removeEventListener("change", handleChange);
+  }, []);
+
+  const changeThemePreference = (preference) => {
+    const normalized = normalizeThemePreference(preference);
+
+    writeStoredThemePreference(
+      typeof window === "undefined" ? null : window.localStorage,
+      normalized
+    );
+
+    setThemeState((prev) => selectThemePreference(prev, normalized));
+  };
 
   const loadBenchmarks = (hardwareId) => {
     const requestId = (benchmarkRequestIdsRef.current[hardwareId] || 0) + 1;
@@ -2841,6 +3057,11 @@ function App() {
             About
           </a>
         </div>
+
+        <ThemeControl
+          preference={themeState.preference}
+          onSelect={changeThemePreference}
+        />
       </nav>
 
       <main className="hero" id="main-content">
@@ -2974,11 +3195,35 @@ function App() {
 
           <span className="spectra-spectrum" aria-hidden="true" />
         </div>
+
+        <SignalReadout
+          profile={signalProfile}
+          loading={hardwareLoading}
+          error={hardwareError}
+        />
       </main>
 
-      <p className="hardware-result-count" aria-live="polite" id="catalog-count">
-        {catalogResultSummary}
-      </p>
+      <div className="catalog-readout" aria-live="polite" id="catalog-count">
+        <div className="catalog-readout-figure">
+          <span className="catalog-readout-value">
+            {formatSignalCount(filteredHardware.length)}
+          </span>
+          <span className="catalog-readout-label">
+            matching{" "}
+            {hardwareTypeFilter === "All"
+              ? "hardware records"
+              : `${hardwareTypeFilter} records`}
+          </span>
+        </div>
+
+        <span className="catalog-readout-meta">
+          {manufacturerFilter === "All"
+            ? "All manufacturers"
+            : manufacturerFilter}
+          {" · "}
+          {catalogResultSummary}
+        </span>
+      </div>
 
       {compareList.length > 0 && (
         <section
@@ -3052,9 +3297,21 @@ function App() {
       )}
 
       <section id="explore" className="hardware-section">
-        <h2 id="explore-top" tabIndex={-1} className={detailView ? "detail-hidden" : ""}>
-          Explore Hardware
-        </h2>
+        <div className="section-head" id="explore-top-wrap">
+          <div className="section-head-text">
+            <p className="eyebrow">CATALOG</p>
+
+            <h2 id="explore-top" tabIndex={-1} className={detailView ? "detail-hidden" : ""}>
+              Explore Hardware
+            </h2>
+          </div>
+
+          <p className="section-head-meta">
+            {filteredHardware.length > 0
+              ? `${HARDWARE_TYPES.filter((type) => type !== "All").length} classes indexed`
+              : "Awaiting records"}
+          </p>
+        </div>
 
         <div
           className={detailView ? "catalog-content detail-hidden" : "catalog-content"}
@@ -3299,15 +3556,17 @@ function App() {
           className={`comparison-section ${detailView ? "detail-hidden" : ""}`}
           aria-labelledby="compare-title"
         >
-          <p className="eyebrow">
-            HARDWARE COMPARISON
-          </p>
+          <div className="section-head">
+            <div className="section-head-text">
+              <p className="eyebrow">HARDWARE COMPARISON</p>
 
-          <h2 id="compare-title">{comparisonSummary.heading}</h2>
+              <h2 id="compare-title">{comparisonSummary.heading}</h2>
+            </div>
 
-          <p className="comparison-status" role="status">
-            {comparisonSummary.status}
-          </p>
+            <p className="section-head-status" role="status">
+              {comparisonSummary.status}
+            </p>
+          </div>
 
           {compareList.length === 0 ? (
             <div className="comparison-empty">
@@ -3376,10 +3635,14 @@ function App() {
               )}
 
               <div className="comparison-performance">
-                {compareList.map((item) => {
+                {compareList.map((item, index) => {
                   const requestState =
                     comparisonDetailState.requestStatesById[item.id];
                   const detail = comparisonDetailState.detailsById[item.id];
+                  // A and B, not the slot label: the pair should read as a
+                  // relation. The type is already carried by the section label
+                  // and the table headers.
+                  const slotLetter = COMPARISON_SLOT_LETTERS[index] || "";
 
                   if (requestState?.status === "error") {
                     return (
@@ -3387,6 +3650,7 @@ function App() {
                         className="comparison-performance-card comparison-detail-error"
                         key={item.id}
                         role="alert"
+                        data-slot={slotLetter}
                       >
                         <p className="detail-section-label">
                           {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
@@ -3423,6 +3687,7 @@ function App() {
                         key={item.id}
                         aria-busy={true}
                         role="status"
+                        data-slot={slotLetter}
                       >
                         <p className="detail-section-label">
                           {item.type === "GPU" ? "GPU DETAIL" : "CPU DETAIL"}
@@ -3438,7 +3703,11 @@ function App() {
                   }
 
                   return (
-                    <section className="comparison-performance-card" key={item.id}>
+                    <section
+                      className="comparison-performance-card"
+                      key={item.id}
+                      data-slot={slotLetter}
+                    >
                       <p className="detail-section-label">PERFORMANCE</p>
                       <h3>{detail.name}</h3>
                       <PerformanceSection
