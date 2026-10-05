@@ -2845,9 +2845,13 @@ function App() {
 
       <main className="hero" id="main-content">
         <div className="hero-content">
-          <p className="eyebrow">
-            HARDWARE INTELLIGENCE PLATFORM
-          </p>
+          <div className="hero-eyebrow">
+            <p className="eyebrow">
+              HARDWARE INTELLIGENCE PLATFORM
+            </p>
+
+            <span className="spectra-ref">S-01</span>
+          </div>
 
           <h1>
             Explore hardware.
@@ -2967,6 +2971,8 @@ function App() {
             <span className="status-dot" aria-hidden="true" />
             Catalog {apiStatus === "online" ? "connected" : apiStatus}
           </p>
+
+          <span className="spectra-spectrum" aria-hidden="true" />
         </div>
       </main>
 

@@ -4,45 +4,49 @@
 
 /* ---------- Tokens ---------- */
 
+/* SPECTRA Visual System V1 semantic layer.
+   These are the component-level names the rest of this file already uses.
+   Raw colour values live in spectra.css; nothing below hard-codes a hue. */
+
 .app {
-  --surface-app: #0f172a;
-  --surface-raised: #1e293b;
-  --surface-sunken: #0b1120;
-  --surface-inset: #172033;
+  --surface-app: var(--spectra-surface-app);
+  --surface-raised: var(--spectra-surface-raised);
+  --surface-sunken: var(--spectra-surface-sunken);
+  --surface-inset: var(--spectra-surface-inset);
 
-  --border-subtle: #1e293b;
-  --border-default: #334155;
-  --border-strong: #475569;
+  --border-subtle: var(--spectra-hairline);
+  --border-default: var(--spectra-hairline-strong);
+  --border-strong: var(--spectra-hairline-strongest);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
+  --text-primary: var(--spectra-text-primary);
+  --text-secondary: var(--spectra-text-secondary);
+  --text-muted: var(--spectra-text-muted);
+  --text-faint: var(--spectra-text-faint);
 
-  --accent: #38bdf8;
-  --accent-soft: #7dd3fc;
-  --accent-contrast: #0f172a;
-  --ai: #a78bfa;
-  --ai-soft: #c4b5fd;
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --danger-soft: #fca5a5;
+  --accent: var(--spectra-blue);
+  --accent-soft: var(--spectra-blue-soft);
+  --accent-solid: var(--spectra-blue-solid);
+  --accent-solid-hover: var(--spectra-blue-solid-hover);
+  --accent-contrast: var(--spectra-white);
+  --ai: var(--spectra-silver);
+  --ai-soft: var(--spectra-silver-bright);
+  --gold: var(--spectra-gold);
+  --success: var(--spectra-green);
+  --warning: var(--spectra-amber);
+  --danger: var(--spectra-red);
+  --danger-soft: var(--spectra-red-soft);
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-pill: 999px;
+  --radius-sm: var(--spectra-radius-sm);
+  --radius-md: var(--spectra-radius-md);
+  --radius-lg: var(--spectra-radius-lg);
+  --radius-xl: var(--spectra-radius-xl);
+  --radius-pill: var(--spectra-radius-pill);
 
   --shell-width: 1180px;
   --shell-gutter: 4rem;
   --nav-height: 80px;
 
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 86% 4%, rgba(14, 116, 144, 0.16), transparent 28rem),
-    var(--surface-app);
   color: var(--text-primary);
 }
 
@@ -54,12 +58,12 @@
   top: -4rem;
   z-index: 200;
   padding: 0.7rem 1rem;
-  background: var(--accent);
+  background: var(--accent-solid);
   border-radius: var(--radius-md);
   color: var(--accent-contrast);
   font-weight: 700;
   text-decoration: none;
-  transition: top 0.2s ease;
+  transition: top var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .skip-link:focus-visible {
@@ -100,7 +104,7 @@
   color: var(--text-muted);
   cursor: pointer;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .nav-link:hover {
@@ -226,12 +230,12 @@ h1 {
   height: 0.5rem;
   border-radius: 50%;
   background: var(--warning);
-  box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.12);
+  box-shadow: 0 0 0 4px var(--spectra-amber-a12);
 }
 
 .api-status-online .status-dot {
   background: var(--success);
-  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.12);
+  box-shadow: 0 0 0 4px var(--spectra-green-a12);
 }
 
 .catalog-filters {
@@ -268,7 +272,7 @@ h1 {
   color: var(--text-muted);
   cursor: pointer;
   font-size: 0.85rem;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .filter-button:hover {
@@ -282,8 +286,8 @@ h1 {
 }
 
 .filter-button.active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accent-solid);
+  border-color: var(--accent-solid-hover);
   color: var(--accent-contrast);
   font-weight: 700;
 }
@@ -300,7 +304,7 @@ h1 {
   cursor: pointer;
   font: inherit;
   font-size: 0.85rem;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .secondary-button:hover {
@@ -336,27 +340,27 @@ h1 {
 }
 
 .performance-status-available {
-  border-color: rgba(74, 222, 128, 0.4);
-  color: #86efac;
+  border-color: var(--spectra-green-a40);
+  color: var(--spectra-green-soft);
 }
 
 .performance-status-error {
-  border-color: rgba(248, 113, 113, 0.45);
+  border-color: var(--spectra-red-a45);
   color: var(--danger-soft);
 }
 
 .performance-status-loading {
-  border-color: rgba(125, 211, 252, 0.45);
+  border-color: var(--spectra-blue-a45);
   color: var(--accent-soft);
 }
 
 .performance-status-partial {
-  border-color: rgba(251, 191, 36, 0.45);
+  border-color: var(--spectra-amber-a45);
   color: var(--warning);
 }
 
 .performance-badge-available {
-  border-color: rgba(56, 189, 248, 0.45);
+  border-color: var(--spectra-blue-a45);
   color: var(--accent-soft);
 }
 
@@ -406,7 +410,7 @@ h1 {
 }
 
 .catalog-state-error {
-  border-color: rgba(248, 113, 113, 0.35);
+  border-color: var(--spectra-red-a35);
 }
 
 .catalog-state-error h3 {
@@ -426,7 +430,7 @@ h1 {
   padding: 2rem;
   background: var(--surface-inset);
   border: 1px solid var(--border-default);
-  border-radius: 14px;
+  border-radius: var(--radius-xl);
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -436,7 +440,7 @@ h1 {
 }
 
 .detail-state-error {
-  border-color: rgba(248, 113, 113, 0.35);
+  border-color: var(--spectra-red-a35);
 }
 
 .detail-state-error strong {
@@ -491,7 +495,7 @@ h1 {
 /* ---------- Catalog ---------- */
 
 .hardware-section {
-  margin-top: 4rem;
+  margin-top: var(--spectra-space-4xl);
 }
 
 .hardware-section h2 {
@@ -513,9 +517,9 @@ h1 {
   background: var(--surface-raised);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.14);
+  box-shadow: var(--spectra-elevation-card);
   cursor: default;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .hardware-card:hover {
@@ -524,9 +528,17 @@ h1 {
 }
 
 .hardware-card.in-comparison {
-  border-color: rgba(56, 189, 248, 0.65);
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12),
-    0 12px 30px rgba(2, 6, 23, 0.14);
+  border-color: var(--spectra-blue-a65);
+  box-shadow: inset 0 0 0 1px var(--spectra-blue-a12);
+}
+
+/* Selection reads as an inset marker, not a drop shadow. */
+.hardware-card.in-comparison::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--spectra-blue);
 }
 
 .hardware-card-main {
@@ -545,7 +557,7 @@ h1 {
 }
 
 .hardware-card-main:focus-visible {
-  outline: 3px solid rgba(125, 211, 252, 0.8);
+  outline: var(--spectra-focus-ring);
   outline-offset: 5px;
   border-radius: var(--radius-sm);
 }
@@ -658,22 +670,23 @@ h1 {
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .compare-button:hover:not(:disabled) {
-  background: var(--accent);
+  background: var(--accent-solid);
+  border-color: var(--accent-solid-hover);
   color: var(--accent-contrast);
 }
 
 .compare-button.added {
-  background: rgba(56, 189, 248, 0.14);
+  background: var(--spectra-blue-a14);
   border-color: var(--accent);
   color: var(--accent-soft);
 }
 
 .compare-button.added:hover:not(:disabled) {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: var(--accent-contrast);
 }
 
@@ -738,7 +751,7 @@ h1 {
   background: var(--surface-raised);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-xl);
-  box-shadow: 0 22px 60px rgba(2, 6, 23, 0.22);
+  box-shadow: var(--spectra-elevation-panel);
 }
 
 .hardware-detail h2 {
@@ -757,7 +770,7 @@ h1 {
   color: var(--text-muted);
   cursor: pointer;
   font-size: 0.9rem;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease), background var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .back-button:hover {
@@ -782,7 +795,7 @@ h1 {
 }
 
 .hardware-detail-header h2:focus-visible {
-  outline: 3px solid rgba(125, 211, 252, 0.8);
+  outline: var(--spectra-focus-ring);
   outline-offset: 6px;
   border-radius: var(--radius-sm);
 }
@@ -805,7 +818,7 @@ h1 {
   width: 1.6rem;
   height: 1.6rem;
   place-items: center;
-  border: 1px solid rgba(56, 189, 248, 0.45);
+  border: 1px solid var(--spectra-blue-a45);
   border-radius: 50%;
   color: var(--accent-soft);
   font-size: 0.72rem;
@@ -824,14 +837,14 @@ h1 {
 .detail-build-button {
   min-height: 2.75rem;
   padding: 0.75rem 1.25rem;
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  background: var(--accent-solid);
+  border: 1px solid var(--accent-solid-hover);
   border-radius: var(--radius-md);
   color: var(--accent-contrast);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 700;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .detail-compare-button:hover:not(:disabled),
@@ -848,7 +861,7 @@ h1 {
 }
 
 .detail-compare-button.added {
-  background: rgba(56, 189, 248, 0.14);
+  background: var(--spectra-blue-a14);
   border-color: var(--accent);
   color: var(--accent-soft);
 }
@@ -859,14 +872,14 @@ h1 {
 }
 
 .detail-build-button.added {
-  background: rgba(34, 197, 94, 0.12);
+  background: var(--spectra-green-a12);
   border-color: var(--success);
-  color: #86efac;
+  color: var(--spectra-green-soft);
 }
 
 .detail-build-button.added:hover {
   background: var(--success);
-  color: var(--accent-contrast);
+  color: var(--spectra-text-inverse);
 }
 
 .detail-specifications {
@@ -935,8 +948,8 @@ h1 {
 /* ---------- Performance ---------- */
 
 .performance-section {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: var(--spectra-space-3xl);
+  padding-top: var(--spectra-space-2xl);
   border-top: 1px solid var(--border-default);
 }
 
@@ -968,7 +981,7 @@ h1 {
   padding: 1rem 1.1rem;
   background: var(--surface-inset);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -978,7 +991,7 @@ h1 {
 }
 
 .performance-notice-loading {
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: var(--spectra-blue-a35);
 }
 
 .performance-notice-loading strong {
@@ -986,7 +999,7 @@ h1 {
 }
 
 .performance-notice-error {
-  border-color: rgba(248, 113, 113, 0.35);
+  border-color: var(--spectra-red-a35);
 }
 
 .performance-notice-error strong {
@@ -1005,12 +1018,12 @@ h1 {
   background: var(--surface-app);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), background var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .performance-card-available {
-  background: linear-gradient(145deg, #12243a, var(--surface-app) 65%);
-  border-color: rgba(56, 189, 248, 0.45);
+  background: var(--spectra-panel);
+  border-color: var(--spectra-blue-a45);
 }
 
 .performance-card-header {
@@ -1060,7 +1073,7 @@ h1 {
 }
 
 .performance-value strong {
-  color: #e0f2fe;
+  color: var(--spectra-text-primary);
   font-size: 2rem;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -1092,8 +1105,8 @@ h1 {
 /* ---------- Comparison ---------- */
 
 .comparison-section {
-  margin-top: 5rem;
-  padding-bottom: 5rem;
+  margin-top: var(--spectra-space-5xl);
+  padding-bottom: var(--spectra-space-5xl);
 }
 
 .comparison-section h2 {
@@ -1111,8 +1124,8 @@ h1 {
   width: min(var(--shell-width), calc(100% - var(--shell-gutter)));
   margin: 2rem auto 0;
   padding: 1.5rem;
-  background: linear-gradient(120deg, #172033, #12243a);
-  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: var(--spectra-panel-selection);
+  border: 1px solid var(--spectra-blue-a28);
   border-radius: var(--radius-xl);
 }
 
@@ -1166,9 +1179,9 @@ h1 {
   gap: 0.85rem;
   min-width: 0;
   padding: 0.95rem 1rem;
-  background: rgba(15, 23, 42, 0.5);
+  background: var(--spectra-surface-wash);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .comparison-selection-slot {
@@ -1222,7 +1235,7 @@ h1 {
   cursor: pointer;
   font: inherit;
   font-size: 0.75rem;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .selection-remove-button:hover,
@@ -1238,8 +1251,8 @@ h1 {
 .comparison-selection-notice {
   margin: 0.85rem 0 0;
   padding: 0.75rem 1rem;
-  background: rgba(248, 113, 113, 0.08);
-  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: var(--spectra-red-a08);
+  border: 1px solid var(--spectra-red-a35);
   border-radius: var(--radius-md);
   color: var(--danger-soft);
   font-size: 0.85rem;
@@ -1271,13 +1284,13 @@ h1 {
   line-height: 1.5;
 }
 
+/* A single line of instruction needs a rule, not a container. */
 .comparison-instruction {
   margin: 0;
-  padding: 1rem 1.25rem;
-  background: var(--surface-inset);
-  border: 1px solid var(--border-default);
-  border-radius: 10px;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--spectra-hairline);
   color: var(--text-muted);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -1294,7 +1307,7 @@ h1 {
   color: var(--text-muted);
   cursor: pointer;
   font: inherit;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .clear-compare-button:hover {
@@ -1325,9 +1338,9 @@ h1 {
 .comparison-legend-swatch {
   width: 0.65rem;
   height: 0.65rem;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(125, 211, 252, 0.7);
-  border-radius: 2px;
+  background: var(--spectra-gold-a16);
+  border: 1px solid var(--spectra-gold-a60);
+  border-radius: var(--spectra-radius-xs);
 }
 
 .comparison-scroll-hint {
@@ -1368,7 +1381,7 @@ h1 {
 }
 
 .comparison-detail-error {
-  border-color: rgba(248, 113, 113, 0.35);
+  border-color: var(--spectra-red-a35);
 }
 
 .comparison-detail-error > p:not(.detail-section-label) {
@@ -1431,7 +1444,7 @@ h1 {
   padding: 1rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .benchmark-comparison-card-heading h4 {
@@ -1506,11 +1519,11 @@ h1 {
   min-width: 0;
   background: var(--border-strong);
   border-radius: inherit;
-  transition: width 0.25s ease;
+  transition: width var(--spectra-motion-slow) var(--spectra-motion-ease-out);
 }
 
 .benchmark-bar-fill-winner {
-  background: var(--accent);
+  background: var(--spectra-gold);
 }
 
 .benchmark-comparison-notice {
@@ -1518,20 +1531,18 @@ h1 {
   align-items: center;
   gap: 0.7rem;
   margin: 1rem 0 0;
-  padding: 1rem;
-  background: var(--surface-app);
-  border: 1px dashed var(--border-strong);
-  border-radius: 9px;
+  padding: 0.85rem 0 0;
+  border-top: 1px dashed var(--border-strong);
   color: var(--text-muted);
   line-height: 1.5;
 }
 
+/* Derived, supporting information: carried by rules and spacing rather than
+   another panel. Panels are reserved for conclusions and interactive groupings. */
 .comparison-insights {
-  margin: 2rem 0;
-  padding: 1.35rem;
-  background: linear-gradient(145deg, #12243a, var(--surface-inset) 72%);
-  border: 1px solid rgba(56, 189, 248, 0.32);
-  border-radius: 14px;
+  margin: 2.5rem 0;
+  padding: 1.75rem 0 0;
+  border-top: 1px solid var(--spectra-hairline);
 }
 
 .comparison-insights-header,
@@ -1563,7 +1574,7 @@ h1 {
   height: 2rem;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(125, 211, 252, 0.5);
+  border: 1px solid var(--spectra-blue-a50);
   border-radius: 50%;
   color: var(--accent-soft);
   font-size: 1.1rem;
@@ -1607,9 +1618,9 @@ h1 {
   gap: 0.7rem;
   min-width: 0;
   padding: 0.85rem 0.9rem;
-  background: rgba(15, 23, 42, 0.48);
+  background: var(--spectra-surface-wash);
   border: 1px solid var(--border-default);
-  border-radius: 9px;
+  border-radius: var(--radius-lg);
 }
 
 .comparison-insight-icon {
@@ -1617,9 +1628,9 @@ h1 {
   width: 1.45rem;
   height: 1.45rem;
   place-items: center;
-  border: 1px solid rgba(74, 222, 128, 0.55);
+  border: 1px solid var(--spectra-gold-a45);
   border-radius: 50%;
-  color: #86efac;
+  color: var(--spectra-gold-soft);
   font-weight: 700;
 }
 
@@ -1647,7 +1658,7 @@ h1 {
 }
 
 .comparison-insight-difference {
-  color: #86efac;
+  color: var(--spectra-gold);
   font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
@@ -1674,11 +1685,13 @@ h1 {
   border-left: 1px solid var(--border-default);
 }
 
+/* The comparison conclusion. This is the one gold-bordered panel in the
+   product, so gold stays rare and always means "the answer". */
 .comparison-decision {
-  margin: 2rem 0;
-  padding: 1.35rem;
-  background: linear-gradient(145deg, #12243a, var(--surface-inset) 72%);
-  border: 1px solid rgba(56, 189, 248, 0.32);
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: var(--spectra-panel);
+  border: 1px solid var(--spectra-gold-a30);
   border-radius: var(--radius-xl);
 }
 
@@ -1719,7 +1732,7 @@ h1 {
   gap: 0.3rem;
   min-width: 0;
   padding: 0.85rem 0.9rem;
-  background: rgba(15, 23, 42, 0.48);
+  background: var(--spectra-surface-wash);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
 }
@@ -1814,7 +1827,7 @@ h1 {
 .decision-lead-group {
   min-width: 0;
   padding: 0.85rem 0.9rem;
-  background: rgba(15, 23, 42, 0.48);
+  background: var(--spectra-surface-wash);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
 }
@@ -1861,7 +1874,7 @@ h1 {
 }
 
 .decision-lead-metrics li span:last-child {
-  color: #86efac;
+  color: var(--spectra-gold);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1940,7 +1953,7 @@ h1 {
 .comparison-cell-marker {
   display: inline-block;
   margin-top: 0.3rem;
-  color: #86efac;
+  color: var(--spectra-gold);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1959,7 +1972,7 @@ h1 {
 }
 
 .comparison-table-wrapper:focus-visible {
-  outline: 3px solid rgba(125, 211, 252, 0.8);
+  outline: var(--spectra-focus-ring);
   outline-offset: 2px;
 }
 
@@ -2006,9 +2019,9 @@ h1 {
 }
 
 .comparison-table td.comparison-winner {
-  background: rgba(56, 189, 248, 0.12);
-  box-shadow: inset 3px 0 0 rgba(56, 189, 248, 0.8);
-  color: var(--accent-soft);
+  background: var(--spectra-gold-a10);
+  box-shadow: inset 2px 0 0 var(--spectra-gold);
+  color: var(--spectra-gold-soft);
   font-weight: 700;
 }
 
@@ -2046,7 +2059,7 @@ h1 {
   cursor: pointer;
   font: inherit;
   font-size: 0.75rem;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .remove-compare-button:hover {
@@ -2059,9 +2072,9 @@ h1 {
 .ai-analysis {
   margin: 2rem 0;
   padding: 1.35rem;
-  background: linear-gradient(145deg, #1c1838, var(--surface-inset) 72%);
-  border: 1px solid rgba(167, 139, 250, 0.42);
-  border-radius: 14px;
+  background: var(--spectra-panel-neutral);
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: var(--radius-xl);
 }
 
 .ai-analysis-mark,
@@ -2072,7 +2085,7 @@ h1 {
   flex: 0 0 auto;
   place-items: center;
   padding: 0 0.35rem;
-  border: 1px solid rgba(196, 181, 253, 0.55);
+  border: 1px solid var(--spectra-hairline-strong);
   border-radius: var(--radius-pill);
   color: var(--ai-soft);
   font-size: 0.7rem;
@@ -2094,7 +2107,7 @@ h1 {
 }
 
 .ai-analysis-error p {
-  color: #fda4af;
+  color: var(--danger-soft);
 }
 
 .ai-analysis-error-hint {
@@ -2114,25 +2127,25 @@ h1 {
 .ai-analysis-button {
   margin-top: 1rem;
   padding: 0.65rem 0.9rem;
-  background: rgba(91, 33, 182, 0.3);
-  border: 1px solid rgba(196, 181, 253, 0.55);
-  border-radius: 7px;
-  color: #ede9fe;
+  background: var(--spectra-blue-a12);
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: var(--radius-md);
+  color: var(--spectra-text-primary);
   cursor: pointer;
   font: inherit;
   font-size: 0.82rem;
   font-weight: 700;
-  transition: background 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .ai-analysis-button:hover {
-  background: rgba(109, 40, 217, 0.45);
+  background: var(--spectra-blue-a18);
 }
 
 /* ---------- Build configuration ---------- */
 
 .build-section {
-  margin: 4rem 0 0;
+  margin: var(--spectra-space-4xl) 0 0;
   padding: 2rem;
   background: var(--surface-raised);
   border: 1px solid var(--border-default);
@@ -2178,7 +2191,7 @@ h1 {
   padding: 1rem 1.25rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .build-summary-label {
@@ -2224,7 +2237,7 @@ h1 {
   padding: 1.25rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .build-component-empty {
@@ -2252,11 +2265,11 @@ h1 {
   font: inherit;
   font-size: 0.8rem;
   font-weight: 700;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .build-component-select-button:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: var(--spectra-blue-a12);
   color: var(--text-primary);
 }
 
@@ -2298,8 +2311,8 @@ h1 {
   align-items: flex-start;
   gap: 0.5rem;
   padding: 0.85rem;
-  background: #1f2937;
-  border: 1px solid rgba(248, 113, 113, 0.4);
+  background: var(--surface-raised);
+  border: 1px solid var(--spectra-red-a40);
   border-radius: var(--radius-md);
   color: var(--danger-soft);
   font-size: 0.85rem;
@@ -2348,12 +2361,13 @@ h1 {
   font: inherit;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .build-action-button:hover,
 .build-button:hover {
-  background: var(--accent);
+  background: var(--accent-solid);
+  border-color: var(--accent-solid-hover);
   color: var(--accent-contrast);
 }
 
@@ -2374,17 +2388,17 @@ h1 {
 
 .build-button:hover {
   background: var(--ai);
-  color: var(--accent-contrast);
+  color: var(--spectra-text-inverse);
 }
 
 .build-button.added {
   border-color: var(--success);
-  color: #86efac;
+  color: var(--spectra-green-soft);
 }
 
 .build-button.added:hover {
   background: var(--success);
-  color: var(--accent-contrast);
+  color: var(--spectra-text-inverse);
 }
 
 .build-context,
@@ -2467,8 +2481,8 @@ h1 {
 }
 
 .build-fact-highlight {
-  background: rgba(56, 189, 248, 0.08);
-  border-color: rgba(56, 189, 248, 0.35);
+  background: var(--spectra-blue-a08);
+  border-color: var(--spectra-blue-a35);
 }
 
 .build-ai-note {
@@ -2520,18 +2534,18 @@ h1 {
 }
 
 .build-ai-note-item-pending .build-ai-note-slot {
-  border-color: rgba(56, 189, 248, 0.5);
+  border-color: var(--spectra-blue-a50);
   color: var(--accent-soft);
 }
 
 .build-ai-note-item-error .build-ai-note-slot {
-  border-color: rgba(248, 113, 113, 0.5);
+  border-color: var(--spectra-red-a50);
   color: var(--danger-soft);
 }
 
 .build-ai-note-item-ready .build-ai-note-slot {
-  border-color: rgba(74, 222, 128, 0.5);
-  color: #86efac;
+  border-color: var(--spectra-green-a50);
+  color: var(--spectra-green-soft);
 }
 
 .build-ai-note-hint {
@@ -2545,9 +2559,9 @@ h1 {
 
 .build-intelligence {
   margin: 0 0 1.5rem;
-  padding: 1.35rem;
-  background: linear-gradient(145deg, #12243a, var(--surface-inset) 72%);
-  border: 1px solid rgba(56, 189, 248, 0.32);
+  padding: 1.5rem;
+  background: var(--spectra-panel);
+  border: 1px solid var(--spectra-hairline-strong);
   border-radius: var(--radius-xl);
 }
 
@@ -2665,14 +2679,14 @@ h1 {
   gap: 0.25rem;
   min-width: 0;
   padding: 0.8rem 0.9rem;
-  background: rgba(15, 23, 42, 0.48);
+  background: var(--spectra-surface-wash);
   border: 1px solid var(--border-default);
   border-left: 3px solid var(--border-strong);
   border-radius: var(--radius-md);
 }
 
 .build-intelligence-signal-available {
-  border-left-color: rgba(74, 222, 128, 0.7);
+  border-left-color: var(--spectra-green-a70);
 }
 
 .build-intelligence-signal-partial,
@@ -2682,7 +2696,7 @@ h1 {
 
 .build-intelligence-signal-errored,
 .build-intelligence-signal-unavailable {
-  border-left-color: rgba(248, 113, 113, 0.65);
+  border-left-color: var(--spectra-red-a65);
 }
 
 .build-intelligence-signal-notCollected,
@@ -2779,7 +2793,7 @@ h1 {
   padding: 0.9rem 1rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .hardware-chat-question span,
@@ -2799,7 +2813,7 @@ h1 {
 }
 
 .hardware-chat-answer {
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: var(--spectra-blue-a30);
 }
 
 .markdown-content {
@@ -2851,8 +2865,8 @@ h1 {
   margin-top: 1rem;
   padding: 0.9rem 1rem;
   background: var(--surface-inset);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  border-radius: 10px;
+  border: 1px solid var(--spectra-blue-a35);
+  border-radius: var(--radius-lg);
   color: var(--text-secondary);
 }
 
@@ -2872,8 +2886,8 @@ h1 {
   margin-top: 1rem;
   padding: 1rem 1.1rem;
   background: var(--surface-inset);
-  border: 1px solid rgba(248, 113, 113, 0.35);
-  border-radius: 10px;
+  border: 1px solid var(--spectra-red-a35);
+  border-radius: var(--radius-lg);
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -2887,13 +2901,13 @@ h1 {
   padding: 0.55rem 0.9rem;
   background: transparent;
   border: 1px solid var(--border-strong);
-  border-radius: 7px;
+  border-radius: var(--radius-md);
   color: var(--text-secondary);
   cursor: pointer;
   font: inherit;
   font-size: 0.8rem;
   font-weight: 700;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .hardware-chat-retry:hover:not(:disabled) {
@@ -2922,7 +2936,7 @@ h1 {
   cursor: pointer;
   font: inherit;
   font-size: 0.82rem;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .hardware-chat-prompt:hover:not(:disabled) {
@@ -2954,7 +2968,7 @@ h1 {
   padding: 0.6rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .hardware-chat-composer input {
@@ -2976,15 +2990,15 @@ h1 {
   flex: 0 0 auto;
   min-height: 2.4rem;
   padding: 0.6rem 1.1rem;
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  background: var(--accent-solid);
+  border: 1px solid var(--accent-solid-hover);
   border-radius: var(--radius-md);
   color: var(--accent-contrast);
   cursor: pointer;
   font: inherit;
   font-size: 0.85rem;
   font-weight: 700;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .hardware-chat-composer button:hover:not(:disabled) {
@@ -3014,7 +3028,7 @@ h1 {
   padding: 0.7rem 0.9rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   font-size: 0.85rem;
   line-height: 1.4;
 }
@@ -3057,13 +3071,13 @@ h1 {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .build-chat-reset:hover,
 .build-conversation-retry:hover {
   border-color: var(--accent);
-  color: #e0f2fe;
+  color: var(--spectra-text-primary);
 }
 
 .build-conversation-status {
@@ -3080,9 +3094,9 @@ h1 {
   gap: 0.35rem;
   margin-bottom: 0.9rem;
   padding: 0.7rem 0.9rem;
-  background: #1c1917;
-  border: 1px solid rgba(120, 53, 15, 0.75);
-  border-radius: 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--spectra-amber-a45);
+  border-radius: var(--radius-lg);
   font-size: 0.8rem;
   line-height: 1.45;
 }
@@ -3121,16 +3135,16 @@ h1 {
   padding: 0.9rem 1rem;
   background: var(--surface-app);
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
 }
 
 .build-chat-message-assistant {
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: var(--spectra-blue-a30);
 }
 
 .build-chat-message-user {
-  background: rgba(56, 189, 248, 0.06);
-  border-color: rgba(56, 189, 248, 0.18);
+  background: var(--spectra-blue-a06);
+  border-color: var(--spectra-blue-a18);
 }
 
 .build-chat-message-text {
@@ -3221,7 +3235,7 @@ h1 {
 
 .build-chat-analysis-label {
   margin: 0;
-  color: #a5b4fc;
+  color: var(--spectra-silver-bright);
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -3249,15 +3263,15 @@ h1 {
   content: "–";
   position: absolute;
   left: -0.9rem;
-  color: #a5b4fc;
+  color: var(--spectra-silver-bright);
 }
 
 /* ---------- About ---------- */
 
 .about-section {
   max-width: 680px;
-  margin: 1rem 0 5rem;
-  padding-top: 2rem;
+  margin: var(--spectra-space-md) 0 var(--spectra-space-5xl);
+  padding-top: var(--spectra-space-2xl);
   border-top: 1px solid var(--border-subtle);
 }
 
