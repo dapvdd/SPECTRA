@@ -1,0 +1,67 @@
+{
+  "applied": 204,
+  "skipped_expected": 0,
+  "excluded": [],
+  "backup": "C:\\SPECTRA\\data\\spectra.db.bak-20261008T162831Z",
+  "baseline": {
+    "db": "C:\\SPECTRA\\data\\spectra.db",
+    "sha256": "027fa14f2f2ff88fe4d15b9494f24b0743b944ac5c444aee9e24cd2469cf0154",
+    "size_bytes": 897024,
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu": 3360,
+      "gpu": 1879,
+      "cpu_specs": 3360,
+      "gpu_specs": 1879,
+      "benchmark_results": 1040
+    },
+    "null_counts_before": {
+      "hardware.release_date": 4402,
+      "hardware.architecture": 3360,
+      "cpu_specifications.base_clock_ghz": 240,
+      "cpu_specifications.tdp_w": 288,
+      "cpu_specifications.process_node_nm": 1015,
+      "gpu_specifications.core_clock_mhz": 1110
+    },
+    "backup_path": "C:\\SPECTRA\\data\\spectra.db.bak-20261008T162831Z",
+    "backup_timestamp": "20261008T162831Z"
+  },
+  "post_apply": {
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu": 3360,
+      "gpu": 1879,
+      "cpu_specs": 3360,
+      "gpu_specs": 1879,
+      "benchmark_results": 1040
+    },
+    "null_counts_after": {
+      "hardware.release_date": 4354,
+      "hardware.architecture": 3306,
+      "cpu_specifications.base_clock_ghz": 229,
+      "cpu_specifications.tdp_w": 277,
+      "cpu_specifications.process_node_nm": 979,
+      "gpu_specifications.core_clock_mhz": 1066
+    },
+    "value_spot_checks": {
+      "checked": 204,
+      "mismatch": 0
+    }
+  },
+  "final": {
+    "quick_check": "ok",
+    "sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3",
+    "size_bytes": 921600,
+    "counts": {
+      "hardware": 5239,
+      "cpu": 3360,
+      "gpu": 1879,
+      "cpu_specs": 3360,
+      "gpu_specs": 1879,
+      "benchmark_results": 1040
+    }
+  },
+  "final_sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3"
+}

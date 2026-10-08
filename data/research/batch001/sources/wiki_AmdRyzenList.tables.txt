@@ -1,0 +1,663 @@
+### TABLE 0 rows=17 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Core config Thermal Solution Release date Launch price
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Core config | Thermal Solution | Release date | Launch price
+Branding and Model | Branding and Model | Cores (threads) | Base | PBO 1–2 (≥3) | XFR 1–2 | L3 cache (total) | TDP | Core config | Thermal Solution | Release date | Launch price
+Ryzen 7 | 1800X | 8 (16) | 3.6 | 4.0 (3.7) | 4.1 | 16 MB | 95 W | 2 × 4 | Wraith Max | March 2, 2017 | US $499
+Ryzen 7 | 1700X PRO | 8 (16) | 3.4 | 3.8 (3.5) | 3.9 | 16 MB | 95 W | 2 × 4 | —N/a | June 29, 2017 | OEM
+Ryzen 7 | 1700X | 8 (16) | 3.4 | 3.8 (3.5) | 3.9 | 16 MB | 95 W | 2 × 4 | Wraith Max | March 2, 2017 | US $399
+Ryzen 7 | 1700 PRO | 8 (16) | 3.0 | 3.7 (3.2) | 3.75 | 16 MB | 65 W | 2 × 4 | —N/a | June 29, 2017 | OEM
+Ryzen 7 | 1700 | 8 (16) | 3.0 | 3.7 (3.2) | 3.75 | 16 MB | 65 W | 2 × 4 | Wraith Spire | March 2, 2017 | US $329
+Ryzen 5 | 1600X | 6 (12) | 3.6 | 4.0 (3.7) | 4.1 | 16 MB | 95 W | 2 × 3 | Wraith Max | April 11, 2017 | US $249
+Ryzen 5 | 1600 PRO | 6 (12) | 3.2 | 3.6 (3.4) | 3.7 | 16 MB | 65 W | 2 × 3 | —N/a | June 29, 2017 | OEM
+Ryzen 5 | 1600 | 6 (12) | 3.2 | 3.6 (3.4) | 3.7 | 16 MB | 65 W | 2 × 3 | Wraith Stealth | April 11, 2017 | US $219
+Ryzen 5 | 1500X | 4 (8) | 3.5 | 3.7 (3.6) | 3.9 | 16 MB | 65 W | 2 × 2 | Wraith Spire (No LED) | April 11, 2017 | US $189
+Ryzen 5 | 1500 PRO | 4 (8) | 3.5 | 3.7 (3.6) | 3.9 | 16 MB | 65 W | 2 × 2 | —N/a | June 29, 2017 | OEM
+Ryzen 5 | 1400 | 4 (8) | 3.2 | 3.4 (3.4) | 3.45 | 8 MB | 65 W | 2 × 2 | Wraith Stealth | April 11, 2017 | US $169
+Ryzen 3 | 1300X | 4 (4) | 3.5 | 3.7 (3.5) | 3.9 | 8 MB | 65 W | 2 × 2 | Wraith Stealth | July 27, 2017 | US $129
+Ryzen 3 | 1300 PRO | 4 (4) | 3.5 | 3.7 (3.5) | 3.9 | 8 MB | 65 W | 2 × 2 | —N/a | June 29, 2017 | OEM
+Ryzen 3 | 1200 PRO | 4 (4) | 3.1 | 3.4 (3.1) | 3.45 | 8 MB | 65 W | 2 × 2 | —N/a | June 29, 2017 | OEM
+Ryzen 3 | 1200 | 4 (4) | 3.1 | 3.4 (3.1) | 3.45 | 8 MB | 65 W | 2 × 2 | Wraith Stealth | July 27, 2017 | US $109
+
+### TABLE 1 rows=5 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date Launch price
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | Launch price
+Branding and Model | Branding and Model | Cores (threads) | Base | PBO 1–4 (≥5) | XFR 1–2 | L3 cache (total) | TDP | Chiplets | Core config | Release date | Launch price
+Ryzen Threadripper | 1950X | 16 (32) | 3.4 | 4.0 (3.7) | 4.2 | 32 MB | 180 W | 2 × CCD | 4 × 4 | August 10, 2017 | US $999
+Ryzen Threadripper | 1920X | 12 (24) | 3.5 | 4.0 (3.7) | 4.2 | 32 MB | 180 W | 2 × CCD | 4 × 3 | August 10, 2017 | US $799
+Ryzen Threadripper | 1900X | 8 (16) | 3.8 | 4.0 (3.9) | 4.2 | 16 MB | 180 W | 2 × CCD | 2 × 4 | August 31, 2017 | US $549
+
+### TABLE 2 rows=8 :: Branding and Model Branding and Model CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date Launch MSRP
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date | Launch MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | Launch MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | Launch MSRP
+Ryzen 5 | 2400G | 4 (8) | 3.6 | 3.9 | 4 MB | RX Vega 11 | 1.25 | 704:44:16 11 CU | 1760 | 46–65 W | February 12, 2018 | US $169
+Ryzen 5 | 2400GE | 4 (8) | 3.2 | 3.8 | 4 MB | RX Vega 11 | 1.25 | 704:44:16 11 CU | 1760 | 35 W | April 19, 2018 | OEM
+Ryzen 3 | 2200G | 4 (4) | 3.5 | 3.7 | 4 MB | Vega 8 | 1.1 | 512:32:16 8 CU | 1126 | 46–65 W | February 12, 2018 | US $99
+Ryzen 3 | 2200GE | 4 (4) | 3.2 | 3.6 | 4 MB | Vega 8 | 1.1 | 512:32:16 8 CU | 1126 | 35 W | April 19, 2018 | OEM
+Ryzen 3 | PRO 2100GE | 2 (4) | 3.2 | —N/a | 4 MB | Vega 3 | 1.0 | 192:12:4 3 CU | 384 | 35 W | 2019 | OEM
+
+### TABLE 3 rows=12 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Core config Thermal Solution Release date Launch price
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Core config | Thermal Solution | Release date | Launch price
+Branding and Model | Branding and Model | Cores (threads) | Base | PB2 | L3 cache (total) | TDP | Core config | Thermal Solution | Release date | Launch price
+Ryzen 7 | 2700X | 8 (16) | 3.7 | 4.3 | 16 MB | 105 W | 2 × 4 | Wraith Prism | April 19, 2018 | US $329
+Ryzen 7 | 2700 | 8 (16) | 3.2 | 4.1 | 16 MB | 65 W | 2 × 4 | Wraith Spire | April 19, 2018 | US $299
+Ryzen 7 | 2700E | 8 (16) | 2.8 | 4.0 | 16 MB | 45 W | 2 × 4 | —N/a | September 19, 2018 | OEM
+Ryzen 5 | 2600X | 6 (12) | 3.6 | 4.2 | 16 MB | 95 W | 2 × 3 | Wraith Spire | April 19, 2018 | US $229
+Ryzen 5 | 2600 | 6 (12) | 3.4 | 3.9 | 16 MB | 65 W | 2 × 3 | Wraith Stealth | April 19, 2018 | US $199
+Ryzen 5 | 2600E | 6 (12) | 3.1 | 4.0 | 16 MB | 45 W | 2 × 3 | —N/a | September 19, 2018 | OEM
+Ryzen 5 | 1600 (AF) | 6 (12) | 3.2 | 3.6 | 16 MB | 65 W | 2 × 3 | Wraith Stealth | October 11, 2019 | US $85
+Ryzen 5 | 2500X | 4 (8) | 3.6 | 4.0 | 8 MB | 65 W | 1 × 4 | —N/a | September 10, 2018 | OEM
+Ryzen 3 | 2300X | 4 (4) | 3.5 | 4.0 | 8 MB | 65 W | 1 × 4 | —N/a | September 10, 2018 | OEM
+Ryzen 3 | 1200 (AF) | 4 (4) | 3.1 | 3.4 | 8 MB | 65 W | 1 × 4 | Wraith Stealth | April 21, 2020 | US $60
+
+### TABLE 4 rows=6 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date Launch price
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | Launch price
+Branding and Model | Branding and Model | Cores (threads) | Base | PB2 | L3 cache (total) | TDP | Chiplets | Core config | Release date | Launch price
+Ryzen Threadripper | 2990WX | 32 (64) | 3.0 | 4.2 | 64 MB | 250 W | 4 × CCD | 8 × 4 | Aug 13, 2018 | US $1799
+Ryzen Threadripper | 2970WX | 24 (48) | 3.0 | 4.2 | 64 MB | 250 W | 4 × CCD | 8 × 3 | Oct 2018 | US $1299
+Ryzen Threadripper | 2950X | 16 (32) | 3.5 | 4.4 | 32 MB | 180 W | 2 × CCD | 4 × 4 | Aug 31, 2018 | US $899
+Ryzen Threadripper | 2920X | 12 (24) | 3.5 | 4.3 | 32 MB | 180 W | 2 × CCD | 4 × 3 | Oct 2018 | US $649
+
+### TABLE 5 rows=12 :: Branding and Model Branding and Model CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date MSRP
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date | MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | MSRP
+Ryzen 5 | PRO 3400G | 4 (8) | 3.7 | 4.2 | 4 MB | Radeon RX Vega 11 | 1.4 | 704:44:8 11 CU | 1971.2 | 65 W | Sep 30, 2019 | OEM
+Ryzen 5 | 3400G | 4 (8) | 3.7 | 4.2 | 4 MB | Radeon RX Vega 11 | 1.4 | 704:44:8 11 CU | 1971.2 | 65 W | Jul 7, 2019 | US $149
+Ryzen 5 | PRO 3400GE | 4 (8) | 3.3 | 4.0 | 4 MB | Radeon RX Vega 11 | 1.3 | 704:44:8 11 CU | 1830.4 | 35 W | Sep 30, 2019 | OEM
+Ryzen 5 | PRO 3350G | 4 (8) | 3.6 | 4.0 | 4 MB | Radeon Vega 10 | 1.3 | 640:40:8 10 CU | 1664 | 65 W | Jul 21, 2020 | OEM
+Ryzen 5 | PRO 3350GE | 4 (4) | 3.3 | 3.9 | 4 MB | Radeon Vega 10 | 1.2 | 640:40:8 10 CU | 1536 | 35 W | Jul 21, 2020 | OEM
+Ryzen 3 | PRO 3200G | 4 (4) | 3.6 | 4.0 | 4 MB | Radeon Vega 8 | 1.25 | 512:32:8 8 CU | 1280 | 65 W | Sep 30, 2019 | OEM
+Ryzen 3 | 3200G | 4 (4) | 3.6 | 4.0 | 4 MB | Radeon Vega 8 | 1.25 | 512:32:8 8 CU | 1280 | 65 W | Jul 7, 2019 | US $99
+Ryzen 3 | 3200GE | 4 (4) | 3.3 | 3.8 | 4 MB | Radeon Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 35 W | Jul 7, 2019 | OEM
+Ryzen 3 | PRO 3200GE | 4 (4) | 3.3 | 3.8 | 4 MB | Radeon Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 35 W | Sep 30, 2019 | OEM
+
+### TABLE 6 rows=16 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Thermal Solution Release date MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Thermal Solution | Release date | MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Thermal Solution | Release date | MSRP
+Ryzen 9 | 3950X | 16 (32) | 3.5 | 4.7 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 4 × 4 | —N/a | Nov 25, 2019 | US $749
+Ryzen 9 | 3900XT | 12 (24) | 3.8 | 4.7 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 4 × 3 | —N/a | Jul 7, 2020 | US $499
+Ryzen 9 | 3900X | 12 (24) | 3.8 | 4.6 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 4 × 3 | Wraith Prism | Jul 7, 2019 | US $499
+Ryzen 9 | 3900 | 12 (24) | 3.1 | 4.3 | 64 MB | 65 W | 2 × CCD 1 × I/OD | 4 × 3 | —N/a | Oct 8, 2019 | OEM
+Ryzen 7 | 3800XT | 8 (16) | 3.9 | 4.7 | 32 MB | 105 W | 1 × CCD 1 × I/OD | 2 × 4 | —N/a | Jul 7, 2020 | US $399
+Ryzen 7 | 3800X | 8 (16) | 3.9 | 4.5 | 32 MB | 105 W | 1 × CCD 1 × I/OD | 2 × 4 | Wraith Prism | Jul 7, 2019 | US $399
+Ryzen 7 | 3700X | 8 (16) | 3.6 | 4.4 | 32 MB | 065 W | 1 × CCD 1 × I/OD | 2 × 4 | Wraith Prism | Jul 7, 2019 | US $329
+Ryzen 5 | 3600XT | 6 (12) | 3.8 | 4.5 | 32 MB | 95 W | 1 × CCD 1 × I/OD | 2 × 3 | —N/a | Jul 7, 2020 | US $249
+Ryzen 5 | 3600X | 6 (12) | 3.8 | 4.4 | 32 MB | 95 W | 1 × CCD 1 × I/OD | 2 × 3 | Wraith Spire (non-LED) | Jul 7, 2019 | US $249
+Ryzen 5 | 3600 | 6 (12) | 3.6 | 4.2 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 2 × 3 | Wraith Stealth | Jul 7, 2019 | US $199
+Ryzen 5 | 3500X | 6 (6) | 3.6 | 4.1 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 2 × 3 | Wraith Stealth | Oct 8, 2019 | CNY 1099 (Mainland China Only)
+Ryzen 5 | 3500 | 6 (6) | 3.6 | 4.1 | 16 MB | 65 W | 1 × CCD 1 × I/OD | 2 × 3 | —N/a | Nov 15, 2019 | OEM (Worldwide) JPY 16000 (Japan Only)
+Ryzen 3 | 3300X | 4 (8) | 3.8 | 4.3 | 16 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 4 | Wraith Stealth | Apr 21, 2020 | US $119
+Ryzen 3 | 3100 | 4 (8) | 3.6 | 3.9 | 16 MB | 65 W | 1 × CCD 1 × I/OD | 2 × 2 | Wraith Stealth | Apr 21, 2020 | US $99
+
+### TABLE 7 rows=9 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Ryzen Threadripper PRO | 3995WX | 64 (128) | 2.7 | 4.2 | 256 MB | 280 W | 8 × CCD 1 × I/OD | 16 × 4 | Jul 14, 2020 | 
+Ryzen Threadripper PRO | 3975WX | 32 (64) | 3.5 | 4.2 | 128 MB | 280 W | 4 × CCD 1 × I/OD | 8 × 4 | Jul 14, 2020 | 
+Ryzen Threadripper PRO | 3955WX | 16 (32) | 3.9 | 4.3 | 64 MB | 280 W | 2 × CCD 1 × I/OD | 4 × 4 | Jul 14, 2020 | 
+Ryzen Threadripper PRO | 3945WX | 12 (24) | 4.0 | 4.3 | 64 MB | 280 W | 2 × CCD 1 × I/OD | 4 × 3 | Jul 14, 2020 | 
+Ryzen Threadripper | 3990X | 64 (128) | 2.9 | 4.3 | 256 MB | 280 W | 8 × CCD 1 × I/OD | 16 × 4 | Feb 7, 2020 | US $3990
+Ryzen Threadripper | 3970X | 32 (64) | 3.7 | 4.5 | 128 MB | 280 W | 4 × CCD 1 × I/OD | 8 × 4 | Nov 25, 2019 | US $1999
+Ryzen Threadripper | 3960X | 24 (48) | 3.8 | 4.5 | 128 MB | 280 W | 4 × CCD 1 × I/OD | 8 × 3 | Nov 25, 2019 | US $1399
+
+### TABLE 8 rows=7 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Core config Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Core config | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Core config | Release date | MSRP
+AMD | 4800S | 8 (16) | 3.6 | 4.0 | 8 MB |  | 2 × 4 | 2022 | bundled with desktop kit
+AMD | 4700S | 8 (16) | 3.6 | 4.0 | 8 MB | 75 W | 2 × 4 | 2021 | bundled with desktop kit
+Ryzen 7 | 4700LE | 8 (16) | 3.6 | 4.2 | 8 MB | 65 W | 2 × 4 | Mar 25, 2026 | OEM
+Ryzen 5 | 4500 | 6 (12) | 3.6 | 4.1 | 8 MB | 65 W | 2 × 3 | Apr 4, 2022 | US $129
+Ryzen 3 | 4100 | 4 (8) | 3.8 | 4.0 | 4 MB | 65 W | 1 × 4 | Apr 4, 2022 | US $99
+
+### TABLE 9 rows=9 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date Release price
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date | Release price
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core Config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | Release price
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core Config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date | Release price
+Ryzen 7 | 4700G | 8 (16) | 3.6 | 4.4 | 8 MB | 2 × 4 | Radeon Graphics | 2.1 | 512:32:16 8 CU | 2150.4 | 65 W | Jul 21, 2020 | OEM
+Ryzen 7 | 4700GE | 8 (16) | 3.1 | 4.3 | 8 MB | 2 × 4 | Radeon Graphics | 2.0 | 512:32:16 8 CU | 2048 | 35 W | Jul 21, 2020 | OEM
+Ryzen 5 | 4600G | 6 (12) | 3.7 | 4.2 | 8 MB | 2 × 3 | Radeon Graphics | 1.9 | 448:28:14 7 CU | 1702.4 | 65 W | Jul 21, 2020 (OEM) Apr 4, 2022 (retail) | US $154
+Ryzen 5 | 4600GE | 6 (12) | 3.3 | 4.2 | 8 MB | 2 × 3 | Radeon Graphics | 1.9 | 448:28:14 7 CU | 1702.4 | 35 W | Jul 21, 2020 | OEM
+Ryzen 3 | 4300G | 4 (8) | 3.8 | 4.0 | 4 MB | 1 × 4 | Radeon Graphics | 1.7 | 384:24:12 6 CU | 1305.6 | 65 W | Jul 21, 2020 | OEM
+Ryzen 3 | 4300GE | 4 (8) | 3.5 | 4.0 | 4 MB | 1 × 4 | Radeon Graphics | 1.7 | 384:24:12 6 CU | 1305.6 | 35 W | Jul 21, 2020 | OEM
+
+### TABLE 10 rows=23 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Thermal solution Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Thermal solution | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Thermal solution | Release date | MSRP
+Ryzen 9 | 5950X | 16 (32) | 3.4 | 4.9 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | Nov 5, 2020 | US $799
+Ryzen 9 | 5900XT | 16 (32) | 3.3 | 4.8 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | Jul 31, 2024 | US $349
+Ryzen 9 | 5900X | 12 (24) | 3.7 | 4.8 | 64 MB | 105 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | Nov 5, 2020 | US $549
+Ryzen 9 | 5900 | 12 (24) | 3.0 | 4.7 | 64 MB | 65 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | Jan 12, 2021 | OEM
+Ryzen 9 | PRO 5945 | 12 (24) | 3.0 | 4.7 | 64 MB | 65 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | Sep 2022 | OEM
+Ryzen 7 | 5800X3D | 8 (16) | 3.4 | 4.5 | 96 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Apr 20, 2022 Jun 25, 2026 (10th ann. ed.) | US $449 US $349 (10th ann. ed.)
+Ryzen 7 | 5800XT | 8 (16) | 3.8 | 4.8 | 32 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 8 | Wraith Prism, None | Jul 31, 2024 | US $249
+Ryzen 7 | 5800X | 8 (16) | 3.8 | 4.7 | 32 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Nov 5, 2020 | US $449
+Ryzen 7 | 5800 | 8 (16) | 3.4 | 4.6 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Jan 12, 2021 | OEM
+Ryzen 7 | 5700X3D | 8 (16) | 3.0 | 4.1 | 96 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Jan 31, 2024 | US $249
+Ryzen 7 | 5700X | 8 (16) | 3.4 | 4.6 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Apr 4, 2022 | US $299
+Ryzen 7 | PRO 5845 | 8 (16) | 3.4 | 4.6 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | Sep 2022 | OEM
+Ryzen 5 | 5600X3D | 6 (12) | 3.3 | 4.4 | 96 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 6 | —N/a | Jul 7, 2023 | US $229 US Only
+Ryzen 5 | 5600XT | 6 (12) | 3.7 | 4.7 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Oct 31, 2024 | US $194
+Ryzen 5 | 5600X | 6 (12) | 3.7 | 4.6 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Nov 5, 2020 | US $299
+Ryzen 5 | 5600T | 6 (12) | 3.5 | 4.5 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Oct 31, 2024 | US $186
+Ryzen 5 | 5600 | 6 (12) | 3.5 | 4.4 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Apr 4, 2022 | US $199
+Ryzen 5 | 5600F | 6 (12) | 3.0 | 4.0 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Sep 16, 2025 | APJ Only
+Ryzen 5 | PRO 5645 | 6 (12) | 3.7 | 4.6 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | —N/a | Sep 2022 | OEM
+Ryzen 5 | 5500X3D | 6 (12) | 3.0 | 4.0 | 96 MB | 105 W | 1 × CCD 1 × I/OD | 1 × 6 | —N/a | Jun 5, 2025 | ¥‌1099, LATAM, China and UK Only
+Ryzen 5 | 5500F | 6 (12) | 3.0 | 4.4 | 16 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | Sep 10, 2026 | US $99
+
+### TABLE 11 rows=5 :: Branding and model Branding and model Cores (threads) Thermal solution Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Core config Release date MSRP (USD)
+Branding and model | Branding and model | Cores (threads) | Thermal solution | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Core config | Release date | MSRP (USD)
+Branding and model | Branding and model | Cores (threads) | Thermal solution | Base | Boost | L3 cache (total) | TDP | Core config | Release date | MSRP (USD)
+Ryzen 7 | 5700 | 8 (16) | Wraith Stealth | 3.7 | 4.6 | 16 MB | 65 W | 1 × 8 | Apr 4, 2022 (OEM), Jan 31, 2024 (retail) | $175
+Ryzen 5 | 5500 | 6 (12) | Wraith Stealth | 3.6 | 4.2 | 16 MB | 65 W | 1 × 6 | Apr 4, 2022 | $159
+Ryzen 3 | 5100 | 4 (8) | – | 3.8 | 4.2 | 8 MB | 65 W | 1 × 4 | 2023 | OEM
+
+### TABLE 12 rows=17 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU GPU Thermal solution TDP Release date MSRP
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | Thermal solution | TDP | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Clock (MHz) | Config | Processing power (GFLOPS) | Thermal solution | TDP | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Clock (MHz) | Config | Processing power (GFLOPS) | Thermal solution | TDP | Release date | MSRP
+Ryzen 7 | 5705G | 8 (16) | 3.8 | 4.6 | 16 MB | 1 × 8 | 2000 | 512:32:8 8 CU | 2048 | —N/a | 65 W |  | 
+Ryzen 7 | 5700G | 8 (16) | 3.8 | 4.6 | 16 MB | 1 × 8 | 2000 | 512:32:8 8 CU | 2048 | Wraith Stealth | 65 W | Apr 13, 2021 (OEM), Aug 5, 2021 (retail) | US $359
+Ryzen 7 | 5705GE | 8 (16) | 3.2 | 4.6 | 16 MB | 1 × 8 | 2000 | 512:32:8 8 CU | 2048 | —N/a | 35 W |  | 
+Ryzen 7 | 5700GE | 8 (16) | 3.2 | 4.6 | 16 MB | 1 × 8 | 2000 | 512:32:8 8 CU | 2048 | Wraith Stealth | 35 W | Apr 13, 2021 | OEM
+Ryzen 5 | 5600GT | 6 (12) | 3.6 | 4.6 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | Wraith Stealth | 65 W | Jan 31, 2024 | US $140
+Ryzen 5 | 5605G | 6 (12) | 3.9 | 4.4 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | —N/a | 65 W |  | 
+Ryzen 5 | 5600G | 6 (12) | 3.9 | 4.4 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | Wraith Stealth | 65 W | Apr 13, 2021 (OEM), Aug 5, 2021 (retail) | US $259
+Ryzen 5 | 5605GE | 6 (12) | 3.4 | 4.4 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | —N/a | 35 W |  | 
+Ryzen 5 | 5600GE | 6 (12) | 3.4 | 4.4 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | Wraith Stealth | 35 W | Apr 13, 2021 | OEM
+Ryzen 5 | 5500GT | 6 (12) | 3.6 | 4.4 | 16 MB | 1 × 6 | 1900 | 448:28:8 7 CU | 1702.4 | Wraith Stealth | 65 W | Jan 08, 2024 | US $125
+Ryzen 3 | 5305G | 4 (8) | 4.0 | 4.2 | 8 MB | 1 × 4 | 1700 | 384:24:8 6 CU | 1305.6 | —N/a | 65 W |  | 
+Ryzen 3 | 5300G | 4 (8) | 4.0 | 4.2 | 8 MB | 1 × 4 | 1700 | 384:24:8 6 CU | 1305.6 | OEM | 65 W | Apr 13, 2021 | OEM
+Ryzen 3 | 5305GE | 4 (8) | 3.6 | 4.2 | 8 MB | 1 × 4 | 1700 | 384:24:8 6 CU | 1305.6 | —N/a | 35 W |  | 
+Ryzen 3 | 5300GE | 4 (8) | 3.6 | 4.2 | 8 MB | 1 × 4 | 1700 | 384:24:8 6 CU | 1305.6 | OEM | 35 W | Apr 13, 2021 | OEM
+
+### TABLE 13 rows=7 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Ryzen Threadripper PRO | 5995WX | 64 (128) | 2.7 | 4.5 | 256 MB | 280 W | 8 × CCD 1 × I/OD | 8 × 8 | Mar 8, 2022 (OEM) / ? (retail) | OEM / US $6500
+Ryzen Threadripper PRO | 5975WX | 32 (64) | 3.6 | 4.5 | 128 MB | 280 W | 4 × CCD 1 × I/OD | 4 × 8 | Mar 8, 2022 (OEM) / ? (retail) | OEM / US $3300
+Ryzen Threadripper PRO | 5965WX | 24 (48) | 3.8 | 4.5 | 128 MB | 280 W | 4 × CCD 1 × I/OD | 4 × 6 | Mar 8, 2022 (OEM) / ? (retail) | OEM / US $2400
+Ryzen Threadripper PRO | 5955WX | 16 (32) | 4.0 | 4.5 | 64 MB | 280 W | 2 × CCD 1 × I/OD | 2 × 8 | Mar 8, 2022 | OEM
+Ryzen Threadripper PRO | 5945WX | 12 (24) | 4.1 | 4.5 | 64 MB | 280 W | 2 × CCD 1 × I/OD | 2 × 6 | Mar 8, 2022 | OEM
+
+### TABLE 14 rows=22 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) Chiplets Core config TDP Thermal solution Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Thermal solution | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Thermal solution | Release date | MSRP
+Ryzen 9 | 7950X3D | 16 (32) | 4.2 | 5.7 | 128 MB | 2 × CCD 1 × I/OD | 2 × 8 | 120 W | —N/a | Feb 28, 2023 | US $699
+Ryzen 9 | 7950X | 16 (32) | 4.5 | 5.7 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 170 W | —N/a | Sep 27, 2022 | US $699
+Ryzen 9 | 7900X3D | 12 (24) | 4.4 | 5.6 | 128 MB | 2 × CCD 1 × I/OD | 2 × 6 | 120 W | —N/a | Feb 28, 2023 | US $599
+Ryzen 9 | 7900X | 12 (24) | 4.7 | 5.6 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 170 W | —N/a | Sep 27, 2022 | US $549
+Ryzen 9 | 7900 | 12 (24) | 3.7 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 65 W | Wraith Prism, None | Jan 10, 2023 | US $429
+Ryzen 9 | PRO 7945 | 12 (24) | 3.7 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 65 W | Wraith Spire, Wraith Stealth | Jun 13, 2023 | OEM
+Ryzen 7 | 7800X3D | 8 (16) | 4.2 | 5.0 | 96 MB | 1 × CCD 1 × I/OD | 1 × 8 | 120 W | —N/a | Apr 6, 2023 | US $449
+Ryzen 7 | 7700X3D | 8 (16) | 4.0 | 4.5 | 96 MB | 1 × CCD 1 × I/OD | 1 × 8 | 120 W | —N/a | Jul 16, 2026 | US $329
+Ryzen 7 | 7700X | 8 (16) | 4.5 | 5.4 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 105 W | —N/a | Sep 27, 2022 | US $399
+Ryzen 7 | 7700 | 8 (16) | 3.8 | 5.3 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 65 W | Wraith Prism, None | Jan 10, 2023 | US $329
+Ryzen 7 | PRO 7745 | 8 (16) | 3.8 | 5.3 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 65 W | Wraith Spire, Wraith Stealth | Jun 13, 2023 | OEM
+Ryzen 5 | 7600X3D | 6 (12) | 4.1 | 4.7 | 96 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | —N/a | Aug 31, 2024 | US $299
+Ryzen 5 | 7600X | 6 (12) | 4.7 | 5.3 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 105 W | —N/a | Sep 27, 2022 | US $299
+Ryzen 5 | 7600 | 6 (12) | 3.8 | 5.1 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Stealth | Jan 10, 2023 | US $229
+Ryzen 5 | PRO 7645 | 6 (12) | 3.8 | 5.1 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Spire, Wraith Stealth | Jun 13, 2023 | OEM
+Ryzen 5 | 7500X3D | 6 (12) | 4.0 | 4.5 | 96 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | —N/a | Nov 12, 2025 | OEM
+Ryzen 5 | 7500 | 6 (12) | 3.7 | 5.0 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Stealth | Sep 10, 2026 | US $189
+Ryzen 5 | 7500F | 6 (12) | 3.7 | 5.0 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Stealth | Jul 22, 2023 | US $179
+Ryzen 5 | 7400F | 6 (12) | 3.7 | 4.7 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Stealth | Jan 9, 2025 | CNY 849 (Mainland China) APJ Only
+Ryzen 5 | 7400 | 6 (12) | 3.3 | 4.3 | 16 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Wraith Stealth | Sep 16, 2025 | TBA
+
+### TABLE 15 rows=11 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Ryzen Threadripper PRO | 7995WX | 96 (192) | 2.5 | 5.1 | 384 MB | 350 W | 12 × CCD 1 × I/OD | 12 × 8 | Nov 21, 2023 | US $9999
+Ryzen Threadripper PRO | 7985WX | 64 (128) | 3.2 | 5.1 | 256 MB | 350 W | 8 × CCD 1 × I/OD | 8 × 8 | Nov 21, 2023 | US $7349
+Ryzen Threadripper PRO | 7975WX | 32 (64) | 4.0 | 5.3 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 8 | Nov 21, 2023 | US $3899
+Ryzen Threadripper PRO | 7965WX | 24 (48) | 4.2 | 5.3 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 6 | Nov 21, 2023 | US $2649
+Ryzen Threadripper PRO | 7955WX | 16 (32) | 4.5 | 5.3 | 64 MB | 350 W | 2 × CCD 1 × I/OD | 2 × 8 | Nov 21, 2023 | US $1899
+Ryzen Threadripper PRO | 7945WX | 12 (24) | 4.7 | 5.3 | 64 MB | 350 W | 2 × CCD 1 × I/OD | 2 × 6 | Nov 21, 2023 | US $1399
+Ryzen Threadripper | 7980X | 64 (128) | 3.2 | 5.1 | 256 MB | 350 W | 8 × CCD 1 × I/OD | 8 × 8 | Nov 21, 2023 | US $4999
+Ryzen Threadripper | 7970X | 32 (64) | 4.0 | 5.3 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 8 | Nov 21, 2023 | US $2499
+Ryzen Threadripper | 7960X | 24 (48) | 4.2 | 5.3 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 6 | Nov 21, 2023 | US $1499
+
+### TABLE 16 rows=4 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) NPU TDP Core config Thermal solution Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | NPU | TDP | Core config | Thermal solution | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | NPU | TDP | Core config | Thermal solution | Release date | MSRP
+Ryzen 7 | 8700F | 8 (16) | 4.1 | 5.0 | 16 MB | Yes | 65 W | 1 × 8 | Wraith Stealth | April 1, 2024 | OEM
+Ryzen 5 | 8400F | 6 (12) | 4.2 | 4.7 | 16 MB | No | 65 W | 1 × 6 | Wraith Stealth | April 1, 2024 | OEM
+
+### TABLE 17 rows=11 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU GPU NPU TDP Thermal solution Release date MSRP
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | NPU | TDP | Thermal solution | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Core config | Clock (GHz) | NPU | TDP | Thermal solution | Release date | MSRP
+Branding and model | Branding and model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Core config | Clock (GHz) | NPU | TDP | Thermal solution | Release date | MSRP
+Ryzen 7 | 8700G | 8 (16) | 8 (16) | —N/a | 4.2 | 5.1 | 16 MB | 1 × 8 | 780M | 12 CUs 768:48:24:12 | 2.9 | Ryzen AI Up to 16 TOPS | 65 W | Wraith Spire (before Aug 1, 2025) Wraith Stealth (since Aug 1, 2025) | Jan 31, 2024 | US $329
+Ryzen 7 | PRO 8700GE | 8 (16) | 8 (16) | —N/a | 3.6 | 5.1 | 16 MB | 1 × 8 | 780M | 12 CUs 768:48:24:12 | 2.7 | Ryzen AI Up to 16 TOPS | 35 W | —N/a | Apr 16, 2024 | US $299
+Ryzen 5 | 8600G | 6 (12) | 6 (12) | —N/a | 4.3 | 5.0 | 16 MB | 1 × 6 | 760M | 8 CUs 512:32:16:8 | 2.8 | Ryzen AI Up to 16 TOPS | 65 W | Wraith Stealth | Jan 31, 2024 | US $229
+Ryzen 5 | PRO 8600GE | 6 (12) | 6 (12) | —N/a | 3.9 | 5.0 | 16 MB | 1 × 6 | 760M | 8 CUs 512:32:16:8 | 2.6 | Ryzen AI Up to 16 TOPS | 35 W | —N/a | Apr 16, 2024 | OEM
+Ryzen 5 | 8500G | 6 (12) | 2 (4) | 4 (8) | 4.1 / 3.2 | 5.0 / 3.7 | 16 MB | 2 + 4 | 740M | 4 CUs 256:16:8:4 | 2.8 | No | 65 W | Wraith Stealth | Jan 31, 2024 | US $179
+Ryzen 5 | 8500GE | 6 (12) | 2 (4) | 4 (8) | 3.9 / 3.1 | 5.0 / 3.7 | 16 MB | 2 + 4 | 740M | 4 CUs 256:16:8:4 | 2.8 | No | 35 W | —N/a | Apr 16, 2024 | OEM
+Ryzen 3 | 8300G | 4 (8) | 1 (2) | 3 (6) | 4.0 / 3.2 | 4.9 / 3.6 | 8 MB | 1 + 3 | 740M | 4 CUs 256:16:8:4 | 2.6 | No | 65 W | Wraith Stealth | Jan 2024 (OEM) / Q1 2024 (retail) | OEM / TBA
+Ryzen 3 | 8300GE | 4 (8) | 1 (2) | 3 (6) | 4.0 / 3.2 | 4.9 / 3.6 | 8 MB | 1 + 3 | 740M | 4 CUs 256:16:8:4 | 2.6 | No | 35 W | —N/a | Apr 16, 2024 | OEM
+
+### TABLE 18 rows=21 :: Branding and Model Branding and Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Thermal solution Release date Launch MSRP
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Thermal solution | Release date | Launch MSRP
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Thermal solution | Release date | Launch MSRP
+Ryzen 9 | 9950X3D2 Dual Edition | 16 (32) | 4.3 | 5.6 | 192 MB | 200 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | April 22, 2026 | US $899
+Ryzen 9 | 9950X3D | 16 (32) | 4.3 | 5.7 | 128 MB | 170 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | March 12, 2025 | US $699
+Ryzen 9 | PRO 9965X3D | 16 (32) | 4.3 | 5.5 | 128 MB | 170 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | June 30, 2026 | OEM
+Ryzen 9 | PRO 9965 | 16 (32) | 4.3 | 5.5 | 64 MB | 170 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | June 30, 2026 | OEM
+Ryzen 9 | 9950X | 16 (32) | 4.3 | 5.7 | 64 MB | 170 W | 2 × CCD 1 × I/OD | 2 × 8 | —N/a | August 15, 2024 | US $649
+Ryzen 9 | PRO 9955 | 12 (24) | 3.4 | 5.4 | 64 MB | 120 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | June 30, 2026 | OEM
+Ryzen 9 | PRO 9945 | 12 (24) | 3.4 | 5.4 | 64 MB | 65 W | 2 × CCD 1 × I/OD | 2 × 6 | Wraith Stealth | September 16, 2025 | OEM
+Ryzen 9 | 9900X3D | 12 (24) | 4.4 | 5.5 | 128 MB | 120 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | March 12, 2025 | US $599
+Ryzen 9 | 9900X | 12 (24) | 4.4 | 5.6 | 64 MB | 120 W | 2 × CCD 1 × I/OD | 2 × 6 | —N/a | August 15, 2024 | US $499
+Ryzen 7 | 9850X3D | 8 (16) | 4.7 | 5.6 | 96 MB | 120 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | January 29, 2026 | US $499
+Ryzen 7 | 9800X3D | 8 (16) | 4.7 | 5.2 | 96 MB | 120 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | November 7, 2024 | US $479
+Ryzen 7 | PRO 9755 | 8 (16) | 3.8 | 5.4 | 32 MB | 120 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | June 30, 2026 | OEM
+Ryzen 7 | PRO 9745 | 8 (16) | 3.8 | 5.4 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | Wraith Stealth | September 16, 2025 | OEM
+Ryzen 7 | 9700X | 8 (16) | 3.8 | 5.5 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | August 8, 2024 | US $359
+Ryzen 7 | 9700F | 8 (16) | 3.8 | 5.5 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 8 | —N/a | September 16, 2025 | TBA
+Ryzen 5 | PRO 9655 | 6 (12) | 3.9 | 5.4 | 32 MB | 120 W | 1 × CCD 1 × I/OD | 1 × 6 | —N/a | June 30, 2026 | OEM
+Ryzen 5 | 9600X | 6 (12) | 3.9 | 5.4 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | —N/a | August 8, 2024 | US $279
+Ryzen 5 | 9600 | 6 (12) | 3.8 | 5.2 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | February 19, 2025 | TBA
+Ryzen 5 | 9500F | 6 (12) | 3.8 | 5.0 | 32 MB | 65 W | 1 × CCD 1 × I/OD | 1 × 6 | Wraith Stealth | September 16, 2025 | CN ¥1,299
+
+### TABLE 19 rows=11 :: Branding and model Branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) TDP Chiplets Core config Release date MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | TDP | Chiplets | Core config | Release date | MSRP
+Ryzen Threadripper PRO | 9995WX | 96 (192) | 2.5 | 5.4 | 384 MB | 350 W | 12 × CCD 1 × I/OD | 12 × 8 | July 2025 | $11,699
+Ryzen Threadripper PRO | 9985WX | 64 (128) | 3.2 | 5.4 | 256 MB | 350 W | 8 × CCD 1 × I/OD | 8 × 8 | July 2025 | $7,999
+Ryzen Threadripper PRO | 9975WX | 32 (64) | 4.0 | 5.4 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 8 | July 2025 | $4,099
+Ryzen Threadripper PRO | 9965WX | 24 (48) | 4.2 | 5.4 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 6 | July 2025 | $2,899
+Ryzen Threadripper PRO | 9955WX | 16 (32) | 4.5 | 5.4 | 64 MB | 350 W | 2 × CCD 1 × I/OD | 2 × 8 | July 2025 | $1,649
+Ryzen Threadripper PRO | 9945WX | 12 (24) | 4.7 | 5.4 | 64 MB | 350 W | 2 × CCD 1 × I/OD | 2 × 6 | July 2025 | OEM
+Ryzen Threadripper | 9980X | 64 (128) | 3.2 | 5.4 | 256 MB | 350 W | 8 × CCD 1 × I/OD | 8 × 8 | July 2025 | $4,999
+Ryzen Threadripper | 9970X | 32 (64) | 4.0 | 5.4 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 8 | July 2025 | $2,499
+Ryzen Threadripper | 9960X | 24 (48) | 4.2 | 5.4 | 128 MB | 350 W | 4 × CCD 1 × I/OD | 4 × 6 | July 2025 | $1,499
+
+### TABLE 20 rows=9 :: Branding and model Branding and model CPU CPU CPU CPU GPU GPU GPU NPU (Ryzen AI) TDP Release MSRP
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | GPU | GPU | GPU | NPU (Ryzen AI) | TDP | Release | MSRP
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache | GPU | GPU | GPU | NPU (Ryzen AI) | TDP | Release | MSRP
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache | Model | CUs | Clock (GHz) | NPU (Ryzen AI) | TDP | Release | MSRP
+Ryzen AI 7 | (PRO) 450G | 8 (16) | 2.0 | 5.1 | 16 MB | Radeon 860M | 8 | 3.1 | Up to 50 TOPS | 65 W | March 2, 2026 (OEM) | OEM
+Ryzen AI 7 | (PRO) 450GE | 8 (16) | 2.0 | 5.1 | 16 MB | Radeon 860M | 8 | 3.1 | Up to 50 TOPS | 35 W | March 2, 2026 (OEM) | OEM
+Ryzen AI 5 | (PRO) 440G | 6 (12) | 2.0 | 4.8 | 16 MB | Radeon 840M | 4 | 2.9 | Up to 50 TOPS | 65 W | March 2, 2026 (OEM) | OEM
+Ryzen AI 5 | (PRO) 440GE | 6 (12) | 2.0 | 4.8 | 16 MB | Radeon 840M | 4 | 2.9 | Up to 50 TOPS | 35 W | March 2, 2026 (OEM) | OEM
+Ryzen AI 5 | (PRO) 435G | 6 (12) | 2.0 | 4.5 | 8 MB | Radeon 840M | 4 | 2.8 | Up to 50 TOPS | 65 W | March 2, 2026 (OEM) | OEM
+Ryzen AI 5 | (PRO) 435GE | 6 (12) | 2.0 | 4.5 | 8 MB | Radeon 840M | 4 | 2.8 | Up to 50 TOPS | 35 W | March 2, 2026 (OEM) | OEM
+
+### TABLE 21 rows=9 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 7 | 2800H | 4 (8) | 3.3 | 3.8 | 4 MB | 1 × 4 | RX Vega 11 | 1.3 | 704:44:16 11 CUs | 1830.4 | 35–54 W | Sep 10, 2018
+Ryzen 7 | 2700U | 4 (8) | 2.2 | 3.8 | 4 MB | 1 × 4 | RX Vega 10 | 1.3 | 640:40:16 10 CUs | 1664 | 12–25 W | Oct 26, 2017
+Ryzen 5 | 2600H | 4 (8) | 3.2 | 3.6 | 4 MB | 1 × 4 | Vega 8 | 1.1 | 512:32:16 8 CUs | 1126.4 | 35–54 W | Sep 10, 2018
+Ryzen 5 | 2500U | 4 (8) | 2.0 | 3.6 | 4 MB | 1 × 4 | Vega 8 | 1.1 | 512:32:16 8 CUs | 1126.4 | 12–25 W | Oct 26, 2017
+Ryzen 3 | 2300U | 4 (4) | 2.0 | 3.4 | 4 MB | 1 × 4 | Vega 6 | 1.1 | 384:24:8 6 CUs | 844.8 | 12–25 W | Jan 8, 2018
+Ryzen 3 | 2200U | 2 (4) | 2.5 | 3.4 | 4 MB | 1 × 2 | Vega 3 | 1.1 | 192:12:4 3 CUs | 422.4 | 12–25 W | Jan 8, 2018
+
+### TABLE 22 rows=6 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 3 | 3250U | 2 (4) | 2.6 | 3.5 | 4 MB | 1 × 2 | Vega 3 | 1.2 | 192:12:4 3 CUs | 460.8 | 12–25 W | Jan 6, 2020
+Ryzen 3 | 3250C | 2 (4) | 2.6 | 3.5 | 4 MB | 1 × 2 | Vega 3 | 1.2 | 192:12:4 3 CUs | 460.8 | 12–25 W | Sep 22, 2020
+Ryzen 3 | 3200U | 2 (4) | 2.6 | 3.5 | 4 MB | 1 × 2 | Vega 3 | 1.2 | 192:12:4 3 CUs | 460.8 | 12–25 W | Jan 6, 2019
+
+### TABLE 23 rows=14 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 7 | 3780U | 4 (8) | 2.3 | 4.0 | 4 MB | 1 × 4 | RX Vega 11 | 1.4 | 704:44:16 11 CU | 1971.2 | 15 W | Oct 2019
+Ryzen 7 | 3750H | 4 (8) | 2.3 | 4.0 | 4 MB | 1 × 4 | RX Vega 10 | 1.4 | 640:40:16 10 CU | 1792.0 | 35 W | Jan 6, 2019
+Ryzen 7 | 3700C | 4 (8) | 2.3 | 4.0 | 4 MB | 1 × 4 | RX Vega 10 | 1.4 | 640:40:16 10 CU | 1792.0 | 15 W | Sep 22, 2020
+Ryzen 7 | 3700U | 4 (8) | 2.3 | 4.0 | 4 MB | 1 × 4 | RX Vega 10 | 1.4 | 640:40:16 10 CU | 1792.0 | 15 W | Jan 6, 2019
+Ryzen 5 | 3580U | 4 (8) | 2.1 | 3.7 | 4 MB | 1 × 4 | Vega 9 | 1.3 | 576:36:16 9 CU | 1497.6 | 15 W | Oct 2019
+Ryzen 5 | 3550H | 4 (8) | 2.1 | 3.7 | 4 MB | 1 × 4 | Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 35 W | Jan 6, 2019
+Ryzen 5 | 3500C | 4 (8) | 2.1 | 3.7 | 4 MB | 1 × 4 | Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 15 W | Sep 22, 2020
+Ryzen 5 | 3500U | 4 (8) | 2.1 | 3.7 | 4 MB | 1 × 4 | Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 15 W | Jan 6, 2019
+Ryzen 5 | 3450U | 4 (8) | 2.1 | 3.5 | 4 MB | 1 × 4 | Vega 8 | 1.2 | 512:32:8 8 CU | 1228.8 | 15 W | Jun 2020
+Ryzen 3 | 3350U | 4 (4) | 2.1 | 3.5 | 4 MB | 1 × 4 | Vega 6 | 1.2 | 384:24:8 6 CU | 921.6 | 15 W | Jan 6, 2019
+Ryzen 3 | 3300U | 4 (4) | 2.1 | 3.5 | 4 MB | 1 × 4 | Vega 6 | 1.2 | 384:24:8 6 CU | 921.6 | 15 W | Jan 6, 2019
+
+### TABLE 24 rows=16 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 9 | 4900H | 8 (16) | 3.3 | 4.4 | 8 MB | 2 × 4 | Radeon Graphics | 1.75 | 512:32:8 8 CU | 1792 | 35–54 W | Mar 16, 2020
+Ryzen 9 | 4900HS | 8 (16) | 3.0 | 4.3 | 8 MB | 2 × 4 | Radeon Graphics | 1.75 | 512:32:8 8 CU | 1792 | 35 W | Mar 16, 2020
+Ryzen 7 | 4800H | 8 (16) | 2.9 | 4.2 | 8 MB | 2 × 4 | Radeon Graphics | 1.6 | 448:28:8 7 CU | 1433.6 | 35–54 W | Mar 16, 2020
+Ryzen 7 | 4800HS | 8 (16) | 2.9 | 4.2 | 8 MB | 2 × 4 | Radeon Graphics | 1.6 | 448:28:8 7 CU | 1433.6 | 35 W | Mar 16, 2020
+Ryzen 7 | 4980U | 8 (16) | 2.0 | 4.4 | 8 MB | 2 × 4 | Radeon Graphics | 1.95 | 512:32:8 8 CU | 1996.8 | 10–25 W | Apr 13, 2021
+Ryzen 7 | 4800U | 8 (16) | 1.8 | 4.2 | 8 MB | 2 × 4 | Radeon Graphics | 1.75 | 512:32:8 8 CU | 1792 | 10–25 W | Mar 16, 2020
+Ryzen 7 | 4700U | 8 (8) | 2.0 | 4.1 | 8 MB | 2 × 4 | Radeon Graphics | 1.6 | 448:28:8 7 CU | 1433.6 | 10–25 W | Mar 16, 2020
+Ryzen 5 | 4600H | 6 (12) | 3.0 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.5 | 384:24:8 6 CU | 1152 | 35–54 W | Mar 16, 2020
+Ryzen 5 | 4600HS | 6 (12) | 3.0 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.5 | 384:24:8 6 CU | 1152 | 35 W | Mar 16, 2020
+Ryzen 5 | 4680U | 6 (12) | 2.1 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.5 | 448:28:8 7 CU | 1344 | 10–25 W | Apr 13, 2021
+Ryzen 5 | 4600U | 6 (12) | 2.1 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.5 | 384:24:8 6 CU | 1152 | 10–25 W | Mar 16, 2020
+Ryzen 5 | 4500U | 6 (6) | 2.3 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.5 | 384:24:8 6 CU | 1152 | 10–25 W | Mar 16, 2020
+Ryzen 3 | 4300U | 4 (4) | 2.7 | 3.7 | 4 MB | 1 × 4 | Radeon Graphics | 1.4 | 320:20:8 5 CU | 896 | 10–25 W | Mar 16, 2020
+
+### TABLE 25 rows=6 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 7 | 5700U | 8 (16) | 1.8 | 4.3 | 8 MB | 2 × 4 | Radeon Graphics | 1.9 | 512:32:8 8 CU | 1945.6 | 10–25 W | Jan 12, 2021
+Ryzen 5 | 5500U | 6 (12) | 2.1 | 4.0 | 8 MB | 2 × 3 | Radeon Graphics | 1.8 | 448:28:8 7 CU | 1612.8 | 10–25 W | Jan 12, 2021
+Ryzen 3 | 5300U | 4 (8) | 2.6 | 3.8 | 4 MB | 1 × 4 | Radeon Graphics | 1.5 | 384:24:8 6 CU | 1152 | 10–25 W | Jan 12, 2021
+
+### TABLE 26 rows=20 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost (Single Core) | Boost (All Core) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 9 | 5980HX | 8 (16) | 3.3 | 4.8 | 4.4 | 16 MB | 1 × 8 | Radeon Graphics | 2.1 | 512:32:8 8 CUs | 2150.4 | 35–54 W | Jan 12, 2021
+Ryzen 9 | 5980HS | 8 (16) | 3.0 | 4.8 | 4.0 | 16 MB | 1 × 8 | Radeon Graphics | 2.1 | 512:32:8 8 CUs | 2150.4 | 35 W | Jan 12, 2021
+Ryzen 9 | 5900HX | 8 (16) | 3.3 | 4.6 | 4.2 | 16 MB | 1 × 8 | Radeon Graphics | 2.1 | 512:32:8 8 CUs | 2150.4 | 35–54 W | Jan 12, 2021
+Ryzen 9 | 5900HS | 8 (16) | 3.0 | 4.6 | 4.0 | 16 MB | 1 × 8 | Radeon Graphics | 2.1 | 512:32:8 8 CUs | 2150.4 | 35 W | Jan 12, 2021
+Ryzen 7 | 5800H | 8 (16) | 3.2 | 4.4 |  | 16 MB | 1 × 8 | Radeon Graphics | 2.0 | 512:32:8 8 CUs | 2048 | 35–54 W | Jan 12, 2021
+Ryzen 7 | 5800HS | 8 (16) | 2.8 | 4.4 |  | 16 MB | 1 × 8 | Radeon Graphics | 2.0 | 512:32:8 8 CUs | 2048 | 35 W | Jan 12, 2021
+Ryzen 7 | 5825U | 8 (16) | 2.0 | 4.5 |  | 16 MB | 1 × 8 | Radeon Graphics | 2.0 | 512:32:8 8 CUs | 2048 | 15 W | Jan 4, 2022
+Ryzen 7 | 5800U | 8 (16) | 1.9 | 4.4 | 3.4 | 16 MB | 1 × 8 | Radeon Graphics | 2.0 | 512:32:8 8 CUs | 2048 | 10–25 W | Jan 12, 2021
+Ryzen 5 | 5600H | 6 (12) | 3.3 | 4.2 |  | 16 MB | 1 × 6 | Radeon Graphics | 1.8 | 448:28:8 7 CUs | 1612.8 | 35–54 W | Jan 12, 2021
+Ryzen 5 | 5600HS | 6 (12) | 3.0 | 4.2 |  | 16 MB | 1 × 6 | Radeon Graphics | 1.8 | 448:28:8 7 CUs | 1612.8 | 35 W | Jan 12, 2021
+Ryzen 5 | 5625U | 6 (12) | 2.3 | 4.3 | 3.6 | 16 MB | 1 × 6 | Radeon Graphics | 1.8 | 448:28:8 7 CUs | 1612.8 | 15 W | Jan 4, 2022
+Ryzen 5 | 5600U | 6 (12) | 2.3 | 4.2 | 3.6 | 16 MB | 1 × 6 | Radeon Graphics | 1.8 | 448:28:8 7 CUs | 1612.8 | 10–25 W | Jan 12, 2021
+Ryzen 5 | 5560U | 6 (12) | 2.3 | 4.0 |  | 8 MB | 1 × 6 | Radeon Graphics | 1.6 | 384:24:8 6 CUs | 1228.8 | 10–25 W | Jan 12, 2021
+Ryzen 5 | 5500H | 4 (8) | 3.3 | 4.2 |  | 8 MB | 1 × 4 | Radeon Graphics | 1.8 | 384:24:8 6 CUs | 1382.4 | 35–54 W | Jun 23, 2023
+Ryzen 3 | 5425U | 4 (8) | 2.7 | 4.1 | 3.8 | 8 MB | 1 × 4 | Radeon Graphics | 1.6 | 384:24:8 6 CUs | 1228.8 | 15 W | Jan 4, 2022
+Ryzen 3 | 5400U | 4 (8) | 2.6 | 4.0 | 3.8 | 8 MB | 1 × 4 | Radeon Graphics | 1.6 | 384:24:8 6 CUs | 1228.8 | 10–25 W | Jan 12, 2021
+Ryzen 3 | 5125C | 2 (4) | 3.0 | —N/a | —N/a | 8 MB | 1 × 2 | Radeon Graphics | 1.2 | 192:12:8 3 CUs | 460.8 | 15 W | May 5, 2022
+
+### TABLE 27 rows=13 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU GPU GPU TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Config | Processing power (GFLOPS) | TDP | Release date
+Ryzen 9 | 6980HX | 8 (16) | 3.3 | 5.0 | 16 MB | 1 × 8 | 680M | 2.4 | 768:48:8 12 CUs | 3686 | 45 W | Jan 4, 2022
+Ryzen 9 | 6980HS | 8 (16) | 3.3 | 5.0 | 16 MB | 1 × 8 | 680M | 2.4 | 768:48:8 12 CUs | 3686 | 35 W | Jan 4, 2022
+Ryzen 9 | 6900HX | 8 (16) | 3.3 | 4.9 | 16 MB | 1 × 8 | 680M | 2.4 | 768:48:8 12 CUs | 3686 | 45 W | Jan 4, 2022
+Ryzen 9 | 6900HS | 8 (16) | 3.3 | 4.9 | 16 MB | 1 × 8 | 680M | 2.4 | 768:48:8 12 CUs | 3686 | 35 W | Jan 4, 2022
+Ryzen 7 | 6800H | 8 (16) | 3.2 | 4.7 | 16 MB | 1 × 8 | 680M | 2.2 | 768:48:8 12 CUs | 3379 | 45 W | Jan 4, 2022
+Ryzen 7 | 6800HS | 8 (16) | 3.2 | 4.7 | 16 MB | 1 × 8 | 680M | 2.2 | 768:48:8 12 CUs | 3379 | 35 W | Jan 4, 2022
+Ryzen 7 | 6800U | 8 (16) | 2.7 | 4.7 | 16 MB | 1 × 8 | 680M | 2.2 | 768:48:8 12 CUs | 3379 | 15–28 W | Jan 4, 2022
+Ryzen 5 | 6600H | 6 (12) | 3.3 | 4.5 | 16 MB | 1 × 6 | 660M | 1.9 | 384:24:8 6 CUs | 1459 | 45 W | Jan 4, 2022
+Ryzen 5 | 6600HS | 6 (12) | 3.3 | 4.5 | 16 MB | 1 × 6 | 660M | 1.9 | 384:24:8 6 CUs | 1459 | 35 W | Jan 4, 2022
+Ryzen 5 | 6600U | 6 (12) | 2.9 | 4.5 | 16 MB | 1 × 6 | 660M | 1.9 | 384:24:8 6 CUs | 1459 | 15–28 W | Jan 4, 2022
+
+### TABLE 28 rows=5 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Ryzen 5 | 7520U | 4 (8) | 2.8 | 4.3 | 4 MB | 1 × 4 | 610M 2 CU | 1.9 | 486 | 15 W | September 20, 2022
+Ryzen 3 | 7320U | 4 (8) | 2.4 | 4.1 | 4 MB | 1 × 4 | 610M 2 CU | 1.9 | 486 | 15 W | September 20, 2022
+
+### TABLE 29 rows=7 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Ryzen 7 | (PRO) 7730U | 8 (16) | 2.0 | 4.5 | 16 MB | 1 × 8 | Vega 8 CU | 2.0 | 2048 | 15 W | January 4, 2023
+Ryzen 5 | (PRO) 7530U | 6 (12) | 2.0 | 4.5 | 16 MB | 1 × 6 | Vega 7 CU | 2.0 | 1792 | 15 W | January 4, 2023
+Ryzen 5 | 7430U | 6 (12) | 2.3 | 4.3 | 16 MB | 1 × 6 | Vega 7 CU | 1.8 | 1613 | 15 W | Q4 2023
+Ryzen 3 | (PRO) 7330U | 4 (8) | 2.3 | 4.3 | 8 MB | 1 × 4 | Vega 6 CU | 1.8 | 1382 | 15 W | January 4, 2023
+
+### TABLE 30 rows=15 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU GPU TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Ryzen 7 | 7735HS | 8 (16) | 3.2 | 4.75 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 35–54 W | April 30, 2023
+Ryzen 7 | 7735H | 8 (16) | 3.2 | 4.75 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 35–54 W | April 30, 2023
+Ryzen 7 | 7736U | 8 (16) | 2.7 | 4.7 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 15–28 W | January 4, 2023
+Ryzen 7 | 7735U | 8 (16) | 2.7 | 4.75 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 15–30 W | January 4, 2023
+Ryzen 7 | 7435HS | 8 (16) | 3.1 | 4.5 | 16 MB | 1 × 8 | —N/a | —N/a | —N/a | 35–54 W | 2024
+Ryzen 7 | 7435H | 8 (16) | 3.1 | 4.5 | 16 MB | 1 × 8 | —N/a | —N/a | —N/a | 35–54 W | 2024
+Ryzen 5 | 7535HS | 6 (12) | 3.3 | 4.55 | 16 MB | 1 × 6 | 660M 6 CU | 1.9 | 1459 | 35–54 W | April 30, 2023
+Ryzen 5 | 7535H | 6 (12) | 3.3 | 4.55 | 16 MB | 1 × 6 | 660M 6 CU | 1.9 | 1459 | 35–54 W | April 30, 2023
+Ryzen 5 | 7535U | 6 (12) | 2.9 | 4.55 | 16 MB | 1 × 6 | 660M 6 CU | 1.9 | 1459 | 15–30 W | January 4, 2023
+Ryzen 5 | 7235HS | 4 (8) | 3.2 | 4.2 | 8 MB | 1 × 4 | —N/a | —N/a | —N/a | 35–53 W | 2024
+Ryzen 5 | 7235H | 4 (8) | 3.2 | 4.2 | 8 MB | 1 × 4 | —N/a | —N/a | —N/a | 35–53 W | 2024
+Ryzen 3 | 7335U | 4 (8) | 3.0 | 4.3 | 8 MB | 1 × 4 | 660M 4 CU | 1.8 | 922 | 15–30 W | January 4, 2023
+
+### TABLE 31 rows=15 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Ryzen 9 | (PRO) 7940HS | 8 (16) | 8 (16) | —N/a | 4.0 | 5.2 | 16 MB | 1 × 8 | 780M 12 CU | 2.8 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 9 | 7940H | 8 (16) | 8 (16) | —N/a | 4.0 | 5.2 | 16 MB | 1 × 8 | 780M 12 CU | 2.8 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 7 | (PRO) 7840HS | 8 (16) | 8 (16) | —N/a | 3.8 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 7 | 7840H | 8 (16) | 8 (16) | —N/a | 3.8 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 7 | (PRO) 7840U | 8 (16) | 8 (16) | —N/a | 3.3 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 10 TOPS | 15-30 W | May 3, 2023
+Ryzen 7 | 7445HS | 6 (12) | 2 (4) | 4 (8) | 3.2 | 4.7 | 16 MB | 2 + 4 | 740M 4 CU | 2.7 | No | 20-40 W | May 3, 2023
+Ryzen 5 | (PRO) 7640HS | 6 (12) | 6 (12) | —N/a | 4.3 | 5.0 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 5 | 7640H | 6 (12) | 6 (12) | —N/a | 4.3 | 5.0 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 10 TOPS | 35-54 W | April 30, 2023
+Ryzen 5 | (PRO) 7640U | 6 (12) | 6 (12) | —N/a | 3.5 | 4.9 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 10 TOPS | 15-30 W | May 3, 2023
+Ryzen 5 | (PRO) 7545U | 6 (12) | 2 (4) | 4 (8) | 3.7 / 3.0 | 4.9 / 3.5 | 16 MB | 2 + 4 | 740M 4 CU | 2.8 | No | 15-30 W | November 2, 2023
+Ryzen 5 | (PRO) 7540U | 6 (12) | 6 (12) | —N/a | 3.2 | 4.9 | 16 MB | 1 × 6 | 740M 4 CU | 2.5 | No | 15-30 W | May 3, 2023
+Ryzen 3 | 7440U | 4 (8) | 1 (2) | 3 (6) | 3.6 / 2.8 | 4.7 / 3.3 | 8 MB | 1 + 3 | 740M 4 CU | 2.5 | No | 15-30 W | May 3, 2023
+
+### TABLE 32 rows=9 :: Branding and model Branding and model Cores (threads) Clock (GHz) Clock (GHz) L3 cache (total) Chiplets Core config TDP Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Ryzen 9 | 7945HX3D | 16 (32) | 2.3 | 5.4 | 128 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | July 27, 2023
+Ryzen 9 | 7945HX | 16 (32) | 2.5 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | February 28, 2023
+Ryzen 9 | 7940HX | 16 (32) | 2.4 | 5.2 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | January 17, 2024
+Ryzen 9 | 7845HX | 12 (24) | 3.0 | 5.2 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 45–75 W | February 28, 2023
+Ryzen 7 | 7840HX | 12 (24) | 2.9 | 5.1 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 45–75 W | January 17, 2024
+Ryzen 7 | 7745HX | 8 (16) | 3.6 | 5.1 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 45–75 W | February 28, 2023
+Ryzen 5 | 7645HX | 6 (12) | 4.0 | 5.0 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 45–75 W | February 28, 2023
+
+### TABLE 33 rows=14 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Ryzen 9 | 8945HS | 8 (16) | 8 (16) | — | 4.0 | 5.2 | 16 MB | 1 × 8 | 780M 12 CU | 2.8 | Yes 16 TOPS | 35-54 W | December 6, 2023
+Ryzen 7 | 8845HS | 8 (16) | 8 (16) | — | 3.8 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 16 TOPS | 35-54 W | December 6, 2023
+Ryzen 7 | 8840HS | 8 (16) | 8 (16) | — | 3.3 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 16 TOPS | 20-30 W | December 6, 2023
+Ryzen 7 | 8840U | 8 (16) | 8 (16) | — | 3.3 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 16 TOPS | 15-30 W | December 6, 2023
+Ryzen 7 | 8745HS | 8 (16) | 8 (16) | — | 3.8 | 4.9 | 16 MB | 1 × 8 | 780M 12 CU | 2.6 | No | 35–54 W | ?
+Ryzen 7 | 8745H | 8 (16) | 8 (16) | — | 3.8 | 4.9 | 16 MB | 1 × 8 | 780M 12 CU | 2.6 | No | 35–54 W | ?
+Ryzen 5 | 8645HS | 6 (12) | 6 (12) | — | 4.3 | 5.0 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 16 TOPS | 35-54 W | December 6, 2023
+Ryzen 5 | 8640HS | 6 (12) | 6 (12) | — | 3.5 | 4.9 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 16 TOPS | 20-30 W | December 6, 2023
+Ryzen 5 | 8640U | 6 (12) | 6 (12) | — | 3.5 | 4.9 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 16 TOPS | 15-30 W | December 6, 2023
+Ryzen 5 | 8540U | 6 (12) | 2 (4) | 4 (8) | 3.7 / 3.0 | 4.9 / 3.5 | 16 MB | 2 + 4 | 740M 4 CU | 2.8 | No | 15-30 W | ?
+Ryzen 3 | 8440U | 4 (8) | 1 (2) | 3 (6) | 3.6 / 2.8 | 4.7 / 3.3 | 8 MB | 1 + 3 | 740M 4 CU | 2.5 | No | 15-30 W | ?
+
+### TABLE 34 rows=6 :: Branding and model Branding and model Cores (threads) Clock (GHz) Clock (GHz) L3 cache (total) Chiplets Core config TDP Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Ryzen 9 | 8945HX | 16 (32) | 2.5 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | April 23, 2025
+Ryzen 9 | 8940HX | 16 (32) | 2.4 | 5.3 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | April 23, 2025
+Ryzen 7 | 8840HX | 12 (24) | 2.9 | 5.1 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 45–75 W | April 23, 2025
+Ryzen 7 | 8745HX | 8 (16) | 3.6 | 5.1 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 45–75 W | April 23, 2025
+
+### TABLE 35 rows=5 :: Branding and Model Branding and Model Cores (threads) Clock (GHz) Clock (GHz) L3 cache (total) Chiplets Core config TDP Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Ryzen 9 | 9955HX3D | 16 (32) | 2.3 | 5.4 | 128 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | 1H 2025
+Ryzen 9 | 9955HX | 16 (32) | 2.5 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 55–75 W | 1H 2025
+Ryzen 9 | 9850HX | 12 (24) | 3.0 | 5.2 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 45–75 W | 1H 2025
+
+### TABLE 36 rows=5 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU GPU GPU GPU TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP | Release date
+Ryzen 5 | 40 | 4 (8) | 2.8 | 4.3 | 4 MB | 1 × 4 | 610M 2 CU | 1.9 | 486 | 15 W | October 1, 2025
+Ryzen 3 | 30 | 4 (8) | 2.4 | 4.1 | 4 MB | 1 × 4 | 610M 2 CU | 1.9 | 486 | 15 W | October 1, 2025
+
+### TABLE 37 rows=8 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU GPU TDP (cTDP) Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | TDP (cTDP) | Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP (cTDP) | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Processing power (GFLOPS) | TDP (cTDP) | Release date
+Ryzen 7 | 170 | 8 (16) | 3.2 | 4.75 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 45 W (35–54 W) | October 1, 2025
+Ryzen 7 | 160 | 8 (16) | 2.7 | 4.75 | 16 MB | 1 × 8 | 680M 12 CU | 2.2 | 3379 | 28 W (15–30 W) | October 1, 2025
+Ryzen 5 | 150 | 6 (12) | 3.3 | 4.55 | 16 MB | 1 × 6 | 660M 6 CU | 1.9 | 1459 | 45 W (35–54 W) | October 1, 2025
+Ryzen 5 | 130 | 6 (12) | 2.9 | 4.55 | 16 MB | 1 × 6 | 660M 6 CU | 1.9 | 1459 | 28 W (15–30 W) | October 1, 2025
+Ryzen 3 | 110 | 4 (8) | 3.0 | 4.3 | 8 MB | 1 × 4 | 660M 4 CU | 1.8 | 922 | 28 W (15–30 W) | October 1, 2025
+
+### TABLE 38 rows=7 :: Branding and model Branding and model CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP (cTDP) Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and model | Branding and model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and model | Branding and model | Cores (threads) | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Ryzen 9 | 180 | 8 (16) | 3.6 | 4.9 | 16 MB | 1 × 8 | 780M 12 CU | 2.5 | Yes 16 TOPS | 45 W (35−54 W) | June 2, 2026
+Ryzen 7 | 165 | 6 (12) | 3.3 | 4.7 | 16 MB | 1 × 6 | 760M 8 CU | 2.4 | Yes 16 TOPS | 28 W (15−30 W) | June 2, 2026
+Ryzen 7 | 155 | 6 (12) | 3.0 | 4.7 | 16 MB | 1 × 6 | 740M 4 CU | 2.6 | No | 35 W (15−40 W) | June 2, 2026
+Ryzen 5 | 125 | 4 (8) | 2.8 | 4.5 | 8 MB | 1 × 4 | 740M 4 CU | 2.3 | No | 28 W (15−40 W) | June 2, 2026
+
+### TABLE 39 rows=18 :: Branding and Model Branding and Model CPU CPU CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP (cTDP) Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and Model | Branding and Model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and Model | Branding and Model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Ryzen 9 | 270 | 8 (16) | 8 (16) | - | 4.0 | 5.2 | 16 MB | 1 × 8 | 780M 12 CU | 2.8 | Yes 16 TOPS | 45 W (35−54 W) | February 18, 2025
+Ryzen 7 | 260 | 8 (16) | 8 (16) | - | 3.8 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 16 TOPS | 45 W (35−54 W) | February 18, 2025
+Ryzen 7 | (PRO) 253 | 8 (16) | 8 (16) | - | 3.6 | 4.9 | 16 MB | 1 × 8 | 780M 12 CU | 2.5 | Yes 16 TOPS | 45 W (35−54 W) | June 2, 2026
+Ryzen 7 | (PRO) 250 | 8 (16) | 8 (16) | - | 3.3 | 5.1 | 16 MB | 1 × 8 | 780M 12 CU | 2.7 | Yes 16 TOPS | 28 W (15−30 W) | (March 27, 2025) February 18, 2025
+Ryzen 7 | (PRO) 249 | 8 (16) | 8 (16) | - | 3.1 | 4.9 | 16 MB | 1 × 8 | 780M 12 CU | 2.5 | Yes 16 TOPS | 28 W (15−30 W) | June 2, 2026
+Ryzen 7 | (PRO) 217 | 6 (12) | 2 (4) | 4 (8) | 3.0 | 4.8 | 16 MB | 2 + 4 | 740M 4 CU | 2.6 | No | 35 W (15−40 W) | June 2, 2026
+Ryzen 5 | 240 | 6 (12) | 6 (12) | - | 4.3 | 5.0 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 16 TOPS | 45 W (35−54 W) | (March 27, 2025) February 18, 2025
+Ryzen 5 | (PRO) 230 | 6 (12) | 6 (12) | - | 3.5 | 4.9 | 16 MB | 1 × 6 | 760M 8 CU | 2.6 | Yes 16 TOPS | 28 W (15−30 W) | (March 27, 2025) February 18, 2025
+Ryzen 5 | (PRO) 225 | 6 (12) | 6 (12) | - | (3.3) 4.1 | 4.8 | 16 MB | 1 × 6 | 760M 8 CU | 2.4 | Yes 16 TOPS | 45 W (35−54 W) | June 2, 2026
+Ryzen 5 | (PRO) 224 | 6 (12) | 6 (12) | - | 3.3 | 4.8 | 16 MB | 1 × 6 | 760M 8 CU | 2.4 | Yes 16 TOPS | 28 W (15−30 W) | June 2, 2026
+Ryzen 5 | (PRO) 220 | 6 (12) | 2 (4) | 4 (8) | 3.7 / 3.0 | 4.9 / 3.5 | 16 MB | 2 + 4 | 740M 4 CU | 2.8 | No | 28 W (15−30 W) | (March 27, 2025) February 18, 2025
+Ryzen 5 | (PRO) 216 | 6 (12) | 2 (4) | 4 (8) | 2.9 | 4.7 | 16 MB | 2 + 4 | 740M 4 CU | 2.5 | No | 35 W (15−40 W) | June 2, 2026
+Ryzen 5 | PRO 215 | 6 (12) | 2 (4) | 4 (8) | 3.2 / 3.2 | 4.7 / 3.55 | 16 MB | 2 + 4 | 740M 4 CU | 2.7 | No | 28 W (15−30 W) | March 27, 2025
+Ryzen 3 | (PRO) 210 | 4 (8) | 1 (2) | 3 (6) | 3.6 / 2.8 | 4.7 / 3.3 | 8 MB | 1 + 3 | 740M 4 CU | 2.5 | No | 28 W (15−30 W) | (March 27, 2025) February 18, 2025
+Ryzen 3 | (PRO) 205 | 4 (8) | 1 (2) | 3 (6) | 2.8 | 4.6 | 8 MB | 1 + 3 | 740M 4 CU | 2.3 | No | 28 W (15−40 W) | June 2, 2026
+
+### TABLE 40 rows=10 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP (cTDP) Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Branding and model | Branding and model | Total | Zen 5 | Zen 5c | Base | Boost (Zen 5) | Boost (Zen 5c) | L3 cache (total) | Model | Clock (GHz) | NPU (Ryzen AI) | TDP (cTDP) | Release date
+Ryzen AI 9 | (PRO) HX 375 | 12 (24) | 4 (8) | 8 (16) | 2.0 | 5.1 | 3.3 | 24 MB | 890M 16 CUs | 2.9 | 55 TOPS | 28 W (15−54 W) | June 2, 2024
+Ryzen AI 9 | (PRO) HX 370 | 12 (24) | 4 (8) | 8 (16) | 2.0 | 5.1 | 3.3 | 24 MB | 890M 16 CUs | 2.9 | 50 TOPS | 28 W (15−54 W) | June 2, 2024
+Ryzen AI 9 | 365 | 10 (20) | 4 (8) | 6 (12) | 2.0 | 5.0 | 3.3 | 24 MB | 880M 12 CUs | 2.9 | 50 TOPS | 28 W (15−54 W) | June 2, 2024
+Ryzen AI 7 | PRO 360 | 8 (16) | 3 (6) | 5 (10) | 2.0 | 5.0 | 3.3 | 16 MB | 880M 12 CUs | 2.9 | 50 TOPS | 28 W (15−54 W) | October 10, 2024
+Ryzen AI 7 | (PRO) 350 | 8 (16) | 4 (8) | 4 (8) | 2.0 | 5.0 | 3.5 | 16 MB | 860M 8 CU | 3.0 | 50 TOPS | 28 W (15−54 W) | (March 27, 2025) February 18, 2025
+Ryzen AI 5 | (PRO) 340 | 6 (12) | 3 (6) | 3 (6) | 2.0 | 4.8 | 3.4 | 16 MB | 840M 4 CU | 2.9 | 50 TOPS | 28 W (15−54 W) | (March 27, 2025) February 18, 2025
+Ryzen AI 5 | 330 | 4 (8) | 1 (2) | 3 (6) | 2.0 | 4.5 | 3.4 | 8 MB | 820M 2 CU | 2.8 | 50 TOPS | 28 W (15−28 W) | July 2025
+
+### TABLE 41 rows=9 :: Branding and Model Branding and Model CPU CPU CPU CPU GPU GPU Memory Memory Memory NPU (Ryzen AI) Chiplets Core config TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | GPU | GPU | Memory | Memory | Memory | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Model | Clock (GHz) | Bus type & width (Max memory) | Clock (MT/s) | Bandwidth (GB/s) | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Model | Clock (GHz) | Bus type & width (Max memory) | Clock (MT/s) | Bandwidth (GB/s) | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Ryzen AI MAX+ | (PRO) 395 | 16 (32) | 3.0 | 5.1 | 64 MB | 8060S 40 CUs | 2.9 | LPDDR5X 256-bit (128 GB) | Up to 8000 | Up to 256 | 50 TOPS | 2 × CCD 1 × I/OD with GPU | 2 × 8 | 45–120 W | Q1 2025
+Ryzen AI MAX+ | 392 | 12 (24) | 3.2 | 5.0 | 64 MB | 8060S 40 CUs | 2.9 | LPDDR5X 256-bit (128 GB) | Up to 8000 | Up to 256 | 50 TOPS | 2 × CCD 1 × I/OD with GPU | 2 × 6 | 45–120 W | Q1 2026
+Ryzen AI MAX | (PRO) 390 | 12 (24) | 3.2 | 5.0 | 64 MB | 8050S 32 CUs | 2.8 | LPDDR5X 256-bit (128 GB) | Up to 8000 | Up to 256 | 50 TOPS | 2 × CCD 1 × I/OD with GPU | 2 × 6 | 45–120 W | Q1 2025
+Ryzen AI MAX+ | 388 | 8 (16) | 3.6 | 5.0 | 32 MB | 8060S 40 CUs | 2.9 | LPDDR5X 256-bit (128 GB) | Up to 8000 | Up to 256 | 50 TOPS | 1 × CCD 1 × I/OD with GPU | 1 × 8 | 45–120 W | Q1 2026
+Ryzen AI MAX | (PRO) 385 | 8 (16) | 3.6 | 5.0 | 32 MB | 8050S 32 CUs | 2.8 | LPDDR5X 256-bit (128 GB) | Up to 8000 | Up to 256 | 50 TOPS | 1 × CCD 1 × I/OD with GPU | 1 × 8 | 45–120 W | Q1 2025
+Ryzen AI MAX | PRO 380 | 6 (12) | 3.6 | 4.9 | 16 MB | 8040S 16 CUs | 2.8 | LPDDR5X 128-bit (64 GB) | Up to 8000 | Up to 128 | 50 TOPS | 1 × CCD 1 × I/OD with GPU | 1 × 6 | 45–120 W | Q1 2025
+
+### TABLE 42 rows=11 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU NPU (Ryzen AI) TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Branding and model | Branding and model | Total | Zen 5 | Zen 5c | Base | Boost (Zen 5) | Boost (Zen 5c) | L3 cache (total) | Model | Clock (GHz) | NPU (Ryzen AI) | TDP | Release date
+Ryzen AI 9 | (PRO) HX 475 | 12 (24) | 4 (8) | 8 (16) | 2.0 | 5.2 | 3.3 | 24 MB | 890M 16 CUs | 3.1 | 60 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 9 | (PRO) HX 470 | 12 (24) | 4 (8) | 8 (16) | 2.0 | 5.2 | 3.3 | 24 MB | 890M 16 CUs | 3.1 | 55 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 9 | (PRO) 465 | 10 (20) | 4 (8) | 6 (12) | 2.0 | 5.0 | 3.3 | 24 MB | 880M 12 CUs | 2.9 | 50 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 7 | (PRO) 450 | 8 (16) | 4 (8) | 4 (8) | 2.0 | 5.1 | 3.6 | 16 MB | 860M 8 CUs | 3.1 | 50 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 7 | 445 | 6 (12) | 2 (4) | 4 (8) | 2.0 | 4.6 | 3.5 | 8 MB | 840M 4 CUs | 2.9 | 50 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 5 | PRO 440 | 6 (12) | 3 (6) | 3 (6) | 2.0 | 4.8 | 3.5 | 16 MB | 840M 4 CUs | 2.9 | 50 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 5 | (PRO) 435 | 6 (12) | 2 (4) | 4 (8) | 2.0 | 4.5 | 3.4 | 8 MB | 840M 4 CUs | 2.8 | 50 TOPS | 15–54 W | January 5, 2026
+Ryzen AI 5 | 430 | 4 (8) | 1 (2) | 3 (6) | 2.0 | 4.5 | 3.4 | 8 MB | 840M 4 CUs | 2.8 | 50 TOPS | 15–28 W | January 5, 2026
+
+### TABLE 43 rows=6 :: Branding and Model Branding and Model CPU CPU CPU CPU GPU GPU Memory Memory Memory NPU (Ryzen AI) Chiplets Core config TDP Release date
+Branding and Model | Branding and Model | CPU | CPU | CPU | CPU | GPU | GPU | Memory | Memory | Memory | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Model | Clock (GHz) | Bus type & width (Max memory) | Clock (MT/s) | Bandwidth (GB/s) | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Branding and Model | Branding and Model | Cores (threads) | Base | Boost | L3 cache (total) | Model | Clock (GHz) | Bus type & width (Max memory) | Clock (MT/s) | Bandwidth (GB/s) | NPU (Ryzen AI) | Chiplets | Core config | TDP | Release date
+Ryzen AI MAX+ | PRO 495 | 16 (32) | 3.1 | 5.2 | 64 MB | 8065S 40 CUs | 3.0 | LPDDR5X 256-bit (192 GB) | Up to 8533 | Up to 273 | 55 TOPS | 2 × CCD 1 × I/OD with GPU | 2 × 8 | 55W cTDP: 45–120 W | Q3 2026
+Ryzen AI MAX | PRO 490 | 12 (24) | 3.2 | 5.0 | 64 MB | 8050S 32 CUs | 2.8 | LPDDR5X 256-bit (192 GB) | Up to 8533 | Up to 273 | 50 TOPS | 2 × CCD 1 × I/OD with GPU | 2 × 6 | 55W cTDP: 45–120 W | Q3 2026
+Ryzen AI MAX | PRO 485 | 8 (16) | 3.6 | 5.0 | 32 MB | 8050S 32 CUs | 2.8 | LPDDR5X 256-bit (192 GB) | Up to 8533 | Up to 273 | 50 TOPS | 1 × CCD 1 × I/OD with GPU | 1 × 8 | 55W cTDP: 45–120 W | Q3 2026
+
+### TABLE 44 rows=5 :: Branding and model Branding and model CPU CPU CPU CPU CPU CPU CPU GPU GPU Default TDP Configurable TDP Release date
+Branding and model | Branding and model | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | Default TDP | Configurable TDP | Release date
+Branding and model | Branding and model | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Model | Clock (GHz) | Default TDP | Configurable TDP | Release date
+Branding and model | Branding and model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Default TDP | Configurable TDP | Release date
+Branding and model | Branding and model | Total | Zen 4 | Zen 4c | Base | Boost | L3 cache (total) | Core config | Model | Clock (GHz) | Default TDP | Configurable TDP | Release date | Ryzen | Z1 Extreme | 8 (16) | 8 (16) | —N/a | 3.3 | 5.1 | 16 MB | 1 × 8 | RDNA 3 12 CU | 2.9 | 28 W | 9–30 W | May 2023
+Z1 | 6 (12) | 2 (4) | 4 (8) | 3.2 (average) 3.7 (Zen 4) 3 (Zen 4c) | 4.9 (Zen 4) 3.5 (Zen 4c) | 2 + 4 | RDNA 3 4 CU | 2.8
+
+### TABLE 45 rows=8 :: Branding and Model Branding and Model Codename Process CPU CPU CPU CPU CPU CPU CPU GPU GPU GPU NPU (Ryzen AI) Default TDP Configurable TDP Release date
+Branding and Model | Branding and Model | Codename | Process | CPU | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | NPU (Ryzen AI) | Default TDP | Configurable TDP | Release date
+Branding and Model | Branding and Model | Codename | Process | Cores (threads) | Cores (threads) | Cores (threads) | Clock (GHz) | Clock (GHz) | L3 cache (total) | Core config | Architecture | Compute units | Clock (GHz) | NPU (Ryzen AI) | Default TDP | Configurable TDP | Release date
+Branding and Model | Branding and Model | Codename | Process | Total | Zen 2/3+/4/5 | Zen 5c | Base | Boost | L3 cache (total) | Core config | Architecture | Compute units | Clock (GHz) | NPU (Ryzen AI) | Default TDP | Configurable TDP | Release date
+Ryzen AI | Z2 Extreme | Strix Point | TSMC 4 nm | 8 (16) | 3 (6) (Zen 5) | 5 (10) (Zen 5c) | 2.0 | 5.0 / 3.3 | 16 MB | 3 + 5 | RDNA3.5 | 16 | 2.9 | 50 TOPS | 28 W | 15–35 W | June 2025
+Ryzen | Z2 Extreme | Strix Point | TSMC 4 nm | 8 (16) | 3 (6) (Zen 5) | 5 (10) (Zen 5c) | 2.0 | 5.0 / 3.3 | 16 MB | 3 + 5 | RDNA3.5 | 16 | 2.9 | —N/a | 28 W | 15–35 W | Q1 2025
+Ryzen | Z2 | Hawk Point | TSMC 4 nm | 8 (16) | 8 (16) (Zen 4) | —N/a | 3.3 | 5.1 | 16 MB | 1 × 8 | RDNA3 | 12 | 2.7 | —N/a | 28 W | 15–30 W | Q1 2025
+Ryzen | Z2 Go | Rembrandt+ | TSMC 6 nm | 4 (8) | 4 (8) (Zen 3+) | —N/a | 3.0 | 4.3 | 8 MB | 1 × 4 | RDNA2 | 12 | 2.2 | —N/a | 28 W | 15–30 W | Q1 2025
+Ryzen | Z2 A | Van Gogh | TSMC 7 nm | 4 (8) | 4 (8) (Zen 2) | —N/a | 2.8 | 3.8 | 4 MB | 1 × 4 | RDNA2 | 8 | 1.8 | —N/a | 15 W | 6–20 W | June 2025
+
+### TABLE 46 rows=10 :: Model Release date Fab CPU CPU CPU CPU CPU CPU GPU GPU GPU GPU Memory support TDP Junction temp. range (°C)
+Model | Release date | Fab | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | Memory support | TDP | Junction temp. range (°C)
+Model | Release date | Fab | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | Cache | Model | Config | Clock (GHz) | Processing power (GFLOPS) | Memory support | TDP | Junction temp. range (°C)
+Model | Release date | Fab | Cores (threads) | Base | Boost | L1 | L2 | L3 | Model | Config | Clock (GHz) | Processing power (GFLOPS) | Memory support | TDP | Junction temp. range (°C)
+V1202B | February 2018 | GloFo 14LP | 2 (4) | 2.3 | 3.2 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 3 | 192:12:16 3 CU | 1.0 | 384 | DDR4-2400 dual-channel | 12–25 W | 0–105
+V1404I | December 2018 | GloFo 14LP | 4 (8) | 2.0 | 3.6 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 8 | 512:32:16 8 CU | 1.1 | 1126.4 | DDR4-2400 dual-channel | 12–25 W | -40–105
+V1500B | December 2018 | GloFo 14LP | 4 (8) | 2.2 | —N/a | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | —N/a | —N/a | —N/a | —N/a | DDR4-2400 dual-channel | 12–25 W | 0–105
+V1605B | February 2018 | GloFo 14LP | 4 (8) | 2.0 | 3.6 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 8 | 512:32:16 8 CU | 1.1 | 1126.4 | DDR4-2400 dual-channel | 12–25 W | 0–105
+V1756B | February 2018 | GloFo 14LP | 4 (8) | 3.25 | 3.6 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 8 | 512:32:16 8 CU | 1.1 | 1126.4 | DDR4-3200 dual-channel | 35–54 W | 0–105
+V1780B | December 2018 | GloFo 14LP | 4 (8) | 3.35 | 3.6 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | —N/a | —N/a | —N/a | —N/a | DDR4-3200 dual-channel | 35–54 W | 0–105
+V1807B | February 2018 | GloFo 14LP | 4 (8) | 3.35 | 3.8 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 11 | 704:44:16 11 CU | 1.3 | 1830.4 | DDR4-3200 dual-channel | 35–54 W | 0–105
+
+### TABLE 47 rows=7 :: Model Release date Fab CPU CPU CPU CPU CPU CPU GPU GPU GPU GPU Memory support TDP
+Model | Release date | Fab | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | Cache | Model | Config | Clock (GHz) | Processing power (GFLOPS) | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Base | Boost | L1 | L2 | L3 | Model | Config | Clock (GHz) | Processing power (GFLOPS) | Memory support | TDP
+R1102G | February 25, 2020 | GloFo 14LP | 2 (2) | 1.2 | 2.6 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 3 | 192:12:4 3 CU | 1.0 | 384 | DDR4-2400 single-channel | 6 W
+R1305G | February 25, 2020 | GloFo 14LP | 2 (4) | 1.5 | 2.8 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 3 | 192:12:4 3 CU | 1.0 | 384 | DDR4-2400 dual-channel | 8-10 W
+R1505G | April 16, 2019 | GloFo 14LP | 2 (4) | 2.4 | 3.3 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 3 | 192:12:4 3 CU | 1.0 | 384 | DDR4-2400 dual-channel | 12–25 W
+R1606G | April 16, 2019 | GloFo 14LP | 2 (4) | 2.6 | 3.5 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | Vega 3 | 192:12:4 3 CU | 1.2 | 460.8 | DDR4-2400 dual-channel | 12–25 W
+
+### TABLE 48 rows=8 :: Model Release date Fab CPU CPU CPU CPU CPU CPU GPU GPU GPU GPU Socket PCIe support Memory support TDP
+Model | Release date | Fab | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | Cache | Archi- tecture | Config | Clock (GHz) | Processing power (GFLOPS) | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Base | Boost | L1 | L2 | L3 | Archi- tecture | Config | Clock (GHz) | Processing power (GFLOPS) | Socket | PCIe support | Memory support | TDP
+V2516 | Nov 10, 2020 | TSMC 7FF | 6 (12) | 2.1 | 3.95 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | GCN 5 | 384:24:8 6 CU | 1.5 | 1152 | FP6 | 20 (8+4+4+4) PCIe 3.0 | DDR4-3200 dual-channel LPDDR4X-4266 quad-channel | 10–25 W
+V2546 | Nov 10, 2020 | TSMC 7FF | 6 (12) | 3.0 | 3.95 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | GCN 5 | 384:24:8 6 CU | 1.5 | 1152 | FP6 | 20 (8+4+4+4) PCIe 3.0 | DDR4-3200 dual-channel LPDDR4X-4266 quad-channel | 35–54 W
+V2A46 | Jan 4, 2023 | TSMC 7FF | 6 (12) | 3.0 | 3.2 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | GCN 5 | 448:28:8 7 CU | 1.6 | 1433.6 | FP6 | 20 (8+4+4+4) PCIe 3.0 | DDR4-3200 dual-channel LPDDR4X-4266 quad-channel | 35–54 W
+V2718 | Nov 10, 2020 | TSMC 7FF | 8 (16) | 1.7 | 4.15 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | GCN 5 | 448:28:8 7 CU | 1.6 | 1433.6 | FP6 | 20 (8+4+4+4) PCIe 3.0 | DDR4-3200 dual-channel LPDDR4X-4266 quad-channel | 10–25 W
+V2748 | Nov 10, 2020 | TSMC 7FF | 8 (16) | 2.9 | 4.25 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | GCN 5 | 448:28:8 7 CU | 1.6 | 1433.6 | FP6 | 20 (8+4+4+4) PCIe 3.0 | DDR4-3200 dual-channel LPDDR4X-4266 quad-channel | 35–54 W
+
+### TABLE 49 rows=5 :: Model Release date Fab CPU CPU CPU CPU CPU CPU GPU GPU GPU GPU Socket PCIe support Memory support TDP
+Model | Release date | Fab | CPU | CPU | CPU | CPU | CPU | CPU | GPU | GPU | GPU | GPU | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | Cache | Archi- tecture | Config | Clock (GHz) | Processing power (GFLOPS) | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Base | Boost | L1 | L2 | L3 | Archi- tecture | Config | Clock (GHz) | Processing power (GFLOPS) | Socket | PCIe support | Memory support | TDP
+R2312 | June 7, 2022 | GloFo 12LP | 2 (4) | 2.7 | 3.5 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | GCN 5 | 192:12:4 3 CU | 1.2 | 460.8 | FP5 | 8 lanes Gen 3 | DDR4-2400 dual-channel ECC | 10–25 W
+R2314 | June 7, 2022 | GloFo 12LP | 4 (4) | 2.1 | 3.5 | 64 KB inst. 32 KB data per core | 512 KB per core | 4 MB | GCN 5 | 384:24:8 6 CU | 1.2 | 921.6 | FP5 | 16 lanes Gen 3 | DDR4-2666 dual-channel ECC | 10–35 W
+
+### TABLE 50 rows=8 :: Model Release date Fab CPU CPU CPU CPU CPU CPU Socket PCIe support Memory support TDP
+Model | Release date | Fab | CPU | CPU | CPU | CPU | CPU | CPU | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | Cache | Socket | PCIe support | Memory support | TDP
+Model | Release date | Fab | Cores (threads) | Base | Boost | L1 | L2 | L3 | Socket | PCIe support | Memory support | TDP
+V3C14 | September 27, 2022 | TSMC 7FF | 4 (8) | 2.3 | 3.8 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | FP7r2 | 20 (8+4+4+4) PCIe 4.0 | DDR5-4800 dual-channel | 15 W
+V3C44 | September 27, 2022 | TSMC 7FF | 4 (8) | 3.5 | 3.8 | 32 KB inst. 32 KB data per core | 512 KB per core | 8 MB | FP7r2 | 20 (8+4+4+4) PCIe 4.0 | DDR5-4800 dual-channel | 45 W
+V3C16 | September 27, 2022 | TSMC 7FF | 6 (12) | 2.0 | 3.8 | 32 KB inst. 32 KB data per core | 512 KB per core | 16 MB | FP7r2 | 20 (8+4+4+4) PCIe 4.0 | DDR5-4800 dual-channel | 15 W
+V3C18I | September 27, 2022 | TSMC 7FF | 8 (16) | 1.9 | 3.8 | 32 KB inst. 32 KB data per core | 512 KB per core | 16 MB | FP7r2 | 20 (8+4+4+4) PCIe 4.0 | DDR5-4800 dual-channel | 15 W
+V3C48 | September 27, 2022 | TSMC 7FF | 8 (16) | 3.3 | 3.8 | 32 KB inst. 32 KB data per core | 512 KB per core | 16 MB | FP7r2 | 20 (8+4+4+4) PCIe 4.0 | DDR5-4800 dual-channel | 45 W
+
+### TABLE 51 rows=6 :: Processor branding Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) Chiplets Core config TDP Release date
+Processor branding | Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Processor branding | Model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Ryzen Embedded | 5950E | 16 (32) | 3.05 | 3.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 8 | 105 W | Apr 20, 2023
+Ryzen Embedded | 5900E | 12 (24) | 3.35 | 3.7 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 105 W | Apr 20, 2023
+Ryzen Embedded | 5800E | 8 (16) | 3.4 | 3.7 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 65-100 W | Apr 20, 2023
+Ryzen Embedded | 5600E | 6 (12) | 3.3 | 3.6 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Apr 20, 2023
+
+### TABLE 52 rows=7 :: Processor branding Model Cores (threads) Clock rate (GHz) Clock rate (GHz) L3 cache (total) Chiplets Core config TDP Release date
+Processor branding | Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Processor branding | Model | Cores (threads) | Base | Boost | L3 cache (total) | Chiplets | Core config | TDP | Release date
+Ryzen Embedded | 7945 | 12 (24) | 3.7 | 5.4 | 64 MB | 2 × CCD 1 × I/OD | 2 × 6 | 65 W | Nov 14, 2023
+Ryzen Embedded | 7745 | 8 (16) | 3.8 | 5.3 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 65 W | Nov 14, 2023
+Ryzen Embedded | 7700X | 8 (16) | 4.5 | 5.4 | 32 MB | 1 × CCD 1 × I/OD | 1 × 8 | 105 W | Nov 14, 2023
+Ryzen Embedded | 7645 | 6 (12) | 3.8 | 5.1 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 65 W | Nov 14, 2023
+Ryzen Embedded | 7600X | 6 (12) | 4.7 | 5.3 | 32 MB | 1 × CCD 1 × I/OD | 1 × 6 | 105 W | Nov 14, 2023
+
+### TABLE 53 rows=8 :: Processor branding Model CPU CPU CPU GPU GPU GPU Memory support NPU TOPS USB4 ports Nominal TDP Configurable TDP Junction temperature range Release date
+Processor branding | Model | CPU | CPU | CPU | GPU | GPU | GPU | Memory support | NPU TOPS | USB4 ports | Nominal TDP | Configurable TDP | Junction temperature range | Release date
+Processor branding | Model | Cores (threads) | Boost clock (GHz) | L2 cache (total) | CU | Clock (GHz) | eDP version | Memory support | NPU TOPS | USB4 ports | Nominal TDP | Configurable TDP | Junction temperature range | Release date
+Ryzen AI Embedded | P132i | 6 (12) | 4.5 | 6 MB | 4 | 2.8 | 1.4 | LPDDR5X-8000 DDR5-5600 | 50 | 2 | 28 W | 15–54 W | −40 °C – 105 °C | Q2 2026
+Ryzen AI Embedded | P132 | 6 (12) | 4.5 | 6 MB | 4 | 2.8 | 1.4 | LPDDR5X-8000 DDR5-5600 | 50 | 2 | 28 W | 15–54 W | 0 °C – 105 °C | Q2 2026
+Ryzen AI Embedded | P132a | 6 (12) | 3.7 | 4 MB | 4 | 2.4 | 1.5 | LPDDR5X-7500 with RAS | 50 | No | 45 W | 25–45 W | −40 °C – 105 °C | Q2 2026
+Ryzen AI Embedded | P121i | 4 (8) | 4.4 | 4 MB | 2 | 2.7 | 1.4 | LPDDR5X-7500 DDR5-5600 | 30 | 2 | 28 W | 15–54 W | −40 °C – 105 °C | Q2 2026
+Ryzen AI Embedded | P121 | 4 (8) | 4.4 | 4 MB | 2 | 2.7 | 1.4 | LPDDR5X-7500 DDR5-5600 | 30 | 2 | 28 W | 15–54 W | 0 °C – 105 °C | Q2 2026
+Ryzen AI Embedded | P122a | 4 (8) | 3.7 | 4 MB | 4 | 2.0 | 1.6 | LPDDR5X-7500 with RAS | 30 | No | 28 W | 15–30 W | −40 °C – 105 °C | Q2 2026
+
+### TABLE 54 rows=6 :: vteAMD processors vteAMD processors
+vteAMD processors | vteAMD processors
+Lists | Processors K5 K6 Athlon XP 64 X2 II Phenom FX Ryzen Duron Sempron Turion Opteron Epyc APUs Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Italics indicates an upcoming architecture. | Italics indicates an upcoming architecture.

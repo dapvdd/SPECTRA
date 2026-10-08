@@ -1,0 +1,182 @@
+### TABLE 0 rows=30 :: Intel Celeron G3930 Intel Celeron G3930
+Intel Celeron G3930 | Intel Celeron G3930
+General information | General information
+Launched | August 30, 2016; 10 years ago (August 30, 2016)
+Discontinued | October 9, 2020 (desktop processors)
+CPUID code | 0806e9h, 0806eah, 0906e9h
+Product code | 80677
+Performance | Performance
+Max. CPU clock rate | 1.00 GHz to 4.5 GHz
+Physical specifications | Physical specifications
+Cores | 2–4
+Socket | LGA 1151LGA 2066BGA1356BGA1440BGA1515
+Cache | Cache
+L1 cache | 64 KB per core (32 KB instructions + 32 KB data)
+L2 cache | 256 KB per core
+L3 cache | Up to 8 MB, share
+L4 cache | 64 MB of eDRAM (on models with Iris Plus graphics)
+Architecture and classification | Architecture and classification
+Technology node | Intel 14FF+
+Microarchitecture | Skylake
+Instruction set | x86-64
+Instructions | x86-64
+Extensions | MMX, AES-NI, CLMUL, FMA3, RDRANDSSE, SSE2, SSE3, SSSE3, SSE4, SSE4.1, SSE4.2AVX, AVX2, TXT, TSX, SGXVT-x, VT-d
+Products, models, variants | Products, models, variants
+Product code name | KBL
+Brand name | Core m3Core i3Core i5Core i7CeleronPentiumXeon
+History | History
+Predecessor | Skylake
+Successors | Desktop: Coffee LakeMobile: Whiskey LakeServers and enthusiast desktop: Cascade Lake
+Support status | Support status
+Unsupported for Windows 11. Legacy support for iGPU. | Unsupported for Windows 11. Legacy support for iGPU.
+
+### TABLE 1 rows=28 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache TDP Socket Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | TDP | Socket | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max GPU clock rate | L3 cache | TDP | Socket | Price (USD)
+Core i7 | 7700K | 4 (8) | 4.2 | 4.5 | 4.4 | 4.4 | HD 630 | 1150 MHz | 8 MB | 91 W | LGA 1151 | $350
+Core i7 | 7700 | 4 (8) | 3.6 | 4.2 | 4.1 | 4.0 | HD 630 | 1150 MHz | 8 MB | 65 W | LGA 1151 | $312
+Core i7 | 7700T | 4 (8) | 2.9 | 3.8 | 3.7 | 3.6 | HD 630 | 1150 MHz | 8 MB | 35 W | LGA 1151 | $312
+Core i5 | 7600K | 4 (4) | 3.8 | 4.2 | 4.1 | 4.0 | HD 630 | 1150 MHz | 6 MB | 91 W | LGA 1151 | $250
+Core i5 | 7600 | 4 (4) | 3.5 | 4.1 | 4.0 | 3.9 | HD 630 | 1150 MHz | 6 MB | 65 W | LGA 1151 | $224
+Core i5 | 7600T | 4 (4) | 2.8 | 3.7 | 3.6 | 3.5 | HD 630 | 1100 MHz | 6 MB | 35 W | LGA 1151 | $224
+Core i5 | 7500 | 4 (4) | 3.4 | 3.8 | 3.7 | 3.6 | HD 630 | 1100 MHz | 6 MB | 65 W | LGA 1151 | $202
+Core i5 | 7500T | 4 (4) | 2.7 | 3.3 | 3.2 | 3.1 | HD 630 | 1100 MHz | 6 MB | 35 W | LGA 1151 | $202
+Core i5 | 7400 | 4 (4) | 3.0 | 3.5 | 3.4 | 3.3 | HD 630 | 1000 MHz | 6 MB | 65 W | LGA 1151 | $182
+Core i5 | 7400T | 4 (4) | 2.4 | 3.0 | 2.9 | 2.7 | HD 630 | 1000 MHz | 6 MB | 35 W | LGA 1151 | $187
+Core i3 | 7350K | 2 (4) | 4.2 | —N/a | —N/a | —N/a | HD 630 | 1150 MHz | 4 MB | 60 W | LGA 1151 | $179
+Core i3 | 7320 | 2 (4) | 4.1 | —N/a | —N/a | —N/a | HD 630 | 1150 MHz | 4 MB | 51 W | LGA 1151 | $157
+Core i3 | 7300 | 2 (4) | 4.0 | —N/a | —N/a | —N/a | HD 630 | 1150 MHz | 4 MB | 51 W | LGA 1151 | $147
+Core i3 | 7300T | 2 (4) | 3.5 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 4 MB | 35 W | LGA 1151 | $147
+Core i3 | 7100 | 2 (4) | 3.9 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 51 W | LGA 1151 | $117
+Core i3 | 7100T | 2 (4) | 3.4 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 35 W | LGA 1151 | $117
+Core i3 | 7101E | 2 (4) | 3.9 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 54 W | LGA 1151 | $117
+Core i3 | 7101TE | 2 (4) | 3.4 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 35 W | LGA 1151 | $117
+Pentium | G4620 | 2 (4) | 3.7 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 51 W | LGA 1151 | $93
+Pentium | G4600 | 2 (4) | 3.6 | —N/a | —N/a | —N/a | HD 630 | 1100 MHz | 3 MB | 51 W | LGA 1151 | $82
+Pentium | G4600T | 2 (4) | 3.0 | —N/a | —N/a | —N/a | HD 630 | 1050 MHz | 3 MB | 35 W | LGA 1151 | $75
+Pentium | G4560 | 2 (4) | 3.5 | —N/a | —N/a | —N/a | HD 610 | 1050 MHz | 3 MB | 54 W | LGA 1151 | $64
+Pentium | G4560T | 2 (4) | 2.9 | —N/a | —N/a | —N/a | HD 610 | 1050 MHz | 3 MB | 35 W | LGA 1151 | $64
+Celeron | G3950 | 2 (2) | 3.0 | —N/a | —N/a | —N/a | HD 610 | 1050 MHz | 2 MB | 51 W | LGA 1151 | $52
+Celeron | G3930 | 2 (2) | 2.9 | —N/a | —N/a | —N/a | HD 610 | 1050 MHz | 2 MB | 51 W | LGA 1151 | $42
+Celeron | G3930T | 2 (2) | 2.7 | —N/a | —N/a | —N/a | HD 610 | 1000 MHz | 2 MB | 35 W | LGA 1151 | $42
+
+### TABLE 2 rows=4 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache TDP Socket Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | TDP | Socket | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max GPU clock rate | L3 cache | TDP | Socket | Price (USD)
+Core i7 | 7740X | 4 (8) | 4.3 | 4.5 | 4.5 | 4.5 | —N/a | —N/a | 8 MB | 112 W | LGA 2066 | $350
+Core i5 | 7640X | 4 (4) | 4.0 | 4.2 | 4.2 | 4.0 | —N/a | —N/a | 6 MB | 112 W | LGA 2066 | $250
+
+### TABLE 3 rows=9 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache TDP cTDP cTDP Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | TDP | cTDP | cTDP | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max. | L3 cache | TDP | Up | Down | Price (USD)
+Core i7 | 7920HQ | 4 (8) | 3.1 | 4.1 | 3.9 | 3.7 | HD 630 | 1100 MHz | 8 MB | 45 W | —N/a | 35 W | $568
+Core i7 | 7820HQ | 4 (8) | 2.9 | 3.9 | 3.7 | 3.5 | HD 630 | 1100 MHz | 8 MB | 45 W | —N/a | 35 W | $378
+Core i7 | 7820HK | 4 (8) | 2.9 | 3.9 | 3.7 | 3.5 | HD 630 | 1100 MHz | 8 MB | 45 W | —N/a | 35 W | $378
+Core i7 | 7700HQ | 4 (8) | 2.8 | 3.8 | 3.6 | 3.4 | HD 630 | 1100 MHz | 6 MB | 45 W | —N/a | 35 W | $378
+Core i5 | 7440HQ | 4 (4) | 2.8 | 3.8 | 3.6 | 3.4 | HD 630 | 1000 MHz | 6 MB | 45 W | —N/a | 35 W | $250
+Core i5 | 7300HQ | 4 (4) | 2.5 | 3.5 | 3.3 | 3.1 | HD 630 | 1000 MHz | 6 MB | 45 W | —N/a | 35 W | $250
+Core i3 | 7100H | 2 (4) | 3.0 | —N/a | —N/a | —N/a | HD 630 | 950 MHz | 3 MB | 35 W | —N/a | —N/a | $225
+
+### TABLE 4 rows=28 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache L4 cache Max. PCIe lanes TDP cTDP cTDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | L4 cache | Max. PCIe lanes | TDP | cTDP | cTDP | Release date | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | GPU | Max GPU clock rate | L3 cache | L4 cache | Max. PCIe lanes | TDP | Up | Down | Release date | Price (USD)
+Core i7 | 7Y75 | 2 (4) | 1.3 | 3.6 | 3.4 | HD 615 | 1050 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | Q3 2016 | $393
+Core i7 | 7500U | 2 (4) | 2.7 | 3.5 | 3.5 | HD 620 | 1050 MHz | 4 MB | —N/a | 12 | 15 W | 25 W | 7.5 W | Q3 2016 | $393
+Core i7 | 7560U | 2 (4) | 2.4 | 3.8 | 3.7 | Iris Plus 640 | 1050 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q1 2017 | $415
+Core i7 | 7660U | 2 (4) | 2.5 | 4.0 | 3.8 | Iris Plus 640 | 1100 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q1 2017 | $415
+Core i7 | 7567U | 2 (4) | 2.5 | 4.0 | 3.9 | Iris Plus 650 | 1150 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q1 2017 | ?
+Core i7 | 7600U | 2 (4) | 2.8 | 3.9 | 3.9 | HD 620 | 1150 MHz | 4 MB | —N/a | 12 | 15 W | 15 W | 7.5 W | Q1 2017 | $393
+Core i5 | 7200U | 2 (4) | 2.5 | 3.1 | 3.1 | HD 620 | 1000 MHz | 3 MB | —N/a | 12 | 15 W | 15 W | 7.5 W | Q3 2016 | $281
+Core i5 | 7Y54 | 2 (4) | 1.2 | 3.2 | 2.8 | HD 615 | 950 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | Q3 2016 | $281
+Core i5 | 7Y57 | 2 (4) | 1.2 | 3.3 | 2.9 | HD 615 | 950 MHz | 4 MB | —N/a | 10 | 15 W | 7 W | 3.5 W | Q1 2017 | $281
+Core i5 | 7260U | 2 (4) | 2.2 | 3.4 | 3.4 | Iris Plus 640 | 950 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q1 2017 | $304
+Core i5 | 7267U | 2 (4) | 3.1 | 3.5 | 3.5 | Iris Plus 650 | 1050 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q1 2017 | ?
+Core i5 | 7287U | 2 (4) | 3.3 | 3.7 | 3.7 | Iris Plus 650 | 1100 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q1 2017 | ?
+Core i5 | 7300U | 2 (4) | 2.6 | 3.5 | 3.5 | HD 620 | 1100 MHz | 3 MB | —N/a | 12 | 15 W | 25 W | 7.5 W | Q1 2017 | $281
+Core i5 | 7360U | 2 (4) | 2.3 | 3.6 | 3.6 | Iris Plus 640 | 1000 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q1 2017 | ?
+Core i3 | 7100U | 2 (4) | 2.4 | —N/a | —N/a | HD 620 | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | Q3 2016 | $281
+Core i3 | 7167U | 2 (4) | 2.8 | —N/a | —N/a | Iris Plus 650 | 1000 MHz | 3 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q1 2017 | ?
+Core i3 | 7130U | 2 (4) | 2.7 | —N/a | —N/a | HD 620 | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | Q2 2017 | $281
+Core i3 | 7020U | 2 (4) | 2.3 | —N/a | —N/a | HD 620 | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | Q2 2018 | $281
+Core m3 | 7Y32 | 2 (4) | 1.1 | 3.0 | ? | HD 615 | 900 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.75 W | Q2 2017 | $281
+Core m3 | 7Y30 | 2 (4) | 1.0 | 2.6 | ? | HD 615 | 900 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | Q3 2016 | $281
+Pentium Gold | 4410Y | 2 (4) | 1.5 | —N/a | —N/a | HD 615 | 850 MHz | 2 MB | —N/a | 10 | 6 W | —N/a | 4.5 W | Q1 2017 | $161
+Pentium Gold | 4415Y | 2 (4) | 1.6 | —N/a | —N/a | HD 615 | 850 MHz | 2 MB | —N/a | 10 | 6 W | —N/a | 4.5 W | Q1 2017 | $161
+Pentium Gold | 4415U | 2 (4) | 2.3 | —N/a | —N/a | HD 610 | 950 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q1 2017 | $161
+Celeron | 3965U | 2 (2) | 2.2 | —N/a | —N/a | HD 610 | 900 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q1 2017 | $107
+Celeron | 3865U | 2 (2) | 1.8 | —N/a | —N/a | HD 610 | 900 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q1 2017 | $107
+Celeron | 3965Y | 2 (2) | 1.5 | —N/a | —N/a | HD 615 | 850 MHz | 2 MB | —N/a | 10 | 6 W | —N/a | 4.5 W | Q2 2017 | $107
+
+### TABLE 5 rows=14 :: Target segment Cores (threads) Model CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache TDP Release date Price (USD)
+Target segment | Cores (threads) | Model | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | TDP | Release date | Price (USD)
+Target segment | Cores (threads) | Model | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max GPU clock rate | L3 cache | TDP | Release date | Price (USD)
+Server | 4 (8) | E3-1285 v6 | 4.1 | 4.5 | ? | ? | HD P630 | 1150 MHz | 8 MB | 79 W | Q3 2017 | $450
+Server | 4 (8) | E3-1280 v6 | 3.9 | 4.2 | ? | ? | —N/a | —N/a | 8 MB | 72 W | Q1 2017 | $612↘383
+Server | 4 (8) | E3-1275 v6 | 3.8 | 4.2 | ? | ? | HD P630 | 1150 MHz | 8 MB | 73 W | Q1 2017 | $339
+Server | 4 (8) | E3-1270 v6 | 3.8 | 4.2 | ? | ? | —N/a | —N/a | 8 MB | 72 W | Q1 2017 | $328
+Server | 4 (8) | E3-1245 v6 | 3.7 | 4.1 | ? | ? | HD P630 | 1150 MHz | 8 MB | 73 W | Q1 2017 | $284
+Server | 4 (8) | E3-1240 v6 | 3.7 | 4.1 | ? | ? | —N/a | —N/a | 8 MB | 72 W | Q1 2017 | $272
+Server | 4 (8) | E3-1230 v6 | 3.5 | 3.9 | ? | ? | —N/a | —N/a | 8 MB | 72 W | Q1 2017 | $250
+Server | 4 (4) | E3-1225 v6 | 3.3 | 3.7 | ? | ? | HD P630 | 1150 MHz | 8 MB | 73 W | Q1 2017 | $213
+Server | 4 (4) | E3-1220 v6 | 3.0 | 3.5 | ? | ? | —N/a | —N/a | 8 MB | 72 W | Q1 2017 | $193
+Mobile | 4 (8) | E3-1535M v6 | 3.1 | 4.2 | ? | ? | HD P630 | 1100 MHz | 8 MB | 45 W | Q1 2017 | $623
+Mobile | 4 (8) | E3-1505M v6 | 3.0 | 4.0 | ? | ? | HD P630 | 1100 MHz | 8 MB | 45 W | Q1 2017 | $434
+Embedded | 4 (8) | E3-1505L v6 | 2.2 | 3.0 | ? | ? | HD P630 | 1000 MHz | 8 MB | 25 W | Q1 2017 | $433
+
+### TABLE 6 rows=9 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate L3 cache TDP cTDP cTDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | L3 cache | TDP | cTDP | cTDP | Release date | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max GPU clock rate | L3 cache | TDP | Up | Down | Release date | Price (USD)
+Core i7 | 8650U | 4 (8) | 1.9 | 4.2 | 4.2 | 3.9 | UHD 620 | 1150 MHz | 8 MB | 15 W | 25 W | 10 W | Q3 2017 | $409
+Core i7 | 8550U | 4 (8) | 1.8 | 4.0 | 4.0 | 3.7 | UHD 620 | 1150 MHz | 8 MB | 15 W | 25 W | 10 W | Q3 2017 | $409
+Core i5 | 8350U | 4 (8) | 1.7 | 3.6 | 3.6 | 3.6 | UHD 620 | 1100 MHz | 6 MB | 15 W | 25 W | 10 W | Q3 2017 | $297
+Core i5 | 8250U | 4 (8) | 1.6 | 3.4 | 3.4 | 3.4 | UHD 620 | 1100 MHz | 6 MB | 15 W | 25 W | 10 W | Q3 2017 | $297
+Core i3 | 8130U | 2 (4) | 2.2 | 3.4 | 3.4 | —N/a | UHD 620 | 1000 MHz | 4 MB | 15 W | —N/a | 10 W | Q1 2018 | $281
+Pentium Gold | 4417U | 2 (4) | 2.3 | —N/a | —N/a | —N/a | HD 610 | 950 MHz | 2 MB | 15 W | —N/a | 12.5 W | Q1 2019 | $161
+Celeron | 3867U | 2 (4) | 1.8 | —N/a | —N/a | —N/a | HD 610 | 900 MHz | 2 MB | 15 W | —N/a | 12.5 W | Q1 2019 | 
+
+### TABLE 7 rows=7 :: Processor branding Model Cores (threads) CPU clock rate (GHz) Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores Turbo clock (GHz) Num of cores GPU Max GPU clock rate Discrete GPU L3 cache TDP Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | Turbo clock (GHz) Num of cores | GPU | Max GPU clock rate | Discrete GPU | L3 cache | TDP | Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | 1 | 2 | 4 | GPU | Max GPU clock rate | Discrete GPU | L3 cache | TDP | Price (USD)
+Core i7 | 8809G | 4 (8) | 3.1 | 4.2 | Unknown | Unknown | HD 630 | 1100 MHz | Radeon RX Vega M GH | 8 MB | 100 W | ?
+Core i7 | 8709G | 4 (8) | 3.1 | 4.1 | Unknown | Unknown | HD 630 | 1100 MHz | Radeon RX Vega M GH | 8 MB | 100 W | ?
+Core i7 | 8706G | 4 (8) | 3.1 | 4.1 | Unknown | Unknown | HD 630 | 1100 MHz | Radeon RX Vega M GL | 8 MB | 65 W | ?
+Core i7 | 8705G | 4 (8) | 3.1 | 4.1 | Unknown | Unknown | HD 630 | 1100 MHz | Radeon RX Vega M GL | 8 MB | 65 W | $523
+Core i5 | 8305G | 4 (8) | 2.8 | 3.8 | Unknown | Unknown | HD 630 | 1100 MHz | Radeon RX Vega M GL | 6 MB | 65 W | ?
+
+### TABLE 8 rows=4 :: Discrete GPU Units Units Clock rate Clock rate Memory Memory Memory Memory
+Discrete GPU | Units | Units | Clock rate | Clock rate | Memory | Memory | Memory | Memory
+Discrete GPU | Computing | Shading | Base | Max. | Size | Bandwidth | Bus type | Bus width
+Radeon RX Vega M GH | 24 | 1536 | 1063 MHz | 1190 MHz | 4 GB | 204.8 GB/s | HBM2 | 1024 bit
+Radeon RX Vega M GL | 20 | 1280 | 931 MHz | 1011 MHz | 4 GB | 179.2 GB/s | HBM2 | 1024 bit
+
+### TABLE 9 rows=8 :: Processor branding Model Cores (threads) CPU clock rate (GHz) CPU clock rate (GHz) GPU Max GPU clock rate L3 cache TDP cTDP cTDP Release date Price
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | CPU clock rate (GHz) | GPU | Max GPU clock rate | L3 cache | TDP | cTDP | cTDP | Release date | Price
+Processor branding | Model | Cores (threads) | Base | Max turbo | GPU | Max GPU clock rate | L3 cache | TDP | Up | Down | Release date | Price
+Core i7 | 8500Y | 2 (4) | 1.5 | 4.2 | UHD 615 | 1050 MHz | 4 MB | 5 W | 7 W | 3.5 W | Q1 2019 | $393
+Core i5 | 8310Y | 2 (4) | 1.6 | 3.9 | UHD 617 | 1050 MHz | 4 MB | 7 W | —N/a | —N/a | Q1 2019 | $281
+Core i5 | 8210Y | 2 (4) | 1.6 | 3.6 | UHD 617 | 1050 MHz | 4 MB | 7 W | —N/a | —N/a | Q1 2019 | $281
+Core i5 | 8200Y | 2 (4) | 1.3 | 3.9 | UHD 615 | 950 MHz | 4 MB | 5 W | 7 W | 3.5 W | Q3 2018 | $291
+Core m3 | 8100Y | 2 (4) | 1.1 | 3.4 | UHD 615 | 900 MHz | 4 MB | 5 W | 8 W | 4.5 W | Q3 2018 | $281
+Pentium Gold | 4425Y | 2 (4) | 1.7 | —N/a | UHD 615 | 850 MHz | 2 MB | 6 W | —N/a | 4.5 W | Q1 2019 | $161
+
+### TABLE 10 rows=8 :: Processor branding Model Cores (threads) CPU clock rate (GHz) CPU clock rate (GHz) GPU Max GPU clock rate L3 cache TDP cTDP cTDP Price
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | CPU clock rate (GHz) | GPU | Max GPU clock rate | L3 cache | TDP | cTDP | cTDP | Price
+Processor branding | Model | Cores (threads) | Base | Max turbo | GPU | Max GPU clock rate | L3 cache | TDP | Up | Down | Price
+Core i7 | 10510Y | 4 (8) | 1.2 | 4.5 | UHD | 1150 MHz | 8 MB | 7 W | 9 W | 4.5 W | $403
+Core i5 | 10310Y | 4 (8) | 1.1 | 4.1 | UHD | 1050 MHz | 6 MB | 7 W | 9 W | 5.5 W | $292
+Core i5 | 10210Y | 4 (8) | 1.0 | 4.0 | UHD | 1050 MHz | 6 MB | 7 W | 9 W | 5.5 W | $292
+Core i3 | 10110Y | 2 (4) | 1.0 | 4.0 | UHD | 1000 MHz | 4 MB | 7 W | 9 W | 5.5 W | $287
+Core i3 | 10100Y | 2 (4) | 1.3 | 3.9 | UHD | 1000 MHz | 4 MB | 5 W | 7 W | 3.5 W | 
+Pentium Gold | 6500Y | 2 (4) | 1.1 | 3.4 | UHD | 900 MHz | 4 MB | 5 W | 7 W | 3.5 W | 
+
+### TABLE 11 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 12 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

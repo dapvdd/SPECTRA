@@ -1,0 +1,99 @@
+hardware_id,type,manufacturer,name,missing_fields_now,geekbench_results,fields_researched,status
+47,CPU,AMD,AMD Ryzen 9 7950X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+49,CPU,AMD,AMD Ryzen 9 7900X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+51,CPU,AMD,AMD Ryzen 7 7800X3D,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+52,CPU,AMD,AMD Ryzen 9 5950X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+53,CPU,AMD,AMD Ryzen 7 7700X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+54,CPU,AMD,AMD Ryzen 9 5900X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+57,CPU,AMD,AMD Ryzen 7 5800X3D,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+58,CPU,AMD,AMD Ryzen 7 5800X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+59,CPU,AMD,AMD Ryzen 5 7600X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+61,CPU,AMD,AMD Ryzen 7 5700X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+63,CPU,AMD,AMD Ryzen 5 7600,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+65,CPU,AMD,AMD Ryzen 5 5600X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+67,CPU,AMD,AMD Ryzen 5 5600G,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+71,CPU,AMD,AMD Ryzen 5 5600,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+72,CPU,AMD,AMD Ryzen 5 5500,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+75,CPU,AMD,AMD Ryzen 5 4500,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+104,CPU,AMD,AMD Ryzen 9 3900X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+115,CPU,AMD,AMD Ryzen 7 3700X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+121,CPU,AMD,AMD Ryzen 5 3600,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+126,CPU,AMD,AMD Ryzen 3 3100,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+127,CPU,AMD,AMD Ryzen 5 4600G,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+183,CPU,AMD,AMD Ryzen 7 2700X,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+187,CPU,AMD,AMD Ryzen 5 2600,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+245,CPU,AMD,AMD Ryzen 5 1600,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+260,CPU,AMD,AMD Ryzen 3 1200,process_node_nm;release_date;architecture,2,architecture;process_node_nm;release_date,researched
+693,CPU,Intel,Intel Core i9-13900KS Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+705,CPU,Intel,Intel Core i9-13900K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+726,CPU,Intel,Intel Core i7-13700K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+733,CPU,Intel,Intel Core i5-13400F Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+755,CPU,Intel,Intel Core i5-13600K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+777,CPU,Intel,Intel Core i9-12900K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+804,CPU,Intel,Intel Core i7-12700K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+820,CPU,Intel,Intel Core i5-12400 Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+821,CPU,Intel,Intel Core i5-12400F Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+833,CPU,Intel,Intel Core i5-12600K Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+844,CPU,Intel,Intel Core i3-12100F Processor,base_clock_ghz;tdp_w;process_node_nm;release_date;architecture,2,architecture;base_clock_ghz;process_node_nm;release_date;tdp_w,researched
+857,CPU,Intel,Intel Core i9-11900K Processor,release_date;architecture,2,architecture;release_date,researched
+868,CPU,Intel,Intel Core i7-11700K Processor,release_date;architecture,2,architecture;release_date,researched
+886,CPU,Intel,Intel Core i5-11400F Processor,release_date;architecture,2,architecture;release_date,researched
+913,CPU,Intel,Intel Core i9-10900K Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+924,CPU,Intel,Intel Core i7-10700K Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+940,CPU,Intel,Intel Core i5-10400F Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+982,CPU,Intel,Intel Core i9-9900K Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+994,CPU,Intel,Intel Core i7-9700K Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+1006,CPU,Intel,Intel Core i5-9400F Processor,release_date;architecture,2,architecture,researched (release_date deliberately left NULL)
+1041,CPU,Intel,Intel Core i7-8700K Processor,release_date;architecture,2,architecture;release_date,researched
+1082,CPU,Intel,Intel Core i3-8100 Processor,boost_clock_ghz;release_date;architecture,2,architecture;release_date,researched
+1090,CPU,Intel,Intel Core i7-7700K Processor,release_date;architecture,2,architecture;release_date,researched
+1152,CPU,Intel,Intel Core i7-6700K Processor,release_date;architecture,2,architecture;release_date,researched
+1235,CPU,Intel,Intel Core i7-4790K Processor,release_date;architecture,2,architecture;release_date,researched
+1272,CPU,Intel,Intel Core i7-4770K Processor,release_date;architecture,2,architecture;release_date,researched
+1448,CPU,Intel,Intel Core i7-3770K Processor,release_date;architecture,2,architecture;release_date,researched
+1509,CPU,Intel,Intel Core i5-2500K Processor,release_date;architecture,2,architecture;release_date,researched
+3350,CPU,Intel,Intel Pentium G4560 @ 3.50GHz,boost_clock_ghz;process_node_nm;release_date;architecture,2,architecture;release_date,researched
+5119,GPU,NVIDIA,GeForce RTX 4090,core_clock_mhz,0,core_clock_mhz,researched
+5199,GPU,NVIDIA,GeForce RTX 4080 SUPER,core_clock_mhz,0,core_clock_mhz,researched
+5118,GPU,NVIDIA,GeForce RTX 4080,core_clock_mhz,0,core_clock_mhz,researched
+5197,GPU,NVIDIA,GeForce RTX 4070 Ti SUPER,core_clock_mhz,0,core_clock_mhz,researched
+5150,GPU,NVIDIA,GeForce RTX 4070 Ti,core_clock_mhz,0,core_clock_mhz,researched
+5147,GPU,NVIDIA,GeForce RTX 4070,core_clock_mhz,0,core_clock_mhz,researched
+5146,GPU,NVIDIA,GeForce RTX 4060 Ti 8 GB,core_clock_mhz,0,core_clock_mhz,researched
+5142,GPU,NVIDIA,GeForce RTX 4060,core_clock_mhz,0,core_clock_mhz,researched
+5006,GPU,NVIDIA,GeForce RTX 3090,core_clock_mhz,0,core_clock_mhz,researched
+5005,GPU,NVIDIA,GeForce RTX 3080,core_clock_mhz,0,core_clock_mhz,researched
+5004,GPU,NVIDIA,GeForce RTX 3070,core_clock_mhz,0,core_clock_mhz,researched
+5048,GPU,NVIDIA,GeForce RTX 3060 12 GB,core_clock_mhz,0,core_clock_mhz,researched
+5098,GPU,NVIDIA,GeForce RTX 3050 8 GB,core_clock_mhz,0,core_clock_mhz,researched
+4900,GPU,NVIDIA,GeForce RTX 2080 Ti,core_clock_mhz,0,core_clock_mhz,researched
+4953,GPU,NVIDIA,GeForce RTX 2070 SUPER,core_clock_mhz,0,core_clock_mhz,researched
+4945,GPU,NVIDIA,GeForce RTX 2060,core_clock_mhz,0,core_clock_mhz,researched
+4938,GPU,NVIDIA,GeForce GTX 1660 SUPER,core_clock_mhz,0,core_clock_mhz,researched
+4933,GPU,NVIDIA,GeForce GTX 1650,core_clock_mhz,0,core_clock_mhz,researched
+4818,GPU,NVIDIA,GeForce GTX 1060 6 GB,core_clock_mhz,0,core_clock_mhz,researched
+4859,GPU,NVIDIA,GeForce GTX 1080 Ti,core_clock_mhz,0,core_clock_mhz,researched
+4820,GPU,NVIDIA,GeForce GTX 1070,core_clock_mhz,0,core_clock_mhz,researched
+4815,GPU,NVIDIA,GeForce GTX 1050 Ti,core_clock_mhz,0,core_clock_mhz,researched
+4738,GPU,NVIDIA,GeForce GTX 970,core_clock_mhz,0,core_clock_mhz,researched
+4731,GPU,NVIDIA,GeForce GTX 750 Ti,core_clock_mhz,0,core_clock_mhz,researched
+5219,GPU,NVIDIA,GeForce RTX 5090,core_clock_mhz,0,core_clock_mhz,researched
+5217,GPU,NVIDIA,GeForce RTX 5080,core_clock_mhz,0,core_clock_mhz,researched
+5215,GPU,NVIDIA,GeForce RTX 5070 Ti,core_clock_mhz,0,core_clock_mhz,researched
+5213,GPU,NVIDIA,GeForce RTX 5070,core_clock_mhz,0,core_clock_mhz,researched
+5209,GPU,NVIDIA,GeForce RTX 5060,core_clock_mhz,0,core_clock_mhz,researched
+4031,GPU,AMD,Radeon RX 7900 XTX,core_clock_mhz,0,core_clock_mhz,researched
+4030,GPU,AMD,Radeon RX 7900 XT,core_clock_mhz,0,core_clock_mhz,researched
+4055,GPU,AMD,Radeon RX 7800 XT,core_clock_mhz,0,core_clock_mhz,researched
+4053,GPU,AMD,Radeon RX 7700 XT,core_clock_mhz,0,core_clock_mhz,researched
+4049,GPU,AMD,Radeon RX 7600,core_clock_mhz,0,core_clock_mhz,researched
+4029,GPU,AMD,Radeon RX 6950 XT,core_clock_mhz,0,core_clock_mhz,researched
+3987,GPU,AMD,Radeon RX 6800 XT,core_clock_mhz,0,core_clock_mhz,researched
+3986,GPU,AMD,Radeon RX 6800,core_clock_mhz,0,core_clock_mhz,researched
+4008,GPU,AMD,Radeon RX 6700 XT,core_clock_mhz,0,core_clock_mhz,researched
+4005,GPU,AMD,Radeon RX 6600 XT,core_clock_mhz,0,core_clock_mhz,researched
+3950,GPU,AMD,Radeon RX 5700 XT,core_clock_mhz,0,core_clock_mhz,researched
+3868,GPU,AMD,Radeon RX 580,core_clock_mhz,0,core_clock_mhz,researched
+3818,GPU,AMD,Radeon RX 480,core_clock_mhz,0,core_clock_mhz,researched
+4083,GPU,AMD,Radeon RX 9070 XT,core_clock_mhz;length_mm,0,core_clock_mhz,researched
+4080,GPU,AMD,Radeon RX 9070,core_clock_mhz;length_mm,0,core_clock_mhz,researched

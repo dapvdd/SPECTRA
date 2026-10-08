@@ -1,0 +1,281 @@
+### TABLE 0 rows=32 :: Intel Core i7-6700K with four physical cores Intel Core i7-6700K with four physical cores
+Intel Core i7-6700K with four physical cores | Intel Core i7-6700K with four physical cores
+General information | General information
+Launched | August 5, 2015; 11 years ago (2015-08-05)
+Discontinued | March 4, 2019; 7 years ago (2019-03-04) (desktop processors)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | Intel
+CPUID code | 0406e3h, 0506e3h
+Product code | 80662 (mainstream and mobile Xeon E3)80673 (enthusiast and server)
+Performance | Performance
+Max. CPU clock rate | Up to 5.0 GHz
+Physical specifications | Physical specifications
+Cores | 2–28
+Sockets | Desktop LGA 1151LGA 2066Server & Workstation LGA 3647LGA 2066Mobile BGA 1168BGA 1356BGA 1515BGA 1440
+Cache | Cache
+L1 cache | 64 KB per core (32 KB instructions + 32 KB data)
+L2 cache | 256 KB per core (1 MB per core for Skylake-X, SP, and W)
+L3 cache | Up to 38.5 MB shared
+L4 cache | 128 MB of eDRAM (on Iris Pro models)
+Architecture and classification | Architecture and classification
+Technology node | 14 nm bulk silicon 3D transistors (Tri-Gate)
+Microarchitecture | Skylake
+Instruction set | x86-16, IA-32, x86-64
+Extensions | AES-NI, CLMUL, RDRAND, MPX, TXT, SGXMMX, SSE, SSE2, SSE3, SSSE3, SSE4, SSE4.1, SSE4.2, ADXAVX, AVX2, AVX-512 (Skylake-SP, Skylake-W & Skylake-X), TSX, FMA3VT-x, VT-d
+Products, models, variants | Products, models, variants
+Product code name | SKL
+Brand name | Core i3Core i5Core i7Core i9Core X-SeriesCore m3Core m5Core m7XeonCeleronPentium
+History | History
+Predecessors | Haswell (tock) and Broadwell (tick/process)
+Successors | Kaby Lake (optimization, desktop, laptop, low-end server, and mobile workstation), Cascade Lake (HEDT, workstation, and mid- to high-end server) and Palm Cove (process)
+Support status | Support status
+Client: Unsupported as of December 30, 2022 for iGPU Xeon E3 v5: Unsupported as of December 30, 2022 for iGPU Other Xeon: Supported | Client: Unsupported as of December 30, 2022 for iGPU Xeon E3 v5: Unsupported as of December 30, 2022 for iGPU Other Xeon: Supported
+
+### TABLE 1 rows=11 :: Feature Family Family Family Family Family Family Family Family Family Family
+Feature | Family | Family | Family | Family | Family | Family | Family | Family | Family | Family
+Feature | Y | U | H | T | S | R | X | W | W | SP
+Max cores | 2 | 2 | 4 | 4 | 4 | 4 | 18 | 28 | 28 | 28
+Integrated L4 cache (eDRAM) |  | • | • |  |  | • |  |  |  | 
+Low-power mobile/embedded systems | • | • | • | • |  |  |  |  |  | 
+Socket | BGA | BGA | BGA | LGA 1151 | LGA 1151 | LGA 1151 | LGA 2066 | LGA 2066 | LGA 3647 | LGA 3647
+LPDDR3 SDRAM | • | • | • |  |  |  |  |  |  | 
+DDR3L SDRAM | • | • | • | • | • | • |  |  |  | 
+DDR4 SDRAM |  | • | • | • | • | • | • | • | • | 
+128 GB to 1.5 TB of physical RAM |  |  |  |  |  |  | • | • | • | •+
+28 to 44 PCIe 3.0 lanes |  |  |  |  |  |  | • | • | • | •
+
+### TABLE 2 rows=34 :: Processor branding and model Processor branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) GPU GPU GPU Cache Cache Cache TDP Socket Release date Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | GPU | Cache | Cache | Cache | TDP | Socket | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | Turbo Boost 2.0 | Turbo Boost 2.0 | Turbo Boost 2.0 | Model | EUs | Max freq. (GHz) | L2 | L3 | L4 (eDRAM) | TDP | Socket | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | 1 | 2 | 4 | Model | EUs | Max freq. (GHz) | L2 | L3 | L4 (eDRAM) | TDP | Socket | Release date | Release price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i7 | 6700K | 4 (8) | 4.0 | 4.2 | 4.0 | 4.0 | HD 530 | 24 | 1.15 | 1 MB | 8 MB | —N/a | 91 W | LGA 1151 | August 5, 2015 | $339
+Core i7 | 6785R | 4 (8) | 3.3 | 3.9 | 3.8 | 3.5 | Iris Pro 580 | 72 | 1.15 | 1 MB | 8 MB | 128 MB | 65 W | BGA 1440 | May 3, 2016 | $370
+Core i7 | 6700 | 4 (8) | 3.4 | 4.0 | 3.9 | 3.7 | HD 530 | 24 | 1.15 | 1 MB | 8 MB | —N/a | 65 W | LGA 1151 | September 1, 2015 | $303
+Core i7 | 6700T | 4 (8) | 2.8 | 3.6 | 3.5 | 3.4 | HD 530 | 24 | 1.15 | 1 MB | 8 MB | —N/a | 35 W | LGA 1151 | September 1, 2015 | $303
+Core i5 | 6600K | 4 (4) | 3.5 | 3.9 | 3.8 | 3.6 | HD 530 | 24 | 1.15 | 1 MB | 6 MB | —N/a | 91 W | LGA 1151 | August 5, 2015 | $242
+Core i5 | 6685R | 4 (4) | 3.2 | 3.8 | 3.7 | 3.3 | Iris Pro 580 | 72 | 1.15 | 1 MB | 6 MB | 128 MB | 65 W | BGA 1440 | May 3, 2016 | $288
+Core i5 | 6600 | 4 (4) | 3.3 | 3.9 | 3.8 | 3.6 | HD 530 | 24 | 1.15 | 1 MB | 6 MB | —N/a | 65 W | LGA 1151 | September 1, 2015 | $213
+Core i5 | 6585R | 4 (4) | 2.8 | 3.6 | 3.5 | 3.1 | Iris Pro 580 | 72 | 1.1 | 1 MB | 6 MB | 128 MB | 65 W | BGA 1440 | May 3, 2016 | $255
+Core i5 | 6500 | 4 (4) | 3.2 | 3.6 | 3.5 | 3.3 | HD 530 | 24 | 1.05 | 1 MB | 6 MB | —N/a | 65 W | LGA 1151 | September 1, 2015 | $192
+Core i5 | 6600T | 4 (4) | 2.7 | 3.5 | 3.4 | 3.3 | HD 530 | 24 | 1.1 | 1 MB | 6 MB | —N/a | 35 W | LGA 1151 | Q3 2015 | $213
+Core i5 | 6500T | 4 (4) | 2.5 | 3.1 | 3.0 | 2.8 | HD 530 | 24 | 1.1 | 1 MB | 6 MB | —N/a | 35 W | LGA 1151 | Q3 2015 | $192
+Core i5 | 6402P | 4 (4) | 2.8 | 3.4 | 3.4 | 3.2 | HD 510 | 12 | 0.95 | 1 MB | 6 MB | —N/a | 65 W | LGA 1151 | December 27, 2015 | $182
+Core i5 | 6400T | 4 (4) | 2.2 | 2.8 | 2.7 | 2.5 | HD 530 | 24 | 0.95 | 1 MB | 6 MB | —N/a | 35 W | LGA 1151 | Q3 2015 | $182
+Core i5 | 6400 | 4 (4) | 2.7 | 3.3 | 3.3 | 3.1 | HD 530 | 24 | 0.95 | 1 MB | 6 MB | —N/a | 65 W | LGA 1151 | August 5, 2015 | $182
+Core i3 | 6320 | 2 (4) | 3.9 | —N/a | —N/a | —N/a | HD 530 | 24 | 1.15 | 512 KB | 4 MB | —N/a | 51 W | LGA 1151 | Q3 2015 | $149
+Core i3 | 6300 | 2 (4) | 3.8 | —N/a | —N/a | —N/a | HD 530 | 24 | 1.15 | 512 KB | 4 MB | —N/a | 51 W | LGA 1151 | Q3 2015 | $138
+Core i3 | 6100 | 2 (4) | 3.7 | —N/a | —N/a | —N/a | HD 530 | 24 | 1.05 | 512 KB | 3 MB | —N/a | 51 W | LGA 1151 | October 2015 | $117
+Core i3 | 6300T | 2 (4) | 3.3 | —N/a | —N/a | —N/a | HD 530 | 24 | 0.95 | 512 KB | 4 MB | —N/a | 35 W | LGA 1151 | October 2015 | $138
+Core i3 | 6100T | 2 (4) | 3.2 | —N/a | —N/a | —N/a | HD 530 | 24 | 0.95 | 512 KB | 3 MB | —N/a | 35 W | LGA 1151 | October 2015 | $117
+Core i3 | 6098P | 2 (4) | 3.6 | —N/a | —N/a | —N/a | HD 510 | 12 | 1.050 | 512 KB | 3 MB | —N/a | 54 W | LGA 1151 | December 27, 2015 | $117
+Pentium | G4520 | 2 (2) | 3.6 | —N/a | —N/a | —N/a | HD 530 | 24 | 1.050 | 512 KB | 3 MB | —N/a | 51 W | LGA 1151 | October 2015 | $86
+Pentium | G4500 | 2 (2) | 3.5 | —N/a | —N/a | —N/a | HD 530 | 24 | 1.050 | 512 KB | 3 MB | —N/a | 51 W | LGA 1151 | October 2015 | $75
+Pentium | G4500T | 2 (2) | 3.0 | —N/a | —N/a | —N/a | HD 530 | 24 | 0.95 | 512 KB | 3 MB | —N/a | 35 W | LGA 1151 | Q3 2015 | $75
+Pentium | G4400 | 2 (2) | 3.3 | —N/a | —N/a | —N/a | HD 510 | 12 | 1.0 | 512 KB | 3 MB | —N/a | 54 W | LGA 1151 | October 2015 | $64
+Pentium | G4400T | 2 (2) | 2.9 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 3 MB | —N/a | 35 W | LGA 1151 | Q3 2015 | $64
+Pentium | G4400TE | 2 (2) | 2.4 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 3 MB | —N/a | 35 W | LGA 1151 | Q4 2015 | $70
+Celeron | G3920 | 2 (2) | 2.9 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 2 MB | —N/a | 51 W | LGA 1151 | Q4 2015 | $52
+Celeron | G3900 | 2 (2) | 2.8 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 2 MB | —N/a | 51 W | LGA 1151 | Q4 2015 | $42
+Celeron | G3900TE | 2 (2) | 2.3 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 2 MB | —N/a | 35 W | LGA 1151 | Q4 2015 | $42
+Celeron | G3900T | 2 (2) | 2.6 | —N/a | —N/a | —N/a | HD 510 | 12 | 0.95 | 512 KB | 2 MB | —N/a | 35 W | LGA 1151 | Q4 2015 | $42
+
+### TABLE 3 rows=11 :: Processor branding and model Processor branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Cache Cache PCIe lanes Memory support Socket TDP Release date Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | Turbo | Turbo | L2 | L3 | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | 2.0 | 3.0 | L2 | L3 | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i9 | 7980XE | 18 (36) | 2.6 | 4.2 | 4.4 | 18 MB | 24.75 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Sep 25, 2017 | $1999
+Core i9 | 7960X | 16 (32) | 2.8 | 4.2 | 4.4 | 16 MB | 22 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Sep 25, 2017 | $1699
+Core i9 | 7940X | 14 (28) | 3.1 | 4.3 | 4.4 | 14 MB | 19.25 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Sep 25, 2017 | $1399
+Core i9 | 7920X | 12 (24) | 2.9 | 4.3 | 4.4 | 12 MB | 16.5 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 140 W | Aug 28, 2017 | $1189
+Core i9 | 7900X | 10 (20) | 3.3 | 4.3 | 4.5 | 10 MB | 13.75 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 140 W | Jun 19, 2017 | $999
+Core i7 | 7820X | 8 (16) | 3.6 | 4.3 | 4.5 | 8 MB | 11 MB | 28 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 140 W | Jun 19, 2017 | $599
+Core i7 | 7800X | 6 (12) | 3.5 | 4.0 | —N/a | 6 MB | 8.25 MB | 28 PCIe 3.0 | DDR4-2400 quad-channel | LGA 2066 | 140 W | Jun 19, 2017 | $389
+
+### TABLE 4 rows=12 :: Processor branding and model Processor branding and model Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Cache Cache PCIe lanes Memory support Socket TDP Release date Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Cache | Cache | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | Turbo Boost | Turbo Boost | L2 | L3 | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Base | 2.0 | 3.0 | L2 | L3 | PCIe lanes | Memory support | Socket | TDP | Release date | Release price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i9 | 9990XE | 14 (28) | 4.0 | 5.0 | 5.0 | 14 MB | 19.25 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 255 W | Jan 3, 2019 | OEM
+Core i9 | 9980XE | 18 (36) | 3.0 | 4.4 | 4.5 | 18 MB | 24.75 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $1979
+Core i9 | 9960X | 16 (32) | 3.1 | 4.4 | 4.5 | 16 MB | 22 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $1684
+Core i9 | 9940X | 14 (28) | 3.3 | 4.4 | 4.5 | 14 MB | 19.25 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $1387
+Core i9 | 9920X | 12 (24) | 3.5 | 4.4 | 4.5 | 12 MB | 19.25 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $1189
+Core i9 | 9900X | 10 (20) | 3.5 | 4.4 | 4.5 | 10 MB | 19.25 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $989
+Core i9 | 9820X | 10 (20) | 3.3 | 4.1 | 4.2 | 10 MB | 16.5 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $889
+Core i7 | 9800X | 8 (16) | 3.8 | 4.4 | 4.5 | 8 MB | 16.5 MB | 44 PCIe 3.0 | DDR4-2666 quad-channel | LGA 2066 | 165 W | Oct 9, 2018 | $589
+
+### TABLE 5 rows=2 :: Model sSpec number Cores (threads) Clock rate Turbo Boost all-core/2.0 (/max. 3.0) L2 cache L3 cache TDP Socket I/O bus Memory Release date Part number(s) Release price (USD)
+Model | sSpec number | Cores (threads) | Clock rate | Turbo Boost all-core/2.0 (/max. 3.0) | L2 cache | L3 cache | TDP | Socket | I/O bus | Memory | Release date | Part number(s) | Release price (USD)
+Xeon W-3175X | SRF6L (H0) | 28 (56) | 3.1 GHz | 3.8/4.3 GHz | 28 × 1 MB | 38.50 MB | 255 W | LGA 3647 | DMI 3.0 | 6 × DDR4-2666 | January 30, 2019 | CD8067304237800 BX80673W3175X | $2999
+
+### TABLE 6 rows=40 :: Processor branding and model Processor branding and model Cores (threads) CPU clock rate CPU Turbo clock rate CPU Turbo clock rate CPU Turbo clock rate GPU GPU clock rate GPU clock rate Cache Cache Max. PCIe lanes TDP cTDP cTDP Release date Price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | CPU clock rate | CPU Turbo clock rate | CPU Turbo clock rate | CPU Turbo clock rate | GPU | GPU clock rate | GPU clock rate | Cache | Cache | Max. PCIe lanes | TDP | cTDP | cTDP | Release date | Price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | CPU clock rate | Single core | Dual core | Quad core | GPU | Base | Turbo | L3 | L4 (eDRAM) | Max. PCIe lanes | TDP | Up | Down | Release date | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i7 | 6970HQ | 4 (8) | 2.8 GHz | 3.7 GHz | ? | ? | Iris Pro 580 | 350 MHz | 1050 MHz | 8 MB | 128 MB | 16 | 45 W | —N/a | 35 W | Q1 2016 | $623
+Core i7 | 6920HQ | 4 (8) | 2.9 GHz | 3.8 GHz | 3.6 GHz | 3.4 GHz | HD 530 | 350 MHz | 1050 MHz | 8 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $568
+Core i7 | 6870HQ | 4 (8) | 2.7 GHz | 3.6 GHz | ? | ? | Iris Pro 580 | 350 MHz | 1000 MHz | 8 MB | 128 MB | 16 | 45 W | —N/a | 35 W | Q1 2016 | $434
+Core i7 | 6820HQ | 4 (8) | 2.7 GHz | 3.6 GHz | 3.4 GHz | 3.2 GHz | HD 530 | 350 MHz | 1050 MHz | 8 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $378
+Core i7 | 6820HK | 4 (8) | 2.7 GHz | 3.6 GHz | 3.4 GHz | 3.2 GHz | HD 530 | 350 MHz | 1050 MHz | 8 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $378
+Core i7 | 6770HQ | 4 (8) | 2.6 GHz | 3.5 GHz | ? | ? | Iris Pro 580 | 350 MHz | 950 MHz | 6 MB | 128 MB | 16 | 45 W | —N/a | 35 W | Q1 2016 | $434
+Core i7 | 6700HQ | 4 (8) | 2.6 GHz | 3.5 GHz | 3.3 GHz | 3.1 GHz | HD 530 | 350 MHz | 1050 MHz | 6 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $378
+Core i7 | 6660U | 2 (4) | 2.4 GHz | 3.4 GHz | 3.2 GHz | —N/a | Iris 540 | 300 MHz | 1050 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q1 2016 | $415
+Core i7 | 6650U | 2 (4) | 2.2 GHz | 3.4 GHz | 3.2 GHz | —N/a | Iris 540 | 300 MHz | 1050 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q3 2015 | $415
+Core i7 | 6600U | 2 (4) | 2.6 GHz | 3.4 GHz | —N/a | —N/a | HD 520 | 300 MHz | 1050 MHz | 4 MB | —N/a | 12 | 15 W | 25 W | 7.5 W | September 1, 2015 | $393
+Core i7 | 6567U | 2 (4) | 3.3 GHz | 3.6 GHz | 3.4 GHz | —N/a | Iris 550 | 300 MHz | 1100 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q3 2015 | TBD
+Core i7 | 6560U | 2 (4) | 2.2 GHz | 3.2 GHz | 3.1 GHz | —N/a | Iris 540 | 300 MHz | 1050 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q3 2015 | TBD
+Core i7 | 6500U | 2 (4) | 2.5 GHz | 3.1 GHz | 3.0 GHz | —N/a | HD 520 | 300 MHz | 1050 MHz | 4 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | September 1, 2015 | $393
+Core i5 | 6440HQ | 4 (4) | 2.6 GHz | 3.5 GHz | 3.3 GHz | 3.1 GHz | HD 530 | 350 MHz | 950 MHz | 6 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $250
+Core i5 | 6360U | 2 (4) | 2.0 GHz | 3.1 GHz | 2.9 GHz | —N/a | Iris 540 | 300 MHz | 1000 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q3 2015 | $304
+Core i5 | 6350HQ | 4 (4) | 2.3 GHz | 3.2 GHz | ? | ? | Iris Pro 580 | 350 MHz | 900 MHz | 6 MB | 128 MB | 16 | 45 W | —N/a | 35 W | Q1 2016 | $306
+Core i5 | 6300HQ | 4 (4) | 2.3 GHz | 3.2 GHz | 3.0 GHz | 2.8 GHz | HD 530 | 350 MHz | 950 MHz | 6 MB | —N/a | 16 | 45 W | —N/a | 35 W | September 1, 2015 | $250
+Core i5 | 6300U | 2 (4) | 2.4 GHz | 3.0 GHz | 2.9 GHz | —N/a | HD 520 | 300 MHz | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | September 1, 2015 | $281
+Core i5 | 6287U | 2 (4) | 3.1 GHz | 3.5 GHz | 3.3 GHz | —N/a | Iris 550 | 300 MHz | 1100 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q3 2015 | $304
+Core i5 | 6267U | 2 (4) | 2.9 GHz | 3.3 GHz | 3.1 GHz | —N/a | Iris 550 | 300 MHz | 1050 MHz | 4 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q3 2015 | $304
+Core i5 | 6260U | 2 (4) | 1.8 GHz | 2.9 GHz | 2.7 GHz | —N/a | Iris 540 | 300 MHz | 950 MHz | 4 MB | 64 MB | 12 | 15 W | —N/a | 9.5 W | Q3 2015 | $304
+Core i5 | 6200U | 2 (4) | 2.3 GHz | 2.8 GHz | 2.7 GHz | —N/a | HD 520 | 300 MHz | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | September 1, 2015 | $281
+Core i3 | 6167U | 2 (4) | 2.7 GHz | —N/a | —N/a | —N/a | Iris 550 | 300 MHz | 1000 MHz | 3 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q3 2015 | $304
+Core i3 | 6157U | 2 (4) | 2.4 GHz | —N/a | —N/a | —N/a | Iris 550 | 300 MHz | 1000 MHz | 3 MB | 64 MB | 12 | 28 W | —N/a | 23 W | Q3 2016 | $304
+Core i3 | 6100H | 2 (4) | 2.7 GHz | —N/a | —N/a | —N/a | HD 530 | 350 MHz | 900 MHz | 3 MB | —N/a | 12 | 35 W | —N/a | —N/a | September 1, 2015 | $225
+Core i3 | 6100U | 2 (4) | 2.3 GHz | —N/a | —N/a | —N/a | HD 520 | 300 MHz | 1000 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | 7.5 W | September 1, 2015 | $281
+Core i3 | 6006U | 2 (4) | 2.0 GHz | —N/a | —N/a | —N/a | HD 520 | 300 MHz | 900 MHz | 3 MB | —N/a | 12 | 15 W | —N/a | —N/a | November, 2016 | $281
+Core m7 | 6Y75 | 2 (4) | 1.2 GHz | 3.1 GHz | 2.9 GHz | —N/a | HD 515 | 300 MHz | 1000 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | September 1, 2015 | $393
+Core m5 | 6Y57 | 2 (4) | 1.1 GHz | 2.8 GHz | 2.4 GHz | —N/a | HD 515 | 300 MHz | 900 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | September 1, 2015 | $281
+Core m5 | 6Y54 | 2 (4) | 1.1 GHz | 2.7 GHz | 2.4 GHz | —N/a | HD 515 | 300 MHz | 900 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.5 W | September 1, 2015 | $281
+Core m3 | 6Y30 | 2 (4) | 0.9 GHz | 2.2 GHz | 2.0 GHz | —N/a | HD 515 | 300 MHz | 850 MHz | 4 MB | —N/a | 10 | 4.5 W | 7 W | 3.8 W | September 1, 2015 | $281
+Pentium | 4405U | 2 (4) | 2.1 GHz | —N/a | —N/a | —N/a | HD 510 | 300 MHz | 950 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q3 2015 | $161
+Pentium | 4405Y | 2 (4) | 1.5 GHz | —N/a | —N/a | —N/a | HD 515 | 300 MHz | 800 MHz | 2 MB | —N/a | 10 | 6 W | —N/a | 4.5 W | Q3 2015 | $161
+Celeron | G3902E | 2 (2) | 1.6 GHz | —N/a | —N/a | —N/a | HD 510 | 350 MHz | 950 MHz | 2 MB | —N/a | 16 | 25 W | —N/a | —N/a | Q1 2016 | $107
+Celeron | G3900E | 2 (2) | 2.4 GHz | —N/a | —N/a | —N/a | HD 510 | 350 MHz | 950 MHz | 2 MB | —N/a | 16 | 35 W | —N/a | —N/a | Q1 2016 | $107
+Celeron | 3955U | 2 (2) | 2.0 GHz | —N/a | —N/a | —N/a | HD 510 | 300 MHz | 900 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q4 2015 | $107
+Celeron | 3855U | 2 (2) | 1.6 GHz | —N/a | —N/a | —N/a | HD 510 | 300 MHz | 900 MHz | 2 MB | —N/a | 10 | 15 W | —N/a | 10 W | Q4 2015 | $107
+
+### TABLE 7 rows=15 :: Model sSpec number Cores (threads) Clock rate Turbo Boost all-core/2.0 (/max. 3.0) L2 cache L3 cache TDP Socket I/O bus Memory Release date Part number(s) Release price (USD)
+Model | sSpec number | Cores (threads) | Clock rate | Turbo Boost all-core/2.0 (/max. 3.0) | L2 cache | L3 cache | TDP | Socket | I/O bus | Memory | Release date | Part number(s) | Release price (USD)
+Xeon W-2195 | SR3RX (M0) | 18 (36) | 2.3 GHz | 3.2/4.3 GHz | 18 × 1 MB | 24.75 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303805901 | $2553
+Xeon W-2191B | SR3RW (H0) | 18 (36) | 2.3 GHz | 3.2/4.3 GHz | 18 × 1 MB | 24.75 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | December 21, 2017 |  | OEM for Apple
+Xeon W-2175 | SR3W2 (M0) | 14 (28) | 2.5 GHz | 3.3/4.3 GHz | 14 × 1 MB | 19.25 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | October 15, 2017 | CD8067303842300 | $1947
+Xeon W-2170B | SR3W3 (H0) | 14 (28) | 2.5 GHz | 3.3/4.3 GHz | 14 × 1 MB | 19.25 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | December 21, 2017 |  | OEM for Apple
+Xeon W-2155 | SR3LR (U0) | 10 (20) | 3.3 GHz | 4.0/4.5 GHz | 10 × 1 MB | 13.75 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533703 | $1440
+Xeon W-2150B | SR3LS (H0) | 10 (20) | 3 GHz | 4.0/4.5 GHz | 10 × 1 MB | 13.75 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | December 21, 2017 |  | OEM for Apple
+Xeon W-2145 | SR3LQ (U0) | 8 (16) | 3.7 GHz | 4.3/4.5 GHz | 8 × 1 MB | 11.00 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533601 | $1113
+Xeon W-2140B | SR3LK (H0) | 8 (16) | 3.2 GHz | 3.9/4.2 GHz | 8 × 1 MB | 11.00 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | December 21, 2017 |  | OEM for Apple
+Xeon W-2135 | SR3LN (U0) | 6 (12) | 3.7 GHz | 4.4/4.5 GHz | 6 × 1 MB | 8.25 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533403 | $835
+Xeon W-2133 | SR3LL (U0) | 6 (12) | 3.6 GHz | 3.8/3.9 GHz | 6 × 1 MB | 8.25 MB | 140 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533204 | $617
+Xeon W-2125 | SR3LM (U0) | 4 (8) | 4 GHz | 4.4/4.5 GHz | 4 × 1 MB | 8.25 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533303 | $444
+Xeon W-2123 | SR3LJ (U0) | 4 (8) | 3.6 GHz | 3.7/3.9 GHz | 4 × 1 MB | 8.25 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2666 | August 29, 2017 | CD8067303533002 | $294
+Xeon W-2104 | SR3LH (U0) | 4 (4) | 3.2 GHz | N/A | 4 × 1 MB | 8.25 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2400 | August 29, 2017 | CD8067303532903 | $255
+Xeon W-2102 | SR3LG (U0) | 4 (4) | 2.9 GHz | N/A | 4 × 1 MB | 8.25 MB | 120 W | LGA 2066 | DMI 3.0 | 4 × DDR4-2400 | August 29, 2017 | CD8067303532802 | $202
+
+### TABLE 8 rows=20 :: Target segment Cores (threads) Processor branding and model Processor branding and model GPU Clock rate Clock rate Clock rate Clock rate Cache Cache TDP Release date Release price (USD) tray / box Motherboard Motherboard Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU | Clock rate | Clock rate | Clock rate | Clock rate | Cache | Cache | TDP | Release date | Release price (USD) tray / box | Motherboard | Motherboard | Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU | CPU | CPU | Graphics | Graphics | L3 | L4 (eDRAM) | TDP | Release date | Release price (USD) tray / box | Socket | Interface | Memory
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU | Normal | Turbo | Normal | Turbo | L3 | L4 (eDRAM) | TDP | Release date | Release price (USD) tray / box | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Server | 4 (8) | Xeon E3 v5 | 1280v5 | —N/a | 3.7 GHz | 4.0 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | Q4 2015 | $612 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1275v5 | HD P530 | 3.6 GHz | 4.0 GHz | 350 MHz | 1.15 GHz | 8 MB | —N/a | 80 W | Q4 2015 | $339 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1270v5 | —N/a | 3.6 GHz | 4.0 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | Q4 2015 | $328 / $339 | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1260Lv5 | —N/a | 2.9 GHz | 3.9 GHz | —N/a | —N/a | 8 MB | —N/a | 45 W | Q4 2015 | $294 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1245v5 | HD P530 | 3.5 GHz | 3.9 GHz | 350 MHz | 1.15 GHz | 8 MB | —N/a | 80 W | Q4 2015 | $284 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1240v5 | —N/a | 3.5 GHz | 3.9 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | Q4 2015 | $272 / $282 | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1240Lv5 | —N/a | 2.1 GHz | 3.2 GHz | —N/a | —N/a | 8 MB | —N/a | 25 W | Q4 2015 | $278 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (8) | Xeon E3 v5 | 1230v5 | —N/a | 3.4 GHz | 3.8 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | Q4 2015 | $250 / $260 | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (4) | Xeon E3 v5 | 1235Lv5 | HD P530 | 2.0 GHz | 3.0 GHz | 350 MHz | 1.15 GHz | 8 MB | —N/a | 25 W | Q4 2015 | $250 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (4) | Xeon E3 v5 | 1225v5 | HD P530 | 3.3 GHz | 3.7 GHz | 350 MHz | 1.15 GHz | 8 MB | —N/a | 80 W | Q4 2015 | $213 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Server | 4 (4) | Xeon E3 v5 | 1220v5 | —N/a | 3.0 GHz | 3.5 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | Q4 2015 | $193 / — | LGA 1151 | DMI 3.0 PCIe 3.0 | DDR4 2133/1866 or DDR3L 1333/1600 with ECC
+Mobile workstation | 4 (8) | Xeon E3 v5 | 1575Mv5 | Iris Pro P580 | 3.0 GHz | 3.9 GHz | 350 MHz | 1.1 GHz | 8 MB | 128 MB | 45 W | Q1 2016 | $1207 / — | BGA 1440 | DMI 3.0 PCIe 3.0 | DDR4-2133 LPDDR3-1866 DDR3L-1600 with ECC
+Mobile workstation | 4 (8) | Xeon E3 v5 | 1545Mv5 | Iris Pro P580 | 2.9 GHz | 3.8 GHz | 350 MHz | 1.05 GHz | 8 MB | 128 MB | 45 W | Q1 2016 | $679 / — | BGA 1440 | DMI 3.0 PCIe 3.0 | DDR4-2133 LPDDR3-1866 DDR3L-1600 with ECC
+Mobile workstation | 4 (8) | Xeon E3 v5 | 1535Mv5 | HD P530 | 2.9 GHz | 3.8 GHz | 350 MHz | 1.05 GHz | 8 MB | —N/a | 45 W | Q3 2015 | $623 / — | BGA 1440 | DMI 3.0 PCIe 3.0 | DDR4-2133 LPDDR3-1866 DDR3L-1600 with ECC
+Mobile workstation | 4 (8) | Xeon E3 v5 | 1505Mv5 | HD P530 | 2.8 GHz | 3.7 GHz | 350 MHz | 1.05 GHz | 8 MB | —N/a | 45 W | Q3 2015 | $434 / — | BGA 1440 | DMI 3.0 PCIe 3.0 | DDR4-2133 LPDDR3-1866 DDR3L-1600 with ECC
+Embedded | 4 (8) | Xeon E3 v5 | 1505Lv5 | HD P530 | 2.0 GHz | 2.8 GHz | 350 MHz | 1.0 GHz | 8 MB | —N/a | 25 W | Q4 2015 | $433 / — | BGA 1440 | DMI 3.0 PCIe 3.0 | DDR4-2133 LPDDR3-1866 DDR3L-1600 with ECC
+
+### TABLE 9 rows=11 :: Model sSpec number Cores (threads) Clock rate Turbo Boost all-core/2.0 (/max. 3.0) L2 cache L3 cache TDP Socket I/O bus Memory Release date Part number(s) Release price (USD)
+Model | sSpec number | Cores (threads) | Clock rate | Turbo Boost all-core/2.0 (/max. 3.0) | L2 cache | L3 cache | TDP | Socket | I/O bus | Memory | Release date | Part number(s) | Release price (USD)
+Xeon Silver 4116 | SR3HQ (M0) | 12 (24) | 2.1 GHz | 2.4/3.0 GHz | 12 × 1 MB | 16.50 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303567200 BX806734116 | $1002 $1012
+Xeon Silver 4116T | SR3MQ (M0) | 12 (24) | 2.1 GHz | 2.4/3.0 GHz | 12 × 1 MB | 16.50 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | Q3 2017 | CD8067303645400 | $1112
+Xeon Silver 4114 | SR3GK (U0) | 10 (20) | 2.2 GHz | 2.5/3.0 GHz | 10 × 1 MB | 13.75 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303561800 BX806734114 | $694 $704
+Xeon Silver 4114T | SR3MM (U0) | 10 (20) | 2.2 GHz | 2.5/3.0 GHz | 10 × 1 MB | 13.75 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | Q3 2017 | CD8067303645300 | $773
+Xeon Silver 4112 | SR3GN (U0) | 4 (8) | 2.6 GHz | 2.9/3.0 GHz | 4 × 1 MB | 8.25 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303562100 BX806734112 | $473 $483
+Xeon Silver 4110 | SR3GH (U0) | 8 (16) | 2.1 GHz | 2.4/3.0 GHz | 8 × 1 MB | 11.00 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303561400 BX806734110 | $501 $511
+Xeon Silver 4109T | SR3GP (U0) | 8 (16) | 2 GHz | 2.3/3.0 GHz | 8 × 1 MB | 11.00 MB | 70 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303562200 | $501
+Xeon Silver 4108 | SR3GJ (U0) | 8 (16) | 1.8 GHz | 2.1/3.0 GHz | 8 × 1 MB | 11.00 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303561500 BX806734108 | $417 $427
+Xeon Bronze 3106 | SR3GL (U0) | 8 (8) | 1.7 GHz | N/A | 8 × 1 MB | 11.00 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2133 | 11 July 2017 | CD8067303561900 BX806733106 | $306 $316
+Xeon Bronze 3104 | SR3GM (U0) | 6 (6) | 1.7 GHz | N/A | 6 × 1 MB | 8.25 MB | 85 W | LGA 3647 | 2 × 9.6 GT/s UPI | 6 × DDR4-2133 | 11 July 2017 | CD8067303562000 BX806733104 | $223 $213
+
+### TABLE 10 rows=38 :: Model sSpec number Cores (threads) Clock rate Turbo Boost all-core/2.0 (/max. 3.0) L2 cache L3 cache TDP Socket I/O bus Memory Release date Part number(s) Release price (USD)
+Model | sSpec number | Cores (threads) | Clock rate | Turbo Boost all-core/2.0 (/max. 3.0) | L2 cache | L3 cache | TDP | Socket | I/O bus | Memory | Release date | Part number(s) | Release price (USD)
+Xeon Gold 6161 | SR3G7 (H0) | 22 (44) | 2.2 GHz | 2.7/3.0GHz | 22 × 1 MB | 30.25 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 2017 | CD8067303532100 | 
+Xeon Gold 6154 | SR3J5 (H0) | 18 (36) | 3 GHz | 3.7/3.7GHz | 18 × 1 MB | 24.75 MB | 200 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303592700 | $3543
+Xeon Gold 6152 | SR3B4 (H0) | 22 (44) | 2.1 GHz | 2.8/3.7GHz | 22 × 1 MB | 30.25 MB | 140 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406000 BX806736152 | $3655 $3661
+Xeon Gold 6150 | SR37K (H0) | 18 (36) | 2.7 GHz | 3.4/3.7GHz | 18 × 1 MB | 24.75 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303328000 | $3358
+Xeon Gold 6149 |  | 16 (32) | 3.1 GHz |  | 16 × 1 MB | MB |  | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 |  |  | OEM
+Xeon Gold 6148 | SR3B6 (H0) | 20 (40) | 2.4 GHz | 3.1/3.7GHz | 20 × 1 MB | 27.50 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406200 BX806736148 | $3072 $3078
+Xeon Gold 6148F | SR3KJ (H0) | 20 (40) | 2.4 GHz | 3.1/3.7GHz | 20 × 1 MB | 27.50 MB | 150 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593800 | $3227
+Xeon Gold 6146 | SR3MA (H0) | 12 (24) | 3.2 GHz | 3.9/4.2GHz | 12 × 1 MB | 24.75 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303657201 | $3286
+Xeon Gold 6145 | SR3G4 (H0) | 20 (40) | 2 GHz | 2.7/3.7GHz | 20 × 1 MB | 27.50 MB | 145 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 2017 | CD8067303528200 | 
+Xeon Gold 6144 | SR3MB (H0) | 8 (16) | 3.5 GHz | 4.1/4.2GHz | 8 × 1 MB | 24.75 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | Q3 2017 | CD8067303657302 | $2925
+Xeon Gold 6142M | SR3B1 (H0) | 16 (32) | 2.6 GHz | 3.3/3.7GHz | 16 × 1 MB | 22.00 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405700 | $5949
+Xeon Gold 6142F | SR3KH (H0) | 16 (32) | 2.6 GHz | 3.3/3.7GHz | 16 × 1 MB | 22.00 MB | 160 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593700 | $3101
+Xeon Gold 6142 | SR3AY (H0) | 16 (32) | 2.6 GHz | 3.3/3.7GHz | 16 × 1 MB | 22.00 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405400 BX806736142 | $2946 $2952
+Xeon Gold 6140 | SR3AX (H0) | 18 (36) | 2.3 GHz | 3.0/3.7GHz | 18 × 1 MB | 24.75 MB | 140 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405200 BX806736140 | $2445 $2451
+Xeon Gold 6140M | SR3AZ (H0) | 18 (36) | 2.3 GHz | 3.0/3.7GHz | 18 × 1 MB | 24.75 MB | 140 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405500 | $5448
+Xeon Gold 6138 | SR3B5 (H0) | 20 (40) | 2 GHz | 2.7/3.7GHz | 20 × 1 MB | 27.50 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406100 BX806736138 | $2612 $2618
+Xeon Gold 6138F | SR3KK (H0) | 20 (40) | 2 GHz | 2.7/3.7GHz | 20 × 1 MB | 27.50 MB | 135 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593900 | $2767
+Xeon Gold 6138T | SR3J7 (H0) | 20 (40) | 2 GHz | 2.7/3.7GHz | 20 × 1 MB | 27.50 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303592900 | $2742
+Xeon Gold 6136 | SR3B2 (H0) | 12 (24) | 3 GHz | 3.6/3.7GHz | 12 × 1 MB | 24.75 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405800 | $2460
+Xeon Gold 6134 | SR3AR (H0) | 8 (16) | 3.2 GHz | 3.7/3.7GHz | 8 × 1 MB | 24.75 MB | 130 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303330302 BX806736134 | $2214 $2220
+Xeon Gold 6134M | SR3AS (H0) | 8 (16) | 3.2 GHz | 3.7/3.7GHz | 8 × 1 MB | 24.75 MB | 130 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303330402 | $5217
+Xeon Gold 6132 | SR3J3 (H0) | 14 (28) | 2.6 GHz | 3.3/3.7GHz | 14 × 1 MB | 19.25 MB | 140 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303592500 | $2111
+Xeon Gold 6130 | SR3B9 (H0) | 16 (32) | 2.1 GHz | 2.8/3.7GHz | 16 × 1 MB | 22.00 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303409000 BX806736130 | $1900
+Xeon Gold 6130F | SR3KD (H0) | 16 (32) | 2.1 GHz | 2.8/3.7GHz | 16 × 1 MB | 22.00 MB | 125 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593300 | $2049
+Xeon Gold 6130T | SR3J8 (H0) | 16 (32) | 2.1 GHz | 2.8/3.7GHz | 16 × 1 MB | 22.00 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593000 | $1988
+Xeon Gold 6128 | SR3J4 (H0) | 6 (12) | 3.4 GHz | 3.7/3.7GHz | 6 × 1 MB | 19.25 MB | 115 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303592600 BX806736128 | $1691 $1697
+Xeon Gold 6126 | SR3B3 (H0) | 12 (24) | 2.6 GHz | 3.3/3.7GHz | 12 × 1 MB | 19.25 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405900 | $1776
+Xeon Gold 6126F | SR3KE (H0) | 12 (24) | 2.6 GHz | 3.3/3.7GHz | 12 × 1 MB | 19.25 MB | 135 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593400 | $1931
+Xeon Gold 6126T | SR3J9 (H0) | 12 (24) | 2.6 GHz | 3.3/3.7GHz | 12 × 1 MB | 19.25 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303593100 | $1865
+Xeon Gold 5122 | SR3AT (H0) | 4 (8) | 3.6 GHz | 3.7/3.7GHz | 4 × 1 MB | 16.50 MB | 105 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303330702 BX806735122 | $1221 $1227
+Xeon Gold 5120 | SR3GD (M0) | 14 (28) | 2.2 GHz | 2.6/3.2GHz | 14 × 1 MB | 19.25 MB | 105 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303535900 BX806735120 | $1555 $1561
+Xeon Gold 5120T | SR3GC (M0) | 14 (28) | 2.2 GHz | 2.6/3.2GHz | 14 × 1 MB | 19.25 MB | 105 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303535700 | $1727
+Xeon Gold 5119T | SR3MN (M0) | 14 (28) | 1.9 GHz | 2.3/3.2GHz | 14 × 1 MB | 19.25 MB | 85 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303567703 | $1555
+Xeon Gold 5118 | SR3GF (M0) | 12 (24) | 2.3 GHz | 2.7/3.2GHz | 12 × 1 MB | 16.50 MB | 105 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303536100 | $1273
+Xeon Gold 5117 | SR37S (M0) | 14 (28) | 2 GHz | 2.3/2.8GHz | 14 × 1 MB | 19.25 MB | 105 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303317801 | $1286
+Xeon Gold 5117F | SR3KM (M0) | 14 (28) | 2 GHz | 2.3/2.8GHz | 14 × 1 MB | 19.25 MB | 113 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303680501 | 
+Xeon Gold 5115 | SR3GB (M0) | 10 (20) | 2.4 GHz | 2.8/3.2GHz | 10 × 1 MB | 13.75 MB | 85 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2400 | 11 July 2017 | CD8067303535601 | $1221
+
+### TABLE 11 rows=20 :: Model sSpec number Cores (threads) Clock rate Turbo Boost all-core/2.0 (/max. 3.0) L2 cache L3 cache TDP Socket I/O bus Memory Release date Part number(s) Release price (USD)
+Model | sSpec number | Cores (threads) | Clock rate | Turbo Boost all-core/2.0 (/max. 3.0) | L2 cache | L3 cache | TDP | Socket | I/O bus | Memory | Release date | Part number(s) | Release price (USD)
+Xeon Platinum 8180 | SR377 (H0) | 28 (56) | 2.5 GHz | 3.2/3.8 GHz | 28 × 1 MB | 38.50 MB | 205 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303314400 | $10,009
+Xeon Platinum 8180M | SR37T (H0) | 28 (56) | 2.5 GHz | 3.2/3.8 GHz | 28 × 1 MB | 38.50 MB | 205 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303192101 | $13,011
+Xeon Platinum 8176 | SR37A (H0) | 28 (56) | 2.1 GHz | 2.8/3.8 GHz | 28 × 1 MB | 38.50 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303314700 | $8790
+Xeon Platinum 8176F | SR3MK (H0) | 28 (56) | 2.1 GHz | 2.8/3.8 GHz | 28 × 1 MB | 38.50 MB | 173 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | Q3, 2017 | CD8067303694600 | $8874
+Xeon Platinum 8176M | SR37U (H0) | 28 (56) | 2.1 GHz | 2.8/3.8 GHz | 28 × 1 MB | 38.50 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303133605 | $11,722
+Xeon Platinum 8173M | SR37Q (H0) | 28 (56) | 2 GHz | 2.7/3.5 GHz | 28 × 1 MB | 38.50 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 2017 | CD8067303172400 | 
+Xeon Platinum 8170 | SR37H (H0) | 26 (52) | 2.1 GHz | 2.8/3.7 GHz | 26 × 1 MB | 35.75 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303327601 BX806738170 | $7405 $7411
+Xeon Platinum 8170M | SR3BD (H0) | 26 (52) | 2.1 GHz | 2.8/3.7 GHz | 26 × 1 MB | 35.75 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303319201 | $10,409
+Xeon Platinum 8168 | SR37J (H0) | 24 (48) | 2.7 GHz | 3.4/3.7 GHz | 24 × 1 MB | 33.00 MB | 205 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303327701 | $5890
+Xeon Platinum 8167M | SR3A0 (H0) | 26 (52) | 2 GHz | 2.4/2.4 GHz | 26 × 1 MB | 35.75 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 2017 | CD8067303180701 | 
+Xeon Platinum 8164 | SR3BB (H0) | 26 (52) | 2 GHz | 2.7/3.7 GHz | 26 × 1 MB | 35.75 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303408800 BX806738164 | $6114 $6120
+Xeon Platinum 8163 | SR3G1 (H0) | 24 (48) | 2.4 GHz | 2.7/3.1 GHz | 24 × 1 MB | 33.00 MB | 165 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 2017 | CD8067303527200 | 
+Xeon Platinum 8160 | SR3B0 (H0) | 24 (48) | 2.1 GHz | 2.8/3.7 GHz | 24 × 1 MB | 33.00 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303405600 BX806738160 | $4702 $4708
+Xeon Platinum 8160F | SR3B8 (H0) | 24 (48) | 2.1 GHz | 2.8/3.7 GHz | 24 × 1 MB | 33.00 MB | 160 W | LGA 3647 | 2 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406600 | $4856
+Xeon Platinum 8160M | SR3B8 (H0) | 24 (48) | 2.1 GHz | 2.8/3.7 GHz | 24 × 1 MB | 33.00 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406600 | $7704
+Xeon Platinum 8160T | SR3J6 (H0) | 24 (48) | 2.1 GHz | 2.8/3.7 GHz | 24 × 1 MB | 33.00 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303592800 | $4936
+Xeon Platinum 8158 | SR3B7 (H0) | 12 (24) | 3 GHz | 2.7/3.7 GHz | 12 × 1 MB | 24.75 MB | 150 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303406500 | $7007
+Xeon Platinum 8156 | SR3AV (H0) | 4 (8) | 3.6 GHz | 3.3/3.7 GHz | 4 × 1 MB | 16.50 MB | 105 W | LGA 3647 | 3 × 10.4 GT/s UPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303368800 | $7007
+Xeon Platinum 8153 | SR3BA (H0) | 16 (32) | 2 GHz | 2.3/2.8 GHz | 16 × 1 MB | 22.00 MB | 125 W | LGA 3647 | 3 × 10.4 GT/s QPI | 6 × DDR4-2666 | 11 July 2017 | CD8067303408900 | $3115
+
+### TABLE 12 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 13 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

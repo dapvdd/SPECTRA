@@ -1,0 +1,340 @@
+### TABLE 0 rows=34 :: A Haswell wafer with several dies, with a pin for scale A Haswell wafer with several dies, with a pin for scale
+A Haswell wafer with several dies, with a pin for scale | A Haswell wafer with several dies, with a pin for scale
+General information | General information
+Launched | June 4, 2013; 13 years ago (June 4, 2013)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | Intel
+CPUID code | 0306C3h
+Product code | 80646 (desktop LGA 1150)80647 (mobile Socket G3)80648 (desktop LGA 2011-3)80644 (server LGA 2011-3)
+Performance | Performance
+Max. CPU clock rate | 800 MHz to 4.4 GHz
+QPI speeds | 9.6 GT/s
+DMI speeds | 4 GT/s
+Physical specifications | Physical specifications
+Cores | 2–4 (mainstream)6–8 (enthusiast)2–18 (Xeon)
+GPUs | HD Graphics 4200HD Graphics 4400HD Graphics 4600HD Graphics 5000Iris 5100Iris Pro 5200
+Sockets | LGA 1150rPGA 947BGA 1364BGA 1168LGA 2011-v3
+Cache | Cache
+L1 cache | 64 KB per core (32 KB instructions + 32 KB data)
+L2 cache | 256 KB per core
+L3 cache | 2–45 MB (shared)
+L4 cache | 128 MB of eDRAM (Iris Pro models only)
+Architecture and classification | Architecture and classification
+Technology node | 22 nm (Tri-Gate)
+Microarchitecture | Haswell
+Instruction set | x86-16, IA-32, x86-64
+Extensions | AES-NI, CLMUL, RDRAND, TXTMMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, FMA3, AVX, AVX2, and TSX (disabled via microcode, except for Haswell-EX)VT-x, VT-d
+Products, models, variants | Products, models, variants
+Models | Haswell-DTHaswell-ULTHaswell-ULXHaswell-HHaswell-MBHaswell-EHaswell-EPHaswell-EX
+Brand name | Core i3Core i5Core i7Xeon E3 v3Xeon E5 v3Xeon E7 v3PentiumCeleron
+History | History
+Predecessors | Sandy Bridge (tock) Ivy Bridge (tick)
+Successors | Broadwell (tick/process) Skylake (tock)
+Support status | Support status
+Unsupported | Unsupported
+
+### TABLE 1 rows=5 :: Cache Cache Page size Page size Page size
+Cache | Cache | Page size | Page size | Page size
+Name | Level | 4 KB | 2 MB | 1 GB
+DTLB | 1st | 64 | 32 | 4
+ITLB | 1st | 128 | 8 / logical core | none
+STLB | 2nd | 1024 | 1024 | none
+
+### TABLE 2 rows=89 :: Target segment Cores (threads) Processor branding and model Processor branding and model GPU model CPU clock rate CPU clock rate GPU clock rate GPU clock rate Cache Cache TDP PCIe 3.0 lane configurations VT-d Release date Release price (USD) Motherboard Motherboard Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | CPU clock rate | CPU clock rate | GPU clock rate | GPU clock rate | Cache | Cache | TDP | PCIe 3.0 lane configurations | VT-d | Release date | Release price (USD) | Motherboard | Motherboard | Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | Base | Turbo | Base | Turbo | L3 | L4 | TDP | PCIe 3.0 lane configurations | VT-d | Release date | Release price (USD) | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Enthusiast / High-End | 8 (16) | Core i7 Extreme | 5960X | —N/a | 3.0 GHz | 3.5 GHz | —N/a | —N/a | 20 MB | —N/a | 140 W | 2×16 + 1×8 | Yes | August 29, 2014 (2014-08-29) | $999 | LGA 2011-v3 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR4-2133
+Enthusiast / High-End | 6 (12) | Core i7 Extreme | 5930K | —N/a | 3.5 GHz | 3.7 GHz | —N/a | —N/a | 15 MB | —N/a | 140 W | 2×16 + 1×8 | Yes | August 29, 2014 (2014-08-29) | $583 | LGA 2011-v3 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR4-2133
+Enthusiast / High-End | 6 (12) | Core i7 Extreme | 5820K | —N/a | 3.3 GHz | 3.6 GHz | —N/a | —N/a | 15 MB | —N/a | 140 W | 1×16 + 1×8 + 1×4 | Yes | August 29, 2014 (2014-08-29) | $389 | LGA 2011-v3 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR4-2133
+Performance | 4 (8) | Core i7 | 4790K | HD 4600 (GT2) | 4.0 GHz | 4.4 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 88 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2014 (2014-06-02) | $339 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4790 | HD 4600 (GT2) | 3.6 GHz | 4.0 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4790S | HD 4600 (GT2) | 3.2 GHz | 4.0 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4790T | HD 4600 (GT2) | 2.7 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 45 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4785T | HD 4600 (GT2) | 2.2 GHz | 3.2 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4771 | HD 4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | September 1, 2013 (2013-09-01) | $320 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770K | HD 4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | No | June 2, 2013 (2013-06-02) | $339 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770 | HD 4600 (GT2) | 3.4 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770S | HD 4600 (GT2) | 3.1 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770R | Iris Pro 5200 (GT3e) | 3.2 GHz | 3.9 GHz | 200 MHz | 1.3 GHz | 6 MB | 128 MB | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $392 | BGA 1364 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770T | HD 4600 (GT2) | 2.5 GHz | 3.7 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 45 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4770TE | HD 4600 (GT2) | 2.3 GHz | 3.3 GHz | 350 MHz | 1 GHz | 8 MB | —N/a | 45 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Performance | 4 (8) | Core i7 | 4765T | HD 4600 (GT2) | 2.0 GHz | 3.0 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $303 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4690K | HD 4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 88 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2014 (2014-06-02) | $242 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4690 | HD 4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4690S | HD 4600 (GT2) | 3.2 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4690T | HD 4600 (GT2) | 2.5 GHz | 3.5 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 45 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4670K | HD 4600 (GT2) | 3.4 GHz | 3.8 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | No | June 2, 2013 (2013-06-02) | $242 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4670 | HD 4600 (GT2) | 3.4 GHz | 3.8 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4670S | HD 4600 (GT2) | 3.1 GHz | 3.8 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4670R | Iris Pro 5200 (GT3e) | 3.0 GHz | 3.7 GHz | 200 MHz | 1.3 GHz | 4 MB | 128 MB | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $310 | BGA 1364 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4670T | HD 4600 (GT2) | 2.3 GHz | 3.3 GHz | 350 MHz | 1.2 GHz | 6 MB | —N/a | 45 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $213 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4590 | HD 4600 (GT2) | 3.3 GHz | 3.7 GHz | 350 MHz | 1.15 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4590S | HD 4600 (GT2) | 3.0 GHz | 3.7 GHz | 350 MHz | 1.15 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4590T | HD 4600 (GT2) | 2.0 GHz | 3.0 GHz | 350 MHz | 1.15 GHz | 6 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4570 | HD 4600 (GT2) | 3.2 GHz | 3.6 GHz | 350 MHz | 1.15 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4570S | HD 4600 (GT2) | 2.9 GHz | 3.6 GHz | 350 MHz | 1.15 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4570R | Iris Pro 5200 (GT3e) | 2.7 GHz | 3.2 GHz | 200 MHz | 1.15 GHz | 4 MB | 128 MB | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $288 | BGA 1364 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i5 | 4570T | HD 4600 (GT2) | 2.9 GHz | 3.6 GHz | 200 MHz | 1.15 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i5 | 4570TE | HD 4600 (GT2) | 2.7 GHz | 3.3 GHz | 350 MHz | 1 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $192 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4460 | HD 4600 (GT2) | 3.2 GHz | 3.4 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4460S | HD 4600 (GT2) | 2.9 GHz | 3.4 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4460T | HD 4600 (GT2) | 1.9 GHz | 2.7 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | Yes | May 11, 2014 (2014-05-11) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4440 | HD 4600 (GT2) | 3.1 GHz | 3.3 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | September 1, 2013 (2013-09-01) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4440S | HD 4600 (GT2) | 2.8 GHz | 3.3 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | September 1, 2013 (2013-09-01) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4430 | HD 4600 (GT2) | 3.0 GHz | 3.2 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 84 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 4 (4) | Core i5 | 4430S | HD 4600 (GT2) | 2.7 GHz | 3.2 GHz | 350 MHz | 1.1 GHz | 6 MB | —N/a | 65 W | 1×16 2×8 1×8 + 2×4 | Yes | June 2, 2013 (2013-06-02) | $182 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4370 | HD 4600 (GT2) | 3.8 GHz | —N/a | 350 MHz | 1.15 GHz | 4 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $149 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4360 | HD 4600 (GT2) | 3.7 GHz | —N/a | 350 MHz | 1.15 GHz | 4 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $149 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4350 | HD 4600 (GT2) | 3.6 GHz | —N/a | 350 MHz | 1.15 GHz | 4 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4340 | HD 4600 (GT2) | 3.6 GHz | —N/a | 350 MHz | 1.15 GHz | 4 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $149 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4330 | HD 4600 (GT2) | 3.5 GHz | —N/a | 350 MHz | 1.15 GHz | 4 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4370T | HD 4600 (GT2) | 3.3 GHz | —N/a | 200 MHz | 1.15 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4360T | HD 4600 (GT2) | 3.2 GHz | —N/a | 200 MHz | 1.15 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4350T | HD 4600 (GT2) | 3.1 GHz | —N/a | 200 MHz | 1.15 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4330T | HD 4600 (GT2) | 3.0 GHz | —N/a | 200 MHz | 1.15 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4340TE | HD 4600 (GT2) | 2.6 GHz | —N/a | 350 MHz | 1 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $138 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4330TE | HD 4600 (GT2) | 2.4 GHz | —N/a | 350 MHz | 1 GHz | 4 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $122 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4170 | HD 4400 (GT2) | 3.7 GHz | —N/a | 350 MHz | 1.15 GHz | 3 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4160 | HD 4400 (GT2) | 3.6 GHz | —N/a | 350 MHz | 1.15 GHz | 3 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4150 | HD 4400 (GT2) | 3.5 GHz | —N/a | 350 MHz | 1.15 GHz | 3 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4130 | HD 4400 (GT2) | 3.4 GHz | —N/a | 350 MHz | 1.15 GHz | 3 MB | —N/a | 54 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $122 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4170T | HD 4400 (GT2) | 3.2 GHz | —N/a | 200 MHz | 1.15 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4160T | HD 4400 (GT2) | 3.1 GHz | —N/a | 200 MHz | 1.15 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4150T | HD 4400 (GT2) | 3.0 GHz | —N/a | 200 MHz | 1.15 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $117 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Mainstream | 2 (4) | Core i3 | 4130T | HD 4400 (GT2) | 2.9 GHz | —N/a | 200 MHz | 1.15 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | September 1, 2013 (2013-09-01) | $122 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3470 | HD Graphics (GT1) | 3.6 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $86 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3460 | HD Graphics (GT1) | 3.5 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $86 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3450 | HD Graphics (GT1) | 3.4 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $86 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3440 | HD Graphics (GT1) | 3.3 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3430 | HD Graphics (GT1) | 3.3 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $86 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3420 | HD Graphics (GT1) | 3.2 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3460T | HD Graphics (GT1) | 3.0 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3450T | HD Graphics (GT1) | 2.9 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3440T | HD Graphics (GT1) | 2.8 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3420T | HD Graphics (GT1) | 2.7 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Budget | 2 (2) | Pentium | G3320TE | HD Graphics (GT1) | 2.3 GHz | —N/a | 350 MHz | 1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $75 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3260 | HD Graphics (GT1) | 3.3 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3258 | HD Graphics (GT1) | 3.2 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | June 2, 2014 (2014-06-02) | $72 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3250 | HD Graphics (GT1) | 3.2 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3240 | HD Graphics (GT1) | 3.1 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3220 | HD Graphics (GT1) | 3.0 GHz | —N/a | 350 MHz | 1.1 GHz | 3 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3260T | HD Graphics (GT1) | 2.9 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | March 30, 2015 (2015-03-30) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3250T | HD Graphics (GT1) | 2.8 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | July 20, 2014 (2014-07-20) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3240T | HD Graphics (GT1) | 2.7 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Pentium | G3220T | HD Graphics (GT1) | 2.6 GHz | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $64 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1850 | HD Graphics (GT1) | 2.9 GHz | —N/a | 350 MHz | 1.05 GHz | 2 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $52 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1840 | HD Graphics (GT1) | 2.8 GHz | —N/a | 350 MHz | 1.05 GHz | 2 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $42 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1830 | HD Graphics (GT1) | 2.8 GHz | —N/a | 350 MHz | 1.05 GHz | 2 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $52 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1820 | HD Graphics (GT1) | 2.7 GHz | —N/a | 350 MHz | 1.05 GHz | 2 MB | —N/a | 53 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $42 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1840T | HD Graphics (GT1) | 2.5 GHz | —N/a | 200 MHz | 1.05 GHz | 2 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | May 11, 2014 (2014-05-11) | $42 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1820T | HD Graphics (GT1) | 2.4 GHz | —N/a | 200 MHz | 1.05 GHz | 2 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $42 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+Budget | 2 (2) | Celeron | G1820TE | HD Graphics (GT1) | 2.2 GHz | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | 35 W | 1×16 2×8 1×8 + 2×4 | No | December 1, 2013 (2013-12-01) | $42 | LGA 1150 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1333
+
+### TABLE 3 rows=15 :: Target segment Cores (threads) Processor branding and model Processor branding and model CPU clock rate CPU clock rate L3 cache TDP Release date Release price (USD) Motherboard Motherboard Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | CPU clock rate | CPU clock rate | L3 cache | TDP | Release date | Release price (USD) | Motherboard | Motherboard | Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | Normal | Turbo | L3 cache | TDP | Release date | Release price (USD) | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  | 
+Server | 4 (8) | Xeon E7 v3 | E7-8893v3 | 3.2 GHz | 3.5 GHz | 45 MB | 140 W | May 2015 | $6,841 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 10 (20) | Xeon E7 v3 | E7-8891v3 | 2.8 GHz | 3.5 GHz | 45 MB | 165 W | May 2015 | $6,841 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 18 (36) | Xeon E7 v3 | E7-8890v3 | 2.5 GHz | 3.3 GHz | 45 MB | 165 W | May 2015 | $7,174 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 18 (36) | Xeon E7 v3 | E7-8880v3 | 2.3 GHz | 3.1 GHz | 45 MB | 150 W | May 2015 | $5,895 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 18 (36) | Xeon E7 v3 | E7-8880Lv3 | 2.0 GHz | 2.8 GHz | 45 MB | 115 W | May 2015 | $6,063 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 18 (36) | Xeon E7 v3 | E7-8870v3 | 2.1 GHz | 2.9 GHz | 45 MB | 140 W | May 2015 | $4,672 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 16 (32) | Xeon E7 v3 | E7-8867v3 | 2.5 GHz | 3.3 GHz | 45 MB | 165 W | May 2015 | $4,672 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 16 (32) | Xeon E7 v3 | E7-8860v3 | 2.2 GHz | 3.2 GHz | 40 MB | 165 W | May 2015 | $4,061 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 14 (28) | Xeon E7 v3 | E7-4850v3 | 2.2 GHz | 2.8 GHz | 35 MB | 115 W | May 2015 | $3,003 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 12 (24) | Xeon E7 v3 | E7-4830v3 | 2.1 GHz | 2.7 GHz | 30 MB | 115 W | May 2015 | $2,170 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 10 (20) | Xeon E7 v3 | E7-4820v3 | 1.9 GHz | —N/a | 25 MB | 115 W | May 2015 | $1,502 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+Server | 8 (16) | Xeon E7 v3 | E7-4809v3 | 2.0 GHz | —N/a | 25 MB | 115 W | May 2015 | $1,502 | LGA 2011-1 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | Up to DDR4-1866 or DDR3-1600
+
+### TABLE 4 rows=39 :: Target segment Cores (threads) Processor branding and model Processor branding and model CPU clock rate CPU clock rate CPU AVX clock rate CPU AVX clock rate L3 cache TDP Release date Release price (USD) tray / box Motherboard Motherboard Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | CPU clock rate | CPU clock rate | CPU AVX clock rate | CPU AVX clock rate | L3 cache | TDP | Release date | Release price (USD) tray / box | Motherboard | Motherboard | Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | Normal | Turbo | Normal | Turbo | L3 cache | TDP | Release date | Release price (USD) tray / box | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Server | 18 (36) | Xeon E5 v3 | 2699v3 | 2.3 GHz | 3.6 GHz | 1.9 GHz | 3.3 GHz | 45 MB | 145 W | September 9, 2014 (2014-09-09) | —N/a | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 16 (32) | Xeon E5 v3 | 2698v3 | 2.3 GHz | 3.6 GHz | 1.9 GHz | 3.3 GHz | 40 MB | 135 W | September 9, 2014 (2014-09-09) | —N/a | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 16 (32) | Xeon E5 v3 | 2698Av3 | 2.8 GHz | 3.2 GHz | 2.3 GHz | 2.9 GHz | 40 MB | 165 W | November 2014 | OEM | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 14 (28) | Xeon E5 v3 | 2697v3 | 2.6 GHz | 3.6 GHz | 2.2 GHz | 3.3 GHz | 35 MB | 145 W | September 9, 2014 (2014-09-09) | $2,702 / $2,706 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 14 (28) | Xeon E5 v3 | 2695v3 | 2.3 GHz | 3.3 GHz | 1.9 GHz | 3.0 GHz | 35 MB | 120 W | September 9, 2014 (2014-09-09) | $2,424 / $2,428 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2690v3 | 2.6 GHz | 3.5 GHz | 2.3 GHz | 3.2 GHz | 30 MB | 135 W | September 9, 2014 (2014-09-09) | $2,090 / $2,094 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 14 (28) | Xeon E5 v3 | 2683v3 | 2.0 GHz | 3.0 GHz | 1.7 GHz | 2.7 GHz | 35 MB | 120 W | September 9, 2014 (2014-09-09) | $1,846 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2680v3 | 2.5 GHz | 3.3 GHz | 2.1 GHz | 3.1 GHz | 30 MB | 120 W | September 9, 2014 (2014-09-09) | $1,745 / $1,749 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2673v3 | 2.4 GHz | 3.1 GHz |  |  | 30 MB | 105 W | September 9, 2014 (2014-09-09) |  | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2670v3 | 2.3 GHz | 3.1 GHz | 2.0 GHz | 2.9 GHz | 30 MB | 120 W | September 9, 2014 (2014-09-09) | $1,589 / $1,593 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 8 (16) | Xeon E5 v3 | 2667v3 | 3.2 GHz | 3.6 GHz | 2.7 GHz | 3.5 GHz | 20 MB | 135 W | September 9, 2014 (2014-09-09) | $2,057 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 10 (20) | Xeon E5 v3 | 2660v3 | 2.6 GHz | 3.3 GHz | 2.2 GHz | 3.1 GHz | 25 MB | 105 W | September 9, 2014 (2014-09-09) | $1,445 / $1,449 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2650Lv3 | 1.8 GHz | 2.5 GHz | 1.5 GHz | 2.3 GHz | 30 MB | 65 W | September 9, 2014 (2014-09-09) | $1,329 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2658v3 | 2.2 GHz | 2.9 GHz | 1.9 GHz | 3.0 GHz | 30 MB | 105 W | September 9, 2014 (2014-09-09) | $1,832 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 10 (20) | Xeon E5 v3 | 2650v3 | 2.3 GHz | 3.0 GHz | 2.0 GHz | 2.8 GHz | 25 MB | 105 W | September 9, 2014 (2014-09-09) | $1,166 / $1,171 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 12 (24) | Xeon E5 v3 | 2648Lv3 | 1.8 GHz | 2.5 GHz | 1.5 GHz | 2.2 GHz | 30 MB | 75 W | September 9, 2014 (2014-09-09) | $1,544 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 6 (12) | Xeon E5 v3 | 2643v3 | 3.4 GHz | 3.7 GHz | 2.8 GHz | 3.6 GHz | 20 MB | 135 W | September 9, 2014 (2014-09-09) | $1,552 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 8 (16) | Xeon E5 v3 | 2640v3 | 2.6 GHz | 3.4 GHz | 2.2 GHz | 3.4 GHz | 20 MB | 90 W | September 9, 2014 (2014-09-09) | $939 / $944 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 4 (8) | Xeon E5 v3 | 2637v3 | 3.5 GHz | 3.7 GHz | 3.2 GHz | 3.6 GHz | 15 MB | 135 W | September 9, 2014 (2014-09-09) | $996 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Server | 8 (16) | Xeon E5 v3 | 2630v3 | 2.4 GHz | 3.2 GHz | 2.1 GHz | 3.2 GHz | 20 MB | 85 W | September 9, 2014 (2014-09-09) | $667 / $671 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 8 (16) | Xeon E5 v3 | 2630Lv3 | 1.8 GHz | 2.9 GHz | 1.5 GHz | 2.9 GHz | 20 MB | 55 W | September 9, 2014 (2014-09-09) | $612 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 10 (20) | Xeon E5 v3 | 2628Lv3 | 2.0 GHz | 2.5 GHz | 1.7 GHz | 2.4 GHz | 25 MB | 75 W | September 9, 2014 (2014-09-09) | $1,364 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 4 (8) | Xeon E5 v3 | 2623v3 | 3.0 GHz | 3.5 GHz | 2.7 GHz | 3.5 GHz | 10 MB | 105 W | September 9, 2014 (2014-09-09) | $444 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 6 (12) | Xeon E5 v3 | 2620v3 | 2.4 GHz | 3.2 GHz | 2.1 GHz | 3.2 GHz | 15 MB | 85 W | September 9, 2014 (2014-09-09) | $417 / $422 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 8 (16) | Xeon E5 v3 | 2618Lv3 | 2.3 GHz | 3.4 GHz | 1.9 GHz | 3.4 GHz | 20 MB | 75 W | September 9, 2014 (2014-09-09) | $779 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 6 (6) | Xeon E5 v3 | 2609v3 | 1.9 GHz | —N/a | 1.9 GHz | —N/a | 15 MB | 85 W | September 9, 2014 (2014-09-09) | $306 / $306 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1600
+Server | 6 (12) | Xeon E5 v3 | 2608Lv3 | 2.0 GHz | —N/a | 1.7 GHz | —N/a | 15 MB | 52 W | September 9, 2014 (2014-09-09) | $441 / — | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Server | 6 (6) | Xeon E5 v3 | 2603v3 | 1.6 GHz | —N/a | 1.3 GHz | —N/a | 15 MB | 85 W | September 9, 2014 (2014-09-09) | $213 / $217 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-1600
+Workstation | 10 (20) | Xeon E5 v3 | 2687Wv3 | 3.1 GHz | 3.5 GHz | 2.7 GHz | 3.5 GHz | 25 MB | 160 W | September 9, 2014 (2014-09-09) | $2,141 / $2,145 | LGA 2011-3 | QPI (up to 9.6 GT/s) DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 8 (16) | Xeon E5 v3 | 1680v3 | 3.2 GHz | 3.8 GHz | 2.9 GHz | 3.4 GHz | 20 MB | 140 W | September 9, 2014 (2014-09-09) | $1,723 / — | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 8 (16) | Xeon E5 v3 | 1660v3 | 3.0 GHz | 3.5 GHz | 2.7 GHz | 3.5 GHz | 20 MB | 140 W | September 9, 2014 (2014-09-09) | $1,080 / — | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 6 (12) | Xeon E5 v3 | 1650v3 | 3.5 GHz | 3.8 GHz | 3.2 GHz | 3.7 GHz | 15 MB | 140 W | September 9, 2014 (2014-09-09) | $583 / $586 | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 4 (8) | Xeon E5 v3 | 1630v3 | 3.7 GHz | 3.8 GHz | 3.4 GHz | 3.7 GHz | 10 MB | 140 W | September 9, 2014 (2014-09-09) | $372 / — | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 4 (8) | Xeon E5 v3 | 1620v3 | 3.5 GHz | 3.6 GHz | 3.2 GHz | 3.5 GHz | 10 MB | 140 W | September 9, 2014 (2014-09-09) | $294 / $297 | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-2133
+Workstation | 4 (4) | Xeon E5 v3 | 1607v3 | 3.1 GHz | —N/a | 2.8 GHz | —N/a | 10 MB | 140 W | September 9, 2014 (2014-09-09) | $255 / — | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-1866
+Workstation | 4 (4) | Xeon E5 v3 | 1603v3 | 2.8 GHz | —N/a | 2.5 GHz | —N/a | 10 MB | 140 W | September 9, 2014 (2014-09-09) | $202 / — | LGA 2011-3 | DMI 2.0 PCIe 3.0 | up to DDR4-1866
+
+### TABLE 5 rows=29 :: Target segment Cores (threads) Processor branding and model Processor branding and model GPU model CPU clock rate CPU clock rate Graphics clock rate Graphics clock rate L3 cache GPU eDRAM TDP Release date Release price (USD) tray / box Motherboard Motherboard Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | CPU clock rate | CPU clock rate | Graphics clock rate | Graphics clock rate | L3 cache | GPU eDRAM | TDP | Release date | Release price (USD) tray / box | Motherboard | Motherboard | Motherboard
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | Normal | Turbo | Normal | Turbo | L3 cache | GPU eDRAM | TDP | Release date | Release price (USD) tray / box | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Server | 4 (8) | Xeon E3 v3 | 1286v3 | HD P4700 (GT2) | 3.7 GHz | 4.1 GHz | 350 MHz | 1.3 GHz | 8 MB | —N/a | 84 W | May 11, 2014 (2014-05-11) | $662 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1286Lv3 | HD P4700 (GT2) | 3.2 GHz | 4.0 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 65 W | May 11, 2014 (2014-05-11) | $774 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1285v3 | HD P4700 (GT2) | 3.6 GHz | 4.0 GHz | 350 MHz | 1.3 GHz | 8 MB | —N/a | 84 W | June 2, 2013 (2013-06-02) | $662 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1285Lv3 | HD P4700 (GT2) | 3.1 GHz | 3.9 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 65 W | June 2, 2013 (2013-06-02) | $774 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1284Lv3 | Iris Pro 5200 (GT3e) | 1.8 GHz | 3.2 GHz | 750 MHz | 1 GHz | 6 MB | 128 MB | 47 W | February 18, 2014 (2014-02-18) | OEM | BGA 1364 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1281v3 | —N/a | 3.7 GHz | 4.1 GHz | —N/a | —N/a | 8 MB | —N/a | 82 W | May 11, 2014 (2014-05-11) | $612 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1280v3 | —N/a | 3.6 GHz | 4.0 GHz | —N/a | —N/a | 8 MB | —N/a | 82 W | June 2, 2013 (2013-06-02) | $612 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1276v3 | HD P4600 (GT2) | 3.6 GHz | 4.0 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 84 W | May 11, 2014 (2014-05-11) | $339 / $350 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1275v3 | HD P4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.25 GHz | 8 MB | —N/a | 84 W | June 2, 2013 (2013-06-02) | $339 / $350 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1275Lv3 | HD (GT1) | 2.7 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 45 W | May 11, 2014 (2014-05-11) | $328 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1271v3 | —N/a | 3.6 GHz | 4.0 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | May 11, 2014 (2014-05-11) | $328 / $339 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1270v3 | —N/a | 3.5 GHz | 3.9 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | June 2, 2013 (2013-06-02) | $328 / $339 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1268Lv3 | HD P4600 (GT2) | 2.3 GHz | 3.3 GHz | 350 MHz | 1 GHz | 8 MB | —N/a | 45 W | June 2, 2013 (2013-06-02) | $310 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1265Lv3 | HD (GT1) | 2.5 GHz | 3.7 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 45 W | June 2, 2013 (2013-06-02) | $294 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1246v3 | HD P4600 (GT2) | 3.5 GHz | 3.9 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | May 11, 2014 (2014-05-11) | $276 / $287 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1245v3 | HD P4600 (GT2) | 3.4 GHz | 3.8 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | June 2, 2013 (2013-06-02) | $276 / $287 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1241v3 | —N/a | 3.5 GHz | 3.9 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | May 11, 2014 (2014-05-11) | $262 / $273 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1240v3 | —N/a | 3.4 GHz | 3.8 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | June 2, 2013 (2013-06-02) | $262 / $273 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1240Lv3 | —N/a | 2.0 GHz | 3.0 GHz | —N/a | —N/a | 8 MB | —N/a | 25 W | May 11, 2014 (2014-05-11) | $278 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1231v3 | —N/a | 3.4 GHz | 3.8 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | May 11, 2014 (2014-05-11) | $240 / $250 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1230v3 | —N/a | 3.3 GHz | 3.7 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | June 2, 2013 (2013-06-02) | $240 / $250 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (8) | Xeon E3 v3 | 1230Lv3 | —N/a | 1.8 GHz | 2.8 GHz | —N/a | —N/a | 8 MB | —N/a | 25 W | June 2, 2013 (2013-06-02) | $250 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (4) | Xeon E3 v3 | 1226v3 | HD P4600 (GT2) | 3.3 GHz | 3.7 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | May 11, 2014 (2014-05-11) | $213 / $224 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (4) | Xeon E3 v3 | 1225v3 | HD P4600 (GT2) | 3.2 GHz | 3.6 GHz | 350 MHz | 1.2 GHz | 8 MB | —N/a | 84 W | June 2, 2013 (2013-06-02) | $213 / $224 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 4 (4) | Xeon E3 v3 | 1220v3 | —N/a | 3.1 GHz | 3.5 GHz | —N/a | —N/a | 8 MB | —N/a | 80 W | June 2, 2013 (2013-06-02) | $193 / $203 | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+Server | 2 (4) | Xeon E3 v3 | 1220Lv3 | —N/a | 1.1 GHz | 1.5 GHz | —N/a | —N/a | 4 MB | —N/a | 13 W | September 1, 2013 (2013-09-01) | $193 / — | LGA 1150 | DMI 2.0 PCIe 3.0 | up to dual channel DDR3-1600 with ECC
+
+### TABLE 6 rows=104 :: Target segment Cores (threads) Processor branding and model Processor branding and model GPU model Programmable TDP Programmable TDP Programmable TDP Programmable TDP CPU Turbo (single core) GPU clock rate GPU clock rate L3 cache GPUeDRAM Release date Release price (USD)
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | Programmable TDP | Programmable TDP | Programmable TDP | Programmable TDP | CPU Turbo (single core) | GPU clock rate | GPU clock rate | L3 cache | GPUeDRAM | Release date | Release price (USD)
+Target segment | Cores (threads) | Processor branding and model | Processor branding and model | GPU model | SDP | cTDP down | Nominal TDP | cTDP up | CPU Turbo (single core) | Base | Turbo | L3 cache | GPUeDRAM | Release date | Release price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Performance | 4 (8) | Core i7 | 4940MX | HD 4600 (GT2) | —N/a | —N/a | 57 W / 3.1 GHz | 65 W / 3.8 GHz | 4.0 GHz | 400 MHz | 1.35 GHz | 8 MB | —N/a | January 21, 2014 | $1096
+Performance | 4 (8) | Core i7 | 4930MX | HD 4600 (GT2) | —N/a | —N/a | 57 W / 3.0 GHz | 65 W / 3.7 GHz | 3.9 GHz | 400 MHz | 1.35 GHz | 8 MB | —N/a | June 2, 2013 | $1096
+Performance | 4 (8) | Core i7 | 4980HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.8 GHz | —N/a | 4.0 GHz | 200 MHz | 1.3 GHz | 6 MB | 128 MB | July 21, 2014 | $623
+Performance | 4 (8) | Core i7 | 4960HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.6 GHz | 55 W / 3.6 GHz | 3.8 GHz | 200 MHz | 1.3 GHz | 6 MB | 128 MB | September 1, 2013 | $623
+Performance | 4 (8) | Core i7 | 4950HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.4 GHz | 3.6 GHz | 200 MHz | 1.3 GHz | 6 MB | 128 MB | June 2, 2013 | $623
+Performance | 4 (8) | Core i7 | 4910MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.9 GHz | 55 W / 3.7 GHz | 3.9 GHz | 400 MHz | 1.3 GHz | 8 MB | —N/a | January 21, 2014 | $568
+Performance | 4 (8) | Core i7 | 4900MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.8 GHz | 55 W / 3.6 GHz | 3.8 GHz | 400 MHz | 1.3 GHz | 8 MB | —N/a | June 2, 2013 | $570
+Performance | 4 (8) | Core i7 | 4870HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.5 GHz | —N/a | 3.7 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | July 21, 2014 | $434
+Performance | 4 (8) | Core i7 | 4860EQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 1.8 GHz | —N/a | 3.2 GHz | 750 MHz | 1 GHz | 6 MB | 128 MB | August 2013 | $508
+Performance | 4 (8) | Core i7 | 4860HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.4 GHz | 3.6 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | January 21, 2014 | $434
+Performance | 4 (8) | Core i7 | 4850EQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 1.6 GHz | —N/a | 3.2 GHz | 650 MHz | 1 GHz | 6 MB | 128 MB | August 2013 | $466
+Performance | 4 (8) | Core i7 | 4850HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.3 GHz | 55 W / 3.3 GHz | 3.5 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | June 2, 2013 | $434
+Performance | 4 (8) | Core i7 | 4810MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.8 GHz | 55 W / 3.6 GHz | 3.8 GHz | 400 MHz | 1.3 GHz | 6 MB | —N/a | January 21, 2014 | $378
+Performance | 4 (8) | Core i7 | 4800MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.7 GHz | 55 W / 3.5 GHz | 3.7 GHz | 400 MHz | 1.3 GHz | 6 MB | —N/a | June 2, 2013 | $380
+Performance | 4 (8) | Core i7 | 4770HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.2 GHz |  | 3.4 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | July 21, 2014 | $434
+Performance | 4 (8) | Core i7 | 4760HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.1 GHz | 55 W / 3.1 GHz | 3.3 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | April 14, 2014 | $434
+Performance | 4 (8) | Core i7 | 4750HQ | Iris Pro 5200 (GT3e) | —N/a | —N/a | 47 W / 2.0 GHz | 55 W / 3.0 GHz | 3.2 GHz | 200 MHz | 1.2 GHz | 6 MB | 128 MB | June 2, 2013 | $440
+Performance | 4 (8) | Core i7 | 4720HQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.6 GHz | —N/a | 3.6 GHz | 400 MHz | 1.2 GHz | 6 MB | —N/a | January 2015 | $378
+Performance | 4 (8) | Core i7 | 4712MQ | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.3 GHz | 45 W / 3.1 GHz | 3.3 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | April 14, 2014 | $378
+Performance | 4 (8) | Core i7 | 4712HQ | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.3 GHz | 45 W / 3.1 GHz | 3.3 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | April 14, 2014 | $378
+Performance | 4 (8) | Core i7 | 4710MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.5 GHz | 55 W / 3.3 GHz | 3.5 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | April 14, 2014 | $378
+Performance | 4 (8) | Core i7 | 4710HQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.5 GHz | 55 W / 3.3 GHz | 3.5 GHz | 400 MHz | 1.2 GHz | 6 MB | —N/a | April 14, 2014 | $378
+Performance | 4 (8) | Core i7 | 4702MQ | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.2 GHz | 45 W / 2.9 GHz | 3.2 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | June 2, 2013 | $383
+Performance | 4 (8) | Core i7 | 4702HQ | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.2 GHz | 45 W / 2.9 GHz | 3.2 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | June 2, 2013 | $383
+Performance | 4 (8) | Core i7 | 4700MQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.2 GHz | 3.4 GHz | 400 MHz | 1.15 GHz | 6 MB | —N/a | June 2, 2013 | $383
+Performance | 4 (8) | Core i7 | 4700HQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.2 GHz | 3.4 GHz | 400 MHz | 1.2 GHz | 6 MB | —N/a | June 2, 2013 | $383
+Performance | 4 (8) | Core i7 | 4701EQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.2 GHz | 3.4 GHz | 400 MHz | 1 GHz | 6 MB | —N/a | September 1, 2013 | $415
+Performance | 4 (8) | Core i7 | 4700EQ | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.4 GHz | 55 W / 3.2 GHz | 3.4 GHz | 400 MHz | 1 GHz | 6 MB | —N/a | June 2, 2013 | $378
+Performance | 4 (8) | Core i7 | 4702EC | —N/a | —N/a | —N/a | 27 W / 2.0 GHz | —N/a | —N/a | —N/a | —N/a | 8 MB | —N/a | April 2014 | $459
+Performance | 4 (8) | Core i7 | 4700EC | —N/a | —N/a | 43 W / 2.7 GHz | —N/a | —N/a | —N/a | —N/a | —N/a | 8 MB | —N/a | April 2014 | $459
+Mainstream | 2 (4) | Core i7 | 4650U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.7 GHz | —N/a | 3.3 GHz | 200 MHz | 1.1 GHz | 4 MB | —N/a | June 2, 2013 | $454
+Mainstream | 2 (4) | Core i7 | 4610Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.7 GHz | —N/a | 2.9 GHz | 200 MHz | 850 MHz | 4 MB | —N/a | September 1, 2013 | $393
+Mainstream | 2 (4) | Core i7 | 4610M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 3.0 GHz | —N/a | 3.7 GHz | 400 MHz | 1.3 GHz | 4 MB | —N/a | January 21, 2014 | $346
+Mainstream | 2 (4) | Core i7 | 4600M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.9 GHz | —N/a | 3.6 GHz | 400 MHz | 1.3 GHz | 4 MB | —N/a | September 1, 2013 | $346
+Mainstream | 2 (4) | Core i7 | 4600U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 2.1 GHz | —N/a | 3.3 GHz | 200 MHz | 1.1 GHz | 4 MB | —N/a | September 1, 2013 | $398
+Mainstream | 2 (4) | Core i7 | 4578U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 3.0 GHz | —N/a | 3.5 GHz | 200 MHz | 1.2 GHz | 4 MB | —N/a | July 20, 2014 | —N/a
+Mainstream | 2 (4) | Core i7 | 4558U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 2.8 GHz | —N/a | 3.3 GHz | 200 MHz | 1.2 GHz | 4 MB | —N/a | June 2, 2013 | $454
+Mainstream | 2 (4) | Core i7 | 4550U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.5 GHz | —N/a | 3.0 GHz | 200 MHz | 1.1 GHz | 4 MB | —N/a | June 2, 2013 | $454
+Mainstream | 2 (4) | Core i7 | 4510U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 2.0 GHz | —N/a | 3.1 GHz | 200 MHz | 1.1 GHz | 4 MB | —N/a | April 2014 | $393
+Mainstream | 2 (4) | Core i7 | 4500U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.8 GHz | 25 W / 3.0 GHz | 3.0 GHz | 200 MHz | 1.1 GHz | 4 MB | —N/a | June 2, 2013 | $398
+Mainstream | 2 (4) | Core i5 | 4402EC | —N/a | —N/a | —N/a | 27 W / 2.5 GHz | —N/a | —N/a | —N/a | —N/a | 4 MB | —N/a | April 2014 | $324
+Mainstream | 2 (4) | Core i5 | 4422E | HD 4600 (GT2) | —N/a | —N/a | 25 W / 1.8 GHz | —N/a | 2.9 GHz | 400 MHz | 900 MHz | 3 MB | —N/a | April 14, 2014 | $266
+Mainstream | 2 (4) | Core i5 | 4410E | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.9 GHz | —N/a | —N/a | 400 MHz | 1 GHz | 3 MB | —N/a | April 14, 2014 | $266
+Mainstream | 2 (4) | Core i5 | 4402E | HD 4600 (GT2) | —N/a | —N/a | 25 W / 1.6 GHz | —N/a | 2.7 GHz | 400 MHz | 900 MHz | 3 MB | —N/a | September 1, 2013 | $266
+Mainstream | 2 (4) | Core i5 | 4400E | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.7 GHz | —N/a | 3.3 GHz | 400 MHz | 1 GHz | 3 MB | —N/a | September 1, 2013 | $266
+Mainstream | 2 (4) | Core i5 | 4360U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.5 GHz | —N/a | 3.0 GHz | 200 MHz | 1.1 GHz | 3 MB | —N/a | January 21, 2014 | $315
+Mainstream | 2 (4) | Core i5 | 4350U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.4 GHz | —N/a | 2.9 GHz | 200 MHz | 1.1 GHz | 3 MB | —N/a | June 2, 2013 | $342
+Mainstream | 2 (4) | Core i5 | 4340M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.9 GHz | —N/a | 3.6 GHz | 400 MHz | 1.25 GHz | 3 MB | —N/a | January 21, 2014 | $266
+Mainstream | 2 (4) | Core i5 | 4330M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.8 GHz | —N/a | 3.5 GHz | 400 MHz | 1.25 GHz | 3 MB | —N/a | September 1, 2013 | $266
+Mainstream | 2 (4) | Core i5 | 4310M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.7 GHz | —N/a | 3.4 GHz | 400 MHz | 1.25 GHz | 3 MB | —N/a | January 21, 2014 | $225
+Mainstream | 2 (4) | Core i5 | 4310U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 2.0 GHz | —N/a | 3.0 GHz | 200 MHz | 1.1 GHz | 3 MB | —N/a | January 21, 2014 | $281
+Mainstream | 2 (4) | Core i5 | 4302Y | HD 4200 (GT2) | —N/a | 4.5 W / 800 MHz | 11.5 W / 1.6 GHz | —N/a | 2.3 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | —N/a
+Mainstream | 2 (4) | Core i5 | 4300Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.6 GHz | —N/a | 2.3 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | $304
+Mainstream | 2 (4) | Core i5 | 4300M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.6 GHz | —N/a | 3.3 GHz | 400 MHz | 1.25 GHz | 3 MB | —N/a | September 1, 2013 | $225
+Mainstream | 2 (4) | Core i5 | 4300U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.9 GHz | —N/a | 2.9 GHz | 200 MHz | 1.1 GHz | 3 MB | —N/a | September 1, 2013 | $287
+Mainstream | 2 (4) | Core i5 | 4288U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 2.6 GHz | —N/a | 3.1 GHz | 200 MHz | 1.2 GHz | 3 MB | —N/a | June 2, 2013 | $342
+Mainstream | 2 (4) | Core i5 | 4258U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 2.4 GHz | —N/a | 2.9 GHz | 200 MHz | 1.1 GHz | 3 MB | —N/a | June 2, 2013 | $342
+Mainstream | 2 (4) | Core i5 | 4308U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 2.8 GHz | —N/a | 3.3 GHz | 200 MHz | 1.2 GHz | 3 MB | —N/a | July 20, 2014 | $315
+Mainstream | 2 (4) | Core i5 | 4260U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.4 GHz | —N/a | 2.7 GHz | 200 MHz | 1 GHz | 3 MB | —N/a | April 14, 2014 | $315
+Mainstream | 2 (4) | Core i5 | 4250U | HD 5000 (GT3) | —N/a | 11.5 W / 800 MHz | 15 W / 1.3 GHz | —N/a | 2.6 GHz | 200 MHz | 1 GHz | 3 MB | —N/a | June 2, 2013 | $342
+Mainstream | 2 (4) | Core i5 | 4210H | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.9 GHz | —N/a | 3.5 GHz | 400 MHz | 1.15 GHz | 3 MB | —N/a | July 20, 2014 | $225
+Mainstream | 2 (4) | Core i5 | 4210M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.6 GHz | —N/a | 3.2 GHz | 400 MHz | 1.15 GHz | 3 MB | —N/a | April 14, 2014 | $225
+Mainstream | 2 (4) | Core i5 | 4210U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.7 GHz | —N/a | 2.7 GHz | 200 MHz | 1 GHz | 3 MB | —N/a | April 14, 2014 | $287
+Mainstream | 2 (4) | Core i5 | 4220Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.6 GHz | —N/a | 2.0 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | April 14, 2014 | $281
+Mainstream | 2 (4) | Core i5 | 4210Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.5 GHz | —N/a | 1.9 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | $304
+Mainstream | 2 (4) | Core i5 | 4202Y | HD 4200 (GT2) | 4.5 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.6 GHz | —N/a | 2.0 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | —N/a
+Mainstream | 2 (4) | Core i5 | 4200Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.4 GHz | —N/a | 1.9 GHz | 200 MHz | 850 MHz | 3 MB | —N/a | June 2, 2013 | $304
+Mainstream | 2 (4) | Core i5 | 4200U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.6 GHz | 25 W / ? | 2.6 GHz | 200 MHz | 1 GHz | 3 MB | —N/a | June 2, 2013 | $287
+Mainstream | 2 (4) | Core i5 | 4200H | HD 4600 (GT2) | —N/a | —N/a | 47 W / 2.8 GHz | —N/a | 3.4 GHz | 400 MHz | 1.15 GHz | 3 MB | —N/a | September 1, 2013 | $257
+Mainstream | 2 (4) | Core i5 | 4200M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.5 GHz | —N/a | 3.1 GHz | 400 MHz | 1.15 GHz | 3 MB | —N/a | September 1, 2013 | $240
+Mainstream | 2 (4) | Core i3 | 4158U | Iris 5100 (GT3) | —N/a | 23 W / 800 MHz | 28 W / 2.0 GHz | —N/a | —N/a | 200 MHz | 1.1 GHz | 3 MB | —N/a | June 2, 2013 | $342
+Mainstream | 2 (4) | Core i3 | 4120U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 2.0 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 3 MB | —N/a | April 14, 2014 | $281
+Mainstream | 2 (4) | Core i3 | 4112E | HD 4600 (GT2) | —N/a | —N/a | 25 W / 1.8 GHz | —N/a | —N/a | 400 MHz | 900 MHz | 3 MB | —N/a | April 14, 2014 | $225
+Mainstream | 2 (4) | Core i3 | 4110E | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.6 GHz | —N/a | —N/a | 400 MHz | 900 MHz | 3 MB | —N/a | April 14, 2014 | $225
+Mainstream | 2 (4) | Core i3 | 4102E | HD 4600 (GT2) | —N/a | —N/a | 25 W / 1.6 GHz | —N/a | —N/a | 400 MHz | 900 MHz | 3 MB | —N/a | September 1, 2013 | $225
+Mainstream | 2 (4) | Core i3 | 4100E | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.4 GHz | —N/a | —N/a | 400 MHz | 900 MHz | 3 MB | —N/a | September 1, 2013 | $225
+Mainstream | 2 (4) | Core i3 | 4110M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.6 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 3 MB | —N/a | April 14, 2014 | $225
+Mainstream | 2 (4) | Core i3 | 4100M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.5 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 3 MB | —N/a | September 1, 2013 | $225
+Mainstream | 2 (4) | Core i3 | 4100U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.8 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 3 MB | —N/a | June 2, 2013 | $287
+Mainstream | 2 (4) | Core i3 | 4030Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.6 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 3 MB | —N/a | April 14, 2014 | $281
+Mainstream | 2 (4) | Core i3 | 4020Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.5 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | $304
+Mainstream | 2 (4) | Core i3 | 4012Y | HD 4200 (GT2) | 4.5 W / 800 MHz | —N/a | 11.5 W / 1.5 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 3 MB | —N/a | September 1, 2013 | $304
+Mainstream | 2 (4) | Core i3 | 4010Y | HD 4200 (GT2) | 6 W / 800 MHz | 9.5 W / 800 MHz | 11.5 W / 1.3 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 3 MB | —N/a | June 2, 2013 | $304
+Mainstream | 2 (4) | Core i3 | 4030U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.9 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 3 MB | —N/a | April 14, 2014 | $281
+Mainstream | 2 (4) | Core i3 | 4025U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.9 GHz | —N/a | —N/a | 200 MHz | 950 MHz | 3 MB | —N/a | April 14, 2014 | $275
+Mainstream | 2 (4) | Core i3 | 4010U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.7 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 3 MB | —N/a | September 1, 2013 | $287
+Mainstream | 2 (4) | Core i3 | 4005U | HD 4400 (GT2) | —N/a | 11.5 W / 800 MHz | 15 W / 1.7 GHz | —N/a | —N/a | 200 MHz | 950 MHz | 3 MB | —N/a | September 1, 2013 | $281
+Mainstream | 2 (4) | Core i3 | 4000M | HD 4600 (GT2) | —N/a | —N/a | 37 W / 2.4 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 3 MB | —N/a | September 1, 2013 | $240
+Budget | 2 (2) | Pentium | 3561Y | HD Graphics (GT1) | 6 W / 800 MHz | —N/a | 11.5 W / 1.2 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 2 MB | —N/a | December 2013 | $161
+Budget | 2 (2) | Pentium | 3560Y | HD Graphics (GT1) | 6 W / 800 MHz | —N/a | 11.5 W / 1.2 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 2 MB | —N/a | September 1, 2013 | OEM
+Budget | 2 (2) | Pentium | 3558U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.7 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | December 2013 | $161
+Budget | 2 (2) | Pentium | 3556U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.7 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | September 1, 2013 | OEM
+Budget | 2 (2) | Pentium | 3560M | HD Graphics (GT1) | —N/a | —N/a | 37 W / 2.4 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 2 MB | —N/a | April 14, 2014 | $134
+Budget | 2 (2) | Pentium | 3550M | HD Graphics (GT1) | —N/a | —N/a | 37 W / 2.3 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 2 MB | —N/a | September 1, 2013 | $134
+Budget | 2 (2) | Celeron | 2981U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.6 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | December 2013 | $137
+Budget | 2 (2) | Celeron | 2980U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.6 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | September 1, 2013 | $137
+Budget | 2 (2) | Celeron | 2957U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.4 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | December 2013 | $132
+Budget | 2 (2) | Celeron | 2955U | HD Graphics (GT1) | —N/a | —N/a | 15 W / 1.4 GHz | —N/a | —N/a | 200 MHz | 1 GHz | 2 MB | —N/a | September 1, 2013 | $132
+Budget | 2 (2) | Celeron | 2970M | HD Graphics (GT1) | —N/a | —N/a | 37 W / 2.2 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 2 MB | —N/a | April 14, 2014 | $75
+Budget | 2 (2) | Celeron | 2950M | HD Graphics (GT1) | —N/a | —N/a | 37 W / 2.0 GHz | —N/a | —N/a | 400 MHz | 1.1 GHz | 2 MB | —N/a | September 1, 2013 | $86
+Budget | 2 (2) | Celeron | 2961Y | HD Graphics (GT1) | 6 W / 800 MHz | —N/a | 11.5 W / 1.1 GHz | —N/a | —N/a | 200 MHz | 850 MHz | 2 MB | —N/a | December 2013 | OEM
+
+### TABLE 7 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 8 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

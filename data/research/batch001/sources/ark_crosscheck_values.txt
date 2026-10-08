@@ -1,0 +1,2 @@
+i9-12900K (archived ARK): Lithography=Intel 7, Processor Base Power=125 W, Launch Date=Q4'21, Processor Base Frequency via Wikipedia table=3.2 GHz
+i3-12100F (archived ARK): Lithography=Intel 7, Processor Base Power=58 W, Launch Date=Q1'22, base frequency via Wikipedia table=3.3 GHz

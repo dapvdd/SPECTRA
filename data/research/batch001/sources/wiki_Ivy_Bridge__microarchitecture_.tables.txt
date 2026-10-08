@@ -1,0 +1,276 @@
+### TABLE 0 rows=33 :: Xeon E5-2450 v2, a server-oriented Ivy Bridge CPU Xeon E5-2450 v2, a server-oriented Ivy Bridge CPU
+Xeon E5-2450 v2, a server-oriented Ivy Bridge CPU | Xeon E5-2450 v2, a server-oriented Ivy Bridge CPU
+General information | General information
+Launched | April 29, 2012; 14 years ago (2012-04-29)
+Discontinued | June 5, 2015; 11 years ago (2015-06-05) (for desktop and mobile units) January 8, 2016; 10 years ago (2016-01-08) (for servers and workstations)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | Intel
+CPUID code | 0306A9h
+Product code | Desktop 80637 (LGA1155) 80633 (LGA2011) Mobile 80638 Server Xeon E5 80634 (LGA1356) 80635 (LGA2011) Xeon E7 80636 (LGA2011)
+Performance | Performance
+Max. CPU clock rate | 1.4 to 4.1 GHz
+DMI speeds | 4 GT/s
+Physical specifications | Physical specifications
+Transistors | 634 million to 2.104 billion
+Cores | 2–4 (mainstream, mobile)1-4 (embedded)2–15 (Xeon)
+GPUs | None HD Graphics 2500 HD Graphics 4000 HD Graphics P4000
+Sockets | Desktop & Workstation LGA 1155LGA 2011Server LGA 2011LGA 2011-1LGA 1356Mobile Socket G2BGA 1023BGA 1224BGA 1284
+Cache | Cache
+L1 cache | 64 KB per core (32 KB instructions + 32 KB data)
+L2 cache | 256 KB per core
+L3 cache | 2 to 37.5 MB shared
+Architecture and classification | Architecture and classification
+Technology node | Intel 22 nm FinFET
+Instruction set | x86-16, IA-32, x86-64
+Extensions | MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, F16CAES-NI, CLMUL, RDRAND, TXTVT-x, VT-d
+Products, models, variants | Products, models, variants
+Models | Ivy Bridge-DT (desktop)Ivy Bridge-M (mobile)Ivy Bridge-EN (server, entry)Ivy Bridge-EP (server, efficient performance)Ivy Bridge-EX (server, expandable)Gladden (embedded)
+Brand names | CeleronPentiumCoreXeon
+History | History
+Predecessors | Westmere (tick, 32 nm) Sandy Bridge (tock)
+Successors | Haswell (tock) Broadwell (tick, 14 nm)
+Support status | Support status
+Unsupported | Unsupported
+
+### TABLE 1 rows=5 :: Cache Cache Page Size Page Size Page Size
+Cache | Cache | Page Size | Page Size | Page Size
+Name | Level | 4 KB | 2 MB | 1 GB
+DTLB | 1st | 64 | 32 | 4
+ITLB | 1st | 128 | 8 / logical core | none
+STLB | 2nd | 512 | none | none
+
+### TABLE 2 rows=5 :: Die code name CPUID Stepping Die size Die dimensions Transistors Cores GPU EUs L3 cache Sockets
+Die code name | CPUID | Stepping | Die size | Die dimensions | Transistors | Cores | GPU EUs | L3 cache | Sockets
+Ivy Bridge-M-2 | 0x000306A9 | P0 | 094 mm | 7.656 × 12.223 mm | 0≈634 million | 2 | 6 | 3 MB | LGA 1155, Socket G2, BGA-1224, BGA-1023, BGA-1284
+Ivy Bridge-H-2 | 0x000306A9 | L1 | 118 mm | 8.141 × 14.505 mm | 0≈830 million | 2 | 16 | 4 MB | LGA 1155, Socket G2, BGA-1224, BGA-1023, BGA-1284
+Ivy Bridge-HM-4 | 0x000306A9 | N0 | 133 mm | 7.656 × 17.349 mm | ≈1008 million | 4 | 6 | 6 MB | LGA 1155, Socket G2, BGA-1224, BGA-1023, BGA-1284
+Ivy Bridge-HE-4 | 0x000306A9 | E1 | 160 mm | 8.141 × 19.361 mm | ≈1400 million | 4 | 16 | 8 MB | LGA 1155, Socket G2, BGA-1224, BGA-1023, BGA-1284
+
+### TABLE 3 rows=52 :: Processor branding and model Processor branding and model Cores (threads) CPU clock rate CPU clock rate GPU clock rate GPU clock rate L3 cache TDP Release date Release price (USD) Motherboard Motherboard Motherboard
+Processor branding and model | Processor branding and model | Cores (threads) | CPU clock rate | CPU clock rate | GPU clock rate | GPU clock rate | L3 cache | TDP | Release date | Release price (USD) | Motherboard | Motherboard | Motherboard
+Processor branding and model | Processor branding and model | Cores (threads) | Normal | Turbo | Normal | Turbo | L3 cache | TDP | Release date | Release price (USD) | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i7 Extreme | 4960X | 6 (12) | 3.6 GHz | 4.0 GHz | —N/a | —N/a | 15 MB | 130 W | 2013-09-10 | $999 | LGA 2011 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Core i7 | 4930K | 6 (12) | 3.4 GHz | 3.9 GHz | —N/a | —N/a | 12 MB | 130 W | 2013-09-10 | $583 | LGA 2011 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Core i7 | 4820K | 4 (8) | 3.7 GHz | 3.9 GHz | —N/a | —N/a | 10 MB | 130 W | 2013-09-10 | $323 | LGA 2011 | DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Core i7 | 3770K | 4 (8) | 3.5 GHz | 3.9 GHz | 650 MHz | 1150 MHz | 8 MB | 77 W | 2012-04-23 | $332 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i7 | 3770 | 4 (8) | 3.4 GHz | 3.9 GHz | 650 MHz | 1150 MHz | 8 MB | 77 W | 2012-04-23 | $294 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i7 | 3770S | 4 (8) | 3.1 GHz | 3.9 GHz | 650 MHz | 1150 MHz | 8 MB | 65 W | 2012-04-23 | $294 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i7 | 3770T | 4 (8) | 2.5 GHz | 3.7 GHz | 650 MHz | 1150 MHz | 8 MB | 45 W | 2012-04-23 | $294 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3570K | 4 (4) | 3.4 GHz | 3.8 GHz | 650 MHz | 1150 MHz | 6 MB | 77 W | 2012-04-23 | $225 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3570 | 4 (4) | 3.4 GHz | 3.8 GHz | 650 MHz | 1150 MHz | 6 MB | 77 W | 2012-05-31 | $205 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3570S | 4 (4) | 3.1 GHz | 3.8 GHz | 650 MHz | 1150 MHz | 6 MB | 65 W | 2012-05-31 | $205 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3570T | 4 (4) | 2.3 GHz | 3.3 GHz | 650 MHz | 1150 MHz | 6 MB | 45 W | 2012-05-31 | $205 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3550 | 4 (4) | 3.3 GHz | 3.7 GHz | 650 MHz | 1150 MHz | 6 MB | 77 W | 2012-04-23 | $205 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3550S | 4 (4) | 3.0 GHz | 3.7 GHz | 650 MHz | 1150 MHz | 6 MB | 65 W | 2012-04-23 | $205 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3475S | 4 (4) | 2.9 GHz | 3.6 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2012-05-31 | $201 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3470 | 4 (4) | 3.2 GHz | 3.6 GHz | 650 MHz | 1050 MHz | 6 MB | 77 W | 2012-05-31 | $184 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3470S | 4 (4) | 2.9 GHz | 3.6 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2012-05-31 | $184 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3470T | 2 (4) | 2.9 GHz | 3.6 GHz | 650 MHz | 1050 MHz | 3 MB | 35 W | 2012-05-31 | $184 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3450 | 4 (4) | 3.1 GHz | 3.5 GHz | 650 MHz | 1050 MHz | 6 MB | 77 W | 2012-04-23 | $184 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3450S | 4 (4) | 2.8 GHz | 3.5 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2012-04-23 | $184 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3350P | 4 (4) | 3.1 GHz | 3.3 GHz | —N/a | —N/a | 6 MB | 69 W | 2012-09-03 | $177 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3340 | 4 (4) | 3.1 GHz | 3.3 GHz | 650 MHz | 1050 MHz | 6 MB | 77 W | 2013-09-01 | $182 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3340S | 4 (4) | 2.8 GHz | 3.3 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2013-09-01 | $182 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3335S | 4 (4) | 2.7 GHz | 3.2 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2012-09-03 | $194 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3330S | 4 (4) | 2.7 GHz | 3.2 GHz | 650 MHz | 1050 MHz | 6 MB | 65 W | 2012-09-03 | $177 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i5 | 3330 | 4 (4) | 3.0 GHz | 3.2 GHz | 650 MHz | 1050 MHz | 6 MB | 77 W | 2012-09-03 | $182 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Core i3 | 3250 | 2 (4) | 3.5 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-06-09 | $138 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3245 | 2 (4) | 3.4 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-06-09 | $134 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3240 | 2 (4) | 3.4 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2012-09-03 | $138 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3225 | 2 (4) | 3.3 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2012-09-03 | $134 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3220 | 2 (4) | 3.3 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2012-09-03 | $117 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3210 | 2 (4) | 3.2 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-01-20 | $117 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3250T | 2 (4) | 3.0 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2013-06-09 | $138 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3240T | 2 (4) | 2.9 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2012-09-03 | $138 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Core i3 | 3220T | 2 (4) | 2.8 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2012-09-03 | $117 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2140 | 2 (2) | 3.3 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-06-09 | $86 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2130 | 2 (2) | 3.2 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-01-20 | $86 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2120 | 2 (2) | 3.1 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2012-09-03 | $86 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2120T | 2 (2) | 2.7 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2013-06-09 | $75 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2100T | 2 (2) | 2.6 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2012-09-03 | $75 | LGA 1155 | DMI 2.0 PCIe 2.0 | Up to dual channel DDR3-1600
+Pentium | G2030 | 2 (2) | 3.0 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-06-09 | $64 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Pentium | G2020 | 2 (2) | 2.9 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-01-20 | $64 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Pentium | G2010 | 2 (2) | 2.8 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 55 W | 2013-01-20 | $64 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Pentium | G2030T | 2 (2) | 2.6 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2013-06-09 | $64 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Pentium | G2020T | 2 (2) | 2.5 GHz | —N/a | 650 MHz | 1050 MHz | 3 MB | 35 W | 2013-01-20 | $64 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Celeron | G1630 | 2 (2) | 2.8 GHz | —N/a | 650 MHz | 1050 MHz | 2 MB | 55 W | 2013-09-01 | $52 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Celeron | G1620 | 2 (2) | 2.7 GHz | —N/a | 650 MHz | 1050 MHz | 2 MB | 55 W | 2013-01-20 | $52 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Celeron | G1610 | 2 (2) | 2.6 GHz | —N/a | 650 MHz | 1050 MHz | 2 MB | 55 W | 2013-01-20 | $42 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Celeron | G1620T | 2 (2) | 2.4 GHz | —N/a | 650 MHz | 1050 MHz | 2 MB | 35 W | 2013-09-01 | $42 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+Celeron | G1610T | 2 (2) | 2.3 GHz | —N/a | 650 MHz | 1050 MHz | 2 MB | 35 W | 2013-01-20 | $42 | LGA 1155 | DMI 2.0 PCIe 2.0 | Dual channel DDR3-1333
+
+### TABLE 4 rows=93 :: Processor branding and model Processor branding and model Cores (threads) CPU clock rate CPU clock rate GPU clock rate GPU clock rate L3 cache TDP Release date Price (USD) Motherboard Motherboard Motherboard
+Processor branding and model | Processor branding and model | Cores (threads) | CPU clock rate | CPU clock rate | GPU clock rate | GPU clock rate | L3 cache | TDP | Release date | Price (USD) | Motherboard | Motherboard | Motherboard
+Processor branding and model | Processor branding and model | Cores (threads) | Normal | Turbo | Normal | Turbo | L3 cache | TDP | Release date | Price (USD) | Socket | Interface | Memory
+ |  |  |  |  |  |  |  |  |  |  |  |  | 
+Xeon E7 | 8893v2 | 6 (12) | 3.4 GHz | 3.7 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | $6841 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8891v2 | 10 (20) | 3.2 GHz | 3.7 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | $6841 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8895v2 | 15 (30) | 2.8 GHz | 3.6 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | OEM (Oracle) | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8890v2 | 15 (30) | 2.8 GHz | 3.4 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | $6841 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4890v2 | 15 (30) | 2.8 GHz | 3.4 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | $6619 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 2890v2 | 15 (30) | 2.8 GHz | 3.4 GHz | —N/a | —N/a | 37.5 MB | 155 W | 2014-02-18 | $6451 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8880Lv2 | 15 (30) | 2.2 GHz | 2.8 GHz | —N/a | —N/a | 37.5 MB | 105 W | 2014-02-18 | $5729 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8880v2 | 15 (30) | 2.5 GHz | 3.1 GHz | —N/a | —N/a | 37.5 MB | 130 W | 2014-02-18 | $5729 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4880v2 | 15 (30) | 2.5 GHz | 3.1 GHz | —N/a | —N/a | 37.5 MB | 130 W | 2014-02-18 | $5506 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 2880v2 | 15 (30) | 2.5 GHz | 3.1 GHz | —N/a | —N/a | 37.5 MB | 130 W | 2014-02-18 | $5339 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8870v2 | 15 (30) | 2.3 GHz | 2.9 GHz | —N/a | —N/a | 30 MB | 130 W | 2014-02-18 | $4616 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4870v2 | 15 (30) | 2.3 GHz | 2.9 GHz | —N/a | —N/a | 30 MB | 130 W | 2014-02-18 | $4394 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 2870v2 | 15 (30) | 2.3 GHz | 2.9 GHz | —N/a | —N/a | 30 MB | 130 W | 2014-02-18 | $4227 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8857v2 | 12 (12) | 3.0 GHz | 3.6 GHz | —N/a | —N/a | 30 MB | 130 W | 2014-02-18 | $3838 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4860v2 | 12 (24) | 2.6 GHz | 3.2 GHz | —N/a | —N/a | 30 MB | 130 W | 2014-02-18 | $3838 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 8850v2 | 12 (24) | 2.3 GHz | 2.8 GHz | —N/a | —N/a | 24 MB | 105 W | 2014-02-18 | $3059 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4850v2 | 12 (24) | 2.3 GHz | 2.8 GHz | —N/a | —N/a | 24 MB | 105 W | 2014-02-18 | $2837 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 2850v2 | 12 (24) | 2.3 GHz | 2.8 GHz | —N/a | —N/a | 24 MB | 105 W | 2014-02-18 | $2558 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4830v2 | 10 (20) | 2.2 GHz | 2.7 GHz | —N/a | —N/a | 20 MB | 105 W | 2014-02-18 | $2059 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4820v2 | 8 (16) | 2.0 GHz | 2.5 GHz | —N/a | —N/a | 16 MB | 105 W | 2014-02-18 | $1446 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E7 | 4809v2 | 6 (12) | 1.9 GHz | —N/a | —N/a | —N/a | 12 MB | 105 W | 2014-02-18 | $1223 | LGA 2011-1 | 3× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 4657Lv2 | 12 (24) | 2.4 GHz | 3.2 GHz | —N/a | —N/a | 30 MB | 115 W | 2014-03-03 | $4394 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 4650v2 | 10 (20) | 2.4 GHz | 3.2 GHz | —N/a | —N/a | 25 MB | 95 W | 2014-03-03 | $3616 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 4640v2 | 10 (20) | 2.2 GHz | 2.7 GHz | —N/a | —N/a | 20 MB | 95 W | 2014-03-03 | $2725 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 4624Lv2 | 10 (20) | 1.9 GHz | 2.5 GHz | —N/a | —N/a | 25 MB | 70 W | 2014-03-03 | $2405 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 4627v2 | 8 (8) | 3.3 GHz | 3.6 GHz | —N/a | —N/a | 16 MB | 130 W | 2014-03-03 | $2108 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 4620v2 | 8 (16) | 2.6 GHz | 3.0 GHz | —N/a | —N/a | 20 MB | 95 W | 2014-03-03 | $1611 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 4610v2 | 8 (16) | 2.3 GHz | 2.7 GHz | —N/a | —N/a | 16 MB | 95 W | 2014-03-03 | $1219 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 4607v2 | 6 (12) | 2.6 GHz | —N/a | —N/a | —N/a | 15 MB | 95 W | 2014-03-03 | $885 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 4603v2 | 4 (8) | 2.2 GHz | —N/a | —N/a | —N/a | 10 MB | 95 W | 2014-03-03 | $551 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 2697v2 | 12 (24) | 2.7 GHz | 3.5 GHz | —N/a | —N/a | 30 MB | 130 W | 2013-09-10 | $2614 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2696v2 | 12 (24) | 2.5 GHz | 3.3 GHz | —N/a | —N/a | 30 MB | 120 W | 2013-09-10 | OEM | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2695v2 | 12 (24) | 2.4 GHz | 3.2 GHz | —N/a | —N/a | 30 MB | 115 W | 2013-09-10 | $2336 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2692v2 | 12 (24) | 2.2 GHz | 3.0 GHz | —N/a | —N/a | 30 MB | 115 W | June 2013 | OEM (Tianhe-2) | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2651v2 | 12 (24) | 1.8 GHz | 2.2 GHz | —N/a | —N/a | 30 MB | 105 W | 2013-09-10 |  | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2690v2 | 10 (20) | 3.0 GHz | 3.6 GHz | —N/a | —N/a | 25 MB | 130 W | 2013-09-10 | $2057 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2680v2 | 10 (20) | 2.8 GHz | 3.6 GHz | —N/a | —N/a | 25 MB | 115 W | 2013-09-10 | $1723 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2670v2 | 10 (20) | 2.5 GHz | 3.3 GHz | —N/a | —N/a | 25 MB | 115 W | 2013-09-10 | $1552 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2660v2 | 10 (20) | 2.2 GHz | 3.0 GHz | —N/a | —N/a | 25 MB | 95 W | 2013-09-10 | $1389 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2658v2 | 10 (20) | 2.4 GHz | 3.0 GHz | —N/a | —N/a | 25 MB | 95 W | 2013-09-10 | $1750 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2650Lv2 | 10 (20) | 1.7 GHz | 2.1 GHz | —N/a | —N/a | 25 MB | 70 W | 2013-09-10 | $1219 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2648Lv2 | 10 (20) | 1.9 GHz | 2.5 GHz | —N/a | —N/a | 25 MB | 70 W | 2013-09-10 | $1479 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2687Wv2 | 8 (16) | 3.4 GHz | 4.0 GHz | —N/a | —N/a | 25 MB | 150 W | 2013-09-10 | $2108 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2667v2 | 8 (16) | 3.3 GHz | 4.0 GHz | —N/a | —N/a | 25 MB | 130 W | 2013-09-10 | $2057 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2650v2 | 8 (16) | 2.6 GHz | 3.4 GHz | —N/a | —N/a | 20 MB | 95 W | 2013-09-10 | $1166 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2640v2 | 8 (16) | 2.0 GHz | 2.5 GHz | —N/a | —N/a | 20 MB | 95 W | 2013-09-10 | $885 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2628Lv2 | 8 (16) | 1.9 GHz | 2.4 GHz | —N/a | —N/a | 20 MB | 70 W | 2013-09-10 | $1216 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2643v2 | 6 (12) | 3.5 GHz | 3.8 GHz | —N/a | —N/a | 25 MB | 130 W | 2013-09-10 | $1552 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2630v2 | 6 (12) | 2.6 GHz | 3.1 GHz | —N/a | —N/a | 15 MB | 80 W | 2013-09-10 | $612 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2630Lv2 | 6 (12) | 2.4 GHz | 2.8 GHz | —N/a | —N/a | 15 MB | 60 W | 2013-09-10 | $612 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2620v2 | 6 (12) | 2.1 GHz | 2.6 GHz | —N/a | —N/a | 15 MB | 80 W | 2013-09-10 | $406 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 2618Lv2 | 6 (12) | 2.0 GHz | —N/a | —N/a | —N/a | 15 MB | 50 W | 2013-09-10 | $520 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 2637v2 | 4 (8) | 3.5 GHz | 3.8 GHz | —N/a | —N/a | 15 MB | 130 W | 2013-09-10 | $996 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 2609v2 | 4 (4) | 2.5 GHz | —N/a | —N/a | —N/a | 10 MB | 80 W | 2013-09-10 | $294 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 2603v2 | 4 (4) | 1.8 GHz | —N/a | —N/a | —N/a | 10 MB | 80 W | 2013-09-10 | $202 | LGA 2011 | 2× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1333
+Xeon E5 | 2470v2 | 10 (20) | 2.4 GHz | 3.2 GHz | —N/a | —N/a | 25 MB | 95 W | 2014-01-09 | $1440 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2448Lv2 | 10 (20) | 1.8 GHz | 2.4 GHz | —N/a | —N/a | 25 MB | 70 W | 2014-01-09 | $1424 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2450Lv2 | 10 (20) | 1.7 GHz | 2.1 GHz | —N/a | —N/a | 25 MB | 60 W | 2014-01-09 | $1219 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2450v2 | 8 (16) | 2.5 GHz | 3.3 GHz | —N/a | —N/a | 20 MB | 95 W | 2014-01-09 | $1107 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2440v2 | 8 (16) | 1.9 GHz | 2.4 GHz | —N/a | —N/a | 20 MB | 95 W | 2014-01-09 | $832 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2428Lv2 | 8 (16) | 1.8 GHz | 2.3 GHz | —N/a | —N/a | 20 MB | 60 W | 2014-01-09 | $1013 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2430v2 | 6 (12) | 2.5 GHz | 3.0 GHz | —N/a | —N/a | 15 MB | 80 W | 2014-01-09 | $551 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2420v2 | 6 (12) | 2.2 GHz | 2.7 GHz | —N/a | —N/a | 15 MB | 80 W | 2014-01-09 | $406 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2430Lv2 | 6 (12) | 2.4 GHz | 2.8 GHz | —N/a | —N/a | 15 MB | 60 W | 2014-01-09 | $612 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 2418Lv2 | 6 (12) | 2.0 GHz | —N/a | —N/a | —N/a | 15 MB | 50 W | 2014-01-09 | $607 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1333
+Xeon E5 | 2407v2 | 4 (4) | 2.4 GHz | —N/a | —N/a | —N/a | 10 MB | 80 W | 2014-01-09 | $250 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1333
+Xeon E5 | 2403v2 | 4 (4) | 1.8 GHz | —N/a | —N/a | —N/a | 10 MB | 80 W | 2014-01-09 | $192 | LGA 1356 | 1× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1333
+Xeon E5 | 1680v2 | 8 (16) | 3.0 GHz | 3.9 GHz | —N/a | —N/a | 25 MB | 130 W | 2013-09-10 | $1723 | LGA 2011 | 0× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 1660v2 | 6 (12) | 3.7 GHz | 4.0 GHz | —N/a | —N/a | 15 MB | 130 W | 2013-09-10 | $1080 | LGA 2011 | 0× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 1650v2 | 6 (12) | 3.5 GHz | 3.9 GHz | —N/a | —N/a | 12 MB | 130 W | 2013-09-10 | $583 | LGA 2011 | 0× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 1620v2 | 4 (8) | 3.7 GHz | 3.9 GHz | —N/a | —N/a | 10 MB | 130 W | 2013-09-10 | $294 | LGA 2011 | 0× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1866
+Xeon E5 | 1607v2 | 4 (4) | 3.0 GHz | —N/a | —N/a | —N/a | 10 MB | 130 W | 2013-09-10 | $244 | LGA 2011 | 0× QPI DMI 2.0 PCIe 3.0 | Up to quad channel DDR3-1600
+Xeon E5 | 1428Lv2 | 6 (12) | 2.2 GHz | 2.7 GHz | —N/a | —N/a | 15 MB | 60 W | 2014-01-09 | $494 | LGA 1356 | 0× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E5 | 1410v2 | 4 (8) | 2.8 GHz | 3.2 GHz | —N/a | —N/a | 10 MB | 80 W | 2014-01-09 | OEM | LGA 1356 | 0× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Pentium | 1403v2 | 2 (2) | 2.6 GHz | —N/a | —N/a | —N/a | 6 MB | 80 W | 2014-01-09 | OEM | LGA 1356 | 0× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Pentium | 1405v2 | 2 (2) | 1.4 GHz | —N/a | —N/a | —N/a | 6 MB | 40 W | 2014-01-09 | $156 | LGA 1356 | 0× QPI DMI 2.0 PCIe 3.0 | Up to triple channel DDR3-1600
+Xeon E3 | 1290v2 | 4 (8) | 3.7 GHz | 4.1 GHz | —N/a | —N/a | 8 MB | 87 W | 2012-05-14 | $885 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1280v2 | 4 (8) | 3.6 GHz | 4.0 GHz | —N/a | —N/a | 8 MB | 69 W | 2012-05-14 | $623 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1275v2 | 4 (8) | 3.5 GHz | 3.9 GHz | 650 MHz | 1.25 GHz | 8 MB | 77 W | 2012-05-14 | $350 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1270v2 | 4 (8) | 3.5 GHz | 3.9 GHz | —N/a | —N/a | 8 MB | 69 W | 2012-05-14 | $339 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1265Lv2 | 4 (8) | 2.5 GHz | 3.5 GHz | 650 MHz | 1.15 GHz | 8 MB | 45 W | 2012-05-14 | $305 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1245v2 | 4 (8) | 3.4 GHz | 3.8 GHz | 650 MHz | 1.25 GHz | 8 MB | 77 W | 2012-05-14 | $273 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1240v2 | 4 (8) | 3.4 GHz | 3.8 GHz | —N/a | —N/a | 8 MB | 69 W | 2012-05-14 | $261 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1230v2 | 4 (8) | 3.3 GHz | 3.7 GHz | —N/a | —N/a | 8 MB | 69 W | 2012-05-14 | $230 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1225v2 | 4 (4) | 3.2 GHz | 3.6 GHz | 650 MHz | 1.25 GHz | 8 MB | 77 W | 2012-05-14 | $224 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1220v2 | 4 (4) | 3.1 GHz | 3.5 GHz | —N/a | —N/a | 8 MB | 69 W | 2012-05-14 | $203 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1220Lv2 | 2 (4) | 2.3 GHz | 3.5 GHz | —N/a | —N/a | 3 MB | 17 W | 2012-05-14 | $189 | LGA 1155 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1135Cv2 | 4 (8) | 3.0 GHz | —N/a | —N/a | —N/a | 8 MB | 55 W | 2013-09-10 | OEM | BGA 1284 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1125Cv2 | 4 (8) | 2.5 GHz | —N/a | —N/a | —N/a | 8 MB | 40 W | 2013-09-10 | $448 | BGA 1284 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+Xeon E3 | 1105Cv2 | 4 (8) | 1.8 GHz | —N/a | —N/a | —N/a | 8 MB | 25 W | 2013-09-10 | $320 | BGA 1284 | DMI 2.0 PCIe 3.0 | Up to dual channel DDR3-1600
+
+### TABLE 5 rows=65 :: Processor branding and model Processor branding and model Cores (threads) Programmable TDP Programmable TDP Programmable TDP Programmable TDP CPU Turbo GPU clock rate GPU clock rate L3 cache Release date Price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | Programmable TDP | Programmable TDP | Programmable TDP | Programmable TDP | CPU Turbo | GPU clock rate | GPU clock rate | L3 cache | Release date | Price (USD)
+Processor branding and model | Processor branding and model | Cores (threads) | SDP | cTDP down | Nominal TDP | cTDP up | 1-core | Normal | Turbo | L3 cache | Release date | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  | 
+Core i7 Extreme | 3940XM | 4 (8) | —N/a | 45 W / ? GHz | 55 W / 3.0 GHz | 65 W / ? GHz | 3.9 GHz | 650 MHz | 1350 MHz | 8 MB | 2012-09-30 | $1096
+Core i7 Extreme | 3920XM | 4 (8) | —N/a | 45 W / ? GHz | 55 W / 2.9 GHz | 65 W / ? GHz | 3.8 GHz | 650 MHz | 1300 MHz | 8 MB | 2012-04-23 | $1096
+Core i7 | 3840QM | 4 (8) | —N/a | —N/a | 45 W / 2.8 GHz | —N/a | 3.8 GHz | 650 MHz | 1300 MHz | 8 MB | 2012-09-30 | $568
+Core i7 | 3820QM | 4 (8) | —N/a | —N/a | 45 W / 2.7 GHz | —N/a | 3.7 GHz | 650 MHz | 1250 MHz | 8 MB | 2012-04-23 | $568
+Core i7 | 3740QM | 4 (8) | —N/a | —N/a | 45 W / 2.7 GHz | —N/a | 3.7 GHz | 650 MHz | 1300 MHz | 6 MB | 2012-09-30 | $378
+Core i7 | 3720QM | 4 (8) | —N/a | —N/a | 45 W / 2.6 GHz | —N/a | 3.6 GHz | 650 MHz | 1250 MHz | 6 MB | 2012-04-23 | $378
+Core i7 | 3635QM | 4 (8) | —N/a | —N/a | 45 W / 2.4 GHz | —N/a | 3.4 GHz | 650 MHz | 1200 MHz | 6 MB | 2012-09-30 | —N/a
+Core i7 | 3632QM | 4 (8) | —N/a | —N/a | 35 W / 2.2 GHz | —N/a | 3.2 GHz | 650 MHz | 1150 MHz | 6 MB | 2012-09-30 | $378
+Core i7 | 3630QM | 4 (8) | —N/a | —N/a | 45 W / 2.4 GHz | —N/a | 3.4 GHz | 650 MHz | 1150 MHz | 6 MB | 2012-09-30 | $378
+Core i7 | 3615QM | 4 (8) | —N/a | —N/a | 45 W / 2.3 GHz | —N/a | 3.3 GHz | 650 MHz | 1200 MHz | 6 MB | 2012-04-23 | $378
+Core i7 | 3612QM | 4 (8) | —N/a | —N/a | 35 W / 2.1 GHz | —N/a | 3.1 GHz | 650 MHz | 1100 MHz | 6 MB | 2012-04-23 | $378
+Core i7 | 3610QM | 4 (8) | —N/a | —N/a | 45 W / 2.3 GHz | —N/a | 3.3 GHz | 650 MHz | 1100 MHz | 6 MB | 2012-04-23 | $378
+Core i7 | 3689Y | 2 (4) | 7 W / ? GHz | 10 W / ? GHz | 13 W / 1.5 GHz | —N/a | 2.6 GHz | 350 MHz | 850 MHz | 4 MB | 2013-01-07 | $362
+Core i7 | 3687U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 2.1 GHz | 25 W / 3.1 GHz | 3.3 GHz | 350 MHz | 1200 MHz | 4 MB | 2013-01-20 | $346
+Core i7 | 3667U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 2.0 GHz | 25 W / 3.0 GHz | 3.2 GHz | 350 MHz | 1150 MHz | 4 MB | 2012-06-03 | $346
+Core i7 | 3537U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 2.0 GHz | 25 W / 2.9 GHz | 3.1 GHz | 350 MHz | 1200 MHz | 4 MB | 2013-01-20 | $346
+Core i7 | 3555LE | 2 (4) | —N/a | —N/a | 25 W / 2.5 GHz | —N/a | 3.2 GHz | 550 MHz | 1000 MHz | 4 MB | 2012-06-03 | $360
+Core i7 | 3540M | 2 (4) | —N/a | —N/a | 35 W / 3.0 GHz | —N/a | 3.7 GHz | 650 MHz | 1300 MHz | 4 MB | 2013-01-20 | $346
+Core i7 | 3525M | 2 (4) | —N/a | —N/a | 35 W / 2.9 GHz | —N/a | 3.6 GHz | 650 MHz | 1350 MHz | 4 MB | Q3 2012 | 
+Core i7 | 3520M | 2 (4) | —N/a | —N/a | 35 W / 2.9 GHz | —N/a | 3.6 GHz | 650 MHz | 1250 MHz | 4 MB | 2012-06-03 | $346
+Core i7 | 3517U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.9 GHz | 25 W / 2.8 GHz | 3.0 GHz | 350 MHz | 1150 MHz | 4 MB | 2012-06-03 | $346
+Core i7 | 3517UE | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.7 GHz | 25 W / 2.6 GHz | 2.8 GHz | 350 MHz | 1000 MHz | 4 MB | 2012-06-03 | $330
+Core i5 | 3610ME | 2 (4) | —N/a | —N/a | 35 W / 2.7 GHz | —N/a | 3.3 GHz | 650 MHz | 950 MHz | 3 MB | 2012-06-03 | $276
+Core i5 | 3439Y | 2 (4) | 7 W / ? GHz | 10 W / ? GHz | 13 W / 1.5 GHz | —N/a | 2.3 GHz | 350 MHz | 850 MHz | 3 MB | 2013-01-07 | $250
+Core i5 | 3437U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.9 GHz | 25 W / 2.4 GHz | 2.9 GHz | 650 MHz | 1200 MHz | 3 MB | 2013-01-20 | $225
+Core i5 | 3427U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.8 GHz | 25 W / 2.3 GHz | 2.8 GHz | 350 MHz | 1150 MHz | 3 MB | 2012-06-03 | $225
+Core i5 | 3380M | 2 (4) | —N/a | —N/a | 35 W / 2.9 GHz | —N/a | 3.6 GHz | 650 MHz | 1250 MHz | 3 MB | 2013-01-20 | $266
+Core i5 | 3365M | 2 (4) | —N/a | —N/a | 35 W / 2.8 GHz | —N/a | 3.5 GHz | 650 MHz | 1350 MHz | 3 MB | Q3 2012 | 
+Core i5 | 3360M | 2 (4) | —N/a | —N/a | 35 W / 2.8 GHz | —N/a | 3.5 GHz | 650 MHz | 1200 MHz | 3 MB | 2012-06-03 | $266
+Core i5 | 3340M | 2 (4) | —N/a | —N/a | 35 W / 2.7 GHz | —N/a | 3.4 GHz | 650 MHz | 1250 MHz | 3 MB | 2013-01-20 | $225
+Core i5 | 3339Y | 2 (4) | 7 W / ? GHz | 10 W / ? GHz | 13 W / 1.5 GHz | —N/a | 2.0 GHz | 350 MHz | 850 MHz | 3 MB | 2013-01-07 | $250
+Core i5 | 3337U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.8 GHz | —N/a | 2.7 GHz | 350 MHz | 1100 MHz | 3 MB | 2013-01-20 | $225
+Core i5 | 3320M | 2 (4) | —N/a | —N/a | 35 W / 2.6 GHz | —N/a | 3.3 GHz | 650 MHz | 1200 MHz | 3 MB | 2012-06-03 | $225
+Core i5 | 3317U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.7 GHz | —N/a | 2.6 GHz | 350 MHz | 1050 MHz | 3 MB | 2012-06-03 | $225
+Core i5 | 3230M | 2 (4) | —N/a | —N/a | 35 W / 2.6 GHz | —N/a | 3.2 GHz | 650 MHz | 1100 MHz | 3 MB | 2013-01-20 | $225
+Core i5 | 3210M | 2 (4) | —N/a | —N/a | 35 W / 2.5 GHz | —N/a | 3.1 GHz | 650 MHz | 1100 MHz | 3 MB | 2012-06-03 | $225
+Core i3 | 3229Y | 2 (4) | 7 W / ? GHz | 10 W / ? GHz | 13 W / 1.4 GHz | —N/a | —N/a | 350 MHz | 850 MHz | 3 MB | 2013-01-07 | $250
+Core i3 | 3227U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.9 GHz | —N/a | —N/a | 350 MHz | 1100 MHz | 3 MB | 2013-01-20 | $225
+Core i3 | 3217U | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.8 GHz | —N/a | —N/a | 350 MHz | 1050 MHz | 3 MB | 2012-06-24 | $225
+Core i3 | 3217UE | 2 (4) | —N/a | 14 W / ? GHz | 17 W / 1.6 GHz | —N/a | —N/a | 350 MHz | 900 MHz | 3 MB | July 2013 | $261
+Core i3 | 3130M | 2 (4) | —N/a | —N/a | 35 W / 2.6 GHz | —N/a | —N/a | 650 MHz | 1100 MHz | 3 MB | 2013-01-20 | $225
+Core i3 | 3120M | 2 (4) | —N/a | —N/a | 35 W / 2.5 GHz | —N/a | —N/a | 650 MHz | 1100 MHz | 3 MB | 2012-09-30 | $225
+Core i3 | 3120ME | 2 (4) | —N/a | —N/a | 35 W / 2.4 GHz | —N/a | —N/a | 650 MHz | 900 MHz | 3 MB | July 2013 | $225
+Core i3 | 3110M | 2 (4) | —N/a | —N/a | 35 W / 2.4 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 3 MB | 2012-06-24 | $225
+Core i3 | 3115C | 2 (4) | —N/a | —N/a | 25 W / 2.5 GHz | —N/a | —N/a | —N/a | —N/a | 4 MB | 2013-09-10 | $241
+Pentium | B925C | 2 (4) | —N/a | —N/a | 15 W / 2.0 GHz | —N/a | —N/a | —N/a | —N/a | 4 MB | 2013-09-10 | OEM
+Pentium | A1018 | 2 (2) | —N/a | —N/a | 35 W / 2.1 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 1 MB | June 2013 | $86 (India)
+Pentium | 2030M | 2 (2) | —N/a | —N/a | 35 W / 2.5 GHz | —N/a | —N/a | 650 MHz | 1100 MHz | 2 MB | 2013-01-20 | $134
+Pentium | 2020M | 2 (2) | —N/a | —N/a | 35 W / 2.4 GHz | —N/a | —N/a | 650 MHz | 1100 MHz | 2 MB | 2012-09-30 | $134
+Pentium | 2127U | 2 (2) | —N/a | —N/a | 17 W / 1.9 GHz | —N/a | —N/a | 350 MHz | 1100 MHz | 2 MB | 2013-06-09 | $134
+Pentium | 2117U | 2 (2) | —N/a | —N/a | 17 W / 1.8 GHz | —N/a | —N/a | 350 MHz | 1000 MHz | 2 MB | 2012-09-30 | $134
+Pentium | 2129Y | 2 (2) | 7 W | —N/a | 10 W / 1.1 GHz | —N/a | —N/a | 350 MHz | 850 MHz | 2 MB | 2013-01-07 | $150
+Celeron | 1019Y | 2 (2) | 7 W | —N/a | 10 W / 1.0 GHz | —N/a | —N/a | 350 MHz | 800 MHz | 2 MB | April 2013 | $153
+Celeron | 1020E | 2 (2) | —N/a | —N/a | 35 W / 2.2 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 2 MB | 2013-01-20 | $86
+Celeron | 1020M | 2 (2) | —N/a | —N/a | 35 W / 2.1 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 2 MB | 2013-01-20 | $86
+Celeron | 1005M | 2 (2) | —N/a | —N/a | 35 W / 1.9 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 2 MB | 2013-06-09 | $86
+Celeron | 1000M | 2 (2) | —N/a | —N/a | 35 W / 1.8 GHz | —N/a | —N/a | 650 MHz | 1000 MHz | 2 MB | 2013-01-20 | $86
+Celeron | 1037U | 2 (2) | —N/a | —N/a | 17 W / 1.8 GHz | —N/a | —N/a | 350 MHz | 1000 MHz | 2 MB | 2013-01-20 | $86
+Celeron | 1017U | 2 (2) | —N/a | —N/a | 17 W / 1.6 GHz | —N/a | —N/a | 350 MHz | 1000 MHz | 2 MB | 2013-06-09 | $86
+Celeron | 1007U | 2 (2) | —N/a | —N/a | 17 W / 1.5 GHz | —N/a | —N/a | 350 MHz | 1000 MHz | 2 MB | 2013-01-20 | $86
+Celeron | 1047UE | 2 (2) | —N/a | —N/a | 17 W / 1.4 GHz | —N/a | —N/a | 350 MHz | 900 MHz | 2 MB | 2013-01-20 | $134
+Celeron | 927UE | 1 (1) | —N/a | —N/a | 17 W / 1.5 GHz | —N/a | —N/a | 350 MHz | 900 MHz | 1 MB | 2013-01-20 | $107
+
+### TABLE 6 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 7 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

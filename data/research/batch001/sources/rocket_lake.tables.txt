@@ -1,0 +1,90 @@
+### TABLE 0 rows=28 :: Intel Core i5-11400 Intel Core i5-11400
+Intel Core i5-11400 | Intel Core i5-11400
+General information | General information
+Launched | March 30, 2021; 5 years ago (2021-03-30)
+Discontinued | February 23, 2024; 2 years ago (2024-02-23)
+Product code | 80708
+Performance | Performance
+Max. CPU clock rate | 1.3 GHz to 5.3 GHz
+Physical specifications | Physical specifications
+Cores | Up to 8
+Socket | LGA 1200
+Cache | Cache
+L1 cache | 80 KB per core: 32 KB instructions48 KB data
+L2 cache | 512 KB per core
+L3 cache | 2 MB per core
+Architecture and classification | Architecture and classification
+Technology node | Intel 14 nm++
+Microarchitecture | Cypress Cove
+Instruction set | x86
+Instructions | x86-16, IA-32, x86-64
+Extensions | AES-NI, CLMUL, RDRAND, SHA, TXTMMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2AVX, AVX2, AVX-512, FMA3VT-x, VT-d
+Products, models, variants | Products, models, variants
+Product code name | RKL
+Brand name | CoreXeon
+History | History
+Predecessor | Comet Lake
+Successors | Alder Lake (desktops) Raptor Lake (low-end servers)
+Support status | Support status
+Legacy support for iGPU | Legacy support for iGPU
+
+### TABLE 1 rows=22 :: Processor branding Model Cores (Threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart Cache (L3) TDP Price (USD)
+Processor branding | Model | Cores (Threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart Cache (L3) | TDP | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Turbo Boost | Turbo Boost | Turbo Boost | Turbo Boost | Model | Max clock rate (GHz) | Smart Cache (L3) | TDP | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | All-Core | 2.0 | 3.0 | TVB | Model | Max clock rate (GHz) | Smart Cache (L3) | TDP | Price (USD)
+Core i9 | 11900K | 8 (16) | 3.5 | 4.8 | 5.1 | 5.2 | 5.3 | UHD 750 | 1.3 | 16 MB | 125 W | $539
+Core i9 | 11900KF | 8 (16) | 3.5 | 4.8 | 5.1 | 5.2 | 5.3 | —N/a | —N/a | 16 MB | 125 W | $513
+Core i9 | 11900 | 8 (16) | 2.5 | 4.7 | 5.0 | 5.1 | 5.2 | UHD 750 | 1.3 | 16 MB | 65 W | $439
+Core i9 | 11900F | 8 (16) | 2.5 | 4.7 | 5.0 | 5.1 | 5.2 | —N/a | —N/a | 16 MB | 65 W | $422
+Core i9 | 11900T | 8 (16) | 1.5 | 3.7 | 4.8 | 4.9 | —N/a | UHD 750 | 1.3 | 16 MB | 35 W | $439
+Core i7 | 11700K | 8 (16) | 3.6 | 4.6 | 4.9 | 5.0 | —N/a | UHD 750 | 1.3 | 16 MB | 125 W | $399
+Core i7 | 11700KF | 8 (16) | 3.6 | 4.6 | 4.9 | 5.0 | —N/a | —N/a | —N/a | 16 MB | 125 W | $374
+Core i7 | 11700 | 8 (16) | 2.5 | 4.4 | 4.8 | 4.9 | —N/a | UHD 750 | 1.3 | 16 MB | 65 W | $323
+Core i7 | 11700F | 8 (16) | 2.5 | 4.4 | 4.8 | 4.9 | —N/a | —N/a | —N/a | 16 MB | 65 W | $298
+Core i7 | 11700T | 8 (16) | 1.4 | 3.6 | 4.5 | 4.6 | —N/a | UHD 750 | 1.3 | 16 MB | 35 W | $323
+Core i5 | 11600K | 6 (12) | 3.9 | 4.6 | 4.9 | —N/a | —N/a | UHD 750 | 1.3 | 12 MB | 125 W | $262
+Core i5 | 11600KF | 6 (12) | 3.9 | 4.6 | 4.9 | —N/a | —N/a | —N/a | —N/a | 12 MB | 125 W | $237
+Core i5 | 11600 | 6 (12) | 2.8 | 4.3 | 4.8 | —N/a | —N/a | UHD 750 | 1.3 | 12 MB | 65 W | $213
+Core i5 | 11600T | 6 (12) | 1.7 | 3.5 | 4.1 | —N/a | —N/a | UHD 750 | 1.3 | 12 MB | 35 W | $213
+Core i5 | 11500 | 6 (12) | 2.7 | 4.2 | 4.6 | —N/a | —N/a | UHD 750 | 1.3 | 12 MB | 65 W | $192
+Core i5 | 11500T | 6 (12) | 1.5 | 3.4 | 3.9 | —N/a | —N/a | UHD 750 | 1.2 | 12 MB | 35 W | $192
+Core i5 | 11400 | 6 (12) | 2.6 | 4.2 | 4.4 | —N/a | —N/a | UHD 730 | 1.3 | 12 MB | 65 W | $182
+Core i5 | 11400F | 6 (12) | 2.6 | 4.2 | 4.4 | —N/a | —N/a | —N/a | —N/a | 12 MB | 65 W | $157
+Core i5 | 11400T | 6 (12) | 1.3 | 3.3 | 3.7 | —N/a | —N/a | UHD 730 | 1.2 | 12 MB | 35 W | $182
+
+### TABLE 2 rows=9 :: Processor branding Model Cores (Threads) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart cache TDP Price (USD)
+Processor branding | Model | Cores (Threads) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart cache | TDP | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Turbo | Model | Max clock rate (GHz) | Smart cache | TDP | Price (USD)
+Xeon W | 1390P | 8 (16) | 3.5 | 5.3 | UHD P750 | 1.3 | 16 MB | 125 W | $539
+Xeon W | 1390 | 8 (16) | 2.8 | 5.2 | UHD P750 | 1.3 | 16 MB | 80 W | $494
+Xeon W | 1390T | 8 (16) | 1.5 | 4.9 | UHD P750 | 1.3 | 16 MB | 35 W | $494
+Xeon W | 1370P | 8 (16) | 3.6 | 5.2 | UHD P750 | 1.3 | 16 MB | 125 W | $428
+Xeon W | 1370 | 8 (16) | 2.9 | 5.1 | UHD P750 | 1.3 | 16 MB | 80 W | $362
+Xeon W | 1350P | 6 (12) | 4.0 | 5.1 | UHD P750 | 1.3 | 12 MB | 125 W | $311
+Xeon W | 1350 | 6 (12) | 3.3 | 5.0 | UHD P750 | 1.3 | 12 MB | 80 W | $255
+
+### TABLE 3 rows=12 :: Processor branding Model Cores (Threads) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart cache TDP Price (USD)
+Processor branding | Model | Cores (Threads) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart cache | TDP | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Turbo | Model | Max clock rate (GHz) | Smart cache | TDP | Price (USD)
+Xeon E | 2388G | 8 (16) | 3.2 | 5.1 | UHD P750 | 1.3 | 16 MB | 95 W | $539
+Xeon E | 2378G | 8 (16) | 2.8 | 5.1 | UHD P750 | 1.3 | 16 MB | 80 W | $494
+Xeon E | 2378 | 8 (16) | 2.6 | 4.8 | —N/a | —N/a | 16 MB | 65 W | $362
+Xeon E | 2386G | 6 (12) | 3.5 | 5.1 | UHD P750 | 1.3 | 12 MB | 95 W | $450
+Xeon E | 2356G | 6 (12) | 3.2 | 5.0 | UHD P750 | 1.3 | 12 MB | 80 W | $311
+Xeon E | 2336 | 6 (12) | 2.9 | 4.8 | —N/a | —N/a | 12 MB | 65 W | $284
+Xeon E | 2374G | 4 (8) | 3.7 | 5.0 | UHD P750 | 1.3 | 8 MB | 80 W | $334
+Xeon E | 2334 | 4 (8) | 3.4 | 4.8 | —N/a | —N/a | 8 MB | 65 W | $250
+Xeon E | 2324G | 4 (4) | 3.1 | 4.6 | UHD P750 | 1.3 | 8 MB | 65 W | $209
+Xeon E | 2314 | 4 (4) | 2.8 | 4.5 | —N/a | —N/a | 8 MB | 65 W | $182
+
+### TABLE 4 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 5 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

@@ -1,0 +1,39 @@
+### TABLE 0 rows=30 :: Microarchitecture Microarchitecture Microarchitecture Microarchitecture Zen Zen Zen 2 Zen 3 Zen 3 Zen 4 Zen 4 Zen 5 Zen 5
+Microarchitecture | Microarchitecture | Microarchitecture | Microarchitecture | Zen | Zen | Zen 2 | Zen 3 | Zen 3 | Zen 4 | Zen 4 | Zen 5 | Zen 5
+Microarchitecture variants | Microarchitecture variants | Microarchitecture variants | Microarchitecture variants | Zen | Zen+ | Zen 2 | Zen 3 | Zen 3+ | Zen 4 | Zen 4c | Zen 5 | Zen 5c
+Fabrication process (nm) | Fabrication process (nm) | Fabrication process (nm) | Fabrication process (nm) | 14 nm | 12 nm | 7 nm | 7 nm | 6 nm | 5 nm | 5 nm | 4 nm | 3 nm
+Cache | μop | μop | μop | 2K | 2K | 4K | 4K | 4K | 6.75K | 6.75K |  | 
+Cache | L1 | Data | Size | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB | 48 KB | 48 KB
+Cache | L1 | Data | Ways | 4 | 4 | 8 | 8 | 8 | 8 | 8 | 12 | 12
+Cache | L1 | Data | Latency |  |  |  | 4–8 | 4–8 |  |  |  | 
+Cache | L1 | Instruction | Size | 64 KB | 64 KB | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB | 32 KB
+Cache | L1 | Instruction | Ways | 4 | 4 | 8 | 8 | 8 | 8 | 8 | 8 | 8
+Cache | L1 | Instruction | Latency | 4–8 | 4–8 | 4–8 | 4–8 | 4–8 |  |  |  | 
+Cache | L1 | TLB | TLB | 512-entry | 512-entry | 512-entry | 1024-entry | 1024-entry |  |  |  | 
+Cache | L2 | L2 | Size | 512 KB/core | 512 KB/core | 512 KB/core | 512 KB/core | 512 KB/core | 1024 KB/core | 1024 KB/core | 1024 KB/core | 1024 KB/core
+Cache | L2 | L2 | Ways | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8 | 8
+Cache | L2 | L2 | Latency | 17 | 12 | 12 | 12 | 12 | 14 | 14 |  | 
+Cache | L2 | L2 | TLB | 1536-entry | 1536-entry | 2048-entry | 2048-entry | 2048-entry | 3072-entry | 3072-entry |  | 
+Cache | L3 | L3 | Size (per CCX) | 8 MB | 8 MB | 16 MB | 32 MB | APU-only | 32 MB | 16 MB | 32 MB | 16 MB
+Cache | L3 | L3 | Ways | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16
+Cache | L3 | L3 | Latency | 35 | 35 | 40 | 46 | 46 | 50 | 50 |  | 
+Max. CPU cores | Max. CPU cores | Max. CPU cores | Max. CPU cores | 32 | 32 | 64 | 64 | 8 | 96 | 128 | 128 | 192
+Simultaneous multithreading (SMT) | Simultaneous multithreading (SMT) | Simultaneous multithreading (SMT) | Simultaneous multithreading (SMT) |  |  |  |  |  |  |  |  | 
+OoO window (ROB) | OoO window (ROB) | OoO window (ROB) | OoO window (ROB) | 192 | 192 | 224 | 256 | 256 | 320 | 320 | 448 | 448
+Pipeline | Stages | Stages | Stages | 19 | 19 | 19 |  |  |  |  |  | 
+Pipeline | Decode (ways) | Decode (ways) | Decode (ways) | 4 | 4 |  |  | 6 | 6 |  |  | 
+Scheduler | Scheduler | Scheduler | Entries |  |  |  |  |  |  |  |  | 
+Scheduler | Scheduler | Scheduler | Dispatch | 6 | 6 |  |  |  |  |  |  | 
+Register file | Register file | Register file | Integer | 168 | 168 | 180 | 192 | 192 | 224 | 224 | 240 | 240
+Register file | Register file | Register file | Floating-point | 160 | 160 | 160 | 160 | 160 | 192 | 192 | 384 | 384
+Queue | Queue | Queue | Instruction | 72 | 72 |  |  |  |  |  |  | 
+Queue | Queue | Queue | Allocation | 44 | 44 |  |  |  |  |  |  | 
+AGUs | AGUs | AGUs | AGUs | 2 | 2 | 3 | 3 |  |  |  | 4 | 4
+
+### TABLE 1 rows=6 :: vteAMD processors vteAMD processors
+vteAMD processors | vteAMD processors
+Lists | Processors K5 K6 Athlon XP 64 X2 II Phenom FX Ryzen Duron Sempron Turion Opteron Epyc APUs Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Italics indicates an upcoming architecture. | Italics indicates an upcoming architecture.

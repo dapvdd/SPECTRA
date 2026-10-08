@@ -1,0 +1,249 @@
+### TABLE 0 rows=37 :: Intel Core i7-13700K Intel Core i7-13700K
+Intel Core i7-13700K | Intel Core i7-13700K
+General information | General information
+Launched | October 20, 2022; 3 years ago (October 20, 2022)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | Intel
+CPUID code | B0671
+Product code | 80715
+Performance | Performance
+Max. CPU clock rate | Up to 6.2 GHz (P-cores)Up to 4.5 GHz (E-cores)
+DMI speeds | 8x 16 GT/s
+Physical specifications | Physical specifications
+Cores | Up to 8 P-coresUp to 16 E-cores
+Memory (RAM) | Up to 256 GBUp to dual-channel DDR5-5600 and 89.6 GB/s bandwidth with ECC support in some modelsUp to dual-channel LPDDR5X-6400 in mobile CPUs (excluding HX series)
+GPU | Intel Xe-based integrated graphics (up to 96 execution units)
+Packages | Flip-chip land grid array (FC-LGA)Flip-chip ball grid array (FC-BGA)
+Sockets | Desktop/Server: LGA 1700Mobile: BGA 1744BGA 1792Desktop replacement: BGA 1964
+Cache | Cache
+L1 cache | 80 KB per P-core (32 KB instructions + 48 KB data)96 KB per E-core (64 KB instructions + 32 KB data)
+L2 cache | 1.25 or 2 MB per P-core2 or 4 MB per E-core cluster
+L3 cache | Up to 36 MB shared
+Architecture and classification | Architecture and classification
+Technology node | Intel 7 (previously known as 10ESF)
+Microarchitecture | Raptor Cove (P-cores)Golden Cove (P-cores)Gracemont (E-cores)
+Instruction set | x86
+Instructions | x86-64
+Extensions | AES-NI, CLMUL, RDRAND, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA3, AVX-VNNI, SHA, TXT, VT-x, VT-d
+Products, models, variants | Products, models, variants
+Product code name | RPL
+Models | Raptor Lake-SRaptor Lake-URaptor Lake-PRaptor Lake-PXRaptor Lake-HRaptor Lake-HXRaptor Lake-S RefreshRaptor Lake-U RefreshRaptor Lake-HX Refresh
+Brand names | Intel CoreIntel ProcessorIntel Xeon E-2400
+Variant | Emerald Rapids (server)
+History | History
+Predecessors | Alder Lake (desktop and mobile)Rocket Lake (low-end servers)Twin Lake (low-end mobile)
+Successors | Arrow Lake (desktop and mobile replacement)Meteor Lake (mobile)
+Support status | Support status
+Legacy support for iGPU | Legacy support for iGPU
+
+### TABLE 1 rows=33 :: Processor branding Model Cores (threads) Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart cache TDP TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base | Base | Turbo Boost | Turbo Boost | Turbo Boost | Turbo Boost | Model | Max. freq. (GHz) | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base | Base | 2.0 | 2.0 | 3.0 | TVB | Model | Max. freq. (GHz) | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | P | P | Model | Max. freq. (GHz) | Smart cache | Base | Turbo | Release date | Price (USD)
+Core i9 | 13900KS | 8 (16) | 16 (16) | 3.2 | 2.4 | 5.4 | 4.3 | 5.8 | 6.0 | UHD 770 | 1.65 | 36 MB | 150 W | 253 W | Jan 12, 2023 | $699
+Core i9 | 13900K | 8 (16) | 16 (16) | 3.0 | 2.0 | 5.4 | 4.3 | 5.7 | 5.8 | UHD 770 | 1.65 | 36 MB | 125 W | 253 W | Oct 20, 2022 | $589
+Core i9 | 13900KF | 8 (16) | 16 (16) | 3.0 | 2.0 | 5.4 | 4.3 | 5.7 | 5.8 | —N/a | —N/a | 36 MB | 125 W | 253 W | Oct 20, 2022 | $564
+Core i9 | 13900 | 8 (16) | 16 (16) | 2.0 | 1.5 | 5.2 | 4.2 | 5.5 | 5.6 | UHD 770 | 1.65 | 36 MB | 65 W | 219 W | Jan 3, 2023 | $549
+Core i9 | 13900F | 8 (16) | 16 (16) | 2.0 | 1.5 | 5.2 | 4.2 | 5.5 | 5.6 | —N/a | —N/a | 36 MB | 65 W | 219 W | Jan 3, 2023 | $524
+Core i9 | 13900E | 8 (16) | 16 (16) | 1.8 | 1.3 | 5.2 | 4.0 | —N/a | —N/a | UHD 770 | 1.65 | 36 MB | 65 W | – | Q1'23 | $554
+Core i9 | 13900TE | 8 (16) | 16 (16) | 1.0 | 0.8 | 5.0 | 3.9 | —N/a | —N/a | UHD 770 | 1.65 | 36 MB | 35 W | – | Q1'23 | $554
+Core i9 | 13900T | 8 (16) | 16 (16) | 1.1 | 0.8 | 5.1 | 3.9 | 5.3 | —N/a | UHD 770 | 1.65 | 36 MB | 35 W | 106 W | Jan 3, 2023 | $549
+Core i7 | 13790F | 8 (16) | 8 (8) | 2.1 | 1.5 | 5.1 | 4.1 | 5.2 | —N/a | —N/a | —N/a | 33 MB | 65 W | 219 W | Feb 8, 2023 | China exclusive
+Core i7 | 13700K | 8 (16) | 8 (8) | 3.4 | 2.5 | 5.4 | 4.2 | 5.4 | —N/a | UHD 770 | 1.6 | 30 MB | 125 W | 253 W | Oct 20, 2022 | $409
+Core i7 | 13700KF | 8 (16) | 8 (8) | 3.4 | 2.5 | 5.4 | 4.2 | 5.4 | —N/a | —N/a | —N/a | 30 MB | 125 W | 253 W | Oct 20, 2022 | $384
+Core i7 | 13700 | 8 (16) | 8 (8) | 2.1 | 1.5 | 5.1 | 4.1 | 5.2 | —N/a | UHD 770 | 1.6 | 30 MB | 65 W | 219 W | Jan 3, 2023 | $384
+Core i7 | 13700F | 8 (16) | 8 (8) | 2.1 | 1.5 | 5.1 | 4.1 | 5.2 | —N/a | —N/a | —N/a | 30 MB | 65 W | 219 W | Jan 3, 2023 | $359
+Core i7 | 13700E | 8 (16) | 8 (8) | 1.9 | 1.3 | 5.1 | 3.9 | —N/a | —N/a | UHD 770 | 1.6 | 30 MB | 65 W | – | Q1'23 | $390
+Core i7 | 13700TE | 8 (16) | 8 (8) | 1.1 | 0.8 | 4.8 | 3.6 | —N/a | —N/a | UHD 770 | 1.6 | 30 MB | 35 W | – | Q1'23 | $390
+Core i7 | 13700T | 8 (16) | 8 (8) | 1.4 | 1.0 | 4.8 | 3.6 | 4.9 | —N/a | UHD 770 | 1.6 | 30 MB | 35 W | 106 W | Jan 3, 2023 | $384
+Core i5 | 13600K | 6 (12) | 8 (8) | 3.5 | 2.6 | 5.1 | 3.9 | —N/a | —N/a | UHD 770 | 1.5 | 24 MB | 125 W | 181 W | Oct 20, 2022 | $319
+Core i5 | 13600KF | 6 (12) | 8 (8) | 3.5 | 2.6 | 5.1 | 3.9 | —N/a | —N/a | —N/a | —N/a | 24 MB | 125 W | 181 W | Oct 20, 2022 | $294
+Core i5 | 13600 | 6 (12) | 8 (8) | 2.7 | 2.0 | 5.0 | 3.7 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 65 W | 154 W | Jan 3, 2023 | $255
+Core i5 | 13600T | 6 (12) | 8 (8) | 1.8 | 1.3 | 4.8 | 3.4 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 35 W | 92 W | Jan 3, 2023
+Core i5 | 13500 | 6 (12) | 8 (8) | 2.5 | 1.8 | 4.8 | 3.5 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 65 W | 154 W | Jan 3, 2023 | $232
+Core i5 | 13500T | 6 (12) | 8 (8) | 1.6 | 1.2 | 4.6 | 3.2 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 35 W | 92 W | Jan 3, 2023
+Core i5 | 13490F | 6 (12) | 4 (4) | 2.5 | 1.8 | 4.8 | 3.5 | —N/a | —N/a | —N/a | —N/a | 24 MB | 65 W | 148 W | Feb 8, 2023 | China exclusive
+Core i5 | 13400 | 6 (12) | 4 (4) | 2.5 | 1.8 | 4.6 | 3.3 | —N/a | —N/a | UHD 730 | 1.55 | 20 MB | 65 W | 148 W | Jan 3, 2023 | $221
+Core i5 | 13400F | 6 (12) | 4 (4) | 2.5 | 1.8 | 4.6 | 3.3 | —N/a | —N/a | —N/a | —N/a | 20 MB | 65 W | 148 W | Jan 3, 2023 | $196
+Core i5 | 13400T | 6 (12) | 4 (4) | 1.3 | 1.0 | 4.4 | 3.0 | —N/a | —N/a | UHD 730 | 1.55 | 20 MB | 35 W | 82 W | Jan 3, 2023 | $221
+Core i3 | 13100 | 4 (8) | —N/a | 3.4 | —N/a | 4.5 | —N/a | —N/a | —N/a | UHD 730 | 1.5 | 12 MB | 60 W | 110 W | Jan 3, 2023 | $134
+Core i3 | 13100F | 4 (8) | —N/a | 3.4 | —N/a | 4.5 | —N/a | —N/a | —N/a | —N/a | —N/a | 12 MB | 58 W | 110 W | Jan 3, 2023 | $109
+Core i3 | 13100T | 4 (8) | —N/a | 2.5 | —N/a | 4.2 | —N/a | —N/a | —N/a | UHD 730 | 1.5 | 12 MB | 35 W | 69 W | Jan 3, 2023 | $134
+
+### TABLE 2 rows=11 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) UHD Graphics UHD Graphics Smart cache TDP TDP Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | UHD Graphics | UHD Graphics | Smart cache | TDP | TDP | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Price (USD)
+Core i9 | 13980HX | 8 (16) | 16 (16) | 2.2 | 1.6 | 5.6 | 4.0 | 32 | 1.65 | 36 MB | 55 W (45 W) | 157 W | $668
+Core i9 | 13950HX | 8 (16) | 16 (16) | 2.2 | 1.6 | 5.5 | 4.0 | 32 | 1.65 | 36 MB | 55 W (45 W) | 157 W | $590
+Core i9 | 13900HX | 8 (16) | 16 (16) | 2.2 | 1.6 | 5.4 | 3.9 | 32 | 1.65 | 36 MB | 55 W (45 W) | 157 W | $668
+Core i7 | 13850HX | 8 (16) | 12 (12) | 2.1 | 1.5 | 5.3 | 3.8 | 32 | 1.6 | 30 MB | 55 W (45 W) | 157 W | $428
+Core i7 | 13700HX | 8 (16) | 8 (8) | 2.1 | 1.5 | 5.0 | 3.7 | 32 | 1.55 | 30 MB | 55 W (45 W) | 157 W | $485
+Core i7 | 13650HX | 6 (12) | 8 (8) | 2.6 | 1.9 | 4.9 | 3.6 | 16 | 1.55 | 24 MB | 55 W (45 W) | 157 W | $485
+Core i5 | 13600HX | 6 (12) | 8 (8) | 2.6 | 1.9 | 4.8 | 3.6 | 32 | 1.5 | 24 MB | 55 W (45 W) | 157 W | $284
+Core i5 | 13500HX | 6 (12) | 8 (8) | 2.5 | 1.8 | 4.7 | 3.5 | 32 | 1.5 | 24 MB | 55 W (45 W) | 157 W | $326
+Core i5 | 13450HX | 6 (12) | 4 (4) | 2.4 | 1.8 | 4.6 | 3.4 | 16 | 1.45 | 20 MB | 55 W (45 W) | 157 W | $326
+
+### TABLE 3 rows=10 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) UHD/Iris Xe Graphics UHD/Iris Xe Graphics Smart cache TDP TDP Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | UHD/Iris Xe Graphics | UHD/Iris Xe Graphics | Smart cache | TDP | TDP | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Price (USD)
+Core i9 | 13900HK | 6 (12) | 8 (8) | 2.6 | 1.9 | 5.4 | 4.1 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $697
+Core i9 | 13900H | 6 (12) | 8 (8) | 2.6 | 1.9 | 5.4 | 4.1 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $617
+Core i7 | 13800H | 6 (12) | 8 (8) | 2.5 | 1.8 | 5.2 | 4.0 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $457
+Core i7 | 13700H | 6 (12) | 8 (8) | 2.4 | 1.8 | 5.0 | 3.7 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $502
+Core i7 | 13620H | 6 (12) | 4 (4) | 2.4 | 1.8 | 4.9 | 3.6 | 64 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $502
+Core i5 | 13600H | 4 (8) | 8 (8) | 2.8 | 2.1 | 4.8 | 3.6 | 80 | 1.5 | 18 MB | 45 W (35 W) | 95 W | $311
+Core i5 | 13500H | 4 (8) | 8 (8) | 2.6 | 1.9 | 4.7 | 3.5 | 80 | 1.45 | 18 MB | 45 W (35 W) | 95 W | $342
+Core i5 | 13420H | 4 (8) | 4 (4) | 2.1 | 1.5 | 4.6 | 3.4 | 48 | 1.4 | 12 MB | 45 W (35 W) | 95 W | $342
+
+### TABLE 4 rows=5 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) Iris Xe Graphics Iris Xe Graphics Smart cache TDP TDP Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | Iris Xe Graphics | Iris Xe Graphics | Smart cache | TDP | TDP | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Price (USD)
+Core i9 | 13905H | 6 (12) | 8 (8) | 2.6 | 1.9 | 5.4 | 4.1 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $697
+Core i7 | 13705H | 6 (12) | 8 (8) | 2.4 | 1.8 | 5.0 | 3.7 | 96 | 1.5 | 24 MB | 45 W (35 W) | 115 W | $502
+Core i5 | 13505H | 4 (8) | 8 (8) | 2.6 | 1.9 | 4.7 | 3.5 | 80 | 1.45 | 18 MB | 45 W (35 W) | 115 W | $342
+
+### TABLE 5 rows=6 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) Iris Xe Graphics Iris Xe Graphics Smart cache TDP TDP Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | Iris Xe Graphics | Iris Xe Graphics | Smart cache | TDP | TDP | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Price (USD)
+Core i7 | 1370P | 6 (12) | 8 (8) | 1.9 | 1.4 | 5.2 | 3.9 | 96 | 1.5 | 24 MB | 28 W (20 W) | 64 W | $438
+Core i7 | 1360P | 4 (8) | 8 (8) | 2.2 | 1.6 | 5.0 | 3.7 | 96 | 1.5 | 18 MB | 28 W (20 W) | 64 W | $480
+Core i5 | 1350P | 4 (8) | 8 (8) | 1.9 | 1.4 | 4.7 | 3.5 | 80 | 1.5 | 12 MB | 28 W (20 W) | 64 W | $320
+Core i5 | 1340P | 4 (8) | 8 (8) | 1.9 | 1.4 | 4.6 | 3.4 | 80 | 1.45 | 12 MB | 28 W (20 W) | 64 W | $353
+
+### TABLE 6 rows=10 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) UHD/Iris Xe Graphics UHD/Iris Xe Graphics Smart cache TDP TDP Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | UHD/Iris Xe Graphics | UHD/Iris Xe Graphics | Smart cache | TDP | TDP | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Price (USD)
+Core i7 | 1365U | 2 (4) | 8 (8) | 1.8 | 1.3 | 5.2 | 3.9 | 96 | 1.3 | 12 MB | 15 W (12 W) | 55 W | $426
+Core i7 | 1355U | 2 (4) | 8 (8) | 1.7 | 1.2 | 5.0 | 3.7 | 96 | 1.3 | 12 MB | 15 W (12 W) | 55 W | $469
+Core i5 | 1345U | 2 (4) | 8 (8) | 1.6 | 1.2 | 4.7 | 3.5 | 80 | 1.25 | 12 MB | 15 W (12 W) | 55 W | $309
+Core i5 | 1335U | 2 (4) | 8 (8) | 1.3 | 0.9 | 4.6 | 3.4 | 80 | 1.25 | 12 MB | 15 W (12 W) | 55 W | $340
+Core i5 | 1334U | 2 (4) | 8 (8) | 1.3 | 0.9 | 4.6 | 3.4 | 80 | 1.25 | 12 MB | 15 W (12 W) | 55 W | $340
+Core i3 | 1315U (with IPU) | 2 (4) | 4 (4) | 1.2 | 0.9 | 4.5 | 3.3 | 64 | 1.25 | 10 MB | 15 W (12 W) | 55 W | $309
+Core i3 | 1305U | 1 (2) | 4 (4) | 1.6 | 1.2 | 4.5 | 3.3 | 64 | 1.25 | 10 MB | 15 W (12 W) | 55 W | $309
+Intel Processor | U300 | 1 (2) | 4 (4) | 1.2 |  | 4.4 | 3.3 | 48 | 1.1 | 8 MB | 15 W (12 W) | 55 W | $193
+
+### TABLE 7 rows=31 :: Branding Model Cores (threads) Cores (threads) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart cache TDP TDP Released Price (USD)
+Branding | Model | Cores (threads) | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart cache | TDP | TDP | Released | Price (USD)
+Branding | Model | Cores (threads) | Cores (threads) | Base | Base | Turbo Boost | Turbo Boost | Turbo Boost | Turbo Boost | Model | Max. freq. (GHz) | Smart cache | TDP | TDP | Released | Price (USD)
+Branding | Model | Cores (threads) | Cores (threads) | Base | Base | 2.0 | 2.0 | 3.0 | TVB | Model | Max. freq. (GHz) | Smart cache | TDP | TDP | Released | Price (USD)
+Branding | Model | P | E | P | E | P | E | P | P | Model | Max. freq. (GHz) | Smart cache | Base | Turbo | Released | Price (USD)
+Core i9 | 14900KS | 8 (16) | 16 (16) | 3.2 | 2.4 | 5.7 | 4.5 | 5.9 | 6.2 | UHD 770 | 1.65 | 36 MB | 150 W | 253 W | Mar 14, 2024 | $689
+Core i9 | 14900K | 8 (16) | 16 (16) | 3.2 | 2.4 | 5.6 | 4.4 | 5.8 | 6.0 | UHD 770 | 1.65 | 36 MB | 125 W | 253 W | Oct 17, 2023 | $589
+Core i9 | 14900KF | 8 (16) | 16 (16) | 3.2 | 2.4 | 5.6 | 4.4 | 5.8 | 6.0 | —N/a | —N/a | 36 MB | 125 W | 253 W | Oct 17, 2023 | $564
+Core i9 | 14900 | 8 (16) | 16 (16) | 2.0 | 1.5 | 5.4 | 4.3 | 5.6 | 5.8 | UHD 770 | 1.65 | 36 MB | 65 W | 219 W | Jan 8, 2024 | $549
+Core i9 | 14900F | 8 (16) | 16 (16) | 2.0 | 1.5 | 5.4 | 4.3 | 5.6 | 5.8 | —N/a | —N/a | 36 MB | 65 W | 219 W | Jan 8, 2024 | $524
+Core i9 | 14900T | 8 (16) | 16 (16) | 1.1 | 0.8 | 5.1 | 4.0 | 5.5 | —N/a | UHD 770 | 1.65 | 36 MB | 35 W | 106 W | Jan 8, 2024 | $549
+Core i7 | 14790F | 8 (16) | 8 (8) | 2.1 | 1.5 | 5.3 | 4.2 | 5.4 | —N/a | —N/a | —N/a | 36 MB | 65 W | 219 W | Jan 15, 2024 | China exclusive
+Core i7 | 14700K | 8 (16) | 12 (12) | 3.4 | 2.5 | 5.5 | 4.3 | 5.6 | —N/a | UHD 770 | 1.6 | 33 MB | 125 W | 253 W | Oct 17, 2023 | $409
+Core i7 | 14700KF | 8 (16) | 12 (12) | 3.4 | 2.5 | 5.5 | 4.3 | 5.6 | —N/a | —N/a | —N/a | 33 MB | 125 W | 253 W | Oct 17, 2023 | $384
+Core i7 | 14700 | 8 (16) | 12 (12) | 2.1 | 1.5 | 5.3 | 4.2 | 5.4 | —N/a | UHD 770 | 1.6 | 33 MB | 65 W | 219 W | Jan 8, 2024 | $384
+Core i7 | 14700F | 8 (16) | 12 (12) | 2.1 | 1.5 | 5.3 | 4.2 | 5.4 | —N/a | —N/a | —N/a | 33 MB | 65 W | 219 W | Jan 8, 2024 | $359
+Core i7 | 14700T | 8 (16) | 12 (12) | 1.3 | 0.9 | 5.0 | 3.7 | 5.2 | —N/a | UHD 770 | 1.6 | 33 MB | 35 W | 106 W | Jan 8, 2024 | $384
+Core i5 | 14600K | 6 (12) | 8 (8) | 3.5 | 2.6 | 5.3 | 4.0 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 125 W | 181 W | Oct 17, 2023 | $319
+Core i5 | 14600KF | 6 (12) | 8 (8) | 3.5 | 2.6 | 5.3 | 4.0 | —N/a | —N/a | —N/a | —N/a | 24 MB | 125 W | 181 W | Oct 17, 2023 | $294
+Core i5 | 14600 | 6 (12) | 8 (8) | 2.7 | 2.0 | 5.2 | 3.9 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 65 W | 154 W | Jan 8, 2024 | $255
+Core i5 | 14600T | 6 (12) | 8 (8) | 1.8 | 1.3 | 5.1 | 3.6 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 35 W | 92 W | Jan 8, 2024 | $255
+Core i5 | 14500 | 6 (12) | 8 (8) | 2.6 | 1.9 | 5.0 | 3.7 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 65 W | 154 W | Jan 8, 2024 | $232
+Core i5 | 14500T | 6 (12) | 8 (8) | 1.7 | 1.2 | 4.8 | 3.4 | —N/a | —N/a | UHD 770 | 1.55 | 24 MB | 35 W | 92 W | Jan 8, 2024 | $232
+Core i5 | 14490F | 6 (12) | 4 (4) | 2.8 | 2.1 | 4.9 | 3.7 | —N/a | —N/a | —N/a | —N/a | 24 MB | 65 W | 148 W | Jan 15, 2024 | China exclusive
+Core i5 | 14400 | 6 (12) | 4 (4) | 2.5 | 1.8 | 4.7 | 3.5 | —N/a | —N/a | UHD 730 | 1.55 | 20 MB | 65 W | 148 W | Jan 8, 2024 | $221
+Core i5 | 14400F | 6 (12) | 4 (4) | 2.5 | 1.8 | 4.7 | 3.5 | —N/a | —N/a | —N/a | —N/a | 20 MB | 65 W | 148 W | Jan 8, 2024 | $196
+Core i5 | 14400T | 6 (12) | 4 (4) | 1.5 | 1.1 | 4.5 | 3.2 | —N/a | —N/a | UHD 730 | 1.55 | 20 MB | 35 W | 82 W | Jan 8, 2024 | $221
+Core i3 | 14100 | 4 (8) | —N/a | 3.5 | —N/a | 4.7 | —N/a | —N/a | —N/a | UHD 730 | 1.5 | 12 MB | 60 W | 110 W | Jan 8, 2024 | $134
+Core i3 | 14100F | 4 (8) | —N/a | 3.5 | —N/a | 4.7 | —N/a | —N/a | —N/a | —N/a | —N/a | 12 MB | 58 W | 110 W | Jan 8, 2024 | $109
+Core i3 | 14100T | 4 (8) | —N/a | 2.7 | —N/a | 4.4 | —N/a | —N/a | —N/a | UHD 730 | 1.5 | 12 MB | 35 W | 69 W | Jan 8, 2024 | $134
+Intel Processor | 300 | 2 (4) | —N/a | 3.9 | —N/a | —N/a | —N/a | —N/a | —N/a | UHD 710 | 1.45 | 6 MB | 46 W | —N/a | Jan 8, 2024 | $82
+Intel Processor | 300T | 2 (4) | —N/a | 3.4 | —N/a | —N/a | —N/a | —N/a | —N/a | UHD 710 | 1.45 | 6 MB | 35 W | —N/a | Jan 8, 2024 | $82
+
+### TABLE 8 rows=11 :: Processor branding Model Cores (threads) Clock rate (GHz) Clock rate (GHz) GPU GPU Smart cache TDP Price (USD)
+Processor branding | Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | GPU | GPU | Smart cache | TDP | Price (USD)
+Processor branding | Model | Cores (threads) | Base | Turbo | Model | Max. freq. (GHz) | Smart cache | TDP | Price (USD)
+Core i9 | 14901KE | 8 (16) | 3.8 | 5.8 | UHD 770 | 1.65 | 36 MB | 125 W | $557
+Core i9 | 14901E | 8 (16) | 2.8 | 5.6 | UHD 770 | 1.65 | 36 MB | 65 W | $557
+Core i9 | 14901TE | 8 (16) | 2.3 | 5.5 | UHD 770 | 1.65 | 36 MB | 45 W | $557
+Core i7 | 14701E | 8 (16) | 2.6 | 5.4 | UHD 770 | 1.65 | 33 MB | 65 W | $392
+Core i7 | 14701TE | 8 (16) | 2.1 | 5.2 | UHD 770 | 1.65 | 33 MB | 45 W | $392
+Core i5 | 14501E | 6 (12) | 3.3 | 5.2 | UHD 770 | 1.55 | 24 MB | 65 W | $239
+Core i5 | 14501TE | 6 (12) | 2.2 | 5.1 | UHD 770 | 1.55 | 24 MB | 45 W | $239
+Core i5 | 14401E | 6 (12) | 2.5 | 4.7 | UHD 770 | 1.55 | 24 MB | 65 W | $228
+Core i5 | 14401TE | 6 (12) | 2.0 | 4.5 | UHD 770 | 1.55 | 24 MB | 45 W | $228
+
+### TABLE 9 rows=7 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) UHD Graphics UHD Graphics Smart cache TDP TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | UHD Graphics | UHD Graphics | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Release date | Price (USD)
+Core i9 | 14900HX | 8 (16) | 16 (16) | 2.2 | 1.6 | 5.8 | 4.1 | 32 | 1.65 | 36 MB | 55 W (45 W) | 157 W | Q1'24 | $679
+Core i7 | 14700HX | 8 (16) | 12 (12) | 2.1 | 1.5 | 5.5 | 3.9 | 32 | 1.6 | 33 MB | 55 W (45 W) | 157 W | Q1'24 | $495
+Core i7 | 14650HX | 8 (16) | 8 (8) | 2.2 | 1.6 | 5.2 | 3.7 | 16 | 1.6 | 30 MB | 55 W (45 W) | 157 W | Q1'24
+Core i5 | 14500HX | 6 (12) | 8 (8) | 2.6 | 1.9 | 4.9 | 3.5 | 32 | 1.55 | 24 MB | 55 W (45 W) | 157 W | Q1'24 | $337
+Core i5 | 14450HX | 6 (12) | 4 (4) | 2.4 | 1.8 | 4.8 | 3.5 | 16 | 1.5 | 20 MB | 55 W (45 W) | 157 W | Q1'24
+
+### TABLE 10 rows=18 :: Processor branding Model Cores (threads) Clock rate (GHz) Clock rate (GHz) Smart cache TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Clock rate (GHz) | Clock rate (GHz) | Smart cache | TDP | Release date | Price (USD)
+Processor branding | Model | Cores (threads) | Base | Turbo | Smart cache | TDP | Release date | Price (USD)
+Xeon E | 2488 | 8 (16) | 3.2 | 5.6 | 24 MB | 95 W | Q4'23 | $606
+Xeon E | 2478 | 8 (16) | 2.8 | 5.2 | 24 MB | 80 W | Q4'23 | $556
+Xeon E | 2468 | 8 (16) | 2.6 | 5.2 | 24 MB | 65 W | Q4'23 | $426
+Xeon E | 2486 | 6 (12) | 3.5 | 5.6 | 18 MB | 95 W | Q4'23 | $506
+Xeon E | 2456 | 6 (12) | 3.3 | 5.1 | 18 MB | 80 W | Q4'23 | $375
+Xeon E | 2436 | 6 (12) | 2.9 | 4.8 | 18 MB | 65 W | Q4'23 | $319
+Xeon E | 2434 | 4 (8) | 3.4 | 5.0 | 12 MB | 55 W | Q4'23 | $281
+Xeon E | 2414 | 4 (4) | 2.6 | 4.5 | 12 MB | 55 W | Q4'23 | $213
+Xeon 6 6300 series | 6369P | 8 (16) | 3.3 | 5.7 | 24 MB | 95 W | Q1'25 | $606
+Xeon 6 6300 series | 6357P | 8 (16) | 3.0 | 5.4 | 24 MB | 80 W | Q1'25 | $556
+Xeon 6 6300 series | 6353P | 8 (16) | 2.7 | 5.4 | 24 MB | 65 W | Q1'25 | $426
+Xeon 6 6300 series | 6349P | 6 (12) | 3.6 | 5.7 | 18 MB | 95 W | Q1'25 | $506
+Xeon 6 6300 series | 6337P | 6 (12) | 3.5 | 5.3 | 18 MB | 80 W | Q1'25 | $375
+Xeon 6 6300 series | 6333P | 6 (12) | 3.1 | 5.2 | 18 MB | 65 W | Q1'25 | $319
+Xeon 6 6300 series | 6325P | 4 (8) | 3.5 | 5.2 | 12 MB | 55 W | Q1'25 | $281
+Xeon 6 6300 series | 6315P | 4 (4) | 2.8 | 4.7 | 12 MB | 55 W | Q1'25 | $213
+
+### TABLE 11 rows=5 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) Intel Graphics Intel Graphics Smart cache TDP TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | Intel Graphics | Intel Graphics | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Release date | Price (USD)
+Core 7 | 150U | 2 (4) | 8 (8) | 1.8 | 1.2 | 5.4 | 4.0 | 96 | 1.3 | 12 MB | 15 W (12 W) | 55 W | Q1'24 | 
+Core 5 | 120U | 2 (4) | 8 (8) | 1.4 | 0.9 | 5.0 | 3.8 | 80 | 1.25 | 12 MB | 15 W (12 W) | 55 W | Q1'24 | $340
+Core 3 | 100U (with IPU) | 2 (4) | 4 (4) | 1.2 | 0.9 | 4.7 | 3.3 | 64 | 1.25 | 10 MB | 15 W (12 W) | 55 W | Q1'24 | 
+
+### TABLE 12 rows=4 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) Intel Graphics Intel Graphics Smart cache TDP TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | Intel Graphics | Intel Graphics | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Release date | Price (USD)
+Core 7 | 250U | 2 (4) | 8 (8) | 1.8 | 1.2 | 5.4 | 4.0 | 96 | 1.3 | 12 MB | 15 W (12 W) | 55 W | Q1'25 | $426
+Core 5 | 220U | 2 (4) | 8 (8) | 1.4 | 0.9 | 5.0 | 3.8 | 80 | 1.3 | 12 MB | 15 W (12 W) | 55 W | Q1'25 | $309
+
+### TABLE 13 rows=7 :: Processor branding Model Cores (threads) Cores (threads) Base clock (GHz) Base clock (GHz) Turbo Boost (GHz) Turbo Boost (GHz) UHD/Iris Xe Graphics UHD/Iris Xe Graphics Smart cache TDP TDP Release date Price (USD)
+Processor branding | Model | Cores (threads) | Cores (threads) | Base clock (GHz) | Base clock (GHz) | Turbo Boost (GHz) | Turbo Boost (GHz) | UHD/Iris Xe Graphics | UHD/Iris Xe Graphics | Smart cache | TDP | TDP | Release date | Price (USD)
+Processor branding | Model | P | E | P | E | P | E | EUs | Boost clock (GHz) | Smart cache | Base (cTDP) | Turbo | Release date | Price (USD)
+Core 9 | 270H | 6 (12) | 8 (8) | 2.7 | 2.0 | 5.8 | 4.1 | 96 | 1.55 | 24 MB | 45 W (35 W) | 115 W | Q1'25 | $697
+Core 7 | 250H | 6 (12) | 8 (8) | 2.5 | 1.8 | 5.4 | 4.0 | 96 | 1.55 | 24 MB | 45 W (35 W) | 115 W | Q1'25 | $502
+Core 7 | 240H | 6 (12) | 4 (4) | 2.5 | 1.8 | 5.2 | 4.0 | 64 | 1.55 | 24 MB | 45 W (35 W) | 115 W | Q1'25 | $502
+Core 5 | 220H | 4 (8) | 8 (8) | 2.7 | 2.0 | 4.9 | 3.7 | 80 | 1.5 | 18 MB | 45 W (35 W) | 95 W | Q1'25 | $342
+Core 5 | 210H | 4 (8) | 4 (4) | 2.2 | 1.6 | 4.8 | 3.6 | 48 | 1.4 | 12 MB | 45 W (35 W) | 95 W | Q1'25 | $342
+
+### TABLE 14 rows=13 :: 13th-generation Intel Core 14th-generation Intel Core
+13th-generation Intel Core | 14th-generation Intel Core
+i9-13900KS | i9-14900KS
+i9-13900K | i9-14900K
+i9-13900KF | i9-14900KF
+i9-13900 | i9-14900
+i9-13900F | i9-14900F
+i7-13790F | i7-14790F
+i7-13700K | i7-14700K
+i7-13700KF | i7-14700KF
+i7-13700 | i7-14700
+i7-13700F | i7-14700F
+i5-13600K | i5-14600K
+i5-13600KF | i5-14600KF
+
+### TABLE 15 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 16 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors

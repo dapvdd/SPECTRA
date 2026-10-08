@@ -1,0 +1,153 @@
+### TABLE 0 rows=32 :: An Intel Core i5 -10500TE An Intel Core i5 -10500TE
+An Intel Core i5 -10500TE | An Intel Core i5 -10500TE
+General information | General information
+Launched | August 21, 2019; 7 years ago (2019-08-21) (official launch date, retail availability is later)
+Discontinued | December 16, 2020; 5 years ago (2020-12-16) (desktop except for low-end) September 30, 2022; 4 years ago (2022-09-30) (mobile)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | Intel
+Product code | 80701
+Performance | Performance
+Max. CPU clock rate | 1.1 GHz - 5.3 GHz
+DMI speeds | 8 GT/s
+Physical specifications | Physical specifications
+Cores | 2–10
+Sockets | Desktop LGA 1200Mobile BGA 1440BGA 1528
+Cache | Cache
+L1 cache | 64 KB per core
+L2 cache | 256 KB per core
+L3 cache | 2 MB per core
+Architecture and classification | Architecture and classification
+Technology node | Intel 14 nm++
+Microarchitecture | Skylake
+Instruction set | x86
+Instructions | x86-64
+Extensions | MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA3, AES-NI, CLMUL, RDRANDTXT, SGX, VT-x, VT-d
+Products, models, variants | Products, models, variants
+Product code name | CML
+Brand name | Xeon WCore i9Core i7Core i5Core i3PentiumCeleron
+History | History
+Predecessors | Mobile: Amber Lake Mobile: Whiskey Lake (3rd optimization) Desktop: Coffee Lake
+Successors | Same generation: Ice Lake (10nm, new architecture) Next generation: Tiger Lake (mobile) Rocket Lake (desktop)
+Support status | Support status
+Legacy support for iGPU | Legacy support for iGPU
+
+### TABLE 1 rows=42 :: Processor branding Model Cores (Threads) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) GPU GPU Smart cache (L3) TDP TDP Memory support Price (USD)
+Processor branding | Model | Cores (Threads) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | GPU | GPU | Smart cache (L3) | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Turbo Boost | Turbo Boost | Turbo Boost | Turbo Boost | Model | Max clock rate (GHz) | Smart cache (L3) | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | All-Core | 2.0 | 3.0 | TVB | Model | Max clock rate (GHz) | Smart cache (L3) | Base | Down | Memory support | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Core i9 | 10900K | 10 (20) | 3.7 | 4.8 | 5.1 | 5.2 | 5.3 | UHD 630 | 1.20 | 20 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | $488
+Core i9 | 10900KF | 10 (20) | 3.7 | 4.8 | 5.1 | 5.2 | 5.3 | —N/a | —N/a | 20 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | $472
+Core i9 | 10910 | 10 (20) | 3.6 | 4.7 | 5.0 | —N/a | —N/a | UHD 630 | 1.2 | 20 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | OEM
+Core i9 | 10900 | 10 (20) | 2.8 | 4.5 | 5.0 | 5.1 | 5.2 | UHD 630 | 1.2 | 20 MB | 65 W | —N/a | DDR4-2933 dual-channel up to 128 GB | $438
+Core i9 | 10900F | 10 (20) | 2.8 | 4.5 | 5.0 | 5.1 | 5.2 | —N/a | —N/a | 20 MB | 65 W | —N/a | DDR4-2933 dual-channel up to 128 GB | $422
+Core i9 | 10900T | 10 (20) | 1.9 | 3.7 | 4.5 | 4.6 | —N/a | UHD 630 | 1.2 | 20 MB | 35 W | 25 W | DDR4-2933 dual-channel up to 128 GB | $438
+Core i9 | 10850K | 10 (20) | 3.6 | 4.8 | 5.0 | 5.1 | 5.2 | UHD 630 | 1.2 | 20 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | $453
+Core i7 | 10700K | 8 (16) | 3.8 | 4.7 | 5.0 | 5.1 | —N/a | UHD 630 | 1.2 | 16 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | $374
+Core i7 | 10700KF | 8 (16) | 3.8 | 4.7 | 5.0 | 5.1 | —N/a | —N/a | —N/a | 16 MB | 125 W | 95 W | DDR4-2933 dual-channel up to 128 GB | $349
+Core i7 | 10700 | 8 (16) | 2.9 | 4.6 | 4.7 | 4.8 | —N/a | UHD 630 | 1.2 | 16 MB | 65 W | —N/a | DDR4-2933 dual-channel up to 128 GB | $323
+Core i7 | 10700F | 8 (16) | 2.9 | 4.6 | 4.7 | 4.8 | —N/a | —N/a | —N/a | 16 MB | 65 W | —N/a | DDR4-2933 dual-channel up to 128 GB | $298
+Core i7 | 10700T | 8 (16) | 2.0 | 3.7 | 4.4 | 4.5 | —N/a | UHD 630 | 1.2 | 16 MB | 35 W | 25 W | DDR4-2933 dual-channel up to 128 GB | $325
+Core i5 | 10600K | 6 (12) | 4.1 | 4.5 | 4.8 | —N/a | —N/a | UHD 630 | 1.2 | 12 MB | 125 W | 95 W | DDR4-2666 dual-channel up to 128 GB | $262
+Core i5 | 10600KF | 6 (12) | 4.1 | 4.5 | 4.8 | —N/a | —N/a | —N/a | —N/a | 12 MB | 125 W | 95 W | DDR4-2666 dual-channel up to 128 GB | $237
+Core i5 | 10600 | 6 (12) | 3.3 | 4.4 | 4.8 | —N/a | —N/a | UHD 630 | 1.2 | 12 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $213
+Core i5 | 10600T | 6 (12) | 2.4 | 3.7 | 4.0 | —N/a | —N/a | UHD 630 | 1.2 | 12 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $213
+Core i5 | 10500 | 6 (12) | 3.1 | 4.2 | 4.5 | —N/a | —N/a | UHD 630 | 1.15 | 12 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $192
+Core i5 | 10500T | 6 (12) | 2.3 | 3.5 | 3.8 | —N/a | —N/a | UHD 630 | 1.15 | 12 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $192
+Core i5 | 10400 | 6 (12) | 2.9 | 4.0 | 4.3 | —N/a | —N/a | UHD 630 | 1.1 | 12 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $182
+Core i5 | 10400F | 6 (12) | 2.9 | 4.0 | 4.3 | —N/a | —N/a | —N/a | —N/a | 12 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $157
+Core i5 | 10400T | 6 (12) | 2.0 | 3.2 | 3.6 | —N/a | —N/a | UHD 630 | 1.1 | 12 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $182
+Core i3 | 10320 | 4 (8) | 3.8 | 4.4 | 4.6 | —N/a | —N/a | UHD 630 | 1.15 | 8 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $154
+Core i3 | 10300 | 4 (8) | 3.7 | 4.2 | 4.4 | —N/a | —N/a | UHD 630 | 1.15 | 8 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $143
+Core i3 | 10300T | 4 (8) | 3.0 | 3.6 | 3.9 | —N/a | —N/a | UHD 630 | 1.1 | 8 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $143
+Core i3 | 10100 | 4 (8) | 3.6 | 4.1 | 4.3 | —N/a | —N/a | UHD 630 | 1.1 | 6 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $122
+Core i3 | 10100F | 4 (8) | 3.6 | 4.1 | 4.3 | —N/a | —N/a | —N/a | —N/a | 6 MB | 65 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $79
+Core i3 | 10100T | 4 (8) | 3.0 | 3.5 | 3.8 | —N/a | —N/a | UHD 630 | 1.1 | 6 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $122
+Pentium Gold | G6600 | 2 (4) | 4.2 | —N/a | —N/a | —N/a | —N/a | UHD 630 | 1.1 | 4 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $86
+Pentium Gold | G6500 | 2 (4) | 4.1 | —N/a | —N/a | —N/a | —N/a | UHD 630 | 1.1 | 4 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $75
+Pentium Gold | G6500T | 2 (4) | 3.5 | —N/a | —N/a | —N/a | —N/a | UHD 630 | 1.05 | 4 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $75
+Pentium Gold | G6400 | 2 (4) | 4.0 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 4 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $64
+Pentium Gold | G6400T | 2 (4) | 3.4 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 4 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $64
+Celeron | G5925 | 2 (2) | 3.6 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 4 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $52
+Celeron | G5920 | 2 (2) | 3.5 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 2 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $52
+Celeron | G5905 | 2 (2) | 3.5 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 4 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $42
+Celeron | G5905T | 2 (2) | 3.3 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.0 | 4 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $42
+Celeron | G5900 | 2 (2) | 3.4 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.05 | 2 MB | 58 W | —N/a | DDR4-2666 dual-channel up to 128 GB | $42
+Celeron | G5900T | 2 (2) | 3.2 | —N/a | —N/a | —N/a | —N/a | UHD 610 | 1.0 | 2 MB | 35 W | 25 W | DDR4-2666 dual-channel up to 128 GB | $42
+
+### TABLE 2 rows=11 :: Processor branding Model Cores (threads) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) GPU Smart cache (L3) TDP Memory support Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | GPU | Smart cache (L3) | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (threads) | Base | Turbo Boost | Turbo Boost | Turbo Boost | GPU | Smart cache (L3) | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (threads) | Base | 2.0 | 3.0 | TVB | GPU | Smart cache (L3) | TDP | Memory support | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  | 
+Xeon W | 1290P | 10 (20) | 3.7 | 5.1 | 5.2 | 5.3 | UHD P630 | 20 MB | 125 W | DDR4-2933 2-channel up to 128 GB with ECC | $594
+Xeon W | 1290 | 10 (20) | 3.2 | 5.0 | 5.1 | 5.2 | UHD P630 | 20 MB | 80 W | DDR4-2933 2-channel up to 128 GB with ECC | $546
+Xeon W | 1290T | 10 (20) | 1.9 | 4.6 | 4.7 | —N/a | UHD P630 | 20 MB | 35 W | DDR4-2933 2-channel up to 128 GB with ECC | $546
+Xeon W | 1270P | 8 (16) | 3.8 | 5.0 | 5.1 | —N/a | UHD P630 | 16 MB | 125 W | DDR4-2933 2-channel up to 128 GB with ECC | $472
+Xeon W | 1270 | 8 (16) | 3.4 | 4.9 | 5.0 | —N/a | UHD P630 | 16 MB | 80 W | DDR4-2933 2-channel up to 128 GB with ECC | $398
+Xeon W | 1250P | 6 (12) | 4.1 | 4.8 | —N/a | —N/a | UHD P630 | 12 MB | 125 W | DDR4-2666 2-channel up to 128 GB with ECC | $342
+Xeon W | 1250 | 6 (12) | 3.3 | 4.7 | —N/a | —N/a | UHD P630 | 12 MB | 80 W | DDR4-2666 2-channel up to 128 GB with ECC | $280
+
+### TABLE 3 rows=16 :: Processor branding Model Cores (threads) CPU clock speed (GHz) CPU clock speed (GHz) GPU GPU Smart cache (L3) TDP TDP TDP Memory support Price (USD)
+Processor branding | Model | Cores (threads) | CPU clock speed (GHz) | CPU clock speed (GHz) | GPU | GPU | Smart cache (L3) | TDP | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (threads) | Base | Max. Turbo | Model | Max. freq. (GHz) | Smart cache (L3) | TDP | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (threads) | Base | Max. Turbo | Model | Max. freq. (GHz) | Smart cache (L3) | Base | Down | Up | Memory support | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  | 
+Xeon W | 10885M | 8 (16) | 2.4 | 5.3 | UHD 630 | 1.25 | 16 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $623
+Xeon W | 10855M | 6 (12) | 2.8 | 5.1 | UHD 630 | 1.20 | 12 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $450
+Core i9 | 10980HK | 8 (16) | 2.4 | 5.3 | UHD 630 | 1.25 | 16 MB | 45 W | —N/a | 65 W | DDR4-2933 2-channel up to 128 GB | $583
+Core i9 | 10885H | 8 (16) | 2.4 | 5.3 | UHD 630 | 1.25 | 16 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $556
+Core i7 | 10875H | 8 (16) | 2.3 | 5.1 | UHD 630 | 1.20 | 16 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $450
+Core i7 | 10870H | 8 (16) | 2.2 | 5.0 | UHD 630 | 1.20 | 16 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $417
+Core i7 | 10850H | 6 (12) | 2.7 | 5.1 | UHD 630 | 1.15 | 12 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $395
+Core i7 | 10750H | 6 (12) | 2.6 | 5.0 | UHD 630 | 1.15 | 12 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $395
+Core i5 | 10500H | 6 (12) | 2.5 | 4.5 | UHD 630 | 1.05 | 12 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $250
+Core i5 | 10400H | 4 (8) | 2.6 | 4.6 | UHD 630 | 1.10 | 8 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $250
+Core i5 | 10300H | 4 (8) | 2.5 | 4.5 | UHD 630 | 1.05 | 8 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $250
+Core i5 | 10200H | 4 (8) | 2.4 | 4.1 | UHD 610 | 1.05 | 8 MB | 45 W | 35 W | —N/a | DDR4-2933 2-channel up to 128 GB | $250
+
+### TABLE 4 rows=14 :: Processor branding Model Cores (Threads) CPU clock speed (GHz) CPU clock speed (GHz) GPU GPU L3 cache (MB) TDP TDP TDP Memory support Price (USD)
+Processor branding | Model | Cores (Threads) | CPU clock speed (GHz) | CPU clock speed (GHz) | GPU | GPU | L3 cache (MB) | TDP | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Max. Turbo | Model | Max. freq. (GHz) | L3 cache (MB) | TDP | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | Max. Turbo | Model | Max. freq. (GHz) | L3 cache (MB) | Down | Base | Up | Memory support | Price (USD)
+ |  |  |  |  |  |  |  |  |  |  |  | 
+Core i7 | 10810U | 6 (12) | 1.1 | 4.9 | UHD 620 | 1.15 | 12 MB | 12.5 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $443
+Core i7 | 10710U | 6 (12) | 1.1 | 4.7 | UHD 620 | 1.15 | 12 MB | 12.5 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $443
+Core i7 | 10610U | 4 (8) | 1.8 | 4.9 | UHD 620 | 1.15 | 8 MB | 10 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $409
+Core i7 | 10510U | 4 (8) | 1.8 | 4.9 | UHD 620 | 1.15 | 8 MB | 10 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $409
+Core i5 | 10310U | 4 (8) | 1.7 | 4.4 | UHD 620 | 1.15 | 6 MB | 10 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $297
+Core i5 | 10210U | 4 (8) | 1.6 | 4.2 | UHD 620 | 1.10 | 6 MB | 10 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $297
+Core i3 | 10110U | 2 (4) | 2.1 | 4.1 | UHD 620 | 1.00 | 4 MB | 10 W | 15 W | 25 W | DDR4-2666 LPDDR4-2933 LPDDR3-2133 | $281
+Pentium | 6405U | 2 (4) | 2.4 | —N/a | UHD 610 | 0.95 | 2 MB | 12.5 W | 15 W | —N/a | DDR4-2400 LPDDR3-2133 | $161
+Celeron | 5305U | 2 (2) | 2.3 | —N/a | UHD 610 | 0.90 | 2 MB | 12.5 W | 15 W | —N/a | DDR4-2400 LPDDR3-2133 | $107
+Celeron | 5205U | 2 (2) | 1.9 | —N/a | UHD 610 | 0.90 | 2 MB | 12.5 W | 15 W | —N/a | DDR4-2400 LPDDR3-2133 | $107
+
+### TABLE 5 rows=15 :: Processor branding Model Cores (Threads) CPU clock rate (GHz) CPU clock rate (GHz) CPU clock rate (GHz) GPU GPU Smart cache (MB) TDP TDP Memory support Price (USD)
+Processor branding | Model | Cores (Threads) | CPU clock rate (GHz) | CPU clock rate (GHz) | CPU clock rate (GHz) | GPU | GPU | Smart cache (MB) | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | All-Core Turbo | Turbo Boost 2.0 | Model | Max. freq. (GHz) | Smart cache (MB) | TDP | TDP | Memory support | Price (USD)
+Processor branding | Model | Cores (Threads) | Base | All-Core Turbo | Turbo Boost 2.0 | Model | Max. freq. (GHz) | Smart cache (MB) | Down | Base | Memory support | Price (USD)
+Core i5 | 10505 | 6 (12) | 3.2 | 4.3 | 4.6 | UHD 630 | 1.2 | 12 | N/A | 65 W | DDR4-2666 2-channel up to 128 GB | $192
+Core i3 | 10325 | 4 (8) | 3.9 | 4.5 | 4.7 | UHD 630 | 1.15 | 8 | —N/a | 65 W | DDR4-2666 2-channel up to 128 GB | $154
+Core i3 | 10305 | 4 (8) | 3.8 | 4.3 | 4.5 | UHD 630 | 1.15 | 8 | —N/a | 65 W | DDR4-2666 2-channel up to 128 GB | $143
+Core i3 | 10305T | 4 (8) | 3.0 | 3.7 | 4.0 | UHD 630 | 1.10 | 8 | 25 W | 35 W | DDR4-2666 2-channel up to 128 GB | $143
+Core i3 | 10105 | 4 (8) | 3.7 | 4.2 | 4.4 | UHD 630 | 1.10 | 6 | —N/a | 65 W | DDR4-2666 2-channel up to 128 GB | $122
+Core i3 | 10105F | 4 (8) | 3.7 | 4.2 | 4.4 | —N/a | —N/a | 6 | —N/a | 65 W | DDR4-2666 2-channel up to 128 GB | $97
+Core i3 | 10105T | 4 (8) | 3.0 | 3.6 | 3.9 | UHD 630 | 1.10 | 6 | 25 W | 35 W | DDR4-2666 2-channel up to 128 GB | $122
+Pentium Gold | G6605 | 2 (4) | 4.3 | —N/a | —N/a | UHD 630 | 1.10 | 4 | —N/a | 58 W | DDR4-2666 2-channel up to 128 GB | $86
+Pentium Gold | G6505 | 2 (4) | 4.2 | —N/a | —N/a | UHD 630 | 1.10 | 4 | —N/a | 58 W | DDR4-2666 2-channel up to 128 GB | $75
+Pentium Gold | G6505T | 2 (4) | 3.6 | —N/a | —N/a | UHD 630 | 1.05 | 4 | 25 W | 35 W | DDR4-2666 2-channel up to 128 GB | $75
+Pentium Gold | G6405 | 2 (4) | 4.1 | —N/a | —N/a | UHD 610 | 1.05 | 4 | —N/a | 58 W | DDR4-2666 2-channel up to 128 GB | $64
+Pentium Gold | G6405T | 2 (4) | 3.3 | —N/a | —N/a | UHD 610 | 1.05 | 4 | 25 W | 35 W | DDR4-2666 2-channel up to 128 GB | $64
+
+### TABLE 6 rows=6 :: vteIntel processors vteIntel processors
+vteIntel processors | vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | 
+Current products | 
+Discontinued | 
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+
+### TABLE 7 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake | vteIntel CPU core roadmaps from P6 to Nova Lake
+Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors | Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors
