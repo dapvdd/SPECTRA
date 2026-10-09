@@ -1,0 +1,578 @@
+[
+  {
+    "hardware_id": 3557,
+    "patch": [
+      [
+        "core_clock_mhz",
+        775.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3568,
+    "patch": [
+      [
+        "core_clock_mhz",
+        780.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3569,
+    "patch": [
+      [
+        "core_clock_mhz",
+        650.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3606,
+    "patch": [
+      [
+        "core_clock_mhz",
+        725.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3649,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        655.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3650,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        600.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3654,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        780.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3656,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        900.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3663,
+    "patch": [
+      [
+        "core_clock_mhz",
+        925.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3664,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        720.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3673,
+    "patch": [
+      [
+        "core_clock_mhz",
+        925.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3674,
+    "patch": [
+      [
+        "core_clock_mhz",
+        900.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3678,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        720.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3684,
+    "patch": [
+      [
+        "core_clock_mhz",
+        900.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3702,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        600.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3703,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        600.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3704,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        655.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3783,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1440.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3791,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        1030.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3804,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        1024.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3875,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3879,
+    "patch": [
+      [
+        "core_clock_mhz",
+        980.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3905,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3912,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3964,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3966,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4011,
+    "patch": [
+      [
+        "core_clock_mhz",
+        400.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4073,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1327.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4200,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        400.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4221,
+    "patch": [
+      [
+        "core_clock_mhz",
+        650.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4222,
+    "patch": [
+      [
+        "core_clock_mhz",
+        350.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4294,
+    "patch": [
+      [
+        "core_clock_mhz",
+        350.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4295,
+    "patch": [
+      [
+        "core_clock_mhz",
+        350.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4298,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4306,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4307,
+    "patch": [
+      [
+        "core_clock_mhz",
+        350.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4314,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4335,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4337,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4339,
+    "patch": [
+      [
+        "core_clock_mhz",
+        300.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4632,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        758.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4642,
+    "patch": [
+      [
+        "core_clock_mhz",
+        719.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4645,
+    "patch": [
+      [
+        "core_clock_mhz",
+        980.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4647,
+    "patch": [
+      [
+        "boost_clock_mhz",
+        915.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4658,
+    "patch": [
+      [
+        "core_clock_mhz",
+        993.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4705,
+    "patch": [
+      [
+        "core_clock_mhz",
+        706.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4764,
+    "patch": [
+      [
+        "core_clock_mhz",
+        928.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4768,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1006.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4870,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1266.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4873,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1291.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4935,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1380.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4984,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1260.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4991,
+    "patch": [
+      [
+        "core_clock_mhz",
+        747.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4994,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1245.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5007,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1095.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5039,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1027.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5187,
+    "patch": [
+      [
+        "core_clock_mhz",
+        700.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5206,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1665.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5208,
+    "patch": [
+      [
+        "core_clock_mhz",
+        2122.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5210,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1020.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5214,
+    "patch": [
+      [
+        "core_clock_mhz",
+        960.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5216,
+    "patch": [
+      [
+        "core_clock_mhz",
+        953.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5218,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1192.0
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5222,
+    "patch": [
+      [
+        "core_clock_mhz",
+        1095.0
+      ]
+    ]
+  }
+]
