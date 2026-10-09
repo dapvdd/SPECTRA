@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from backend.app.models.gpu import GPUSpecification
     from backend.app.models.benchmark import BenchmarkResult
     from backend.app.models.external_identifier import ExternalIdentifier
+    from backend.app.models.provenance import FieldProvenance
 
 
 class Hardware(Base):
@@ -62,5 +63,9 @@ class Hardware(Base):
     )
 
     external_identifiers: Mapped[list["ExternalIdentifier"]] = relationship(
+        back_populates="hardware",
+    )
+
+    field_provenance: Mapped[list["FieldProvenance"]] = relationship(
         back_populates="hardware",
     )

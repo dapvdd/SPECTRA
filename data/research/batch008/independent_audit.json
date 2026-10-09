@@ -1,0 +1,89 @@
+{
+  "pre_sha256": "858a67256853a486af580ac8e5d5c193b4d1c97875b89f0f6fce28df0b2bc39c",
+  "post_sha256": "0a53ba47e2a855e06790a0263611f120c247c82a0969c20edc4280bd92d6a917",
+  "pre_quick_check": "ok",
+  "post_quick_check": "ok",
+  "post_foreign_key_check": [],
+  "count_changes": {
+    "sources": {
+      "before": 3,
+      "after": 7
+    },
+    "field_provenance": {
+      "before": null,
+      "after": 3382
+    }
+  },
+  "unexpected_table_changes": [],
+  "changed_specification_values": [],
+  "provenance_total": 3382,
+  "provenance_distinct": 3382,
+  "provenance_orphan_hardware": 0,
+  "provenance_invalid_statuses": 0,
+  "provenance_by_status": [
+    [
+      "excluded",
+      58
+    ],
+    [
+      "unmatched",
+      4
+    ],
+    [
+      "verified",
+      3320
+    ]
+  ],
+  "provenance_by_table": [
+    [
+      "cpu_specifications",
+      74
+    ],
+    [
+      "gpu_specifications",
+      2617
+    ],
+    [
+      "hardware",
+      691
+    ]
+  ],
+  "sources": [
+    [
+      1,
+      "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "https://www.cpubenchmark.net/"
+    ],
+    [
+      2,
+      "Geekbench Browser - Geekbench 7 CPU",
+      "https://browser.geekbench.com/"
+    ],
+    [
+      3,
+      "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "https://www.techpowerup.com/gpu-specs/"
+    ],
+    [
+      4,
+      "GPU Ark GPU specifications & benchmarks dataset",
+      "https://gpuark.com/datasets/"
+    ],
+    [
+      5,
+      "Wikipedia (English)",
+      "https://en.wikipedia.org/"
+    ],
+    [
+      6,
+      "Intel ARK (archived via Wayback Machine)",
+      "https://ark.intel.com/"
+    ],
+    [
+      7,
+      "Unknown (source not documented in artifact)",
+      ""
+    ]
+  ],
+  "passed": true
+}

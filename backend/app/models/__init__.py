@@ -8,6 +8,7 @@ from backend.app.models.build_conversation import (
     BuildConversation,
     BuildMessage,
 )
+from backend.app.models.provenance import FieldProvenance
 
 __all__ = [
     "Hardware",
@@ -17,4 +18,5 @@ __all__ = [
     "Source",
     "BuildConversation",
     "BuildMessage",
+    "FieldProvenance",
 ]

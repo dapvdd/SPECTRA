@@ -1,0 +1,64 @@
+{
+  "report": "SPECTRA provenance audit (Batch 008)",
+  "database": "C:\\SPECTRA\\data\\spectra.db",
+  "total_records": 3382,
+  "status_counts": {
+    "verified": 3320,
+    "excluded": 58,
+    "unmatched": 4
+  },
+  "by_batch": {
+    "1": {
+      "records": 210,
+      "verified": 204,
+      "uncertain_not_present": 0,
+      "uncertain_value_differs": 0,
+      "excluded": 6,
+      "unmatched": 0,
+      "invalid_reference": 0
+    },
+    "2": {
+      "records": 1066,
+      "verified": 1012,
+      "uncertain_not_present": 0,
+      "uncertain_value_differs": 0,
+      "excluded": 50,
+      "unmatched": 4,
+      "invalid_reference": 0
+    },
+    "3": {
+      "records": 599,
+      "verified": 597,
+      "uncertain_not_present": 0,
+      "uncertain_value_differs": 0,
+      "excluded": 2,
+      "unmatched": 0,
+      "invalid_reference": 0
+    },
+    "5": {
+      "records": 64,
+      "verified": 64,
+      "uncertain_not_present": 0,
+      "uncertain_value_differs": 0,
+      "excluded": 0,
+      "unmatched": 0,
+      "invalid_reference": 0
+    },
+    "6": {
+      "records": 1443,
+      "verified": 1443,
+      "uncertain_not_present": 0,
+      "uncertain_value_differs": 0,
+      "excluded": 0,
+      "unmatched": 0,
+      "invalid_reference": 0
+    }
+  },
+  "distinct_sources": {
+    "Wikipedia": 757,
+    "Intel ARK": 2,
+    "TechPowerUp GPU Database": 44,
+    "Unknown (deliberately excluded)": 6,
+    "GPU Ark": 2573
+  }
+}
