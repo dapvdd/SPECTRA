@@ -1,0 +1,15 @@
+{
+  "gpus_total": 0,
+  "cpus_total": 3360,
+  "cpus_missing_architecture": 3306,
+  "cpus_missing_release_date": 3312,
+  "cpus_missing_process_node": 979,
+  "arch_proposed": 517,
+  "release_proposed": 64,
+  "excluded_collisions": 1,
+  "node_proposed": 16,
+  "source_rows": 1657,
+  "source_distinct_keys": 840,
+  "evidence_rows": 599,
+  "total_proposed": 597
+}

@@ -1,0 +1,193 @@
+### TABLE 0 rows=33 :: Logo for Core i7 Bloomfield processors
+Logo for Core i7 Bloomfield processors
+General information
+Launched | November 11, 2008; 17 years ago (November 11, 2008)
+Marketed by | Intel
+Designed by | Intel
+Common manufacturer | .mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}Intel
+Performance
+Max. CPU clock rate | 1.06 GHz to 3.33 GHz
+QPI speeds | 4.80 GT/s to 6.40 GT/s
+DMI speeds | 2 GT/s
+Physical specifications
+Transistors | 731M to 2300M 45 nm
+Cores | 1-6 (1-8 Xeon)
+Sockets | LGA 1156LGA 1366LGA 1567μPGA 988
+Cache
+L1 cache | 64 KB per core (32 KB data + 32 KB instructions)
+L2 cache | 256 KB per core
+L3 cache | 2 MB to 24 MB shared
+Architecture and classification
+Technology node | 45 nm
+Microarchitecture | Nehalem
+Instruction set | x86-16, IA-32, x86-64
+Instructions | MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2
+Extensions | VT-x, VT-d
+Products, models, variants
+Core names | ClarksfieldLynnfieldBloomfieldJasper ForestGainestown (Nehalem-EP)Beckton (Nehalem-EX)AubrurndaleHavendale
+Product code name | NHM
+Models | Core i5-7xxCore i7-8xxCore i7-9xx ExtremeXeon 3000/5000/7000Mobile Core i7-7xxQMMobile Core i7-8xxQMMobile Core i7-9xxXM Extreme
+History
+Predecessors | Core (tock)Penryn (tick)
+Successors | Westmere (tick)Sandy Bridge (tock)
+Support status
+Unsupported
+### TABLE 1 rows=5 :: Cache Page Size
+Cache | Page Size
+Name | Level | 4 KB | 2 MB
+DTLB | 1st | 64 | 32
+ITLB | 1st | 128 | 7 / logical core
+STLB | 2nd | 512 | none
+### TABLE 2 rows=5 :: Processing Cores (interface) Process Die Size million transistors CPUID Model Stepping Mobile Desktop, UP Server DP Server MP Server
+Processing Cores (interface) | Process | Die Size | million transistors | CPUID | Model | Stepping | Mobile | Desktop, UP Server | DP Server | MP Server
+Eight-Core (Quad-Channel) | 45 nm | 684 mm2 | 2.300[16] | 206E6 | 46 | D0 |  |  |  | Beckton (80604)
+Quad-Core (Triple-Channel) | 263 mm2 | 731 | 106A4106A5 | 26 | C0/C1D0 |  | Bloomfield (80601) | Gainestown (80602) | 
+Quad-Core (Dual-Channel, PCIe) | 296 mm2 | 774 | 106E4106E5 | 30 | B0B1 | Clarksfield (80607) | Lynnfield (80605) | Jasper Forest (80612) | 
+Dual-Core (Dual-Channel, PCIe, Graphics Core) |  | ? |  |  |  | Auburndale (80608) (canceled) | Havendale (80606) (canceled) |  | 
+### TABLE 3 rows=72 :: Codename Market Cores(threads) Socket ProcessorBranding & Model CPUClock rate Turbo TDP Interfaces L3cache Release date Price
+Codename | Market | Cores(threads) | Socket | ProcessorBranding & Model | CPUClock rate | Turbo | TDP | Interfaces | L3cache | Release date | Price
+Chipset | Memory
+Beckton1 | MP Server /DP Server | 8 (16) | LGA1567 | Xeon 7000[18] | X7560 | 2.26 GHz | Yes | 130 W | 4× QPI 6.4 GT/s | DDR3-800 /1066(Up to 4x withSMB-Readymotherboard) | 24 MB | 2010-03-30[19] | $3692
+X7550 | 2.0 GHz | 18 MB | $2837
+X6550 | $2461
+L7555 | 1.86 GHz | 95 W | 4× QPI 5.86 GT/s | 24 MB | $3157
+6 (12) | E7540 | 2.0 GHz | 105 W | 4× QPI 6.4 GT/s | 18 MB | $1980
+E6540 | 12 MB | $1712
+E7530 | 1.86 GHz | 4× QPI 5.86 GT/s | $1391
+L7545 | 95 W | 18 MB | $2087
+6 (6) | X7542 | 2.66 GHz | 130 W | $1980
+4 (8) | E7520 | 1.86 GHz | No | 105 W | 4× QPI 4.8 GT/s | $856
+E6510 | 1.73 GHz | 12 MB | $744
+Gainestown | DP Server[20] | 4 (8) | LGA1366 | Xeon 5000[21] | W5590 | 3.33 GHz | Yes | 130 W | 2× QPI 6.4 GT/s | 3× DDR3-13331 | 8 MB | 2009-08-09 | $1600
+W5580 | 3.2 GHz | 2009-03-29[22] | $1500
+X5570 | 2.93 GHz | 95 W | $1286
+X5560 | 2.8 GHz | $1072
+X5550 | 2.66 GHz | $858
+E5540 | 2.53 GHz | 80 W | 2× 5.86 GT/s | 3× DDR3-10661 | $744
+E5530 | 2.4 GHz | $530
+E5520 | 2.26 GHz | $373
+L5530 | 2.4 GHz | 60 W | 2009-08-09 | $744
+L5520 | 2.26 GHz | 2009-03-30 | $530
+L5518 | 2.13 GHz | $
+4 (4) | E5507 | 2.26 GHz | No | 80 W | 2× 4.8 GT/s | 3× DDR3-8001 | 4 MB | 2010-03-16 | $266
+E5506 | 2.13 GHz | 2009-03-29
+L5506 | 2.13 GHz | 60 W | $423
+E5504 | 2.0 GHz | 80 W | $224
+2 (4) | L5508 | 2.0 GHz | Yes | 38 W | 2× 5.86 GT/s | 3× DDR3-1066 | 8 MB | $
+2 (2) | E5503 | 2.0 GHz | No | 80 W | 2× 4.8 GT/s | 3× DDR3-800 | 4 MB | 2010-03-16 | $224
+E5502 | 1.86 GHz | 2009-03-29 | $188
+Jasper Forest | 4 (8) | EC5549 | 2.53 GHz | Yes | 85 W | 1× 5.86 GT/s | 3× DDR3-1333 | 8 MB | 2010-02-11 | $530
+LC5528 | 2.13 GHz | 60 W | 1× 4.8 GT/s | 3× DDR3-1066 | $519
+LC5518 | 1.73 GHz | 48 W
+4 (4) | EC5509 | 2 GHz | No | 85 W | $265
+2 (4) | EC5539 | 2.27 GHz | 65 W | 1× 5.86 GT/s | 3× DDR3-1333 | 4 MB | $387
+Bloomfield | UP Server[23] | 4 (8) | Xeon 3000[24] | W3580 | 3.33 GHz | Yes | 130 W | 1× QPI 6.4 GT/s | 3× DDR3-1333 | 8 MB | 2009-08-09 | $999
+W3570 | 3.2 GHz | 2009-03-29[24]
+W3565 | 3.2 GHz | 1× QPI 4.8 GT/s | 3× DDR3-1066 | 2009-11-01 | $562
+W3550 | 3.06 GHz | 2009-08-09
+W3540 | 2.93 GHz | 2009-03-29[24]
+W3530 | 2.8 GHz | 2010-03-16 | $294
+W3520 | 2.66 GHz | 2009-03-29[24] | $284
+2 (2) | W3505 | 2.53 GHz | No | 4 MB | $
+W3503 | 2.4 GHz | $
+Jasper Forest | 4 (4) | EC3539 | 2.13 GHz | 65 W | DMI | 8 MB | 2010-02-11 | $302
+2 (4) | LC3528 | 1.73 GHz | Yes | 35 W | 3× DDR3-800 | 4 MB
+1 (1) | LC3518 | No | 23 W | 2 MB | $192
+Lynnfield | 4 (8) | LGA1156 | X3480 | 3.06 GHz | Yes | 95 W | DMI | 2× DDR3-1333 | 8 MB | 2010-05-30 | $612
+X3470 | 2.93 GHz | 2009-09-08 | $589
+X3460 | 2.8 GHz | $316
+X3450 | 2.66 GHz | $241
+X3440 | 2.53 GHz | $215
+L3426 | 1.86 GHz | 45 W | $284
+4 (4) | X3430 | 2.4 GHz | 95 W | $189
+Bloomfield | EnthusiastDesktop[25] | 4 (8) | LGA1366 | Core i7Extreme | 975X[26] | 3.33 GHz | Yes | 130 W | 1× QPI 6.4 GT/s | 3× DDR3-1066 | 2009-05-31 | $999
+965X | 3.2 GHz | 2008-11-17
+Core i7 | 960[27] | 3.2 GHz | 1× QPI 4.8 GT/s | 2009-10-20 | $562
+950[26] | 3.06 GHz | 2009-05-31
+940 | 2.93 GHz | 2008-11-17
+930 | 2.8 GHz | 2010-02-28 | $294
+920 | 2.66 GHz | 2008-11-17 | $284
+Lynnfield | PerformanceDesktop | LGA1156 | 880 | 3.06 GHz | Yes | 95 W | DMI | 2× DDR3-1333 | 2010-05-30 | $583
+875K | 2.93 GHz | $342
+870[28] | 2009-09-08 | $562
+870S | 2.66 GHz | 82 W | 2010-07-19 | $351
+860 | 2.8 GHz | 95 W | 2009-09-08 | $284
+860S | 2.53 GHz | 82 W | 2010-01-07 | $337
+4 (4) | Core i5 | 760 | 2.8 GHz | 95 W | 2010-07-17 | $209
+750[28] | 2.66 GHz | 95 W | 2009-09-08 | $196
+750S | 2.4 GHz | 82 W | 2010-01-07 | $259
+Jasper Forest | EmbeddedDesktop | 1 (2) | LGA1366 | Celeron | P1053 | 1.33 GHz | No | 30 W | 3× DDR3-800 | 2 MB | 2010-12-02 | $160
+### TABLE 4 rows=7 :: Codename Market Cores /Threads Socket ProcessorBranding & Model CoreClock rate Turbo TDP L3cache Interface Release date Price
+Codename | Market | Cores /Threads | Socket | ProcessorBranding & Model | CoreClock rate | Turbo | TDP | L3cache | Interface | Release date | Price
+Clarksfield | Extreme mobile | 4 (8) | Socket G1 rPGA 988 | Core i7Extreme | 940XM | 2.13 GHz | Yes | 55 W | 8 MB | * DMI* 2x DDR3-1333* PCIe 1 x16 / 2 x8 | 2010-06-21 | $1096
+920XM | 2.0 GHz | 2009-09-23 | $1054
+Quad-core mobile Performance mobile | Core i7 | 840QM | 1.86 GHz | 45 W | 2010-06-21 | $568
+820QM | 1.73 GHz | 2009-09-23 | $546
+740QM | 6 MB | 2010-06-21 | $378
+720QM | 1.6 GHz | 2009-09-23 | $364
+### TABLE 5 rows=6 :: .mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-outp
+.mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-output .navbar ul{display:inline-block;white-space:nowrap;line-height:inherit}.mw-parser-output .navbar-brackets::before{margin-right:-0.125em;content:"[ "}.mw-parser-output .navbar-brackets::after{margin-left:-0.125em;content:" ]"}.mw-parser-output .navbar li{word-spacing:-0.125em}.mw-parser-output .navbar a>span,.mw-parser-output .navbar a>abbr{text-decoration:inherit}.mw-parser-output .navbar-mini abbr{font-variant:small-caps;border-bottom:none;text-decoration:none;cursor:inherit}.mw-parser-output .navbar-ct-full{font-size:114%;margin:0 7em}.mw-parser-output .navbar-ct-mini{font-size:114%;margin:0 4em}html.skin-theme-clientpref-night .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}@media(prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}}@media print{.mw-parser-output .navbar{display:none!important}}vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | IA-32 (32-bit x86) P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst x86-64 (64-bit) Core Penryn Nehalem Westmere Sandy Bridge Ivy Bridge Haswell Broadwell Skylake Cannon Lake Sunny Cove Cypress Cove Willow Cove Raptor Lake Golden Cove Raptor Cove Redwood Cove Lion Cove Cougar Cove x86 ULV Bonnell Saltwell Silvermont Airmont Goldmont Goldmont Plus Tremont Gracemont Crestmont Skymont
+Current products | x86-64 (64-bit) Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+Discontinued | BCD oriented (4-bit) 4004 (1971) 4040 (1974) pre-x86 (8-bit) 8008 (1972) 8080 (1974) 8085 (1977) Early x86 (16-bit) 8086 (1978) 8088 (1979) 80186 (1982) 80188 (1982) 80286 (1982) x87 (external FPUs) 8/16-bit databus 8087 (1980) 16-bit databus 80C187 80287 80387SX 32-bit databus 80387DX 80487 IA-32 (32-bit x86) i386 SX 376 EX i486 SX DX2 DX4 SL RapidCAD OverDrive A100/A110 Atom CE SoC Celeron (1998) M D (2004) Pentium Original i586 OverDrive Pro II III 4 M Dual-Core Core Xeon P6-based NetBurst-based Core-based Quark Tolapai x86-64 (64-bit) Atom SoC CE Celeron D Dual-Core Pentium 4 D Extreme Edition Dual-Core Core 2 1st gen 2nd gen 3rd gen 4th gen 5th gen 6th gen 7th gen 8th gen 9th gen 10th gen 11th gen M Xeon Nehalem-based Sandy Bridge-based Ivy Bridge-based Haswell-based Broadwell-based Skylake-based Other CISC iAPX 432 EPIC Itanium RISC i860 i960 StrongARM XScale
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+### TABLE 6 rows=3 :: IA-32 (32-bit x86) P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst
+IA-32 (32-bit x86) | P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst
+x86-64 (64-bit) | Core Penryn Nehalem Westmere Sandy Bridge Ivy Bridge Haswell Broadwell Skylake Cannon Lake Sunny Cove Cypress Cove Willow Cove Raptor Lake Golden Cove Raptor Cove Redwood Cove Lion Cove Cougar Cove
+x86 ULV | Bonnell Saltwell Silvermont Airmont Goldmont Goldmont Plus Tremont Gracemont Crestmont Skymont
+### TABLE 7 rows=1 :: x86-64 (64-bit) Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+x86-64 (64-bit) | Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+### TABLE 8 rows=7 :: BCD oriented (4-bit) 4004 (1971) 4040 (1974)
+BCD oriented (4-bit) | 4004 (1971) 4040 (1974)
+pre-x86 (8-bit) | 8008 (1972) 8080 (1974) 8085 (1977)
+Early x86 (16-bit) | 8086 (1978) 8088 (1979) 80186 (1982) 80188 (1982) 80286 (1982)
+x87 (external FPUs) | 8/16-bit databus 8087 (1980) 16-bit databus 80C187 80287 80387SX 32-bit databus 80387DX 80487
+IA-32 (32-bit x86) | i386 SX 376 EX i486 SX DX2 DX4 SL RapidCAD OverDrive A100/A110 Atom CE SoC Celeron (1998) M D (2004) Pentium Original i586 OverDrive Pro II III 4 M Dual-Core Core Xeon P6-based NetBurst-based Core-based Quark Tolapai
+x86-64 (64-bit) | Atom SoC CE Celeron D Dual-Core Pentium 4 D Extreme Edition Dual-Core Core 2 1st gen 2nd gen 3rd gen 4th gen 5th gen 6th gen 7th gen 8th gen 9th gen 10th gen 11th gen M Xeon Nehalem-based Sandy Bridge-based Ivy Bridge-based Haswell-based Broadwell-based Skylake-based
+Other | CISC iAPX 432 EPIC Itanium RISC i860 i960 StrongARM XScale
+### TABLE 9 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake
+Atom (ULV) Node name Pentium/Core Microarch. Step Microarch. Step 600 nm P6 Pentium Pro(133 MHz) 500 nm Pentium Pro(150 MHz) 350 nm Pentium Pro(166–200 MHz) Klamath 250 nm Deschutes Katmai NetBurst 180 nm Coppermine Willamette 130 nm Tualatin Northwood Pentium M Banias NetBurst(HT) NetBurst(×2) 90 nm Dothan Prescott ⇨ Prescott‑2M ⇨ Smithfield Tejas → ⇩ → Cedarmill (Tejas) 65 nm Yonah Nehalem (NetBurst) Cedar Mill ⇨ Presler Core Merom 4 cores on mainstream desktop, DDR3 introduced Bonnell Bonnell 45 nm Penryn Nehalem Nehalem HT reintroduced, integrated MC, PCHL3-cache introduced, 256 KB L2-cache/core Saltwell 32 nm Westmere Introduced GPU on same package and AES-NI Sandy Bridge Sandy Bridge On-die ring bus, no more non-UEFI motherboards Silvermont Silvermont 22 nm Ivy Bridge Haswell Haswell Fully integrated voltage regulator Airmont 14 nm Broadwell Skylake Skylake DDR4 introduced on mainstream desktop Goldmont Kaby Lake Coffee Lake 6 cores on mainstream desktop Amber Lake Mobile-only Goldmont Plus Whiskey Lake Mobile-only Coffee Lake Refresh 8 cores on mainstream desktop Comet Lake 10 cores on mainstream desktop Sunny Cove Cypress Cove (Rocket Lake) Backported Sunny Cove microarchitecture for 14 nm Tremont 10 nm Skylake Palm Cove (Cannon Lake) Mobile-only Sunny Cove Sunny Cove (Ice Lake) 512 KB L2-cache/core Willow Cove (Tiger Lake) Xe graphics engine Gracemont Intel 7(10 nm ESF) Golden Cove Golden Cove (Alder Lake) Hybrid, DDR5, PCIe 5.0 Raptor Cove (Raptor Lake) Crestmont Intel 4 Redwood Cove Meteor Lake Mobile-onlyNPU, chiplet architecture Intel 3 Arrow Lake-U Skymont TSMC N3B Lion Cove Lunar Lake Low power mobile only (9–30 W) Arrow Lake Darkmont Intel 18A Cougar Cove Panther Lake Arctic Wolf Intel 18Aand/orTSMC N2P Coyote Cove Nova Lake Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors
+### TABLE 10 rows=41 :: Atom (ULV)  Node name  Pentium/Core  
+Atom (ULV) |  | Node name |  | Pentium/Core |  | 
+Microarch. | Step | Microarch. | Step
+ | 600 nm | P6 | Pentium Pro(133 MHz)
+500 nm | Pentium Pro(150 MHz)
+350 nm | Pentium Pro(166–200 MHz)
+Klamath
+250 nm | Deschutes
+Katmai | NetBurst | 
+180 nm | Coppermine | Willamette
+130 nm | Tualatin | Northwood
+Pentium M | Banias |  | NetBurst(HT) |  | NetBurst(×2)
+90 nm | Dothan | Prescott | ⇨ | Prescott‑2M | ⇨ | Smithfield
+Tejas | → | ⇩ | → | Cedarmill (Tejas)
+65 nm | Yonah | Nehalem (NetBurst) |  | Cedar Mill | ⇨ | Presler
+Core | Merom | 4 cores on mainstream desktop, DDR3 introduced
+Bonnell | Bonnell | 45 nm | Penryn | 
+Nehalem | Nehalem | HT reintroduced, integrated MC, PCHL3-cache introduced, 256 KB L2-cache/core
+Saltwell | 32 nm | Westmere | Introduced GPU on same package and AES-NI
+Sandy Bridge | Sandy Bridge | On-die ring bus, no more non-UEFI motherboards
+Silvermont | Silvermont | 22 nm | Ivy Bridge | 
+Haswell | Haswell | Fully integrated voltage regulator
+Airmont | 14 nm | Broadwell | 
+Skylake | Skylake | DDR4 introduced on mainstream desktop
+Goldmont | Kaby Lake | 
+Coffee Lake | 6 cores on mainstream desktop
+Amber Lake | Mobile-only
+Goldmont Plus | Whiskey Lake | Mobile-only
+Coffee Lake Refresh | 8 cores on mainstream desktop
+Comet Lake | 10 cores on mainstream desktop
+Sunny Cove | Cypress Cove (Rocket Lake) | Backported Sunny Cove microarchitecture for 14 nm
+Tremont | 10 nm | Skylake | Palm Cove (Cannon Lake) | Mobile-only
+Sunny Cove | Sunny Cove (Ice Lake) | 512 KB L2-cache/core
+Willow Cove (Tiger Lake) | Xe graphics engine
+Gracemont | Intel 7(10 nm ESF) | Golden Cove | Golden Cove (Alder Lake) | Hybrid, DDR5, PCIe 5.0
+Raptor Cove (Raptor Lake) | 
+Crestmont | Intel 4 | Redwood Cove | Meteor Lake | Mobile-onlyNPU, chiplet architecture
+Intel 3 | Arrow Lake-U | 
+Skymont | TSMC N3B | Lion Cove | Lunar Lake | Low power mobile only (9–30 W)
+Arrow Lake | 
+Darkmont | Intel 18A | Cougar Cove | Panther Lake | 
+Arctic Wolf | Intel 18Aand/orTSMC N2P | Coyote Cove | Nova Lake | 

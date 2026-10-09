@@ -1,0 +1,4253 @@
+{
+  "batch": "batch003",
+  "applied": 597,
+  "stats": {
+    "gpus_total": 0,
+    "cpus_total": 3360,
+    "cpus_missing_architecture": 3306,
+    "cpus_missing_release_date": 3312,
+    "cpus_missing_process_node": 979,
+    "arch_proposed": 517,
+    "release_proposed": 64,
+    "excluded_collisions": 1,
+    "node_proposed": 16,
+    "source_rows": 1657,
+    "source_distinct_keys": 840,
+    "evidence_rows": 599,
+    "total_proposed": 597
+  },
+  "backup": "C:\\SPECTRA\\data\\backups\\spectra-pre-batch003-cpumeta-20261009T031854Z.db",
+  "backup_timestamp": "20261009T031854Z",
+  "pre_sha256": "5e4d71093f60843c166940704657adf1fe552d0c505953d9afc5ee277ecd389e",
+  "backup_sha256": "5e4d71093f60843c166940704657adf1fe552d0c505953d9afc5ee277ecd389e",
+  "baseline": {
+    "db": "C:\\SPECTRA\\data\\spectra.db",
+    "sha256": "5e4d71093f60843c166940704657adf1fe552d0c505953d9afc5ee277ecd389e",
+    "size_bytes": 929792,
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu_specifications": 3360,
+      "gpu_specifications": 1879,
+      "benchmark_results": 1040,
+      "external_identifiers": 3575,
+      "sources": 3,
+      "build_conversations": 4,
+      "build_messages": 4
+    },
+    "coverage": {
+      "architecture_nonnull": 54,
+      "release_date_nonnull": 48,
+      "process_node_nm_nonnull": 2381,
+      "boost_clock_ghz_nonnull": 2284,
+      "tdp_w_nonnull": 3083,
+      "cpus_total": 3360
+    },
+    "gpu_benchmark_rows": 0
+  },
+  "post_apply": {
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu_specifications": 3360,
+      "gpu_specifications": 1879,
+      "benchmark_results": 1040,
+      "external_identifiers": 3575,
+      "sources": 3,
+      "build_conversations": 4,
+      "build_messages": 4
+    },
+    "coverage": {
+      "architecture_nonnull": 571,
+      "release_date_nonnull": 112,
+      "process_node_nm_nonnull": 2397,
+      "boost_clock_ghz_nonnull": 2284,
+      "tdp_w_nonnull": 3083,
+      "cpus_total": 3360
+    },
+    "gpu_benchmark_rows": 0,
+    "value_mismatches": 0
+  },
+  "post_sha256": "acb390e91ef63390afe267b82851dcd2689172ee7f5fd31da11453870292d68d",
+  "applied_updates": [
+    {
+      "table": "hardware",
+      "hardware_id": 769,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 778,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 770,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 772,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 775,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 805,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 796,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 798,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 800,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 834,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 829,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 832,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 824,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 827,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 822,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 847,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 849,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 842,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 845,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1623,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1625,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1896,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1898,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 768,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 767,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 785,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 784,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 783,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 811,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 810,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 774,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 773,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 802,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 799,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 795,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 830,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 826,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 823,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 794,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 793,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 790,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 819,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 816,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 841,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 792,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 791,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 789,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 788,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 818,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 817,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 815,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 814,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 840,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 839,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1990,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1989,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 851,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 850,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1891,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1890,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1893,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1892,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3202,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3201,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3200,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 8"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 782,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 781,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 809,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 808,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 836,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 780,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 779,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 807,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 806,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 835,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1987,
+      "column": "architecture",
+      "new_value": "Alder Lake",
+      "source_reference": "alder_lake.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 706,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 706,
+      "column": "release_date",
+      "new_value": "2022-10-20",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 694,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 694,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 696,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 696,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 695,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 701,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 700,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 700,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 727,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 727,
+      "column": "release_date",
+      "new_value": "2022-10-20",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 713,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 713,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 715,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 715,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 714,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 719,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 718,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 718,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 756,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 756,
+      "column": "release_date",
+      "new_value": "2022-10-20",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 750,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 750,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 741,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 741,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 731,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 731,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 734,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 734,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 758,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 758,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 760,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 760,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 761,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 761,
+      "column": "release_date",
+      "new_value": "2023-01-03",
+      "source_reference": "raptor_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 704,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 703,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 699,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 725,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 717,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 710,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 753,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 744,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 738,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 698,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 697,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 723,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 716,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 709,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 751,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 743,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 737,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 702,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 720,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 747,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 721,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 708,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 748,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 735,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 711,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 707,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 739,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 729,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 728,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 763,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 757,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1894,
+      "column": "architecture",
+      "new_value": "Raptor Lake",
+      "source_reference": "raptor_lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 858,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 855,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 856,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 859,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 869,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 866,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 867,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 870,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 891,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 892,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 890,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 893,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 888,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 889,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 885,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 887,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2463,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2462,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2464,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2461,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2460,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2459,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2458,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2396,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2394,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2393,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2395,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2391,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2390,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2392,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2389,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2388,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2387,
+      "column": "architecture",
+      "new_value": "Rocket Lake",
+      "source_reference": "rocket_lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1029,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1029,
+      "column": "release_date",
+      "new_value": "2018-06-08",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1040,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1040,
+      "column": "release_date",
+      "new_value": "2017-10-05",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1033,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1033,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1069,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1069,
+      "column": "release_date",
+      "new_value": "2017-10-05",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1065,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1065,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1066,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1066,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1061,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1061,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1064,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1064,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1068,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1068,
+      "column": "release_date",
+      "new_value": "2017-10-05",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1060,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1060,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1083,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1083,
+      "column": "release_date",
+      "new_value": "2017-10-05",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1078,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1078,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1079,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1079,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1076,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1076,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1653,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1653,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1651,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1651,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1652,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1652,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1649,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1649,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1650,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1650,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1915,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1915,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1913,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1913,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1914,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1914,
+      "column": "release_date",
+      "new_value": "2018-04-02",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2426,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2429,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2424,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2422,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2420,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2425,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2423,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2421,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2419,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2418,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2428,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2427,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1021,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1035,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1034,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1032,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1023,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1030,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1022,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1063,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1058,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1059,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1056,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1046,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1055,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1054,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1044,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1045,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1074,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1081,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1077,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 976,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 981,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 978,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 979,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 993,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 987,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 988,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 989,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1008,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1007,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1002,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1003,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 999,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1000,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1001,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1005,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 998,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1020,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1019,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1018,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1016,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1013,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1014,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1015,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1645,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1644,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1642,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1643,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1912,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1910,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1911,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2417,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2414,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2415,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2412,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2410,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2408,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2406,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2411,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2409,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2407,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2405,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2404,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2416,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2413,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 980,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 977,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 992,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 990,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 991,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 997,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1004,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 996,
+      "column": "architecture",
+      "new_value": "Coffee Lake",
+      "source_reference": "wiki_Coffee_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 914,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 910,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 912,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 915,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 908,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 925,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 921,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 923,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 926,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 947,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 948,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 946,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 949,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 942,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 944,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 939,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 941,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 972,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 970,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 971,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 966,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 965,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 968,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1640,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1638,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1639,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1634,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1636,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1902,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1907,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1900,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1901,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1903,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1905,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2477,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2475,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2478,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2473,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2471,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2469,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2467,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2466,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2465,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 917,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 909,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 930,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 918,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 929,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 928,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 936,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 951,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 950,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 937,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 920,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 933,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 919,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 931,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 938,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 952,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 973,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1994,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1995,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 935,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 963,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 961,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 962,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 958,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 959,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 960,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1631,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1629,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1630,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1627,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1628,
+      "column": "architecture",
+      "new_value": "Comet Lake",
+      "source_reference": "wiki_Comet_Lake.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1088,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1091,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1112,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1111,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1113,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1109,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1110,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1104,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1105,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1130,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1129,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1127,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1128,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1119,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1122,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1123,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1124,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1672,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1670,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1671,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1669,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1920,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1918,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1919,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1094,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1093,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1089,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1107,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1101,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1121,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1097,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1096,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1085,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1087,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1086,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1095,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1115,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1116,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1114,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1098,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1099,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1100,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1102,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1103,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1131,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1126,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1118,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1117,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1132,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1133,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1655,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1654,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1656,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2002,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2001,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2000,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1043,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1042,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1071,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1070,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1080,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1647,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1999,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 6"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3353,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1026,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1048,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1050,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1051,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1084,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1648,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 932,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 954,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 953,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 974,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 964,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1632,
+      "column": "architecture",
+      "new_value": "Kaby Lake",
+      "source_reference": "wiki_Kaby_Lake.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2497,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2497,
+      "column": "release_date",
+      "new_value": "2019-01-30",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 5"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2505,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2505,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2504,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2504,
+      "column": "release_date",
+      "new_value": "2017-10-15",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2503,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2503,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2502,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2502,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2501,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2501,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2500,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2500,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2499,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2499,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2498,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2498,
+      "column": "release_date",
+      "new_value": "2017-08-29",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 7"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2380,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2381,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2378,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2379,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2377,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2376,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2375,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2374,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2332,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2331,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 9"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2361,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2360,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2359,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2357,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2358,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2356,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2355,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2354,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2353,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2352,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2349,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2350,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2351,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2348,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2347,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2346,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2343,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2344,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2345,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2342,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2339,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2340,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2341,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2338,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2336,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2337,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2335,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2334,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2333,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 10"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2373,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2371,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2372,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2370,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2369,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2368,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2365,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2366,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2367,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2364,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2363,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2362,
+      "column": "architecture",
+      "new_value": "Skylake",
+      "source_reference": "wiki_Skylake__microarchitecture_.tables.txt::TABLE 11"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 259,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 259,
+      "column": "release_date",
+      "new_value": "2019-09-30",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 259,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 258,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 258,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 258,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 173,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 173,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 173,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 257,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 257,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 257,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 175,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 175,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 175,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 256,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 256,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 256,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 150,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 150,
+      "column": "release_date",
+      "new_value": "2019-07-07",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 150,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 254,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 254,
+      "column": "release_date",
+      "new_value": "2019-09-30",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 254,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3331,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3331,
+      "column": "release_date",
+      "new_value": "2019-07-07",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 3331,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 253,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 253,
+      "column": "release_date",
+      "new_value": "2019-09-30",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 253,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 251,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 251,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 251,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 250,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 250,
+      "column": "release_date",
+      "new_value": "2020-07-21",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 250,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 146,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 146,
+      "column": "release_date",
+      "new_value": "2019-07-07",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 146,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 249,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 249,
+      "column": "release_date",
+      "new_value": "2019-09-30",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 249,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3323,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3323,
+      "column": "release_date",
+      "new_value": "2019-07-07",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 3323,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 247,
+      "column": "architecture",
+      "new_value": "Zen+",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 247,
+      "column": "release_date",
+      "new_value": "2019-09-30",
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "cpu_specifications",
+      "hardware_id": 247,
+      "column": "process_node_nm",
+      "new_value": 12.0,
+      "source_reference": "wiki_Zen_2B.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1197,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3329,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3329,
+      "column": "release_date",
+      "new_value": "2016-05-30",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 677,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 676,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 675,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1198,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1201,
+      "column": "architecture",
+      "new_value": "Broadwell",
+      "source_reference": "Broadwell_microarchitecture.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2222,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2224,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2225,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2226,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2227,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2228,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2229,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2230,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2231,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2232,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 2233,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 3"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 571,
+      "column": "architecture",
+      "new_value": "Ice Lake",
+      "source_reference": "Ice_Lake_microprocessor.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 903,
+      "column": "architecture",
+      "new_value": "Tiger Lake",
+      "source_reference": "Tiger_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1993,
+      "column": "architecture",
+      "new_value": "Tiger Lake",
+      "source_reference": "Tiger_Lake.tables.txt::TABLE 4"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 3358,
+      "column": "architecture",
+      "new_value": "Cannon Lake",
+      "source_reference": "Cannon_Lake_microprocessor.tables.txt::TABLE 2"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1024,
+      "column": "architecture",
+      "new_value": "Whiskey Lake",
+      "source_reference": "Whiskey_Lake.tables.txt::TABLE 1"
+    },
+    {
+      "table": "hardware",
+      "hardware_id": 1646,
+      "column": "architecture",
+      "new_value": "Whiskey Lake",
+      "source_reference": "Whiskey_Lake.tables.txt::TABLE 1"
+    }
+  ]
+}

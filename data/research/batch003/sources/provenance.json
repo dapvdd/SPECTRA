@@ -1,0 +1,66 @@
+{
+  "Broadwell_(microarchitecture)": {
+    "arch": "Broadwell",
+    "url": "https://en.wikipedia.org/wiki/Broadwell_(microarchitecture)",
+    "file": "Broadwell_microarchitecture.tables.txt",
+    "tables": 15,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Ice_Lake_(microprocessor)": {
+    "arch": "Ice Lake",
+    "url": "https://en.wikipedia.org/wiki/Ice_Lake_(microprocessor)",
+    "file": "Ice_Lake_microprocessor.tables.txt",
+    "tables": 14,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Tiger_Lake": {
+    "arch": "Tiger Lake",
+    "url": "https://en.wikipedia.org/wiki/Tiger_Lake",
+    "file": "Tiger_Lake.tables.txt",
+    "tables": 13,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Nehalem_(microarchitecture)": {
+    "arch": "Nehalem",
+    "url": "https://en.wikipedia.org/wiki/Nehalem_(microarchitecture)",
+    "file": "Nehalem_microarchitecture.tables.txt",
+    "tables": 11,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Westmere_(microarchitecture)": {
+    "arch": "Westmere",
+    "url": "https://en.wikipedia.org/wiki/Westmere_(microarchitecture)",
+    "file": "Westmere_microarchitecture.tables.txt",
+    "tables": 13,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Cannon_Lake_(microprocessor)": {
+    "arch": "Cannon Lake",
+    "url": "https://en.wikipedia.org/wiki/Cannon_Lake_(microprocessor)",
+    "file": "Cannon_Lake_microprocessor.tables.txt",
+    "tables": 9,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Whiskey_Lake": {
+    "arch": "Whiskey Lake",
+    "url": "https://en.wikipedia.org/wiki/Whiskey_Lake",
+    "file": "Whiskey_Lake.tables.txt",
+    "tables": 8,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  },
+  "Amber_Lake": {
+    "arch": "Amber Lake",
+    "url": "https://en.wikipedia.org/wiki/Amber_Lake",
+    "file": "Amber_Lake.tables.txt",
+    "tables": 0,
+    "accessed": "2026-10-09",
+    "license": "CC BY-SA 4.0"
+  }
+}

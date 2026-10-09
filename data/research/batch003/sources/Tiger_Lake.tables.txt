@@ -1,0 +1,155 @@
+### TABLE 0 rows=28 :: General information
+General information
+Launched | Chip-only availability: September 2, 2020; 6 years ago (2020-09-02)[1]Pre-installed-availability: October 2020; 6 years ago (2020-10)
+Discontinued | January 26, 2024; 2 years ago (2024-01-26)[2]
+Product code | 80690
+Performance
+Max. CPU clock rate | 5.0 GHz
+Physical specifications
+Cores | .mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}2–8
+GPU | Intel Xe-based integrated graphics
+Socket | BGA 1449, BGA 1787
+Cache
+L1 cache | 80 KB[3] per core (32 instructions + 48 data)
+L2 cache | 1.25 MB per core
+L3 cache | Up to 24 MB, shared
+Architecture and classification
+Technology node | Intel 10 nm SuperFin (10SF) process
+Microarchitecture | Willow Cove
+Instruction set | x86-64
+Instructions | x86-64
+Extensions | AES-NI, CLMUL, RDRAND, SHA, TXT, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, AVX-512, FMA3, VT-x, VT-d
+Products, models, variants
+Product code name | TGL
+Brand name | CeleronPentium GoldCore i3Core i5Core i7Core i9Xeon W
+History
+Predecessors | Mobile: Ice Lake Mobile and desktop: Comet Lake
+Successor | Alder Lake
+Support status
+Legacy support for iGPU [4]
+### TABLE 1 rows=13 :: Processorbranding Model Cores(threads) Base freq at TDP (GHz) Turbo freq,active cores (GHz) UHD Graphics Smartcache TDP Price
+Processorbranding | Model | Cores(threads) | Base freq at TDP (GHz) | Turbo freq,active cores (GHz) | UHD Graphics | Smartcache | TDP | Price
+@35 W | @45 W | @65 W | 1 or 2 | 4 | 6 | All | EUs | Max freq(GHz)
+Core i9 | 11980HK | 8 (16) | —.mw-parser-output .sr-only{border:0;clip:rect(0,0,0,0);clip-path:polygon(0px 0px,0px 0px,0px 0px);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap}N/a | 2.6 | 3.3 | 5.0 | 4.9 | 4.7 | 4.5 | 32 | 1.45 | 24 MB | 45-65 W | $583
+Xeon W | 11955M vPro | 2.1 | —N/a | 35-45 W | $623
+Core i9 | 11950H vPro | $556
+11900H | 2.5 | 4.9 | 4.8 | 4.6 | 4.4 | $546
+Core i7 | 11850H vPro | 4.8 | 4.8 | 4.6 | 4.3 | $395
+11800H | 1.9 | 2.3 | 4.6 | 4.5 | 4.4 | 4.2
+Xeon W | 11855M vPro | 6 (12) | 2.6 | 3.2 | 4.9 | 4.7 | 4.4 | 18 MB | $450
+Core i7 | 11600H | 2.5 | 2.9 | 4.6 |  |  | $395
+Core i5 | 11500H vPro | 2.4 | 2.9 | 4.6 | 4.4 | 4.2 | 12 MB | $250
+11400H | 2.2 | 2.7 | 4.5 | 4.3 | 4.1 | 16
+11260H | 2.1 | 2.6 | 4.4 | 4.2 | 4.0 | 1.40
+### TABLE 2 rows=7 :: Processorbranding Model Cores(threads) Base freq at TDP Max Turbo freqactive cores Iris Xe Graphics Smartcache TDP Price
+Processorbranding | Model | Cores(threads) | Base freq at TDP | Max Turbo freqactive cores | Iris Xe Graphics | Smartcache | TDP | Price
+@28 W | @35 W | 1 | 2 | All | EUs | Max freq
+Core i7 | 11390H | 4 (8) | 2.9 GHz | 3.4 GHz | 5.0 GHz | 4.6 GHz | 96 | 1.40 GHz | 12 MB | 28-35 W | $426
+11375H | 3.0 GHz | 3.3 GHz | 5.0 GHz | 4.8 GHz | 4.3 GHz | 1.35 GHz | $482
+11370H | 4.8 GHz | $426
+Core i5 | 11320H | 2.5 GHz | 3.2 GHz | 4.5 GHz | 8 MB | $309
+11300H | 2.6 GHz | 3.1 GHz | 4.4 GHz | 4.0 GHz | 80 | 1.30 GHz
+### TABLE 3 rows=12 :: Processorbranding Model Cores(threads) Base freq at TDP Max Turbo freq GPU Smartcache TDP Memorysupport Price
+Processorbranding | Model | Cores(threads) | Base freq at TDP | Max Turbo freq | GPU | Smartcache | TDP | Memorysupport | Price
+@12 W | @15 W | @28 W | 1 Core | All Cores | Model | EUs | Max freq
+Core i7 | 1195G7 | 4 (8) | 1.3 GHz |  | 2.9 GHz | 5.0 GHz | 4.6 GHz | Iris Xe | 96 | 1.40 GHz | 12 MB | 12-28 W | DDR4-3200 LPDDR4X-4267 | $426
+1185G7 vPro | 1.2 GHz | 1.8 GHz[36] | 3.0 GHz | 4.8 GHz | 4.3 GHz | 1.35 GHz
+1165G7 | 1.2 GHz | 1.7 GHz | 2.8 GHz | 4.7 GHz | 4.1 GHz | 1.30 GHz
+Core i5 | 1155G7 | 1.0 GHz |  | 2.5 GHz | 4.5 GHz | 4.3 GHz | 80 | 1.35 GHz | 8 MB | $309
+1145G7 vPro | 1.1 GHz | 1.5 GHz | 2.6 GHz | 4.4 GHz | 3.8 GHz | 1.30 GHz
+1135G7 | 0.9 GHz | 1.4 GHz | 2.4 GHz | 4.2 GHz | 3.8 GHz
+Core i3 | 1125G4 |  | 2.0 GHz | 3.7 GHz | 3.3 GHz | UHD | 48 | 1.25 GHz | DDR4-3200 LPDDR4X-3733 | $281
+1115G4 | 2 (4) | 1.7 GHz | 2.2 GHz | 3.0 GHz | 4.1 GHz | 6 MB
+Pentium Gold | 7505 | —N/a | 2.0 GHz | —N/a | 3.5 GHz | 4 MB | 15 W | $161
+Celeron | 6305 | 2 (2) | 1.8 GHz | —N/a | $107
+### TABLE 4 rows=9 :: Processor branding Model Cores (threads) Base freq at TDP Max Turbo freq GPU Smart cache TDP Memory support Price
+Processor branding | Model | Cores (threads) | Base freq at TDP | Max Turbo freq | GPU | Smart cache | TDP | Memory support | Price
+@12 W | @15 W | @28 W | Model | EUs | Max freq | Type | ECC
+Core i7 | 1185GRE vPro | 4 (8) | 1.2 GHz | 1.8 GHz | 2.8 GHz | 4.4 GHz | Iris Xe | 96 | 1.35 GHz | 12 MB | 15 W | DDR4-3200 LPDDR4X-4267 | Yes | $490
+1185G7E vPro | No | $431
+Core i5 | 1145GRE vPro | 1.1 GHz | 1.5 GHz | 2.6 GHz | 4.1 GHz | 80 | 1.30 GHz | 8 MB | Yes | $362
+1145G7E vPro | No | $312
+Core i3 | 1115GRE | 2 (4) | 1.7 GHz | 2.2 GHz | 3.0 GHz | 3.9 GHz | UHD | 48 | 1.25 GHz | 6 MB | DDR4-3200 LPDDR4X-3733 | Yes | $338
+1115G4E | No | $285
+Celeron | 6305E | 2 (2) | —N/a | 1.8 GHz | —N/a | —N/a | 4 MB | No | $107
+### TABLE 5 rows=8 :: Processorbranding Model Cores(threads) Base freq at TDP Max Turbo freq GPU Smartcache Price
+Processorbranding | Model | Cores(threads) | Base freq at TDP | Max Turbo freq | GPU | Smartcache | Price
+@7 W | @9 W | @15 W | 1 Core | All Cores | Model | EUs | Max freq
+Core i7 | 1180G7 vPro | 4 (8) | 0.9 GHz | 1.3 GHz | 2.2 GHz | 4.6 GHz | 3.7 GHz | Iris Xe | 96 | 1.10 GHz | 12 MB | $426
+1160G7 | 1.2 GHz | 2.1 GHz | 4.4 GHz | 3.6 GHz
+Core i5 | 1140G7 vPro | 0.8 GHz |  | 1.8 GHz | 4.2 GHz |  | 80 | 8 MB | $309
+1130G7 | 1.1 GHz | 4.0 GHz | 3.4 GHz
+Core i3 | 1120G4 | 1.5 GHz | 3.5 GHz | 3.0 GHz | UHD | 48 | $281
+1110G4 | 2 (4) | 1.5 GHz | 1.8 GHz | 2.5 GHz | 3.9 GHz | 6 MB
+### TABLE 6 rows=5 :: Processorbranding Model Cores(threads) Baseclock(GHz) Boostclock(GHz) L3Cache TDP GPUEUs GPUMax freq Price
+Processorbranding | Model | Cores(threads) | Baseclock(GHz) | Boostclock(GHz) | L3Cache | TDP | GPUEUs | GPUMax freq | Price
+Core i9 | 11900KB | 8 (16) | 3.3 | 4.9 | 24 MB | 55-65 W | 32 | 1.45 GHz | $539
+Core i7 | 11700B | 3.2 | 4.8 | 
+Core i5 | 11500B | 6 (12) | 3.3 | 4.6 | 12 MB | 65 W | 
+Core i3 | 11100B | 4 (8) | 3.6 | 4.4 | 16 | 1.4 GHz | 
+### TABLE 7 rows=6 :: .mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-outp
+.mw-parser-output .navbar{display:inline;font-size:88%;font-weight:normal}.mw-parser-output .navbar-collapse{float:left;text-align:left}.mw-parser-output .navbar-boxtext{word-spacing:0}.mw-parser-output .navbar ul{display:inline-block;white-space:nowrap;line-height:inherit}.mw-parser-output .navbar-brackets::before{margin-right:-0.125em;content:"[ "}.mw-parser-output .navbar-brackets::after{margin-left:-0.125em;content:" ]"}.mw-parser-output .navbar li{word-spacing:-0.125em}.mw-parser-output .navbar a>span,.mw-parser-output .navbar a>abbr{text-decoration:inherit}.mw-parser-output .navbar-mini abbr{font-variant:small-caps;border-bottom:none;text-decoration:none;cursor:inherit}.mw-parser-output .navbar-ct-full{font-size:114%;margin:0 7em}.mw-parser-output .navbar-ct-mini{font-size:114%;margin:0 4em}html.skin-theme-clientpref-night .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}@media(prefers-color-scheme:dark){html.skin-theme-clientpref-os .mw-parser-output .navbar li a abbr{color:var(--color-base)!important}}@media print{.mw-parser-output .navbar{display:none!important}}vteIntel processors
+Lists | Processors Atom Celeron Pentium Pro II III 4 D M Core 2 i3 i5 i7 i9 M Xeon Quark Itanium Microarchitectures Chipsets
+Microarchitectures | IA-32 (32-bit x86) P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst x86-64 (64-bit) Core Penryn Nehalem Westmere Sandy Bridge Ivy Bridge Haswell Broadwell Skylake Cannon Lake Sunny Cove Cypress Cove Willow Cove Raptor Lake Golden Cove Raptor Cove Redwood Cove Lion Cove Cougar Cove x86 ULV Bonnell Saltwell Silvermont Airmont Goldmont Goldmont Plus Tremont Gracemont Crestmont Skymont
+Current products | x86-64 (64-bit) Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+Discontinued | BCD oriented (4-bit) 4004 (1971) 4040 (1974) pre-x86 (8-bit) 8008 (1972) 8080 (1974) 8085 (1977) Early x86 (16-bit) 8086 (1978) 8088 (1979) 80186 (1982) 80188 (1982) 80286 (1982) x87 (external FPUs) 8/16-bit databus 8087 (1980) 16-bit databus 80C187 80287 80387SX 32-bit databus 80387DX 80487 IA-32 (32-bit x86) i386 SX 376 EX i486 SX DX2 DX4 SL RapidCAD OverDrive A100/A110 Atom CE SoC Celeron (1998) M D (2004) Pentium Original i586 OverDrive Pro II III 4 M Dual-Core Core Xeon P6-based NetBurst-based Core-based Quark Tolapai x86-64 (64-bit) Atom SoC CE Celeron D Dual-Core Pentium 4 D Extreme Edition Dual-Core Core 2 1st gen 2nd gen 3rd gen 4th gen 5th gen 6th gen 7th gen 8th gen 9th gen 10th gen 11th gen M Xeon Nehalem-based Sandy Bridge-based Ivy Bridge-based Haswell-based Broadwell-based Skylake-based Other CISC iAPX 432 EPIC Itanium RISC i860 i960 StrongARM XScale
+Related | Tick–tock model Process–architecture–optimization model Intel GPUs GMA Intel HD, UHD, and Iris Graphics Xe Arc PCHs SCHs ICHs PIIXs Stratix Codenames Larrabee
+### TABLE 8 rows=3 :: IA-32 (32-bit x86) P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst
+IA-32 (32-bit x86) | P5 P6 P6 variant (Pentium M) P6 variant (Enhanced Pentium M) NetBurst
+x86-64 (64-bit) | Core Penryn Nehalem Westmere Sandy Bridge Ivy Bridge Haswell Broadwell Skylake Cannon Lake Sunny Cove Cypress Cove Willow Cove Raptor Lake Golden Cove Raptor Cove Redwood Cove Lion Cove Cougar Cove
+x86 ULV | Bonnell Saltwell Silvermont Airmont Goldmont Goldmont Plus Tremont Gracemont Crestmont Skymont
+### TABLE 9 rows=1 :: x86-64 (64-bit) Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+x86-64 (64-bit) | Atom Celeron Pentium Core 10th gen 11th gen 12th gen 13th gen 14th gen Core Ultra 1st gen 2nd gen 3rd gen 4th gen Xeon
+### TABLE 10 rows=7 :: BCD oriented (4-bit) 4004 (1971) 4040 (1974)
+BCD oriented (4-bit) | 4004 (1971) 4040 (1974)
+pre-x86 (8-bit) | 8008 (1972) 8080 (1974) 8085 (1977)
+Early x86 (16-bit) | 8086 (1978) 8088 (1979) 80186 (1982) 80188 (1982) 80286 (1982)
+x87 (external FPUs) | 8/16-bit databus 8087 (1980) 16-bit databus 80C187 80287 80387SX 32-bit databus 80387DX 80487
+IA-32 (32-bit x86) | i386 SX 376 EX i486 SX DX2 DX4 SL RapidCAD OverDrive A100/A110 Atom CE SoC Celeron (1998) M D (2004) Pentium Original i586 OverDrive Pro II III 4 M Dual-Core Core Xeon P6-based NetBurst-based Core-based Quark Tolapai
+x86-64 (64-bit) | Atom SoC CE Celeron D Dual-Core Pentium 4 D Extreme Edition Dual-Core Core 2 1st gen 2nd gen 3rd gen 4th gen 5th gen 6th gen 7th gen 8th gen 9th gen 10th gen 11th gen M Xeon Nehalem-based Sandy Bridge-based Ivy Bridge-based Haswell-based Broadwell-based Skylake-based
+Other | CISC iAPX 432 EPIC Itanium RISC i860 i960 StrongARM XScale
+### TABLE 11 rows=2 :: vteIntel CPU core roadmaps from P6 to Nova Lake
+vteIntel CPU core roadmaps from P6 to Nova Lake
+Atom (ULV) Node name Pentium/Core Microarch. Step Microarch. Step 600 nm P6 Pentium Pro(133 MHz) 500 nm Pentium Pro(150 MHz) 350 nm Pentium Pro(166–200 MHz) Klamath 250 nm Deschutes Katmai NetBurst 180 nm Coppermine Willamette 130 nm Tualatin Northwood Pentium M Banias NetBurst(HT) NetBurst(×2) 90 nm Dothan Prescott ⇨ Prescott‑2M ⇨ Smithfield Tejas → ⇩ → Cedarmill (Tejas) 65 nm Yonah Nehalem (NetBurst) Cedar Mill ⇨ Presler Core Merom 4 cores on mainstream desktop, DDR3 introduced Bonnell Bonnell 45 nm Penryn Nehalem Nehalem HT reintroduced, integrated MC, PCHL3-cache introduced, 256 KB L2-cache/core Saltwell 32 nm Westmere Introduced GPU on same package and AES-NI Sandy Bridge Sandy Bridge On-die ring bus, no more non-UEFI motherboards Silvermont Silvermont 22 nm Ivy Bridge Haswell Haswell Fully integrated voltage regulator Airmont 14 nm Broadwell Skylake Skylake DDR4 introduced on mainstream desktop Goldmont Kaby Lake Coffee Lake 6 cores on mainstream desktop Amber Lake Mobile-only Goldmont Plus Whiskey Lake Mobile-only Coffee Lake Refresh 8 cores on mainstream desktop Comet Lake 10 cores on mainstream desktop Sunny Cove Cypress Cove (Rocket Lake) Backported Sunny Cove microarchitecture for 14 nm Tremont 10 nm Skylake Palm Cove (Cannon Lake) Mobile-only Sunny Cove Sunny Cove (Ice Lake) 512 KB L2-cache/core Willow Cove (Tiger Lake) Xe graphics engine Gracemont Intel 7(10 nm ESF) Golden Cove Golden Cove (Alder Lake) Hybrid, DDR5, PCIe 5.0 Raptor Cove (Raptor Lake) Crestmont Intel 4 Redwood Cove Meteor Lake Mobile-onlyNPU, chiplet architecture Intel 3 Arrow Lake-U Skymont TSMC N3B Lion Cove Lunar Lake Low power mobile only (9–30 W) Arrow Lake Darkmont Intel 18A Cougar Cove Panther Lake Arctic Wolf Intel 18Aand/orTSMC N2P Coyote Cove Nova Lake Strike-through indicates cancelled processors Bold names are microarchitectures Italic names are future processors
+### TABLE 12 rows=41 :: Atom (ULV)  Node name  Pentium/Core  
+Atom (ULV) |  | Node name |  | Pentium/Core |  | 
+Microarch. | Step | Microarch. | Step
+ | 600 nm | P6 | Pentium Pro(133 MHz)
+500 nm | Pentium Pro(150 MHz)
+350 nm | Pentium Pro(166–200 MHz)
+Klamath
+250 nm | Deschutes
+Katmai | NetBurst | 
+180 nm | Coppermine | Willamette
+130 nm | Tualatin | Northwood
+Pentium M | Banias |  | NetBurst(HT) |  | NetBurst(×2)
+90 nm | Dothan | Prescott | ⇨ | Prescott‑2M | ⇨ | Smithfield
+Tejas | → | ⇩ | → | Cedarmill (Tejas)
+65 nm | Yonah | Nehalem (NetBurst) |  | Cedar Mill | ⇨ | Presler
+Core | Merom | 4 cores on mainstream desktop, DDR3 introduced
+Bonnell | Bonnell | 45 nm | Penryn | 
+Nehalem | Nehalem | HT reintroduced, integrated MC, PCHL3-cache introduced, 256 KB L2-cache/core
+Saltwell | 32 nm | Westmere | Introduced GPU on same package and AES-NI
+Sandy Bridge | Sandy Bridge | On-die ring bus, no more non-UEFI motherboards
+Silvermont | Silvermont | 22 nm | Ivy Bridge | 
+Haswell | Haswell | Fully integrated voltage regulator
+Airmont | 14 nm | Broadwell | 
+Skylake | Skylake | DDR4 introduced on mainstream desktop
+Goldmont | Kaby Lake | 
+Coffee Lake | 6 cores on mainstream desktop
+Amber Lake | Mobile-only
+Goldmont Plus | Whiskey Lake | Mobile-only
+Coffee Lake Refresh | 8 cores on mainstream desktop
+Comet Lake | 10 cores on mainstream desktop
+Sunny Cove | Cypress Cove (Rocket Lake) | Backported Sunny Cove microarchitecture for 14 nm
+Tremont | 10 nm | Skylake | Palm Cove (Cannon Lake) | Mobile-only
+Sunny Cove | Sunny Cove (Ice Lake) | 512 KB L2-cache/core
+Willow Cove (Tiger Lake) | Xe graphics engine
+Gracemont | Intel 7(10 nm ESF) | Golden Cove | Golden Cove (Alder Lake) | Hybrid, DDR5, PCIe 5.0
+Raptor Cove (Raptor Lake) | 
+Crestmont | Intel 4 | Redwood Cove | Meteor Lake | Mobile-onlyNPU, chiplet architecture
+Intel 3 | Arrow Lake-U | 
+Skymont | TSMC N3B | Lion Cove | Lunar Lake | Low power mobile only (9–30 W)
+Arrow Lake | 
+Darkmont | Intel 18A | Cougar Cove | Panther Lake | 
+Arctic Wolf | Intel 18Aand/orTSMC N2P | Coyote Cove | Nova Lake | 
