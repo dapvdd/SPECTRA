@@ -1,0 +1,127 @@
+{
+  "checks": {
+    "quick_check": {
+      "ok": true,
+      "detail": "ok"
+    },
+    "backup_hash": {
+      "ok": true,
+      "detail": {
+        "backup": "C:\\SPECTRA\\data\\backups\\spectra-pre-batch002-coreclock-20261009T025502Z.db",
+        "sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3"
+      }
+    },
+    "applied_values_match_source": {
+      "ok": true,
+      "detail": "1012 safe updates; 0 mismatches"
+    },
+    "only_intended_cells_changed": {
+      "ok": true,
+      "detail": {
+        "changed_cells": 1012,
+        "allowed": 1012,
+        "unexpected": []
+      }
+    },
+    "no_duplicate_updates": {
+      "ok": true,
+      "detail": 1012
+    },
+    "row_counts_unchanged": {
+      "ok": true,
+      "detail": {
+        "before": {
+          "hardware": 5239,
+          "cpu_specifications": 3360,
+          "gpu_specifications": 1879,
+          "benchmark_results": 1040,
+          "external_identifiers": 3575,
+          "sources": 3,
+          "build_conversations": 4,
+          "build_messages": 4,
+          "hardware_cpu": 3360,
+          "hardware_gpu": 1879
+        },
+        "after": {
+          "hardware": 5239,
+          "cpu_specifications": 3360,
+          "gpu_specifications": 1879,
+          "benchmark_results": 1040,
+          "external_identifiers": 3575,
+          "sources": 3,
+          "build_conversations": 4,
+          "build_messages": 4,
+          "hardware_cpu": 3360,
+          "hardware_gpu": 1879
+        }
+      }
+    },
+    "coverage_delta": {
+      "ok": true,
+      "detail": {
+        "before": {
+          "core_clock_nonnull": 813,
+          "core_clock_null": 1066,
+          "coverage_pct": 43.27
+        },
+        "after": {
+          "gpu_specs": 1879,
+          "core_clock_nonnull": 1825,
+          "core_clock_null": 54,
+          "coverage_pct": 97.13
+        },
+        "applied": 1012
+      }
+    },
+    "benchmarks_untouched_and_no_gpu_gaming": {
+      "ok": true,
+      "detail": {
+        "benchmark_rows_before": 1040,
+        "benchmark_rows_after": 1040,
+        "gpu_benchmark_rows": 0,
+        "gaming_rows": 0
+      }
+    }
+  },
+  "verdict": "PASS",
+  "backup": "C:\\SPECTRA\\data\\backups\\spectra-pre-batch002-coreclock-20261009T025502Z.db",
+  "backup_sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3",
+  "post_sha256": "5e4d71093f60843c166940704657adf1fe552d0c505953d9afc5ee277ecd389e",
+  "stats": {
+    "generated": "2026-10-09T02:56:10.848588+00:00",
+    "source": {
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "file": "data/raw/gpuark-gpu-specs.csv",
+      "url": "https://gpuark.com/datasets/",
+      "license": "CC BY 4.0",
+      "citation": "GPU Ark (2026). GPU specifications & benchmarks dataset. https://gpuark.com/datasets/",
+      "ark_rows_with_base_clock": 10516
+    },
+    "gpu_rows_total": 1879,
+    "gpu_rows_audited": 1066,
+    "missing_core_clock": 1066,
+    "source_rows_available": 10516,
+    "exact_normalized_matches": 1062,
+    "safe_null_only_updates": 1012,
+    "ambiguous_matches": 50,
+    "unmatched_rows": 4,
+    "invalid_values": 0,
+    "breakdown": {
+      "safe_update": 1012,
+      "boost_mismatch": 50,
+      "unmatched": 4
+    }
+  },
+  "coverage_before": {
+    "core_clock_nonnull": 813,
+    "core_clock_null": 1066,
+    "coverage_pct": 43.27
+  },
+  "coverage_after": {
+    "gpu_specs": 1879,
+    "core_clock_nonnull": 1825,
+    "core_clock_null": 54,
+    "coverage_pct": 97.13
+  },
+  "applied": 1012
+}

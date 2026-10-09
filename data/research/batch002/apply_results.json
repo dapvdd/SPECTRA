@@ -1,0 +1,7177 @@
+{
+  "batch": "batch002",
+  "mode": "apply",
+  "applied": 1012,
+  "source": {
+    "name": "GPU Ark GPU specifications & benchmarks dataset",
+    "file": "data/raw/gpuark-gpu-specs.csv",
+    "url": "https://gpuark.com/datasets/",
+    "license": "CC BY 4.0",
+    "citation": "GPU Ark (2026). GPU specifications & benchmarks dataset. https://gpuark.com/datasets/",
+    "ark_rows_with_base_clock": 10516
+  },
+  "stats": {
+    "generated": "2026-10-09T02:55:02.574851+00:00",
+    "source": {
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "file": "data/raw/gpuark-gpu-specs.csv",
+      "url": "https://gpuark.com/datasets/",
+      "license": "CC BY 4.0",
+      "citation": "GPU Ark (2026). GPU specifications & benchmarks dataset. https://gpuark.com/datasets/",
+      "ark_rows_with_base_clock": 10516
+    },
+    "gpu_rows_total": 1879,
+    "gpu_rows_audited": 1066,
+    "missing_core_clock": 1066,
+    "source_rows_available": 10516,
+    "exact_normalized_matches": 1062,
+    "safe_null_only_updates": 1012,
+    "ambiguous_matches": 50,
+    "unmatched_rows": 4,
+    "invalid_values": 0,
+    "breakdown": {
+      "safe_update": 1012,
+      "boost_mismatch": 50,
+      "unmatched": 4
+    }
+  },
+  "backup": "C:\\SPECTRA\\data\\backups\\spectra-pre-batch002-coreclock-20261009T025502Z.db",
+  "backup_timestamp": "20261009T025502Z",
+  "pre_sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3",
+  "backup_sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3",
+  "baseline": {
+    "db": "C:\\SPECTRA\\data\\spectra.db",
+    "sha256": "503790258e1884b6478e64c52a2affd9f04eac8ae0e53f3d632be223312205a3",
+    "size_bytes": 921600,
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu_specifications": 3360,
+      "gpu_specifications": 1879,
+      "benchmark_results": 1040,
+      "external_identifiers": 3575,
+      "sources": 3,
+      "build_conversations": 4,
+      "build_messages": 4,
+      "hardware_cpu": 3360,
+      "hardware_gpu": 1879
+    },
+    "coverage": {
+      "gpu_specs": 1879,
+      "core_clock_nonnull": 813,
+      "core_clock_null": 1066,
+      "coverage_pct": 43.27
+    },
+    "gpu_benchmark_rows": 0
+  },
+  "post_apply": {
+    "quick_check": "ok",
+    "counts": {
+      "hardware": 5239,
+      "cpu_specifications": 3360,
+      "gpu_specifications": 1879,
+      "benchmark_results": 1040,
+      "external_identifiers": 3575,
+      "sources": 3,
+      "build_conversations": 4,
+      "build_messages": 4,
+      "hardware_cpu": 3360,
+      "hardware_gpu": 1879
+    },
+    "coverage": {
+      "gpu_specs": 1879,
+      "core_clock_nonnull": 1825,
+      "core_clock_null": 54,
+      "coverage_pct": 97.13
+    },
+    "gpu_benchmark_rows": 0,
+    "value_mismatches": 0
+  },
+  "post_sha256": "5e4d71093f60843c166940704657adf1fe552d0c505953d9afc5ee277ecd389e",
+  "applied_updates": [
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3364,
+      "column": "core_clock_mhz",
+      "new_value": 166.0,
+      "source_record_id": "13024"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3445,
+      "column": "core_clock_mhz",
+      "new_value": 760.0,
+      "source_record_id": "10320"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3446,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "10319"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3450,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "9285"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3451,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "9284"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3469,
+      "column": "core_clock_mhz",
+      "new_value": 327.0,
+      "source_record_id": "12845"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3470,
+      "column": "core_clock_mhz",
+      "new_value": 480.0,
+      "source_record_id": "12844"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3475,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "12917"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3478,
+      "column": "core_clock_mhz",
+      "new_value": 327.0,
+      "source_record_id": "12843"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3480,
+      "column": "core_clock_mhz",
+      "new_value": 496.0,
+      "source_record_id": "12842"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3485,
+      "column": "core_clock_mhz",
+      "new_value": 496.0,
+      "source_record_id": "12824"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3489,
+      "column": "core_clock_mhz",
+      "new_value": 320.0,
+      "source_record_id": "12823"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3491,
+      "column": "core_clock_mhz",
+      "new_value": 360.0,
+      "source_record_id": "12822"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3493,
+      "column": "core_clock_mhz",
+      "new_value": 496.0,
+      "source_record_id": "12821"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3504,
+      "column": "core_clock_mhz",
+      "new_value": 575.0,
+      "source_record_id": "12173"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3512,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "8411"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3515,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "8409"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3520,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8401"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3528,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12668"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3532,
+      "column": "core_clock_mhz",
+      "new_value": 424.0,
+      "source_record_id": "12006"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3536,
+      "column": "core_clock_mhz",
+      "new_value": 514.0,
+      "source_record_id": "12005"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3541,
+      "column": "core_clock_mhz",
+      "new_value": 450.0,
+      "source_record_id": "12004"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3543,
+      "column": "core_clock_mhz",
+      "new_value": 533.0,
+      "source_record_id": "12003"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3547,
+      "column": "core_clock_mhz",
+      "new_value": 720.0,
+      "source_record_id": "9851"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3548,
+      "column": "core_clock_mhz",
+      "new_value": 515.0,
+      "source_record_id": "11940"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3549,
+      "column": "core_clock_mhz",
+      "new_value": 750.0,
+      "source_record_id": "12099"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3551,
+      "column": "core_clock_mhz",
+      "new_value": 750.0,
+      "source_record_id": "12031"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3552,
+      "column": "core_clock_mhz",
+      "new_value": 533.0,
+      "source_record_id": "12820"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3553,
+      "column": "core_clock_mhz",
+      "new_value": 720.0,
+      "source_record_id": "9849"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3554,
+      "column": "core_clock_mhz",
+      "new_value": 533.0,
+      "source_record_id": "11939"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3558,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12096"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3559,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12027"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3561,
+      "column": "core_clock_mhz",
+      "new_value": 775.0,
+      "source_record_id": "12026"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3562,
+      "column": "core_clock_mhz",
+      "new_value": 575.0,
+      "source_record_id": "12023"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3567,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8388"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3570,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8224"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3572,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8222"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3580,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8398"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3584,
+      "column": "core_clock_mhz",
+      "new_value": 725.0,
+      "source_record_id": "12107"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3595,
+      "column": "core_clock_mhz",
+      "new_value": 950.0,
+      "source_record_id": "8399"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3597,
+      "column": "core_clock_mhz",
+      "new_value": 750.0,
+      "source_record_id": "12030"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3598,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8397"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3599,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "12028"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3604,
+      "column": "core_clock_mhz",
+      "new_value": 775.0,
+      "source_record_id": "12025"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3605,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "12024"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3609,
+      "column": "core_clock_mhz",
+      "new_value": 725.0,
+      "source_record_id": "12021"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3610,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "8391"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3613,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "12020"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3614,
+      "column": "core_clock_mhz",
+      "new_value": 950.0,
+      "source_record_id": "8389"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3618,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8059"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3620,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8058"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3621,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8056"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3622,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "8054"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3627,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "4225"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3631,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "9283"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3632,
+      "column": "core_clock_mhz",
+      "new_value": 725.0,
+      "source_record_id": "12105"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3636,
+      "column": "core_clock_mhz",
+      "new_value": 630.0,
+      "source_record_id": "9067"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3638,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "12102"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3640,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12053"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3645,
+      "column": "core_clock_mhz",
+      "new_value": 575.0,
+      "source_record_id": "12054"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3647,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12040"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3648,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12032"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3653,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12094"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3655,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "12695"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3658,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12143"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3659,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12140"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3660,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "12694"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3667,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8218"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3668,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8217"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3669,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12688"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3670,
+      "column": "core_clock_mhz",
+      "new_value": 725.0,
+      "source_record_id": "12089"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3672,
+      "column": "core_clock_mhz",
+      "new_value": 940.0,
+      "source_record_id": "12687"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3675,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12161"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3676,
+      "column": "core_clock_mhz",
+      "new_value": 725.0,
+      "source_record_id": "12131"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3677,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12147"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3679,
+      "column": "core_clock_mhz",
+      "new_value": 827.0,
+      "source_record_id": "8055"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3683,
+      "column": "core_clock_mhz",
+      "new_value": 575.0,
+      "source_record_id": "12122"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3685,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12120"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3686,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12119"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3687,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "12118"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3688,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "12117"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3691,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "12108"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3693,
+      "column": "core_clock_mhz",
+      "new_value": 825.0,
+      "source_record_id": "12101"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3695,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12100"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3701,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "12759"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3707,
+      "column": "core_clock_mhz",
+      "new_value": 830.0,
+      "source_record_id": "8387"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3708,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8386"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3710,
+      "column": "core_clock_mhz",
+      "new_value": 750.0,
+      "source_record_id": "12092"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3714,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12139"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3715,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12138"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3717,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12165"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3718,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12164"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3719,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8216"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3721,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8212"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3722,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8211"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3723,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "9301"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3726,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "8066"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3727,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12088"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3728,
+      "column": "core_clock_mhz",
+      "new_value": 620.0,
+      "source_record_id": "12133"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3729,
+      "column": "core_clock_mhz",
+      "new_value": 943.0,
+      "source_record_id": "12129"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3730,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12682"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3732,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12681"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3734,
+      "column": "core_clock_mhz",
+      "new_value": 875.0,
+      "source_record_id": "12126"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3735,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12125"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3736,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12146"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3737,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12676"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3738,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8057"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3739,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "9292"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3740,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "8052"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3741,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "8051"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3742,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "8050"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3752,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12569"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3753,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12116"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3754,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13537"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3755,
+      "column": "core_clock_mhz",
+      "new_value": 775.0,
+      "source_record_id": "12115"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3756,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12114"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3757,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "12113"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3758,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12568"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3759,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12567"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3760,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12566"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3761,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12549"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3775,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "12718"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3776,
+      "column": "core_clock_mhz",
+      "new_value": 1120.0,
+      "source_record_id": "12716"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3777,
+      "column": "core_clock_mhz",
+      "new_value": 1120.0,
+      "source_record_id": "9773"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3781,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "12712"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3784,
+      "column": "core_clock_mhz",
+      "new_value": 1125.0,
+      "source_record_id": "9766"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3785,
+      "column": "core_clock_mhz",
+      "new_value": 713.0,
+      "source_record_id": "9765"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3786,
+      "column": "core_clock_mhz",
+      "new_value": 1188.0,
+      "source_record_id": "9504"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3787,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12660"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3788,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8229"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3790,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12136"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3792,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12134"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3794,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12691"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3795,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12163"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3796,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12689"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3798,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "8065"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3802,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12679"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3803,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "12678"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3805,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12123"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3806,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12677"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3807,
+      "column": "core_clock_mhz",
+      "new_value": 955.0,
+      "source_record_id": "12051"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3808,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12675"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3809,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12548"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3810,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12547"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3813,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "9503"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3814,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12644"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3815,
+      "column": "core_clock_mhz",
+      "new_value": 926.0,
+      "source_record_id": "9501"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3816,
+      "column": "core_clock_mhz",
+      "new_value": 926.0,
+      "source_record_id": "12643"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3817,
+      "column": "core_clock_mhz",
+      "new_value": 926.0,
+      "source_record_id": "9500"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3819,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12642"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3820,
+      "column": "core_clock_mhz",
+      "new_value": 1120.0,
+      "source_record_id": "23"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3825,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "13460"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3826,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "12765"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3827,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "12764"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3828,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "12763"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3830,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "9775"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3831,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12724"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3832,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12723"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3833,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12722"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3834,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12721"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3835,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12720"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3836,
+      "column": "core_clock_mhz",
+      "new_value": 1400.0,
+      "source_record_id": "8838"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3839,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12707"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3841,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12704"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3843,
+      "column": "core_clock_mhz",
+      "new_value": 852.0,
+      "source_record_id": "8836"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3844,
+      "column": "core_clock_mhz",
+      "new_value": 1138.0,
+      "source_record_id": "12779"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3845,
+      "column": "core_clock_mhz",
+      "new_value": 1250.0,
+      "source_record_id": "12778"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3846,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "9768"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3847,
+      "column": "core_clock_mhz",
+      "new_value": 925.0,
+      "source_record_id": "9767"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3848,
+      "column": "core_clock_mhz",
+      "new_value": 1002.0,
+      "source_record_id": "12701"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3849,
+      "column": "core_clock_mhz",
+      "new_value": 1002.0,
+      "source_record_id": "12700"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3850,
+      "column": "core_clock_mhz",
+      "new_value": 1002.0,
+      "source_record_id": "12699"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3851,
+      "column": "core_clock_mhz",
+      "new_value": 1188.0,
+      "source_record_id": "12646"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3852,
+      "column": "core_clock_mhz",
+      "new_value": 1188.0,
+      "source_record_id": "12645"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3853,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "8833"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3854,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "8831"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3855,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12674"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3856,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "9502"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3858,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "9498"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3859,
+      "column": "core_clock_mhz",
+      "new_value": 1019.0,
+      "source_record_id": "9497"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3860,
+      "column": "core_clock_mhz",
+      "new_value": 1019.0,
+      "source_record_id": "36"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3861,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12635"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3862,
+      "column": "core_clock_mhz",
+      "new_value": 1175.0,
+      "source_record_id": "33"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3863,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "32"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3864,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "11834"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3865,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "31"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3866,
+      "column": "core_clock_mhz",
+      "new_value": 1168.0,
+      "source_record_id": "28"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3867,
+      "column": "core_clock_mhz",
+      "new_value": 926.0,
+      "source_record_id": "12630"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3869,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12543"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3870,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12734"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3871,
+      "column": "core_clock_mhz",
+      "new_value": 1156.0,
+      "source_record_id": "8828"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3872,
+      "column": "core_clock_mhz",
+      "new_value": 1247.0,
+      "source_record_id": "8827"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3873,
+      "column": "core_clock_mhz",
+      "new_value": 1247.0,
+      "source_record_id": "8826"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3874,
+      "column": "core_clock_mhz",
+      "new_value": 1406.0,
+      "source_record_id": "8825"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3876,
+      "column": "core_clock_mhz",
+      "new_value": 1382.0,
+      "source_record_id": "8231"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3877,
+      "column": "core_clock_mhz",
+      "new_value": 1382.0,
+      "source_record_id": "8230"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3880,
+      "column": "core_clock_mhz",
+      "new_value": 1019.0,
+      "source_record_id": "9774"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3882,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "9777"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3883,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "9776"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3886,
+      "column": "core_clock_mhz",
+      "new_value": 852.0,
+      "source_record_id": "8835"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3887,
+      "column": "core_clock_mhz",
+      "new_value": 852.0,
+      "source_record_id": "8834"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3888,
+      "column": "core_clock_mhz",
+      "new_value": 815.0,
+      "source_record_id": "12784"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3889,
+      "column": "core_clock_mhz",
+      "new_value": 815.0,
+      "source_record_id": "12783"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3890,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "8832"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3891,
+      "column": "core_clock_mhz",
+      "new_value": 931.0,
+      "source_record_id": "13466"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3892,
+      "column": "core_clock_mhz",
+      "new_value": 1124.0,
+      "source_record_id": "12636"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3893,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "35"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3894,
+      "column": "core_clock_mhz",
+      "new_value": 1019.0,
+      "source_record_id": "34"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3895,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12634"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3896,
+      "column": "core_clock_mhz",
+      "new_value": 1090.0,
+      "source_record_id": "30"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3897,
+      "column": "core_clock_mhz",
+      "new_value": 1175.0,
+      "source_record_id": "29"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3899,
+      "column": "core_clock_mhz",
+      "new_value": 1168.0,
+      "source_record_id": "26"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3900,
+      "column": "core_clock_mhz",
+      "new_value": 1168.0,
+      "source_record_id": "24"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3901,
+      "column": "core_clock_mhz",
+      "new_value": 1257.0,
+      "source_record_id": "22"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3902,
+      "column": "core_clock_mhz",
+      "new_value": 1257.0,
+      "source_record_id": "21"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3904,
+      "column": "core_clock_mhz",
+      "new_value": 1469.0,
+      "source_record_id": "20"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3906,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8829"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3907,
+      "column": "core_clock_mhz",
+      "new_value": 1138.0,
+      "source_record_id": "12732"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3908,
+      "column": "core_clock_mhz",
+      "new_value": 1063.0,
+      "source_record_id": "12014"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3909,
+      "column": "core_clock_mhz",
+      "new_value": 931.0,
+      "source_record_id": "11934"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3910,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8330"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3911,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8329"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3913,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8328"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3914,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12729"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3915,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8327"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3916,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "8326"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3919,
+      "column": "core_clock_mhz",
+      "new_value": 1082.0,
+      "source_record_id": "3867"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3922,
+      "column": "core_clock_mhz",
+      "new_value": 730.0,
+      "source_record_id": "12761"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3924,
+      "column": "core_clock_mhz",
+      "new_value": 1082.0,
+      "source_record_id": "12725"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3925,
+      "column": "core_clock_mhz",
+      "new_value": 713.0,
+      "source_record_id": "12717"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3926,
+      "column": "core_clock_mhz",
+      "new_value": 1120.0,
+      "source_record_id": "12715"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3927,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12795"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3928,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12794"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3929,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12706"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3931,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "12703"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3933,
+      "column": "core_clock_mhz",
+      "new_value": 1250.0,
+      "source_record_id": "12777"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3934,
+      "column": "core_clock_mhz",
+      "new_value": 1574.0,
+      "source_record_id": "10662"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3935,
+      "column": "core_clock_mhz",
+      "new_value": 1400.0,
+      "source_record_id": "10661"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3936,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "12792"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3937,
+      "column": "core_clock_mhz",
+      "new_value": 1187.0,
+      "source_record_id": "10659"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3938,
+      "column": "core_clock_mhz",
+      "new_value": 1400.0,
+      "source_record_id": "10658"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3939,
+      "column": "core_clock_mhz",
+      "new_value": 1243.0,
+      "source_record_id": "10657"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3943,
+      "column": "core_clock_mhz",
+      "new_value": 1670.0,
+      "source_record_id": "4220"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3944,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "13458"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3945,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "4219"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3946,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "4218"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3947,
+      "column": "core_clock_mhz",
+      "new_value": 1375.0,
+      "source_record_id": "12790"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3948,
+      "column": "core_clock_mhz",
+      "new_value": 1074.0,
+      "source_record_id": "10350"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3949,
+      "column": "core_clock_mhz",
+      "new_value": 1465.0,
+      "source_record_id": "10347"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3951,
+      "column": "core_clock_mhz",
+      "new_value": 1680.0,
+      "source_record_id": "10345"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3952,
+      "column": "core_clock_mhz",
+      "new_value": 1082.0,
+      "source_record_id": "12541"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3953,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12733"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3954,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12731"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3955,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "10004"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3956,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "10003"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3957,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13463"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3958,
+      "column": "core_clock_mhz",
+      "new_value": 1400.0,
+      "source_record_id": "10005"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3959,
+      "column": "core_clock_mhz",
+      "new_value": 935.0,
+      "source_record_id": "3856"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3960,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "4213"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3961,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "4212"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3963,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "12788"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3965,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "148"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3967,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "147"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3968,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "12785"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3969,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "146"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3970,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "10669"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3971,
+      "column": "core_clock_mhz",
+      "new_value": 1187.0,
+      "source_record_id": "10668"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3972,
+      "column": "core_clock_mhz",
+      "new_value": 822.0,
+      "source_record_id": "12793"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3973,
+      "column": "core_clock_mhz",
+      "new_value": 1243.0,
+      "source_record_id": "10667"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3974,
+      "column": "core_clock_mhz",
+      "new_value": 1243.0,
+      "source_record_id": "10666"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3975,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "10665"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3976,
+      "column": "core_clock_mhz",
+      "new_value": 1400.0,
+      "source_record_id": "10663"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3977,
+      "column": "core_clock_mhz",
+      "new_value": 1744.0,
+      "source_record_id": "10660"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3978,
+      "column": "core_clock_mhz",
+      "new_value": 1448.0,
+      "source_record_id": "12791"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3979,
+      "column": "core_clock_mhz",
+      "new_value": 1327.0,
+      "source_record_id": "4221"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3980,
+      "column": "core_clock_mhz",
+      "new_value": 1130.0,
+      "source_record_id": "10349"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3981,
+      "column": "core_clock_mhz",
+      "new_value": 1130.0,
+      "source_record_id": "10348"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3982,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "12789"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3983,
+      "column": "core_clock_mhz",
+      "new_value": 1465.0,
+      "source_record_id": "11933"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3984,
+      "column": "core_clock_mhz",
+      "new_value": 1257.0,
+      "source_record_id": "10344"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3988,
+      "column": "core_clock_mhz",
+      "new_value": 1825.0,
+      "source_record_id": "10019"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3991,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "149"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3992,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3866"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3993,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3865"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3994,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3864"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3995,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3863"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3996,
+      "column": "core_clock_mhz",
+      "new_value": 1825.0,
+      "source_record_id": "3859"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3997,
+      "column": "core_clock_mhz",
+      "new_value": 2331.0,
+      "source_record_id": "4217"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3998,
+      "column": "core_clock_mhz",
+      "new_value": 1224.0,
+      "source_record_id": "12749"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 3999,
+      "column": "core_clock_mhz",
+      "new_value": 2068.0,
+      "source_record_id": "10656"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4000,
+      "column": "core_clock_mhz",
+      "new_value": 1575.0,
+      "source_record_id": "4216"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4001,
+      "column": "core_clock_mhz",
+      "new_value": 1800.0,
+      "source_record_id": "10655"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4002,
+      "column": "core_clock_mhz",
+      "new_value": 1800.0,
+      "source_record_id": "4224"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4003,
+      "column": "core_clock_mhz",
+      "new_value": 1825.0,
+      "source_record_id": "4223"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4004,
+      "column": "core_clock_mhz",
+      "new_value": 1626.0,
+      "source_record_id": "10339"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4006,
+      "column": "core_clock_mhz",
+      "new_value": 2068.0,
+      "source_record_id": "12744"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4007,
+      "column": "core_clock_mhz",
+      "new_value": 1941.0,
+      "source_record_id": "10336"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4009,
+      "column": "core_clock_mhz",
+      "new_value": 1489.0,
+      "source_record_id": "12740"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4010,
+      "column": "core_clock_mhz",
+      "new_value": 2116.0,
+      "source_record_id": "12737"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4012,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "12799"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4013,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "12798"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4014,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "150"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4015,
+      "column": "core_clock_mhz",
+      "new_value": 1512.0,
+      "source_record_id": "3858"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4016,
+      "column": "core_clock_mhz",
+      "new_value": 1512.0,
+      "source_record_id": "12797"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4017,
+      "column": "core_clock_mhz",
+      "new_value": 2039.0,
+      "source_record_id": "3857"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4018,
+      "column": "core_clock_mhz",
+      "new_value": 1923.0,
+      "source_record_id": "10341"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4019,
+      "column": "core_clock_mhz",
+      "new_value": 2310.0,
+      "source_record_id": "10340"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4020,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "12746"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4021,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "12743"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4022,
+      "column": "core_clock_mhz",
+      "new_value": 2055.0,
+      "source_record_id": "10337"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4023,
+      "column": "core_clock_mhz",
+      "new_value": 2068.0,
+      "source_record_id": "12742"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4024,
+      "column": "core_clock_mhz",
+      "new_value": 2068.0,
+      "source_record_id": "12741"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4025,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "12739"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4026,
+      "column": "core_clock_mhz",
+      "new_value": 2150.0,
+      "source_record_id": "10244"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4027,
+      "column": "core_clock_mhz",
+      "new_value": 1800.0,
+      "source_record_id": "12736"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4028,
+      "column": "core_clock_mhz",
+      "new_value": 2321.0,
+      "source_record_id": "12735"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4032,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "10677"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4033,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "11269"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4034,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "10758"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4035,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "10757"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4036,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3861"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4037,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "4215"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4038,
+      "column": "core_clock_mhz",
+      "new_value": 1720.0,
+      "source_record_id": "4214"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4039,
+      "column": "core_clock_mhz",
+      "new_value": 1900.0,
+      "source_record_id": "10672"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4040,
+      "column": "core_clock_mhz",
+      "new_value": 1895.0,
+      "source_record_id": "10671"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4041,
+      "column": "core_clock_mhz",
+      "new_value": 1895.0,
+      "source_record_id": "10818"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4042,
+      "column": "core_clock_mhz",
+      "new_value": 1855.0,
+      "source_record_id": "10670"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4043,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "12747"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4044,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "12745"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4045,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "13461"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4046,
+      "column": "core_clock_mhz",
+      "new_value": 1626.0,
+      "source_record_id": "10805"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4047,
+      "column": "core_clock_mhz",
+      "new_value": 1941.0,
+      "source_record_id": "126"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4048,
+      "column": "core_clock_mhz",
+      "new_value": 2321.0,
+      "source_record_id": "127"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4050,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "12752"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4051,
+      "column": "core_clock_mhz",
+      "new_value": 1280.0,
+      "source_record_id": "10742"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4052,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "12751"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4054,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "12750"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4056,
+      "column": "core_clock_mhz",
+      "new_value": 1287.0,
+      "source_record_id": "10011"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4057,
+      "column": "core_clock_mhz",
+      "new_value": 1825.0,
+      "source_record_id": "10935"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4058,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "3869"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4059,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "3868"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4060,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "9778"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4061,
+      "column": "core_clock_mhz",
+      "new_value": 2170.0,
+      "source_record_id": "10812"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4062,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "11443"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4063,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "12801"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4064,
+      "column": "core_clock_mhz",
+      "new_value": 1900.0,
+      "source_record_id": "10809"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4065,
+      "column": "core_clock_mhz",
+      "new_value": 1980.0,
+      "source_record_id": "145"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4066,
+      "column": "core_clock_mhz",
+      "new_value": 1295.0,
+      "source_record_id": "10934"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4068,
+      "column": "core_clock_mhz",
+      "new_value": 1295.0,
+      "source_record_id": "13389"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4069,
+      "column": "core_clock_mhz",
+      "new_value": 1295.0,
+      "source_record_id": "11201"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4070,
+      "column": "core_clock_mhz",
+      "new_value": 1295.0,
+      "source_record_id": "11200"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4071,
+      "column": "core_clock_mhz",
+      "new_value": 600.0,
+      "source_record_id": "11270"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4072,
+      "column": "core_clock_mhz",
+      "new_value": 1660.0,
+      "source_record_id": "11274"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4074,
+      "column": "core_clock_mhz",
+      "new_value": 1452.0,
+      "source_record_id": "12753"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4075,
+      "column": "core_clock_mhz",
+      "new_value": 1720.0,
+      "source_record_id": "11208"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4076,
+      "column": "core_clock_mhz",
+      "new_value": 1900.0,
+      "source_record_id": "10014"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4077,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "12817"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4078,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "11420"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4079,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "10763"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4081,
+      "column": "core_clock_mhz",
+      "new_value": 1420.0,
+      "source_record_id": "11351"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4082,
+      "column": "core_clock_mhz",
+      "new_value": 1420.0,
+      "source_record_id": "12802"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4084,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "11350"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4085,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "11349"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4086,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "11348"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4087,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "11344"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4088,
+      "column": "core_clock_mhz",
+      "new_value": 800.0,
+      "source_record_id": "11347"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4196,
+      "column": "core_clock_mhz",
+      "new_value": 100.0,
+      "source_record_id": "13023"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4197,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "7998"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4198,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "13446"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4218,
+      "column": "core_clock_mhz",
+      "new_value": 133.0,
+      "source_record_id": "12949"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4219,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "7987"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4220,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "7986"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4223,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "7977"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4224,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "7985"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4225,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "12952"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4226,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "7978"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4227,
+      "column": "core_clock_mhz",
+      "new_value": 650.0,
+      "source_record_id": "7976"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4231,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "7989"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4232,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12959"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4233,
+      "column": "core_clock_mhz",
+      "new_value": 311.0,
+      "source_record_id": "12953"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4234,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12958"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4235,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "7984"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4236,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12957"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4237,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7983"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4238,
+      "column": "core_clock_mhz",
+      "new_value": 400.0,
+      "source_record_id": "12956"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4239,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12955"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4240,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7975"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4241,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7974"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4242,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12954"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4243,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "7971"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4244,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12948"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4246,
+      "column": "core_clock_mhz",
+      "new_value": 1238.0,
+      "source_record_id": "4267"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4247,
+      "column": "core_clock_mhz",
+      "new_value": 1238.0,
+      "source_record_id": "4266"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4248,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12965"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4249,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12964"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4250,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12963"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4251,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12962"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4252,
+      "column": "core_clock_mhz",
+      "new_value": 700.0,
+      "source_record_id": "7972"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4253,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12961"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4254,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "7970"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4255,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12960"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4256,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "7967"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4258,
+      "column": "core_clock_mhz",
+      "new_value": 320.0,
+      "source_record_id": "12967"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4259,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12966"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4260,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12977"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4261,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7982"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4262,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12975"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4263,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12974"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4264,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12973"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4265,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7981"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4266,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "12972"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4267,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7973"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4268,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12971"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4269,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12970"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4270,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "12969"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4271,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7969"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4272,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7968"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4273,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "12947"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4274,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12976"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4275,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7980"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4276,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12990"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4277,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12989"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4278,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12988"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4279,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7979"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4280,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "12987"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4281,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "13449"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4282,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12997"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4283,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13451"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4284,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12984"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4285,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "12983"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4286,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12979"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4287,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "4552"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4288,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12986"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4289,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "7964"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4290,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12982"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4291,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12981"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4292,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12980"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4293,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "12978"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4296,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13450"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4297,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13030"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4299,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13026"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4300,
+      "column": "core_clock_mhz",
+      "new_value": 1050.0,
+      "source_record_id": "7990"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4301,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13029"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4302,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13033"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4303,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13032"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4304,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13031"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4305,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "7966"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4308,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "13025"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4309,
+      "column": "core_clock_mhz",
+      "new_value": 200.0,
+      "source_record_id": "13022"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4310,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "4272"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4313,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "7965"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4315,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "4549"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4316,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "4539"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4317,
+      "column": "core_clock_mhz",
+      "new_value": 350.0,
+      "source_record_id": "4273"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4318,
+      "column": "core_clock_mhz",
+      "new_value": 1750.0,
+      "source_record_id": "8020"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4319,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "8019"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4320,
+      "column": "core_clock_mhz",
+      "new_value": 1150.0,
+      "source_record_id": "13010"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4321,
+      "column": "core_clock_mhz",
+      "new_value": 1550.0,
+      "source_record_id": "13448"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4322,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "8018"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4323,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13007"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4324,
+      "column": "core_clock_mhz",
+      "new_value": 1100.0,
+      "source_record_id": "13005"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4325,
+      "column": "core_clock_mhz",
+      "new_value": 2050.0,
+      "source_record_id": "8016"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4326,
+      "column": "core_clock_mhz",
+      "new_value": 2100.0,
+      "source_record_id": "8015"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4327,
+      "column": "core_clock_mhz",
+      "new_value": 1650.0,
+      "source_record_id": "13004"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4328,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "13003"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4329,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "8013"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4330,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "8012"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4332,
+      "column": "core_clock_mhz",
+      "new_value": 1600.0,
+      "source_record_id": "8006"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4333,
+      "column": "core_clock_mhz",
+      "new_value": 1950.0,
+      "source_record_id": "8005"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4334,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13038"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4336,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13036"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4338,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "4551"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4340,
+      "column": "core_clock_mhz",
+      "new_value": 1550.0,
+      "source_record_id": "13009"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4341,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13008"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4342,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13006"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4343,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "8017"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4344,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "133"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4345,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "134"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4346,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "132"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4347,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "131"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4348,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8011"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4349,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13002"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4350,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "8004"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4351,
+      "column": "core_clock_mhz",
+      "new_value": 750.0,
+      "source_record_id": "8003"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4352,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "8002"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4353,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13034"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4354,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13381"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4355,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13379"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4356,
+      "column": "core_clock_mhz",
+      "new_value": 2670.0,
+      "source_record_id": "10901"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4357,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "11272"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4358,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "11273"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4359,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "11271"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4360,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13382"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4361,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "13380"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4362,
+      "column": "core_clock_mhz",
+      "new_value": 2500.0,
+      "source_record_id": "10902"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4363,
+      "column": "core_clock_mhz",
+      "new_value": 1700.0,
+      "source_record_id": "12940"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4364,
+      "column": "core_clock_mhz",
+      "new_value": 2000.0,
+      "source_record_id": "12537"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4365,
+      "column": "core_clock_mhz",
+      "new_value": 300.0,
+      "source_record_id": "12942"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4385,
+      "column": "core_clock_mhz",
+      "new_value": 500.0,
+      "source_record_id": "4740"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4386,
+      "column": "core_clock_mhz",
+      "new_value": 500.0,
+      "source_record_id": "4738"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4590,
+      "column": "core_clock_mhz",
+      "new_value": 624.0,
+      "source_record_id": "12584"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4591,
+      "column": "core_clock_mhz",
+      "new_value": 500.0,
+      "source_record_id": "12514"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4593,
+      "column": "core_clock_mhz",
+      "new_value": 709.0,
+      "source_record_id": "12582"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4594,
+      "column": "core_clock_mhz",
+      "new_value": 835.0,
+      "source_record_id": "12581"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4599,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "2660"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4600,
+      "column": "core_clock_mhz",
+      "new_value": 823.0,
+      "source_record_id": "2659"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4601,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "2657"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4602,
+      "column": "core_clock_mhz",
+      "new_value": 835.0,
+      "source_record_id": "12579"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4603,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "2656"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4605,
+      "column": "core_clock_mhz",
+      "new_value": 601.0,
+      "source_record_id": "12577"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4608,
+      "column": "core_clock_mhz",
+      "new_value": 1006.0,
+      "source_record_id": "2655"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4609,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "12574"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4610,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "12573"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4611,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "2653"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4617,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "12560"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4618,
+      "column": "core_clock_mhz",
+      "new_value": 835.0,
+      "source_record_id": "12559"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4619,
+      "column": "core_clock_mhz",
+      "new_value": 654.0,
+      "source_record_id": "12556"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4620,
+      "column": "core_clock_mhz",
+      "new_value": 601.0,
+      "source_record_id": "12554"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4621,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "2296"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4622,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "2295"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4623,
+      "column": "core_clock_mhz",
+      "new_value": 601.0,
+      "source_record_id": "12552"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4624,
+      "column": "core_clock_mhz",
+      "new_value": 709.0,
+      "source_record_id": "12551"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4633,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "13138"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4641,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "13060"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4643,
+      "column": "core_clock_mhz",
+      "new_value": 575.0,
+      "source_record_id": "13296"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4644,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "13295"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4646,
+      "column": "core_clock_mhz",
+      "new_value": 837.0,
+      "source_record_id": "12602"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4648,
+      "column": "core_clock_mhz",
+      "new_value": 941.0,
+      "source_record_id": "12611"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4649,
+      "column": "core_clock_mhz",
+      "new_value": 926.0,
+      "source_record_id": "12610"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4650,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "12609"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4651,
+      "column": "core_clock_mhz",
+      "new_value": 1085.0,
+      "source_record_id": "12608"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4653,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "2662"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4655,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "12575"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4656,
+      "column": "core_clock_mhz",
+      "new_value": 1006.0,
+      "source_record_id": "2654"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4657,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "2320"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4659,
+      "column": "core_clock_mhz",
+      "new_value": 823.0,
+      "source_record_id": "2318"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4660,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "2317"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4661,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "2316"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4662,
+      "column": "core_clock_mhz",
+      "new_value": 1006.0,
+      "source_record_id": "2315"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4663,
+      "column": "core_clock_mhz",
+      "new_value": 628.0,
+      "source_record_id": "12607"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4664,
+      "column": "core_clock_mhz",
+      "new_value": 797.0,
+      "source_record_id": "12606"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4665,
+      "column": "core_clock_mhz",
+      "new_value": 1046.0,
+      "source_record_id": "2314"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4666,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "12605"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4667,
+      "column": "core_clock_mhz",
+      "new_value": 797.0,
+      "source_record_id": "12604"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4668,
+      "column": "core_clock_mhz",
+      "new_value": 863.0,
+      "source_record_id": "2313"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4669,
+      "column": "core_clock_mhz",
+      "new_value": 863.0,
+      "source_record_id": "2312"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4670,
+      "column": "core_clock_mhz",
+      "new_value": 863.0,
+      "source_record_id": "2311"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4671,
+      "column": "core_clock_mhz",
+      "new_value": 875.0,
+      "source_record_id": "2310"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4672,
+      "column": "core_clock_mhz",
+      "new_value": 771.0,
+      "source_record_id": "12603"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4673,
+      "column": "core_clock_mhz",
+      "new_value": 784.0,
+      "source_record_id": "12571"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4674,
+      "column": "core_clock_mhz",
+      "new_value": 836.0,
+      "source_record_id": "2308"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4686,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "12561"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4689,
+      "column": "core_clock_mhz",
+      "new_value": 667.0,
+      "source_record_id": "12557"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4690,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "12555"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4692,
+      "column": "core_clock_mhz",
+      "new_value": 706.0,
+      "source_record_id": "12553"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4694,
+      "column": "core_clock_mhz",
+      "new_value": 771.0,
+      "source_record_id": "12550"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4695,
+      "column": "core_clock_mhz",
+      "new_value": 889.0,
+      "source_record_id": "13149"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4697,
+      "column": "core_clock_mhz",
+      "new_value": 797.0,
+      "source_record_id": "2291"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4699,
+      "column": "core_clock_mhz",
+      "new_value": 954.0,
+      "source_record_id": "11938"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4702,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "2275"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4703,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "2273"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4704,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "2272"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4707,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "2269"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4711,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "13303"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4712,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "13302"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4713,
+      "column": "core_clock_mhz",
+      "new_value": 738.0,
+      "source_record_id": "12623"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4715,
+      "column": "core_clock_mhz",
+      "new_value": 850.0,
+      "source_record_id": "13301"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4716,
+      "column": "core_clock_mhz",
+      "new_value": 1082.0,
+      "source_record_id": "13317"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4717,
+      "column": "core_clock_mhz",
+      "new_value": 1082.0,
+      "source_record_id": "13316"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4718,
+      "column": "core_clock_mhz",
+      "new_value": 1029.0,
+      "source_record_id": "13315"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4719,
+      "column": "core_clock_mhz",
+      "new_value": 1029.0,
+      "source_record_id": "13314"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4726,
+      "column": "core_clock_mhz",
+      "new_value": 719.0,
+      "source_record_id": "13297"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4728,
+      "column": "core_clock_mhz",
+      "new_value": 980.0,
+      "source_record_id": "2658"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4730,
+      "column": "core_clock_mhz",
+      "new_value": 1020.0,
+      "source_record_id": "3158"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4732,
+      "column": "core_clock_mhz",
+      "new_value": 628.0,
+      "source_record_id": "12572"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4733,
+      "column": "core_clock_mhz",
+      "new_value": 902.0,
+      "source_record_id": "13172"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4735,
+      "column": "core_clock_mhz",
+      "new_value": 1020.0,
+      "source_record_id": "12621"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4736,
+      "column": "core_clock_mhz",
+      "new_value": 941.0,
+      "source_record_id": "12620"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4737,
+      "column": "core_clock_mhz",
+      "new_value": 954.0,
+      "source_record_id": "12570"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4739,
+      "column": "core_clock_mhz",
+      "new_value": 924.0,
+      "source_record_id": "13319"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4740,
+      "column": "core_clock_mhz",
+      "new_value": 1127.0,
+      "source_record_id": "3339"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4741,
+      "column": "core_clock_mhz",
+      "new_value": 1038.0,
+      "source_record_id": "13203"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4742,
+      "column": "core_clock_mhz",
+      "new_value": 889.0,
+      "source_record_id": "2307"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4743,
+      "column": "core_clock_mhz",
+      "new_value": 705.0,
+      "source_record_id": "2306"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4748,
+      "column": "core_clock_mhz",
+      "new_value": 756.0,
+      "source_record_id": "13150"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4749,
+      "column": "core_clock_mhz",
+      "new_value": 851.0,
+      "source_record_id": "12562"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4750,
+      "column": "core_clock_mhz",
+      "new_value": 745.0,
+      "source_record_id": "12558"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4751,
+      "column": "core_clock_mhz",
+      "new_value": 1046.0,
+      "source_record_id": "3154"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4752,
+      "column": "core_clock_mhz",
+      "new_value": 1150.0,
+      "source_record_id": "13160"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4754,
+      "column": "core_clock_mhz",
+      "new_value": 771.0,
+      "source_record_id": "2297"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4755,
+      "column": "core_clock_mhz",
+      "new_value": 667.0,
+      "source_record_id": "2293"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4756,
+      "column": "core_clock_mhz",
+      "new_value": 1058.0,
+      "source_record_id": "3153"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4757,
+      "column": "core_clock_mhz",
+      "new_value": 693.0,
+      "source_record_id": "1815"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4758,
+      "column": "core_clock_mhz",
+      "new_value": 562.0,
+      "source_record_id": "1814"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4759,
+      "column": "core_clock_mhz",
+      "new_value": 863.0,
+      "source_record_id": "13313"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4760,
+      "column": "core_clock_mhz",
+      "new_value": 641.0,
+      "source_record_id": "13300"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4761,
+      "column": "core_clock_mhz",
+      "new_value": 954.0,
+      "source_record_id": "13299"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4762,
+      "column": "core_clock_mhz",
+      "new_value": 954.0,
+      "source_record_id": "13298"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4763,
+      "column": "core_clock_mhz",
+      "new_value": 928.0,
+      "source_record_id": "13311"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4765,
+      "column": "core_clock_mhz",
+      "new_value": 1072.0,
+      "source_record_id": "13305"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4766,
+      "column": "core_clock_mhz",
+      "new_value": 1072.0,
+      "source_record_id": "13304"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4767,
+      "column": "core_clock_mhz",
+      "new_value": 1006.0,
+      "source_record_id": "13176"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4772,
+      "column": "core_clock_mhz",
+      "new_value": 1087.0,
+      "source_record_id": "3347"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4773,
+      "column": "core_clock_mhz",
+      "new_value": 1097.0,
+      "source_record_id": "13170"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4774,
+      "column": "core_clock_mhz",
+      "new_value": 1024.0,
+      "source_record_id": "3345"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4775,
+      "column": "core_clock_mhz",
+      "new_value": 993.0,
+      "source_record_id": "13169"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4776,
+      "column": "core_clock_mhz",
+      "new_value": 993.0,
+      "source_record_id": "13168"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4777,
+      "column": "core_clock_mhz",
+      "new_value": 993.0,
+      "source_record_id": "13167"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4778,
+      "column": "core_clock_mhz",
+      "new_value": 1127.0,
+      "source_record_id": "3342"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4779,
+      "column": "core_clock_mhz",
+      "new_value": 1176.0,
+      "source_record_id": "3341"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4780,
+      "column": "core_clock_mhz",
+      "new_value": 1097.0,
+      "source_record_id": "13166"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4781,
+      "column": "core_clock_mhz",
+      "new_value": 1097.0,
+      "source_record_id": "13165"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4782,
+      "column": "core_clock_mhz",
+      "new_value": 924.0,
+      "source_record_id": "10743"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4783,
+      "column": "core_clock_mhz",
+      "new_value": 935.0,
+      "source_record_id": "13320"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4784,
+      "column": "core_clock_mhz",
+      "new_value": 1064.0,
+      "source_record_id": "13318"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4785,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3338"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4786,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3337"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4787,
+      "column": "core_clock_mhz",
+      "new_value": 557.0,
+      "source_record_id": "3351"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4788,
+      "column": "core_clock_mhz",
+      "new_value": 557.0,
+      "source_record_id": "3350"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4789,
+      "column": "core_clock_mhz",
+      "new_value": 557.0,
+      "source_record_id": "3349"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4790,
+      "column": "core_clock_mhz",
+      "new_value": 557.0,
+      "source_record_id": "3348"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4793,
+      "column": "core_clock_mhz",
+      "new_value": 902.0,
+      "source_record_id": "3156"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4794,
+      "column": "core_clock_mhz",
+      "new_value": 954.0,
+      "source_record_id": "3155"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4795,
+      "column": "core_clock_mhz",
+      "new_value": 1029.0,
+      "source_record_id": "13159"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4796,
+      "column": "core_clock_mhz",
+      "new_value": 993.0,
+      "source_record_id": "13158"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4797,
+      "column": "core_clock_mhz",
+      "new_value": 1098.0,
+      "source_record_id": "13156"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4798,
+      "column": "core_clock_mhz",
+      "new_value": 823.0,
+      "source_record_id": "13198"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4800,
+      "column": "core_clock_mhz",
+      "new_value": 975.0,
+      "source_record_id": "13197"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4801,
+      "column": "core_clock_mhz",
+      "new_value": 861.0,
+      "source_record_id": "3333"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4802,
+      "column": "core_clock_mhz",
+      "new_value": 962.0,
+      "source_record_id": "13196"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4803,
+      "column": "core_clock_mhz",
+      "new_value": 988.0,
+      "source_record_id": "3332"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4804,
+      "column": "core_clock_mhz",
+      "new_value": 837.0,
+      "source_record_id": "13153"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4805,
+      "column": "core_clock_mhz",
+      "new_value": 872.0,
+      "source_record_id": "3328"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4806,
+      "column": "core_clock_mhz",
+      "new_value": 948.0,
+      "source_record_id": "3327"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4807,
+      "column": "core_clock_mhz",
+      "new_value": 948.0,
+      "source_record_id": "3326"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4808,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13194"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4809,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13193"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4810,
+      "column": "core_clock_mhz",
+      "new_value": 557.0,
+      "source_record_id": "1812"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4811,
+      "column": "core_clock_mhz",
+      "new_value": 965.0,
+      "source_record_id": "13312"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4812,
+      "column": "core_clock_mhz",
+      "new_value": 952.0,
+      "source_record_id": "13306"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4813,
+      "column": "core_clock_mhz",
+      "new_value": 795.0,
+      "source_record_id": "13179"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4814,
+      "column": "core_clock_mhz",
+      "new_value": 1354.0,
+      "source_record_id": "6112"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4816,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3680"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4817,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3677"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4819,
+      "column": "core_clock_mhz",
+      "new_value": 1405.0,
+      "source_record_id": "13215"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4821,
+      "column": "core_clock_mhz",
+      "new_value": 1443.0,
+      "source_record_id": "13209"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4822,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "3666"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4823,
+      "column": "core_clock_mhz",
+      "new_value": 1557.0,
+      "source_record_id": "13207"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4824,
+      "column": "core_clock_mhz",
+      "new_value": 1026.0,
+      "source_record_id": "3344"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4825,
+      "column": "core_clock_mhz",
+      "new_value": 937.0,
+      "source_record_id": "3343"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4826,
+      "column": "core_clock_mhz",
+      "new_value": 1050.0,
+      "source_record_id": "13202"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4827,
+      "column": "core_clock_mhz",
+      "new_value": 1033.0,
+      "source_record_id": "3325"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4828,
+      "column": "core_clock_mhz",
+      "new_value": 1033.0,
+      "source_record_id": "3324"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4831,
+      "column": "core_clock_mhz",
+      "new_value": 1304.0,
+      "source_record_id": "3612"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4832,
+      "column": "core_clock_mhz",
+      "new_value": 796.0,
+      "source_record_id": "3336"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4833,
+      "column": "core_clock_mhz",
+      "new_value": 823.0,
+      "source_record_id": "3335"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4834,
+      "column": "core_clock_mhz",
+      "new_value": 1029.0,
+      "source_record_id": "13155"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4835,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "13195"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4836,
+      "column": "core_clock_mhz",
+      "new_value": 988.0,
+      "source_record_id": "3331"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4837,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "3604"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4838,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3602"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4839,
+      "column": "core_clock_mhz",
+      "new_value": 1033.0,
+      "source_record_id": "1813"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4840,
+      "column": "core_clock_mhz",
+      "new_value": 1025.0,
+      "source_record_id": "3598"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4841,
+      "column": "core_clock_mhz",
+      "new_value": 1328.0,
+      "source_record_id": "3597"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4842,
+      "column": "core_clock_mhz",
+      "new_value": 1190.0,
+      "source_record_id": "3596"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4843,
+      "column": "core_clock_mhz",
+      "new_value": 1190.0,
+      "source_record_id": "3595"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4844,
+      "column": "core_clock_mhz",
+      "new_value": 1328.0,
+      "source_record_id": "3594"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4845,
+      "column": "core_clock_mhz",
+      "new_value": 886.0,
+      "source_record_id": "1810"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4846,
+      "column": "core_clock_mhz",
+      "new_value": 1303.0,
+      "source_record_id": "1809"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4847,
+      "column": "core_clock_mhz",
+      "new_value": 1417.0,
+      "source_record_id": "3600"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4848,
+      "column": "core_clock_mhz",
+      "new_value": 1228.0,
+      "source_record_id": "4540"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4850,
+      "column": "core_clock_mhz",
+      "new_value": 1354.0,
+      "source_record_id": "13227"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4851,
+      "column": "core_clock_mhz",
+      "new_value": 1493.0,
+      "source_record_id": "13217"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4852,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3676"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4853,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3674"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4854,
+      "column": "core_clock_mhz",
+      "new_value": 1063.0,
+      "source_record_id": "13216"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4855,
+      "column": "core_clock_mhz",
+      "new_value": 1215.0,
+      "source_record_id": "13214"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4856,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "3667"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4857,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "3665"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4858,
+      "column": "core_clock_mhz",
+      "new_value": 1277.0,
+      "source_record_id": "13208"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4860,
+      "column": "core_clock_mhz",
+      "new_value": 978.0,
+      "source_record_id": "13163"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4861,
+      "column": "core_clock_mhz",
+      "new_value": 1109.0,
+      "source_record_id": "13162"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4862,
+      "column": "core_clock_mhz",
+      "new_value": 1469.0,
+      "source_record_id": "13206"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4863,
+      "column": "core_clock_mhz",
+      "new_value": 1607.0,
+      "source_record_id": "3619"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4864,
+      "column": "core_clock_mhz",
+      "new_value": 1354.0,
+      "source_record_id": "3614"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4865,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3613"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4866,
+      "column": "core_clock_mhz",
+      "new_value": 991.0,
+      "source_record_id": "13157"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4867,
+      "column": "core_clock_mhz",
+      "new_value": 695.0,
+      "source_record_id": "13199"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4868,
+      "column": "core_clock_mhz",
+      "new_value": 965.0,
+      "source_record_id": "13154"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4869,
+      "column": "core_clock_mhz",
+      "new_value": 756.0,
+      "source_record_id": "13152"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4871,
+      "column": "core_clock_mhz",
+      "new_value": 1493.0,
+      "source_record_id": "13083"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4872,
+      "column": "core_clock_mhz",
+      "new_value": 1076.0,
+      "source_record_id": "3608"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4874,
+      "column": "core_clock_mhz",
+      "new_value": 1088.0,
+      "source_record_id": "13076"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4875,
+      "column": "core_clock_mhz",
+      "new_value": 1228.0,
+      "source_record_id": "3606"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4876,
+      "column": "core_clock_mhz",
+      "new_value": 1202.0,
+      "source_record_id": "3605"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4877,
+      "column": "core_clock_mhz",
+      "new_value": 1114.0,
+      "source_record_id": "13073"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4878,
+      "column": "core_clock_mhz",
+      "new_value": 1202.0,
+      "source_record_id": "13072"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4879,
+      "column": "core_clock_mhz",
+      "new_value": 1164.0,
+      "source_record_id": "13068"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4880,
+      "column": "core_clock_mhz",
+      "new_value": 1164.0,
+      "source_record_id": "13067"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4881,
+      "column": "core_clock_mhz",
+      "new_value": 1329.0,
+      "source_record_id": "3603"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4882,
+      "column": "core_clock_mhz",
+      "new_value": 1430.0,
+      "source_record_id": "130"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4883,
+      "column": "core_clock_mhz",
+      "new_value": 384.0,
+      "source_record_id": "3329"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4884,
+      "column": "core_clock_mhz",
+      "new_value": 1012.0,
+      "source_record_id": "13042"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4885,
+      "column": "core_clock_mhz",
+      "new_value": 1245.0,
+      "source_record_id": "7164"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4886,
+      "column": "core_clock_mhz",
+      "new_value": 1312.0,
+      "source_record_id": "5186"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4887,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "7962"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4888,
+      "column": "core_clock_mhz",
+      "new_value": 1405.0,
+      "source_record_id": "3599"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4889,
+      "column": "core_clock_mhz",
+      "new_value": 1152.0,
+      "source_record_id": "6113"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4891,
+      "column": "core_clock_mhz",
+      "new_value": 1392.0,
+      "source_record_id": "6111"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4892,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "13228"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4893,
+      "column": "core_clock_mhz",
+      "new_value": 1152.0,
+      "source_record_id": "13218"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4894,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3673"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4895,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3672"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4896,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3671"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4897,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3668"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4898,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "6450"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4899,
+      "column": "core_clock_mhz",
+      "new_value": 1515.0,
+      "source_record_id": "6448"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4901,
+      "column": "core_clock_mhz",
+      "new_value": 854.0,
+      "source_record_id": "13396"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4902,
+      "column": "core_clock_mhz",
+      "new_value": 854.0,
+      "source_record_id": "13395"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4903,
+      "column": "core_clock_mhz",
+      "new_value": 1582.0,
+      "source_record_id": "3661"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4904,
+      "column": "core_clock_mhz",
+      "new_value": 1557.0,
+      "source_record_id": "3620"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4905,
+      "column": "core_clock_mhz",
+      "new_value": 1506.0,
+      "source_record_id": "3618"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4906,
+      "column": "core_clock_mhz",
+      "new_value": 1132.0,
+      "source_record_id": "7963"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4907,
+      "column": "core_clock_mhz",
+      "new_value": 1139.0,
+      "source_record_id": "13075"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4908,
+      "column": "core_clock_mhz",
+      "new_value": 1328.0,
+      "source_record_id": "13074"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4909,
+      "column": "core_clock_mhz",
+      "new_value": 1215.0,
+      "source_record_id": "13071"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4910,
+      "column": "core_clock_mhz",
+      "new_value": 1418.0,
+      "source_record_id": "13070"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4911,
+      "column": "core_clock_mhz",
+      "new_value": 1455.0,
+      "source_record_id": "13069"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4912,
+      "column": "core_clock_mhz",
+      "new_value": 1316.0,
+      "source_record_id": "13064"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4913,
+      "column": "core_clock_mhz",
+      "new_value": 1582.0,
+      "source_record_id": "13063"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4914,
+      "column": "core_clock_mhz",
+      "new_value": 1266.0,
+      "source_record_id": "3601"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4915,
+      "column": "core_clock_mhz",
+      "new_value": 1177.0,
+      "source_record_id": "13043"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4916,
+      "column": "core_clock_mhz",
+      "new_value": 1005.0,
+      "source_record_id": "6441"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4917,
+      "column": "core_clock_mhz",
+      "new_value": 1620.0,
+      "source_record_id": "6440"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4918,
+      "column": "core_clock_mhz",
+      "new_value": 1440.0,
+      "source_record_id": "5183"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4919,
+      "column": "core_clock_mhz",
+      "new_value": 1275.0,
+      "source_record_id": "5182"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4920,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "5181"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4921,
+      "column": "core_clock_mhz",
+      "new_value": 1230.0,
+      "source_record_id": "5180"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4922,
+      "column": "core_clock_mhz",
+      "new_value": 585.0,
+      "source_record_id": "5057"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4923,
+      "column": "core_clock_mhz",
+      "new_value": 585.0,
+      "source_record_id": "1805"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4924,
+      "column": "core_clock_mhz",
+      "new_value": 1354.0,
+      "source_record_id": "7958"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4925,
+      "column": "core_clock_mhz",
+      "new_value": 1297.0,
+      "source_record_id": "7166"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4926,
+      "column": "core_clock_mhz",
+      "new_value": 937.0,
+      "source_record_id": "7165"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4927,
+      "column": "core_clock_mhz",
+      "new_value": 1230.0,
+      "source_record_id": "7163"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4928,
+      "column": "core_clock_mhz",
+      "new_value": 1290.0,
+      "source_record_id": "5185"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4929,
+      "column": "core_clock_mhz",
+      "new_value": 1380.0,
+      "source_record_id": "5184"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4930,
+      "column": "core_clock_mhz",
+      "new_value": 1350.0,
+      "source_record_id": "5143"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4931,
+      "column": "core_clock_mhz",
+      "new_value": 1200.0,
+      "source_record_id": "7961"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4932,
+      "column": "core_clock_mhz",
+      "new_value": 1366.0,
+      "source_record_id": "13226"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4934,
+      "column": "core_clock_mhz",
+      "new_value": 1020.0,
+      "source_record_id": "13362"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4936,
+      "column": "core_clock_mhz",
+      "new_value": 1530.0,
+      "source_record_id": "7157"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4937,
+      "column": "core_clock_mhz",
+      "new_value": 1530.0,
+      "source_record_id": "7154"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4939,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "7152"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4940,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "13358"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4941,
+      "column": "core_clock_mhz",
+      "new_value": 1455.0,
+      "source_record_id": "13357"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4942,
+      "column": "core_clock_mhz",
+      "new_value": 1469.0,
+      "source_record_id": "13205"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4943,
+      "column": "core_clock_mhz",
+      "new_value": 1519.0,
+      "source_record_id": "13204"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4944,
+      "column": "core_clock_mhz",
+      "new_value": 937.0,
+      "source_record_id": "13093"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4946,
+      "column": "core_clock_mhz",
+      "new_value": 960.0,
+      "source_record_id": "13346"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4947,
+      "column": "core_clock_mhz",
+      "new_value": 960.0,
+      "source_record_id": "13345"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4948,
+      "column": "core_clock_mhz",
+      "new_value": 1005.0,
+      "source_record_id": "13344"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4949,
+      "column": "core_clock_mhz",
+      "new_value": 1470.0,
+      "source_record_id": "7150"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4950,
+      "column": "core_clock_mhz",
+      "new_value": 1470.0,
+      "source_record_id": "13343"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4951,
+      "column": "core_clock_mhz",
+      "new_value": 885.0,
+      "source_record_id": "13342"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4952,
+      "column": "core_clock_mhz",
+      "new_value": 1215.0,
+      "source_record_id": "13340"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4954,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "13278"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4955,
+      "column": "core_clock_mhz",
+      "new_value": 1380.0,
+      "source_record_id": "13277"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4956,
+      "column": "core_clock_mhz",
+      "new_value": 1650.0,
+      "source_record_id": "6446"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4957,
+      "column": "core_clock_mhz",
+      "new_value": 640.0,
+      "source_record_id": "13201"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4958,
+      "column": "core_clock_mhz",
+      "new_value": 1291.0,
+      "source_record_id": "11016"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4959,
+      "column": "core_clock_mhz",
+      "new_value": 1000.0,
+      "source_record_id": "3607"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4960,
+      "column": "core_clock_mhz",
+      "new_value": 1303.0,
+      "source_record_id": "13066"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4961,
+      "column": "core_clock_mhz",
+      "new_value": 1303.0,
+      "source_record_id": "13065"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4962,
+      "column": "core_clock_mhz",
+      "new_value": 600.0,
+      "source_record_id": "13263"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4963,
+      "column": "core_clock_mhz",
+      "new_value": 945.0,
+      "source_record_id": "13261"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4964,
+      "column": "core_clock_mhz",
+      "new_value": 945.0,
+      "source_record_id": "13260"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4965,
+      "column": "core_clock_mhz",
+      "new_value": 945.0,
+      "source_record_id": "13259"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4966,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "13258"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4967,
+      "column": "core_clock_mhz",
+      "new_value": 1110.0,
+      "source_record_id": "13257"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4968,
+      "column": "core_clock_mhz",
+      "new_value": 600.0,
+      "source_record_id": "13256"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4969,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "13255"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4970,
+      "column": "core_clock_mhz",
+      "new_value": 1275.0,
+      "source_record_id": "13253"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4971,
+      "column": "core_clock_mhz",
+      "new_value": 765.0,
+      "source_record_id": "13252"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4972,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "13250"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4973,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "13102"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4974,
+      "column": "core_clock_mhz",
+      "new_value": 1575.0,
+      "source_record_id": "13101"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4975,
+      "column": "core_clock_mhz",
+      "new_value": 384.0,
+      "source_record_id": "3330"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4976,
+      "column": "core_clock_mhz",
+      "new_value": 1260.0,
+      "source_record_id": "7960"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4977,
+      "column": "core_clock_mhz",
+      "new_value": 1312.0,
+      "source_record_id": "7959"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4978,
+      "column": "core_clock_mhz",
+      "new_value": 1245.0,
+      "source_record_id": "1804"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4979,
+      "column": "core_clock_mhz",
+      "new_value": 765.0,
+      "source_record_id": "3981"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4980,
+      "column": "core_clock_mhz",
+      "new_value": 1095.0,
+      "source_record_id": "3980"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4981,
+      "column": "core_clock_mhz",
+      "new_value": 1275.0,
+      "source_record_id": "3979"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4982,
+      "column": "core_clock_mhz",
+      "new_value": 1305.0,
+      "source_record_id": "3978"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4983,
+      "column": "core_clock_mhz",
+      "new_value": 555.0,
+      "source_record_id": "11015"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4985,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "7158"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4986,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "13360"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4987,
+      "column": "core_clock_mhz",
+      "new_value": 1350.0,
+      "source_record_id": "13359"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4988,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "7156"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4989,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "7155"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4990,
+      "column": "core_clock_mhz",
+      "new_value": 1531.0,
+      "source_record_id": "13092"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4992,
+      "column": "core_clock_mhz",
+      "new_value": 720.0,
+      "source_record_id": "13356"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4993,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "13350"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4995,
+      "column": "core_clock_mhz",
+      "new_value": 975.0,
+      "source_record_id": "13347"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4996,
+      "column": "core_clock_mhz",
+      "new_value": 1365.0,
+      "source_record_id": "6451"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4997,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "13341"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4998,
+      "column": "core_clock_mhz",
+      "new_value": 1260.0,
+      "source_record_id": "13334"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 4999,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13280"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5000,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "13279"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5001,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "13276"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5002,
+      "column": "core_clock_mhz",
+      "new_value": 1365.0,
+      "source_record_id": "13275"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5003,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "1087"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5008,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "3975"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5009,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "7162"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5010,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "7161"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5011,
+      "column": "core_clock_mhz",
+      "new_value": 854.0,
+      "source_record_id": "13394"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5012,
+      "column": "core_clock_mhz",
+      "new_value": 854.0,
+      "source_record_id": "13393"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5013,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "13254"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5014,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "13440"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5015,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "13249"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5016,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "3971"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5017,
+      "column": "core_clock_mhz",
+      "new_value": 795.0,
+      "source_record_id": "13100"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5018,
+      "column": "core_clock_mhz",
+      "new_value": 1185.0,
+      "source_record_id": "13099"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5019,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "5058"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5020,
+      "column": "core_clock_mhz",
+      "new_value": 885.0,
+      "source_record_id": "1802"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5021,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "1792"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5022,
+      "column": "core_clock_mhz",
+      "new_value": 795.0,
+      "source_record_id": "1791"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5023,
+      "column": "core_clock_mhz",
+      "new_value": 1320.0,
+      "source_record_id": "1790"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5024,
+      "column": "core_clock_mhz",
+      "new_value": 1312.0,
+      "source_record_id": "1788"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5025,
+      "column": "core_clock_mhz",
+      "new_value": 1440.0,
+      "source_record_id": "1787"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5026,
+      "column": "core_clock_mhz",
+      "new_value": 1440.0,
+      "source_record_id": "1786"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5027,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "1785"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5028,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "1784"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5029,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "1780"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5030,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "1779"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5031,
+      "column": "core_clock_mhz",
+      "new_value": 1530.0,
+      "source_record_id": "1778"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5032,
+      "column": "core_clock_mhz",
+      "new_value": 1470.0,
+      "source_record_id": "1777"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5033,
+      "column": "core_clock_mhz",
+      "new_value": 1350.0,
+      "source_record_id": "1776"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5034,
+      "column": "core_clock_mhz",
+      "new_value": 1365.0,
+      "source_record_id": "1775"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5035,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "1774"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5036,
+      "column": "core_clock_mhz",
+      "new_value": 1228.0,
+      "source_record_id": "1773"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5037,
+      "column": "core_clock_mhz",
+      "new_value": 1152.0,
+      "source_record_id": "1772"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5038,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "13348"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5040,
+      "column": "core_clock_mhz",
+      "new_value": 832.0,
+      "source_record_id": "12019"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5041,
+      "column": "core_clock_mhz",
+      "new_value": 832.0,
+      "source_record_id": "12265"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5042,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "12178"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5043,
+      "column": "core_clock_mhz",
+      "new_value": 1470.0,
+      "source_record_id": "1097"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5044,
+      "column": "core_clock_mhz",
+      "new_value": 712.0,
+      "source_record_id": "12086"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5045,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "12083"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5046,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "12081"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5047,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "12067"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5049,
+      "column": "core_clock_mhz",
+      "new_value": 1320.0,
+      "source_record_id": "1091"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5050,
+      "column": "core_clock_mhz",
+      "new_value": 1627.0,
+      "source_record_id": "1090"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5051,
+      "column": "core_clock_mhz",
+      "new_value": 817.0,
+      "source_record_id": "12066"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5052,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "12065"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5053,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12064"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5054,
+      "column": "core_clock_mhz",
+      "new_value": 1110.0,
+      "source_record_id": "12063"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5055,
+      "column": "core_clock_mhz",
+      "new_value": 1575.0,
+      "source_record_id": "1084"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5056,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12059"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5057,
+      "column": "core_clock_mhz",
+      "new_value": 1110.0,
+      "source_record_id": "12058"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5058,
+      "column": "core_clock_mhz",
+      "new_value": 1365.0,
+      "source_record_id": "216"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5059,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "186"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5060,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "185"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5061,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "184"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5062,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "183"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5063,
+      "column": "core_clock_mhz",
+      "new_value": 855.0,
+      "source_record_id": "13248"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5064,
+      "column": "core_clock_mhz",
+      "new_value": 1515.0,
+      "source_record_id": "13103"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5065,
+      "column": "core_clock_mhz",
+      "new_value": 562.0,
+      "source_record_id": "176"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5066,
+      "column": "core_clock_mhz",
+      "new_value": 562.0,
+      "source_record_id": "175"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5067,
+      "column": "core_clock_mhz",
+      "new_value": 682.0,
+      "source_record_id": "12240"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5068,
+      "column": "core_clock_mhz",
+      "new_value": 607.0,
+      "source_record_id": "12239"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5069,
+      "column": "core_clock_mhz",
+      "new_value": 1215.0,
+      "source_record_id": "12238"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5070,
+      "column": "core_clock_mhz",
+      "new_value": 1117.0,
+      "source_record_id": "12236"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5071,
+      "column": "core_clock_mhz",
+      "new_value": 600.0,
+      "source_record_id": "12235"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5072,
+      "column": "core_clock_mhz",
+      "new_value": 495.0,
+      "source_record_id": "12234"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5073,
+      "column": "core_clock_mhz",
+      "new_value": 1297.0,
+      "source_record_id": "12233"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5074,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "174"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5075,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "12232"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5076,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "12231"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5077,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "173"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5078,
+      "column": "core_clock_mhz",
+      "new_value": 1050.0,
+      "source_record_id": "172"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5079,
+      "column": "core_clock_mhz",
+      "new_value": 1440.0,
+      "source_record_id": "171"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5080,
+      "column": "core_clock_mhz",
+      "new_value": 1170.0,
+      "source_record_id": "170"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5081,
+      "column": "core_clock_mhz",
+      "new_value": 720.0,
+      "source_record_id": "141"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5082,
+      "column": "core_clock_mhz",
+      "new_value": 900.0,
+      "source_record_id": "142"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5083,
+      "column": "core_clock_mhz",
+      "new_value": 1170.0,
+      "source_record_id": "159"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5084,
+      "column": "core_clock_mhz",
+      "new_value": 1170.0,
+      "source_record_id": "158"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5085,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "155"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5086,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "154"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5087,
+      "column": "core_clock_mhz",
+      "new_value": 420.0,
+      "source_record_id": "137"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5088,
+      "column": "core_clock_mhz",
+      "new_value": 420.0,
+      "source_record_id": "9"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5089,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "8"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5090,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13097"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5091,
+      "column": "core_clock_mhz",
+      "new_value": 780.0,
+      "source_record_id": "13096"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5092,
+      "column": "core_clock_mhz",
+      "new_value": 975.0,
+      "source_record_id": "10738"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5093,
+      "column": "core_clock_mhz",
+      "new_value": 765.0,
+      "source_record_id": "1783"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5094,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "1782"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5095,
+      "column": "core_clock_mhz",
+      "new_value": 1155.0,
+      "source_record_id": "1781"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5096,
+      "column": "core_clock_mhz",
+      "new_value": 1740.0,
+      "source_record_id": "1098"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5097,
+      "column": "core_clock_mhz",
+      "new_value": 1545.0,
+      "source_record_id": "1096"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5099,
+      "column": "core_clock_mhz",
+      "new_value": 1552.0,
+      "source_record_id": "1094"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5100,
+      "column": "core_clock_mhz",
+      "new_value": 757.0,
+      "source_record_id": "12085"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5101,
+      "column": "core_clock_mhz",
+      "new_value": 622.0,
+      "source_record_id": "12084"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5102,
+      "column": "core_clock_mhz",
+      "new_value": 652.0,
+      "source_record_id": "12082"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5103,
+      "column": "core_clock_mhz",
+      "new_value": 1237.0,
+      "source_record_id": "13538"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5104,
+      "column": "core_clock_mhz",
+      "new_value": 1515.0,
+      "source_record_id": "1093"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5105,
+      "column": "core_clock_mhz",
+      "new_value": 1320.0,
+      "source_record_id": "1089"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5106,
+      "column": "core_clock_mhz",
+      "new_value": 1320.0,
+      "source_record_id": "1088"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5107,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "1086"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5108,
+      "column": "core_clock_mhz",
+      "new_value": 1410.0,
+      "source_record_id": "1085"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5109,
+      "column": "core_clock_mhz",
+      "new_value": 1575.0,
+      "source_record_id": "1082"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5110,
+      "column": "core_clock_mhz",
+      "new_value": 510.0,
+      "source_record_id": "12062"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5111,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "12060"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5112,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "218"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5113,
+      "column": "core_clock_mhz",
+      "new_value": 1260.0,
+      "source_record_id": "217"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5114,
+      "column": "core_clock_mhz",
+      "new_value": 1335.0,
+      "source_record_id": "215"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5115,
+      "column": "core_clock_mhz",
+      "new_value": 585.0,
+      "source_record_id": "12057"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5116,
+      "column": "core_clock_mhz",
+      "new_value": 810.0,
+      "source_record_id": "12056"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5117,
+      "column": "core_clock_mhz",
+      "new_value": 1560.0,
+      "source_record_id": "214"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5120,
+      "column": "core_clock_mhz",
+      "new_value": 1095.0,
+      "source_record_id": "199"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5121,
+      "column": "core_clock_mhz",
+      "new_value": 1590.0,
+      "source_record_id": "196"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5122,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "190"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5123,
+      "column": "core_clock_mhz",
+      "new_value": 1005.0,
+      "source_record_id": "189"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5124,
+      "column": "core_clock_mhz",
+      "new_value": 1005.0,
+      "source_record_id": "188"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5125,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "187"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5126,
+      "column": "core_clock_mhz",
+      "new_value": 915.0,
+      "source_record_id": "177"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5127,
+      "column": "core_clock_mhz",
+      "new_value": 630.0,
+      "source_record_id": "12264"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5128,
+      "column": "core_clock_mhz",
+      "new_value": 630.0,
+      "source_record_id": "13533"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5129,
+      "column": "core_clock_mhz",
+      "new_value": 652.0,
+      "source_record_id": "12263"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5130,
+      "column": "core_clock_mhz",
+      "new_value": 607.0,
+      "source_record_id": "12241"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5131,
+      "column": "core_clock_mhz",
+      "new_value": 510.0,
+      "source_record_id": "13534"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5132,
+      "column": "core_clock_mhz",
+      "new_value": 510.0,
+      "source_record_id": "12230"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5133,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "12229"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5134,
+      "column": "core_clock_mhz",
+      "new_value": 435.0,
+      "source_record_id": "10739"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5135,
+      "column": "core_clock_mhz",
+      "new_value": 832.0,
+      "source_record_id": "12228"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5136,
+      "column": "core_clock_mhz",
+      "new_value": 1080.0,
+      "source_record_id": "157"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5137,
+      "column": "core_clock_mhz",
+      "new_value": 585.0,
+      "source_record_id": "143"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5138,
+      "column": "core_clock_mhz",
+      "new_value": 975.0,
+      "source_record_id": "144"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5139,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "13098"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5140,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "11205"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5141,
+      "column": "core_clock_mhz",
+      "new_value": 1455.0,
+      "source_record_id": "11204"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5143,
+      "column": "core_clock_mhz",
+      "new_value": 1140.0,
+      "source_record_id": "11203"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5144,
+      "column": "core_clock_mhz",
+      "new_value": 1545.0,
+      "source_record_id": "11202"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5145,
+      "column": "core_clock_mhz",
+      "new_value": 2310.0,
+      "source_record_id": "212"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5148,
+      "column": "core_clock_mhz",
+      "new_value": 735.0,
+      "source_record_id": "11206"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5149,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "11207"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5151,
+      "column": "core_clock_mhz",
+      "new_value": 795.0,
+      "source_record_id": "13402"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5152,
+      "column": "core_clock_mhz",
+      "new_value": 1290.0,
+      "source_record_id": "13401"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5153,
+      "column": "core_clock_mhz",
+      "new_value": 2280.0,
+      "source_record_id": "202"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5154,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13399"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5155,
+      "column": "core_clock_mhz",
+      "new_value": 1335.0,
+      "source_record_id": "13398"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5156,
+      "column": "core_clock_mhz",
+      "new_value": 690.0,
+      "source_record_id": "200"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5157,
+      "column": "core_clock_mhz",
+      "new_value": 1080.0,
+      "source_record_id": "13292"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5158,
+      "column": "core_clock_mhz",
+      "new_value": 1665.0,
+      "source_record_id": "198"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5159,
+      "column": "core_clock_mhz",
+      "new_value": 1665.0,
+      "source_record_id": "197"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5160,
+      "column": "core_clock_mhz",
+      "new_value": 1350.0,
+      "source_record_id": "11557"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5161,
+      "column": "core_clock_mhz",
+      "new_value": 1350.0,
+      "source_record_id": "195"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5162,
+      "column": "core_clock_mhz",
+      "new_value": 1095.0,
+      "source_record_id": "193"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5163,
+      "column": "core_clock_mhz",
+      "new_value": 1095.0,
+      "source_record_id": "192"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5170,
+      "column": "core_clock_mhz",
+      "new_value": 1440.0,
+      "source_record_id": "11013"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5171,
+      "column": "core_clock_mhz",
+      "new_value": 795.0,
+      "source_record_id": "191"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5172,
+      "column": "core_clock_mhz",
+      "new_value": 1530.0,
+      "source_record_id": "13378"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5173,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13377"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5174,
+      "column": "core_clock_mhz",
+      "new_value": 1635.0,
+      "source_record_id": "13376"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5175,
+      "column": "core_clock_mhz",
+      "new_value": 1395.0,
+      "source_record_id": "13375"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5176,
+      "column": "core_clock_mhz",
+      "new_value": 1725.0,
+      "source_record_id": "10740"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5177,
+      "column": "core_clock_mhz",
+      "new_value": 1110.0,
+      "source_record_id": "13373"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5178,
+      "column": "core_clock_mhz",
+      "new_value": 1500.0,
+      "source_record_id": "182"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5179,
+      "column": "core_clock_mhz",
+      "new_value": 1290.0,
+      "source_record_id": "13372"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5180,
+      "column": "core_clock_mhz",
+      "new_value": 720.0,
+      "source_record_id": "181"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5181,
+      "column": "core_clock_mhz",
+      "new_value": 2070.0,
+      "source_record_id": "180"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5182,
+      "column": "core_clock_mhz",
+      "new_value": 1155.0,
+      "source_record_id": "179"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5183,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "10741"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5184,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "10936"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5185,
+      "column": "core_clock_mhz",
+      "new_value": 930.0,
+      "source_record_id": "13370"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5186,
+      "column": "core_clock_mhz",
+      "new_value": 1425.0,
+      "source_record_id": "13369"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5189,
+      "column": "core_clock_mhz",
+      "new_value": 1042.0,
+      "source_record_id": "3"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5190,
+      "column": "core_clock_mhz",
+      "new_value": 1065.0,
+      "source_record_id": "12087"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5191,
+      "column": "core_clock_mhz",
+      "new_value": 1417.0,
+      "source_record_id": "10974"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5192,
+      "column": "core_clock_mhz",
+      "new_value": 1830.0,
+      "source_record_id": "140"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5193,
+      "column": "core_clock_mhz",
+      "new_value": 2310.0,
+      "source_record_id": "11070"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5194,
+      "column": "core_clock_mhz",
+      "new_value": 1920.0,
+      "source_record_id": "11068"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5195,
+      "column": "core_clock_mhz",
+      "new_value": 1920.0,
+      "source_record_id": "11067"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5196,
+      "column": "core_clock_mhz",
+      "new_value": 1980.0,
+      "source_record_id": "129"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5198,
+      "column": "core_clock_mhz",
+      "new_value": 2340.0,
+      "source_record_id": "10759"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5200,
+      "column": "core_clock_mhz",
+      "new_value": 1485.0,
+      "source_record_id": "13397"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5201,
+      "column": "core_clock_mhz",
+      "new_value": 1620.0,
+      "source_record_id": "2"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5202,
+      "column": "core_clock_mhz",
+      "new_value": 1485.0,
+      "source_record_id": "13371"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5203,
+      "column": "core_clock_mhz",
+      "new_value": 975.0,
+      "source_record_id": "178"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5204,
+      "column": "core_clock_mhz",
+      "new_value": 727.0,
+      "source_record_id": "10977"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5205,
+      "column": "core_clock_mhz",
+      "new_value": 1417.0,
+      "source_record_id": "10976"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5207,
+      "column": "core_clock_mhz",
+      "new_value": 2317.0,
+      "source_record_id": "10760"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5211,
+      "column": "core_clock_mhz",
+      "new_value": 2407.0,
+      "source_record_id": "11558"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5212,
+      "column": "core_clock_mhz",
+      "new_value": 2407.0,
+      "source_record_id": "11014"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5220,
+      "column": "core_clock_mhz",
+      "new_value": 2017.0,
+      "source_record_id": "10938"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5221,
+      "column": "core_clock_mhz",
+      "new_value": 2017.0,
+      "source_record_id": "11835"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5223,
+      "column": "core_clock_mhz",
+      "new_value": 1665.0,
+      "source_record_id": "13550"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5224,
+      "column": "core_clock_mhz",
+      "new_value": 1665.0,
+      "source_record_id": "13552"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5225,
+      "column": "core_clock_mhz",
+      "new_value": 982.0,
+      "source_record_id": "12312"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5226,
+      "column": "core_clock_mhz",
+      "new_value": 1230.0,
+      "source_record_id": "11837"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5227,
+      "column": "core_clock_mhz",
+      "new_value": 577.0,
+      "source_record_id": "12306"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5228,
+      "column": "core_clock_mhz",
+      "new_value": 1635.0,
+      "source_record_id": "11838"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5229,
+      "column": "core_clock_mhz",
+      "new_value": 1740.0,
+      "source_record_id": "12536"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5230,
+      "column": "core_clock_mhz",
+      "new_value": 1740.0,
+      "source_record_id": "11839"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5231,
+      "column": "core_clock_mhz",
+      "new_value": 1590.0,
+      "source_record_id": "11199"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5232,
+      "column": "core_clock_mhz",
+      "new_value": 1035.0,
+      "source_record_id": "11445"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5233,
+      "column": "core_clock_mhz",
+      "new_value": 1590.0,
+      "source_record_id": "11335"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5235,
+      "column": "core_clock_mhz",
+      "new_value": 1590.0,
+      "source_record_id": "12017"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5236,
+      "column": "core_clock_mhz",
+      "new_value": 561.0,
+      "source_record_id": "11341"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5237,
+      "column": "core_clock_mhz",
+      "new_value": 2325.0,
+      "source_record_id": "11841"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5238,
+      "column": "core_clock_mhz",
+      "new_value": 2295.0,
+      "source_record_id": "11889"
+    },
+    {
+      "table": "gpu_specifications",
+      "hardware_id": 5239,
+      "column": "core_clock_mhz",
+      "new_value": 2295.0,
+      "source_record_id": "11840"
+    }
+  ]
+}

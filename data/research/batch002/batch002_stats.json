@@ -1,0 +1,25 @@
+{
+  "generated": "2026-10-09T02:55:02.574851+00:00",
+  "source": {
+    "name": "GPU Ark GPU specifications & benchmarks dataset",
+    "file": "data/raw/gpuark-gpu-specs.csv",
+    "url": "https://gpuark.com/datasets/",
+    "license": "CC BY 4.0",
+    "citation": "GPU Ark (2026). GPU specifications & benchmarks dataset. https://gpuark.com/datasets/",
+    "ark_rows_with_base_clock": 10516
+  },
+  "gpu_rows_total": 1879,
+  "gpu_rows_audited": 1066,
+  "missing_core_clock": 1066,
+  "source_rows_available": 10516,
+  "exact_normalized_matches": 1062,
+  "safe_null_only_updates": 1012,
+  "ambiguous_matches": 50,
+  "unmatched_rows": 4,
+  "invalid_values": 0,
+  "breakdown": {
+    "safe_update": 1012,
+    "boost_mismatch": 50,
+    "unmatched": 4
+  }
+}
