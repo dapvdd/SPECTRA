@@ -49,6 +49,11 @@ class GPUSpecification(Base):
         nullable=True,
     )
 
+    memory_bus_width_bits: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
     tdp_w: Mapped[float | None] = mapped_column(
         Float,
         nullable=True,

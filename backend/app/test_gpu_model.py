@@ -58,6 +58,7 @@ class TestGPUSpecificationModel:
                 core_clock_mhz=2235,
                 boost_clock_mhz=2520,
                 vram_bandwidth_gbps=896,
+                memory_bus_width_bits=256,
                 tdp_w=300,
                 interface="PCIe 5.0 x16",
                 length_mm=304,
@@ -73,6 +74,7 @@ class TestGPUSpecificationModel:
             assert specification.core_clock_mhz == 2235
             assert specification.boost_clock_mhz == 2520
             assert specification.vram_bandwidth_gbps == 896
+            assert specification.memory_bus_width_bits == 256
             assert specification.tdp_w == 300
             assert specification.interface == "PCIe 5.0 x16"
             assert specification.length_mm == 304
@@ -136,6 +138,7 @@ class TestGPUSpecificationModel:
             assert specification.core_clock_mhz is None
             assert specification.boost_clock_mhz is None
             assert specification.vram_bandwidth_gbps is None
+            assert specification.memory_bus_width_bits is None
             assert specification.tdp_w is None
             assert specification.interface is None
             assert specification.length_mm is None
@@ -199,6 +202,7 @@ class TestGPUSpecificationModel:
             "core_clock_mhz",
             "boost_clock_mhz",
             "vram_bandwidth_gbps",
+            "memory_bus_width_bits",
             "tdp_w",
             "interface",
             "length_mm",

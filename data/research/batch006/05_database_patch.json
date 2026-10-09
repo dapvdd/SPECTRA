@@ -1,0 +1,12989 @@
+[
+  {
+    "hardware_id": 3367,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3368,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3369,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3370,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3371,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3372,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3373,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3374,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3377,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3378,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3379,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3380,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3381,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3382,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3383,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3384,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3385,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3386,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3387,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3388,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3389,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3390,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3391,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3392,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3393,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3394,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3395,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3400,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3402,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3403,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3405,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3406,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3408,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3410,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3412,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3413,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3414,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3416,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3417,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3418,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3419,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3420,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3421,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3422,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3423,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3424,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3425,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3426,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3427,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3428,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3429,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3430,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3431,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3432,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3433,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3434,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3435,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3436,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3437,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3438,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3439,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3440,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3441,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3442,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3443,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3444,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3447,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3448,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3449,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3450,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3451,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3452,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3453,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3454,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3455,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3456,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3457,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3458,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3459,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3460,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3461,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3462,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3465,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3467,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3468,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3471,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3472,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3473,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3474,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3475,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3477,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3479,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3481,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3483,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3486,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3487,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3488,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3490,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3492,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3494,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3495,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3496,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3499,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3500,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3501,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3502,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3503,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3504,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3505,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3506,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3507,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3508,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3509,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3510,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3511,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3512,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3513,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3514,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3515,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3516,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3517,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3518,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3519,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3520,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3521,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3522,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3523,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3524,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3535,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3542,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3545,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3549,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3551,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3555,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3557,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3558,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3559,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3560,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3561,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3562,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3563,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3564,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3565,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3566,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3567,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3568,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3569,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3570,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3571,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3572,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3573,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3574,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3575,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3576,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3577,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3578,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3579,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3580,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3581,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3582,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3583,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3584,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3585,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3586,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3587,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3588,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3589,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3590,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3591,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3592,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3593,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3594,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3595,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3596,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3597,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3598,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3599,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3600,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3601,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3602,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3603,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3604,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3605,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3606,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3607,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3608,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3609,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3610,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3611,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3612,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3613,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3614,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3615,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3616,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3617,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3618,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3619,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3620,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3621,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3622,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3623,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3624,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3625,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3626,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3627,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3628,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3629,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3630,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3631,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3632,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3633,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3634,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3635,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3636,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3637,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3638,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3639,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3640,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3641,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3642,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3643,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3644,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3645,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3647,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3648,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3651,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3652,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3653,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3654,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3655,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3657,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3658,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3659,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3660,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3665,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3666,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3667,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3668,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3669,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3670,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3672,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3674,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3676,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3679,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3680,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3681,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3682,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3683,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3684,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3685,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3686,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3687,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3688,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3689,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3690,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3691,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3692,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3693,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3694,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3695,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3696,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3697,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3698,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3699,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3700,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3701,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3706,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3707,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3708,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3709,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3710,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3711,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3712,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3713,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3714,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3715,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3716,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3719,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3720,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3721,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3722,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3723,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3724,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3725,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3726,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3727,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3728,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3729,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3730,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3731,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3732,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3733,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3734,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3735,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3738,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3739,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3740,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3741,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3742,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3743,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3744,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3745,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3746,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3747,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3748,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3749,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3750,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3751,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3752,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3753,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3754,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3755,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3756,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3757,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3758,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3759,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3760,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3761,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3762,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3763,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3764,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3765,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3766,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3767,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3768,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3769,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3770,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3771,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3772,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3773,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3774,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3775,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3776,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3777,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3778,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3779,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3780,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3781,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3782,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3783,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3784,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3785,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3786,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3788,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3789,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3790,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3791,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3792,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3793,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3794,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3797,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3798,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3799,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3800,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3801,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3802,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3803,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3804,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3805,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3809,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3810,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3811,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3812,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3813,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3814,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3815,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3816,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3817,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3818,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3819,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3820,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3821,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3822,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3823,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3824,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3825,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3826,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3827,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3828,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3829,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        32
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3830,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3831,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3832,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3833,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3834,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3835,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3836,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3837,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3838,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3839,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3840,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3841,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3842,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3843,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3844,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3845,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3846,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3847,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3848,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3849,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3850,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3851,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3852,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3853,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3854,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3856,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3857,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3858,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3859,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3860,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3861,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3862,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3863,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3864,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3865,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3866,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3867,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3868,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3869,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3871,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3872,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3873,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3874,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3876,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3877,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3878,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3879,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3880,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3881,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3882,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3883,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3884,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3885,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3886,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3887,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3888,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        1024
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3889,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        1024
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3890,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3891,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        1024
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3892,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3893,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3894,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3895,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3896,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3897,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3898,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3899,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3900,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3901,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3902,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3903,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3904,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3907,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3908,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        1024
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3909,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        1024
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3917,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3918,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3919,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3920,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3921,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3922,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3923,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3924,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3925,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3926,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3927,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3928,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3929,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3930,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3931,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3932,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3933,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3934,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3935,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3936,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3937,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3938,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3939,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3940,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3941,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3942,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3943,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3944,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3945,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3946,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3947,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3948,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3949,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3950,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3951,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3952,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3958,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3959,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3960,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3961,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3962,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3969,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3970,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3971,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3972,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3973,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3974,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3975,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        2048
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3976,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3977,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3978,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3979,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3980,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3981,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3982,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3983,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3984,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3985,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3986,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3987,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3988,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3989,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3990,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3992,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3993,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3996,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3997,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3998,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 3999,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4000,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4001,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4002,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4003,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4004,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4005,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4006,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4007,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4008,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4009,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4010,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4015,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        32
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4016,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        32
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4017,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4018,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4019,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4020,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4021,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4022,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4023,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4024,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4025,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4026,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4027,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4028,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4029,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4030,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4031,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4032,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4037,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4038,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4039,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4040,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4041,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4042,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4043,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4044,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4045,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4046,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4047,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4048,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4049,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4050,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4051,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4052,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4053,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4054,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4055,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4056,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4057,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4058,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4059,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4060,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4061,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4064,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        224
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4065,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4066,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4067,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4072,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4073,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4074,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4075,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4076,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4077,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4078,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4079,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4080,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4081,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4082,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4083,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4084,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4085,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4086,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4087,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4088,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4214,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4228,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4229,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4230,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4245,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4246,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4247,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4300,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4305,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4310,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4311,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4312,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4318,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4319,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4320,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4321,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4322,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4323,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4324,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4325,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4326,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4327,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4328,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4329,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4330,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4331,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4332,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4333,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4340,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4341,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4342,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4343,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4348,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4349,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4356,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4362,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4363,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4364,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4383,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4384,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4390,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4391,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4392,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4393,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4394,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4409,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4410,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4411,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4412,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4413,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4417,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4418,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4420,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4421,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4422,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4423,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4424,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4425,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4427,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4428,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4429,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4430,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4431,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4432,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4433,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4434,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4435,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4437,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4438,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4440,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4442,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4443,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4444,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4445,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4446,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4447,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4448,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4449,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4450,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4451,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4452,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4453,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4454,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4455,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4456,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4457,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        448
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4458,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4459,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4460,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4461,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4462,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4463,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4464,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4465,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4466,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4467,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4469,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4470,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4471,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4472,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4473,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4474,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4475,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4476,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4477,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4478,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4479,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4480,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4481,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4482,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4483,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4484,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4485,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4486,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4487,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4488,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4489,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4490,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4491,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4492,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4493,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4494,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4495,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4496,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4497,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4498,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4499,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4500,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4501,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4502,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4503,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4504,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4505,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4506,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4507,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4508,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4509,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4510,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4511,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4512,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4513,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4514,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4515,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4516,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4517,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4518,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4519,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4520,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4521,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4522,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4523,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4524,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4525,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4526,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4527,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4528,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4529,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4530,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4531,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4532,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4533,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4534,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4535,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4536,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4537,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4538,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4539,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4540,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4541,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4542,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4543,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4544,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4545,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4546,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4547,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4548,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4549,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4550,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4551,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4552,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4553,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4554,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4555,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4556,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4557,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4558,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4559,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4560,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4561,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4562,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4563,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4564,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4565,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4566,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4567,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4568,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4569,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4570,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4571,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4572,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4573,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4574,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4575,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4576,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4577,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4578,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4579,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4580,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4581,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4582,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4583,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4584,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4585,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4586,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4587,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4588,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4589,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4590,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4591,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4592,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4593,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4594,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4595,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4596,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4597,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4598,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4599,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4600,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4601,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4602,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4603,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4604,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4605,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4606,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4607,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4608,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4609,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4610,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4611,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4612,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4613,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4614,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4615,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4616,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4617,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4618,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4619,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4620,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4621,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4622,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4623,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4624,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4625,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4626,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4627,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4628,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4629,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4630,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4631,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4632,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4633,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4634,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4635,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4636,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4637,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4638,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4639,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4640,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4641,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4642,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4643,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4644,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4645,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4646,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4647,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4648,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4649,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4650,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4651,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4652,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4653,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4654,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4655,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4656,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4657,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4658,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4659,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4660,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4661,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4662,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4663,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4664,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4665,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4666,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4667,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4668,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4669,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4670,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4671,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4672,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4673,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4674,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4675,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4676,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4677,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4678,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4679,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4680,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4681,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4682,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4683,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4684,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4685,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4686,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4687,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4688,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4689,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4690,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4691,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4692,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4693,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4694,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4695,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4696,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4697,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4698,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4699,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4700,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4701,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4702,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4703,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4704,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4705,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4706,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4707,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4708,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4709,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4710,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4711,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4712,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4713,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4714,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4715,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4716,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4717,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4718,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4719,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4720,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4721,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4722,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4723,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4724,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4725,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4726,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4727,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4728,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4729,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4730,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4731,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4732,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4733,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4734,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4735,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4736,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4737,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4738,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4739,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4740,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4741,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4742,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4743,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4744,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4745,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4746,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4747,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4748,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4749,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4750,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4751,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4752,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4753,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4754,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4755,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4756,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4757,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4758,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4759,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4760,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4761,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4762,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4763,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4764,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4765,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4766,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4767,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4768,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4769,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4770,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4771,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4772,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4773,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4774,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4775,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4776,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4777,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4778,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4779,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4780,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4781,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4782,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4783,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4784,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4785,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4786,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4787,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4788,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4789,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4790,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4791,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4792,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4793,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4794,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4795,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4796,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4797,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4798,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4799,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4800,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4801,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4802,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4803,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4804,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4805,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4806,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4807,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4808,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4809,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4810,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4811,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4812,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4813,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4814,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4815,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4816,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4817,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4818,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4819,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4820,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4821,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4822,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4823,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4824,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4825,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4826,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4827,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4828,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4829,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4830,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4831,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4832,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4833,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4834,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4835,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4836,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4837,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4838,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4839,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4840,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4841,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4842,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4843,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4844,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4845,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4846,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4847,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4848,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4849,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4850,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4851,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4852,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4853,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4854,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4855,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4856,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4857,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4858,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4859,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        352
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4860,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4861,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4862,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4863,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4864,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4865,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4866,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4867,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4868,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4869,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4870,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4871,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4872,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4873,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4874,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4875,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4876,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4877,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4878,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4879,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4880,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4881,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4882,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4883,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4884,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4885,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4886,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4887,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4888,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4889,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4890,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4891,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4892,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4893,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4894,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4895,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4896,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4897,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4898,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4899,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4900,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        352
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4901,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4902,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4903,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4904,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4905,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4906,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4907,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4908,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4909,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4910,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4911,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4912,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4913,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4914,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4915,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4916,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4917,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4918,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4919,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4920,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4921,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4922,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4923,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4924,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4925,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4926,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4927,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4928,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4929,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4930,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4931,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4932,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4933,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4934,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4935,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4936,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4937,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4938,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4939,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4940,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4941,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4942,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4943,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4944,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4945,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4946,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4947,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4948,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4949,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4950,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4951,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4952,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4953,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4954,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4955,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4956,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4957,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4958,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4959,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4960,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4961,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4962,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4963,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4964,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4965,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4966,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4967,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4968,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4969,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4970,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4971,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4972,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4973,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4974,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4975,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4976,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4977,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4978,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4982,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4983,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4985,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4986,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4987,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4988,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4989,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4990,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4991,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4992,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4993,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4994,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4995,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4996,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4997,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4998,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 4999,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5000,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5001,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5002,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5003,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5004,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5005,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5006,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5009,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5010,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5011,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5012,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5013,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5014,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5015,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5016,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5017,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5018,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5019,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5020,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5023,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5024,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5025,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5026,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5027,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5028,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5030,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5031,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5032,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5033,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5034,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5035,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5036,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5037,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5038,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5039,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5040,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5041,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5042,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5043,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5044,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5045,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5046,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5047,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5048,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5049,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5050,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5051,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5052,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5053,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5054,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5055,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5056,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5057,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5058,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5059,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5060,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5061,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5062,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5063,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5064,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5065,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5066,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5067,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5068,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5069,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5070,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5071,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5072,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5073,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5074,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5075,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5076,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5077,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5078,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5079,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5080,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5081,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5082,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5083,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5084,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5085,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5086,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5087,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5088,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5089,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5090,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5091,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5092,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5096,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5097,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5098,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5099,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5100,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5101,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5102,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5103,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5104,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5105,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5106,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5107,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5108,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5109,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5110,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5111,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5112,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5113,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5114,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        320
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5115,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5116,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5117,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5118,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5119,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5122,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5123,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5124,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5125,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5126,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5127,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5128,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5129,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5130,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5131,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5132,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5133,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5134,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5135,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5136,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5137,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5138,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5139,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5140,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5141,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5142,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5143,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5144,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5145,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5146,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5147,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5148,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5149,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5150,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5151,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5152,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5153,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5154,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5155,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5159,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        3072
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5164,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5165,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5166,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5167,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5168,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5169,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5170,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5171,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5172,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5173,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5174,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5175,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5176,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5177,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5178,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5179,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5180,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        160
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5181,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5182,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5183,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5184,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5185,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5186,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5187,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        4096
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5189,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5190,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5191,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5192,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5193,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5194,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5195,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5196,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5197,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5198,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5199,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5200,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        96
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5201,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5202,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5203,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5204,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5205,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        64
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5206,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5207,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5208,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5209,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5210,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5211,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5212,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5213,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5214,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5215,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5216,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5217,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5218,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5219,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5220,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5221,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5222,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5223,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5224,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5225,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5226,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5227,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5228,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5229,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5230,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        384
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5231,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5232,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5233,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5235,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        512
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5236,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        128
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5237,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        192
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5238,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  },
+  {
+    "hardware_id": 5239,
+    "patch": [
+      [
+        "memory_bus_width_bits",
+        256
+      ]
+    ]
+  }
+]
