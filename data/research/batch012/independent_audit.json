@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "name": "database_sha256_unchanged",
+      "passed": true,
+      "detail": "expected 20e1b7386df88da72ac6628b9b1efab9539c7895475d7b57f2289271c17b1127, got 20e1b7386df88da72ac6628b9b1efab9539c7895475d7b57f2289271c17b1127"
+    },
+    {
+      "name": "database_quick_check_ok",
+      "passed": true,
+      "detail": "{\"quick_check\":\"ok\"}"
+    },
+    {
+      "name": "database_foreign_key_check_empty",
+      "passed": true,
+      "detail": "fk violations=0"
+    },
+    {
+      "name": "benchmark_scores_unchanged",
+      "passed": true,
+      "detail": "hardware 1508: [{\"score\":695,\"test_type\":\"single-core\"},{\"score\":2005,\"test_type\":\"multi-core\"}]"
+    },
+    {
+      "name": "benchmark_count_unchanged",
+      "passed": true,
+      "detail": "count=1040"
+    },
+    {
+      "name": "evidence_separates_benchmark_from_spec",
+      "passed": true,
+      "detail": "benchmark wins={\"cpuA\":2,\"cpuB\":0}, spec wins={\"cpuA\":2,\"cpuB\":0}"
+    },
+    {
+      "name": "evidence_benchmark_coverage_complete",
+      "passed": true,
+      "detail": "coverage={\"coverage\":[{\"id\":1,\"name\":\"CPU A\",\"hasData\":true,\"scoreCount\":2,\"status\":\"available\"},{\"id\":2,\"name\":\"CPU B\",\"hasData\":true,\"scoreCount\":2,\"status\":\"available\"}],\"withData\":2,\"total\":2,\"isPartial\":false,\"isNone\":false,\"isComplete\":true}"
+    },
+    {
+      "name": "evidence_spec_only_benchmark_empty",
+      "passed": true,
+      "detail": "benchmark measurable=0, spec wins={\"cpuA\":2,\"cpuB\":0}"
+    },
+    {
+      "name": "evidence_partial_benchmark_coverage",
+      "passed": true,
+      "detail": "coverage={\"coverage\":[{\"id\":1,\"name\":\"CPU A\",\"hasData\":true,\"scoreCount\":2,\"status\":\"available\"},{\"id\":2,\"name\":\"CPU B\",\"hasData\":false,\"scoreCount\":0,\"status\":\"loading\"}],\"withData\":1,\"total\":2,\"isPartial\":true,\"isNone\":false,\"isComplete\":false}"
+    },
+    {
+      "name": "decision_summary_includes_evidence",
+      "passed": true,
+      "detail": "evidence present: true"
+    },
+    {
+      "name": "no_gpu_benchmark_data",
+      "passed": true,
+      "detail": "gpu benchmark rows=0"
+    },
+    {
+      "name": "opencode_not_tracked",
+      "passed": true,
+      "detail": "tracked: "
+    },
+    {
+      "name": "git_diff_check_clean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_backend_changes",
+      "passed": true,
+      "detail": "changed: frontend/src/App.jsx\nfrontend/src/comparisonDecision.js\nfrontend/src/comparisonDecision.test.js"
+    }
+  ],
+  "warnings": [],
+  "verdict": "PASS"
+}

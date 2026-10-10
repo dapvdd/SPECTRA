@@ -607,3 +607,38 @@ test("the same hardware compared with itself is entirely tied", () => {
     rows.map(() => "")
   );
 });
+
+test("decision summary includes evidence separation for benchmark and spec", () => {
+  const summary = buildComparisonDecisionSummary(
+    [
+      cpu("CPU A", { ...fullCpuSpecs, cores: 24, threads: 48 }, "AMD", 1),
+      cpu("CPU B", fullCpuSpecs, "Intel", 2),
+    ],
+    {
+      1: fullCpuBenchmarks(24000),
+      2: fullCpuBenchmarks(18000),
+    }
+  );
+
+  assert.ok(summary.evidence);
+  assert.equal(summary.evidence.benchmark.wins.cpuA, 2);
+  assert.equal(summary.evidence.specification.wins.cpuA, 2);
+  assert.equal(summary.evidence.specification.ties, 3);
+});
+
+test("decision summary evidence is null for empty comparison", () => {
+  const summary = buildComparisonDecisionSummary([]);
+
+  assert.equal(summary.evidence, null);
+});
+
+test("decision summary evidence handles spec-only comparison", () => {
+  const summary = buildComparisonDecisionSummary([
+    cpu("CPU A", { ...fullCpuSpecs, cores: 24 }, "AMD", 1),
+    cpu("CPU B", fullCpuSpecs, "Intel", 2),
+  ]);
+
+  assert.ok(summary.evidence);
+  assert.equal(summary.evidence.benchmark.measurableCount, 0);
+  assert.equal(summary.evidence.specification.wins.cpuA, 1);
+});

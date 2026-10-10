@@ -7,6 +7,7 @@ import {
   getComparisonWinnerClass,
   isValidComparisonValue,
 } from "./comparison.js";
+import { buildComparisonEvidence } from "./comparisonEvidence.js";
 import { formatDetailValue } from "./detail.js";
 import { formatReleaseDate } from "./hardwareCard.js";
 
@@ -323,6 +324,7 @@ export const buildComparisonDecisionSummary = (
       overview: null,
       availability: null,
       benchmarkSupport: null,
+      evidence: null,
       lead: { groups: [], tieCount: 0, ties: [] },
       measurableCount: 0,
       tieCount: 0,
@@ -340,6 +342,7 @@ export const buildComparisonDecisionSummary = (
   );
   const benchmarkStatus = getBenchmarkSupportStatus(availability);
   const lead = buildComparisonLeadGroups(insights, compareDetails);
+  const evidence = buildComparisonEvidence(compareDetails, benchmarkStates);
 
   return {
     status: availability.isLoading
@@ -357,6 +360,7 @@ export const buildComparisonDecisionSummary = (
       })),
     },
     lead,
+    evidence,
     measurableCount: insights.measurableCount,
     tieCount: insights.ties,
     unavailableCount: insights.unavailableMetrics.length,

@@ -480,7 +480,99 @@ const DECISION_COMPLETENESS_CLASS = {
   loading: "performance-status-loading",
 };
 
-function ComparisonDecisionSupport({ summary }) {
+function EvidenceGroup({ group, compareDetails }) {
+  if (!group || group.measurableCount === 0) {
+    return (
+      <div className="comparison-decision-block">
+        <h4>{group?.label ?? "Evidence"}</h4>
+        <p className="comparison-decision-note">No data</p>
+      </div>
+    );
+  }
+
+  const names = {
+    cpuA: compareDetails?.[0]?.name ?? "CPU A",
+    cpuB: compareDetails?.[1]?.name ?? "CPU B",
+  };
+
+  return (
+    <div className="comparison-decision-block">
+      <h4>{group.label}</h4>
+
+      {group.wins.cpuA > 0 && (
+        <p className="comparison-decision-note">
+          <strong>{names.cpuA}</strong> leads in {group.wins.cpuA} of{" "}
+          {group.measurableCount} measurable {group.label.toLowerCase()}.
+        </p>
+      )}
+      {group.wins.cpuB > 0 && (
+        <p className="comparison-decision-note">
+          <strong>{names.cpuB}</strong> leads in {group.wins.cpuB} of{" "}
+          {group.measurableCount} measurable {group.label.toLowerCase()}.
+        </p>
+      )}
+      {group.wins.cpuA === 0 && group.wins.cpuB === 0 && group.ties > 0 && (
+        <p className="comparison-decision-note">
+          All {group.measurableCount} measurable {group.label.toLowerCase()} are
+          tied.
+        </p>
+      )}
+
+      {group.metrics.length > 0 && (
+        <ul className="decision-lead-list">
+          {group.metrics.map((metric) => (
+            <li className="decision-lead-group" key={metric.key}>
+              <div className="decision-lead-heading">
+                <strong>{metric.winnerName}</strong>
+                <span>
+                  leads {group.wins[metric.winner]} of {group.measurableCount}
+                </span>
+              </div>
+              <ul className="decision-lead-metrics">
+                <li key={metric.key}>
+                  <span>{metric.label}</span>
+                  <span>
+                    {metric.direction === "lower" ? "" : "+"}
+                    {metric.differencePercent.toFixed(1)}%{" "}
+                    {metric.direction === "lower" ? "lower" : "higher"}
+                  </span>
+                </li>
+              </ul>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {group.tieDetails.length > 0 && (
+        <ul className="decision-tie-list">
+          {group.tieDetails.map((tie) => (
+            <li key={tie.key}>
+              <span>{tie.label}</span>
+              <span>
+                tie at{" "}
+                {tie.format === "integer"
+                  ? tie.value.toLocaleString()
+                  : tie.value.toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
+                {tie.unit ? ` ${tie.unit}` : ""}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {group.coverage && group.coverage.isPartial && (
+        <p className="comparison-decision-note">
+          Benchmark data is available for {group.coverage.withData} of{" "}
+          {group.coverage.total} sides.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ComparisonDecisionSupport({ summary, compareDetails }) {
   if (summary.status === DECISION_STATUS.empty) {
     return null;
   }
@@ -547,6 +639,13 @@ function ComparisonDecisionSupport({ summary }) {
           <dd>{benchmarkSupport.label}</dd>
         </div>
       </dl>
+
+      {summary.evidence && (
+        <>
+          <EvidenceGroup group={summary.evidence.benchmark} compareDetails={compareDetails} />
+          <EvidenceGroup group={summary.evidence.specification} compareDetails={compareDetails} />
+        </>
+      )}
 
       <div className="comparison-decision-block">
         <h4>Where each side leads</h4>
@@ -3721,8 +3820,11 @@ function App() {
               </div>
 
 
-{compareDetails.length === 2 && (
-                <ComparisonDecisionSupport summary={decisionSummary} />
+              {compareDetails.length === 2 && (
+                <ComparisonDecisionSupport
+                  summary={decisionSummary}
+                  compareDetails={compareDetails}
+                />
               )}
 
               {compareDetails.length === 2 && !isGpuComparison && (
