@@ -1,0 +1,151 @@
+{
+  "$schema": "https://example.invalid/source_license_assessment.schema.json",
+  "assessment_date": "2026-10-10",
+  "disclaimer": "This is a research assessment of evidence gathered from public pages actually accessed on the assessment date. It is not legal advice. A public page being reachable does not grant reproduction rights. Where rights are unresolved, no permissive inference is made.",
+  "sources": [
+    {
+      "source_id": "intel",
+      "dataset": "intel-cpus.csv (Intel ARK snapshot)",
+      "publisher": "Intel Corporation (via felixsteinke/cpu-spec-dataset redistribution)",
+      "evidence": [
+        {
+          "type": "repo_artifact",
+          "detail": "cpu-spec-dataset LICENSE is AGPL-3.0 and applies to the repository code; the dataset CSV carries no separate data licence notice."
+        },
+        {
+          "type": "web_access",
+          "url": "https://www.intel.com/content/www/us/en/legal/terms-of-use.html",
+          "status": "blocked (HTTP 403)",
+          "access_date": "2026-10-10"
+        }
+      ],
+      "what_repository_says": "The felixsteinke/cpu-spec-dataset repository declares AGPL-3.0 for its code and documents intel-cpus.csv as a scrape of ark.intel.com. No data reuse licence is declared for the dataset.",
+      "redistribution_rights": "unknown",
+      "attribution_obligation": "unknown",
+      "further_review_required": true,
+      "notes": "Target Intel terms page could not be accessed with automated tooling (403). No reuse grant is documented for ARK content."
+    },
+    {
+      "source_id": "amd",
+      "dataset": "amd-cpus.csv (AMD processor specifications snapshot)",
+      "publisher": "Advanced Micro Devices, Inc. (via felixsteinke/cpu-spec-dataset redistribution)",
+      "evidence": [
+        {
+          "type": "repo_artifact",
+          "detail": "cpu-spec-dataset README: amd-cpus.csv is an export from https://www.amd.com/en/products/specifications/processors. AGPL-3.0 licences the code, not the data."
+        },
+        {
+          "type": "web_access",
+          "url": "https://www.amd.com/en/corporate/copyright",
+          "status": "accessed (no data-reuse grant found on page)",
+          "access_date": "2026-10-10"
+        }
+      ],
+      "what_repository_says": "AMD specification pages were manually exported to CSV. No data reuse licence is declared for the export.",
+      "redistribution_rights": "unknown",
+      "attribution_obligation": "unknown",
+      "further_review_required": true,
+      "notes": "AMD copyright page does not grant bulk reuse; no permissive inference is made."
+    },
+    {
+      "source_id": "passmark",
+      "dataset": "benchmark-cpus.csv (cpubenchmark.net CPU catalog)",
+      "publisher": "PassMark Software Pty Ltd",
+      "evidence": [
+        {
+          "type": "web_access",
+          "url": "https://www.passmark.com/legal/disclaimer.php",
+          "status": "accessed",
+          "access_date": "2026-10-10",
+          "quotes": [
+            "You may download, display, print and reproduce this material in unaltered form only (retaining this notice) for your personal, non-commercial use or use within your organisation.",
+            "Information on the Site may not be reproduced in whole or in part for general publication or commercial purposes without the permission of the Host."
+          ]
+        }
+      ],
+      "what_repository_says": "sources row 1 records PassMark CPU benchmark catalog with URL https://www.cpubenchmark.net/; no licence field existed before batch 009.",
+      "redistribution_rights": "restricted",
+      "attribution_obligation": "personal/non-commercial use only; permission required for publication or commercial reproduction",
+      "further_review_required": true,
+      "notes": "Scraping PassMark to produce benchmark-cpus.csv is also constrained by the site terms; bulk republication requires PassMark permission."
+    },
+    {
+      "source_id": "techpowerup",
+      "dataset": "gpu_1986-2026.csv (TechPowerUp GPU Database snapshot)",
+      "publisher": "TechPowerUp",
+      "evidence": [
+        {
+          "type": "web_access",
+          "url": "https://www.techpowerup.com/robots.txt",
+          "status": "accessed",
+          "access_date": "2026-10-10",
+          "quotes": [
+            "TechPowerUp content is made available for your personal, non-commercial use.",
+            "Use of any device, tool, or process designed to data mine or scrape the content using automated means is prohibited without prior written permission from TechPowerUp.",
+            "Prohibited uses include but are not limited to: ... (3) creating or providing archived or cached data sets containing our content to others; and/or (4) any commercial purposes.",
+            "Contact w1zzard@techpowerup.com for assistance."
+          ]
+        }
+      ],
+      "what_repository_says": "batch 002 and batch 008 recorded the same robots.txt restriction; batch 008 persisted license_notes on the 44 legacy core-clock provenance rows.",
+      "redistribution_rights": "restricted",
+      "attribution_obligation": "personal, non-commercial use only; written permission required for dataset creation or commercial use",
+      "further_review_required": true,
+      "notes": "The values were imported before the reuse assessment (batch 001). This assessment does not grant redistribution; see the TechPowerUp disposition recommendation in final_report.md."
+    },
+    {
+      "source_id": "geekbench",
+      "dataset": "processor-benchmarks.csv (Geekbench Browser 7 CPU catalog)",
+      "publisher": "Primate Labs Inc. (Geekbench Browser)",
+      "evidence": [
+        {
+          "type": "web_access",
+          "url": "https://www.primatelabs.com/legal/",
+          "status": "blocked (HTTP 403)",
+          "access_date": "2026-10-10"
+        },
+        {
+          "type": "web_access",
+          "url": "https://www.geekbench.com/legal/",
+          "status": "blocked (HTTP 404)",
+          "access_date": "2026-10-10"
+        }
+      ],
+      "what_repository_says": "sources row 2 records Geekbench Browser - Geekbench 7 CPU with URL https://browser.geekbench.com/. No licence is documented anywhere in the repository.",
+      "redistribution_rights": "unknown",
+      "attribution_obligation": "unknown",
+      "further_review_required": true,
+      "notes": "Primate Labs legal pages were not reachable from automated tooling; no inference is made about their terms."
+    },
+    {
+      "source_id": "cpu-world",
+      "dataset": "cpuworld-cpus.csv (not used in the database)",
+      "publisher": "CPU-World (owner documented in felixsteinke README)",
+      "evidence": [
+        {
+          "type": "repo_artifact",
+          "detail": "cpuworld-cpus.csv is present in cpu-spec-dataset-main.zip but no database value was reconciled to it."
+        }
+      ],
+      "what_repository_says": "docs/DATA_SOURCES.md names CPUWorld as the bootstrap dataset; the reconciliation found no DB cells matching cpuworld-cpus.csv, so it was not attributed.",
+      "redistribution_rights": "unknown",
+      "attribution_obligation": "unknown",
+      "further_review_required": true,
+      "notes": "Not imported; documented only for completeness."
+    }
+  ],
+  "summary": {
+    "established_permissive_licenses": 0,
+    "restricted_redistribution": ["passmark", "techpowerup"],
+    "unknown_redistribution": ["intel", "amd", "geekbench"],
+    "recommendation": "Do not redistribute any base-import dataset or derived values until rights are established in writing. Research-grade internal attribution is unaffected."
+  },
+  "techpowerup_legacy_44_disposition_recommendation": {
+    "recommendation": "restrict_from_future_redistribution",
+    "body": "Retain the 44 values in the database, flagged for review, but treat any future redistribution (export, publish, bundled dataset) as needing written permission from TechPowerUp (w1zzard@techpowerup.com). Do not delete the values: they are factual specification cells already in the DB, 16 of 44 were cross-checked against NVIDIA official pages, and there is no technical or legal justification for removal; deletion would destroy provenance history. Do not treat the prior possession/import as a redistribution grant.",
+    "alternatives": {
+      "retain_flagged": "acceptable interim state (already implemented via batch-008 license_notes)",
+      "delete": "not recommended (no clear technical or legal justification; destructive)"
+    }
+  }
+}

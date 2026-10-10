@@ -1,0 +1,192 @@
+{
+  "pre_sha256": "0a53ba47e2a855e06790a0263611f120c247c82a0969c20edc4280bd92d6a917",
+  "post_sha256": "c0e843edece6a2999cf8376a782f1602262b092a6cf5f32cb4bce1763d10c3ce",
+  "pre_quick_check": "ok",
+  "post_quick_check": "ok",
+  "post_foreign_key_check": [],
+  "count_changes": {
+    "sources": {
+      "before": 7,
+      "after": 9
+    },
+    "field_provenance": {
+      "before": 3382,
+      "after": 34809
+    }
+  },
+  "unexpected_table_changes": [],
+  "changed_data_values": {},
+  "new_sources": [
+    [
+      8,
+      "Intel ARK (intel-cpus.csv snapshot)",
+      "https://ark.intel.com/"
+    ],
+    [
+      9,
+      "AMD product specifications (amd-cpus.csv snapshot)",
+      "https://www.amd.com/en/products/specifications/processors"
+    ]
+  ],
+  "pre_source_ids": {
+    "2": "Geekbench Browser - Geekbench 7 CPU",
+    "4": "GPU Ark GPU specifications & benchmarks dataset",
+    "3": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+    "1": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+    "7": "Unknown (source not documented in artifact)",
+    "6": "Intel ARK (archived via Wayback Machine)",
+    "5": "Wikipedia (English)"
+  },
+  "post_source_ids": {
+    "2": "Geekbench Browser - Geekbench 7 CPU",
+    "4": "GPU Ark GPU specifications & benchmarks dataset",
+    "9": "AMD product specifications (amd-cpus.csv snapshot)",
+    "3": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+    "1": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+    "7": "Unknown (source not documented in artifact)",
+    "8": "Intel ARK (intel-cpus.csv snapshot)",
+    "6": "Intel ARK (archived via Wayback Machine)",
+    "5": "Wikipedia (English)"
+  },
+  "unexpected_new_sources": [],
+  "new_provenance_rows": 31427,
+  "removed_provenance_rows": 0,
+  "new_provenance_batch_numbers": [
+    "0"
+  ],
+  "new_provenance_statuses": [
+    "verified"
+  ],
+  "provenance_total": 34809,
+  "provenance_distinct": 34809,
+  "provenance_orphan_hardware": 0,
+  "provenance_orphan_source": 0,
+  "provenance_invalid_statuses": 0,
+  "provenance_invalid_tables": 0,
+  "provenance_by_status": [
+    [
+      "excluded",
+      58
+    ],
+    [
+      "unmatched",
+      4
+    ],
+    [
+      "verified",
+      34747
+    ]
+  ],
+  "provenance_by_source": [
+    [
+      1,
+      546
+    ],
+    [
+      3,
+      12884
+    ],
+    [
+      4,
+      2573
+    ],
+    [
+      5,
+      757
+    ],
+    [
+      6,
+      2
+    ],
+    [
+      7,
+      6
+    ],
+    [
+      8,
+      16276
+    ],
+    [
+      9,
+      1765
+    ]
+  ],
+  "provenance_by_batch_no": [
+    [
+      0,
+      31427
+    ],
+    [
+      1,
+      210
+    ],
+    [
+      2,
+      1066
+    ],
+    [
+      3,
+      599
+    ],
+    [
+      5,
+      64
+    ],
+    [
+      6,
+      1443
+    ]
+  ],
+  "sources": [
+    [
+      1,
+      "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "https://www.cpubenchmark.net/"
+    ],
+    [
+      2,
+      "Geekbench Browser - Geekbench 7 CPU",
+      "https://browser.geekbench.com/"
+    ],
+    [
+      3,
+      "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "https://www.techpowerup.com/gpu-specs/"
+    ],
+    [
+      4,
+      "GPU Ark GPU specifications & benchmarks dataset",
+      "https://gpuark.com/datasets/"
+    ],
+    [
+      5,
+      "Wikipedia (English)",
+      "https://en.wikipedia.org/"
+    ],
+    [
+      6,
+      "Intel ARK (archived via Wayback Machine)",
+      "https://ark.intel.com/"
+    ],
+    [
+      7,
+      "Unknown (source not documented in artifact)",
+      ""
+    ],
+    [
+      8,
+      "Intel ARK (intel-cpus.csv snapshot)",
+      "https://ark.intel.com/"
+    ],
+    [
+      9,
+      "AMD product specifications (amd-cpus.csv snapshot)",
+      "https://www.amd.com/en/products/specifications/processors"
+    ]
+  ],
+  "new_rows_crosschecked": 31427,
+  "new_rows_value_mismatch": [],
+  "verified_without_supporting_evidence": [],
+  "data_tables_changed": [],
+  "passed": true
+}

@@ -1,0 +1,101 @@
+{
+  "generated_at": null,
+  "database": "C:\\SPECTRA\\data\\spectra.db",
+  "datasets": {
+    "intel": {
+      "artifact": "intel-cpus.csv",
+      "path": "C:\\Users\\user\\Downloads\\intel-cpus.csv",
+      "sha256": "eb164c40e6dc4261c664d2d29014459d37b6f7d9cc7edfd38859db73d95415d4",
+      "present": true
+    },
+    "amd": {
+      "artifact": "amd-cpus.csv",
+      "path": "C:\\Users\\user\\Downloads\\amd-cpus.csv",
+      "sha256": "abe6c8ebe06f2180991e18595e5f780789593b147190fedc399e13ed834fcac6",
+      "present": true
+    },
+    "passmark": {
+      "artifact": "benchmark-cpus.csv",
+      "path": "C:\\Users\\user\\Downloads\\benchmark-cpus.csv",
+      "sha256": "90b19cd4ba2b35995fee7a1fd450f0438e0637059b8977814f8dc87f4dfc90db",
+      "present": true
+    },
+    "techpowerup": {
+      "artifact": "gpu_1986-2026.csv",
+      "path": "C:\\SPECTRA\\data\\raw\\gpu_1986-2026.csv",
+      "sha256": "495fb95e7e7b4087b1b146efed79d2609588497ff58248299a8723931bbdadf1",
+      "present": true
+    },
+    "geekbench": {
+      "artifact": "processor-benchmarks.csv",
+      "path": "C:\\Users\\user\\Downloads\\benchmark\\processor-benchmarks.csv",
+      "sha256": "22477b9745ee51c0b71d45d4f291e51bccc1a13d760939ed6fecb7de7343d41e",
+      "present": true
+    }
+  },
+  "cell_totals": {
+    "verified": 47325,
+    "uncertain": 2251,
+    "unmatched": 2211
+  },
+  "by_group": {
+    "-|cpu_specifications|base_clock_ghz|uncertain": 278,
+    "-|cpu_specifications|base_clock_ghz|unmatched": 11,
+    "-|cpu_specifications|boost_clock_ghz|unmatched": 320,
+    "-|cpu_specifications|cores|uncertain": 291,
+    "-|cpu_specifications|process_node_nm|unmatched": 52,
+    "-|cpu_specifications|socket|uncertain": 256,
+    "-|cpu_specifications|socket|unmatched": 14,
+    "-|cpu_specifications|tdp_w|uncertain": 262,
+    "-|cpu_specifications|tdp_w|unmatched": 14,
+    "-|cpu_specifications|threads|uncertain": 291,
+    "-|cpu_specifications|threads|unmatched": 11,
+    "-|gpu_specifications|core_clock_mhz|unmatched": 1106,
+    "-|hardware|architecture|unmatched": 571,
+    "-|hardware|manufacturer|uncertain": 291,
+    "-|hardware|name|uncertain": 291,
+    "-|hardware|release_date|unmatched": 112,
+    "-|hardware|type|uncertain": 291,
+    "amd|cpu_specifications|base_clock_ghz|verified": 374,
+    "amd|cpu_specifications|cores|verified": 358,
+    "amd|cpu_specifications|socket|verified": 364,
+    "amd|cpu_specifications|tdp_w|verified": 366,
+    "amd|cpu_specifications|threads|verified": 303,
+    "amd|hardware|manufacturer|verified": 363,
+    "amd|hardware|name|verified": 363,
+    "amd|hardware|type|verified": 363,
+    "geekbench|benchmark_results|score|verified": 1040,
+    "intel|cpu_specifications|base_clock_ghz|verified": 2421,
+    "intel|cpu_specifications|boost_clock_ghz|verified": 1664,
+    "intel|cpu_specifications|cores|verified": 2659,
+    "intel|cpu_specifications|process_node_nm|verified": 2345,
+    "intel|cpu_specifications|socket|verified": 2546,
+    "intel|cpu_specifications|tdp_w|verified": 2392,
+    "intel|cpu_specifications|threads|verified": 2249,
+    "intel|hardware|manufacturer|verified": 2659,
+    "intel|hardware|name|verified": 2659,
+    "intel|hardware|type|verified": 2659,
+    "passmark|cpu_specifications|base_clock_ghz|verified": 47,
+    "passmark|cpu_specifications|boost_clock_ghz|verified": 300,
+    "passmark|cpu_specifications|cores|verified": 47,
+    "passmark|cpu_specifications|socket|verified": 58,
+    "passmark|cpu_specifications|tdp_w|verified": 49,
+    "passmark|cpu_specifications|threads|verified": 45,
+    "passmark|hardware|manufacturer|verified": 47,
+    "passmark|hardware|name|verified": 47,
+    "passmark|hardware|type|verified": 47,
+    "techpowerup|gpu_specifications|boost_clock_mhz|verified": 1124,
+    "techpowerup|gpu_specifications|core_clock_mhz|verified": 769,
+    "techpowerup|gpu_specifications|interface|verified": 849,
+    "techpowerup|gpu_specifications|length_mm|verified": 766,
+    "techpowerup|gpu_specifications|memory_gb|verified": 1538,
+    "techpowerup|gpu_specifications|memory_type|verified": 1879,
+    "techpowerup|gpu_specifications|tdp_w|verified": 1675,
+    "techpowerup|gpu_specifications|vram_bandwidth_gbps|verified": 1538,
+    "techpowerup|hardware|architecture|verified": 1879,
+    "techpowerup|hardware|manufacturer|verified": 1879,
+    "techpowerup|hardware|name|verified": 1879,
+    "techpowerup|hardware|release_date|verified": 837,
+    "techpowerup|hardware|type|verified": 1879
+  }
+}
