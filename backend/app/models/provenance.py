@@ -10,36 +10,54 @@ from sqlalchemy import (
     Integer,
     String,
     Text,
-    UniqueConstraint,
+    text,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from backend.app.database import Base
 
 if TYPE_CHECKING:
+    from backend.app.models.benchmark import BenchmarkResult
     from backend.app.models.hardware import Hardware
     from backend.app.models.source import Source
 
-# Evidence statuses used across the enrichment batches 001-006.
+# Evidence statuses used across the enrichment batches 001-006 and the
+# base-import reconstruction (batch 009).
 VERIFIED = "verified"
 UNCERTAIN = "uncertain"
 EXCLUDED = "excluded"
 UNMATCHED = "unmatched"
 VALID_STATUSES = (VERIFIED, UNCERTAIN, EXCLUDED, UNMATCHED)
 
-# The only tables that hardware enrichment may record provenance against.
-VALID_TABLES = ("hardware", "cpu_specifications", "gpu_specifications")
+# Tables that provenance may be recorded against. Specification tables carry
+# (hardware, column) provenance; benchmark_results carries per-benchmark
+# record/metric provenance via the benchmark_result_id key.
+VALID_TABLES = (
+    "hardware",
+    "cpu_specifications",
+    "gpu_specifications",
+    "benchmark_results",
+)
 
 
 class FieldProvenance(Base):
-    """Field-level provenance linking a hardware entity + specification
-    column to the research evidence and source document that supports it.
+    """Field-level provenance linking a hardware entity / benchmark record to
+    the research evidence and source document that supports it.
+
+    Two keying models share the same evidence vocabulary:
+
+    - specification provenance: ``hardware_id`` + (``table_name``, ``field_name``)
+      where ``benchmark_result_id`` is NULL;
+    - benchmark provenance: ``benchmark_result_id`` + (``table_name``,
+      ``field_name``) where ``table_name`` is ``'benchmark_results'`` and
+      ``benchmark_result_id`` is NOT NULL (``hardware_id`` is the owning
+      hardware for referential completeness).
 
     Designed to be additive: it records which source, URL, licence and
-    confidence backed a value, without ever modifying the specification
-    value itself. Multiple rows may support the same field (multiple
-    sources). Status distinguishes verified, uncertain, excluded and
-    unmatched evidence.
+    confidence backed a value, without ever modifying the value itself.
+    Multiple rows may support the same field or benchmark record (multiple
+    sources). Status distinguishes verified, uncertain, excluded and unmatched
+    evidence.
     """
 
     __tablename__ = "field_provenance"
@@ -50,17 +68,35 @@ class FieldProvenance(Base):
             name="ck_field_provenance_evidence_status",
         ),
         CheckConstraint(
-            "table_name IN ('hardware', 'cpu_specifications', 'gpu_specifications')",
+            "table_name IN ('hardware', 'cpu_specifications', 'gpu_specifications', "
+            "'benchmark_results')",
             name="ck_field_provenance_table_name",
         ),
-        UniqueConstraint(
+        CheckConstraint(
+            "(benchmark_result_id IS NULL AND table_name != 'benchmark_results') "
+            "OR (benchmark_result_id IS NOT NULL AND table_name = 'benchmark_results')",
+            name="ck_field_provenance_benchmark_coherence",
+        ),
+        Index(
+            "uq_field_provenance_identity",
             "hardware_id",
             "table_name",
             "field_name",
             "source_id",
             "evidenced_value",
             "evidence_status",
-            name="uq_field_provenance_identity",
+            unique=True,
+            sqlite_where=text("benchmark_result_id IS NULL"),
+        ),
+        Index(
+            "uq_field_provenance_benchmark_identity",
+            "benchmark_result_id",
+            "field_name",
+            "source_id",
+            "evidenced_value",
+            "evidence_status",
+            unique=True,
+            sqlite_where=text("benchmark_result_id IS NOT NULL"),
         ),
         Index(
             "ix_field_provenance_lookup",
@@ -75,6 +111,10 @@ class FieldProvenance(Base):
         Index(
             "ix_field_provenance_evidence_status",
             "evidence_status",
+        ),
+        Index(
+            "ix_field_provenance_benchmark_result_id",
+            "benchmark_result_id",
         ),
     )
 
@@ -171,8 +211,17 @@ class FieldProvenance(Base):
         default=datetime.now,
     )
 
+    benchmark_result_id: Mapped[int | None] = mapped_column(
+        ForeignKey("benchmark_results.id"),
+        nullable=True,
+    )
+
     hardware: Mapped["Hardware"] = relationship(
         back_populates="field_provenance",
     )
 
     source: Mapped["Source"] = relationship()
+
+    benchmark_result: Mapped["BenchmarkResult | None"] = relationship(
+        back_populates="field_provenance",
+    )

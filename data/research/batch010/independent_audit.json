@@ -1,0 +1,91 @@
+{
+  "pre_sha256": "c0e843edece6a2999cf8376a782f1602262b092a6cf5f32cb4bce1763d10c3ce",
+  "post_sha256": "20e1b7386df88da72ac6628b9b1efab9539c7895475d7b57f2289271c17b1127",
+  "pre_quick_check": "ok",
+  "post_quick_check": "ok",
+  "post_foreign_key_check": [],
+  "unchanged_data_tables_violations": [],
+  "sources_unchanged": true,
+  "benchmark_count_before": 1040,
+  "benchmark_count_after": 1040,
+  "external_identifier_count_before": 3575,
+  "external_identifier_count_after": 3575,
+  "external_identifier_source_changes": 3575,
+  "external_identifier_value_changes": [],
+  "identifier_source_changes_by_type": {
+    "product_id_tray": 620,
+    "product_id_mpk": 65,
+    "product_id_boxed": 215,
+    "intel_cpu_id": 2675
+  },
+  "invalid_source_transitions": [],
+  "identifier_rows_added": 0,
+  "identifier_rows_removed": 0,
+  "pre_provenance_rows_preserved": 34809,
+  "new_provenance_rows": 1040,
+  "new_provenance_violations": [],
+  "new_provenance_by_source": {
+    "2": 1040
+  },
+  "provenance_total": 35849,
+  "benchmark_provenance_total": 1040,
+  "spec_provenance_total": 34809,
+  "orphan_benchmark_result_refs": 0,
+  "orphan_hardware_refs": 0,
+  "benchmark_provenance_duplicates": 0,
+  "provenance_by_source": [
+    [
+      1,
+      546
+    ],
+    [
+      2,
+      1040
+    ],
+    [
+      3,
+      12884
+    ],
+    [
+      4,
+      2573
+    ],
+    [
+      5,
+      757
+    ],
+    [
+      6,
+      2
+    ],
+    [
+      7,
+      6
+    ],
+    [
+      8,
+      16276
+    ],
+    [
+      9,
+      1765
+    ]
+  ],
+  "provenance_by_status": [
+    [
+      "excluded",
+      58
+    ],
+    [
+      "unmatched",
+      4
+    ],
+    [
+      "verified",
+      35787
+    ]
+  ],
+  "gaming_benchmark_rows": 0,
+  "new_rows_matched_to_geekbench_evidence": 1040,
+  "passed": true
+}

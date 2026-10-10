@@ -8,6 +8,7 @@ from backend.app.database import Base
 
 if TYPE_CHECKING:
     from backend.app.models.hardware import Hardware
+    from backend.app.models.provenance import FieldProvenance
     from backend.app.models.source import Source
 
 
@@ -60,3 +61,7 @@ class BenchmarkResult(Base):
     )
 
     source: Mapped["Source | None"] = relationship()
+
+    field_provenance: Mapped[list["FieldProvenance"]] = relationship(
+        back_populates="benchmark_result",
+    )

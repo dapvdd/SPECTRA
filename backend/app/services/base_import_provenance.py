@@ -50,6 +50,7 @@ VALID_FIELDS = {
         "vram_bandwidth_gbps", "memory_bus_width_bits", "tdp_w", "interface",
         "length_mm",
     }),
+    "benchmark_results": frozenset({"score"}),
 }
 
 

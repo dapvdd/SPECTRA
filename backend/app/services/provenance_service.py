@@ -1,17 +1,22 @@
-"""Field-level provenance storage for hardware specification enrichment.
+"""Field-level provenance storage for hardware specification enrichment and
+benchmark-result provenance.
 
 This service stores which research evidence and source document supports a
-specific hardware specification value, without modifying the specification
-value itself. It is the persistence side of the Batch 008 provenance audit.
+specific hardware specification value or benchmark result, without modifying
+the value itself. It is the persistence side of the Batch 008 provenance audit
+and the Batch 010 benchmark-provenance extension.
 
 The service is deliberately narrow:
 
 - ``VALID_FIELDS`` is the single source of truth for which (table, column)
   pairs may carry provenance; anything else is rejected.
-- Inserts are idempotent: re-running the same evidence produces no
-  duplicates (the model unique constraint is the last line of defence).
-- No specification value, benchmark, external identifier or build row is
-  ever written.
+- ``benchmark_results`` provenance requires a concrete ``benchmark_result_id``
+  and is verified against that exact benchmark record.
+- Inserts are idempotent: re-running the same evidence produces no duplicates
+  (the partial unique indexes on ``field_provenance`` are the last line of
+  defence).
+- No specification value, benchmark, external identifier or build row is ever
+  written.
 """
 
 from __future__ import annotations
@@ -20,6 +25,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from backend.app.models import (
+    BenchmarkResult,
     FieldProvenance,
     Hardware,
     Source,
@@ -49,6 +55,9 @@ VALID_FIELDS = {
         "tdp_w",
         "interface",
         "length_mm",
+    },
+    "benchmark_results": {
+        "score",
     },
 }
 
@@ -98,6 +107,7 @@ def insert_provenance_record(
     source_url: str,
     evidence_status: str,
     batch_no: int,
+    benchmark_result_id: int | None = None,
     evidenced_value: str = "",
     license_name: str | None = None,
     license_notes: str | None = None,
@@ -111,7 +121,10 @@ def insert_provenance_record(
     """Insert one provenance record and return ``(record, inserted)``.
 
     ``inserted`` is False when an identical record already exists, making
-    replay safe and idempotent.
+    replay safe and idempotent. For ``benchmark_results`` provenance the
+    ``benchmark_result_id`` must reference an existing benchmark record whose
+    ``hardware_id`` matches ``hardware_id``; specification provenance must not
+    carry a ``benchmark_result_id``.
     """
     if session.get(Hardware, hardware_id) is None:
         raise ProvenanceValidationError(
@@ -123,26 +136,57 @@ def insert_provenance_record(
             f"invalid evidence_status: {evidence_status!r}"
         )
 
-    existing = session.scalar(
-        select(FieldProvenance).where(
-            FieldProvenance.hardware_id == hardware_id,
-            FieldProvenance.table_name == table_name,
-            FieldProvenance.field_name == field_name,
-            FieldProvenance.source_id == source_id,
-            FieldProvenance.evidenced_value == (evidenced_value or ""),
-            FieldProvenance.evidence_status == evidence_status,
+    if table_name == "benchmark_results":
+        if benchmark_result_id is None:
+            raise ProvenanceValidationError(
+                "benchmark_result_id is required for benchmark_results "
+                "provenance"
+            )
+        benchmark = session.get(BenchmarkResult, benchmark_result_id)
+        if benchmark is None:
+            raise ProvenanceValidationError(
+                f"unknown benchmark_result_id: {benchmark_result_id}"
+            )
+        if benchmark.hardware_id != hardware_id:
+            raise ProvenanceValidationError(
+                "benchmark_result.hardware_id does not match hardware_id"
+            )
+        existing = session.scalar(
+            select(FieldProvenance).where(
+                FieldProvenance.benchmark_result_id == benchmark_result_id,
+                FieldProvenance.field_name == field_name,
+                FieldProvenance.source_id == source_id,
+                FieldProvenance.evidenced_value == (evidenced_value or ""),
+                FieldProvenance.evidence_status == evidence_status,
+            )
         )
-    )
+    else:
+        if benchmark_result_id is not None:
+            raise ProvenanceValidationError(
+                "benchmark_result_id is only valid for benchmark_results "
+                "provenance"
+            )
+        existing = session.scalar(
+            select(FieldProvenance).where(
+                FieldProvenance.hardware_id == hardware_id,
+                FieldProvenance.table_name == table_name,
+                FieldProvenance.field_name == field_name,
+                FieldProvenance.source_id == source_id,
+                FieldProvenance.evidenced_value == (evidenced_value or ""),
+                FieldProvenance.evidence_status == evidence_status,
+            )
+        )
+
     if existing is not None:
         return existing, False
 
     record = FieldProvenance(
         hardware_id=hardware_id,
+        source_id=source_id,
         table_name=table_name,
         field_name=field_name,
-        source_id=source_id,
-        source_url=source_url,
         evidenced_value=evidenced_value or "",
+        source_url=source_url,
         license_name=license_name,
         license_notes=license_notes,
         attribution=attribution,
@@ -153,6 +197,7 @@ def insert_provenance_record(
         match_method=match_method,
         batch_no=batch_no,
         notes=notes,
+        benchmark_result_id=benchmark_result_id,
     )
     session.add(record)
     session.flush()

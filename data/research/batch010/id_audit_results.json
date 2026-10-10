@@ -1,0 +1,23 @@
+{
+  "intel_csv_rows": 2675,
+  "amd_csv_rows": 667,
+  "passmark_rows": 4830,
+  "intel_cpuid_count": 2675,
+  "passmark_url_id_count": 4830,
+  "stats": {
+    "amd_product_id_total": 900,
+    "amd_product_id_matches_amd_csv": 900,
+    "amd_product_id_on_amd_hw": 900,
+    "intel_cpu_id_total": 2675,
+    "intel_cpu_id_matches_intel_csv": 2675,
+    "intel_cpu_id_on_intel_hw": 2675,
+    "total": 3575,
+    "mapped_to_intel": 2675,
+    "mapped_to_amd": 900,
+    "duplicate_target_keys": 0
+  },
+  "mismatched_entity_rows": [],
+  "not_in_expected_file_rows": [],
+  "not_in_expected_file_count": 0,
+  "conclusion_proven": true
+}
