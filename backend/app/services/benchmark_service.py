@@ -8,7 +8,20 @@ from backend.app.models import BenchmarkResult, Hardware, Source
 
 def get_benchmarks_for_hardware(
     hardware_id: int,
+    *,
+    source_id: int | None = None,
+    benchmark_name: str | None = None,
+    test_type: str | None = None,
 ) -> list[BenchmarkResult]:
+    """Return benchmark results for a hardware row.
+
+    All filters are optional and combine with AND semantics. When no filter is
+    supplied the call is byte-for-byte equivalent to the original behaviour
+    (every result for the hardware, ordered by id). Filters are applied as
+    parameterised ORM ``WHERE`` clauses; no raw SQL is used and the
+    ``source`` relationship is loaded with ``selectinload`` (never a join that
+    could duplicate result rows).
+    """
 
     with SessionLocal() as session:
         hardware = session.scalar(
@@ -20,13 +33,31 @@ def get_benchmarks_for_hardware(
                 f"Hardware not found: {hardware_id}"
             )
 
-        return session.scalars(
+        statement = (
             select(BenchmarkResult)
             .options(selectinload(BenchmarkResult.source))
             .where(
                 BenchmarkResult.hardware_id == hardware.id
             )
-            .order_by(BenchmarkResult.id)
+        )
+
+        if source_id is not None:
+            statement = statement.where(
+                BenchmarkResult.source_id == source_id
+            )
+
+        if benchmark_name is not None:
+            statement = statement.where(
+                BenchmarkResult.benchmark_name == benchmark_name
+            )
+
+        if test_type is not None:
+            statement = statement.where(
+                BenchmarkResult.test_type == test_type
+            )
+
+        return session.scalars(
+            statement.order_by(BenchmarkResult.id)
         ).all()
 
 def add_benchmark_result(

@@ -232,9 +232,17 @@ def get_hardware_detail(hardware_id: int):
 )
 def get_hardware_benchmarks(
     hardware_id: int,
+    source_id: int | None = Query(default=None),
+    benchmark_name: str | None = Query(default=None),
+    test_type: str | None = Query(default=None),
 ) -> list[BenchmarkResultResponse]:
     try:
-        return get_benchmarks_for_hardware(hardware_id)
+        return get_benchmarks_for_hardware(
+            hardware_id,
+            source_id=source_id,
+            benchmark_name=benchmark_name,
+            test_type=test_type,
+        )
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
