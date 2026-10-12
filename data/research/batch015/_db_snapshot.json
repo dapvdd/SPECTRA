@@ -1,0 +1,569 @@
+{
+  "integrity_check": "ok",
+  "quick_check": "ok",
+  "foreign_key_check": 0,
+  "counts": {
+    "hardware": 5380,
+    "cpu": 3501,
+    "gpu": 1879,
+    "cpu_specifications": 3501,
+    "gpu_specifications": 1879,
+    "benchmark_results": 1040,
+    "sources": 9,
+    "external_identifiers": 3575,
+    "field_provenance": 36946,
+    "field_provenance_spec": 35906,
+    "field_provenance_benchmark": 1040,
+    "build_conversations": 5,
+    "build_messages": 10
+  },
+  "tables": [
+    "benchmark_results",
+    "build_conversations",
+    "build_messages",
+    "cpu_specifications",
+    "external_identifiers",
+    "field_provenance",
+    "gpu_specifications",
+    "hardware",
+    "sources"
+  ],
+  "field_provenance_columns": [
+    "id",
+    "hardware_id",
+    "source_id",
+    "table_name",
+    "field_name",
+    "evidenced_value",
+    "source_url",
+    "license_name",
+    "license_notes",
+    "attribution",
+    "access_date",
+    "confidence",
+    "evidence_status",
+    "source_reference",
+    "match_method",
+    "batch_no",
+    "notes",
+    "recorded_at",
+    "benchmark_result_id"
+  ],
+  "benchmark_results_columns": [
+    "id",
+    "hardware_id",
+    "benchmark_name",
+    "score",
+    "unit",
+    "test_type",
+    "source_id",
+    "recorded_at"
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "url": "https://www.cpubenchmark.net/"
+    },
+    {
+      "id": 2,
+      "name": "Geekbench Browser - Geekbench 7 CPU",
+      "url": "https://browser.geekbench.com/"
+    },
+    {
+      "id": 3,
+      "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "url": "https://www.techpowerup.com/gpu-specs/"
+    },
+    {
+      "id": 4,
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "url": "https://gpuark.com/datasets/"
+    },
+    {
+      "id": 5,
+      "name": "Wikipedia (English)",
+      "url": "https://en.wikipedia.org/"
+    },
+    {
+      "id": 6,
+      "name": "Intel ARK (archived via Wayback Machine)",
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "id": 7,
+      "name": "Unknown (source not documented in artifact)",
+      "url": ""
+    },
+    {
+      "id": 8,
+      "name": "Intel ARK (intel-cpus.csv snapshot)",
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "id": 9,
+      "name": "AMD product specifications (amd-cpus.csv snapshot)",
+      "url": "https://www.amd.com/en/products/specifications/processors"
+    }
+  ],
+  "sources_schema": [
+    "id",
+    "name",
+    "url"
+  ],
+  "benchmarks_by_source": [
+    {
+      "source_id": 2,
+      "n": 1040
+    }
+  ],
+  "benchmarks_with_provenance": 1040,
+  "benchmark_null_source": 0,
+  "prov_by_status": [
+    {
+      "evidence_status": "verified",
+      "n": 36884
+    },
+    {
+      "evidence_status": "excluded",
+      "n": 58
+    },
+    {
+      "evidence_status": "unmatched",
+      "n": 4
+    }
+  ],
+  "prov_by_source": [
+    {
+      "source_id": 8,
+      "n": 16276,
+      "hw": 2659,
+      "bm": 0
+    },
+    {
+      "source_id": 3,
+      "n": 12884,
+      "hw": 1879,
+      "bm": 0
+    },
+    {
+      "source_id": 4,
+      "n": 2573,
+      "hw": 1666,
+      "bm": 0
+    },
+    {
+      "source_id": 5,
+      "n": 1854,
+      "hw": 713,
+      "bm": 0
+    },
+    {
+      "source_id": 9,
+      "n": 1765,
+      "hw": 404,
+      "bm": 0
+    },
+    {
+      "source_id": 2,
+      "n": 1040,
+      "hw": 518,
+      "bm": 1040
+    },
+    {
+      "source_id": 1,
+      "n": 546,
+      "hw": 306,
+      "bm": 0
+    },
+    {
+      "source_id": 7,
+      "n": 6,
+      "hw": 6,
+      "bm": 0
+    },
+    {
+      "source_id": 6,
+      "n": 2,
+      "hw": 2,
+      "bm": 0
+    }
+  ],
+  "prov_by_field_spec": [
+    {
+      "field_name": "tdp_w",
+      "n": 4634
+    },
+    {
+      "field_name": "cores",
+      "n": 3205
+    },
+    {
+      "field_name": "socket",
+      "n": 3041
+    },
+    {
+      "field_name": "base_clock_ghz",
+      "n": 2994
+    },
+    {
+      "field_name": "threads",
+      "n": 2738
+    },
+    {
+      "field_name": "architecture",
+      "n": 2593
+    },
+    {
+      "field_name": "process_node_nm",
+      "n": 2473
+    },
+    {
+      "field_name": "boost_clock_ghz",
+      "n": 2105
+    },
+    {
+      "field_name": "core_clock_mhz",
+      "n": 1929
+    },
+    {
+      "field_name": "memory_type",
+      "n": 1879
+    },
+    {
+      "field_name": "vram_bandwidth_gbps",
+      "n": 1538
+    },
+    {
+      "field_name": "memory_gb",
+      "n": 1538
+    },
+    {
+      "field_name": "memory_bus_width_bits",
+      "n": 1443
+    },
+    {
+      "field_name": "boost_clock_mhz",
+      "n": 1124
+    },
+    {
+      "field_name": "release_date",
+      "n": 1057
+    },
+    {
+      "field_name": "interface",
+      "n": 849
+    },
+    {
+      "field_name": "length_mm",
+      "n": 766
+    }
+  ],
+  "prov_by_field_benchmark": [
+    {
+      "field_name": "score",
+      "n": 1040
+    }
+  ],
+  "prov_batch": [
+    {
+      "batch_no": 0,
+      "n": 32467
+    },
+    {
+      "batch_no": 1,
+      "n": 210
+    },
+    {
+      "batch_no": 2,
+      "n": 1066
+    },
+    {
+      "batch_no": 3,
+      "n": 599
+    },
+    {
+      "batch_no": 5,
+      "n": 64
+    },
+    {
+      "batch_no": 6,
+      "n": 1443
+    },
+    {
+      "batch_no": 14,
+      "n": 1097
+    }
+  ],
+  "prov_license": [
+    {
+      "lic": "(null)",
+      "n": 32519
+    },
+    {
+      "lic": "CC BY 4.0",
+      "n": 2573
+    },
+    {
+      "lic": "CC BY-SA 4.0",
+      "n": 1854
+    }
+  ],
+  "prov_source_reference_null": 264,
+  "prov_attribution_null": 32473,
+  "cpu_with_spec_no_prov": 24,
+  "hardware_without_any_prov": 20,
+  "benchmark_sample": [
+    {
+      "id": 1,
+      "hardware_id": 1508,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 695.0,
+      "unit": "points",
+      "test_type": "single-core"
+    },
+    {
+      "id": 2,
+      "hardware_id": 1508,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 2005.0,
+      "unit": "points",
+      "test_type": "multi-core"
+    },
+    {
+      "id": 3,
+      "hardware_id": 1496,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 561.0,
+      "unit": "points",
+      "test_type": "single-core"
+    },
+    {
+      "id": 4,
+      "hardware_id": 1496,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 1108.0,
+      "unit": "points",
+      "test_type": "multi-core"
+    },
+    {
+      "id": 5,
+      "hardware_id": 1448,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 851.0,
+      "unit": "points",
+      "test_type": "single-core"
+    },
+    {
+      "id": 6,
+      "hardware_id": 1448,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 3048.0,
+      "unit": "points",
+      "test_type": "multi-core"
+    },
+    {
+      "id": 7,
+      "hardware_id": 1419,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 588.0,
+      "unit": "points",
+      "test_type": "single-core"
+    },
+    {
+      "id": 8,
+      "hardware_id": 1419,
+      "source_id": 2,
+      "benchmark_name": "Geekbench 7",
+      "score": 1113.0,
+      "unit": "points",
+      "test_type": "multi-core"
+    }
+  ],
+  "benchmark_by_name": [
+    {
+      "benchmark_name": "Geekbench 7",
+      "test_type": "multi-core",
+      "unit": "points",
+      "n": 520
+    },
+    {
+      "benchmark_name": "Geekbench 7",
+      "test_type": "single-core",
+      "unit": "points",
+      "n": 520
+    }
+  ],
+  "benchmark_source_link": [
+    {
+      "source_id": 2,
+      "source_name": "Geekbench Browser - Geekbench 7 CPU",
+      "n": 1040
+    }
+  ],
+  "prov_url_sample": [
+    {
+      "id": 1,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "release_date",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors"
+    },
+    {
+      "id": 2,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "architecture",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_3"
+    },
+    {
+      "id": 3,
+      "source_id": 5,
+      "table_name": "cpu_specifications",
+      "field_name": "process_node_nm",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_(microarchitecture)"
+    },
+    {
+      "id": 4,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "release_date",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors"
+    },
+    {
+      "id": 5,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "architecture",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_3"
+    },
+    {
+      "id": 6,
+      "source_id": 5,
+      "table_name": "cpu_specifications",
+      "field_name": "process_node_nm",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_(microarchitecture)"
+    },
+    {
+      "id": 7,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "release_date",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors"
+    },
+    {
+      "id": 8,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "architecture",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_3"
+    },
+    {
+      "id": 9,
+      "source_id": 5,
+      "table_name": "cpu_specifications",
+      "field_name": "process_node_nm",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_(microarchitecture)"
+    },
+    {
+      "id": 10,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "release_date",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors"
+    },
+    {
+      "id": 11,
+      "source_id": 5,
+      "table_name": "hardware",
+      "field_name": "architecture",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_3"
+    },
+    {
+      "id": 12,
+      "source_id": 5,
+      "table_name": "cpu_specifications",
+      "field_name": "process_node_nm",
+      "evidence_status": "verified",
+      "license_name": "CC BY-SA 4.0",
+      "confidence": "high",
+      "source_reference": null,
+      "access_date": null,
+      "has_attr": 1,
+      "url": "https://en.wikipedia.org/wiki/Zen_(microarchitecture)"
+    }
+  ]
+}

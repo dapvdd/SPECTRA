@@ -3638,3 +3638,137 @@ h1 {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- Source transparency (Batch 015) ---------- */
+
+/* Source detail is deliberately secondary to the specification value: a
+   compact, keyboard-accessible disclosure beneath the value. */
+.spec-source {
+  margin-top: 0.6rem;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+}
+
+.spec-source summary {
+  cursor: pointer;
+  color: var(--accent-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  list-style: none;
+}
+
+.spec-source summary::-webkit-details-marker {
+  display: none;
+}
+
+.spec-source summary::before {
+  content: "›";
+  display: inline-block;
+  margin-right: 0.35rem;
+  transition: transform 0.15s ease;
+}
+
+.spec-source[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.spec-source summary:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.spec-source-empty {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+}
+
+.source-record-list,
+.source-attribution-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.source-record,
+.source-attribution-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.6rem;
+  padding: 0.4rem 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.source-record:first-child,
+.source-attribution-item:first-child {
+  border-top: none;
+}
+
+.spec-source .source-record-name,
+.source-attribution-metric {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.spec-source .source-record-status,
+.spec-source .source-record-date {
+  color: var(--text-faint);
+}
+
+.source-license-tag {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+  color: var(--text-faint);
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.spec-source .source-record-link,
+.source-attribution-link {
+  color: var(--accent-soft);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.benchmark-sources {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-default);
+}
+
+.benchmark-sources .detail-section-label {
+  margin-bottom: 0.65rem;
+}
+
+.benchmark-comparison-sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.comparison-source-side {
+  margin-top: 0.85rem;
+}
+
+.comparison-source-side:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.comparison-source-side-name {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}

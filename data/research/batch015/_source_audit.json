@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-10-12T06:41:26.065952+00:00",
+  "database": {
+    "path_name": "spectra.db",
+    "sha256": "9aee08794eeaf0ddabcaaed3b0462e8116aa5f1a339414dd12244e1ecd7b0160",
+    "integrity_check": "ok",
+    "foreign_key_violations": 0
+  },
+  "totals": {
+    "hardware": 5380,
+    "cpu_specifications": 3501,
+    "gpu_specifications": 1879,
+    "benchmark_results": 1040,
+    "external_identifiers": 3575,
+    "field_provenance": 36946,
+    "field_provenance_specification": 35906,
+    "field_provenance_benchmark": 1040,
+    "sources": 9
+  },
+  "license_distinctions": {
+    "cc_by_4_0": 2573,
+    "cc_by_sa_4_0": 1854,
+    "no_license_recorded": 32519,
+    "source_clear": 2,
+    "source_unknown": 4,
+    "source_restricted": 2,
+    "source_unresolved": 1
+  },
+  "provenance_coverage": {
+    "records_with_attribution": 4473,
+    "records_without_attribution": 32473,
+    "records_with_source_reference": 36682,
+    "records_without_source_reference": 264,
+    "records_without_license_name": 32519,
+    "benchmarks_total": 1040,
+    "benchmarks_with_provenance": 1040,
+    "benchmarks_without_provenance": 0
+  },
+  "coverage_gaps": {
+    "cpus_with_specs_without_spec_provenance": 24,
+    "gpus_with_specs_without_spec_provenance": 0,
+    "hardware_without_any_provenance": 20,
+    "provenance_without_source_row": 0
+  },
+  "sources": [
+    {
+      "id": 1,
+      "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "url": "https://www.cpubenchmark.net/",
+      "publisher": "PassMark Software Pty Ltd",
+      "description": "PassMark CPU benchmark catalog redistributed as benchmark-cpus.csv.",
+      "license_name": null,
+      "license_url": "https://www.passmark.com/legal/disclaimer.php",
+      "license_status": "restricted",
+      "terms_notes": "PassMark terms restrict reproduction to unaltered material for personal, non-commercial or intra-organisation use; reproduction in whole or part for general publication or commercial purposes requires permission. No bulk redistribution licence is granted. (Batch 009/010, accessed 2026-10-10.)",
+      "attribution": "PassMark Software Pty Ltd, CPU Benchmarks — PassMark terms apply.",
+      "retrieved_on": "2026-10-10",
+      "usage": {
+        "provenance_records": 546,
+        "hardware_records": 306,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "verified": 546
+      }
+    },
+    {
+      "id": 2,
+      "name": "Geekbench Browser - Geekbench 7 CPU",
+      "url": "https://browser.geekbench.com/",
+      "publisher": "Primate Labs Inc.",
+      "description": "Geekbench 7 CPU results catalogued from the Geekbench Browser (processor-benchmarks.csv).",
+      "license_name": null,
+      "license_url": null,
+      "license_status": "unknown",
+      "terms_notes": "Primate Labs / Geekbench terms were not reachable during Batch 009/010 (HTTP 403/404) and no reuse grant is documented in the repository. Licence unknown — not treated as permissive.",
+      "attribution": "Geekbench Browser data, Primate Labs Inc. Licence unknown; attribution obligation not established.",
+      "retrieved_on": null,
+      "usage": {
+        "provenance_records": 1040,
+        "hardware_records": 518,
+        "benchmark_records": 1040
+      },
+      "evidence_status_counts": {
+        "verified": 1040
+      }
+    },
+    {
+      "id": 3,
+      "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "url": "https://www.techpowerup.com/gpu-specs/",
+      "publisher": "TechPowerUp",
+      "description": "TechPowerUp GPU Database snapshot, including 44 legacy GPU clock values.",
+      "license_name": null,
+      "license_url": "https://www.techpowerup.com/robots.txt",
+      "license_status": "restricted",
+      "terms_notes": "TechPowerUp robots.txt states content is for personal, non-commercial use; data mining/scraping and creating or providing cached/archived datasets are prohibited without prior written permission. No redistribution licence; contact w1zzard@techpowerup.com.",
+      "attribution": "TechPowerUp GPU Database. Redistribution restricted pending written permission.",
+      "retrieved_on": "2026-10-10",
+      "usage": {
+        "provenance_records": 12884,
+        "hardware_records": 1879,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "verified": 12884
+      }
+    },
+    {
+      "id": 4,
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "url": "https://gpuark.com/datasets/",
+      "publisher": "GPU Ark",
+      "description": "GPU Ark specifications and benchmarks dataset.",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_status": "clear",
+      "terms_notes": "CC BY 4.0 is documented in the repository (data/raw/README.md). Attribution required; no share-alike.",
+      "attribution": "GPU Ark (CC BY 4.0).",
+      "retrieved_on": null,
+      "usage": {
+        "provenance_records": 2573,
+        "hardware_records": 1666,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "excluded": 50,
+        "unmatched": 4,
+        "verified": 2519
+      }
+    },
+    {
+      "id": 5,
+      "name": "Wikipedia (English)",
+      "url": "https://en.wikipedia.org/",
+      "publisher": "Wikimedia Foundation — Wikipedia contributors",
+      "description": "English Wikipedia article data parsed from article wikitext.",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "license_status": "clear",
+      "terms_notes": "CC BY-SA 4.0. Attribution and share-alike obligations apply to redistributed derivatives.",
+      "attribution": "Wikipedia, The Free Encyclopedia (CC BY-SA 4.0).",
+      "retrieved_on": null,
+      "usage": {
+        "provenance_records": 1854,
+        "hardware_records": 713,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "excluded": 2,
+        "verified": 1852
+      }
+    },
+    {
+      "id": 6,
+      "name": "Intel ARK (archived via Wayback Machine)",
+      "url": "https://ark.intel.com/",
+      "publisher": "Intel Corporation",
+      "description": "Intel ARK product pages cross-checked through the Wayback Machine.",
+      "license_name": null,
+      "license_url": null,
+      "license_status": "unknown",
+      "terms_notes": "The Intel terms-of-use page returned HTTP 403 to automated access (Batch 009); no bulk reuse grant is documented. Unknown licence — not treated as permissive.",
+      "attribution": "Intel Corporation (Intel ARK). Licence unknown.",
+      "retrieved_on": null,
+      "usage": {
+        "provenance_records": 2,
+        "hardware_records": 2,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "verified": 2
+      }
+    },
+    {
+      "id": 7,
+      "name": "Unknown (source not documented in artifact)",
+      "url": "",
+      "publisher": null,
+      "description": "Legacy Batch 008 placeholder for rows whose originating source was not documented in the import artifact.",
+      "license_name": null,
+      "license_url": null,
+      "license_status": "unresolved",
+      "terms_notes": "The originating source is not documented; redistribution status is unresolved and must not be treated as licensed.",
+      "attribution": "Origin not documented.",
+      "retrieved_on": null,
+      "usage": {
+        "provenance_records": 6,
+        "hardware_records": 6,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "excluded": 6
+      }
+    },
+    {
+      "id": 8,
+      "name": "Intel ARK (intel-cpus.csv snapshot)",
+      "url": "https://ark.intel.com/",
+      "publisher": "Intel Corporation",
+      "description": "Intel processor specifications redistributed through the felixsteinke/cpu-spec-dataset intel-cpus.csv snapshot.",
+      "license_name": null,
+      "license_url": null,
+      "license_status": "unknown",
+      "terms_notes": "Intel ARK terms were not accessible to automated checks (HTTP 403, Batch 009); the redistributing repository declares AGPL-3.0 for its code only and no data licence. Unknown licence.",
+      "attribution": "Intel Corporation via felixsteinke/cpu-spec-dataset. Licence unknown.",
+      "retrieved_on": "2026-10-10",
+      "usage": {
+        "provenance_records": 16276,
+        "hardware_records": 2659,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "verified": 16276
+      }
+    },
+    {
+      "id": 9,
+      "name": "AMD product specifications (amd-cpus.csv snapshot)",
+      "url": "https://www.amd.com/en/products/specifications/processors",
+      "publisher": "Advanced Micro Devices, Inc.",
+      "description": "AMD processor specifications redistributed through the felixsteinke/cpu-spec-dataset amd-cpus.csv snapshot.",
+      "license_name": null,
+      "license_url": "https://www.amd.com/en/corporate/copyright",
+      "license_status": "unknown",
+      "terms_notes": "The AMD copyright page was accessed (Batch 009); no bulk data-reuse grant was found. Unknown licence — not treated as permissive.",
+      "attribution": "Advanced Micro Devices, Inc. via felixsteinke/cpu-spec-dataset. Licence unknown.",
+      "retrieved_on": "2026-10-10",
+      "usage": {
+        "provenance_records": 1765,
+        "hardware_records": 404,
+        "benchmark_records": 0
+      },
+      "evidence_status_counts": {
+        "verified": 1765
+      }
+    }
+  ]
+}

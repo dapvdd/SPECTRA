@@ -44,6 +44,11 @@ from backend.app.schemas.hardware_chat import (
     HardwareChatRequest,
     HardwareChatResponse,
 )
+from backend.app.schemas.provenance import (
+    BenchmarkProvenanceResponse,
+    HardwareProvenanceResponse,
+    SourceSummaryResponse,
+)
 from backend.app.services.benchmark_service import (
     get_benchmarks_for_hardware,
 )
@@ -51,6 +56,7 @@ from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
 from backend.app.services import explanation_service
 from backend.app.services import hardware_chat_service
+from backend.app.services import source_service
 
 
 app = FastAPI(
@@ -244,6 +250,54 @@ def get_hardware_benchmarks(
             test_type=test_type,
         )
     except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/sources",
+    response_model=list[SourceSummaryResponse],
+)
+def get_sources() -> list[SourceSummaryResponse]:
+    """List the registered sources with their provenance usage and terms."""
+    return source_service.list_sources()
+
+
+@app.get(
+    "/sources/{source_id}",
+    response_model=SourceSummaryResponse,
+)
+def get_source(source_id: int) -> SourceSummaryResponse:
+    try:
+        return source_service.get_source(source_id)
+    except source_service.ProvenanceLookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/hardware/{hardware_id}/provenance",
+    response_model=HardwareProvenanceResponse,
+)
+def get_hardware_provenance(hardware_id: int) -> HardwareProvenanceResponse:
+    try:
+        return source_service.get_hardware_provenance(hardware_id)
+    except source_service.ProvenanceLookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/benchmarks/{benchmark_result_id}/provenance",
+    response_model=BenchmarkProvenanceResponse,
+)
+def get_benchmark_provenance(
+    benchmark_result_id: int,
+) -> BenchmarkProvenanceResponse:
+    try:
+        return source_service.get_benchmark_provenance(benchmark_result_id)
+    except source_service.ProvenanceLookupError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
 

@@ -30,7 +30,14 @@ import {
   getDetailBackLabel,
   getDetailComparisonAction,
 } from "./detail.js";
-import { parseMarkdown } from "./markdown.js";
+import {
+  buildSpecSourceItems,
+  getBenchmarkSources,
+  getLicenseStatusLabel,
+  getProvenanceStatusLabel,
+  normalizeSource,
+  summarizeHardwareSources,
+} from "./provenance.js";
 import {
   THEME_PREFERENCES,
   applyThemeToDocument,
@@ -342,6 +349,7 @@ function PerformanceSection({
   benchmarkState,
   hardwareType = "CPU",
   titleId,
+  sourcesById,
 }) {
   const performanceState = getPerformanceState(benchmarkState);
   const isLoading = performanceState.status === "loading";
@@ -469,6 +477,11 @@ function PerformanceSection({
           );
         })}
       </div>
+
+      <BenchmarkSourceFootnotes
+        benchmarkState={benchmarkState}
+        sourcesById={sourcesById}
+      />
     </section>
   );
 }
@@ -573,7 +586,7 @@ function EvidenceGroup({ group, compareDetails }) {
   );
 }
 
-function ComparisonDecisionSupport({ summary, compareDetails }) {
+function ComparisonDecisionSupport({ summary, compareDetails, sourceSummaries }) {
   if (summary.status === DECISION_STATUS.empty) {
     return null;
   }
@@ -719,11 +732,111 @@ function ComparisonDecisionSupport({ summary, compareDetails }) {
           ))}
         </ul>
       </div>
+
+      {Array.isArray(sourceSummaries) && sourceSummaries.length > 0 && (
+        <div className="comparison-decision-block">
+          <h4>Evidence sources</h4>
+
+          {sourceSummaries.map((side) => (
+            <div className="comparison-source-side" key={side.hardwareId}>
+              <p className="comparison-source-side-name">{side.name}</p>
+
+              {!side.hasProvenance ? (
+                <p className="comparison-decision-note">
+                  No source information was returned for this hardware.
+                </p>
+              ) : side.specSources.length === 0 &&
+                side.benchmarkSources.length === 0 ? (
+                <p className="comparison-decision-note">
+                  No source is recorded for the displayed specifications.
+                </p>
+              ) : (
+                <ul className="source-attribution-list">
+                  {side.specSources.map((source) => (
+                    <li
+                      className="source-attribution-item"
+                      key={`spec-${source.sourceId ?? source.name}`}
+                    >
+                      <span className="source-attribution-metric">
+                        Specifications
+                      </span>
+                      {source.sourceUrl ? (
+                        <a
+                          className="source-attribution-link"
+                          href={source.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          {source.name || "Source"}
+                        </a>
+                      ) : (
+                        <span className="source-attribution-link">
+                          {source.name || "Source not recorded"}
+                        </span>
+                      )}
+                      {source.licenseStatus && (
+                        <span className="source-license-tag">
+                          {getLicenseStatusLabel(source.licenseStatus)}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+
+                  {side.benchmarkSources.map((source) => (
+                    <li
+                      className="source-attribution-item"
+                      key={`bench-${source.benchmarkName}-${source.testType}-${source.name}`}
+                    >
+                      <span className="source-attribution-metric">
+                        {[source.benchmarkName, source.testType]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </span>
+                      {source.sourceUrl ? (
+                        <a
+                          className="source-attribution-link"
+                          href={source.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          {source.name || "Source"}
+                        </a>
+                      ) : (
+                        <span className="source-attribution-link">
+                          {source.name || "Source not recorded"}
+                        </span>
+                      )}
+                      {source.licenseStatus && (
+                        <span className="source-license-tag">
+                          {getLicenseStatusLabel(source.licenseStatus)}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {side.unattributedFields > 0 && (
+                <p className="comparison-decision-note">
+                  {side.unattributedFields} displayed specification value
+                  {side.unattributedFields === 1 ? "" : "s"} have no recorded
+                  source.
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
-function BenchmarkComparison({ comparisonData, compareDetails }) {
+function BenchmarkComparison({
+  comparisonData,
+  compareDetails,
+  benchmarkStates,
+  sourcesById,
+}) {
   if (comparisonData.status === "loading") {
     return (
       <section className="benchmark-comparison" aria-labelledby="benchmark-comparison-title">
@@ -810,7 +923,96 @@ function BenchmarkComparison({ comparisonData, compareDetails }) {
           ))}
         </div>
       )}
+
+      {hasAvailableScore && (
+        <div className="benchmark-comparison-sources">
+          {compareDetails.map((hardware) => (
+            <BenchmarkSourceFootnotes
+              key={hardware.id}
+              benchmarkState={benchmarkStates?.[hardware.id]}
+              sourcesById={sourcesById}
+              label={`${hardware.name} — SOURCE`}
+            />
+          ))}
+        </div>
+      )}
     </section>
+  );
+}
+
+function SourceRecordItem({ record }) {
+  return (
+    <li className="source-record">
+      <span className="source-record-name">
+        {record.sourceName || "Source not recorded"}
+      </span>
+
+      {record.publisher && (
+        <span className="source-record-publisher">{record.publisher}</span>
+      )}
+
+      <span className="source-record-status">
+        {getProvenanceStatusLabel(record.evidenceStatus)}
+      </span>
+
+      {record.licenseStatus && (
+        <span className="source-license-tag">
+          {getLicenseStatusLabel(record.licenseStatus)}
+        </span>
+      )}
+
+      {record.evidencedValue ? (
+        <span className="source-record-value">
+          Evidence: {record.evidencedValue}
+        </span>
+      ) : null}
+
+      {record.accessDate && (
+        <span className="source-record-date">
+          Retrieved {record.accessDate}
+        </span>
+      )}
+
+      {record.sourceUrl && (
+        <a
+          className="source-record-link"
+          href={record.sourceUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          View source
+        </a>
+      )}
+    </li>
+  );
+}
+
+function SourceDisclosure({ source }) {
+  if (!source) {
+    return null;
+  }
+
+  if (source.records.length === 0) {
+    return (
+      <span className="spec-source spec-source-empty">
+        No source recorded
+      </span>
+    );
+  }
+
+  return (
+    <details className="spec-source">
+      <summary>
+        {source.records.length === 1
+          ? "Source"
+          : `Sources (${source.records.length})`}
+      </summary>
+      <ul className="source-record-list">
+        {source.records.map((record) => (
+          <SourceRecordItem key={record.id ?? record.fieldName} record={record} />
+        ))}
+      </ul>
+    </details>
   );
 }
 
@@ -821,8 +1023,61 @@ function DetailSpecGrid({ items }) {
         <div key={item.label}>
           <span>{item.label}</span>
           <strong>{item.value}</strong>
+          <SourceDisclosure source={item.source} />
         </div>
       ))}
+    </div>
+  );
+}
+
+function BenchmarkSourceFootnotes({ benchmarkState, sourcesById, label }) {
+  const sources = getBenchmarkSources(benchmarkState);
+
+  if (sources.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="benchmark-sources">
+      <p className="detail-section-label">{label || "BENCHMARK SOURCES"}</p>
+      <ul className="source-attribution-list">
+        {sources.map((entry) => {
+          const licenseStatus =
+            entry.source?.licenseStatus ||
+            (entry.source ? sourcesById?.[entry.source.id]?.licenseStatus : null) ||
+            null;
+          const metricLabel = [entry.benchmarkName, entry.testType, entry.unit]
+            .filter(Boolean)
+            .join(" · ");
+
+          return (
+            <li key={entry.key} className="source-attribution-item">
+              <span className="source-attribution-metric">{metricLabel}</span>
+
+              {entry.source?.url ? (
+                <a
+                  className="source-attribution-link"
+                  href={entry.source.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {entry.source.name || "Source"}
+                </a>
+              ) : (
+                <span className="source-attribution-link">
+                  Source not recorded
+                </span>
+              )}
+
+              {licenseStatus && (
+                <span className="source-license-tag">
+                  {getLicenseStatusLabel(licenseStatus)}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -838,8 +1093,21 @@ function CpuDetailView({
   detailError,
   chatState,
   onAskQuestion,
+  provenance,
+  sourcesById,
 }) {
   const viewModel = getCpuDetailViewModel(hardware);
+  const overview = buildSpecSourceItems(viewModel.overview, "CPU", provenance);
+  const keySpecifications = buildSpecSourceItems(
+    viewModel.keySpecifications,
+    "CPU",
+    provenance,
+  );
+  const technicalSpecifications = buildSpecSourceItems(
+    viewModel.technicalSpecifications,
+    "CPU",
+    provenance,
+  );
   const comparisonAction = getDetailComparisonAction(compareList, hardware.id);
   const backLabel = getDetailBackLabel("CPU");
 
@@ -907,22 +1175,23 @@ function CpuDetailView({
 
       <div className="detail-specifications">
         <p className="detail-section-label">OVERVIEW</p>
-        <DetailSpecGrid items={viewModel.overview} />
+        <DetailSpecGrid items={overview} />
 
         <p className="detail-section-label technical-label">
           KEY SPECIFICATIONS
         </p>
-        <DetailSpecGrid items={viewModel.keySpecifications} />
+        <DetailSpecGrid items={keySpecifications} />
 
         <p className="detail-section-label technical-label">
           TECHNICAL SPECIFICATIONS
         </p>
-        <DetailSpecGrid items={viewModel.technicalSpecifications} />
+        <DetailSpecGrid items={technicalSpecifications} />
       </div>
 
       <PerformanceSection
         benchmarkState={benchmarkState}
         titleId="cpu-performance-title"
+        sourcesById={sourcesById}
       />
 
       <HardwareChatSection chatState={chatState} onAsk={onAskQuestion} />
@@ -939,8 +1208,27 @@ function GpuDetailSection({ label, items }) {
   );
 }
 
-function GpuHardwareDetail({ hardware, buildAction, onBack, onAddToBuild }) {
+function GpuHardwareDetail({
+  hardware,
+  buildAction,
+  onBack,
+  onAddToBuild,
+  provenance,
+}) {
   const viewModel = getGpuDetailViewModel(hardware);
+  const overview = buildSpecSourceItems(viewModel.overview, "GPU", provenance);
+  const memory = buildSpecSourceItems(viewModel.memory, "GPU", provenance);
+  const clocks = buildSpecSourceItems(viewModel.clocks, "GPU", provenance);
+  const powerPhysical = buildSpecSourceItems(
+    viewModel.powerPhysical,
+    "GPU",
+    provenance,
+  );
+  const interfaceItems = buildSpecSourceItems(
+    viewModel.interface,
+    "GPU",
+    provenance,
+  );
   const backLabel = getDetailBackLabel("GPU");
 
   return (
@@ -983,14 +1271,11 @@ function GpuHardwareDetail({ hardware, buildAction, onBack, onAddToBuild }) {
       </div>
 
       <div className="gpu-detail-sections">
-        <GpuDetailSection label="OVERVIEW" items={viewModel.overview} />
-        <GpuDetailSection label="MEMORY" items={viewModel.memory} />
-        <GpuDetailSection label="CLOCK SPEEDS" items={viewModel.clocks} />
-        <GpuDetailSection
-          label="POWER & PHYSICAL"
-          items={viewModel.powerPhysical}
-        />
-        <GpuDetailSection label="INTERFACE" items={viewModel.interface} />
+        <GpuDetailSection label="OVERVIEW" items={overview} />
+        <GpuDetailSection label="MEMORY" items={memory} />
+        <GpuDetailSection label="CLOCK SPEEDS" items={clocks} />
+        <GpuDetailSection label="POWER & PHYSICAL" items={powerPhysical} />
+        <GpuDetailSection label="INTERFACE" items={interfaceItems} />
       </div>
     </section>
   );
@@ -2163,6 +2448,8 @@ function App() {
     createComparisonDetailState,
   );
   const [benchmarkStates, setBenchmarkStates] = useState({});
+  const [specProvenanceById, setSpecProvenanceById] = useState({});
+  const [sourcesById, setSourcesById] = useState({});
   const [aiAnalysis, setAiAnalysis] = useState({
     status: AI_ANALYSIS_STATUS.idle,
     explanation: "",
@@ -2311,6 +2598,24 @@ function App() {
       });
   };
 
+  const loadSpecProvenance = (hardwareId) => {
+    fetch(apiUrl(`/hardware/${hardwareId}/provenance`))
+      .then((response) => {
+        return assertSuccessfulResponse(response).json();
+      })
+      .then((data) => {
+        setSpecProvenanceById((prev) => ({
+          ...prev,
+          [hardwareId]: data,
+        }));
+      })
+      .catch((error) => {
+        // Provenance is supplementary: a failure must never block the
+        // specification view, it only means no source is shown.
+        console.error("Failed to load source provenance:", error);
+      });
+  };
+
   const showHardwareDetail = (id) => {
     const requestId = detailGuardRef.current.begin();
     chatGuardRef.current.invalidate();
@@ -2326,6 +2631,7 @@ function App() {
     setSelectedHardware(detailState.selected);
     setDetailView(detailState.view);
     loadBenchmarks(id);
+    loadSpecProvenance(id);
 
     requestHardwareDetail(id)
       .then((data) => {
@@ -2367,6 +2673,8 @@ function App() {
     setComparisonDetailState((prev) =>
       startComparisonDetailRequest(prev, item.id, requestId),
     );
+
+    loadSpecProvenance(item.id);
 
     fetch(apiUrl(`/hardware/${item.id}`))
       .then((response) => {
@@ -2759,6 +3067,29 @@ function App() {
   }, []);
 
   useEffect(() => {
+    fetch(apiUrl("/sources"))
+      .then((response) => assertSuccessfulResponse(response).json())
+      .then((sources) => {
+        if (!Array.isArray(sources)) {
+          return;
+        }
+
+        const byId = {};
+        sources.forEach((source) => {
+          const normalized = normalizeSource(source);
+          if (normalized?.id != null) {
+            byId[normalized.id] = normalized;
+          }
+        });
+        setSourcesById(byId);
+      })
+      .catch((error) => {
+        // The registry only enriches attribution; its absence is not fatal.
+        console.error("Failed to load source registry:", error);
+      });
+  }, []);
+
+  useEffect(() => {
     if (!selectedHardware) {
       return;
     }
@@ -2878,6 +3209,12 @@ function App() {
     compareDetails,
     benchmarkStates
   );
+
+  const comparisonSourceSummaries = compareDetails.map((hardware) => ({
+    hardwareId: hardware.id,
+    name: hardware.name,
+    ...summarizeHardwareSources(specProvenanceById[hardware.id]),
+  }));
 
   const generateAiAnalysis = () => {
     if (!comparisonFacts) {
@@ -3614,6 +3951,7 @@ function App() {
               buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
               onBack={returnToCatalog}
               onAddToBuild={() => addToBuild(selectedHardware)}
+              provenance={specProvenanceById[selectedHardware.id]}
             />
           ) : (
             <CpuDetailView
@@ -3627,6 +3965,8 @@ function App() {
               detailError={detailError}
               chatState={hardwareChatState}
               onAskQuestion={askHardwareChat}
+              provenance={specProvenanceById[selectedHardware.id]}
+              sourcesById={sourcesById}
             />
           )
         )}
@@ -3813,6 +4153,7 @@ function App() {
                         benchmarkState={benchmarkStates[detail.id]}
                         hardwareType={item.type || "CPU"}
                         titleId={`comparison-performance-${detail.id}`}
+                        sourcesById={sourcesById}
                       />
                     </section>
                   );
@@ -3824,6 +4165,7 @@ function App() {
                 <ComparisonDecisionSupport
                   summary={decisionSummary}
                   compareDetails={compareDetails}
+                  sourceSummaries={comparisonSourceSummaries}
                 />
               )}
 
@@ -3831,6 +4173,8 @@ function App() {
                 <BenchmarkComparison
                   comparisonData={benchmarkComparison}
                   compareDetails={compareDetails}
+                  benchmarkStates={benchmarkStates}
+                  sourcesById={sourcesById}
                 />
               )}
 

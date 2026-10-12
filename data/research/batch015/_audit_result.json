@@ -1,0 +1,159 @@
+{
+  "generated_at": "2026-10-12T06:43:03.226750+00:00",
+  "database": {
+    "sha256": "9aee08794eeaf0ddabcaaed3b0462e8116aa5f1a339414dd12244e1ecd7b0160",
+    "name": "spectra.db"
+  },
+  "backup": {
+    "sha256": "401a3974586265804ed55f07a998adfafbc3dd7eb46f2f226e3a32e3eabd9035",
+    "name": "spectra.db.batch015-20261012T062934Z.bak"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "hardware_unchanged",
+      "passed": true,
+      "detail": "before=5380 after=5380"
+    },
+    {
+      "name": "cpu_specifications_unchanged",
+      "passed": true,
+      "detail": "before=3501 after=3501"
+    },
+    {
+      "name": "gpu_specifications_unchanged",
+      "passed": true,
+      "detail": "before=1879 after=1879"
+    },
+    {
+      "name": "benchmark_results_unchanged",
+      "passed": true,
+      "detail": "before=1040 after=1040"
+    },
+    {
+      "name": "external_identifiers_unchanged",
+      "passed": true,
+      "detail": "before=3575 after=3575"
+    },
+    {
+      "name": "field_provenance_unchanged",
+      "passed": true,
+      "detail": "before=36946 after=36946"
+    },
+    {
+      "name": "build_conversations_unchanged",
+      "passed": true,
+      "detail": "before=5 after=5"
+    },
+    {
+      "name": "build_messages_unchanged",
+      "passed": true,
+      "detail": "before=10 after=10"
+    },
+    {
+      "name": "sources_identity_preserved",
+      "passed": true,
+      "detail": "rows=9"
+    },
+    {
+      "name": "hardware_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cpu_specifications_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gpu_specifications_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "benchmark_results_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "external_identifiers_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "field_provenance_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "build_conversations_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "build_messages_columns_unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "sources_new_columns_added",
+      "passed": true,
+      "detail": "publisher,description,license_name,license_url,license_status,terms_notes,attribution,retrieved_on"
+    },
+    {
+      "name": "only_expected_columns_added",
+      "passed": true,
+      "detail": "added=['attribution', 'description', 'license_name', 'license_status', 'license_url', 'publisher', 'retrieved_on', 'terms_notes']"
+    },
+    {
+      "name": "added_columns_are_nullable",
+      "passed": true,
+      "detail": "not_null=[]"
+    },
+    {
+      "name": "integrity_check_ok",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_foreign_key_violations",
+      "passed": true,
+      "detail": "count=0"
+    },
+    {
+      "name": "all_sources_have_license_status",
+      "passed": true,
+      "detail": "statuses={1: 'restricted', 2: 'unknown', 3: 'restricted', 4: 'clear', 5: 'clear', 6: 'unknown', 7: 'unresolved', 8: 'unknown', 9: 'unknown'}"
+    },
+    {
+      "name": "license_status_vocabulary_valid",
+      "passed": true,
+      "detail": "statuses={1: 'restricted', 2: 'unknown', 3: 'restricted', 4: 'clear', 5: 'clear', 6: 'unknown', 7: 'unresolved', 8: 'unknown', 9: 'unknown'}"
+    },
+    {
+      "name": "license_status_distinctions_present",
+      "passed": true,
+      "detail": "present=['clear', 'restricted', 'unknown', 'unresolved']"
+    },
+    {
+      "name": "provenance_sources_valid",
+      "passed": true,
+      "detail": "orphans=0"
+    },
+    {
+      "name": "provenance_count_unchanged",
+      "passed": true,
+      "detail": "before=36946 after=36946"
+    },
+    {
+      "name": "new_routes_registered",
+      "passed": true,
+      "detail": "missing=[]"
+    },
+    {
+      "name": "benchmark_response_contract_unchanged",
+      "passed": true,
+      "detail": "fields=['benchmark_name', 'hardware_id', 'id', 'recorded_at', 'score', 'source', 'test_type', 'unit']"
+    }
+  ]
+}
