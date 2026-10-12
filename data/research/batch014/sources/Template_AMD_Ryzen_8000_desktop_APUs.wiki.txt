@@ -1,0 +1,139 @@
+Common features of Ryzen 8000G desktop APUs:
+* Socket: [[Socket AM5|AM5]].
+* All the CPUs support [[DDR5 SDRAM|DDR5]]-5200 RAM in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode in 2x1R and 2x2R configuration, but only DDR5-3600 for 4x1R and 4x2R.
+* L1 [[Cache (computing)|cache]]: 64&nbsp;KB (32&nbsp;KB data + 32&nbsp;KB instruction) per core.
+* L2 cache: 1&nbsp;MB per core.
+* Models with [[Zen_4#Zen_4c|Zen 4c]] cores (codenamed ''Phoenix 2'') support 14 [[PCI Express#PCI Express 4.0|PCIe 4.0]] lanes, while models without them support 20 lanes. 4 of the lanes are reserved as link to the chipset.
+* Includes integrated [[RDNA 3]] GPU.
+* Includes XDNA AI Engine (Ryzen AI) on models without Zen 4c cores.
+* Fabrication process: [[TSMC]] [[5 nm process|4 nm]] FinFET.
+
+{| class="wikitable sortable" style="text-align:center"
+! colspan=2 rowspan=3 | Branding<br/>and model
+! colspan=7 | [[Central processing unit|CPU]]
+! colspan=3 | [[Graphics processing unit|GPU]]
+! rowspan=3 | [[AI accelerator|NPU]]
+! rowspan=3 | [[Thermal design power|TDP]]
+! rowspan=3 | Thermal<br/>solution
+! rowspan=3 | Release<br/>date
+! rowspan=3 | [[MSRP]]
+|-
+! colspan=3 | [[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+! colspan=2 | [[Clock rate]] ([[Hertz|GHz]])
+! rowspan=2 | [[CPU cache|L3 cache]]<br/>(total)
+! rowspan=2 | Core<br/>config{{efn|Core Complexes (CCX) × cores per CCX, or Zen 4 + Zen 4c cores}}
+! rowspan=2 | Model
+! rowspan=2 | Core<br/>config{{efn|name="Core config"|[[Unified shader model|Unified shaders]] : [[Texture mapping unit]]s : [[Render output unit]]s : [[Ray tracing (graphics)|Ray accelerators]] : [[AI accelerator]]s and [[Graphics Core Next#Compute units|Compute units]] (CU)}}{{efn|name="Stream processors"|GPUs based on [[RDNA 3]] have dual-issue stream processors so that up to two shader instructions can be executed per [[Instructions per cycle|clock cycle]] under certain [[Instruction-level parallelism|parallelism]] conditions.}}
+! rowspan=2 | Clock<br/>(GHz)
+|-
+! Total
+! [[Zen 4]]
+! [[Zen 4c]]
+! {{tooltip|2=3+ active cores|Base}}
+! {{tooltip|2=1–2 active cores|Boost}}
+|-
+! rowspan=2 | Ryzen 7
+! style="text-align:left;" data-sort-value="sku8" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-7-8700g.html 8700G]{{efn|name="PRO"}}
+| rowspan=2 | 8 (16)
+| rowspan=2 | 8 (16)
+| rowspan=4 {{NA}}
+| 4.2
+| rowspan=2 | 5.1
+| rowspan=6 | 16&nbsp;MB
+| rowspan=2 | 1 × 8
+| rowspan=2 | 780M
+| rowspan=2 | 12 CUs<br/>768:48:24:12
+| 2.9
+| rowspan=4 {{yes|[[Ryzen AI]]<br />Up to 16 TOPS}}
+| 65&nbsp;W
+| [[AMD Wraith#Wraith Spire|Wraith Spire]] (before Aug 1, 2025)<br>[[AMD Wraith#Wraith Stealth|Wraith Stealth]] (since Aug 1, 2025)<ref name="spire-eol">{{cite news |title=AMD Wraith Prism and Spire CPU coolers discontinued for select Ryzen CPUs |date=28 August 2025 |url=https://videocardz.com/newz/amd-wraith-prism-and-spire-cpu-coolers-discontinued-for-select-ryzen-cpus |work=VideoCardz.com |access-date=2025-08-30 }}</ref>
+| Jan 31, 2024<ref name="Anandtech-8000G">{{cite web |last1=Bonshor |first1=Gavin |title=AMD Unveils Ryzen 8000G Series Processors: Zen 4 APUs For Desktop with Ryzen AI |url-status=dead |url=https://www.anandtech.com/show/21208/amd-unveils-ryzen-8000g-series-processors-zen-4-apus-for-desktop-with-ryzen-ai |archive-url=https://web.archive.org/web/20250712120412/https://www.anandtech.com/show/21208/amd-unveils-ryzen-8000g-series-processors-zen-4-apus-for-desktop-with-ryzen-ai |archive-date=2025-07-12 |website=[[AnandTech]] |access-date=9 January 2024 |date=8 January 2024}}</ref>
+| US $329
+|-
+! style="text-align:left;" data-sort-value="sku7" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-7-pro-8700ge.html PRO 8700GE]
+| 3.6
+| 2.7
+| 35&nbsp;W
+| {{n/a}}
+| Apr 16, 2024{{Citation needed|date=January 2025}}
+| US $299
+|-
+! rowspan="4" | Ryzen 5
+! style="text-align:left;" data-sort-value="sku6" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8600g.html 8600G]{{efn|name="PRO"}}
+| rowspan="4" | 6 (12)
+| rowspan="2" | 6 (12)
+| 4.3
+| rowspan="2" | 5.0
+| rowspan="2" | 1 × 6
+| rowspan="2" | 760M
+| rowspan="2" | 8 CUs<br/>512:32:16:8
+| 2.8
+| 65&nbsp;W
+| [[AMD Wraith#Wraith Stealth|Wraith Stealth]]
+| Jan 31, 2024<ref name="Anandtech-8000G"/>
+| US $229
+|-
+! style="text-align:left" data-sort-value="sku5" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-5-pro-8600ge.html PRO 8600GE]
+| 3.9
+| 2.6
+| 35 W
+| {{NA}}
+| Apr 16, 2024{{Citation needed|date=January 2025}}
+| {{N/a|OEM}}
+|-
+! style="text-align:left;" data-sort-value="sku4" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8500g.html 8500G]{{efn|name="PRO"}}
+| rowspan="2" | 2 (4)
+| rowspan="2" | 4 (8)
+| 4.1 / 3.2{{efn|Zen 4 cores' base frequency / Zen 4c cores' base frequency|name="zen4c-base"}}
+| rowspan="2" | 5.0 / 3.7{{efn|Zen 4 cores' boost frequency / Zen 4c cores' boost frequency|name="zen4c-boost"}}
+| rowspan="2" | 2 + 4
+| rowspan="4" | 740M
+| rowspan="4" | 4 CUs<br />256:16:8:4
+| rowspan="2" | 2.8
+| rowspan="4" {{no}}
+| 65&nbsp;W
+| [[AMD Wraith#Wraith Stealth|Wraith Stealth]]
+| Jan 31, 2024
+| US $179
+|-
+! style="text-align:left" data-sort-value="sku3" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8500ge.html 8500GE]{{efn|name="PRO"}}
+| 3.9 / 3.1{{efn|name="zen4c-base"}}
+| 35 W
+| {{NA}}
+| Apr 16, 2024{{Citation needed|date=January 2025}}
+| {{N/a|OEM}}
+|-
+! rowspan="2" | Ryzen 3
+! style="text-align:left;" data-sort-value="sku2" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-3-8300g.html 8300G]{{efn|name="PRO"}}
+| rowspan="2" | 4 (8)
+| rowspan="2" | 1 (2)
+| rowspan="2" | 3 (6)
+| rowspan="2" | 4.0 / 3.2{{efn|name="zen4c-base"}}
+| rowspan="2" | 4.9 / 3.6{{efn|name="zen4c-boost"}}
+| rowspan="2" | 8&nbsp;MB
+| rowspan="2" | 1 + 3
+| rowspan="2" | 2.6
+| 65 W
+| [[AMD Wraith#Wraith Stealth|Wraith Stealth]]
+| Jan 2024 (OEM) /<br />Q1 2024 (retail)
+| OEM /<br />TBA
+|-
+! style="text-align:left" data-sort-value="sku1" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-3-8300ge.html 8300GE]{{efn|name="PRO"}}
+| 35 W
+| {{NA}}
+| Apr 16, 2024{{Citation needed|date=January 2025}}
+| {{N/a|OEM}}
+|}
+{{navbar|AMD Ryzen 8000 desktop APUs|mini=y|plain=y|style=float: left;position: relative;top: -15px;right: 0px;}}
+{{notelist|refs=
+{{efn|name="PRO"|Model also available as PRO version as 8300G<ref>{{Cite web|title=AMD Ryzen 5 PRO 8300G|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-3-pro-8300g.html|website=AMD}}</ref>, 8300GE<ref>{{Cite web|title=AMD Ryzen 5 PRO 8300GE|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-3-pro-8300ge.html|website=AMD}}</ref>, 8500G<ref>{{Cite web|title=AMD Ryzen 5 PRO 8500G|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-5-pro-8500g.html|website=AMD}}</ref>, 8500GE<ref>{{Cite web|title=AMD Ryzen 5 PRO 8500GE|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-5-pro-8500ge.html|website=AMD}}</ref>, 8600G<ref>{{Cite web|title=AMD Ryzen 5 PRO 8600G|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-5-pro-8600g.html|website=AMD}}</ref>, 8700G<ref>{{Cite web|title=AMD Ryzen 7 PRO 8700G|url=https://www.amd.com/en/products/processors/desktops/ryzen-pro/8000-series/amd-ryzen-7-pro-8700g.html|website=AMD}}</ref>.}}
+
+}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the AMD APU tables at: [[Talk:List of AMD processors with 3D graphics]].}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

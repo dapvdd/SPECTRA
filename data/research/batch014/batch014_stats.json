@@ -1,0 +1,235 @@
+{
+  "batch": "batch014",
+  "commit_subject": "feat(data): expand modern CPU catalog coverage",
+  "before": {
+    "hardware_total": 5239,
+    "cpu_total": 3360,
+    "gpu_total": 1879,
+    "intel_cpu": 2694,
+    "amd_cpu": 666,
+    "cpu_specs": 3360,
+    "gpu_specs": 1879,
+    "field_provenance": 35849,
+    "external_identifiers": 3575,
+    "benchmark_results": 1040,
+    "build_conversations": 5,
+    "sources": 9,
+    "integrity": "ok",
+    "fk_violations": 0,
+    "sources_rows": [
+      {
+        "id": 1,
+        "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+        "url": "https://www.cpubenchmark.net/"
+      },
+      {
+        "id": 2,
+        "name": "Geekbench Browser - Geekbench 7 CPU",
+        "url": "https://browser.geekbench.com/"
+      },
+      {
+        "id": 3,
+        "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+        "url": "https://www.techpowerup.com/gpu-specs/"
+      },
+      {
+        "id": 4,
+        "name": "GPU Ark GPU specifications & benchmarks dataset",
+        "url": "https://gpuark.com/datasets/"
+      },
+      {
+        "id": 5,
+        "name": "Wikipedia (English)",
+        "url": "https://en.wikipedia.org/"
+      },
+      {
+        "id": 6,
+        "name": "Intel ARK (archived via Wayback Machine)",
+        "url": "https://ark.intel.com/"
+      },
+      {
+        "id": 7,
+        "name": "Unknown (source not documented in artifact)",
+        "url": ""
+      },
+      {
+        "id": 8,
+        "name": "Intel ARK (intel-cpus.csv snapshot)",
+        "url": "https://ark.intel.com/"
+      },
+      {
+        "id": 9,
+        "name": "AMD product specifications (amd-cpus.csv snapshot)",
+        "url": "https://www.amd.com/en/products/specifications/processors"
+      }
+    ]
+  },
+  "after": {
+    "hardware_total": 5380,
+    "cpu_total": 3501,
+    "gpu_total": 1879,
+    "intel_cpu": 2784,
+    "amd_cpu": 717,
+    "cpu_specs": 3501,
+    "gpu_specs": 1879,
+    "field_provenance": 36946,
+    "external_identifiers": 3575,
+    "benchmark_results": 1040,
+    "build_conversations": 5,
+    "sources": 9,
+    "integrity": "ok",
+    "fk_violations": 0,
+    "sources_rows": [
+      {
+        "id": 1,
+        "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+        "url": "https://www.cpubenchmark.net/"
+      },
+      {
+        "id": 2,
+        "name": "Geekbench Browser - Geekbench 7 CPU",
+        "url": "https://browser.geekbench.com/"
+      },
+      {
+        "id": 3,
+        "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+        "url": "https://www.techpowerup.com/gpu-specs/"
+      },
+      {
+        "id": 4,
+        "name": "GPU Ark GPU specifications & benchmarks dataset",
+        "url": "https://gpuark.com/datasets/"
+      },
+      {
+        "id": 5,
+        "name": "Wikipedia (English)",
+        "url": "https://en.wikipedia.org/"
+      },
+      {
+        "id": 6,
+        "name": "Intel ARK (archived via Wayback Machine)",
+        "url": "https://ark.intel.com/"
+      },
+      {
+        "id": 7,
+        "name": "Unknown (source not documented in artifact)",
+        "url": ""
+      },
+      {
+        "id": 8,
+        "name": "Intel ARK (intel-cpus.csv snapshot)",
+        "url": "https://ark.intel.com/"
+      },
+      {
+        "id": 9,
+        "name": "AMD product specifications (amd-cpus.csv snapshot)",
+        "url": "https://www.amd.com/en/products/specifications/processors"
+      }
+    ]
+  },
+  "delta": {
+    "hardware_total": 141,
+    "cpu_total": 141,
+    "gpu_total": 0,
+    "cpu_specs": 141,
+    "field_provenance": 1097,
+    "external_identifiers": 0,
+    "benchmark_results": 0,
+    "build_conversations": 0
+  },
+  "new_records": {
+    "count": 141,
+    "first_id": 5240,
+    "last_id": 5380,
+    "release_date_nonnull": 102,
+    "spec_field_coverage": {
+      "cores": 141,
+      "threads": 141,
+      "base_clock_ghz": 141,
+      "boost_clock_ghz": 141,
+      "tdp_w": 141,
+      "process_node_nm": 76,
+      "socket": 73
+    },
+    "by_architecture": {
+      "Arrow Lake": 35,
+      "Zen 5": 26,
+      "Zen 4": 25,
+      "Raptor Lake Refresh": 25,
+      "Meteor Lake": 21,
+      "Lunar Lake": 9
+    },
+    "provenance_rows": 1097
+  },
+  "candidate_inventory": {
+    "candidates": 141,
+    "excluded": 3,
+    "excluded_rows": [
+      {
+        "table": "intel_rpl_refresh_desktop",
+        "brand": "Intel Processor",
+        "model": "300",
+        "reason": "branding outside scope"
+      },
+      {
+        "table": "intel_rpl_refresh_desktop",
+        "brand": "Intel Processor",
+        "model": "300T",
+        "reason": "branding outside scope"
+      },
+      {
+        "table": "intel_arl_hx",
+        "brand": "Core 7",
+        "model": "245HX",
+        "reason": "branding outside scope"
+      }
+    ]
+  },
+  "source_rows": [
+    {
+      "id": 1,
+      "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "url": "https://www.cpubenchmark.net/"
+    },
+    {
+      "id": 2,
+      "name": "Geekbench Browser - Geekbench 7 CPU",
+      "url": "https://browser.geekbench.com/"
+    },
+    {
+      "id": 3,
+      "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "url": "https://www.techpowerup.com/gpu-specs/"
+    },
+    {
+      "id": 4,
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "url": "https://gpuark.com/datasets/"
+    },
+    {
+      "id": 5,
+      "name": "Wikipedia (English)",
+      "url": "https://en.wikipedia.org/"
+    },
+    {
+      "id": 6,
+      "name": "Intel ARK (archived via Wayback Machine)",
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "id": 7,
+      "name": "Unknown (source not documented in artifact)",
+      "url": ""
+    },
+    {
+      "id": 8,
+      "name": "Intel ARK (intel-cpus.csv snapshot)",
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "id": 9,
+      "name": "AMD product specifications (amd-cpus.csv snapshot)",
+      "url": "https://www.amd.com/en/products/specifications/processors"
+    }
+  ]
+}

@@ -1,0 +1,1818 @@
+{{Short description|Line of Intel microprocessors released in 2022}}
+{{Use American English|date=August 2026}}
+{{Use mdy dates|date=September 2025}}
+{{Infobox CPU
+| image          = Intel Core i7 13700K.jpg
+| alt            = A silver, rectangular Intel Core i7-13700K microprocessor, as viewed from the top 
+| caption        = Intel Core i7-13700K
+<!----------------- General Info ----------------->
+| produced-start = {{Start date and age|October 20, 2022}}<ref>{{cite web |last=Liu |first=Zhiye |date=July 22, 2022 |title=Intel Raptor Lake CPUs May Hit the Shelves on October 17 |url=https://www.tomshardware.com/news/intel-raptor-lake-october |website=Tom's Hardware |access-date=September 15, 2022 |archive-date=September 15, 2022 |archive-url=https://web.archive.org/web/20220915220829/https://www.tomshardware.com/news/intel-raptor-lake-october |url-status=live }}</ref><ref>{{cite web |last=Alcorn |first=Paul |date=September 13, 2022 |title=Intel 13th-Gen Raptor Lake Specs, Rumored Release Date, Benchmarks, and More |url=https://www.tomshardware.com/news/intel-13th-gen-raptor-lake-release-date-specifications-pricing-benchmarks-all-we-know-specs |website=Tom's Hardware |access-date=September 15, 2022 |archive-date=September 15, 2022 |archive-url=https://web.archive.org/web/20220915092716/https://www.tomshardware.com/news/intel-13th-gen-raptor-lake-release-date-specifications-pricing-benchmarks-all-we-know-specs |url-status=live }}</ref>
+| produced-end   =
+| soldby         = [[Intel]]
+| designfirm     = Intel
+| manuf1         = Intel
+| cpuid          = B0671 <!-- This CPUID is from the 6P+8E i5-14600K -->
+| code           = 80715
+<!----------------- Performance ----------------->
+| clock          = {{ubli
+ | Up to 6.2 GHz (P-cores)
+ | Up to 4.5 GHz (E-cores)
+ }}
+| slowest                  =
+| fastest                  =
+| slow-unit                =
+| fast-unit                =
+| fsb-slowest              =
+| fsb-fastest              =
+| fsb-slow-unit            =
+| fsb-fast-unit            =
+| hypertransport-slowest   =
+| hypertransport-fastest   =
+| hypertransport-slow-unit =
+| hypertransport-fast-unit =
+| qpi-slowest              =
+| qpi-fastest              =
+| qpi-slow-unit            =
+| qpi-fast-unit            =
+| dmi-slowest              = 8x 16
+| dmi-fastest              =
+| dmi-slow-unit            = GT/s
+| dmi-fast-unit            =
+| data-width               =
+| address-width            =
+| virtual-width            =
+<!-------------------- Cache --------------------->
+| l1cache        = {{ubli|80 KB per P-core (32&nbsp;KB instructions + 48&nbsp;KB data)|96&nbsp;KB per E-core (64&nbsp;KB instructions + 32&nbsp;KB data)}}
+| l2cache        = {{ubli|1.25 or 2 MB&nbsp;per P-core|2 or 4&nbsp;MB per E-core cluster}}
+| l3cache        = Up to 36&nbsp;MB shared
+| l4cache        =
+| llcache        =
+<!------- Architecture and classification -------->
+| application    =
+| size-from      = [[7 nm process|Intel 7]] (previously known as 10ESF)
+| size-to        =
+| microarch      = {{ubli|[[Raptor Cove]] (P-cores)|[[Golden Cove]] (P-cores)|[[Gracemont (microarchitecture)|Gracemont]] (E-cores)}}
+| arch           = [[x86]]
+| instructions   = [[x86-64]]
+| extensions     = [[AES instruction set|AES-NI]], [[CLMUL instruction set|CLMUL]], [[RDRAND]], [[MMX (instruction set)|MMX]], [[Streaming SIMD Extensions|SSE]], [[SSE2]], [[SSE3]], [[SSSE3]], [[SSE4.1]], [[SSE4.2]], [[Advanced Vector Extensions|AVX]], [[Advanced Vector Extensions#Advanced Vector Extensions 2|AVX2]], [[FMA3]], [[Advanced Vector Extensions#AVX-VNNI|AVX-VNNI]], [[Intel SHA extensions|SHA]], [[Trusted Execution Technology|TXT]], [[VT-x]], [[VT-d]]
+<!----------- Physical specifications ------------>
+| transistors    =
+| cores1         = Up to 8 P-cores
+| cores2         = Up to 16 E-cores
+| amountmemory   = Up to 256&nbsp;GB{{efn|128 GB by default. A BIOS update must be applied to install 256&nbsp;GB.}}
+| memory1        = Up to dual-channel DDR5-5600 and 89.6&nbsp;GB/s bandwidth with ECC support in some models
+| memory2        = Up to dual-channel LPDDR5X-6400 in mobile CPUs (excluding HX series)
+| gpu            = [[Intel Xe]]-based integrated graphics (up to 96 execution units)
+| co-processor   =
+| pack1          = Flip-chip land grid array (FC-LGA)
+| pack2          = Flip-chip ball grid array (FC-BGA)
+| sock1          = '''Desktop/Server''':<br />[[LGA 1700]]
+| sock2          = '''Mobile''': {{ubli|BGA 1744|BGA 1792}}
+| sock3          = '''Desktop replacement''': BGA 1964
+<!--------- Products, models, variants ----------->
+| core1          =
+| variant1       = [[Emerald Rapids]] (server)
+| pcode1         = RPL
+| model1         = Raptor Lake-S
+| model2         = Raptor Lake-U
+| model3         = Raptor Lake-P
+| model4         = Raptor Lake-PX
+| model5         = Raptor Lake-H
+| model6         = Raptor Lake-HX
+| model7         = Raptor Lake-S Refresh
+| model8         = Raptor Lake-U Refresh
+| model9         = Raptor Lake-HX Refresh
+| brand1         = [[Intel Core]]
+| brand2         = Intel Processor
+| brand3         = Intel [[Xeon]] E-2400
+<!------------------  History  ------------------->
+| predecessor    = {{ubli|[[Alder Lake]] (desktop and mobile)|[[Rocket Lake]] (low-end servers)|Twin Lake (low-end mobile)}}
+| successor      = {{ubli|[[Arrow Lake (microprocessor)|Arrow Lake]] (desktop and mobile replacement)|[[Meteor Lake]] (mobile)}}
+| support status = Legacy support for iGPU<ref>{{Cite web |date=September 19, 2025 |url=https://www.intel.com/content/www/us/en/support/articles/000101986/graphics.html |title=Graphics Driver Support Update for 11th Generation through 14th Generation Intel Processor Graphics |website=Intel |access-date=September 22, 2025}}</ref>
+}}
+
+'''Raptor Lake''' is [[List of Intel codenames|Intel's codename]] for the 13th and 14th generations of [[Intel Core]]-branded [[microprocessors]] as well as some Core Series 1 and 2 processors. It is based on a [[Heterogeneous computing|hybrid architecture]], utilizing [[Raptor Cove]] performance cores and [[Gracemont (microarchitecture)|Gracemont]] efficient cores.<ref>{{cite web |title=Intel confirms 15th Gen Core "Arrow Lake", Xeon "Granite Rapids" and "Sierra Forest" 2024 series |url=https://videocardz.com/newz/intel-confirms-15th-gen-core-arrow-lake-xeon-granite-rapids-and-sierra-forest-2024-series |website=VideoCardz |date=February 17, 2022 |access-date=September 15, 2022 |archive-date=August 2, 2022 |archive-url=https://web.archive.org/web/20220802184841/https://videocardz.com/newz/intel-confirms-15th-gen-core-arrow-lake-xeon-granite-rapids-and-sierra-forest-2024-series |url-status=live }}</ref><ref name=":0">{{cite web |last1=Mujtaba |first1=Hassan |date=February 17, 2022 |title=Intel Client & Server CPU Roadmap Updates: Meteor Lake In 2023, 20A & 18A Powered Xeons & Core Chips Beyond 2024 |url=https://wccftech.com/intel-client-server-cpu-roadmap-updates-meteor-lake-in-2023-20a-18a-powered-xeons-core-chips-beyond-2024/ |website=Wccftech |access-date=September 15, 2022 |archive-date=July 28, 2022 |archive-url=https://web.archive.org/web/20220728190602/https://wccftech.com/intel-client-server-cpu-roadmap-updates-meteor-lake-in-2023-20a-18a-powered-xeons-core-chips-beyond-2024/ |url-status=live }}</ref><ref name="CNET - January 25, 2022 - Intel's next-gen Raptor Lake PC chip is due for 2022 release">{{cite web |last=Shankland |first=Stephen |date=January 4, 2022 |title=Intel's next-gen Raptor Lake PC chip is due for 2022 release |url=https://www.cnet.com/tech/computing/intels-next-gen-raptor-lake-pc-chip-is-due-for-2022-release/ |website=CNET |access-date=January 25, 2022 |archive-date=August 5, 2022 |archive-url=https://web.archive.org/web/20220805053752/https://www.cnet.com/tech/computing/intels-next-gen-raptor-lake-pc-chip-is-due-for-2022-release/ |url-status=live }}</ref> Some lower-end SKUs branded as Raptor Lake are based on [[Alder Lake]], with [[Golden Cove]] P-cores and Alder Lake-equivalent cache and memory configurations. Like Alder Lake, Raptor Lake is fabricated using Intel's [[7 nm process|Intel 7]] process.<ref>{{cite web |title=Intel Unveils New Node Names; Sapphire Rapids Is Now an 'Intel 7' CPU |url=https://www.hpcwire.com/2021/07/27/intels-new-node-names-sapphire-rapids-now-an-intel-7-chip/ |website=HPC wire |date=July 27, 2021 |access-date=July 6, 2022 |archive-date=July 29, 2022 |archive-url=https://web.archive.org/web/20220729222053/https://www.hpcwire.com/2021/07/27/intels-new-node-names-sapphire-rapids-now-an-intel-7-chip/ |url-status=live }}</ref><ref>{{cite news |author=Gamers Nexus |date=August 4, 2021 |title=Intel Ditches "Nanometers," Renames 10nm to "7" & 7nm to "4" |url=https://www.youtube.com/watch?v=wxKGFxmwcDo |website=YouTube |access-date=July 6, 2022 |archive-date=August 7, 2022 |archive-url=https://web.archive.org/web/20220807122811/https://www.youtube.com/watch?v=wxKGFxmwcDo |url-status=live }}</ref> Raptor Lake features up to 24 cores (8 performance cores plus 16 efficiency cores) and 32 [[Thread (computing)|threads]] and is socket compatible with Alder Lake systems ([[LGA 1700]], BGA 1744, BGA 1964).<ref>{{Cite web |title=Intel Technology Roadmaps and Milestones |url=https://www.intel.com/content/www/us/en/newsroom/news/intel-technology-roadmaps-milestones.html |website=Intel |access-date=September 15, 2022 |archive-date=July 16, 2022 |archive-url=https://web.archive.org/web/20220716192641/https://www.intel.com/content/www/us/en/newsroom/news/intel-technology-roadmaps-milestones.html |url-status=live }}</ref><ref>{{cite web |title=Investor Meeting 2022 |url=https://download.intel.com/newsroom/2022/corporate/2022-Intel-Investor-Meeting-Client.pdf |website=Intel |access-date=September 15, 2022 |archive-date=February 18, 2022 |archive-url=https://web.archive.org/web/20220218194016/https://download.intel.com/newsroom/2022/corporate/2022-Intel-Investor-Meeting-Client.pdf |url-status=live }}</ref><ref>{{cite web |last=Shilov |first=Anton |date=February 18, 2022 |title=Intel Roadmap Confirms Meteor Lake, Arrow Lake, Lunar Lake CPUs |url=https://www.tomshardware.com/news/intel-roadmap-meteor-lake-arrow-lake-lunar-lake-cpus |website=Tom's Hardware |access-date=September 15, 2022 |archive-date=October 28, 2023 |archive-url=https://web.archive.org/web/20231028105250/https://www.tomshardware.com/news/intel-roadmap-meteor-lake-arrow-lake-lunar-lake-cpus |url-status=live }}</ref> Like earlier generations, Raptor Lake processors also need accompanying [[Platform Controller Hub|chipsets]].
+
+Raptor Lake CPUs contain a clock tree circuit vulnerable to accelerated aging and permanent damage at elevated voltages. The BIOS code and [[microcode]] used with these CPUs supplied improperly high voltages, [[#Instability and degradation issue|resulting in instability]] as the circuit degrades over time. Intel claims that aging issues have been since fixed in the latest BIOS and microcode patches, which can be installed by updating the motherboard's BIOS. Once damaged by overvoltage, these CPUs cannot be fixed by a patch and must be replaced. Intel has extended the warranty of Raptor Lake CPUs affected by the high voltage BIOS from 3 years to 5 years.<ref>{{Cite web |last=published |first=Jowi Morales |date=2024-08-06 |title=Intel releases extended warranty details for 13th and 14th-gen chips, list includes Core i5, i7, and i9 processors |url=https://www.tomshardware.com/pc-components/cpus/intel-releases-extended-warranty-details-for-13th-and-14th-gen-chips-list-includes-core-i5-i7-and-i9-processors |access-date=2026-05-14 |website=Tom's Hardware |language=en}}</ref>
+
+In lower end processors, there are several models that use [[Die (integrated circuit)|dies]] manufactured with the previous generation Alder Lake architecture. Despite their last generation-architecture, Intel's official names for these processors are "Raptor Lake" and "Raptor Lake Refresh". This codename introduced the "Intel Processor" branding for Intel's low-end processors, replacing [[Celeron]] and [[Pentium]].<ref name="Warren 2022">{{cite web |last1=Warren |first1=Tom |date=September 16, 2022 |title=Intel Processor will replace Pentium and Celeron in 2023 laptops |url=https://www.theverge.com/2022/9/16/23356495/intel-processor-pentium-celeron-brand-2023-notebook-laptops |website=The Verge |language=en-US |access-date=December 22, 2022}}</ref>
+
+== History ==
+Raptor Lake launched on October 20, 2022. On January 3, 2023, at [[Consumer Electronics Show#2023|CES 2023]], Intel announced additional desktop CPUs and mobile CPUs.<ref>{{Cite web |title=13th Gen Intel Core Processors |url=https://www.intel.com/content/www/us/en/newsroom/resources/13th-gen-core.html |website=Intel |date=January 3, 2023 |access-date=January 3, 2023 |archive-date=January 3, 2023 |archive-url=https://web.archive.org/web/20230103142605/https://www.intel.com/content/www/us/en/newsroom/resources/13th-gen-core.html |url-status=live }}</ref><ref>{{Cite web |title=CES: Intel Extends Performance Leadership with World's Fastest Mobile Processor |url=https://www.intel.com/content/www/us/en/newsroom/news/intel-announces-worlds-fastest-mobile-processor.html |website=Intel |date=January 3, 2023 |access-date=January 3, 2023 |archive-date=January 3, 2023 |archive-url=https://web.archive.org/web/20230103141625/https://www.intel.com/content/www/us/en/newsroom/news/intel-announces-worlds-fastest-mobile-processor.html |url-status=live }}</ref> The 14th generation was launched on October 17, 2023.<ref name=":2" /><ref name=":3" /> Raptor Lake's microarchitecture was developed by Intel's R&D center (IDC) in Haifa, Israel. 
+
+In September 2022, an Intel spokesman revealed that Raptor Lake was created to benefit from process improvements before Meteor Lake arrives since the next microarchitecture was likely to be delayed.<ref>{{Cite web |date=September 12, 2022 |title=Intel confirms plans to launch 6 GHz stock Raptor Lake CPU (Core i9-13900KS incoming?) |url=https://videocardz.com/newz/intel-confirms-plans-to-launch-6-ghz-stock-raptor-lake-cpu-core-i9-13900ks-incoming |website=VideoCardz |url-status=live |archive-url=https://web.archive.org/web/20220912080615/https://videocardz.com/newz/intel-confirms-plans-to-launch-6-ghz-stock-raptor-lake-cpu-core-i9-13900ks-incoming |archive-date=September 12, 2022 |access-date=September 12, 2022 }}</ref>
+
+Raptor Lake competes with [[AMD]]'s [[Ryzen#Ryzen 7000|Ryzen 7000]] series that was launched about one month earlier on September 27, 2022.<ref>{{Cite web |last=Rißka |first=Volker |date=September 27, 2022 |title=Intel Raptor Lake-S: Mehr Kerne, Takt und TDP für (viel) mehr CPU-Leistung |url=https://www.computerbase.de/2022-09/intel-raptor-lake-s-mehr-kerne-takt-und-tdp-fuer-viel-mehr-cpu-leistung/ |website=[[ComputerBase]] |language=de |access-date=September 27, 2022 |archive-date=September 27, 2022 |archive-url=https://web.archive.org/web/20220927162059/https://www.computerbase.de/2022-09/intel-raptor-lake-s-mehr-kerne-takt-und-tdp-fuer-viel-mehr-cpu-leistung/ |url-status=live }}</ref>
+
+The 14th-generation Raptor Lake Refresh is the last processor family to use the old "Core i" branding scheme in use since 2008. The Raptor Lake-U Refresh series is the first processor family to use the new "Core 3/5/7" branding scheme introduced in mid 2023.
+
+On December 14, 2023, Intel announced the Raptor Cove-based Xeon E-2400 series for entry-level servers.<ref>{{Cite web |last=Larabel |first=Michael |date=December 14, 2023 |title=Intel Announces Xeon E-2400 & Xeon D-1800/D-2800 CPUs |url=https://www.phoronix.com/news/Intel-Xeon-E-2400-D-2800 |website=Phoronix |access-date=December 16, 2023 |archive-date=December 16, 2023 |archive-url=https://web.archive.org/web/20231216170128/https://www.phoronix.com/news/Intel-Xeon-E-2400-D-2800 |url-status=live }}</ref>
+
+== Features ==
+[[File:Intel@intel7(10nmESF)@RaptorLake@RPL(8P+16E)@i9-13900K@ES DSCx05 poly@5xExt.jpg|thumb|Raptor Lake die from an i9-13900K]]
+[[File:Intel Core i9-13900K Labelled Die Shot.jpg|thumb|Core i9-13900K labeled die shot]]
+
+=== CPU ===
+{{Further|Raptor Cove (microarchitecture)|Gracemont (microarchitecture)}}
+
+* Up to 24 cores:
+** Up to 8 Raptor Cove performance cores (P-core)
+** Up to 16 Gracemont efficient cores (E-core) in 4-core clusters
+* L2 cache for the P-core increased to maximum 2&nbsp;MB and for the E-core cluster to maximum 4&nbsp;MB
+* Up to 36&nbsp;MB shared [[L3 cache]] <!-- That doesn't change the fact that the cache is shared. Physically it's made up multiple pieces, but they are connected together and treated as one cache. -->
+
+=== GPU ===
+* Up to 96 [[execution units]] (EUs)
+* Intel [[Intel Xe#Xe-LP (Low Power)|Xe-LP]] microarchitecture
+* Up to 1.65 GHz frequency
+* Up to 4 displays
+
+=== I/O ===
+* Up to [[DDR5 SDRAM|DDR5]]-5600 and [[LPDDR#LPDDR5|LPDDR5X]]-6400
+* Dual-channel memory; up to 2 DIMMs per channel (up to 4 DIMMs total), up to 256 GB
+* Support XMP 3.0
+* Up to 28 [[PCI Express]] 5.0 lanes including 8 dedicated to [[Direct Media Interface]]<ref name="techspot2664">{{cite web |last=Evanson |first=Nick |date=May 15, 2023 |url=https://www.techspot.com/article/2664-pci-express-explained/ |title=Intel using its own system called Direct Media Interface (DMI) that's PCIe in all but name |archive-url=https://web.archive.org/web/20231028105250/https://www.techspot.com/article/2664-pci-express-explained/ |archive-date=October 28, 2023 |url-status=live |access-date=September 25, 2025 }} </ref>
+** from CPU: x16 PCIe 5.0, x4 PCIe 4.0, x8 DMI 4.0 (16&nbsp;GB/s total)
+** from [[Platform Controller Hub]] (PCH): x8 PCIe 4.0
+* Integrated [[Thunderbolt 4]] and [[WiFi 6E]] support
+** Supported via PCH on desktop processors
+** Directly supported by CPU on non-HX mobile processors
+** No support on HX mobile processors, could be added via external controller
+
+=== Technology ===
+* Third-generation Intel SuperFin transistors
+* Increased P- and E-cores maximum frequencies
+* Increased power efficiency<ref>{{Cite web |title=Intel's Core i9-13900K consumes insane power. You can tame it. |url=https://www.pcworld.com/article/1359352/cool-down-a-deep-dive-into-13900k-power-use-and-efficiency.html |access-date=November 28, 2022 |website=PCWorld |archive-date=November 28, 2022 |archive-url=https://web.archive.org/web/20221128071220/https://www.pcworld.com/article/1359352/cool-down-a-deep-dive-into-13900k-power-use-and-efficiency.html |url-status=live }}</ref>
+
+== List of 13th-generation Raptor Lake processors ==
+
+=== Desktop processors ===
+
+==== Raptor Lake-S ====
+On September 27, 2022, at their Innovation event, Intel officially revealed six unlocked Raptor Lake SKUs launching for desktop on October 20, 2022.<ref>{{cite web |last1=Warren |first1=Tom |date=September 27, 2022 |title=Intel's 13th Gen processors arrive October 20th with $589 flagship Core i9-13900K |url=https://www.theverge.com/2022/9/27/23374386/intel-13th-gen-processors-release-date-price-raptor-lake |website=The Verge |access-date=September 27, 2022 |archive-date=September 27, 2022 |archive-url=https://web.archive.org/web/20220927162106/https://www.theverge.com/2022/9/27/23374386/intel-13th-gen-processors-release-date-price-raptor-lake |url-status=live }}</ref><ref>{{cite web |last1=Cunningham |first1=Andrew |date=September 27, 2022 |title=Intel's 13th-gen "Raptor Lake" CPUs are official, launch October 20 |url=https://arstechnica.com/gadgets/2022/09/intels-first-13th-gen-core-cpus-include-few-surprises-but-many-cores/ |website=Ars Technica |access-date=September 27, 2022 |archive-date=September 27, 2022 |archive-url=https://web.archive.org/web/20220927163007/https://arstechnica.com/gadgets/2022/09/intels-first-13th-gen-core-cpus-include-few-surprises-but-many-cores/ |url-status=live }}</ref> The highest-end Raptor Lake SKU, the 13900KS, which can hit up to 6.0&nbsp;GHz at stock configuration, debuted in 2023.<ref>{{cite web |last1=Allan |first1=Darren |date=September 28, 2022 |title=Intel Raptor Lake will reach incredible 6GHz boost with new CPU due early 2023 |url=https://www.techradar.com/news/intel-raptor-lake-will-reach-incredible-6ghz-boost-with-new-cpu-due-early-2023 |website=TechRadar |access-date=October 2, 2022 |archive-date=October 2, 2022 |archive-url=https://web.archive.org/web/20221002182006/https://www.techradar.com/news/intel-raptor-lake-will-reach-incredible-6ghz-boost-with-new-cpu-due-early-2023 |url-status=live }}</ref><ref>{{Cite web |title=Intel Core i9-13900KS Special Edition 6GHz CPU to launch next year |url=https://videocardz.com/newz/intel-core-i9-13900ks-special-edition-6ghz-cpu-to-launch-next-year |website=VideoCardz |date=September 27, 2022 |access-date=September 27, 2022 |archive-date=September 27, 2022 |archive-url=https://web.archive.org/web/20220927182658/https://videocardz.com/newz/intel-core-i9-13900ks-special-edition-6ghz-cpu-to-launch-next-year |url-status=live }}</ref>
+
+Common features of Raptor Lake desktop CPUs:
+* Socket: [[LGA 1700]].
+* Memory support:
+** All models support up to 128&nbsp;GB of RAM and up to 256&nbsp;GB of DDR5 RAM after a BIOS upgrade.
+** All models support [[DDR4]] and [[DDR5]] in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel mode]].{{efn|name="DDR5DC"}}
+** All models support up to DDR4-3200 or DDR5-4800. The i5-13600 (K/KF/T) and all models above it support DDR5 speeds up to 5600&nbsp;MT/s with max 2 DIMMs slotted, 4400&nbsp;MT/s if 4 DIMMs are slotted.
+* All models provide 28 [[PCI Express]] lanes:
+** 16 PCIe 5.0 lanes
+** 4 PCIe 4.0 lanes
+** 8 DMI lanes<ref name="techspot2664" />
+* Models without the F suffix feature either of the following integrated [[Intel Graphics Technology#Xe-LP architecture (Gen12)|UHD Graphics]] GPUs, all with base frequency of 300 MHz:
+** UHD Graphics 770 with 32 execution units, or
+** UHD Graphics 730 with 24 execution units
+* Max Turbo Power: the maximum sustained (>&nbsp;1&nbsp;s) power dissipation of the processor as limited by current and/or temperature controls. Instantaneous power may exceed Maximum Turbo Power for short durations (≤&nbsp;10&nbsp;ms). Maximum Turbo Power is configurable by system vendor and can be system specific.
+* CPUs in '''bold''' below feature [[Intel vPro|vPro Enterprise]] and [[UDIMM]] [[ECC memory]] support only when paired with a motherboard based on the W680 chipset.<ref>{{Cite web |last=Bonshor |first=Gavin |date=March 9, 2022 |title=The Intel W680 Chipset Overview: Alder Lake Workstations Get ECC Memory and Overclocking Support |url=https://www.anandtech.com/show/17308/the-intel-w680-chipset-overview-ecc-for-alder-lake-workstations |website=AnandTech |access-date=April 14, 2022 |archive-date=April 14, 2022 |archive-url=https://web.archive.org/web/20220414115708/https://www.anandtech.com/show/17308/the-intel-w680-chipset-overview-ecc-for-alder-lake-workstations |url-status=dead }}</ref> Other SKUs do not support ECC memory at all.
+
+Suffixes to denote:
+* T – Low power (TDP reduced to 35&nbsp;W)
+* F – No integrated graphics
+* K – Unlocked clock multiplier
+* KF – Unlocked clock multiplier + No integrated graphics
+* KS – Unlocked clock multiplier + Special edition
+
+Alder Lake and Raptor Lake mixed models:
+* 13400, 13400F
+Alder Lake models:
+* 13600, 13600T, 13500, 13500T, 13490F, 13400T, 13100, 13100F, 13100T
+
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! rowspan="4" | Processor<br />branding
+! rowspan="4" | Model
+! rowspan="3" colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="6" | [[Clock rate]] (GHz)
+! colspan="2" | [[Intel Graphics Technology|GPU]]
+! rowspan="4" | [[CPU cache|Smart<br />cache]]
+! colspan="2" rowspan="3" | [[Thermal design power|TDP]]
+! rowspan="4" | Release date
+! rowspan="4" | Price <br />(USD){{efn|name="RCP"}}
+|-
+! rowspan="2" colspan="2" | Base
+! colspan="4" | [[Intel Turbo Boost|Turbo Boost]]
+! rowspan="3" | Model
+! rowspan="3" | Max. <br />freq. <br />(GHz)
+|-
+! colspan="2" | 2.0
+! 3.0
+! {{abbr|TVB|Thermal Velocity Boost}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|P|Performance-}}
+! Base
+! Turbo
+|-
+| rowspan="8" | [[List of Intel Core i9 processors|Core i9]]
+| '''[https://ark.intel.com/content/www/us/en/ark/products/232167/intel-core-i913900ks-processor-36m-cache-up-to-6-00-ghz.html 13900KS]'''
+| rowspan="16" | 8 (16)
+| rowspan="8" | 16 (16)
+| 3.2
+| 2.4
+| rowspan="3" | 5.4
+| rowspan="3" | 4.3
+| 5.8
+| 6.0
+| rowspan="2" | [[Intel Graphics Technology#Xe-LP architecture (Gen12)|UHD&nbsp;770]]
+| rowspan="2" | 1.65
+| rowspan="8" | 36{{nbsp}}MB
+| 150{{nbsp}}W
+| rowspan="3" | 253{{nbsp}}W
+| {{dts|2023|January|12|format=mdy|abbr=on}}
+| $699
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230496/intel-core-i913900k-processor-36m-cache-up-to-5-80-ghz.html 13900K]'''
+| rowspan="2" | 3.0
+| rowspan="2" | 2.0
+| rowspan="2" | 5.7
+| rowspan="2" | 5.8
+| rowspan="2" | 125{{nbsp}}W
+| rowspan="2" | {{dts|2022|October|20|format=mdy|abbr=on}}
+| $589
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230497/intel-core-i913900kf-processor-36m-cache-up-to-5-80-ghz.html 13900KF]
+| colspan="2" {{NA}}
+| $564
+|-
+|'''[https://ark.intel.com/content/www/us/en/ark/products/230499/intel-core-i913900-processor-36m-cache-up-to-5-60-ghz.html 13900]'''
+| rowspan="2" | 2.0
+| rowspan="2" | 1.5
+| rowspan="2" | 5.2
+| rowspan="2" | 4.2
+| rowspan="2" | 5.5
+| rowspan="2" | 5.6
+| UHD&nbsp;770
+| 1.65
+| rowspan="3" | 65{{nbsp}}W
+| rowspan="2" | 219{{nbsp}}W
+| rowspan="2" | {{dts|2023|January|03|format=mdy|abbr=on}}
+| $549
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230502/intel-core-i913900f-processor-36m-cache-up-to-5-60-ghz.html 13900F]
+| colspan="2" {{NA}}
+| $524
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232099/intel-core-i9-13900e-processor-36m-cache-up-to-5-20-ghz.html '''13900E''']
+| 1.8
+| 1.3
+| 5.2
+| 4.0
+| {{NA}}
+| rowspan="24" {{NA}}
+| rowspan="3" | UHD 770
+| rowspan="3" | 1.65
+| rowspan="2" | –
+| rowspan="2" | Q1'23
+| rowspan="2" | $554
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232162/intel-core-i9-13900te-processor-36m-cache-up-to-5-00-ghz.html '''13900TE''']
+| 1.0
+| 0.8
+| 5.0
+| 3.9
+| {{NA}}
+| rowspan="2" | 35 W
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230498/intel-core-i913900t-processor-36m-cache-up-to-5-30-ghz.html 13900T]'''
+| 1.1
+| 0.8
+| 5.1
+| 3.9
+| 5.3
+| 106{{nbsp}}W
+| {{dts|2023|January|03|format=mdy|abbr=on}}
+| $549
+|-
+| rowspan="8" | [[List of Intel Core i7 processors|Core i7]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232174/intel-core-i713790f-processor-33m-cache-up-to-5-20-ghz.html 13790F]
+| rowspan="14" | 8 (8)
+| 2.1
+| 1.5
+| 5.1
+| 4.1
+| 5.2
+| colspan="2" {{NA}}
+| 33{{nbsp}}MB
+| 65{{nbsp}}W
+| 219{{nbsp}}W
+| {{dts|2023|February|08|format=mdy|abbr=on}}
+| style="line-height:110%" | {{resize|China<br />exclusive}}
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230500/intel-core-i713700k-processor-30m-cache-up-to-5-40-ghz.html 13700K]'''
+| rowspan="2" | 3.4
+| rowspan="2" | 2.5
+| rowspan="2" | 5.4
+| rowspan="2" | 4.2
+| rowspan="2" | 5.4
+| UHD&nbsp;770
+| 1.6
+| rowspan="7" | 30{{nbsp}}MB
+| rowspan="2" | 125{{nbsp}}W
+| rowspan="2" | 253{{nbsp}}W
+| rowspan="2" | {{dts|2022|October|20|format=mdy|abbr=on}}
+| $409
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230489/intel-core-i713700kf-processor-30m-cache-up-to-5-40-ghz.html 13700KF]
+| colspan="2" {{NA}}
+| rowspan="2"| $384
+|-
+|'''[https://ark.intel.com/content/www/us/en/ark/products/230490/intel-core-i713700-processor-30m-cache-up-to-5-20-ghz.html 13700]'''
+| rowspan="2" | 2.1
+| rowspan="2" | 1.5
+| rowspan="2" | 5.1
+| rowspan="2" | 4.1
+| rowspan="2" | 5.2
+| UHD&nbsp;770
+| 1.6
+| rowspan="3" | 65{{nbsp}}W
+| rowspan="2" | 219{{nbsp}}W
+| rowspan="2" | {{dts|2023|January|03|format=mdy|abbr=on}}
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230491/intel-core-i713700f-processor-30m-cache-up-to-5-20-ghz.html 13700F]
+| colspan="2" {{NA}}
+| $359
+|-
+|'''[https://ark.intel.com/content/www/us/en/ark/products/232168/intel-core-i7-13700e-processor-30m-cache-up-to-5-10-ghz.html 13700E]'''
+| 1.9
+| 1.3
+| 5.1
+| 3.9
+| {{NA}}
+| rowspan="4" | UHD&nbsp;770
+| rowspan="3" | 1.6
+| rowspan="2" | –
+| rowspan="2" | Q1'23
+| rowspan="2" | $390
+|-
+|'''[https://ark.intel.com/content/www/us/en/ark/products/232131/intel-core-i7-13700te-processor-30m-cache-up-to-4-80-ghz.html 13700TE]'''
+| 1.1
+| 0.8
+| 4.8
+| 3.6
+| {{NA}}
+| rowspan="2" | 35 W
+|-
+|'''[https://ark.intel.com/content/www/us/en/ark/products/230492/intel-core-i713700t-processor-30m-cache-up-to-4-90-ghz.html 13700T]'''
+| 1.4
+| 1.0
+| 4.8
+| 3.6
+| 4.9
+| 106{{nbsp}}W
+| {{dts|2023|January|03|format=mdy|abbr=on}}
+| $384
+|-
+| rowspan="10" | [[List of Intel Core i5 processors|Core i5]]
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz.html 13600K]'''
+| rowspan="10" | 6 (12)
+| rowspan="2" | 3.5
+| rowspan="2" | 2.6
+| rowspan="2" | 5.1
+| rowspan="2" | 3.9
+| rowspan="13" {{NA}}
+| 1.5
+| rowspan="7" | 24{{nbsp}}MB
+| rowspan="2" | 125{{nbsp}}W
+| rowspan="2" | 181{{nbsp}}W
+| rowspan="2" | {{dts|2022|October|20|format=mdy|abbr=on}}
+| $319
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230494/intel-core-i513600kf-processor-24m-cache-up-to-5-10-ghz.html 13600KF]
+| colspan="2" {{NA}}
+| $294
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230574/intel-core-i513600-processor-24m-cache-up-to-5-00-ghz.html 13600]{{efn|name="Alder Lake"|These are likely [[Alder Lake]] processors since they do not include increased L2 caches.<ref>{{Cite web |title=Intel Launches Lower-Priced 13th Gen Core Desktop Processors with 65W |url=https://www.techpowerup.com/302937/intel-launches-lower-priced-13th-gen-core-desktop-processors-with-65w |website=TechPowerUp |date=January 3, 2023 |access-date=January 4, 2023 |archive-date=January 9, 2023 |archive-url=https://web.archive.org/web/20230109184953/https://www.techpowerup.com/302937/intel-launches-lower-priced-13th-gen-core-desktop-processors-with-65w |url-status=live }}</ref><ref>{{Cite web |last=Günsch |first=Michael |date=January 4, 2023 |title=13th Gen Intel Core: Die Core i5 sind die Helden der neuen 65-Watt-Familie |url=https://www.computerbase.de/2023-01/13th-gen-intel-core-die-core-i5-sind-die-helden-der-neuen-65-watt-familie/ |website=ComputerBase |language=de |access-date=January 4, 2023 |archive-date=January 5, 2023 |archive-url=https://web.archive.org/web/20230105131547/https://www.computerbase.de/2023-01/13th-gen-intel-core-die-core-i5-sind-die-helden-der-neuen-65-watt-familie/ |url-status=live }}</ref>}}'''
+| 2.7
+| 2.0
+| 5.0
+| 3.7
+| rowspan="4" | UHD&nbsp;770
+| rowspan="4" | 1.55
+| 65{{nbsp}}W
+| 154{{nbsp}}W
+| rowspan="4" | {{dts|2023|January|03|format=mdy|abbr=on}}
+| $255
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230573/intel-core-i513600t-processor-24m-cache-up-to-4-80-ghz.html 13600T]{{efn|name="Alder Lake"}}'''
+| 1.8
+| 1.3
+| rowspan="2" | 4.8
+| 3.4
+| 35{{nbsp}}W
+| 92{{nbsp}}W
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230580/intel-core-i513500-processor-24m-cache-up-to-4-80-ghz.html 13500]'''{{efn|name="Alder Lake"}}
+| 2.5
+| 1.8
+| 3.5
+| 65{{nbsp}}W
+| 154{{nbsp}}W
+| $232
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/230578/intel-core-i513500t-processor-24m-cache-up-to-4-60-ghz.html 13500T]'''{{efn|name="Alder Lake"}}
+| 1.6
+| 1.2
+| 4.6
+| 3.2
+| 35{{nbsp}}W
+| 92{{nbsp}}W
+|-
+| '''[https://ark.intel.com/content/www/us/en/ark/products/232140/intel-core-i513490f-processor-24m-cache-up-to-4-80-ghz.html 13490F]'''{{efn|name="Alder Lake"}}
+| rowspan="4" | 4 (4)
+| 2.5
+| 1.8
+| 4.8
+| 3.5
+| colspan="2" {{NA}}
+| 65{{nbsp}}W
+| 148{{nbsp}}W
+| {{dts|2023|February|08|format=mdy|abbr=on}}
+| style="line-height:100%" | {{resize|China<br />exclusive}}
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230495/intel-core-i513400-processor-20m-cache-up-to-4-60-ghz.html 13400]{{efn|name="Alder Lake"}}
+| rowspan="2" | 2.5
+| rowspan="2" | 1.8
+| rowspan="2" | 4.6
+| rowspan="2" | 3.3
+| [[Intel Graphics Technology#Xe-LP architecture (Gen12)|UHD&nbsp;730]]
+| 1.55
+| rowspan="3" | 20{{nbsp}}MB
+| rowspan="2" | 65{{nbsp}}W
+| rowspan="2" | 148{{nbsp}}W
+| rowspan="6" | {{dts|2023|January|03|format=mdy|abbr=on}}
+| $221
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230501/intel-core-i513400f-processor-20m-cache-up-to-4-60-ghz.html 13400F]{{efn|name="Alder Lake"}}
+| colspan="2" {{NA}}
+| $196
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230577/intel-core-i513400t-processor-20m-cache-up-to-4-40-ghz.html 13400T]{{efn|name="Alder Lake"}}
+| 1.3
+| 1.0
+| 4.4
+| 3.0
+| rowspan="2" | UHD&nbsp;730
+| 1.55
+| 35{{nbsp}}W
+| 82{{nbsp}}W
+| $221
+|-
+| rowspan="3" | [[List of Intel Core i3 processors|Core i3]]
+|[https://ark.intel.com/content/www/us/en/ark/products/230575/intel-core-i313100-processor-12m-cache-up-to-4-50-ghz.html 13100]{{efn|name="Alder Lake"}}
+| rowspan="3" | 4 (8)
+| rowspan="3" {{NA}}
+| rowspan="2" | 3.4
+| rowspan="3" {{NA}}
+| rowspan="2" | 4.5
+| rowspan="3" {{NA}}
+| 1.5
+| rowspan="3" | 12{{nbsp}}MB
+| 60{{nbsp}}W
+| rowspan="2" | 110{{nbsp}}W
+| $134
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230576/intel-core-i313100f-processor-12m-cache-up-to-4-50-ghz.html 13100F]{{efn|name="Alder Lake"}}
+| colspan="2" {{NA}}
+| 58{{nbsp}}W
+| $109
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/230579/intel-core-i313100t-processor-12m-cache-up-to-4-20-ghz.html 13100T]{{efn|name="Alder Lake"}}
+| 2.5
+| 4.2
+| UHD&nbsp;730
+| 1.5
+| 35{{nbsp}}W
+| 69{{nbsp}}W
+| $134
+|-
+|}
+
+=== Mobile processors ===
+All mobile processors except for the HX series support the following types of memory: [[DDR5 SDRAM|DDR5-5200]], [[DDR4 SDRAM|DDR4-3200]], [[LPDDR|LPDDR5X-6400]], [[LPDDR|LPDDR4X-4267]]. The HX processors only support: [[DDR5 SDRAM|DDR5-4800]] (DDR5-5600 for i7-13850HX and above), [[DDR4 SDRAM|DDR4-3200]].
+
+The processors are connected to PCHs using an OPIO 2.0 x8 interface, except for the HX series which uses a DMI 4.0 x8 interface.<ref>{{Cite web |last=Bonshor |first=Gavin |date=January 3, 2023 |title=Intel Unveils 13th Gen Core Mobile Processor |url=https://www.anandtech.com/show/18703/intel-unveils-13th-gen-core-mobile-raptor-lake-hx-h-p-and-u-series |access-date=November 25, 2023 |archive-date=November 25, 2023 |archive-url=https://web.archive.org/web/20231125082602/https://www.anandtech.com/show/18703/intel-unveils-13th-gen-core-mobile-raptor-lake-hx-h-p-and-u-series |url-status=dead }}</ref> Except for the HX series, the processor and PCH are packaged together on a [[Multi-chip module|multi-chip package]].
+
+The HX series uses 45x37.5mm BGA 1964, and the other mobile processors use 25x50mm BGA 1744, on a Type 3 or Type 4 HDI.
+
+==== Raptor Lake-HX ====
+The HX processors are desktop processors repurposed for mobile use, with all models unlocked for [[overclocking]].
+* CPUs in '''bold''' support [[Intel vPro|vPro Enterprise]] and [[UDIMM]] [[ECC memory]] support when paired with the WM790 mobile workstation chipset.
+* i7-13650HX and above feature Turbo Boost 3.0, which is at the same speed as Turbo Boost 2.0.
+* i9-13980HX supports Thermal Velocity Boost to 5.6 GHz
+Alder Lake and Raptor Lake mixed models:
+* 13700HX, 13450HX
+Alder Lake models:
+* 13600HX, 13500HX
+
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|UHD Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| rowspan="3" | [[List of Intel Core i9 processors|Core i9]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232138/intel-core-i9-13980hx-processor-36m-cache-up-to-5-60-ghz.html 13980HX]
+| rowspan="5" | 8 (16)
+| rowspan="3" | 16 (16)
+| rowspan="3" | 2.2
+| rowspan="3" | 1.6
+| 5.6
+| rowspan="2" | 4.0
+| rowspan="5" | 32
+| rowspan="3" | 1.65
+| rowspan="3" | 36{{nbsp}}MB
+| rowspan="9" | 55{{nbsp}}W<br />(45{{nbsp}}W)
+| rowspan="9" | 157{{nbsp}}W
+| $668
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232149/intel-core-i913950hx-processor-36m-cache-up-to-5-50-ghz.html '''13950HX''']
+| 5.5
+| $590
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232171/intel-core-i913900hx-processor-36m-cache-up-to-5-40-ghz.html 13900HX]
+| 5.4
+| 3.9
+| $668
+|-
+| rowspan="3" | [[List of Intel Core i7 processors|Core i7]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232161/intel-core-i713850hx-processor-30m-cache-up-to-5-30-ghz.html '''13850HX''']
+| 12 (12)
+| rowspan="2" | 2.1
+| rowspan="2" | 1.5
+| 5.3
+| 3.8
+| 1.6
+| rowspan="2" | 30{{nbsp}}MB
+| $428
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232166/intel-core-i713700hx-processor-30m-cache-up-to-5-00-ghz.html 13700HX]
+| rowspan="4" | 8 (8)
+| 5.0
+| 3.7
+| rowspan="2" | 1.55
+| rowspan="2" | $485
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232101/intel-core-i713650hx-processor-24m-cache-up-to-4-90-ghz.html 13650HX]
+| rowspan="4" | 6 (12)
+| rowspan="2" | 2.6
+| rowspan="2" | 1.9
+| 4.9
+| rowspan="2" | 3.6
+| 16
+| rowspan="3" | 24{{nbsp}}MB
+|-
+| rowspan="3" | [[List of Intel Core i5 processors|Core i5]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232154/intel-core-i513600hx-processor-24m-cache-up-to-4-80-ghz.html '''13600HX''']
+| 4.8
+| rowspan="2" | 32
+| rowspan="2" | 1.5
+| $284
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232156/intel-core-i513500hx-processor-24m-cache-up-to-4-70-ghz.html 13500HX]
+| 2.5
+| rowspan="2" | 1.8
+| 4.7
+| 3.5
+| rowspan="2" | $326
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232132/intel-core-i513450hx-processor-20m-cache-up-to-4-60-ghz.html 13450HX]
+| 4 (4)
+| 2.4
+| 4.6
+| 3.4
+| 16
+| 1.45
+| 20{{nbsp}}MB
+|}
+
+==== Raptor Lake-H ====
+* The iGPU of CPUs in ''italic'' is UHD, not Iris Xe.
+* i7-13620H and above feature Turbo Boost 3.0, which is at the same speed as Turbo Boost 2.0.
+
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|UHD/Iris Xe Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| rowspan="2" | [[List of Intel Core i9 processors|Core i9]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232144/intel-core-i913900hk-processor-24m-cache-up-to-5-40-ghz.html 13900HK]
+| rowspan="5" | 6 (12)
+| rowspan="4" | 8 (8)
+| rowspan="2" | 2.6
+| rowspan="2" | 1.9
+| rowspan="2" | 5.4
+| rowspan="2" | 4.1
+| rowspan="4" | 96
+| rowspan="6" | 1.5
+| rowspan="5" | 24{{nbsp}}MB
+| rowspan="8" | 45{{nbsp}}W<br />(35{{nbsp}}W)
+| rowspan="5" | 115{{nbsp}}W
+| $697
+|-
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232135/intel-core-i913900h-processor-24m-cache-up-to-5-40-ghz.html 13900H]|vPro Enterprise}}
+| $617
+|-
+| rowspan="3" | [[List of Intel Core i7 processors|Core i7]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232164/intel-core-i713800h-processor-24m-cache-up-to-5-20-ghz.html 13800H]|vPro Enterprise}}
+| 2.5
+| rowspan="3" | 1.8
+| 5.2
+| 4.0
+| $457
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232128/intel-core-i713700h-processor-24m-cache-up-to-5-00-ghz.html 13700H]
+| rowspan="2" | 2.4
+| 5.0
+| 3.7
+| rowspan="2" | $502
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232130/intel-core-i713620h-processor-24m-cache-up-to-4-90-ghz.html ''13620H'']
+| 4 (4)
+| 4.9
+| rowspan="2" | 3.6
+| 64
+|-
+| rowspan="3" | [[List of Intel Core i5 processors|Core i5]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232145/intel-core-i513600h-processor-18m-cache-up-to-4-80-ghz.html 13600H]|vPro Enterprise}}
+| rowspan="3" | 4 (8)
+| rowspan="2" | 8 (8)
+| 2.8
+| 2.1
+| 4.8
+| 80
+| rowspan="2" | 18{{nbsp}}MB
+| rowspan="3" | 95{{nbsp}}W
+| $311
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232147/intel-core-i513500h-processor-18m-cache-up-to-4-70-ghz.html 13500H]
+|2.6
+|1.9
+|4.7
+|3.5
+|80
+|1.45
+| rowspan="2" |$342
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232173/intel-core-i513420h-processor-12m-cache-up-to-4-60-ghz.html ''13420H'']
+| 4 (4)
+| 2.1
+| 1.5
+| 4.6
+| 3.4
+| 48
+| 1.4
+| 12{{nbsp}}MB
+|}
+
+==== Raptor Lake-PX ====
+These CPUs use BGA1792.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|Iris Xe Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+|[[List of Intel Core i9 processors|Core i9]]
+|[https://ark.intel.com/content/www/us/en/ark/products/232172/intel-core-i913905h-processor-24m-cache-up-to-5-40-ghz.html 13905H]
+| rowspan="2" |6 (12)
+| rowspan="3" |8 (8)
+|2.6
+|1.9
+|5.4
+|4.1
+| rowspan="2" |96
+| rowspan="2" |1.5
+| rowspan="2" |24{{nbsp}}MB
+| rowspan="3" |45{{nbsp}}W<br />(35{{nbsp}}W)
+| rowspan="3" |115{{nbsp}}W
+|$697
+|-
+|[[List of Intel Core i7 processors|Core i7]]
+|[https://ark.intel.com/content/www/us/en/ark/products/232139/intel-core-i713705h-processor-24m-cache-up-to-5-00-ghz.html 13705H]
+|2.4
+|1.8
+|5.0
+|3.7
+|$502
+|-
+|[[List of Intel Core i5 processors|Core i5]]
+|[https://ark.intel.com/content/www/us/en/ark/products/232107/intel-core-i513505h-processor-18m-cache-up-to-4-70-ghz.html 13505H]
+|4 (8)
+|2.6
+|1.9
+|4.7
+|3.5
+|80
+|1.45
+|18 MB
+|$342
+|}
+
+==== Raptor Lake-P ====
+{| class="wikitable sortable" style="text-align: center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|Iris Xe Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| rowspan="2" | [[List of Intel Core i7 processors|Core i7]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232146/intel-core-i71370p-processor-24m-cache-up-to-5-20-ghz.html 1370P]|vPro Enterprise}}
+| 6 (12)
+| rowspan="4" | 8 (8)
+| 1.9
+| 1.4
+| 5.2
+| 3.9
+| rowspan="2" | 96
+| rowspan="3" | 1.5
+| 24{{nbsp}}MB
+| rowspan="4" | 28{{nbsp}}W<br />(20{{nbsp}}W)
+| rowspan="4" | 64{{nbsp}}W
+| $438
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232155/intel-core-i71360p-processor-18m-cache-up-to-5-00-ghz.html 1360P]
+| rowspan="3" | 4 (8)
+| 2.2
+| 1.6
+| 5.0
+| 3.7
+| 18{{nbsp}}MB
+| $480
+|-
+| rowspan="2" | [[List of Intel Core i5 processors|Core i5]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232103/intel-core-i51350p-processor-12m-cache-up-to-4-70-ghz.html 1350P]|vPro Enterprise}}
+| rowspan="2" | 1.9
+| rowspan="2" | 1.4
+| 4.7
+| 3.5
+| rowspan="2" | 80
+| rowspan="2" | 12{{nbsp}}MB
+| $320
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232126/intel-core-i51340p-processor-12m-cache-up-to-4-60-ghz.html 1340P]
+| 4.6
+| 3.4
+| 1.45
+| $353
+|}
+
+==== Raptor Lake-U ====
+The iGPU of CPUs in ''italic'' is UHD, not Iris Xe.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|UHD/Iris Xe Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| rowspan="2" | [[List of Intel Core i7 processors|Core i7]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232141/intel-core-i71365u-processor-12m-cache-up-to-5-20-ghz.html 1365U]|vPro Enterprise}}
+| rowspan="6" | 2 (4)
+| rowspan="5" | 8 (8)
+| 1.8
+| 1.3
+| 5.2
+| 3.9
+| rowspan="2" | 96
+| rowspan="2" | 1.3
+| rowspan="5" | 12{{nbsp}}MB
+| rowspan="8" | 15{{nbsp}}W<br />(12{{nbsp}}W)
+| rowspan="8" | 55{{nbsp}}W
+| $426
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232160/intel-core-i71355u-processor-12m-cache-up-to-5-00-ghz.html 1355U]
+| 1.7
+| rowspan="2" | 1.2
+| 5.0
+| 3.7
+| $469
+|-
+| rowspan="3" | [[List of Intel Core i5 processors|Core i5]]
+| {{abbr|[https://ark.intel.com/content/www/us/en/ark/products/232127/intel-core-i51345u-processor-12m-cache-up-to-4-70-ghz.html 1345U]|vPro Enterprise}}
+| 1.6
+| 4.7
+| 3.5
+| rowspan="3" | 80
+| rowspan="5" | 1.25
+| $309
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232153/intel-core-i51335u-processor-12m-cache-up-to-4-60-ghz.html 1335U]
+| rowspan="2" | 1.3
+| rowspan="3" | 0.9
+| rowspan="2" | 4.6
+| rowspan="2" | 3.4
+| rowspan="2" | $340
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232143/intel-core-i51334u-processor-12m-cache-up-to-4-60-ghz.html 1334U]
+|-
+| rowspan="2" | [[List of Intel Core i3 processors|Core i3]]
+| [https://ark.intel.com/content/www/us/en/ark/products/232136/intel-core-i31315u-processor-10m-cache-up-to-4-50-ghz.html ''1315U'']<br />([https://ark.intel.com/content/www/us/en/ark/products/233459/intel-core-i31315u-processor-10m-cache-up-to-4-50-ghz-with-ipu.html ''with{{nbsp}}IPU''])
+| rowspan="3" | 4 (4)
+| 1.2
+| rowspan="2" | 4.5
+| rowspan="3" | 3.3
+| rowspan="2" | 64
+| rowspan="2" | 10{{nbsp}}MB
+| rowspan="2" | $309
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/232909/intel-core-i31305u-processor-10m-cache-up-to-4-50-ghz.html ''1305U'']
+| rowspan="2" | 1 (2)
+| 1.6
+| 1.2
+|-
+| Intel<br />Processor
+| [https://ark.intel.com/content/www/us/en/ark/products/232142/intel-processor-u300-8m-cache-up-to-4-40-ghz.html ''U300'']
+| 1.2
+|
+| 4.4
+| 48
+| 1.1
+| 8{{nbsp}}MB
+| $193
+|}
+
+== List of 14th-generation Raptor Lake processors ==
+
+=== Desktop processors ===
+
+==== Raptor Lake-S Refresh ====
+An iterative refresh of Raptor Lake-S desktop processors were launched as 14th-generation Core processors on October 17, 2023.<ref name=":2">{{Cite web |last=Bonshor |first=Gavin |date=October 16, 2023 |title=Intel Announces 14th Gen Core Series For Desktop: Core i9-14900K, Core i7-14700K and Core i5-14600K |url=https://www.anandtech.com/show/21096/intel-announces-14th-gen-core-series-for-desktop-core-i9-14900k-core-i7-14700k-and-core-i5-14600k |website=AnandTech |access-date=October 17, 2023 |archive-date=October 17, 2023 |archive-url=https://web.archive.org/web/20231017021225/https://www.anandtech.com/show/21096/intel-announces-14th-gen-core-series-for-desktop-core-i9-14900k-core-i7-14700k-and-core-i5-14600k/ |url-status=dead }}</ref><ref name=":3">{{Cite web |title=Intel Launches Intel Core 14th Gen Desktop Processors for Enthusiasts |url=https://www.intel.com/content/www/us/en/newsroom/news/intel-core-14th-gen-desktop-processors.html |website=Intel |date=October 16, 2023 |access-date=October 17, 2023 |archive-date=October 17, 2023 |archive-url=https://web.archive.org/web/20231017061351/https://www.intel.com/content/www/us/en/newsroom/news/intel-core-14th-gen-desktop-processors.html |url-status=live }}</ref> Raptor Lake-S Refresh uses the same B0 and C0 silicon steppings as Raptor Lake with no physical changes.<ref>{{cite web |last1=Shilov |first1=Anton |date=October 21, 2023 |title=Vendors Share Raptor Lake Refresh Non-K CPU Specs |url=https://www.tomshardware.com/news/vendors-share-raptor-lake-refresh-non-k-cpu-specs |website=Tom's Hardware |access-date=September 29, 2024}}</ref> The most major change with Raptor Lake-S Refresh is that one fewer E-core cluster is disabled in silicon for Core i7 SKUs.
+
+CPUs in '''bold''' below feature [[UDIMM]] [[ECC memory]] support only when paired with a motherboard based on the W680 chipset according to each respective Intel Ark product page.
+* Alder Lake and Raptor Lake mixed models:
+** 14400, 14400F
+* Alder Lake models:
+** 14500, 14500T, 14490F, 14400T, 14100, 14100F, 14100T, 300, 300T
+
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! rowspan="4" | Branding
+! rowspan="4" | Model
+! colspan="2" rowspan="3" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="6" | [[Clock rate]] (GHz)
+! colspan="2" | [[Intel Graphics Technology|GPU]]
+! rowspan="4" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" rowspan="3" | [[Thermal design power|TDP]]
+! rowspan="4" | Released
+! rowspan="4" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! colspan="2" rowspan="2" | Base
+! colspan="4" | [[Intel Turbo Boost|Turbo Boost]]
+! rowspan="3" | Model
+! rowspan="3" | Max. freq.<br />(GHz)
+|-
+! colspan="2" | 2.0
+! 3.0
+! {{abbr|TVB|Thermal Velocity Boost}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|P|Performance-}}
+! Base
+! Turbo
+|-
+| rowspan="6" |[[List of Intel Core i9 processors|Core i9]]
+| [https://ark.intel.com/content/www/us/en/ark/products/237504/intel-core-i9-processor-14900ks-36m-cache-up-to-6-20-ghz.html '''14900KS''']
+| rowspan="12" | 8 (16)
+| rowspan="6" | 16 (16)
+| rowspan="3" | 3.2
+| rowspan="3" | 2.4
+| 5.7
+| 4.5
+| 5.9
+| 6.2
+| rowspan="2" | UHD 770
+| rowspan="2" | 1.65
+| rowspan="7" | 36{{nbsp}}MB
+| 150 W
+| rowspan="3" | 253{{nbsp}}W
+| {{dts|2024|March|14|format=mdy|abbr=on}}
+| $689
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236773.html '''14900K''']
+| rowspan="2" | 5.6
+| rowspan="2" | 4.4
+| rowspan="2" | 5.8
+| rowspan="2" | 6.0
+| rowspan="2" | 125{{nbsp}}W
+| rowspan="2" | {{dts|2023|October|17|format=mdy|abbr=on}}
+| $589
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236787.html 14900KF]
+| colspan="2" {{NA}}
+| $564
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/236793/intel-core-i9-processor-14900-36m-cache-up-to-5-80-ghz.html '''14900''']
+| rowspan="2" | 2.0
+| rowspan="2" | 1.5
+| rowspan="2" | 5.4
+| rowspan="2" | 4.3
+| rowspan="2" | 5.6
+| rowspan="2" | 5.8
+| UHD 770
+| 1.65
+| rowspan="2" | 65 W
+| rowspan="2" | 219 W
+| rowspan="3" | {{dts|2024|January|08|format=mdy|abbr=on}}
+| $549
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/236853/intel-core-i9-processor-14900f-36m-cache-up-to-5-80-ghz.html 14900F]
+| colspan="2" {{NA}}
+| $524
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236791/intel-core-i9-processor-14900t-36m-cache-up-to-5-50-ghz.html '''14900T''']
+| 1.1
+| 0.8
+| 5.1
+| 4.0
+| 5.5
+| rowspan="22" {{NA}}
+| UHD 770
+| 1.65
+| 35 W
+| 106 W
+| $549
+|-
+| rowspan="6" |[[List of Intel Core i7 processors|Core i7]]
+| [https://ark.intel.com/content/www/us/en/ark/products/236779/intel-core-i7-processor-14790f-36m-cache-up-to-5-40-ghz.html 14790F]
+| 8 (8)
+| 2.1
+| 1.5
+| 5.3
+| 4.2
+| 5.4
+| colspan="2" {{NA}}
+| 65 W
+| 219 W
+| {{dts|2024|January|15|format=mdy|abbr=on}}
+| style="line-height:100%" | {{resize|China <br /> exclusive}}
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236783.html '''14700K''']
+| rowspan="5" | 12 (12)
+| rowspan="2" | 3.4
+| rowspan="2" | 2.5
+| rowspan="2" | 5.5
+| rowspan="2" | 4.3
+| rowspan="2" | 5.6
+| UHD 770
+| 1.6
+| rowspan="5" | 33 MB
+| rowspan="2" | 125 W
+| rowspan="2" | 253{{nbsp}}W
+| rowspan="2" | {{dts|2023|October|17|format=mdy|abbr=on}}
+| $409
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236789.html 14700KF]
+| colspan="2" {{NA}}
+| rowspan="2" | $384
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236781/intel-core-i7-processor-14700-33m-cache-up-to-5-40-ghz.html '''14700''']
+| rowspan="2" | 2.1
+| rowspan="2" | 1.5
+| rowspan="2" | 5.3
+| rowspan="2" | 4.2
+| rowspan="2" | 5.4
+| UHD 770
+| 1.6
+| rowspan="2" | 65 W
+| rowspan="2" | 219 W
+| rowspan="3" | {{dts|2024|January|08|format=mdy|abbr=on}}
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236854/intel-core-i7-processor-14700f-33m-cache-up-to-5-40-ghz.html 14700F]
+| colspan="2" {{NA}}
+| $359
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236794/intel-core-i7-processor-14700t-33m-cache-up-to-5-20-ghz.html '''14700T''']
+| 1.3
+| 0.9
+| 5.0
+| 3.7
+| 5.2
+| rowspan="2" | UHD 770
+| 1.6
+| 35 W
+| 106 W
+| $384
+|-
+| rowspan="10" | [[List of Intel Core i5 processors|Core i5]]
+| [https://ark.intel.com/content/www/us/en/ark/products/236799.html '''14600K''']
+| rowspan="10" | 6 (12)
+| rowspan="6" | 8 (8)
+| rowspan="2" | 3.5
+| rowspan="2" | 2.6
+| rowspan="2" | 5.3
+| rowspan="2" | 4.0
+| rowspan="15" {{NA}}
+| 1.55
+| rowspan="7" | 24 MB
+| rowspan="2" | 125 W
+| rowspan="2" | 181 W
+| rowspan="2" | {{dts|2023|October|17|format=mdy|abbr=on}}
+| $319
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236778.html 14600KF]
+| colspan="2" {{NA}}
+| $294
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236845/intel-core-i5-processor-14600-24m-cache-up-to-5-20-ghz.html '''14600''']
+| 2.7
+| 2.0
+| 5.2
+| 3.9
+| rowspan="4" | UHD 770
+| rowspan="4" | 1.55
+| 65 W
+| 154 W
+| rowspan="4" | {{dts|2024|January|08|format=mdy|abbr=on}}
+| rowspan="2" | $255
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236782/intel-core-i5-processor-14600t-24m-cache-up-to-5-00-ghz.html '''14600T''']
+| 1.8
+| 1.3
+| 5.1
+| 3.6
+| 35 W
+| 92 W
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236784/intel-core-i5-processor-14500-24m-cache-up-to-5-00-ghz.html '''14500''']
+| 2.6
+| 1.9
+| 5.0
+| 3.7
+| 65 W
+| 154 W
+| rowspan="2" | $232
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236780/intel-core-i5-processor-14500t-24m-cache-up-to-4-80-ghz.html '''14500T''']
+| 1.7
+| 1.2
+| 4.8
+| 3.4
+| 35 W
+| 92 W
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236792/intel-core-i5-processor-14490f-24m-cache-up-to-4-90-ghz.html 14490F]
+| rowspan="4" | 4 (4)
+| 2.8
+| 2.1
+| 4.9
+| 3.7
+| colspan="2" {{NA}}
+| rowspan="3" | 65 W
+| rowspan="3" | 148 W
+| {{dts|2024|January|15|format=mdy|abbr=on}}
+| style="line-height:100%" | {{resize|China <br /> exclusive}}
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/236788/intel-core-i5-processor-14400-20m-cache-up-to-4-70-ghz.html 14400]
+| rowspan="2" | 2.5
+| rowspan="2" | 1.8
+| rowspan="2" | 4.7
+| rowspan="2" | 3.5
+| UHD 730
+| 1.55
+| rowspan="3" | 20 MB
+| rowspan="8" | {{dts|2024|January|08|format=mdy|abbr=on}}
+| $221
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236777/intel-core-i5-processor-14400f-20m-cache-up-to-4-70-ghz.html 14400F]
+| colspan="2" {{NA}}
+| $196
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236790/intel-core-i5-processor-14400t-20m-cache-up-to-4-50-ghz.html 14400T]
+| 1.5
+| 1.1
+| 4.5
+| 3.2
+| rowspan="2" |UHD 730
+| 1.55
+| 35 W
+| 82 W
+| $221
+|-
+| rowspan="3" |Core i3
+| [https://ark.intel.com/content/www/us/en/ark/products/236774/intel-core-i3-processor-14100-12m-cache-up-to-4-70-ghz.html 14100]
+| rowspan="3" | 4 (8)
+| rowspan="5" {{NA}}
+| rowspan="2" | 3.5
+| rowspan="5" {{NA}}
+| rowspan="2" | 4.7
+| rowspan="5" {{NA}}
+| 1.5
+| rowspan="3" | 12 MB
+| 60 W
+| rowspan="2" | 110 W
+| $134
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236786/intel-core-i3-processor-14100f-12m-cache-up-to-4-70-ghz.html 14100F]
+| colspan="2" {{NA}}
+| 58 W
+| $109
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236775/intel-core-i3-processor-14100t-12m-cache-up-to-4-40-ghz.html 14100T]
+| 2.7
+| 4.4
+| UHD 730
+| 1.5
+| 35 W
+| 69 W
+| $134
+|-
+| rowspan="2" | Intel <br /> Processor
+| [https://ark.intel.com/content/www/us/en/ark/products/236846/intel-processor-300-6m-cache-up-to-3-90-ghz.html 300]
+| rowspan="2" | 2 (4)
+| 3.9
+| rowspan="2" {{NA}}
+| rowspan="2" | UHD 710
+| rowspan="2" | 1.45
+| rowspan="2" | 6 MB
+| 46 W
+| rowspan="2" {{NA}}
+| rowspan="2" | $82
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236852/intel-processor-300t-6m-cache-up-to-3-40-ghz.html 300T]
+| 3.4
+| 35 W
+|}
+
+=== Embedded processors ===
+==== Raptor Lake-E Refresh ====
+Embedded Raptor Lake Refresh CPUs lack E-Cores and contain only P-Cores.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" |Processor<br />branding
+! rowspan="2" |Model
+! rowspan="2" |[[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" |[[Clock rate]] (GHz)
+! colspan="2" |[[Intel Graphics Technology|GPU]]
+! rowspan="2" |[[Smart Cache|Smart<br />cache]]
+! rowspan="2" |[[Thermal design power|TDP]]
+! rowspan="2" |Price <br /> (USD){{efn|name="RCP"}}
+|-
+! rowspan="1" |Base
+! colspan="1" |[[Intel Turbo Boost|Turbo]]
+! rowspan="1" |Model
+! rowspan="1" |Max. freq.<br />(GHz)
+|-
+| rowspan="3" |[[List of Intel Core i9 processors|Core i9]]
+|[https://ark.intel.com/content/www/us/en/ark/products/238781.html 14901KE]
+| rowspan="5" |8 (16)
+|3.8
+|5.8
+| rowspan="9" |UHD 770
+| rowspan="5" |1.65
+| rowspan="3" |36{{nbsp}}MB
+|125 W
+| rowspan="3" |$557
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239181/intel-core-i9-processor-14901e-36m-cache-up-to-5-60-ghz.html 14901E]
+|2.8
+|5.6
+|65 W
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/238778/intel-core-i9-processor-14901te-36m-cache-up-to-5-50-ghz.html 14901TE]
+|2.3
+|5.5
+|45 W
+|-
+| rowspan="2" |[[List of Intel Core i7 processors|Core i7]]
+|[https://ark.intel.com/content/www/us/en/ark/products/238775/intel-core-i7-processor-14701e-33m-cache-up-to-5-40-ghz.html 14701E]
+|2.6
+|5.4
+| rowspan="2" |33 MB
+|65 W
+| rowspan="2" |$392
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/238774/intel-core-i7-processor-14701te-33m-cache-up-to-5-20-ghz.html 14701TE]
+|2.1
+| rowspan="2" |5.2
+|45 W
+|-
+| rowspan="4" |[[List of Intel Core i5 processors|Core i5]]
+|[https://ark.intel.com/content/www/us/en/ark/products/239180/intel-core-i5-processor-14501e-24m-cache-up-to-5-20-ghz.html 14501E]
+| rowspan="4" |6 (12)
+|3.3
+| rowspan="4" |1.55
+| rowspan="4" |24 MB
+|65 W
+| rowspan="2" |$239
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239179/intel-core-i5-processor-14501te-24m-cache-up-to-5-10-ghz.html 14501TE]
+|2.2
+|5.1
+|45 W
+|-
+|[https://www.intel.com/content/www/us/en/products/sku/238777/intel-core-i5-processor-14401e-24m-cache-up-to-4-70-ghz/specifications.html 14401E]
+|2.5
+|4.7
+|65 W
+| rowspan="2" |$228
+|-
+|[https://www.intel.com/content/www/us/en/products/sku/238779/intel-core-i5-processor-14401te-24m-cache-up-to-4-50-ghz/specifications.html 14401TE]
+|2.0
+|4.5
+|45 W
+|}
+
+=== Mobile processors ===
+==== Raptor Lake-HX Refresh ====
+An iterative refresh of Raptor Lake-HX mobile processors, called the 14th generation of Intel Core, was launched on January 9, 2024.<ref name="techpowerup.com">{{cite web|url=https://www.techpowerup.com/317474/intel-releases-14th-gen-core-hx-raptor-lake-refresh-mobile-processors|title = Intel Releases 14th Gen Core HX "Raptor Lake Refresh" Mobile Processors| date=January 8, 2024 |publisher=TechPowerUP}}</ref>
+
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|UHD Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Release date
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| rowspan="1" | [[List of Intel Core i9 processors|Core i9]]
+| [https://ark.intel.com/content/www/us/en/ark/products/235995/intel-core-i9-processor-14900hx-36m-cache-up-to-5-80-ghz.html 14900HX]
+| rowspan="3" | 8 (16)
+| 16 (16)
+| 2.2
+| 1.6
+| 5.8
+| 4.1
+| rowspan="2" | 32
+| 1.65
+| 36{{nbsp}}MB
+| rowspan="5" | 55{{nbsp}}W<br />(45{{nbsp}}W)
+| rowspan="5" | 157{{nbsp}}W
+| rowspan="5" | Q1'24
+| $679
+|-
+| rowspan="2" | [[List of Intel Core i7 processors|Core i7]]
+| [https://ark.intel.com/content/www/us/en/ark/products/235997/intel-core-i7-processor-14700hx-33m-cache-up-to-5-50-ghz.html 14700HX]
+| 12 (12)
+| 2.1
+| 1.5
+| 5.5
+| 3.9
+| rowspan="2" | 1.6
+| 33{{nbsp}}MB
+| $495
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/235996/intel-core-i7-processor-14650hx-30m-cache-up-to-5-20-ghz.html 14650HX]
+| rowspan="2" | 8 (8)
+| 2.2
+| 1.6
+| 5.2
+| 3.7
+| 16
+| 30{{nbsp}}MB
+|-
+| rowspan="2" | [[List of Intel Core i5 processors|Core i5]]
+| [https://ark.intel.com/content/www/us/en/ark/products/235999/intel-core-i5-processor-14500hx-24m-cache-up-to-4-90-ghz.html 14500HX]
+| rowspan="2" | 6 (12)
+| 2.6
+| 1.9
+| 4.9
+| rowspan="2" | 3.5
+| 32
+| 1.55
+| 24{{nbsp}}MB
+| $337
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/235998/intel-core-i5-processor-14450hx-20m-cache-up-to-4-80-ghz.html 14450HX]
+| 4 (4)
+| 2.4
+| 1.8
+| 4.8
+| 16
+| 1.5
+| 20{{nbsp}}MB
+|}
+
+=== Server processors ===
+* CPUs support 2-channel DDR5-4800 [[ECC memory]]
+* 48 PCI Express lanes total between CPU and chipset
+** CPU: x16 PCIe 5.0, x4 PCIe 4.0
+** C260 PCH: x20 PCIe 4.0, x8 PCIe 3.0
+* LGA1700 socket
+* A refresh/rebrand of the Xeon E-2400 entry-server line, marketed as the Intel Xeon 6 6300 series, was launched on February 24, 2025.<ref name="sth_xeon6300">{{cite web|url=https://www.servethehome.com/intel-xeon-6300-launched-for-entry-servers-with-2019-core-counts/|title=Intel Xeon 6300 Launched for Entry Servers with 2019 Core Counts|date=February 24, 2025|publisher=ServeTheHome}}</ref>
+{| class="wikitable sortable" style="text-align: center;"
+|-
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! rowspan="2" | [[CPU core|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="2" | [[Clock rate]] (GHz)
+! rowspan="2" | [[CPU cache|Smart<br />cache]]
+! rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Release date
+! rowspan="2" | Price<br />(USD){{Efn|name="RCP"}}
+|-
+! Base
+! Turbo
+|-
+| rowspan="8" | Xeon E
+| [https://ark.intel.com/content/www/us/en/ark/products/236182/intel-xeon-e-2488-processor-24m-cache-3-20-ghz.html 2488]
+| rowspan="3" | 8 (16)
+| 3.2
+| 5.6
+| rowspan="3" | 24{{nbsp}}MB
+| 95{{nbsp}}W
+| rowspan="8" | Q4'23
+| $606
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236183/intel-xeon-e-2478-processor-24m-cache-2-80-ghz.html 2478]
+| 2.8
+| 5.2
+| 80{{nbsp}}W
+| $556
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236184/intel-xeon-e-2468-processor-24m-cache-2-60-ghz.html 2468]
+| 2.6
+| 5.2
+| 65{{nbsp}}W
+| $426
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236185/intel-xeon-e-2486-processor-18m-cache-3-50-ghz.html 2486]
+| rowspan="3" | 6 (12)
+| 3.5
+| 5.6
+| rowspan="3" | 18{{nbsp}}MB
+| 95{{nbsp}}W
+| $506
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236188/intel-xeon-e-2456-processor-18m-cache-3-30-ghz.html 2456]
+| 3.3
+| 5.1
+| 80{{nbsp}}W
+| $375
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236190/intel-xeon-e-2436-processor-18m-cache-2-90-ghz.html 2436]
+| 2.9
+| 4.8
+| 65{{nbsp}}W
+| $319
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236192/intel-xeon-e-2434-processor-12m-cache-3-40-ghz.html 2434]
+| 4 (8)
+| 3.4
+| 5.0
+| rowspan="2" | 12{{nbsp}}MB
+| rowspan="2" | 55{{nbsp}}W
+| $281
+|-
+| [https://ark.intel.com/content/www/us/en/ark/products/236193/intel-xeon-e-2414-processor-12m-cache-2-60-ghz.html 2414]
+| 4 (4)
+| 2.6
+| 4.5
+| $213
+|-
+| rowspan="8" | Xeon 6<br />6300 series
+| [https://www.intel.com/content/www/us/en/products/sku/241616/intel-xeon-6369p-processor-24m-cache-3-30-ghz/specifications.html 6369P]
+| rowspan="3" | 8 (16)
+| 3.3
+| 5.7
+| rowspan="3" | 24{{nbsp}}MB
+| 95{{nbsp}}W
+| rowspan="8" | Q1'25
+| $606
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241607/intel-xeon-6357p-processor-24m-cache-3-00-ghz/specifications.html 6357P]
+| 3.0
+| 5.4
+| 80{{nbsp}}W
+| $556
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241608/intel-xeon-6353p-processor-24m-cache-2-70-ghz/specifications.html 6353P]
+| 2.7
+| 5.4
+| 65{{nbsp}}W
+| $426
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241611/intel-xeon-6349p-processor-18m-cache-3-60-ghz/specifications.html 6349P]
+| rowspan="3" | 6 (12)
+| 3.6
+| 5.7
+| rowspan="3" | 18{{nbsp}}MB
+| 95{{nbsp}}W
+| $506
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241612/intel-xeon-6337p-processor-18m-cache-3-50-ghz/specifications.html 6337P]
+| 3.5
+| 5.3
+| 80{{nbsp}}W
+| $375
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241602/intel-xeon-6333p-processor-18m-cache-3-10-ghz/specifications.html 6333P]
+| 3.1
+| 5.2
+| 65{{nbsp}}W
+| $319
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241605/intel-xeon-6325p-processor-12m-cache-3-50-ghz/specifications.html 6325P]
+| 4 (8)
+| 3.5
+| 5.2
+| rowspan="2" | 12{{nbsp}}MB
+| rowspan="2" | 55{{nbsp}}W
+| $281
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241603/intel-xeon-6315p-processor-12m-cache-2-80-ghz/specifications.html 6315P]
+| 4 (4)
+| 2.8
+| 4.7
+| $213
+|}
+
+== List of Core Series 1 processors ==
+=== Mobile processors ===
+These Raptor Lake-based processors are branded as "Core Series 1" vs. the [[Meteor Lake]]-based ones which are branded "Core Ultra Series 1."
+
+==== Raptor Lake-U Refresh ====
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|Intel Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Release date
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| Core 7
+| [https://ark.intel.com/content/www/us/en/ark/products/236795/intel-core-7-processor-150u-12m-cache-up-to-5-40-ghz.html 150U]
+| rowspan="3" | 2 (4)
+| rowspan="2" | 8 (8)
+| 1.8
+| 1.2
+| 5.4
+| 4.0
+| 96
+| 1.3
+| rowspan="2" | 12{{nbsp}}MB
+| rowspan="3" | 15{{nbsp}}W<br />(12{{nbsp}}W)
+| rowspan="3" | 55{{nbsp}}W
+| rowspan="3" | Q1'24
+|
+|-
+| Core 5
+| [https://ark.intel.com/content/www/us/en/ark/products/236796/intel-core-5-processor-120u-12m-cache-up-to-5-00-ghz.html 120U]
+| 1.4
+| rowspan="2" | 0.9
+| 5.0
+| 3.8
+| 80
+| rowspan="2" | 1.25
+| $340
+|-
+| Core 3
+| [https://ark.intel.com/content/www/us/en/ark/products/236776/intel-core-3-processor-100u-10m-cache-up-to-4-70-ghz.html 100U]<br />([https://ark.intel.com/content/www/us/en/ark/products/238762/intel-core-3-processor-100u-10m-cache-up-to-4-70-ghz-with-ipu.html with{{nbsp}}IPU])
+| 4 (4)
+| 1.2
+| 4.7
+| 3.3
+| 64
+| 10{{nbsp}}MB
+|
+|}
+
+== List of Core Series 2 processors ==
+=== Mobile processors ===
+These Raptor Lake-based processors are branded as "Core Series 2", Unlike Arrow Lake's "Core Ultra Series 2".
+
+==== Raptor Lake-U Re-refresh ====
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|Intel Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" | Release date
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+| Core 7
+| [https://www.intel.com/content/www/us/en/products/sku/238771/intel-core-7-processor-250u-12m-cache-up-to-5-40-ghz/specifications.html 250U]
+| rowspan="2" | 2 (4)
+| rowspan="2" | 8 (8)
+| 1.8
+| 1.2
+| 5.4
+| 4.0
+| 96
+| rowspan="2" | 1.3
+| rowspan="2" | 12{{nbsp}}MB
+| rowspan="2" | 15{{nbsp}}W<br />(12{{nbsp}}W)
+| rowspan="2" | 55{{nbsp}}W
+| rowspan="2" | Q1'25
+|$426
+|-
+| Core 5
+| [https://www.intel.com/content/www/us/en/products/sku/238776/intel-core-5-processor-220u-12m-cache-up-to-5-00-ghz/specifications.html 220U]
+| 1.4
+| 0.9
+| 5.0
+| 3.8
+| 80
+| $309
+|}
+
+==== Raptor Lake-H Re-refresh ====
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[clock rate|Base clock]]<br />(GHz)
+! colspan="2" | [[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" | [[Intel Graphics Technology|UHD/Iris Xe Graphics]]
+! rowspan="2" | [[Smart Cache|Smart<br />cache]]
+! colspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" |Release date
+! rowspan="2" | Price <br /> (USD){{efn|name="RCP"}}
+|-
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! {{abbr|P|Performance-}}
+! {{abbr|E|Efficient-}}
+! EUs
+! Boost clock<br />(GHz)
+! Base<br />(cTDP)
+! Turbo
+|-
+|[[List of Intel Core i9 processors|Core 9]]
+| [https://www.intel.com/content/www/us/en/products/sku/241947/intel-core-9-processor-270h-24m-cache-up-to-5-80-ghz/specifications.html 270H]
+| rowspan="3" |6 (12)
+| rowspan="2" |8 (8)
+|2.7
+|2.0
+|5.8
+|4.1
+| rowspan="2" |96
+| rowspan="3" |1.55
+| rowspan="3" |24{{nbsp}}MB
+| rowspan="5" |45{{nbsp}}W<br />(35{{nbsp}}W)
+| rowspan="3" |115{{nbsp}}W
+| rowspan="5" |Q1'25
+| $697
+|-
+| rowspan="2" | [[List of Intel Core i7 processors|Core 7]]
+| [https://www.intel.com/content/www/us/en/products/sku/241651/intel-core-7-processor-250h-24m-cache-up-to-5-40-ghz/specifications.html 250H]
+| rowspan="2" | 2.5
+| rowspan="2" | 1.8
+| 5.4
+| rowspan="2" | 4.0
+| rowspan="2" | $502
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241653/intel-core-7-processor-240h-24m-cache-up-to-5-20-ghz/specifications.html 240H]
+| 4 (4)
+| 5.2
+| 64
+|-
+| rowspan="2" |[[List of Intel Core i5 processors|Core 5]]
+| [https://www.intel.com/content/www/us/en/products/sku/241654/intel-core-5-processor-220h-18m-cache-up-to-4-90-ghz/specifications.html 220H]
+| rowspan="2" |4 (8)
+| 8 (8)
+| 2.7
+| 2.0
+| 4.9
+| 3.7
+| 80
+| 1.5
+| 18{{nbsp}}MB
+| rowspan="2" |95{{nbsp}}W
+| rowspan="2" |$342
+|-
+| [https://www.intel.com/content/www/us/en/products/sku/241652/intel-core-5-processor-210h-12m-cache-up-to-4-80-ghz/specifications.html 210H]
+| 4 (4)
+| 2.2
+| 1.6
+| 4.8
+| 3.6
+| 48
+| 1.4
+| 12{{nbsp}}MB
+|}
+
+== Instability and degradation issue ==
+[[File:Intel-Fehlermeldung durch Intel Raptor Lake-Instabilitätsprobleme.png|thumb|An example error message of a program crashing that occur on systems with the affected CPUs, which led to an initial assumption of it being an issue related to graphic cards or drivers<ref>{{Cite web |last= |first= |date=July 31, 2024 |title=Das große CPU-Sterben: Intels 13. und 14. Generation droht der vorzeitige Hitzetod |url=https://www.pcwelt.de/article/2414427/intels-cpu-sterben-13-und-14-generation-probleme-vorzeitiger-hitzetod.html |language=de |trans-title= |website=PC-WELT |access-date=October 16, 2024 }}</ref>]]
+
+In February 2024, reports had begun surfacing of users of K-versions of the 13th- and 14th-generation Core i7 and i9 desktop CPUs commonly experiencing [[Crash (computing)|crashing]] issues in certain workload scenarios, such as video games that use DirectX 12, and [[HandBrake]].<ref>{{cite web |last=Hagedoorn |first=Hilbert |date=February 22, 2024 |title=Instability Issues with Intel 13th/14th Generation Processors During Unreal Engine Gameplay |url=https://www.guru3d.com/story/instability-issues-with-intel-13th-14th-generation-processors-during-unreal-engine-gameplay/ |website=Guru3d.com |access-date=April 19, 2024 |archive-date=April 19, 2024 |archive-url=https://web.archive.org/web/20240419112931/https://www.guru3d.com/story/instability-issues-with-intel-13th-14th-generation-processors-during-unreal-engine-gameplay/ |url-status=live }}</ref><ref>{{cite web |last=Connatser |first=Matthew |title=Is your Intel Core i9-13900K crashing in games? Your motherboard BIOS settings may be to blame — other high-end Intel CPUs also affected (Updated) |url=https://www.tomshardware.com/pc-components/cpus/is-your-intel-core-i9-13900k-crashing-in-games-your-motherboard-bios-settings-may-be-to-blame-other-high-end-intel-cpus-also-affected |website=Tom's Hardware |access-date=April 19, 2024 |date=February 23, 2024 |archive-date=April 19, 2024 |archive-url=https://web.archive.org/web/20240419112925/https://www.tomshardware.com/pc-components/cpus/is-your-intel-core-i9-13900k-crashing-in-games-your-motherboard-bios-settings-may-be-to-blame-other-high-end-intel-cpus-also-affected |url-status=live }}</ref> The issue was initially attributed to [[GeForce]] graphics [[Device driver|driver]]s; however, in a driver update published on April 13, 2024, [[Nvidia]] acknowledged the instability problem as being associated with the Intel 13th- and 14th-generation CPUs, and that owners of them should contact Intel customer support for further assistance.<ref>{{cite web |last=Klotz |first=Aaron |title=Nvidia blames Intel for GPU VRAM errors, tells GeForce gamers experiencing 13th or 14th Gen CPU instability to contact Intel support |url=https://www.tomshardware.com/pc-components/cpus/nvidia-blames-intel-for-gpu-vram-errors-tells-geforce-gamers-experiencing-13th-or-14th-gen-cpu-instability-to-contact-intel-support |website=Tom's Hardware |access-date=April 19, 2024 |date=April 12, 2024 |archive-date=April 19, 2024 |archive-url=https://web.archive.org/web/20240419112930/https://www.tomshardware.com/pc-components/cpus/nvidia-blames-intel-for-gpu-vram-errors-tells-geforce-gamers-experiencing-13th-or-14th-gen-cpu-instability-to-contact-intel-support |url-status=live }}</ref> Some users and game developers worked around the problem by applying lower power limits, undervolting or underclocking the CPU.{{Citation needed|date=September 2025}} Similar failures in some 13th and 14th gen HX-version Intel laptop processors were reported, but were attributed to "common symptoms stemming from a broad range of potential software and hardware issues" by Intel.<ref>{{Cite web | title=Intel says 13th and 14th Gen mobile CPUs are crashing, but not due to the same bug as desktop chips — chipmaker blames common software and hardware issues {{!}} Tom's Hardware | url=https://www.tomshardware.com/pc-components/cpus/intel-says-13th-and-14th-gen-mobile-cpus-are-crashing-but-not-due-to-the-same-bug-as-desktop-chips-chipmaker-blames-common-software-and-hardware-issues | access-date=2026-09-25 | website=www.tomshardware.com}}</ref>
+
+=== Analysis ===
+Intel refers to the issue as a "Vmin shift instability"; in other words, the minimum voltage required to operate the chip is increased due to silicon degradation. By April 18, 2024, Intel had a [[Root cause analysis|root-cause investigation]] underway.<ref>{{cite web |last=Ung |first=Gordon |date=April 18, 2024 |title=PC maker offers a potential fix for crashing Intel CPUs |url=https://www.pcworld.com/article/2307292/pc-maker-offers-a-potential-fix-for-crashing-intel-cpus.html |website=PCWorld |access-date=April 19, 2024 |archive-date=April 19, 2024 |archive-url=https://web.archive.org/web/20240419112930/https://www.pcworld.com/article/2307292/pc-maker-offers-a-potential-fix-for-crashing-intel-cpus.html |url-status=live }}</ref>
+
+==== First round of patching ====
+By April 2024 it was believed by some hardware reviewers to be [[Transistor aging|silicon degradation]] from power limits being set too high by the motherboard's default settings.<ref name=":4">{{Cite web |last=Roach |first=Jacob |date=April 22, 2024 |title=Some Intel CPUs Lost 9% of Their Performance Overnight |url=https://www.digitaltrends.com/computing/intel-baseline-profile-tested/ |access-date=May 3, 2024 |website=Digital Trends |archive-date=May 3, 2024 |archive-url=https://web.archive.org/web/20240503010854/https://www.digitaltrends.com/computing/intel-baseline-profile-tested/ |url-status=live }}</ref><ref name=":5">{{Cite web |last=Walton |first=Steve |date=April 30, 2024 |title=Intel CPUs Are Crashing and It's Intel's Fault: Intel Baseline Profile Benchmark |url=https://www.techspot.com/review/2836-intel-cpu-crash-baseline-spec/ |access-date=May 3, 2024 |website=TechSpot |archive-date=May 3, 2024 |archive-url=https://web.archive.org/web/20240503010854/https://www.techspot.com/review/2836-intel-cpu-crash-baseline-spec/ |url-status=live }}</ref> Shortly thereafter, motherboard manufacturers began rolling out [[BIOS]] updates which provide an "Intel Baseline Profile" preset in the overclocking menu, which intends to enforce the power limits of the official Intel specification.<ref>{{Cite web |last=Larabel |first=Michael |date=May 1, 2024 |title=Intel Baseline Profile Yields Odd Power/Performance On Linux |url=https://www.phoronix.com/review/intel-baseline-profile-linux |access-date=May 3, 2024 |website=Phoronix.com |archive-date=May 3, 2024 |archive-url=https://web.archive.org/web/20240503010855/https://www.phoronix.com/review/intel-baseline-profile-linux |url-status=live }}</ref> Hardware reviewer ''Hardwareluxx'' had found that there is an average performance loss of 9% across a number of applications with the Baseline profile, compared to the motherboard's default profile, when tested using the i9-14900K.<ref name=":4" /> 
+The BIOS update is also not expected to "fix" any already-compromised CPUs.
+
+In addition, ''TechSpot'' found that the Intel Baseline Profile is inconsistent between the motherboard manufacturers (Gigabyte and Asus in particular), with Gigabyte setting a PL2 of 188&nbsp;W, while Asus sets a PL2 of 253&nbsp;W which is the official Intel specification. TechSpot further criticized Intel, stating that they had claimed in the past several years that the motherboard manufacturers not adhering to Intel's official specification for power limits were considered normal and "within spec".<ref name=":5" />
+
+Despite the attempted Intel Baseline Profile fix through BIOS updates, instances of crashes still continue to be reported as of July 2024, now largely affecting [[Game server|game-server]] providers equipped with server-grade LGA1700 motherboards. One datacenter service provider reported that it was switching some of its customers to [[AMD]]-powered game servers because of the severity of the problems and the lack of prompt fixes.<ref>{{cite web |last=Klotz |first=Aaron |date=July 11, 2024 |title=13th and 14th Gen Intel CPU instability also hits servers — W680 boards with Core i9 K-series chips are crashing |url=https://www.tomshardware.com/pc-components/cpus/13th-and-14th-gen-intel-cpu-instability-also-hits-servers |website=Tom's Hardware |access-date=July 12, 2024 }}</ref><ref>{{cite web |date=July 11, 2024 |title=Intel Core i9-13900K/14900K Stability Issues Drive Game Server Providers to AMD |url=https://videocardz.com/newz/intel-core-i9-13900k-14900k-stability-issues-drive-game-server-providers-to-amd |website=VideoCardz.com |access-date=September 23, 2025 }}</ref> Gaming laptops have also been found to be affected, although to a lesser degree.<ref>{{cite web |last=Sims |first=Daniel |date=July 18, 2024 |title=Intel laptop CPUs are crashing, too, as the company remains silent |url=https://www.techspot.com/news/103876-intel-laptop-cpus-crashing-company-remains-silent.html |website=TechSpot |access-date=July 20, 2024 }}</ref>
+
+==== Microcode updates ====
+In May 2024 Intel identified a bug within the Enhanced Thermal Velocity Boost (eTVB) algorithm, where the CPU's frequency is not properly reduced under high temperature. This would, in theory, also contribute to accelerated degradation. Intel does not however consider it ''the'' root cause of the problem, only it may have been a contributing factor. This is fixed in [[microcode]] version 0x125 (June 2024).<ref>{{cite web |last1=Liu |first1=Zhiye |last2=Alcorn |first2=Paul |date=June 15, 2024 |title=Intel denies reports that it identified a root cause for Core i9 crashing issues — investigation continues |url=https://www.tomshardware.com/pc-components/cpus/intel-denies-reports-that-it-identified-a-root-cause-for-core-i9-crashing-issues-investigation-continues |website=Tom's Hardware |access-date=July 12, 2024 }}</ref>
+
+Again, Intel confirmed that there is no fix to the issue if it already affects a CPU, and any damage to the CPU is permanent.<ref name="verge" /><ref>{{Cite web |last=Hollister |first=Sean |date=October 4, 2024 |title=Intel Says Its Raptor Lake Crashing Chip Nightmare Is Over |url=https://www.theverge.com/2024/10/4/24262287/intel-13th-14th-gen-crash-raptor-lake-root-cause-fix |website=The Verge |access-date=October 26, 2024 }}</ref> Intel has decided not to halt sales or recall any units.<ref name="verge">{{cite web |last=Hollister |first=Sean |title=There is no fix for Intel's crashing 13th and 14th Gen CPUs — any damage is permanent |url=https://www.theverge.com/2024/7/26/24206529/intel-13th-14th-gen-crashing-instability-cpu-voltage-q-a |website=[[ars Technica]] |publisher=[[ars Technica]] |access-date=March 16, 2026 |date=July 26, 2024}}</ref>
+
+Though owners of high-end chips like the Core i9-13900K and Core i9-14900K were the most frequently affected by the crashing issue, Intel says that any 13th- or 14th-generation desktop CPU with a base power of 65 W or higher could ultimately be affected in July 2024. 
+
+In August 2024, Intel identified a problem in the Serial Voltage Identification (SVID) portion of the microcode where overly high voltages are requested by the CPU. This is fixed in microcode version 0x129. Intel subsequently contacted motherboard manufacturers to produce BIOS updates containing the new microcode, which they did in the same month.<ref>{{cite web |title=Microcode (0x129) Update for Intel Core 13th and 14th Gen Desktop Processors |date=August 9, 2024 |url=https://community.intel.com/t5/Mobile-and-Desktop-Processors/Microcode-0x129-Update-for-Intel-Core-13th-and-14th-Gen-Desktop/m-p/1622129#M76014}}</ref> Users were advised to apply these updates and use the "Intel Default Settings" in their BIOS configuration.<ref>{{Cite web |date=August 30, 2024 |title=Intel Core 13/14th Gen Instability Update – Future Products Unaffected + Current Gen Product Updates |url=https://community.intel.com/t5/Processors/Intel-Core-13-14th-Gen-Instability-Update-Future-Products/m-p/1627440 |access-date=August 31, 2024 |website=Community.Intel.com }}</ref> Also, Intel’s released a list of affected CPUs, which includes K- and KF-series CPUs from the 13th- and 14th-generation Core i9, Core i7, and Core i5 families, and also non-K CPUs in the Core i9 and Core i7 families. But slower, more budget-oriented chips like the Core i5-13400 aren’t listed.<ref>{{cite web |date=August 6, 2024 |title=Intel is offering extended warranties for crashing 13th- and 14th-gen desktop CPUs |url=https://arstechnica.com/gadgets/2024/08/intel-extends-warranties-by-two-years-for-crash-prone-core-desktop-cpus/}}</ref>
+
+In September 2024, Intel identified a further issue in both microcode and BIOS code, where idling the CPU would request an overly high voltage and speed up aging. The physical "root cause" is identified as a "[[clock tree]] circuit within the IA core which is particularly vulnerable to reliability aging under elevated voltage and temperature". The fix is released as microcode 0x12B and BIOS updates are again made. No performance impact is expected according to Intel measurements.<ref>{{cite web |title=Intel Core 13th and 14th Gen Desktop Instability Root Cause Update |url=https://community.intel.com/t5/Blogs/Tech-Innovation/Client/Intel-Core-13th-and-14th-Gen-Desktop-Instability-Root-Cause/post/1633239 |website=Community.Intel.com |date=September 25, 2024 |access-date=October 7, 2024 |archive-date=October 6, 2024 |archive-url=https://web.archive.org/web/20241006145542/http://community.intel.com/t5/Blogs/Tech-Innovation/Client/Intel-Core-13th-and-14th-Gen-Desktop-Instability-Root-Cause/post/1633239 |url-status=live }}</ref>
+
+In May 2025, Intel identified some edge cases not addressed by the 0x12B fix surrounding unresolved degradation in "systems continuously running for multiple days with low-activity and lightly-threaded workloads". The new microcode version is 0x12F. Intel measures no performance difference compared to 0x12B.<ref>{{cite web |author1=Aaron Klotz |title=Raptor Lake instability saga continues as Intel releases 0x12F update to fix Vmin instability |url=https://www.tomshardware.com/pc-components/cpus/raptor-lake-instability-saga-continues-as-intel-releases-0x12f-update-to-fix-vmin-instability |website=Tom's Hardware |language=en |date=7 May 2025}}</ref><ref>{{cite web |title=Intel Core 13th and 14th Gen Vmin Shift Instabilty Update – New Microcode Update (0x12F) |date=May 2025 |url=https://community.intel.com/t5/Mobile-and-Desktop-Processors/Intel-Core-13th-and-14th-Gen-Vmin-Shift-Instabilty-Update-New/m-p/1686948}}</ref>
+
+=== Two-year warranty extension for certain models ===
+On August 2, 2024, Intel announced they would extend warranty for certain retail (boxed) 13th- and 14th-generation Core CPUs by two years.<ref>{{Cite web |last=Alcorn |first=Paul |date=August 1, 2024 |title=Intel announces two extra years of warranty amid chip crashing and instability issues — longer warranty applies to 13th- and 14th-Gen Core processors |url=https://www.tomshardware.com/pc-components/cpus/intel-announces-an-extra-two-years-of-warranty-for-its-chips-amid-crashing-and-instability-issues-longer-warranty-applies-to-13th-and-14th-gen-core-processors |access-date=August 2, 2024 |website=Tom's Hardware }}</ref><ref>{{Cite web |last=Peters |first=Jay |date=August 1, 2024 |title=Intel's crashing 13th and 14th Gen CPUs get two additional years of warranty coverage |url=https://www.theverge.com/2024/8/1/24211616/intel-crashing-13th-14th-gen-cpus-warranty-two-more-years |access-date=August 2, 2024 |website=The Verge }}</ref><ref>{{Cite web |last=Morales |first=Jowi |date=August 2, 2024 |title=Intel customer bemoans CPU RMA process |url=https://www.tomshardware.com/pc-components/cpus/intel-customer-bemoans-cpu-rma-process |access-date=August 5, 2024 |website=Tom’s Hardware }}</ref> On August 5, 2024, the company announced they would extend warranty to tray ([[Original equipment manufacturer|OEM]]) CPUs as well.<ref>{{Cite web |date=August 5, 2024 |title=Additional Warranty Updates on Intel Core 13th/14th Gen Desktop Processors |url=https://community.intel.com/t5/Processors/Additional-Warranty-Updates-on-Intel-Core-13th-14th-Gen-Desktop/m-p/1620853#M75727 |access-date=August 6, 2024 |website=Community.Intel.com }}</ref> The extended warranty will cover the following models, which are affected by Vmin Shift Instability issue:
+{| class="wikitable"
+|+ Processor models with warranty extension
+|-
+! 13th-generation Intel Core
+! 14th-generation Intel Core
+|-
+| i9-13900KS
+| i9-14900KS
+|-
+| i9-13900K
+| i9-14900K
+|-
+| i9-13900KF
+| i9-14900KF
+|-
+| i9-13900
+| i9-14900
+|-
+| i9-13900F
+| i9-14900F
+|-
+| i7-13790F
+| i7-14790F
+|-
+| i7-13700K
+| i7-14700K
+|-
+| i7-13700KF
+| i7-14700KF
+|-
+| i7-13700
+| i7-14700
+|-
+| i7-13700F
+| i7-14700F
+|-
+| i5-13600K
+| i5-14600K
+|-
+| i5-13600KF
+| i5-14600KF
+|}
+
+In 2026, Mozilla released Firefox 151.0.1 to fix crashes on Intel Raptor Lake CPUs (13th and 14th gen). The issue was caused by incorrect 16-bit dist values in the browser’s compression code, linked to Intel CPU bugs RPL050 and RPL060. Intel’s microcode updates had already reduced crashes, but the browser update provided a stable fix.
+
+== See also ==
+* [[Emerald Rapids]], Intel's 5th-generation Xeon server processors based on Raptor Cove microarchitecture and Intel 7 process
+* [[List of Intel CPU microarchitectures]]
+
+== Notes ==
+{{Notelist|refs=
+{{efn|name="DDR5DC"|Technically dual-channel DDR5 can be considered "quad-channel", as there are 4 × 32-bit memory buses, rather than 2 × 64-bit as is the case with DDR4. See {{slink|DDR5 SDRAM#DIMMs versus memory chips}} for more info.}}
+{{efn|name="RCP"|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.}}<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->
+}}
+
+== References ==
+{{Reflist}}
+
+{{Intel processors}}
+{{Intel processor roadmap}}
+
+[[Category:Computer-related introductions in 2022]]
+[[Category:Intel x86 microprocessors]]
+[[Category:X86 microarchitectures]]

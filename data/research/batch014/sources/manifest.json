@@ -1,0 +1,160 @@
+{
+  "batch": 14,
+  "license": "CC BY-SA 4.0",
+  "attribution": "Wikipedia contributors (https://en.wikipedia.org/). Content is reused under the Creative Commons Attribution-ShareAlike 4.0 International licence (CC BY-SA 4.0); share-alike applies to derived works.",
+  "access_date": "2026-10-12",
+  "files": {
+    "Arrow_Lake.wiki.txt": {
+      "title": "Arrow Lake",
+      "url": "https://en.wikipedia.org/wiki/Arrow_Lake",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Arrow_Lake&action=raw",
+      "bytes": 650,
+      "sha256": "fcfbac427c02c303579a362bad859f13a147e1665ab54ec55f56fc84eb1cbddb",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": []
+    },
+    "Arrow_Lake_microprocessor.wiki.txt": {
+      "title": "Arrow Lake (microprocessor)",
+      "url": "https://en.wikipedia.org/wiki/Arrow_Lake_(microprocessor)",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Arrow_Lake_(microprocessor)&action=raw",
+      "bytes": 59841,
+      "sha256": "c138f07c58f45865430af442967f5a14b739b4ca9c852823ca7ecc4836228d13",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "intel_arl_h",
+        "intel_arl_hx",
+        "intel_arl_s",
+        "intel_arl_u"
+      ]
+    },
+    "List_of_AMD_Ryzen_processors.wiki.txt": {
+      "title": "List of AMD Ryzen processors",
+      "url": "https://en.wikipedia.org/wiki/List_of_AMD_Ryzen_processors",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=List_of_AMD_Ryzen_processors&action=raw",
+      "bytes": 24836,
+      "sha256": "626cfaf1cb5d6f7b403a35b58622018f455a4981e986f8fd79794389b5f81815",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": []
+    },
+    "Lunar_Lake.wiki.txt": {
+      "title": "Lunar Lake",
+      "url": "https://en.wikipedia.org/wiki/Lunar_Lake",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Lunar_Lake&action=raw",
+      "bytes": 25298,
+      "sha256": "5c68b69f916cede562372a2666c1ee887cbccc3ded1e4abc0eb7e3b86977568b",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "intel_lnl"
+      ]
+    },
+    "Meteor_Lake.wiki.txt": {
+      "title": "Meteor Lake",
+      "url": "https://en.wikipedia.org/wiki/Meteor_Lake",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Meteor_Lake&action=raw",
+      "bytes": 78930,
+      "sha256": "915d5842a8bac4390c0b3ba1eba683c35e98f152b99a57a543b938c195a50b61",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "intel_mtl_h",
+        "intel_mtl_hl",
+        "intel_mtl_u",
+        "intel_mtl_ul"
+      ]
+    },
+    "Raptor_Lake.wiki.txt": {
+      "title": "Raptor Lake",
+      "url": "https://en.wikipedia.org/wiki/Raptor_Lake",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Raptor_Lake&action=raw",
+      "bytes": 90683,
+      "sha256": "85e550e6e85d8e056fd459e05790ad887432494ea548325d4bcd27c206da83b3",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "intel_rpl_refresh_desktop"
+      ]
+    },
+    "Template_AMD_Ryzen_8000_desktop_APUs.wiki.txt": {
+      "title": "Template:AMD Ryzen 8000 desktop APUs",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_8000_desktop_APUs",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_8000_desktop_APUs&action=raw",
+      "bytes": 7956,
+      "sha256": "08432a074d7fd904843c3231a06fb9421df9a0416d6b63f9f839935ca8c1fc76",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_8000g_desktop"
+      ]
+    },
+    "Template_AMD_Ryzen_8000_series.wiki.txt": {
+      "title": "Template:AMD Ryzen 8000 series",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_8000_series",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_8000_series&action=raw",
+      "bytes": 3080,
+      "sha256": "064694aa53adc6897c4be61fd3d8c10a363be684b6a0df65de74a5c0853afd8e",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_8000_f_desktop"
+      ]
+    },
+    "Template_AMD_Ryzen_9000_Series.wiki.txt": {
+      "title": "Template:AMD Ryzen 9000 Series",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_9000_Series",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_9000_Series&action=raw",
+      "bytes": 15609,
+      "sha256": "b5e1abae3da5850d859113f58311e891f7fc874510df060b4c41a176aa23c209",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_9000_desktop"
+      ]
+    },
+    "Template_AMD_Ryzen_AI_Mobile_300_series.wiki.txt": {
+      "title": "Template:AMD Ryzen AI Mobile 300 series",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_AI_Mobile_300_series",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_AI_Mobile_300_series&action=raw",
+      "bytes": 6985,
+      "sha256": "4ea9adc942ec70159f6b2d1c56fe208f2cb2b7cf69d91c4e2a02d7ff13a6f3f3",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_ai_300_mobile"
+      ]
+    },
+    "Template_AMD_Ryzen_Mobile_8040_series.wiki.txt": {
+      "title": "Template:AMD Ryzen Mobile 8040 series",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_Mobile_8040_series",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_Mobile_8040_series&action=raw",
+      "bytes": 5227,
+      "sha256": "e4cf85a0c8ad092a1c021521231e6ca3a801c3076ffeebfff6c798a1835aefde",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_8040_mobile"
+      ]
+    },
+    "Template_AMD_Ryzen_Mobile_8045_series.wiki.txt": {
+      "title": "Template:AMD Ryzen Mobile 8045 series",
+      "url": "https://en.wikipedia.org/wiki/Template:AMD_Ryzen_Mobile_8045_series",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Template:AMD_Ryzen_Mobile_8045_series&action=raw",
+      "bytes": 3329,
+      "sha256": "bee260fa8c47287fbaa1df1985c2c3c85d62b3c44f4e55430e9b06723da09ac9",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": [
+        "amd_ryzen_8045_mobile"
+      ]
+    },
+    "Zen_4.wiki.txt": {
+      "title": "Zen 4",
+      "url": "https://en.wikipedia.org/wiki/Zen_4",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Zen_4&action=raw",
+      "bytes": 40323,
+      "sha256": "ab115b3daaec94e76d37b4cbe45f43244aac61076ec8c1f9b0118103420298f5",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": []
+    },
+    "Zen_5.wiki.txt": {
+      "title": "Zen 5",
+      "url": "https://en.wikipedia.org/wiki/Zen_5",
+      "raw_url": "https://en.wikipedia.org/w/index.php?title=Zen_5&action=raw",
+      "bytes": 46759,
+      "sha256": "1f4c3528a46ddb324153fe4e9d8745e0f81df353676d915e4cf4f8d47c927599",
+      "license": "CC BY-SA 4.0",
+      "used_by_tables": []
+    }
+  }
+}

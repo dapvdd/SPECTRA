@@ -1,0 +1,613 @@
+{{Short description|none}}
+[[Microprocessors]] of the [[Ryzen]] brand are a line of [[x86-64]] microprocessors manufactured by [[AMD]], based on the [[Zen microarchitecture]]. Ryzen microprocessors include: Ryzen 3, Ryzen 5, Ryzen 7, Ryzen 9, and [[Ryzen Threadripper]] (with up to 96 cores). All consumer desktop Ryzens (except PRO models), as well as all mobile processors with the HX suffix, have an unlocked [[CPU multiplier|multiplier]]. In addition, all Ryzen microprocessors support [[Simultaneous Multithreading]] (SMT), except for earlier Zen/Zen+ based desktop and mobile Ryzen 3 processors, and some models of the Zen 2 mobile Ryzen microprocessor.
+
+== Desktop processors ==
+=== Ryzen 1000 series ===
+==== Summit Ridge (1000 series, Zen based)<span class="anchor" id="Summit Ridge desktop"></span> ====
+{{AMD Ryzen 1000 series}}
+
+==== Whitehaven (Threadripper 1000 series, Zen based)<span class="anchor" id="Whitehaven desktop"></span> ====
+{{AMD Ryzen Threadripper 1000 series}}
+
+=== Ryzen 2000 series ===
+==== Raven Ridge (2000 series with Radeon Graphics, Zen/GCN5 based)<span class="anchor" id="Raven Ridge desktop"></span> ====
+{{AMD Ryzen 2000 desktop APUs}}
+
+==== Pinnacle Ridge (2000 series, Zen+ based)<span class="anchor" id="Pinnacle Ridge desktop"></span> ====
+{{AMD Zen+ based desktop CPUs}}
+
+==== Colfax (Threadripper 2000 series, Zen+ based)<span class="anchor" id="Colfax desktop"></span> ====
+{{AMD Ryzen Threadripper 2000 series}}
+
+=== Ryzen 3000 series ===
+==== Picasso (3000 series with Radeon Graphics, Zen+/GCN5 based)<span class="anchor" id="Picasso desktop"></span> ====
+{{AMD Ryzen 3000 desktop APUs}}
+
+==== Matisse (3000 series, Zen 2 based)<span class="anchor" id="Matisse desktop"></span> ====
+{{AMD Ryzen 3000 series}}
+
+==== Castle Peak (Threadripper 3000 series, Zen 2 based)<span class="anchor" id="Castle Peak desktop"></span> ====
+{{AMD Ryzen Threadripper 3000 series}}
+
+=== Ryzen 4000 series ===
+==== Renoir (4000 series, Zen 2 based)<span class="anchor" id="Renoir desktop 1"></span> ====
+Based on the Ryzen 4000G series APUs with the [[integrated GPU]] disabled.
+{{AMD Ryzen 4000 series}}
+
+==== Renoir (4000 series with Radeon Graphics, Zen 2/GCN5.1 based)<span class="anchor" id="Renoir desktop 2"></span> ====
+{{AMD Ryzen 4000G series}}
+
+=== Ryzen 5000 series ===
+==== Vermeer (5000 series, Zen 3 based)<span class="anchor" id="Vermeer desktop"></span> ====
+{{AMD Ryzen 5000 Series}}
+
+==== Cezanne (5000 series, Zen 3 based)<span class="anchor" id="Cezanne desktop 1"></span> ====
+Cézanne based CPUs that have the [[integrated GPU]] disabled.
+{{AMD Ryzen 5000 Series Cezanne}}
+
+==== Cezanne (5000 series with Radeon Graphics, Zen 3/GCN5.1 based)<span class="anchor" id="Cezanne desktop 2"></span> ====
+{{AMD Ryzen 5000 desktop APUs}}
+
+==== Chagall (Threadripper 5000 series, Zen 3 based)<span class="anchor" id="Chagall desktop"></span> ====
+{{AMD Ryzen Threadripper 5000 series}}
+
+=== Ryzen 7000 series ===
+==== Raphael (7000 series, Zen 4/RDNA2 based)<span class="anchor" id="Raphael desktop"></span> ====
+{{AMD Ryzen 7000 Series}}
+
+==== Storm Peak (Threadripper 7000 series, Zen 4 based)<span class="anchor" id="Storm Peak desktop"></span> ====
+{{AMD Ryzen Threadripper 7000 series}}
+
+=== Ryzen 8000 series ===
+==== Phoenix (8000 series, Zen 4 based)<span class="anchor" id="Phoenix desktop 1"></span> ====
+{{AMD Ryzen 8000 series}}
+
+==== Phoenix (8000 series with Radeon Graphics, Zen 4/RDNA3/XDNA based)<span class="anchor" id="Phoenix desktop 2"></span> ====
+{{AMD Ryzen 8000 desktop APUs}}
+
+=== Ryzen 9000 series ===
+==== Granite Ridge (9000 series, Zen 5/RDNA2 based) ====
+{{AMD Ryzen 9000 Series}}
+
+==== Shimada Peak (Threadripper 9000 series, Zen 5 based) ====
+{{AMD Ryzen Threadripper 9000 series}}
+
+<!--=== Ryzen 10000 series ===
+==== Olympic Ridge (10000 series, Zen 6/RDNA2 based) ====
+{{empty section|date=August 1, 2026}}
+
+==== Mustang Peak (Threadripper 10000 series, Zen 6 based) ====
+{{empty section|date=August 1, 2026}}-->
+
+=== Ryzen AI 400 series ===
+==== Gorgon Point AM5 (AI 400 Series, Zen 5/RDNA3.5/XDNA2 based) ====
+{{AMD Ryzen AI 400 Series}}
+
+== Mobile processors ==
+=== Ryzen 2000 series ===
+==== Raven Ridge (Zen/GCN5 based)<span class="anchor" id="Raven Ridge mobile"></span> ====
+{{AMD Ryzen Mobile 2000 series}}
+
+=== Ryzen 3000 series ===
+==== Dalí (Zen/GCN5 based)<span class="anchor" id="Dali mobile"></span> ====
+{{AMD Ryzen Mobile 3000 Zen based series}}
+
+==== Picasso (Zen+/GCN5 based)<span class="anchor" id="Picasso mobile"></span> ====
+{{AMD Ryzen Mobile 3000 Zen+ based series}}
+
+=== Ryzen 4000 series ===
+==== Renoir (Zen 2/GCN5 based)<span class="anchor" id="Renoir mobile"></span> ====
+{{AMD Ryzen Mobile 4000 series}}
+
+=== Ryzen 5000 series ===
+==== Lucienne (Zen 2/GCN5 based)<span class="anchor" id="Lucienne mobile"></span> ====
+{{AMD Ryzen Mobile 5000 Zen 2 based series}}
+
+==== Cezanne and Barceló (Zen 3/GCN5 based)<span class="anchor" id="Cezanne mobile"></span><span class="anchor" id="Barcelo mobile"></span> ====
+''Cezanne'' (2021 models), ''Barceló'' (2022 models).
+{{AMD Ryzen Mobile 5000 Zen 3 based series}}
+
+=== Ryzen 6000 series ===
+==== Rembrandt (Zen 3+/RDNA2 based)<span class="anchor" id="Rembrandt mobile"></span> ====
+{{AMD Ryzen Mobile 6000 series}}
+
+=== Ryzen 7000 series ===
+==== Mendocino (7020 series, Zen 2/RDNA2 based)<span class="anchor" id="Mendocino mobile"></span> ====
+{{AMD Ryzen Mobile 7020 series}}
+
+==== Barcelo-R (7030 series, Zen 3/GCN5 based)<span class="anchor" id="Barcelo-R mobile"></span> ====
+{{AMD Ryzen Mobile 7030 series}}
+
+==== Rembrandt-R (7035 series, Zen 3+/RDNA2 based)<span class="anchor" id="Rembrandt-R mobile"></span> ====
+{{AMD Ryzen Mobile 7035 series}}
+
+==== Phoenix (7040 series, Zen 4/RDNA3/XDNA based)<span class="anchor" id="Phoenix mobile"></span> ====
+{{AMD Ryzen Mobile 7040 series}}
+
+==== Dragon Range (7045 series, Zen 4/RDNA2 based)<span class="anchor" id="Dragon Range mobile"></span> ====
+{{AMD Ryzen Mobile 7045 series}}
+
+=== Ryzen 8000 series ===
+==== Hawk Point (8040 series, Zen 4/RDNA3/XDNA based)<span class="anchor" id="Hawk Point mobile"></span> ====
+{{AMD Ryzen Mobile 8040 series}}
+
+==== Dragon Range Refresh (8045 series, Zen4/RDNA2 based) ====
+{{AMD Ryzen Mobile 8045 series}}
+
+=== Ryzen 9000 series ===
+==== Fire Range (Zen 5/RDNA2 based)<span class="anchor" id="Fire Range"></span> ====
+Common features of Ryzen 9000 Fire Range series:
+
+* Socket: FL1
+* All Models support DDR5-5600 in 128-bit mode; Maximum memory: 96 GB
+* All models support 28 PCIe 5.0 lanes
+* Native USB 10Gbps (USB 3.2 Gen 2 operation mode) : 4
+* Native USB 2.0 (480 Mbit/s): 1
+* iGPU: AMD Radeon 610M (2 CU @ 2200&nbsp;MHz)
+* No NPU
+* L1 cache: 80 KB (48 KB data + 32 KB instruction) per core
+* L2 cache: 1 MB per core
+* Fabrication process: TSMC N4 FinFET (CCD) + TSMC N6 FinFET (I/OD)
+
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="2" | Branding and Model
+! rowspan="2" | Cores (threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Chiplets
+! rowspan="2" | Core config
+! rowspan="2" | TDP
+! rowspan="2" | Release date
+|-
+! Base
+! Boost
+|-
+! rowspan="3" | Ryzen 9
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9955hx3d.html 9955HX3D]<ref name="tom-fire-range">{{cite news |title=AMD Launches 'Fire Range' HX3D mobile processor with game-boosting 3D V-Cache, other HX Series SKUs built on Zen 5 desktop CPU silicon |first=Paul |last=Alcorn |date=6 January 2025 |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-fire-range-hx3d-mobile-processor-with-game-boosting-3d-v-cache-other-hx-series-skus-built-on-zen-5-desktop-cpu-silicon |work=[[Tom's Hardware]] |access-date=7 January 2025}}</ref>
+| rowspan="2" | 16 (32)
+| 2.3
+| rowspan="2" | 5.4
+| 128&nbsp;MB
+| rowspan="3" | 2 × CCD<br />1 × I/OD
+| rowspan="2" | 2 × 8
+| rowspan="2" | 55–75{{nbsp}}W
+| rowspan="3" | 1H 2025
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9955hx.html 9955HX]<ref name="tom-fire-range"/>
+| 2.5
+| rowspan="2" | 64&nbsp;MB
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9850hx.html 9850HX]<ref name="tom-fire-range"/>
+| 12 (24)
+| 3.0
+| 5.2
+| 2 × 6
+| 45–75{{nbsp}}W
+|}
+
+=== Ryzen 10 series ===
+==== Mendocino (10 series, Zen 2/RDNA2 based)<span class="anchor" id="Mendocino mobile"></span> ====
+{{AMD Ryzen Mobile 10 series}}
+
+=== Ryzen 100 series ===
+==== Rembrandt-R (100 series, Zen 3+/RDNA2 based)<span class="anchor" id="Rembrandt-R mobile"></span> ====
+{{AMD Ryzen Mobile 100 Zen 3+ series}}
+
+==== Hawk Point Refresh (100 series, Zen 4/RDNA3/XDNA based) ====
+{{AMD Ryzen Mobile 100 Zen 4 based series}}
+
+=== Ryzen 200 series ===
+==== Hawk Point Refresh (200 series, Zen 4/RDNA3/XDNA based)<span class="anchor" id="Hawk Point Refresh"></span> ====
+
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="3" | Branding and Model
+! colspan="7" | CPU
+! colspan="2" | GPU
+! rowspan="3" |[[Neural processing unit|NPU]]
+(Ryzen AI)
+! rowspan="3" | [[Thermal design power|TDP]]
+({{tooltip|2=AMD Configurable TDP|cTDP}})
+! rowspan="3" | Release date
+|-
+! colspan="3" | Cores (threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Core config
+! rowspan="2" | Model
+! rowspan="2" | Clock<br />(GHz)
+|-
+! Total
+! Zen 4
+! Zen 4c
+! Base
+! Boost
+|-
+! Ryzen&nbsp;9
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-9-270.html 270]
+| rowspan="5" | 8 (16)
+| rowspan="5" | 8 (16)
+| rowspan="5" | -
+| 4.0
+| 5.2
+| rowspan="13" | 16 MB
+| rowspan="5" | 1 × 8
+| rowspan="5" | 780M<br />12 CU
+| 2.8
+| rowspan="5" |Yes
+16 TOPS
+| rowspan="3" |45 W
+(35−54&nbsp;W)
+| rowspan="2" | February 18, 2025
+|-
+! rowspan="5" | Ryzen&nbsp;7
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-260.html 260]
+| 3.8
+| 5.1
+| 2.7
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-7-pro-253.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-253.html 253]
+|3.6
+|4.9
+|2.5
+|June 2, 2026<ref name="200-series-jun26">{{cite news |author=WhyCry |date=July 11, 2026 |title=AMD expands Ryzen 200 and Ryzen 100 with 11 Hawk Point SKUs |url=https://videocardz.com/newz/amd-expands-ryzen-200-and-ryzen-100-with-11-hawk-point-skus |work=VideoCardz.com |access-date=2026-07-11 }}</ref>
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-7-pro-250.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-250.html 250]
+| 3.3
+|5.1
+|2.7
+| rowspan="2" | 28 W
+(15−30&nbsp;W)
+|(March 27, 2025)
+February 18, 2025
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-7-pro-249.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-249.html 249]
+|3.1
+|4.9
+|2.5
+| rowspan="2" |June 2, 2026<ref name="200-series-jun26"/>
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-7-pro-217.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-217.html 217]
+| rowspan="8" |6 (12)
+|2 (4)
+|4 (8)
+|3.0
+|4.8
+|2 + 4
+|740M<br />4 CU
+| rowspan="3" |2.6
+|No
+|35 W
+(15−40&nbsp;W)
+|-
+! rowspan="7" | Ryzen&nbsp;5
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-240.html 240]
+| rowspan="4" | 6 (12)
+| rowspan="4" | -
+| 4.3
+| 5.0
+| rowspan="4" | 1 × 6
+| rowspan="4" | 760M<br />8 CU
+| rowspan="4" |Yes
+16 TOPS
+| 45 W
+(35−54&nbsp;W)
+| rowspan="2" |(March 27, 2025)
+February 18, 2025
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-230.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-230.html 230]
+| 3.5
+| 4.9
+| 28 W
+(15−30&nbsp;W)
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-225.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-225.html 225]
+|(3.3)
+4.1
+| rowspan="2" |4.8
+| rowspan="2" |2.4
+|45 W
+(35−54&nbsp;W)
+| rowspan="2" |June 2, 2026<ref name="200-series-jun26"/>
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-224.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-224.html 224]
+|3.3
+| rowspan="2" |28 W
+(15−30&nbsp;W)
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-220.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-220.html 220]
+| rowspan="3" | 2 (4)
+| rowspan="3" | 4 (8)
+| 3.7 / 3.0
+| 4.9 / 3.5
+| rowspan="3" | 2 + 4
+| rowspan="5" | 740M<br />4 CU
+| 2.8
+| rowspan="5" |No
+|(March 27, 2025)
+February 18, 2025
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-216.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-216.html 216]
+|2.9
+|4.7
+|2.5
+|35 W
+(15−40&nbsp;W)
+|June 2, 2026<ref name="200-series-jun26"/>
+|-
+![https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-215.html PRO 215]
+|3.2 / 3.2
+|4.7 / 3.55
+|2.7
+| rowspan="2" |28 W
+(15−30&nbsp;W)
+|March 27, 2025
+|-
+! rowspan="2" | Ryzen&nbsp;3
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-3-pro-210.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-3-210.html 210]
+| rowspan="2" | 4 (8)
+| rowspan="2" | 1 (2)
+| rowspan="2" | 3 (6)
+| 3.6 / 2.8
+| 4.7 / 3.3
+| rowspan="2" | 8 MB
+| rowspan="2" | 1 + 3
+| 2.5
+|(March 27, 2025)
+February 18, 2025
+|-
+!([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-3-pro-205.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-3-205.html 205]
+|2.8
+|4.6
+|2.3
+|28 W
+(15−40&nbsp;W)
+|June 2, 2026<ref name="200-series-jun26"/>
+|}
+
+=== Ryzen AI 300 series ===
+==== Strix Point and Krackan Point (Zen 5/RDNA3.5/XDNA2 based)<span class="anchor" id="Strix Point mobile"></span> ====
+{{AMD Ryzen AI Mobile 300 series}}
+
+==== Strix Halo (Zen 5/RDNA3.5/XDNA2 based)<span class="anchor" id="Strix Halo"></span> ====
+Common features of Strix Halo mobile CPUs:<ref>{{Cite web |last=Discuss |first=AleksandarK |date=2025-02-18 |title=AMD Ryzen AI Max+ "Strix Halo" Die Exposed and Annotated |url=https://www.techpowerup.com/332745/amd-ryzen-ai-max-strix-halo-die-exposed-and-annotated |access-date=2025-10-03 |website=TechPowerUp |language=en}}</ref>
+* Socket: BGA, FP11 package type.
+* All CPUs only support soldered LPDDR5X memory with a 256-bit memory bus.
+* All CPUs support 16 lanes of PCIe 4.0 lanes.
+* iGPU uses the RDNA 3.5 architecture.
+* Fabrication process: TSMC N4P FinFET.
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="3" | Branding and Model
+! colspan="4" | CPU
+! colspan="2" | GPU
+! colspan="3" | Memory
+! rowspan="3" | [[Neural processing unit|NPU]]<br />([[Ryzen AI]])
+! rowspan="3" | Chiplets
+! rowspan="3" | Core<br />config
+! rowspan="3" | TDP
+! rowspan="3" | Release date
+|-
+! rowspan="2" | Cores<br />(threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Model
+! rowspan="2" | Clock<br />(GHz)
+! rowspan="2" | Bus&nbsp;type<br/>&&nbsp;width<br/>(Max&nbsp;memory)
+! rowspan="2" | Clock<br/>([[Transfer (computing)|MT/s]])
+! rowspan="2" | Bandwidth<br/>([[Gigabyte|GB]]/s)
+|-
+! Base
+! Boost
+|-
+! rowspan="2" | Ryzen AI MAX+
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-plus-pro-395.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html 395]
+| 16 (32)
+| 3.0
+| 5.1
+| rowspan="3" | 64&nbsp;MB
+| rowspan="2" | 8060S<br />40 CUs
+| rowspan="2" | 2.9
+| rowspan="5" | LPDDR5X<br />256-bit<br />(128 GB)
+| rowspan="6" | Up to <br />8000
+| rowspan="5" | Up to <br />256
+| rowspan="6" | 50 TOPS
+| rowspan="3" | 2 × CCD<br />1 × I/OD&nbsp;with&nbsp;GPU
+| 2 × 8
+| rowspan="6" | 45–120&nbsp;W
+| Q1 2025 <ref name="amd-newsroom-2025ces">{{cite web |title=AMD Announces Expanded Consumer and Commercial AI PC Portfolio at CES |url=https://ir.amd.com/news-events/press-releases/detail/1232/amd-announces-expanded-consumer-and-commercial-ai-pc |website=AMD |access-date=7 January 2025 |date=6 January 2025}}</ref>
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-392.html 392]
+| rowspan="2" | 12 (24)
+| rowspan="2" | 3.2
+| rowspan="4" | 5.0
+| rowspan="2" | 2 × 6
+| Q1 2026
+|-
+! Ryzen AI MAX
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-390.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html 390]
+| 8050S<br />32 CUs
+| 2.8
+| Q1 2025
+|-
+! Ryzen AI MAX+
+! [https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-388.html 388]
+| rowspan="2" | 8 (16)
+| rowspan="3" | 3.6
+| rowspan="2" | 32&nbsp;MB
+| 8060S<br />40 CUs
+| 2.9
+| rowspan="3" | 1 × CCD<br />1 × I/OD&nbsp;with&nbsp;GPU
+| rowspan="2" | 1 × 8
+| Q1 2026
+|-
+! rowspan="2" | Ryzen AI MAX
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-385.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-385.html 385]
+| 8050S<br />32 CUs
+| rowspan="2" | 2.8
+| rowspan="2" | Q1 2025
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-380.html PRO 380]
+| 6 (12)
+| 4.9
+| 16&nbsp;MB
+| 8040S<br />16 CUs
+| LPDDR5X<br />128-bit<br />(64 GB)
+| Up to <br />128
+| 1 × 6
+|}
+
+=== Ryzen AI 400 series ===
+==== Gorgon Point (Zen 5/RDNA3.5/XDNA2 based) ====
+{{AMD Ryzen AI Mobile 400 series}}
+
+==== Gorgon Halo (Zen 5/RDNA3.5/XDNA2 based) ====
+{{AMD Ryzen AI Mobile Max Pro 400 series}}
+
+== Handheld gaming PC processors ==
+=== Ryzen Z1 series (Zen 4/RDNA3 based)<span class="anchor" id="Ryzen Z1 series"></span> ===
+{{AMD Ryzen Z1 series}}
+
+=== Ryzen Z2 series (multiple architectures)<span class="anchor" id="Ryzen Z2 series"></span> ===
+{{AMD Ryzen Z2 series}}
+
+== Embedded processors ==
+=== 1000 series ===
+==== Great Horned Owl (V1000 series, Zen/GCN5 based)<span class="anchor" id="V1000 embedded"></span> ====
+{{AMD V1000 series}}
+
+==== Banded Kestrel (R1000 series, Zen/GCN5 based)<span class="anchor" id="R1000 embedded"></span> ====
+{{AMD R1000 series}}
+
+=== 2000 series ===
+==== Grey Hawk (V2000 series, Zen 2/GCN5 based)<span class="anchor" id="V2000 embedded"></span> ====
+{{AMD Ryzen Embedded V2000 Series}}
+
+==== River Hawk (R2000 series, Zen+ based)<span class="anchor" id="R2000 embedded"></span> ====
+{{AMD Ryzen Embedded R2000 Series}}
+
+=== 3000 series ===
+==== (V3000 series, Zen 3 based)<span class="anchor" id="V3000 embedded"></span> ====
+{{AMD Ryzen Embedded V3000 Series}}
+
+=== 5000 series ===
+==== (Ryzen Embedded 5000 series, Zen 3 based)<span class="anchor" id="Ryzen5000 embedded"></span> ====
+{{AMD Ryzen Embedded 5000 series}}
+
+=== 7000 series ===
+==== (Ryzen Embedded 7000 series, Zen 4/RDNA2 based)<span class="anchor" id="Ryzen7000 embedded"></span> ====
+{{AMD Ryzen Embedded 7000 series}}
+
+=== P100 series ===
+==== (Ryzen AI Embedded P100 series, Zen 5/RDNA 3.5 based)<span class="anchor" id="RyzenP100 embedded"></span> ====
+
+Model numbers with the "i" suffix are marketed for industrial use and support operating at colder ambient temperatures.<ref name="p100-series-pr"/> Model numbers with the "a" suffix are marketed for automotive use and are [[Automotive Electronics Council|AEC]]-Q100 qualified for reliability and longevity.<ref name="p100-series-pr"/>
+
+Common features of Ryzen AI Embedded P100 series CPUs:
+* Socket: [[Ball grid array|BGA]], FP8 package type.
+* [[CPU cache|L3 cache]] (total): 8&nbsp;MB.
+* All models support [[Multi-channel memory architecture#Dual-channel_architecture|dual-channel]] [[ECC memory|ECC]] [[DRAM]].
+* All models support 14 [[PCIe 4.0]] lanes.
+* Native [[10GbE]] ports (with [[Time-Sensitive Networking|TSN]]): 2<ref name="p100-series-pr">{{cite press release |date=January 5, 2026 |title=AMD Introduces Ryzen AI Embedded Processor Portfolio, Powering AI-Driven Immersive Experiences in Automotive, Industrial and Physical AI |url=https://www.amd.com/en/newsroom/press-releases/2026-1-5-amd-introduces-ryzen-ai-embedded-processor-portfol.html |location=[[Santa Clara, California]] |publisher=[[AMD]] |agency=Globe Newswire |access-date=2026-01-13 }}</ref>
+* Native USB 5Gbps (USB 3.2 Gen 1 operation mode): 1
+* Native USB 5Gbps (USB 3.1 Gen 1 operation mode): 1<!--this cant be right. ref "p100-series-pr" says 3.1 and 3.2 but that means exactly the same thing-->
+* Native USB 2.0 (480 Mbit/s): 4
+* iGPU uses the [[RDNA 3.5]] microarchitecture and supports output at up to 120&nbsp;[[Frame rate|FPS]] to up to either 4 × [[4K resolution|4K]] or 2 × [[8K resolution|8K]] displays.<ref name="p100-series-pr"/>
+* iGPU supports encoding/decoding video at up to 4K & 60&nbsp;Hz.
+* All iGPUs support [[HDMI]] 2.1 and [[DisplayPort]] 2.0 output.
+* [[Neural processing unit|NPU]] uses the [[XDNA 2]] architecture.<ref name="p100-series-pr"/>
+* Rated longevity: "2.5 years (Standard), Up to 10 years (Extended)"<ref name="p100-series-pr"/>
+
+{|class="wikitable sortable" style="text-align:center;"
+! rowspan="2" class="unsortable" | Processor<br />branding
+! rowspan="2" | Model
+! colspan="3" | CPU
+! colspan="3" | GPU
+! rowspan="2" | [[Memory controller|Memory<br />support]]
+! rowspan="2" | [[Neural processing unit|NPU]]<br />{{abbr|TOPS|Trillions of operations per second}}
+! rowspan="2" | [[USB4]]<br />ports
+! rowspan="2" | Nominal<br />[[Thermal design power|TDP]]
+! rowspan="2" | Configurable<br />[[Thermal design power|TDP]]
+! rowspan="2" | [[Junction temperature|Junction<br />temperature]]<br />range
+! rowspan="2" class="unsortable" | Release<br />date
+|-
+! rowspan="1" | [[Multi-core processor|Cores]]<br />([[thread (computing)|threads]])
+! colspan="1" | Boost [[clock rate|clock]]<br />([[Hertz|GHz]])
+! colspan="1" | [[CPU cache|L2 cache]]<br />(total)
+! colspan="1" | {{abbr|CU|Compute units}}
+! colspan="1" | Clock<br />(GHz)
+! [[Embedded DisplayPort|eDP]]<br />version
+|-
+! rowspan="6" | Ryzen AI<br />Embedded
+! style="text-align:left;" | [https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p132i.html P132i]
+|rowspan="3" | 6 (12)
+|rowspan="2" | 4.5
+|rowspan="2" | 6&nbsp;MB
+|rowspan="3" | 4
+|rowspan="2" | 2.8
+|rowspan="2" | 1.4
+|rowspan="2" | [[LPDDR#LPDDR5X|LPDDR5X]]-8000<br />[[DDR5 SDRAM|DDR5]]-5600
+|rowspan="3" | 50
+|rowspan="2" | 2
+|rowspan="2" | 28&nbsp;W
+|rowspan="2" | 15–54&nbsp;W
+| −40{{nbsp}}°C{{snd}}105{{nbsp}}°C
+| rowspan="6" | Q2 2026<ref name="p100-series-pr"/>
+|-
+! style="text-align:left;" | [https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p132.html P132]
+| 0{{nbsp}}°C{{snd}}105{{nbsp}}°C
+|-
+![https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p132a.html P132a]
+| 3.7
+| 4&nbsp;MB
+| 2.4
+| 1.5
+| LPDDR5X-7500<br />with [[Reliability, availability and serviceability|RAS]]<ref name="p100-series-pr"/>
+| {{no}}
+| 45&nbsp;W
+| 25–45&nbsp;W
+| −40{{nbsp}}°C{{snd}}105{{nbsp}}°C
+|-
+! style="text-align:left;" | [https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p121i.html P121i]
+|rowspan="3" | 4 (8)
+|rowspan="2" | 4.4
+|rowspan="3" | 4&nbsp;MB
+|rowspan="2" | 2
+|rowspan="2" | 2.7
+|rowspan="2" | 1.4
+|rowspan="2" | LPDDR5X-7500<br />DDR5-5600
+|rowspan="3" | 30
+|rowspan="2" | 2
+|rowspan="3" | 28&nbsp;W
+|rowspan="2" | 15–54&nbsp;W
+| −40{{nbsp}}°C{{snd}}105{{nbsp}}°C
+|-
+! style="text-align:left;" | [https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p121.html P121]
+| 0{{nbsp}}°C{{snd}}105{{nbsp}}°C
+|-
+! style="text-align: left;" |[https://www.amd.com/en/products/embedded/ryzen-ai/p100-series/ryzen-ai-embedded-p122a.html P122a]
+| 3.7
+| 4
+| 2.0
+| 1.6
+| LPDDR5X-7500<br />with [[Reliability, availability and serviceability|RAS]]<ref name="p100-series-pr"/>
+| {{no}}
+| 15–30&nbsp;W
+| −40{{nbsp}}°C{{snd}}105{{nbsp}}°C
+|}
+
+== See also ==
+* [[Table of AMD processors]]
+* [[List of AMD Athlon processors]]
+* [[List of AMD processors with 3D graphics]]
+* [[List of AMD CPU microarchitectures]]
+* [[List of AMD chipsets]]
+
+== References ==
+{{reflist}}
+
+{{AMD processors}}
+
+[[Category:Lists of microprocessors|AMD Ryzen]]
+[[Category:AMD x86 microprocessors|*]]

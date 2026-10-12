@@ -1,0 +1,54 @@
+Common features of Ryzen 8000 desktop CPUs:
+* Socket: [[Socket AM5|AM5]].
+* All the CPUs support [[DDR5 SDRAM|DDR5]]-5200 RAM in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode in 2x1R and 2x2R configuration, but only DDR5-3600 for 4x1R and 4x2R.
+* L1 [[Cache (computing)|cache]]: 64&nbsp;KB (32&nbsp;KB data + 32&nbsp;KB instruction) per core.
+* L2 cache: 1&nbsp;MB per core.
+* All the CPUs support 20 [[PCIe 4.0]] lanes. 4 of the lanes are reserved as link to the chipset.
+* No integrated graphics.
+* Fabrication process: [[TSMC]] [[5 nm process|4 nm]] FinFET.
+{| class="wikitable sortable" style="text-align:center;"
+! colspan=2 rowspan=2 | Branding<br/>and model
+! rowspan=2 | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan=2 | [[Clock rate]] ([[Hertz|GHz]])
+! rowspan=2 | [[CPU cache|L3 cache]]<br/>(total)
+! rowspan=2 | [[AI accelerator|NPU]]
+! rowspan=2 | [[Thermal design power|TDP]]
+! rowspan=2 | Core<br/>config{{efn|Core Complexes (CCX) × cores per CCX.}}
+! rowspan=2 | Thermal<br />solution
+! rowspan=2 | Release<br/>date
+! rowspan=2 | [[MSRP]]
+|-
+! {{tooltip|2=3+ active cores|Base}}
+! {{tooltip|2=1–2 active cores|Boost}}
+|-
+! rowspan=1 | Ryzen 7
+! style="text-align:left;" data-sort-value="sku2" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-7-8700f.html 8700F]
+| 8 (16)
+| 4.1
+| 5.0
+| rowspan=2 | 16&nbsp;MB
+| {{yes}}
+| rowspan=2 | 65&nbsp;W
+| 1 × 8
+| rowspan="2" | [[AMD Wraith#Wraith Stealth|Wraith Stealth]]
+| rowspan=2 | {{dts|2024|Apr|1|df=mdy|abbr=off}}<ref name="anandtech-r8kf-specs">{{cite web |last1=Bonshor |first1=Gavin |date=11 April 2024 |title=AMD Quietly Launches Ryzen 7 8700F and Ryzen 5 8400F Processors |url=https://www.anandtech.com/show/21348/amd-quietly-launches-ryzen-7-8700f-and-ryzen-5-8400f-processors |access-date=12 April 2024 |website=[[AnandTech]] |archive-url=https://web.archive.org/web/20250207024001/https://www.anandtech.com/show/21348/amd-quietly-launches-ryzen-7-8700f-and-ryzen-5-8400f-processors|archive-date=2025-02-07}}</ref>
+| rowspan=2 {{n/a|OEM<ref>{{cite web |title=AMD officially introduces Ryzen 7 8700F and Ryzen 5 8400F CPUs |url=https://videocardz.com/newz/amd-officially-introduces-ryzen-7-8700f-and-ryzen-5-8400f-cpus |website=VideoCardz |publisher=Videocardz |date=11 April 2024 |access-date=15 April 2024}}</ref>}}
+|-
+! rowspan=1 | Ryzen 5
+! style="text-align:left;" data-sort-value="sku1" | [https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8400f.html 8400F]
+| 6 (12)
+| 4.2
+| 4.7
+| {{no}}
+| 1 × 6
+|}
+{{navbar|AMD Ryzen 8000 series|mini=y|plain=y|style=float: left;position: relative;top: -15px;right: 0px;}}
+{{notelist}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the AMD APU tables at: [[Talk:List of AMD processors with 3D graphics]].}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

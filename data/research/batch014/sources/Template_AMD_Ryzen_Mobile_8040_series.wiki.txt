@@ -1,0 +1,127 @@
+Key features of Ryzen 8040 notebook APUs:
+* Socket: [[Ball_grid_array|BGA]] (FP7, FP7r2 or FP8 type packages).
+* All models support [[DDR5 SDRAM|DDR5]]-5600 or [[LPDDR#LPDDR5X|LPDDR5X]]-7500 in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode.
+* CPU uses [[Zen_4|Zen4]] cores (Phoenix) or a combination of Zen4 and Zen4c cores (Phoenix2).
+* GPU uses the [[RDNA 3]] (Navi 3) architecture.
+* Some models include first-generation Ryzen AI [[Neural processing unit|NPU]] (XDNA) capable of 16 {{abbr|TOPS|Trillions of operations per second}}.
+* All models support [[AVX-512]] using a half-width 256-bit FPU.
+* [[PCI Express#PCI Express 4.0|PCIe 4.0]] support.
+* Native USB 40Gbps (USB4) Ports: 2
+* Native USB 10Gbps (USB 3.2 Gen 2 operation mode) Ports: 2
+* Fabrication process: [[TSMC]] [[5 nm process|N4]] FinFET. 
+{| class="wikitable sortable" style="text-align:center;"
+! colspan="2" rowspan="3" | Branding and model
+! colspan=7 | [[Central processing unit|CPU]]
+! colspan="2" | [[Graphics processing unit|GPU]]
+! rowspan="3" | [[Neural processing unit|NPU]]<br />(Ryzen AI)
+! rowspan="3" |TDP
+! rowspan="3" |Release
+date
+|-
+! colspan=3 | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan=2 | [[Clock rate|Clock]] ([[Hertz|GHz]])
+! rowspan="2" | [[CPU cache|L3 cache]]<br />(total)
+! rowspan="2" | Core<br />config{{efn|Core Complexes (CCX) × cores per CCX or Zen 4 + Zen 4c cores}}
+! rowspan="2" | Model
+! rowspan="2" | Clock<br />(GHz)
+|-
+! rowspan="1" | Total
+! rowspan="1" | [[Zen 4]]
+! rowspan="1" |[[Zen 4c]]
+! rowspan="1" | {{tooltip|2=3+ active cores|Base}}
+! rowspan="1" | {{tooltip|2=1–2 active cores|Boost}}
+|-
+! Ryzen 9
+! style="text-align:left" data-sort-value="sku9" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-9-8945hs.html 8945HS]
+| rowspan="6" | 8 (16)
+| rowspan="6" | 8 (16)
+| rowspan="9" |—
+| 4.0
+| 5.2
+| rowspan="10" | 16 MB
+| rowspan="6" | 1 × 8
+| rowspan="6" | 780M
+12 CU
+| 2.8
+| rowspan="4" {{Yes}}<br/>16 TOPS
+| rowspan="2" |35-54 W
+| rowspan="4" |December 6, 2023
+|-
+! rowspan="5" | Ryzen 7
+! style="text-align:left" data-sort-value="sku8" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8845hs.html 8845HS]
+| 3.8
+| rowspan=3 | 5.1
+| rowspan=3 | 2.7
+|-
+! style="text-align:left" data-sort-value="sku7" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8840hs.html 8840HS]
+| rowspan=2 | 3.3
+|20-30 W
+|-
+! style="text-align:left" data-sort-value="sku6" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8840u.html 8840U]
+|15-30 W
+|-
+! style="text-align: left;" |8745HS<ref>{{Cite web |url=https://www.amd.com/zh-cn/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8745hs.html|title=AMD 锐龙 7 8745HS |language=zh |website=AMD |access-date=2025-05-19}}</ref>
+| rowspan="2" |3.8
+| rowspan="2" |4.9
+| rowspan="2" |2.6
+| rowspan="2" {{No}}
+| rowspan="2" |35–54 W
+| rowspan="2" {{dunno}}
+|-
+! style="text-align: left;" |8745H<ref>{{Cite web |url=https://www.amd.com/zh-cn/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8745h.html|title=AMD 锐龙 7 8745H |language=zh |website=AMD |access-date=2025-05-19}}</ref>
+|-
+! rowspan="4" | Ryzen 5
+! style="text-align:left" data-sort-value="sku5" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-5-8645hs.html 8645HS]
+| rowspan="4" | 6 (12)
+| rowspan="3" | 6 (12)
+| 4.3
+| 5.0
+| rowspan="3" | 1 × 6
+| rowspan="3" | 760M
+8 CU
+| rowspan="3" | 2.6
+| rowspan="3" {{Yes}}<br/>16 TOPS
+|35-54 W
+| rowspan="3" |December 6, 2023
+|-
+! style="text-align:left" data-sort-value="sku4" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-5-8640hs.html 8640HS]
+| rowspan="2" | 3.5
+| rowspan="2" | 4.9
+|20-30 W
+|-
+! style="text-align:left" data-sort-value="sku3" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-5-8640u.html 8640U]
+| rowspan="3" |15-30 W
+|-
+! style="text-align:left" data-sort-value="sku2" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-5-8540u.html 8540U]
+| 2 (4)
+|4 (8)
+| 3.7 / 3.0{{efn|Zen 4 cores' base frequency / Zen 4c cores' base frequency|name="zen4c-base"}}
+| 4.9 / 3.5{{efn|Zen 4 cores' boost frequency / Zen 4c cores' boost frequency|name="zen4c-boost"}}
+| 2 + 4
+| rowspan="2" | 740M
+4 CU
+| 2.8
+| rowspan="2" {{No}}
+| rowspan="2" {{dunno}}
+|-
+! Ryzen 3
+! style="text-align:left" data-sort-value="sku1" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-3-8440u.html 8440U]
+| 4 (8)
+| 1 (2)
+|3 (6)
+| 3.6 / 2.8{{efn|name="zen4c-base"}}
+| 4.7 / 3.3{{efn|name="zen4c-boost"}}
+| 8 MB
+| 1 + 3
+| 2.5
+|}
+{{navbar|AMD Ryzen Mobile 8040 series|mini=y|plain=y|style=float: left;position: relative;top: -15px;right: 0px;}}
+{{notelist}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the AMD APU tables at: [[Talk:List of AMD processors with 3D graphics]].}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

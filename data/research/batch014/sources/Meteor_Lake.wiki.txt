@@ -1,0 +1,706 @@
+{{Short description|Intel microprocessor series released in 2023}}
+{{Use mdy dates|date=February 2024}}
+{{Infobox CPU
+| name           = Meteor Lake
+| image_size     =
+| alt            =
+| caption        =
+<!----------------- General Info ----------------->
+| produced-start = {{Start date|2023|12|14}}<ref name="AnandTech-2023">{{cite web |title=The Intel Innovation 2023 Keynote Live Blog |url=https://www.anandtech.com/show/20060/intel-innovation-2023-keynote-live-blog-830am-pt-1530-utc |website=AnandTech |access-date=September 22, 2023 |date=September 19, 2023 |archive-date=September 19, 2023 |archive-url=https://web.archive.org/web/20230919145516/https://www.anandtech.com/show/20060/intel-innovation-2023-keynote-live-blog-830am-pt-1530-utc |url-status=dead }}</ref>
+| produced-end   =
+| soldby         = [[Intel]]
+| designfirm     = Intel
+| manuf1         = Intel
+| manuf2         = [[TSMC]]
+| cpuid          = A06A4h
+| code           = 80723<ref name="Intel ARK-2023">{{cite web |title=Intel Core Ultra 7 Processor 155H 24M Cache Up To 4.80 GHz Product Specifications |url=https://ark.intel.com/content/www/us/en/ark/products/236847/intel-core-ultra-7-processor-155h-24m-cache-up-to-4-80-ghz.html |website=Intel ARK |access-date=December 16, 2023 |date=December 14, 2023 |archive-date=December 15, 2023 |archive-url=https://web.archive.org/web/20231215093649/https://ark.intel.com/content/www/us/en/ark/products/236847/intel-core-ultra-7-processor-155h-24m-cache-up-to-4-80-ghz.html |url-status=live }}</ref>
+<!------------------ Performace ------------------>
+| clock                    = P-cores: 5.1 GHz<br />E-cores: 3.8 GHz<br />LP E-cores: 2.5 GHz
+| slowest                  =
+| fastest                  =
+| slow-unit                =
+| fast-unit                =
+| fsb-slowest              =
+| fsb-fastest              =
+| fsb-slow-unit            =
+| fsb-fast-unit            =
+| hypertransport-slowest   =
+| hypertransport-fastest   =
+| hypertransport-slow-unit =
+| hypertransport-fast-unit =
+| qpi-slowest              =
+| qpi-fastest              =
+| qpi-slow-unit            =
+| qpi-fast-unit            =
+| dmi-slowest              = x8 16
+| dmi-fastest              =
+| dmi-slow-unit            = GT/s
+| dmi-fast-unit            =
+| data-width               =
+| address-width            =
+| virtual-width            =
+<!-------------------- Cache --------------------->
+| l1cache        = 112{{nbsp}}KB per P-core: <br /> {{bulleted list |64{{nbsp}}KB instructions |48{{nbsp}}KB data}} <br /> 96{{nbsp}}KB per E-core and LP E-core: {{bulleted list |64{{nbsp}}KB instructions |32{{nbsp}}KB data}}
+| l2cache        = 2{{nbsp}}MB per P-core, E-core cluster and LP E-core cluster
+| l3cache        = Up to 24{{nbsp}}MB
+| l4cache        =
+| llcache        =
+<!------- Architecture and classification -------->
+| application    = Mobile
+| size-from      = [[7 nm process|Intel 4]] <br/> TSMC [[5 nm process|N5]] <br/> TSMC [[7 nm process|N6]] <br/> Intel [[22 nm process|22FFL]]
+| size-to        = 
+| microarch      = [[Redwood Cove (microarchitecture)|Redwood Cove]] (P-cores)<br />[[Crestmont (microarchitecture)|Crestmont]] (E-cores and LP E-cores)
+| arch           = [[x86-64]]
+| instructions   = x86-64
+| extensions     = [[AES instruction set|AES-NI]], [[CLMUL instruction set|CLMUL]], [[RDRAND]], [[MMX (instruction set)|MMX]], [[Streaming SIMD Extensions|SSE]], [[SSE2]], [[SSE3]], [[SSSE3]], [[SSE4.1]], [[SSE4.2]], [[Advanced Vector Extensions|AVX]], [[Advanced Vector Extensions#Advanced Vector Extensions 2|AVX2]], [[FMA3]], [[Advanced Vector Extensions#AVX-VNNI|AVX-VNNI]], [[Advanced Vector Extensions#AVX-IFMA|AVX-IFMA]], [[Intel SHA extensions|SHA]], [[Trusted Execution Technology|TXT]], [[VT-x]], [[VT-d]]
+<!----------- Physical specifications ------------>
+| transistors    =
+| cores          = 2–6 P-cores <br /> 8 E-cores <br /> 2 LP E-cores
+| amountmemory   = Up to 96&nbsp;GB
+| memory1        = Up to dual-channel [[DDR5]]-5600 (except 9&nbsp;W models)
+| memory2        = Up to dual-channel [[LPDDR5X]]-7467 (all models)
+| cores1         =
+| gpu            = [[Intel Arc]]
+| co-processor   =
+| pack1          = Flip-chip [[ball grid array]] (FC-BGA)
+| pack2          = Flip-chip [[land grid array]] (FC-LGA)
+| sock1          = '''Mobile''': BGA 2049
+| sock2          = '''Embedded''': [[LGA 1851]]
+<!--------- Products, models, variants ----------->
+| core1          =
+| pcode1         = MTL
+| model1         = Meteor Lake-H
+| model2         = Meteor Lake-U
+| model3         = Meteor Lake-HL
+| model4         = Meteor Lake-UL
+| brand1         = [[Intel Core|Core Ultra]]
+<!------------------  History  ------------------->
+| predecessor    = [[Alder Lake]] (embedded and 9&nbsp;W fanless mobile)<br />[[Raptor Lake]] (15–45&nbsp;W premium fanned mobile)
+| successor      = [[Lunar Lake]] (low power ultralight)<br/>[[Arrow Lake (microprocessor)|Arrow Lake]] (performance thin & light)
+| support_status = Supported
+}}
+
+'''Meteor Lake''' is the [[List of Intel codenames|codename]] for Core Ultra Series 1 mobile processors, designed by [[Intel]]<ref name="Gomes-2022">{{cite book |last1=Gomes |first1=Wilfred |last2=Morgan |first2=Slade |last3=Phelps |first3=Boyd |last4=Wilson |first4=Tim |last5=Hallnor |first5=Erik |doi=10.1109/HCS55958.2022.9895532 |chapter=Meteor Lake and Arrow Lake Intel Next-Gen 3D Client Architecture Platform with Foveros |title=2022 IEEE Hot Chips 34 Symposium (HCS) |date=2022 |pages=1–40 |isbn=978-1-6654-6028-6 |s2cid=252551808 }}</ref> and officially released on December 14, 2023.<ref name="Intel-AI-PC-2023">{{cite web|url=https://www.intel.com/content/www/us/en/newsroom/news/core-ultra-client-computing-news-1.html|title=Intel Core Ultra Ushers in the Age of the AI PC|website=Intel|date=December 14, 2023 |access-date=2026-05-27|archive-date=2023-12-14|archive-url=https://web.archive.org/web/20231214150505/https://www.intel.com/content/www/us/en/newsroom/news/core-ultra-client-computing-news-1.html|url-status=live}}</ref> It is the first generation of Intel mobile processors to use a [[chiplet]] architecture which means that the processor is a multi-chip module.<ref name="Gomes-2022"/> Meteor Lake's design effort was led by Tim Wilson.<ref name="Intel-Corporation-SoC-40-years-2004">{{Cite web |title=The 'Blank Sheet' that Delivered Intel's Most Significant SoC Design Change in 40 Years |url=https://www.intel.com/content/www/us/en/newsroom/news/blank-sheet-opens-intels-new-soc-design.html |website=Intel |language=en-US |date=2024-01-17 |access-date=2026-05-27}}</ref>
+
+== Background ==
+In July 2021, Meteor Lake was initially announced to be coming with a 5–125W TDP range for various segments ranging from ultra low power mobile to enthusiast desktop.<ref name="Liu-2021">{{cite web |last=Liu |first=Zhiye |date=2021-07-27 |title=Intel Teases 14th-Gen Meteor Lake CPUs With Tile Design and 192 EUs |url=https://www.tomshardware.com/news/intel-teases-14th-gen-meteor-lake-cpus-tile-design-192-eus |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141306/https://www.tomshardware.com/news/intel-teases-14th-gen-meteor-lake-cpus-tile-design-192-eus |url-status=live }}</ref> The initial tape-in process for Meteor Lake took place in May 2021. The CPU compute tile was confirmed to be fabricated on Intel's 7 nm process (since rebranded to "Intel 4").<ref name="VideoCardz-2021">{{cite web |title=Intel's 7nm "Meteor Lake" compute tile has taped in |url=https://videocardz.com/newz/intels-7nm-meteor-lake-compute-tile-has-taped-in |website=VideoCardz |language=en-US |date=2021-05-24 |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141307/https://videocardz.com/newz/intels-7nm-meteor-lake-compute-tile-has-taped-in |url-status=live }}</ref>
+
+In October 2021, Intel said in an earnings call that it had taped out the CPU compute tile for Meteor Lake and after it was received it had powered on within 30 minutes and with expected performance levels.<ref name="Shilov-2021">{{cite web |last=Shilov |first=Anton |date=2021-10-22 |title=Intel: 14th Gen Meteor Lake Compute Tile Powers On, Performs Well |url=https://www.tomshardware.com/news/intel-meteor-lake-powered-on |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141306/https://www.tomshardware.com/news/intel-meteor-lake-powered-on |url-status=live }}</ref> In April 2022, Intel announced that an assembled Meteor Lake mobile processor had been powered-on for the first time in a development milestone.<ref name="VideoCardz-2022">{{cite web |title=14th Gen Core "Meteor Lake" has been powered-on, on track to launch in 2023 |url=https://videocardz.com/newz/14th-gen-core-meteor-lake-has-been-powered-on-on-track-to-launch-in-2023 |website=VideoCardz |language=en-US |date=2022-04-29 |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141305/https://videocardz.com/newz/14th-gen-core-meteor-lake-has-been-powered-on-on-track-to-launch-in-2023 |url-status=live }}</ref><ref name="Mujtaba-2022">{{cite web |last=Mujtaba |first=Hassan |date=2022-04-29 |title=Intel Achieves 14th Gen Meteor Lake CPU 'Power-On' With Launch Scheduled For 2023 |url=https://wccftech.com/intel-achieves-14th-gen-meteor-lake-cpu-power-on-with-launch-scheduled-for-2023/ |website=Wccftech |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141307/https://wccftech.com/intel-achieves-14th-gen-meteor-lake-cpu-power-on-with-launch-scheduled-for-2023/ |url-status=live }}</ref>
+
+In March 2023, it was reported that Intel had decided to cancel development of high-end Meteor Lake-S processors for desktop.<ref name="Norem-2023">{{cite web |last=Norem |first=Josh |date=2023-03-17 |title=Rumor: Intel to Cancel Meteor Lake Desktop, Replace It With Arrow Lake |url=https://www.extremetech.com/computing/rumor-intel-to-cancel-meteor-lake-desktop-replace-it-with-arrow-lake |website=ExtremeTech |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141305/https://www.extremetech.com/computing/rumor-intel-to-cancel-meteor-lake-desktop-replace-it-with-arrow-lake |url-status=live }}</ref> Meteor Lake-S processors were being designed to fit into the [[LGA 1851]] socket, which is identical in dimensions to LGA 1700, but the cancellation of desktop Meteor Lake meant that the LGA 1851 socket wouldn't debut until Arrow Lake in 2024.<ref name="VideoCardz-2023">{{cite web |title=Intel's 2024 Arrow Lake-S desktop CPUs to feature up to 24 cores and support DDR5-6400 memory |url=https://videocardz.com/newz/intels-2024-arrow-lake-s-desktop-cpus-to-feature-up-to-24-cores-and-support-ddr5-6400-memory |website=VideoCardz |language=en-US |date=2023-03-17 |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141308/https://videocardz.com/newz/intels-2024-arrow-lake-s-desktop-cpus-to-feature-up-to-24-cores-and-support-ddr5-6400-memory |url-status=live }}</ref> The top Meteor Lake-S SKU in development contained 6 Redwood Cove P-cores and 16 Crestmont E-cores, which is two fewer P-cores than the last generation Raptor Lake Core i9-13900K.
+
+At Intel's Innovation event in September 2023, head of Intel's Client Computing Group Michelle Johnston Holthaus confirmed that some Meteor Lake-based processors would come to desktop in 2024. Intel later clarified that socketable desktop Meteor Lake processors would not be coming to the DIY market with the LGA 1851 socket.<ref name="Bonshor-Galvin-2023-SoC">{{cite web |last=Bonshor |first=Gavin |date=2023-09-26 |title=Intel Meteor Lake SoC is NOT Coming to Desktops: Well, Not Technically |url=https://www.anandtech.com/show/21076/intel-meteor-lake-soc-is-not-coming-to-desktops-well-not-technically |website=AnandTech |language=en-US |access-date=2024-04-05 |archive-date=2023-12-08 |archive-url=https://web.archive.org/web/20231208092645/http://www2.anandtech.com/show/21076/intel-meteor-lake-soc-is-not-coming-to-desktops-well-not-technically |url-status=dead }}</ref><ref name="Laird-2023">{{cite web |last=Laird |first=Jeremy |date=2023-09-26 |title=Once, finally and for all Intel's Meteor Lake is not coming to the desktop CPU sockets |url=https://www.pcgamer.com/once-finally-and-for-all-intels-meteor-lake-is-not-coming-to-the-desktop-cpu-sockets/ |website=PC Gamer |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141308/https://www.pcgamer.com/once-finally-and-for-all-intels-meteor-lake-is-not-coming-to-the-desktop-cpu-sockets/ |url-status=live }}</ref> Instead, Meteor Lake processors in a [[Ball grid array|BGA]] package will be available on desktop in the form of compact all-in-one PCs.<ref name="Shilov-2023">{{cite web |last=Shilov |first=Anton |date=2023-09-26 |title=Intel Clarifies Meteor Lake is Not for Desktop PCs: Not in Socketed Form |url=https://www.tomshardware.com/news/intel-clarifies-meteor-lake-is-not-for-desktop-pcs-not-in-socketed-form |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141305/https://www.tomshardware.com/news/intel-clarifies-meteor-lake-is-not-for-desktop-pcs-not-in-socketed-form |url-status=live }}</ref> A reason for this, according to a statement by Intel to ''[[ComputerBase]]'', is that "Meteor Lake is a power efficient architecture that will power new mobile and desktop designs".<ref name="Rißka-2023">{{cite web |last=Rißka |first=Volker |date=2023-09-26 |title=For notebooks & AIOs: Intel Meteor Lake is not available for "classic desktop PCs" |url=https://www.computerbase.de/2023-09/halbe-rolle-rueckwaerts-intel-meteor-lake-kommt-fuer-notebooks-und-aios/ |website=ComputerBase |language=de |access-date=2026-05-27 |archive-date=2024-01-07 |archive-url=https://web.archive.org/web/20240107021731/https://www.computerbase.de/2023-09/halbe-rolle-rueckwaerts-intel-meteor-lake-kommt-fuer-notebooks-und-aios/ |url-status=live }}</ref>
+
+=== Branding ===
+Intel announced new branding in June 2023 for upcoming Meteor Lake processors after using the same "Core i" branding for over 15 years. Core branding would be simplified by dropping the 'i' with processors branded Core 3, 5 and 7 instead.<ref name="Robinson-2023">{{cite web |last=Robinson |first=Cliff |date=2023-06-15 |title=Intel Overhauls Core Branding with Meteor Lake |url=https://www.servethehome.com/intel-overhauls-core-branding-with-meteor-lake/ |website=ServeTheHome |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141541/https://www.servethehome.com/intel-overhauls-core-branding-with-meteor-lake/ |url-status=live }}</ref> The new 'Core Ultra' 5, 7 and 9 branding would be reserved for "premium" processors according to Intel.<ref name="Bonshor-2023a-Intel-to-Launch">{{cite web |last=Bonshor |first=Gavin |date=2023-06-15 |title=Intel To Launch New Core Processor Branding for Meteor Lake: Drop the i, Add Ultra Tier |url=https://www.anandtech.com/show/18911/intel-new-core-branding-for-meteor-lake-no-i-new-ultra-tier |website=AnandTech |language=en-US |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141541/https://www.anandtech.com/show/18911/intel-new-core-branding-for-meteor-lake-no-i-new-ultra-tier |url-status=dead }}</ref> In addition to the new tier naming, Intel said it would be de-emphasizing processor generations in marketing material, though the processor generation number would remain in the processor number.<ref name="Thubron-2023">{{cite web |last=Thubron |first=Rob |date=2023-06-15 |title=Intel announces biggest processor rebranding in 15 years ahead of Meteor Lake launch |url=https://www.techspot.com/news/99067-intel-announces-biggest-processor-rebranding-15-years-ahead.html |website=TechSpot |language=en-AU |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141541/https://www.techspot.com/news/99067-intel-announces-biggest-processor-rebranding-15-years-ahead.html |url-status=live }}</ref> Meteor Lake processors with Core Ultra branding are classified as first generation Core Ultra.
+
+The new Core and Core Ultra branding was perceived as creating more branding confusion rather than reducing it.<ref name="Sandhu-2023">{{cite web |last1=Sandhu |first1=Tarinder |date=2023-06-15 |title=Intel's radical simplification of Core branding only adds to the confusion |url=https://www.club386.com/intel-announces-biggest-core-branding-update-in-15-years-ahead-of-meteor-lake-launch/ |website=Club386 |language=en-GB |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141541/https://www.club386.com/intel-announces-biggest-core-branding-update-in-15-years-ahead-of-meteor-lake-launch/ |url-status=live }}</ref> Josh Loeffler of ''[[TechRadar]]'' wrote that "differentiation between Core and Core Ultra is also somewhat head-scratching, especially since there will at least be some overlap between the two brands" as Core 5 and Core 7 processors will exist alongside Core Ultra 5 and Core Ultra 7 processors.<ref name="Loeffler-2023">{{cite web |last1=Loeffler |first1=John |date=2023-06-15 |title=Intel's new processor branding drops the 'i' – and the ball |url=https://www.techradar.com/news/intels-new-processor-branding-drops-the-i-and-the-ball |website=TechRadar |language=en-US |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141541/https://www.techradar.com/news/intels-new-processor-branding-drops-the-i-and-the-ball |url-status=live }}</ref> In the view of ''[[Digital Trends]]'', the new branding emulated AMD and Apple's naming conventions which amounted to Intel "chasing its competitors instead of leading the pack".<ref name="White-2023">{{cite web |last1=White |first1=Monica J. |date=2023-06-16 |title=Intel just admitted defeat |url=https://www.digitaltrends.com/computing/intel-rebranding-admits-defeat-to-apple/ |website=Digital Trends |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405141543/https://www.digitaltrends.com/computing/intel-rebranding-admits-defeat-to-apple/ |url-status=live }}</ref>
+
+{{Multiple image
+| align             = left
+| direction         = horizontal
+| perrow            = 2 / 2
+| background color  = <!-- box background as a 'hex triplet' web color prefixed by # e.g. #33CC00 -->
+| width             = 120
+| caption_align     = center
+| image_style       = <!-- border:1; (default) -->
+| image_gap         = <!-- 5 (default)-->
+
+<!-- Header -->
+| header_background = <!-- header background as a 'hex triplet' web color prefixed by # e.g. #33CC00 -->
+| header_align      = <!-- center (default), left, right -->
+| header            = Intel Core branding (2020–2023)
+
+<!--image 1-->
+| image1            = Intel Core i3 (11th generation, logo).svg
+| width1            = <!-- displayed width of image; overridden by "width" above -->
+| alt1              =
+| caption1          = Core i3
+
+<!--image 2-->
+| image2            = Intel Core i5 (11th generation, logo).svg
+| width2            = <!-- displayed width of image; overridden by "width" above -->
+| alt2              =
+| caption2          = Core i5
+
+<!--image 3-->
+| image3            = Intel Core i7 (11th generation, logo).svg
+| width3            = <!-- displayed width of image; overridden by "width" above -->
+| alt3              =
+| caption3          = Core i7
+
+<!--image 4-->
+| image4            = Intel Core i9 (11th generation, logo).svg
+| width4            = <!-- displayed width of image; overridden by "width" above -->
+| alt4              =
+| caption4          = Core i9
+}}
+{{Multiple image
+| align             = center
+| direction         = horizontal
+| perrow            = 3 / 3
+| background color  = <!-- box background as a 'hex triplet' web color prefixed by # e.g. #33CC00 -->
+| width             = 120
+| caption_align     = center
+| image_style       = <!-- border:1; (default) -->
+| image_gap         = <!-- 5 (default)-->
+
+<!-- Header -->
+| header_background = <!-- header background as a 'hex triplet' web color prefixed by # e.g. #33CC00 -->
+| header_align      = <!-- center (default), left, right -->
+| header            = Intel Core and Core Ultra branding (since 2023)
+
+<!--image 1-->
+| image1            = Intel-Core-3-Badge-2023.png
+| width1            =
+| alt1              =
+| caption1          = Core 3
+
+<!--image 2-->
+| image2            = Intel-Core-5-Badge-2023.png
+| width2            = 133
+| alt2              =
+| caption2          = Core 5
+| image3            = Intel-Core-7-Badge-2023.png
+| width3            =
+| alt3              =
+| caption3          = Core 7
+| image4            = Intel-Core-Ultra-5-Badge-2023.png
+| width4            =
+| alt4              =
+| caption4          = Core Ultra 5
+| image5            = Intel-Core-Ultra-7-Badge-2023.png
+| width5            =
+| alt5              =
+| caption5          = Core Ultra 7
+| image6            = Intel-Core-Ultra-9-Badge-2023.png
+| width6            =
+| alt6              =
+| caption6          = Core Ultra 9
+}}
+
+=== Production ===
+[[File:Intel facility in Hillsboro, Oregon.jpg|thumb|left|upright|250px|Intel's production facility in Hillsboro, Oregon, where the D1D fabrication facility is located (April 2009)]]
+In April 2023, Meteor Lake and its "Intel 4" process were reportedly ramping to production.<ref name="Smith-2023">{{cite web |last=Smith |first=Ryan |date=2023-04-27 |title=Intel: Meteor Lake & Intel 4 Process Now Ramping for Production |url=https://www.anandtech.com/show/18836/intel-meteor-lake-intel-4-process-now-ramping-for-production |website=AnandTech |language=en-US |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://www.anandtech.com/show/18836/intel-meteor-lake-intel-4-process-now-ramping-for-production |url-status=dead }}</ref> [[List of Intel manufacturing sites|Production]] on Meteor Lake with Intel 4 wafers took place at Intel's D1D [[Semiconductor fabrication plant|fabrication facility]] in [[Hillsboro, Oregon|Hillsboro]], Oregon.<ref name="Zuhair-2023">{{cite web |last=Zuhair |first=Muhammad |date=2023-08-24 |title=Intel Expresses Confidence in "Intel 4" Process, Says Its Competitive With TSMC's 3nm Node |url=https://wccftech.com/intel-expresses-confidence-in-intel-4-process-competitive-with-tsmc-3nm-node/ |website=Wccftech |language=en-US |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://wccftech.com/intel-expresses-confidence-in-intel-4-process-competitive-with-tsmc-3nm-node/ |url-status=live }}</ref> The D1D fabrication facility has a total output of 40,000 wafers a month.<ref name="Zuhair-2023a-Intel-could-dish">{{cite web |last=Zuhair |first=Muhammad |date=2023-08-28 |title=Intel Could Dish Out An Estimated 365,000 Next-Gen Meteor Lake CPU Tiles Per Month |url=https://wccftech.com/intel-could-dish-out-an-estimated-365000-next-gen-meteor-lake-cpu-tiles-per-month/ |website=Wccftech |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://wccftech.com/intel-could-dish-out-an-estimated-365000-next-gen-meteor-lake-cpu-tiles-per-month/ |url-status=live }}</ref> Secondary source production for Meteor Lake takes place at Fab 34 in the [[Republic of Ireland]].<ref name="Norem-2023a-Intel-Projected">{{cite web |last=Norem |first=Josh |date=2023-08-28 |title=Intel Projected to Pump Out 365,000 Meteor Lake CPUs a Month |url=https://www.extremetech.com/computing/intel-projected-to-pump-out-365000-meteor-lake-cpus-a-month |website=ExtremeTech |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://www.extremetech.com/computing/intel-projected-to-pump-out-365000-meteor-lake-cpus-a-month |url-status=live }}</ref><ref name="Intel in Ireland-2023">{{cite news |title=Fab 34 reaches important Intel 4 milestone |url=https://www.intel.ie/content/www/ie/en/newsroom/news/fab-34-reaches-important-intel-4-milestone.html |website=Intel in Ireland |language=en-IE |date=2023-08-22 |access-date=2024-04-05 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://www.intel.ie/content/www/ie/en/newsroom/news/fab-34-reaches-important-intel-4-milestone.html |url-status=dead }}</ref> On September 29, 2023, Intel announced that Intel 4 products, including Meteor Lake, had entered high-volume production at Fab 34 in the Republic of Ireland.<ref>{{Cite web |last=Intel |date=2023-09-29 |title=Intel's New Fab in Ireland Begins High-Volume Production of Intel 4 Technology |url=https://newsroom.intel.com/manufacturing/new-fab-ireland-high-volume-production-intel-4-technology |url-status=live |archive-url=https://web.archive.org/web/20240405142059/https://www.intel.com/content/www/us/en/newsroom/news/new-fab-ireland-high-volume-production-intel-4-technology.html |archive-date=2024-04-05 |access-date= |website=Intel |language=en-US}}</ref> The GPU, [[System on a chip]] (SoC) and I/O extender tiles in Meteor Lake are manufactured by [[TSMC]] in Taiwan.
+
+=== Unveiling and release ===
+Meteor Lake was revealed at Intel's Innovation event on September 19, 2023, with the announcement that 'Core Ultra' branded processors would be launching on December 14.<ref name="Hardawar-2023">{{cite web |last=Hardawar |first=Devindra |date=2023-09-19 |title=Intel's Core Ultra 'Meteor Lake' chips arrive on December 14 |url=https://www.engadget.com/intels-core-ultra-meteor-lake-chips-arrive-on-december-14-153515292.html |website=Engadget |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://www.engadget.com/intels-core-ultra-meteor-lake-chips-arrive-on-december-14-153515292.html |url-status=live }}</ref> However, no list of Meteor Lake SKUs was revealed at Innovation nor release details on regular 'Core' branded processors.<ref name="Khullar-2023">{{cite web |last=Khullar |first=Kunal |date=2023-09-19 |title=Intel's Core Ultra CPUs are more Apple, less AMD |url=https://www.digitaltrends.com/computing/intel-meteor-lake-announcement/ |website=Digital Trends |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://www.digitaltrends.com/computing/intel-meteor-lake-announcement/ |url-status=live }}</ref>
+
+== Architecture ==
+=== Packaging ===
+Meteor Lake is a 64-bit [[x86]] CPU architecture designed around low power operation and increased power efficiency over Raptor Lake. Meteor Lake is the first Intel microarchitecture to utilize a disaggregated multi-chip module (MCM) approach rather than using large monolithic silicon dies. Previously, in June 2017, Intel had derided [[AMD]]'s disaggregated chiplet approach in their [[Ryzen]] and [[Epyc]] processors as using "glued-together" dies.<ref>{{cite web |last=Lilly |first=Paul |date=2017-07-13 |title=Intel slide criticizes AMD for using "glued-together" dies in Epyc processors |url=https://www.pcgamer.com/intel-slide-criticizes-amd-for-using-glued-together-dies-in-epyc-processors/ |website=PC Gamer |language=en-US |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124229/https://www.pcgamer.com/intel-slide-criticizes-amd-for-using-glued-together-dies-in-epyc-processors/ |url-status=live }}</ref>
+
+The first advantage of using smaller [[Die (integrated circuit)|dies]] in an MCM is how it brings better modularity and fabricating smaller dies increases silicon yield rates as more dies can be fitted onto a single 300mm [[Wafer (electronics)|wafer]]. As a result of greater yields, the use of multiple pre-tested components in an MCM removes the need for [[Product binning#Semiconductor manufacturing|binning]] an entire assembled CPU as is the case with monolithic dies.<ref>{{cite web |last=Westover |first=Brian |date=2023-09-19 |title='Meteor Lake' Architecture Detailed: What to Know About Intel's Next-Gen CPUs |url=https://uk.pcmag.com/laptops/148712/meteor-lake-architecture-detailed-what-to-know-about-intels-next-gen-cpus |website=PCMag |language=en-GB |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124230/https://www.pcmag.com/news/meteor-lake-architecture-detailed-what-to-know-about-intels-next-gen-cpus |url-status=live }}</ref> For example, Raptor Lake desktop silicon with defective graphics is binned into F SKUs with the integrated graphics disabled so they can still be sold while non-F SKUs have their integrated graphics enabled. Instead, Intel can assemble Meteor Lake CPUs using multiple pieces of fully functional silicon while any silicon wafer defects can be discarded entirely. The second advantage is greater flexibility in the use of process nodes. The various dies in an MCM can be fabricated on different nodes depending on their use case. Certain functions like SRAM and general I/O do not linearly scale as logic does with advancements in process node. For example, an I/O die can use a cheaper, more mature process like [[TSMC]]'s [[7 nm process|N6]] while the CPU die can use a more expensive, advanced node like [[5 nm process|N5]] or [[3 nm process|N3]] for greater power efficiency and frequency.
+
+=== Process technology ===
+Due to its MCM construction, Meteor Lake can take advantage of different process nodes that are best suited to the use case. Meteor Lake is built using four different fabrication nodes, including both Intel's own nodes and external nodes outsourced to fabrication competitor [[TSMC]]. The "Intel 4" process used for the CPU tile is the first process node in which Intel is utilising [[Extreme ultraviolet lithography|extreme ultraviolet (EUV)]] lithography, which is necessary for creating nodes 7 nm and smaller. The interposer base tile is fabricated on Intel's 22FFL, or "Intel 16", process.<ref>{{cite web |last=Temsamani |first=Fahd |date=2022-08-24 |title=Intel reveals key details about 3D Foveros chip design on Meteor Lake |url=https://www.club386.com/intel-reveals-key-details-about-3d-foveros-chip-design-on-meteor-lake/ |website=Club386 |language=en-GB |access-date=2026-05-17 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.club386.com/intel-reveals-key-details-about-3d-foveros-chip-design-on-meteor-lake/ |url-status=live }}</ref><ref>{{cite web |last=Deutscher |first=Maria |date=2022-07-25 |title=Intel to produce chips for MediaTek as part of new partnership |url=https://siliconangle.com/2022/07/25/intel-produce-chips-mediatek-part-new-partnership/ |website=Silicon Angle |language=en-US |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124232/https://siliconangle.com/2022/07/25/intel-produce-chips-mediatek-part-new-partnership/ |url-status=live }}</ref> The 22FFL (FinFET Low-power) node, first announced in March 2017, was designed for inexpensive low power operation.<ref>{{cite web |last=Mehta |first=Rich |date=2019-02-05 |title=Intel announces tweaks to 22FFL process for RF, MRAM at IEDM18 |url=https://www.semiconductor-digest.com/intel-announces-tweaks-to-22ffl-process-for-rf-mram-at-iedm18/ |website=Semiconductor Digest |language=en-US |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124233/https://www.semiconductor-digest.com/intel-announces-tweaks-to-22ffl-process-for-rf-mram-at-iedm18/ |url-status=live }}</ref> The interposer base tile is designed to connect tiles together and allow for die-to-die communication which does not require the most advanced, expensive nodes so an older, inexpensive node can be used instead.
+
+{| class="wikitable plainrowheaders" style="text-align: left;"
+! Tile
+! Node
+! EUV
+! Die size
+! {{Tooltip|Ref.|Reference(s)}}
+|-
+! scope="row" | Compute tile
+| [[7 nm process|Intel 4]] (7 nm EUV)
+| {{ya}}
+| 69.67{{nbsp}}mm<sup>2</sup>
+| rowspan="5" style="text-align: center;" | <ref>{{cite web |last=Alcorn |first=Paul |date=2023-04-27 |title=Intel's Meteor Lake, Its First PC Chips With TSMC Tech, Launch This Year |url=https://www.tomshardware.com/news/intels-meteor-lake-begins-production-launches-this-year-on-intel-4-process |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124233/https://www.tomshardware.com/news/intels-meteor-lake-begins-production-launches-this-year-on-intel-4-process |url-status=live }}</ref> <br> <ref name="Alcorn 2023-09-19" /><br/><ref name="Zuhair">{{cite web |last=Zuhair |first=Muhammad |date=2023-08-28 |title=Intel Could Dish Out An Estimated 365,000 Next-Gen Meteor Lake CPU Tiles Per Month |url=https://wccftech.com/intel-could-dish-out-an-estimated-365000-next-gen-meteor-lake-cpu-tiles-per-month/ |website=Wccftech |language=en-US |access-date=2026-05-27 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405142059/https://wccftech.com/intel-could-dish-out-an-estimated-365000-next-gen-meteor-lake-cpu-tiles-per-month/ |url-status=live }}</ref>
+|-
+! scope="row" | Graphics tile
+| [[TSMC]] [[5 nm process|N5]]
+| {{ya}}
+| 44.25{{nbsp}}mm<sup>2</sup>
+|-
+! scope="row" | SoC tile
+| rowspan="2" | [[TSMC]] [[7 nm process|N6]]
+| {{ya}}
+| 100.15{{nbsp}}mm<sup>2</sup>
+|-
+! scope="row" | I/O extender tile
+| {{ya}}
+| 27.42{{nbsp}}mm<sup>2</sup>
+|-
+! scope="row" | Foveros interposer base tile
+| [[22 nm process|Intel 16]] (22FFL)
+| {{na}}
+| 265.65{{nbsp}}mm<sup>2</sup>
+|}
+
+=== Compute tile ===
+Meteor Lake's CPU compute tile features up to 6 Redwood Cove P-cores and 8 Crestmont E-cores. Each Redwood Cove P-core features SMT with two threads per core while Crestmont E-cores are limited to one thread per core. The 8 total Crestmont E-cores are organized into two 4-core clusters with shared L2 and L3 caches for each cluster. Each Crestmont E-core cluster has 2{{nbsp}}MB of L2 cache, the same as a Gracemont E-core cluster. Crestmont maintains the same 6-wide out-of-order core design as Gracemont with enhancements to its pipeline. The branch target buffer in Crestmont gets a boost from 5120 entries to 6144 entries.<ref name="C&C 2024-05-13">{{cite web |title=Meteor Lake's E-Cores: Crestmont Makes Incremental Progress |url=https://chipsandcheese.com/2024/05/13/meteor-lakes-e-cores-crestmont-makes-incremental-progress/ |website=Chips and Cheese |language=en-US |date=2024-05-13 |access-date=2026-05-27 |archive-date=2024-05-28 |archive-url=https://web.archive.org/web/20240528010751/https://chipsandcheese.com/2024/05/13/meteor-lakes-e-cores-crestmont-makes-incremental-progress/ |url-status=live }}</ref> Intel claims that Crestmont achieves a 3% IPC increase due to the addition of Vector Neural Network Instructions (VNNI) instructions support for AI workloads but Crestmont E-cores still lack support for [[AVX-512]] instructions<ref name="Alcorn 2023-09-19">{{cite web |last=Alcorn |first=Paul |date=2023-09-19 |title=Intel Details Core Ultra 'Meteor Lake' Architecture, Launches December 14 |url=https://www.tomshardware.com/news/intel-details-core-ultra-meteor-lake-architecture-launches-december-14 |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-06-08 |archive-url=https://web.archive.org/web/20240608203738/https://www.tomshardware.com/news/intel-details-core-ultra-meteor-lake-architecture-launches-december-14 |url-status=live }}</ref> due to lack of [[AVX10]] support.<ref>{{cite web|url=https://www.tomshardware.com/news/intels-new-avx10-brings-avx-512-capabilities-to-e-cores|title=Intel's New AVX10 Brings AVX-512 Capabilities to E-Cores|first=Paul|last=Alcorn|date=2023-07-25|access-date=2026-05-27|archive-date=2024-12-25|archive-url=https://web.archive.org/web/20241225213057/https://www.tomshardware.com/news/intels-new-avx10-brings-avx-512-capabilities-to-e-cores|url-status=live|website=Tom's Hardware}}</ref> Testing of Meteor Lake's new Redwood Cove P-cores actually showed an IPC regression in single-core workloads over the previous generation Raptor Cove core.<ref>{{cite web |last=Connatser |first=Matthew |date=2024-01-02 |title=Intel's Meteor Lake CPUs are slower at single-core work than previous-gen models — new benchmarks show IPC regressions vs Raptor Lake |url=https://www.tomshardware.com/pc-components/cpus/intels-meteor-lake-cpus-are-slower-at-single-core-work-than-previous-gen-models-new-benchmarks-show-ipc-regressions-vs-raptor-lake |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.tomshardware.com/pc-components/cpus/intels-meteor-lake-cpus-are-slower-at-single-core-work-than-previous-gen-models-new-benchmarks-show-ipc-regressions-vs-raptor-lake |url-status=live }}</ref>
+
+Meteor Lake's compute tile is fabricated on the [[5 nm process|Intel 4]] node which Intel claims brings a 20% increase in power efficiency and twice the area density for logic over [[10 nm process|Intel 7]].<ref>{{cite web |last=Bonshor |first=Gavin |date=2023-09-19 |title=Compute Tile: New P (Redwood Cove) and E-cores (Crestmont) |url=https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus/2 |website=AnandTech |language=en-US |access-date=2024-05-23 |archive-date=2023-12-22 |archive-url=https://web.archive.org/web/20231222005320/https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus/2 |url-status=dead }}</ref> The CPU tile measures around 8.9mm × 8.3mm in dimensions, giving a total die size of 73.87mm<sup>2</sup>.<ref name="Zuhair"/> As a result, roughly 730 CPU dies can be fabricated from a single 300mm wafer, though the usable die yields will be lower than 730.<ref name="Zuhair"/>
+
+=== Graphics tile ===
+The dedicated graphics tile in Meteor Lake is fabricated using [[TSMC]]'s [[5 nm process|N5]] node. Contained within the graphics tile are up to 8 X<sup>e</sup>-LPG graphics cores based on the Alchemist architecture with optimizations for low-power. Intel's [[Intel Arc|Arc]] A-series discrete graphics cards use X<sup>e</sup>-HPG cores that are also based on the same Alchemist architecture. Each X<sup>e</sup> core has 16 X<sup>e</sup> Vector Engines (XVEs), giving a total of 128 XVEs across the 8 X<sup>e</sup>-LPG cores. This 128 XVE configuration is a downgrade from the 192 XVEs Intel originally showed for Meteor Lake's graphics in a July 2021 presentation slide.<ref name="Liu-2021" /> The move to the Alchemist architecture also brings the addition of up to 8 ray tracing units, one in each X<sup>e</sup>-LPG core.<ref name="Walton">{{cite web |last=Walton |first=Jarred |date=2023-09-19 |title=Intel's Meteor Lake GPU Doubles Integrated Graphics Performance Per Watt |url=https://www.tomshardware.com/news/intel-meteor-lake-integrated-graphics-doubles-performance-per-watt |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.tomshardware.com/news/intel-meteor-lake-integrated-graphics-doubles-performance-per-watt |url-status=live }}</ref> Much like the X<sup>e</sup>-HPG variant, each X<sup>e</sup>-LPG core contains a 192{{nbsp}}KB L1 cache shared between all 16 XVEs. The 8 X<sup>e</sup>-LPG cores have access to a 4{{nbsp}}MB global L2 cache.<ref>{{cite web |title=Intel's Ambitious Meteor Lake iGPU |url=https://chipsandcheese.com/2024/04/08/intels-ambitious-meteor-lake-igpu/ |website=Chips and Cheese |language=en-US |date=2024-04-08 |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://chipsandcheese.com/2024/04/08/intels-ambitious-meteor-lake-igpu/ |url-status=live }}</ref> However, what the graphics tile is missing from the Alchemist architecture are X<sup>e</sup> Matrix Extensions (XMX) units. XMX units perform in-silicon AI acceleration, similar to [[Nvidia]]'s Tensor cores. The lack of XMX units means that the X<sup>e</sup>-LPG core instead uses DP4a instructions in line with Microsoft Shader Model 6.4.<ref>{{cite web |last=Cunningham |first=Andrew |date=2023-09-20 |title=Intel's biggest laptop CPU update in years is a huge departure from past designs |url=https://arstechnica.com/gadgets/2023/09/intels-meteor-lake-cpus-bring-a-much-faster-gpu-radically-new-chip-design/ |website=Ars Technica |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://arstechnica.com/gadgets/2023/09/intels-meteor-lake-cpus-bring-a-much-faster-gpu-radically-new-chip-design/ |url-status=live }}</ref>
+
+Meteor Lake's graphics capabilities are greatly increased over the previous generation UHD and Iris Xe integrated graphics in Raptor Lake. Intel claims that Meteor Lake's GPU achieves a 2x increase in performance-per-watt over the Iris Xe graphics featured in Alder Lake and Raptor Lake processors.<ref name="Walton"/> The graphics tile is able to run at much higher clock speeds compared to Intel's previous integrated graphics in Alder Lake and Raptor Lake. Intel claims that Meteor Lake's GPU can "run at a much lower minimum voltage" and hit boost clock speeds of over 2.0{{nbsp}}GHz.<ref>{{cite web |last=Hollister |first=Sean |date=2023-09-19 |title=Intel will launch Meteor Lake on December 14th — this is Intel's Core Ultra |url=https://www.theverge.com/2023/9/19/23872888/intel-meteor-lake-core-ultra-date-chip-specs-details |website=The Verge |language=en-US |access-date=2026-05-27 |archive-date=2023-10-28 |archive-url=https://web.archive.org/web/20231028054514/https://www.theverge.com/2023/9/19/23872888/intel-meteor-lake-core-ultra-date-chip-specs-details |url-status=live }}</ref> There is full support included for the [[DirectX#DirectX 12 Ultimate|DirectX 12 Ultimate]] graphics API and Intel's X<sup>e</sup>SS upscaler, an alternative to [[Nvidia]]'s DLSS and [[Advanced Micro Devices|AMD]]'s FSR. Intel claims that the graphics tile in Meteor Lake can give a similar level of performance to discrete graphics. Tom Petersen claimed that Meteor Lake's integrated graphics performance is "not that far from a [RTX] 3050". Intel demonstrated ''[[Dying Light 2]]'' running on Meteor Lake's integrated graphics at 1080p with X<sup>e</sup>SS performance mode upscaling from 720p.<ref>{{cite web |last1=Ridley |first1=Jacob |date=2023-09-19 |title=I didn't need a graphics card to play Dying Light 2 on Intel's new laptop chip |url=https://www.pcgamer.com/intel-meteor-lake-igpu-gaming-performance/ |website=PC Gamer |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.pcgamer.com/intel-meteor-lake-igpu-gaming-performance/ |url-status=live }}</ref> A hardware listing from [[Dell]] confirmed that in order to fully make use of the integrated Arc graphics, the system must be configured with at least 16GB of memory running in dual-channel mode. Not meeting the minimum memory requirements means that the system will report using lower performance "Intel Graphics" instead of "Arc" graphics.<ref>{{cite web |title=Dell confirms Intel Core Ultra 155H/125H specs, Arc iGPU requires dual-channel 16GB memory |url=https://videocardz.com/newz/dell-confirms-intel-core-ultra-155h-125h-specs-arc-igpu-requires-dual-channel-16gb-memory |website=VideoCardz |language=en-US |date=2023-11-22 |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://videocardz.com/newz/dell-confirms-intel-core-ultra-155h-125h-specs-arc-igpu-requires-dual-channel-16gb-memory |url-status=live }}</ref>
+
+=== SoC tile ===
+Meteor Lake's SoC tile is the always-active central tile that communicates with other tiles like the CPU and GPU tiles.<ref name="Alcorn 2023-09-19"/> It provides some I/O functions such as display output unit and the [[memory controller]]. Meteor Lake's memory controller is limited to supporting DDR5 and LPDDR5 memory as support for DDR4 memory is dropped. I/O components built into the SoC tile include [[Wi-Fi 6|Wi-Fi 6E]] and [[IEEE 802.11be|Wi-Fi 7]], Bluetooth 5.4, [[USB4]], USB 3.2 2x2, 8 [[Direct Media Interface|DMI 4.0]] lanes and up to four [[Thunderbolt (interface)#Thunderbolt 4|Thunderbolt 4]] ports.<ref>{{cite web |last=Hachman |first=Mark |date=2023-09-19 |title=6 ways Intel's new 14th-gen 'Meteor Lake' CPUs supercharge laptops |url=https://www.pcworld.com/article/2069640/intels-14th-gen-core-chip-meteor-lake-what-you-need-to-know.html |website=PCWorld |language=en-US |access-date=2026-05-27 |archive-date=2023-11-06 |archive-url=https://web.archive.org/web/20231106070505/https://www.pcworld.com/article/2069640/intels-14th-gen-core-chip-meteor-lake-what-you-need-to-know.html |url-status=live }}</ref> The SoC tile is fabricated using [[TSMC]]'s [[7 nm process|N6]] node as it is more cost effective.<ref name="Alcorn 2023-09-19"/>
+
+The SoC tile also contains two ultra low power Crestmont E-cores that Intel has dubbed a 'Low Power Island' that operates with lower voltage and lower frequency.<ref name="Bonshor">{{cite web |last=Bonshor |first=Gavin |date=2023-09-19 |title=Intel Unveils Meteor Lake Architecture: Intel 4 Heralds the Disaggregated Future of Mobile CPUs |url=https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus |website=AnandTech |language=en-US |access-date=2024-05-23 |archive-date=2023-09-22 |archive-url=https://web.archive.org/web/20230922065443/https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus |url-status=dead }}</ref> The SoC's low power E-cores are limited in frequency to 2.5{{nbsp}}GHz compared to the 3.8{{nbsp}}GHz of the E-cores. These cores are designed to handle deep background tasks for laptops in idle or sleep mode.<ref>{{cite web |last=Liu |first=Zhiye |date=2023-05-20 |title=Intel Meteor Lake 16-Core, 14-Core CPUs Surface In New Benchmarks |url=https://www.tomshardware.com/news/intel-meteor-lake-16-core-14-core-cpus-surface-in-new-benchmarks |website=Tom's Hardware |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145156/https://www.tomshardware.com/news/intel-meteor-lake-16-core-14-core-cpus-surface-in-new-benchmarks |url-status=live }}</ref> All deep background tasks being handled by two Crestmont E-cores in the SoC tile allows the inactive CPU tile to be turned off entirely.<ref name="Shankland & Grunin"/> This is intended to reduce power consumption and extend battery life for laptops in a sleep mode state. These low power E-cores in the SoC tile are prioritised by Intel Thread Director scheduling. If work cannot be contained on the SoC E-cores, it will then be moved to the compute tile's E-cores as the next priority cores. The final priority cores are the 6 P-cores which are used when the work cannot be contained on the compute tile E-cores. The SoC's low power E-cores lack an L3 cache that the Crestmont E-cores in the compute tile have access to. If a low power E-core encounters a data miss in the L2 cache, there is no L3 cache to fall back on so it must instead search the much slower system memory for data.<ref name="C&C 2024-05-20">{{cite web |title=Comparing Crestmonts: No L3 Hurts |url=https://chipsandcheese.com/2024/05/20/comparing-crestmonts-no-l3-hurts/ |website=Chips and Cheese |language=en-US |date=2024-05-20 |access-date=2026-05-27 |archive-date=2024-07-17 |archive-url=https://web.archive.org/web/20240717170900/https://chipsandcheese.com/2024/05/20/comparing-crestmonts-no-l3-hurts/ |url-status=live }}</ref>
+
+==== Media engine ====
+Rather than the media engine be located on the GPU tile, it is instead placed on the SoC tile so that the GPU tile does not need to be turned on when decoding video or using a display output. This arrangement enables greater power efficiency as the GPU tile is not always active while the system is at idle or under light loads like video playback. There is support added in the media engine for [[AV1]] hardware encoding up to [[8K resolution|8K]] video with 10-bit color depth.<ref>{{cite web |last=Wilson |first=Jason R. |date=2022-12-28 |title=Intel Meteor Lake Confirmed To Offer AV1 Encoding & Decoding Support |url=https://wccftech.com/intel-meteor-lake-confirmed-to-offer-av1-encoding-decoding-support/ |website=Wccftech |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://wccftech.com/intel-meteor-lake-confirmed-to-offer-av1-encoding-decoding-support/ |url-status=live }}</ref> Four display pipes provide support for [[HDMI#Version 2.1|HDMI 2.1]] and [[DisplayPort#2.1|DisplayPort 2.1]] UHBR20 display outputs with the ability to drive up to four [[4K resolution|4K]] 60{{nbsp}}Hz [[High dynamic range|HDR]] monitors at once or one 8K [[High dynamic range|HDR]] monitor. [[1080p]] and [[1440p]] monitors can be supported with a refresh rate up to 360{{nbsp}}Hz.<ref name="Shankland & Grunin">{{cite web |last1=Shankland |first1=Stephen |last2=Grunin |first2=Lori |date=2023-09-19 |title=Intel Tucks Battery-Saving Tricks Into Its Meteor Lake PC Processor |url=https://www.cnet.com/tech/computing/intel-tucks-battery-saving-tricks-into-its-meteor-lake-pc-processor/ |website=CNET |language=en-US |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124234/https://www.cnet.com/tech/computing/intel-tucks-battery-saving-tricks-into-its-meteor-lake-pc-processor/ |url-status=live }}</ref>
+
+==== Neural Processing Unit (NPU) ====
+Meteor Lake features a Neural Processing Unit (NPU) to provide integrated AI capabilities.<ref name="Khullar-2023" /> The NPU, which Intel previously referred to as a [[Vision processing unit|Vision Processing Unit]] (VPU), uses the technology obtained by Intel when it acquired [[Movidius]] in September 2016.<ref>{{cite web |last=Norem |first=Josh |date=2023-05-24 |title=Intel Announces an Integrated Neural AI Accelerator in Meteor Lake |url=https://www.extremetech.com/computing/intel-announces-an-integrated-neural-ai-accelerator-in-meteor-lake |website=ExtremeTech |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.extremetech.com/computing/intel-announces-an-integrated-neural-ai-accelerator-in-meteor-lake |url-status=live }}</ref><ref>{{cite web |last=Smith |first=Ryan |date=2023-05-29 |title=Intel Discloses New Details On Meteor Lake VPU Block, Lays Out Vision For Client AI |url=https://www.anandtech.com/show/18878/intel-discloses-new-details-on-meteor-lake-vpu-block-lays-out-vision-for-client-ai |website=AnandTech |language=en-US |access-date=2024-05-23 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.anandtech.com/show/18878/intel-discloses-new-details-on-meteor-lake-vpu-block-lays-out-vision-for-client-ai |url-status=dead }}</ref> Meteor Lake's NPU, which is marketed as Intel AI Boost, uses two Movidius 32-bit LEON microcontrollers called 'LeonRT' for processing host commands and 'LeonNN' for low level hardware scheduling.<ref name="C&C 2024-04-22">{{cite web |title=Intel Meteor Lake's NPU |url=https://chipsandcheese.com/2024/04/22/intel-meteor-lakes-npu/ |website=Chips and Cheese |language=en-US |date=2024-04-22 |access-date=2026-05-27 |archive-date=2024-07-17 |archive-url=https://web.archive.org/web/20240717170915/https://chipsandcheese.com/2024/04/22/intel-meteor-lakes-npu/ |url-status=live }}</ref> It is capable of executing 1 <code>FP16</code> or 2 <code>INT8</code> operations per cycle but the NPU's Data Processing Unit (DPU) cannot use <code>FP32</code> data. The 4K (4096) [[Multiply–accumulate operation|MACs]] operating at up to 1.4{{nbsp}}GHz can perform up to 11 TOPS<ref name="C&C 2024-04-22"/> with the total platform providing 34 TOPS of compute performance when including 5 TOPS from the CPU and 18 TOPS from the iGPU.<ref name="Grunin-2023">{{cite web |last1=Grunin |first1=Lori |title=Intel's Core Ultra Processors Accelerate AI Tasks While Saving You Battery Life |url=https://www.cnet.com/tech/computing/intels-core-ultra-processors-accelerate-ai-tasks-while-saving-you-battery-life/ |website=CNET |access-date=2026-05-27 |date=2023-12-15 |archive-date=2024-04-05 |archive-url=https://web.archive.org/web/20240405085549/https://www.cnet.com/tech/computing/intels-core-ultra-processors-accelerate-ai-tasks-while-saving-you-battery-life/ |url-status=live }}</ref> Meteor Lake's NPU allows AI acceleration and neural processing like [[Stable Diffusion]] to be done locally, on silicon rather than in the [[Cloud computing|cloud]].<ref>{{cite web |last=Laird |first=Jeremy |date=2023-05-30 |title=Intel demos Stable Diffusion running locally on its new AI-accelerated Meteor Lake CPU |url=https://www.pcgamer.com/intel-demos-stable-diffusion-running-locally-on-its-new-ai-accelerated-meteor-lake-cpu/ |website=PC Gamer |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.pcgamer.com/intel-demos-stable-diffusion-running-locally-on-its-new-ai-accelerated-meteor-lake-cpu/ |url-status=live }}</ref> The benefit of running such functions locally is that it provides greater [[privacy]] and does not require an internet connection or paying a fee to a third party for using their server computing power.<ref name="Kan 2023">{{cite web |last=Kan |first=Michael |date=2023-09-19 |title=The 'Meteor Lake' NPU: Meet Intel's Dedicated Silicon for Local AI Processing |url=https://uk.pcmag.com/processors/148710/the-meteor-lake-npu-meet-intels-dedicated-silicon-for-local-ai-processing |website=PCMag |language=en-GB |access-date=2026-05-27 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124234/https://www.pcmag.com/news/the-meteor-lake-npu-meet-intels-dedicated-silicon-for-local-ai-processing |url-status=live }}</ref> AI neural engines were previously included by [[Apple Inc.|Apple]] on their [[ARM architecture family|ARM]]-based [[Apple M1|M1]] SoCs and by AMD with the integrated Ryzen AI engine on their Ryzen 7040 series mobile processors codenamed "Phoenix".<ref name="Kan 2023"/> Intel CEO [[Pat Gelsinger]] claimed that Meteor Lake's NPU would usher in the era of the "AI PC" and compared it to Intel's [[Centrino]] chipsets that aided bringing Wi-Fi into the notebook market.<ref>{{cite web |last=Hachman |first=Mark |date=2023-07-28 |title=Meteor Lake CPUs will launch the 'AI PC' era, Intel CEO proclaims |url=https://www.pcworld.com/article/2011031/gelsinger-proclaims-the-ai-pc-era-will-launch-with-meteor-lake.html |website=PCWorld |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145156/https://www.pcworld.com/article/2011031/gelsinger-proclaims-the-ai-pc-era-will-launch-with-meteor-lake.html |url-status=live }}</ref>
+
+=== I/O extender tile ===
+The I/O extender tile is the smallest tile in Meteor Lake, fabricated on [[TSMC]]'s [[7 nm process|N6]] node.<ref>{{cite web |last=Bonshor |first=Gavin |date=2023-09-19 |title=I/O Tile: Extended and Scalable Depending on Segment |url=https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus/6 |website=AnandTech |language=en-US |access-date=2024-05-23 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124739/https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus/6 |url-status=dead }}</ref> It provides scalable I/O blocks, which is primarily to offer additional connectivity to that of the SoC tile, such as [[PCI Express#PCIe 5.0|PCIe 5.0]] lanes. The I/O tile can be scaled depending on the number of PCIe lanes needed and the speed they operate at.<ref>{{cite web |last=Kennedy |first=Patrick |date=2022-08-26 |title=Intel Enters a New Era of Chiplets that will Change Everything |url=https://www.servethehome.com/intel-enters-a-new-era-of-chiplets-that-will-change-everything-34/ |website=ServeTheHome |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.servethehome.com/intel-enters-a-new-era-of-chiplets-that-will-change-everything-34/ |url-status=live }}</ref>
+
+=== Foveros interposer base tile ===
+Meteor Lake uses a passive silicon interposer placed underneath its tiles as an interconnect. The tiles are placed on top of the interposer and are bonded to the interposer using [[through-silicon via]] (TSV) connections through the two vertically stacked pieces of silicon. The TSVs connect the dies with a 36&nbsp;μm pitch to enable die-to-die communication. Placing logic dies on top of an interposer requires TSVs to connect the top dies through the interposer onto the package. By contrast, [[Advanced Micro Devices|AMD]]'s chiplet approach uses multiple pieces of silicon that are interconnected via traces on the package substrate. The benefit of AMD's approach is its cost-effective scalability where the same CCDs can be used in both their [[Ryzen]] desktop and [[Epyc]] server processors. AMD's Infinity Fabric approach comes with the drawbacks of increased [[Latency (engineering)|latency]] and using additional power for die-to-die communication at around 1.5 picojoules per bit.<ref name="Alcorn 2023-09-19"/> Intel's communication via a silicon interposer uses less power, at around 0.3 picojoules per bit, but is more expensive to produce, is less scalable and packaging is more complex.<ref name="Bonshor"/> The Foveros interposer base tile is estimated to be 23.1mm × 11.5mm in dimensions with a total die area of 265.65mm<sup>2</sup>.<ref name="Zuhair"/>
+
+However, Meteor Lake processors are not the first Intel processors to utilize vertical die stacking with a base tile. In June 2020, Intel launched Lakefield ultra-low power mobile processors with a 7W TDP. Lakefield used Foveros packaging with a 22 nm base tile and 10 nm compute tile.<ref>{{cite web |last=Hachman |first=Mark |date=2020-06-10 |title=Intel announces its first new 'Lakefield' chips for the thinnest, lightest PCs |url=https://www.pcworld.com/article/399262/intel-announces-its-first-new-lakefield-chips-for-the-thinnest-lightest-pcs.html |website=PCWorld |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.pcworld.com/article/399262/intel-announces-its-first-new-lakefield-chips-for-the-thinnest-lightest-pcs.html |url-status=live }}</ref> The compute tile contained heterogenous cores with one [[Sunny Cove (microarchitecture)|Sunny Cove]] big core and four [[Tremont (microarchitecture)|Tremont]] small cores, predecessors to Meteor Lake's Redwood Cove and Crestmont cores.<ref>{{cite web |last=Cutress |first=Ian |date=2020-07-02 |title=The Intel Lakefield Deep Dive: Everything To Know About the First x86 Hybrid CPU |url=https://www.anandtech.com/show/15877/intel-hybrid-cpu-lakefield-all-you-need-to-know |website=AnandTech |language=en-US |access-date=2024-05-23 |archive-date=2024-07-16 |archive-url=https://web.archive.org/web/20240716124740/https://www.anandtech.com/show/15877/intel-hybrid-cpu-lakefield-all-you-need-to-know |url-status=dead }}</ref> Lakefield was discontinued in July 2021.<ref>{{cite web |last=Hruska |first=Joel |date=2021-07-08 |title=Intel Discontinues Lakefield, Its First x86 Hybrid CPU |url=https://www.extremetech.com/computing/324435-intel-eols-lakefield-its-first-x86-hybrid-cpu |website=ExtremeTech |language=en-US |access-date=2026-05-27 |archive-date=2024-05-23 |archive-url=https://web.archive.org/web/20240523145155/https://www.extremetech.com/computing/324435-intel-eols-lakefield-its-first-x86-hybrid-cpu |url-status=live }}</ref>
+
+== Features ==
+
+=== CPU ===
+{{Further|Redwood Cove (microarchitecture)}}
+* Up to 16 cores:<ref name="y31">{{cite web |date=2023-09-19 |title=Intel Meteor Lake Technical Deep Dive |url=https://www.techpowerup.com/review/intel-meteor-lake-technical-deep-dive/ |access-date=2026-05-27 |website=TechPowerUp |language=en |archive-date=2023-09-21 |archive-url=https://web.archive.org/web/20230921114125/https://www.techpowerup.com/review/intel-meteor-lake-technical-deep-dive/ |url-status=live }}</ref>
+** Up to 6 Redwood Cove performance cores (P-core)
+** 4 or 8 Crestmont efficient cores (E-core), 1 or 2 clusters with 4 cores
+** 2 low power Crestmont efficient cores (LP E-core) on the SoC tile
+* L1 instruction cache per P-core increased to 64&nbsp;KB, up from 32&nbsp;KB in Raptor Cove
+* 2&nbsp;MB L2 cache for each P-core, E-core cluster and LP E-core cluster
+* Up to 24&nbsp;MB shared L3 cache
+
+=== GPU ===
+* [[Intel Xe|Xe]]-{{abbr|LPG|Low Power Graphics}} architecture<ref name="Sripada-2022">{{cite web |last=Sripada |first=Radhakrishna |date=2022-07-07 |title=[Intel-gfx] [PATCH 0/2] i915: Introduce Meteorlake |url=https://lists.freedesktop.org/archives/intel-gfx/2022-July/301011.html |website=Free Desktop |language=en-US |access-date=2026-05-27 |archive-date=2022-07-07 |archive-url=https://web.archive.org/web/20220707194456/https://lists.freedesktop.org/archives/intel-gfx/2022-July/301011.html |url-status=live }}</ref><ref name="Intel-Arc-2022">{{cite web |title=Intel® Arc™ A-series Graphics Gaming API Guide |url=https://www.intel.com/content/www/us/en/developer/articles/guide/arc-a-series-gaming-api-developer-optimization.html |website=Intel |language=en-US |access-date=2026-05-27 |archive-date=2022-07-20 |archive-url=https://web.archive.org/web/20220720172259/https://www.intel.com/content/www/us/en/developer/articles/guide/arc-a-series-gaming-api-developer-optimization.html |url-status=live |date=2022-06-20}}</ref>
+* Up to 8 Xe cores and 128 Xe Vector Engines (XVEs)<ref name="Bonshor" />
+** 16 XVEs per Xe core
+* 8K 10-bit [[AV1]] hardware encoder<ref name="Intel Tech Tour 2023-2023">{{cite web |date=2023-09-20 |title=Intel Tech Tour 2023-Meteor Lake Architecture Overview Replay |url=https://www.intel.com/content/www/us/en/content-details/789009/intel-tech-tour-2023-meteor-lake-architecture-overview-replay.html |access-date=2026-05-27 |archive-date=2023-11-04 |archive-url=https://web.archive.org/web/20231104123727/https://www.intel.com/content/www/us/en/content-details/789009/intel-tech-tour-2023-meteor-lake-architecture-overview-replay.html |url-status=live |website=Intel}}</ref><ref name="Bonshor-2023">{{cite web|url=https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus|title=Intel Unveils Meteor Lake Architecture: Intel 4 Heralds the Disaggregated Future of Mobile CPUs|first=Gavin|last=Bonshor|website=AnandTech|access-date=2023-09-22|archive-date=2023-09-22|archive-url=https://web.archive.org/web/20230922065443/https://www.anandtech.com/show/20046/intel-unveils-meteor-lake-architecture-intel-4-heralds-the-disaggregated-future-of-mobile-cpus|url-status=dead|date=2023-09-19}}</ref>
+* Up to 2.35 GHz frequency<ref name="Gomes-2022"/>
+* FP64 native hardware support<ref name="Gomes-2022"/>
+* Hardware based real-time ray tracing<ref name="Bonshor" />
+
+=== NPU ===
+* Intel AI Boost NPU accelerator up to 1.4 GHz frequency<ref name="Intel-NPU-Driver-2024">{{cite web | url=https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html | title=Intel® NPU Driver - Windows | access-date=2026-05-27 | archive-date=2024-02-12 | archive-url=https://web.archive.org/web/20240212115613/https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html | url-status=live |date=2026-05-19|website=Intel}}</ref>
+* 4K [[Multiply–accumulate operation|MAC]] with each MAC capable of 1 <code>fp16</code> or 2 <code>int8</code> operations per cycle
+** 11 TOPS NPU performance
+** 34 TOPS combined AI performance (5 TOPS CPU + 18 TOPS GPU)<ref name="Grunin-2023"/>
+* 4 [[digital signal processor]]s
+* 4&nbsp;MB dedicated [[Static random-access memory|static memory]]
+* LeonRT [[front-end processor]]
+* Support APIs like [[DirectML]], [[OpenGL]], [[OpenVX]] and [[Vulkan]]
+
+=== I/O ===
+* up to 96&nbsp;GB LPDDR5X-7467 on all processors, and DDR5-5600 memory on 15&nbsp;W, 28&nbsp;W, and 45&nbsp;W processors
+** Support for DDR4 and LPDDR4X memory was dropped
+* up to 8 [[PCI Express#PCI Express 5.0|PCI Express 5.0]] lanes and 20 PCI Express 4.0 lanes on H-series processors, up to 20 PCI Express 4.0 lanes on U-series, UL-series and HL-series processors
+* 8 [[Direct Media Interface]] 4.0 lanes
+* 4 [[Thunderbolt (interface)|Thunderbolt 4.0]] ports
+* [[Wi-Fi 6]]E support<ref name="Intel-2023a-Ultra-Datasheet">{{cite web |date=2024-05-20 |title=Intel® Core™ Ultra Processor Datasheet Volume 1 of 2 |url=https://www.intel.com/content/www/us/en/content-details/792044/intel-core-ultra-processor-datasheet-volume-1-of-2.html |access-date=2026-05-27 |website=Intel |page=20 |archive-date=2024-01-06 |archive-url=https://web.archive.org/web/20240106114432/https://www.intel.com/content/www/us/en/content-details/792044/intel-core-ultra-processor-datasheet-volume-1-of-2.html |url-status=live }}</ref>
+* [[DisplayPort#2.1|DisplayPort 2.1]] UHBR20 native support<ref name="Intel Tech Tour 2023-2023"/>
+* [[HDMI#Version 2.1|HDMI 2.1]] 48&nbsp;Gbit/s native support<ref name="Intel Tech Tour 2023-2023"/><ref name="Nautiyal-2022">{{cite web |last=Nautiyal |first=Ankit |date=2022-11-07 |title=[Intel-gfx] [RFC 00/15] Add support for HDMI2.1 FRL |url=https://lists.freedesktop.org/archives/intel-gfx/2022-November/311389.html |access-date=2026-05-27 |website=Free Desktop |language=en-US |archive-date=2022-11-07 |archive-url=https://web.archive.org/web/20221107104500/https://lists.freedesktop.org/archives/intel-gfx/2022-November/311389.html |url-status=live }}</ref>
+
+== List of Core Ultra Series 1 processors ==
+
+=== Mobile processors ===<!-- use core config like in the intel arc gpu list -->
+==== Meteor Lake-H ====
+155H, 165H, and 185H support P-core Turbo Boost 3.0 running at the same frequency as Turbo Boost 2.0.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" |Processor<br />branding
+! rowspan="2" |Model
+! colspan="3" |[[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+! colspan="3" |Base [[clock rate]]<br />(GHz)
+! colspan="3" |[[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" |[[Intel Arc|Arc]] graphics
+! rowspan="2" |[[Smart cache|Smart]]<br />[[Smart cache|cache]]
+! colspan="3" |[[Thermal design power|TDP]]
+! rowspan="2" |Release date
+! rowspan="2" |Price<br />(USD){{efn|name="RCP"}}
+|-
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!Xe-cores<br />({{Abbr|XVEs|Xe Vector Engines}})
+!Max. freq.<br />(GHz)
+!Base
+!{{Abbr|cTDP|Configurable TDP}}
+!Turbo
+|-
+|Core Ultra 9
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/236849/intel-core-ultra-9-processor-185h-24m-cache-up-to-5-10-ghz.html 185H]|vPro Enterprise}}
+| rowspan="3" |6 (12)<ref>{{Cite web |date=2024-10-18 |title=Intel Core Ultra 9 Vs i9: Which's The Best Intel CPU 2026? |url=https://www.geekompc.com/intel-core-ultra-9-vs-i9/ |access-date=2026-05-27 |website=Geekom |language=en-US}}</ref>
+| rowspan="5" |8 (8)
+| rowspan="5" |2 (2)
+| 2.3
+| 1.8
+| 1.0
+| 5.1
+| rowspan="3" |3.8
+| rowspan="5" |2.5
+| rowspan="4" |8 (128)
+| 2.35
+| rowspan="3" |24&nbsp;MB
+| 45&nbsp;W
+| 35–65&nbsp;W
+| rowspan="5" |115&nbsp;W
+| Q4'23
+| $640
+|-
+| rowspan="2" |Core Ultra 7
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/236851/intel-core-ultra-7-processor-165h-24m-cache-up-to-5-00-ghz.html 165H]|vPro Enterprise}}
+| rowspan="2" |1.4
+| rowspan="2" |0.9
+| rowspan="4" |0.7
+| 5.0
+| 2.3
+| rowspan="4" |28&nbsp;W
+| rowspan="4" |20–65&nbsp;W
+| Q4'23
+| $460
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/236847/intel-core-ultra-7-processor-155h-24m-cache-up-to-4-80-ghz.html 155H]
+| 4.8
+| 2.25
+| Q4'23
+| $503
+|-
+| rowspan="2" |Core Ultra 5
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/236850/intel-core-ultra-5-processor-135h-18m-cache-up-to-4-60-ghz.html 135H]|vPro Enterprise}}
+| rowspan="2" |4 (8)
+| 1.7
+| 1.2
+| 4.6
+| rowspan="2" |3.6
+| rowspan="2" |2.2
+| rowspan="2" |18&nbsp;MB
+| Q4'23
+| $342
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/236848/intel-core-ultra-5-processor-125h-18m-cache-up-to-4-50-ghz.html 125H]
+| 1.2
+| 0.7
+| 4.5
+| 7 (112)
+| Q4'23
+| $375
+|}
+{{Notelist|refs=
+{{efn|name="RCP"|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->}}
+}}
+
+==== Meteor Lake-U ====
+The integrated GPU is branded as "Intel Graphics" but still use the same GPU microarchitecture as "Intel Arc Graphics" on the H series models.
+
+All models support DDR5 memory except 134U and 164U.
+
+{| class="wikitable sortable" style="text-align:center;"
+!rowspan="2" |Processor<br />branding
+!rowspan="2" |Model
+!colspan="3" |[[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+!colspan="3" |Base [[clock rate]]<br />(GHz)
+!colspan="3" |[[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+!colspan="2" |[[Intel Arc|Intel Graphics]]
+!rowspan="2" |[[Smart cache|Smart]]<br />[[Smart cache|cache]]
+!colspan="3" |[[Thermal design power|TDP]]
+!rowspan="2" |Release date
+!rowspan="2" |Price<br />(USD){{efn|name="RCP"}}
+|-
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!Xe-cores<br />({{Abbr|XVEs|Xe Vector Engines}})
+!Max. freq.<br />(GHz)
+!Base
+!{{Abbr|cTDP|Configurable TDP}}
+!Turbo
+|-
+! colspan="19" |Low power (MTL-U15)
+|-
+|rowspan="2" |Core Ultra 7
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/237329/intel-core-ultra-7-processor-165u-12m-cache-up-to-4-90-ghz.html 165U]|vPro Enterprise}}
+|rowspan="5" |2 (4)
+|rowspan="4" |8 (8)
+|rowspan="5" |2 (2)
+|rowspan="2" |1.7
+|rowspan="2" |1.2
+|rowspan="5" |0.7
+|4.9
+|rowspan="2" |3.8
+|rowspan="5" |2.1
+|rowspan="4" |4 (64)
+|2.0
+|rowspan="4" |12&nbsp;MB
+|rowspan="5" |15&nbsp;W
+|rowspan="5" |12–28&nbsp;W
+|rowspan="5" |57&nbsp;W
+|Q4'23
+|$448
+|-
+|[https://www.intel.com/content/www/us/en/products/sku/237327/intel-core-ultra-7-processor-155u-12m-cache-up-to-4-80-ghz/specifications.html 155U]
+|4.8
+|1.95
+|Q4'23
+|$490
+|-
+|rowspan="3" |Core Ultra 5
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/237328/intel-core-ultra-5-processor-135u-12m-cache-up-to-4-40-ghz.html 135U]|vPro Enterprise}}
+|1.6
+|1.1
+|4.4
+|rowspan="2" |3.6
+|1.9
+|Q4'23
+|$332
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/237330/intel-core-ultra-5-processor-125u-12m-cache-up-to-4-30-ghz.html 125U]
+|1.3
+|0.8
+|4.3
+|1.85
+|Q4'23
+|$363
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/237505/intel-core-ultra-5-processor-115u-10m-cache-up-to-4-20-ghz.html 115U]
+|4 (4)
+|1.5
+|1.0
+|4.2
+|3.5
+|3 (48)
+|1.8
+|10 MB
+|Q4'23
+|unspecified
+|-
+! colspan="19" |Ultra low power (MTL-U9)
+|-
+|Core Ultra 7
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/237508/intel-core-ultra-7-processor-164u-12m-cache-up-to-4-80-ghz.html 164U]|vPro Enterprise}}
+|rowspan="2" |2 (4)
+|rowspan="2" |8 (8)
+|rowspan="2" |2 (2)
+|1.1
+|0.7
+|rowspan="2" |0.4
+|4.8
+|3.8
+|rowspan="2" |2.1
+|rowspan="2" |4 (64)
+|1.8
+|rowspan="2" |12 MB
+|rowspan="2" |9&nbsp;W
+|rowspan="2" |9–15&nbsp;W
+|rowspan="2" |30&nbsp;W
+|Q4'23
+|$448
+|-
+|Core Ultra 5
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/237507/intel-core-ultra-5-processor-134u-12m-cache-up-to-4-40-ghz.html 134U]|vPro Enterprise}}
+|0.7
+|0.5
+|4.4
+|3.6
+|1.75
+|Q4'23
+|$332
+|}
+{{Notelist|refs=
+{{efn|name="RCP"|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->}}
+}}
+
+=== Processors for Internet of Things (IoT) devices and embedded systems (Meteor Lake-PS) ===
+==== High-power ====
+155HL and 165HL support P-core Turbo Boost 3.0 running at the same frequency as Turbo Boost 2.0.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" |Processor<br />branding
+! rowspan="2" |Model
+! colspan="3" |[[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+! colspan="3" |Base [[clock rate]]<br />(GHz)
+! colspan="3" |[[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" |[[Intel Arc|Arc]] graphics
+! rowspan="2" |[[Smart cache|Smart]]<br />[[Smart cache|cache]]
+! colspan="3" |[[Thermal design power|TDP]]
+! rowspan="2" |Release date
+! rowspan="2" |Price<br />(USD){{efn|name="RCP"}}
+|-
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!Xe-cores<br />({{Abbr|XVEs|Xe Vector Engines}})
+!Max. freq.<br />(GHz)
+!Base
+!{{Abbr|cTDP|Configurable TDP}}
+!Turbo
+|-
+| rowspan="2" |Core Ultra 7
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/239788/intel-core-ultra-7-processor-165hl-24m-cache-up-to-5-00-ghz.html 165HL]|vPro Enterprise}}
+| rowspan="2" |6 (12)
+| rowspan="4" |8 (8)
+| rowspan="4" |2 (2)
+| rowspan="2" |1.4
+| rowspan="2" |0.9
+| rowspan="4" |0.7
+|5.0
+| rowspan="2" |3.8
+| rowspan="4" |2.5
+| rowspan="3" |8 (128)
+|2.3
+| rowspan="2" |24&nbsp;MB
+| rowspan="4" |45&nbsp;W
+| rowspan="4" |20–65&nbsp;W
+| rowspan="4" |115&nbsp;W
+|Q2'24
+|$459
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239786/intel-core-ultra-7-processor-155hl-24m-cache-up-to-4-80-ghz.html 155HL]
+|4.8
+|2.25
+|Q2'24
+|$438
+|-
+| rowspan="2" |Core Ultra 5
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/239784/intel-core-ultra-5-processor-135hl-18m-cache-up-to-4-60-ghz.html 135HL]|vPro Enterprise}}
+| rowspan="2" |4 (8)
+|1.7
+|1.2
+|4.6
+| rowspan="2" |3.6
+| rowspan="2" |2.2
+| rowspan="2" |18&nbsp;MB
+|Q2'24
+|$341
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239782/intel-core-ultra-5-processor-125hl-18m-cache-up-to-4-50-ghz.html 125HL]
+|1.2
+|0.7
+|4.5
+|7 (112)
+|Q2'24
+|$325
+|}
+{{Notelist|refs=
+{{efn|name="RCP"|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->}}
+}}
+
+==== Low-power ====
+The integrated GPU is branded as "Intel Graphics" but still use the same GPU microarchitecture as "Intel Arc Graphics" on the high-power models.
+{| class="wikitable sortable" style="text-align:center;"
+! rowspan="2" |Processor<br />branding
+! rowspan="2" |Model
+! colspan="3" |[[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+! colspan="3" |Base [[clock rate]]<br />(GHz)
+! colspan="3" |[[Intel Turbo Boost|Turbo Boost]]<br />(GHz)
+! colspan="2" |[[Intel Arc|Intel Graphics]]
+! rowspan="2" |[[Smart cache|Smart]]<br />[[Smart cache|cache]]
+! colspan="3" |[[Thermal design power|TDP]]
+! rowspan="2" |Release date
+! rowspan="2" |Price<br />(USD){{efn|name="RCP"}}
+|-
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!{{abbr|P|Performance-}}
+!{{abbr|E|Efficient-}}
+!{{abbr|LP-E|Low Power Efficient-}}
+!Xe-cores<br />({{Abbr|XVEs|Xe Vector Engines}})
+!Max. freq.<br />(GHz)
+!Base
+!{{Abbr|cTDP|Configurable TDP}}
+!Turbo
+|-
+|rowspan="2" |Core Ultra 7
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/239802/intel-core-ultra-7-processor-165ul-12m-cache-up-to-4-90-ghz.html 165UL]|vPro Enterprise}}
+|rowspan="5" |2 (4)
+|rowspan="4" |8 (8)
+|rowspan="5" |2 (2)
+|rowspan="2" |1.7
+|rowspan="2" |1.2
+|rowspan="5" |0.7
+|4.9
+|rowspan="2" |3.8
+|rowspan="5" |2.1
+|rowspan="4" |4 (64)
+|2.0
+|rowspan="4" |12&nbsp;MB
+|rowspan="5" |15&nbsp;W
+|rowspan="5" |12–28&nbsp;W
+|rowspan="5" |57&nbsp;W
+|Q2'24
+|$447
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239787/intel-core-ultra-7-processor-155ul-12m-cache-up-to-4-80-ghz.html 155UL]
+|4.8
+|1.95
+|Q2'24
+|$426
+|-
+|rowspan="2" |Core Ultra 5
+|{{abbr|[https://ark.intel.com/content/www/us/en/ark/products/239785/intel-core-ultra-5-processor-135ul-12m-cache-up-to-4-40-ghz.html 135UL]|vPro Enterprise}}
+|1.6
+|1.1
+|4.4
+|rowspan="2" |3.6
+|1.9
+|Q2'24
+|$331
+|-
+|[https://ark.intel.com/content/www/us/en/ark/products/239783/intel-core-ultra-5-processor-125ul-12m-cache-up-to-4-30-ghz.html 125UL]
+|1.3
+|0.8
+|4.3
+|1.85
+|Q2'24
+|$309
+|-
+|Core Ultra 3
+|[https://ark.intel.com/content/www/us/en/ark/products/239781/intel-core-ultra-3-processor-105ul-10m-cache-up-to-4-20-ghz.html 105UL]
+|4 (4)
+|1.5
+|1.0
+|4.2
+|3.5
+|3 (48)
+|1.8
+|10 MB
+|Q2'24
+|$295
+|}
+{{Notelist|refs=
+{{efn|name="RCP"|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->}}
+}}
+
+== See also ==
+* [[Redwood Cove (microarchitecture)]]
+* [[Crestmont (microarchitecture)]]
+* [[Granite Rapids]], the [[Xeon]] 6 family
+* [[Intel Core]]
+* [[List of Intel CPU microarchitectures]]
+
+== References ==
+{{Reflist}}
+
+{{Intel processors}}
+{{Intel processor roadmap}}
+
+[[Category:Intel x86 microprocessors]]
+[[Category:X86 microarchitectures]]
+[[Category:Computer-related introductions in 2023]]

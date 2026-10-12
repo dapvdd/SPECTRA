@@ -1,0 +1,68 @@
+Common features of Ryzen 8045 notebook CPUs:
+* Socket: FL1.
+* All the CPUs support [[DDR5 SDRAM|DDR5]]-5200 in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode.
+* L1 [[Cache (computing)|cache]]: 64&nbsp;KB (32&nbsp;KB data + 32&nbsp;KB instruction) per core.
+* L2 cache: 1&nbsp;MB per core.
+* All the CPUs support 28 [[PCI Express#PCI Express 5.0|PCIe 5.0]] lanes.
+* Native USB 40Gbps (USB4) Ports: 0
+* Native USB 10Gbps (USB 3.2 Gen 2 operation mode) Ports: 4
+* Includes integrated [[RDNA 2]] GPU on the [[Input/output|I/O]] die <span data-darkreader-inline-bgcolor="">with 2 CUs and clock speeds of 400</span>&nbsp;<span data-darkreader-inline-bgcolor="">MHz (base), 2.2</span>&nbsp;<span data-darkreader-inline-bgcolor="">GHz (boost)</span>{{efn-lr|Self identifies as "AMD Radeon 610M". See {{section link|RDNA 2#Integrated graphics processors (iGPs)}}.}}.
+* Fabrication process: [[TSMC]] [[5 nm process|N5]] FinFET ([[7 nm process|N6]] FinFET for the I/O and graphics die).
+{| class="wikitable sortable" style="text-align:center;"
+|-
+! colspan="2" rowspan="2" |Branding and model
+! rowspan="2" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[Clock rate|Clock]] ([[Hertz|GHz]])
+! rowspan="2" | [[CPU cache|L3 cache]]<br />(total)
+! rowspan="2" | [[Multi-chip module|Chiplets]]
+! rowspan="2" | Core<br />config{{efn|name="coreconfig"}}
+! rowspan="2" |[[Thermal design power|TDP]]
+! rowspan="2" |Release<br />date
+|-
+! {{tooltip|2=3+ active cores|Base}}
+! {{tooltip|2=1–2 active cores|Boost}}
+|-
+! rowspan="2" | Ryzen 9
+! style="text-align:left;" data-sort-value="sku7" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-9-8945hx.html 8945HX]
+| rowspan="2" | 16 (32)
+| 2.5
+| 5.4
+| rowspan="3" | {{tooltip|64&nbsp;MB|32MB + 32MB}}
+| rowspan="3" | 2 × {{abbr|CCD|Core Complex Die}}<br />1 × {{abbr|I/OD|Input/Output Die}}
+| rowspan="2" | 2 × 8
+| rowspan="2" | 55–75{{nbsp}}W
+| rowspan="4" |{{dts|2025|04|23|df=mdy|abbr=off}}
+|-
+! style="text-align:left;" data-sort-value="sku6" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-9-8940hx.html 8940HX]
+| 2.4
+| 5.3
+|-
+! rowspan="2" | Ryzen 7
+! style="text-align:left;" data-sort-value="sku3" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8840hx.html 8840HX]
+| 12 (24)
+| 2.9
+| rowspan="2" | 5.1
+| 2 × 6
+| rowspan="2" | 45–75{{nbsp}}W
+|-
+! style="text-align:left;" data-sort-value="sku2" | [https://www.amd.com/en/products/processors/laptop/ryzen/8000-series/amd-ryzen-7-8745hx.html 8745HX]
+| 8 (16)
+| 3.6
+| rowspan="2" | 32&nbsp;MB
+| rowspan="2" | 1 × {{abbr|CCD|Core Complex Die}}<br />1 × {{abbr|I/OD|Input/Output Die}}
+| 1 × 8 
+|-
+|}
+{{navbar|AMD Ryzen Mobile 8045 series|mini=y|plain=y|style=float: left;position: relative;top: -15px;right: 0px;}}
+{{notelist|refs=
+{{efn|name="coreconfig"|Core Complexes (CCX) × cores per CCX}}
+}}
+{{notelist-lr}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the AMD APU tables at: [[Talk:List of AMD accelerated processing units]]}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

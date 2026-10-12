@@ -1,0 +1,444 @@
+{{Short description|2024 AMD 4-nanometer processor microarchitecture}}
+{{Use American English|date=April 2023}}
+{{Use mdy dates|date=May 2022}}
+{{Infobox CPU
+| name           = Zen 5
+| image          = AMD Ryzen 9 9950X.jpg
+| image_size     = 
+| caption        = AMD Ryzen 9 9950X
+| produced-start = '''Mobile'''<br />{{start date and age|2024|07|17}}{{br|2}}'''Desktop'''<br />{{Start date and age|2024|08|08}}{{br|2}}'''High-end Desktop'''<br />{{Start date and age|2025|08|30}}{{br|2}}'''Server'''<br />{{Start date and age|2024|10|10}}
+| designfirm     = [[AMD]]
+| manuf1         = [[TSMC]]
+| cpuid          = Family 1Ah
+| numcores       = '''Mobile:''' 8 to 12 <br/> '''Desktop:''' 6 to 16 <br/> '''HEDT:''' 24 to 96 <br/> '''Server:''' 16 to 192
+| slowest        = 2.0
+| fastest        = 5.7
+| l1cache        = 80{{nbsp}}KB (per core): <br /> {{bulleted list|32{{nbsp}}KB{{nbsp}}instructions|48{{nbsp}}KB{{nbsp}}data}}
+| l2cache        = 1{{nbsp}}MB (per core)
+| l3cache        = {{ubl|32–128&nbsp;MB (32&nbsp;MB per {{abbr|CCD|Core Complex Die}} + 64&nbsp;MB with 3D V-cache)|24&nbsp;MB (in ''Strix Point'')}}
+| size-from      = [[TSMC]] [[5 nm process|N4X]] (Zen 5 CCD) <br /> TSMC [[3 nm process|N3E]] (Zen 5c CCD) <br /> TSMC N6 ({{abbr|IOD|Input Output Die}}) <br/> [[TSMC]] [[5 nm process|N4P]] (Mobile)
+| transistors1   = 8.315&nbsp;billion (per CCD)
+| arch           = [[X86-64#AMD64|AMD64]] (x86-64)
+| microarch      = [[Zen (microarchitecture)|Zen]]
+| sock1          = '''Desktop''' {{bulleted list |[[Socket AM5]]}}
+| sock2          = '''Server''' {{bulleted list |[[Socket SP5]]}}
+| sock3          = '''HEDT/Workstation''' {{bulleted list |[[Socket sTR5]]}}
+| pack1          = FP8, FL1
+| memory1        = [[DDR5]]
+| gpu            = [[RDNA 2]]
+| extensions     = '''Crypto''' [[Advanced Encryption Standard|AES]], [[Secure Hash Algorithms|SHA]]
+| extensions1    = '''SIMD''' [[MMX (instruction set)|MMX-plus]], [[Streaming SIMD Extensions|SSE]], [[SSE2]], [[SSE3]], [[SSSE3]], [[SSE4#SSE4.1|SSE4.1]], [[SSE4#SSE4.2|SSE4.2]], [[SSE4#SSE4a|SSE4A]], [[FMA instruction set#FMA3 instruction set|FMA3]], [[Advanced Vector Extensions|AVX]], [[AVX2]], [[AVX-512]], [[AVX-VNNI]]
+| extensions2    = '''Virtualization''' [[AMD-V]]
+| core1          = '''Zen 5''' {{bulleted list |Nirvana}}
+| core2          = '''Zen 5c''' {{bulleted list |Prometheus}}
+| pcode1         = '''Desktop''' {{bulleted list |Granite Ridge|Gorgon Point}}
+| pcode2         = '''HEDT/Workstation''' {{bulleted list |Shimada Peak}}
+| pcode3         = '''Thin & Light Mobile''' {{bulleted list |Strix Point|Krackan Point|Gorgon Point}}
+| pcode4         = '''Extreme Mobile''' {{bulleted list |Strix Halo |Fire Range |Gorgon Halo}} 
+| pcode5         = '''Server''' {{bulleted list |Turin |Turin Dense}}
+| model1         = {{bulleted list |Ryzen 9000 |Ryzen Pro 9000}}
+| model2         = {{bulleted list |Threadripper 9000 |Threadripper Pro 9000}}
+| model3         = {{bulleted list |Ryzen AI 300 |Ryzen AI Pro 300 |Ryzen AI Max 300}}
+| model4         = {{bulleted list |Epyc 9000}}
+| brand1         = [[Ryzen]]
+| brand2         = [[Ryzen AI]]
+| brand3         = [[Epyc]]
+| brand4         = [[Threadripper]]
+| predecessor    = [[Zen 4]]
+| successor      = [[Zen 6]]
+| support status = Supported
+}}
+[[File:AMD Zen5台式机评测：积热大幅改善？ (2160p 60fps VP9-160kbit Opus)-00.00.18.800.png|thumb|Two AMD Ryzen 9000 series micro&shy;processors with Zen 5 architecture|250px]]
+
+'''Zen 5''' (''"Nirvana"'')<ref name="Zen 5 Nirvana">{{cite web |last1=Hagedoorn |first1=Hilbert |title=AMD Codenames for "Zen 5" and "Zen 6" Microarchitectures: Eldora, Nirvana, and Morpheus (2nm) |url=https://www.guru3d.com/story/amd-codenames-for-zen-5-and-zen-6-microarchitectures-eldoranirvanaand-morpheus/ |website=guru3d.com |language=en |date=13 April 2023 |access-date=June 3, 2026 |archive-date=July 25, 2025 |archive-url=https://web.archive.org/web/20250725101424/https://www.guru3d.com/story/amd-codenames-for-zen-5-and-zen-6-microarchitectures-eldoranirvanaand-morpheus |url-status=live }}</ref> is a [[microarchitecture]] for [[CPUs]] by [[AMD]], shown on their roadmap in May 2022,<ref name="VideoCardz 2022-05-03">{{cite news |title=AMD confirms Zen4 & Ryzen 7000 series lineup: Raphael in 2022, Dragon Range and Phoenix in 2023 |url=https://videocardz.com/newz/amd-confirms-zen4-ryzen-7000-series-lineup-raphael-in-2022-dragon-range-and-phoenix-in-2023 |work=VideoCardz |language=en-US |date=May 3, 2022 |access-date=October 2, 2022 |archive-date=June 6, 2022 |archive-url=https://web.archive.org/web/20220606070454/https://videocardz.com/newz/amd-confirms-zen4-ryzen-7000-series-lineup-raphael-in-2022-dragon-range-and-phoenix-in-2023 |url-status=live }}</ref> launched for mobile in July 2024 and for desktop in August 2024.<ref>{{Cite web |last=Hollister |first=Sean |date=2024-07-24 |title=AMD is slightly delaying its Ryzen 9000 desktop CPUs 'out of an abundance of caution' |url=https://www.theverge.com/2024/7/24/24205416/amd-zen-5-ryzen-9000-desktop-delay |website=The Verge |language=en-US |access-date=2024-08-04 |archive-date=February 1, 2025 |archive-url=https://web.archive.org/web/20250201023316/https://www.theverge.com/2024/7/24/24205416/amd-zen-5-ryzen-9000-desktop-delay |url-status=live }}</ref> It is the successor to [[Zen 4]] and is currently fabricated on [[TSMC]]'s [[5 nm process|N4P]] process.<ref name="TH">{{cite web | url=https://www.tomshardware.com/pc-components/cpus/amd-deep-dives-zen-5-ryzen-9000-and-strix-point-cpu-rdna-35-gpu-and-xdna-2-architectures | title=AMD deep-dives Zen 5 architecture — Ryzen 9000 and AI 300 benchmarks, RDNA 3.5 GPU, XDNA 2, and more | date=July 15, 2024 | access-date=August 9, 2024 | archive-date=January 26, 2025 | archive-url=https://web.archive.org/web/20250126130836/https://www.tomshardware.com/pc-components/cpus/amd-deep-dives-zen-5-ryzen-9000-and-strix-point-cpu-rdna-35-gpu-and-xdna-2-architectures | url-status=live }}</ref> Zen 5 is also planned to be fabricated on the [[3 nm process|N3E]] process in the future.<ref>{{cite web |last1=Alcorn |first1=Paul |title=AMD Shares New CPU Core Roadmap, 3nm Zen 5 by 2024, 4th-Gen Infinity Architecture |url=https://www.tomshardware.com/news/amd-shares-new-cpu-core-roadmap-3nm-zen-5-by-2024-4th-gen-infinity-architecture |website=Tom's Hardware |language=en |date=June 9, 2022 |access-date=August 4, 2023 |archive-date=January 27, 2025 |archive-url=https://web.archive.org/web/20250127102828/https://www.tomshardware.com/news/amd-shares-new-cpu-core-roadmap-3nm-zen-5-by-2024-4th-gen-infinity-architecture |url-status=live }}</ref>
+
+The Zen 5 microarchitecture powers Ryzen 9000 series desktop processors (codenamed "Granite Ridge"), <!-- Ryzen Threadripper 9000 series enthusiast/workstation processors (codenamed "Shimada Peak"),<ref name="Bonshor 2022">{{cite news |last1=Bonshor |first1=Gavin |date=June 9, 2022 |title=AMD's Desktop CPU Roadmap: 2024 Brings Zen 5-based "Granite Ridge" |url=https://www.anandtech.com/show/17435/amd-s-desktop-cpu-roadmap-until-2024-zen-5-to-coming-desktop-in-2024 |archive-url=https://web.archive.org/web/20220609231023/https://www.anandtech.com/show/17435/amd-s-desktop-cpu-roadmap-until-2024-zen-5-to-coming-desktop-in-2024 |url-status=dead |archive-date=June 9, 2022 |work=AnandTech |language=en-US |access-date=June 11, 2022}}</ref><ref>{{cite web |last1=Allan |first1=Darren |date=26 January 2024 |title=AMD Zen 5 chips could turn up in April, but you'll have to be patient for the most powerful next-gen desktop CPUs |url=https://www.techradar.com/computing/cpu/amd-zen-5-chips-could-turn-up-in-april-but-youll-have-to-be-patient-for-the-most-powerful-next-gen-desktop-cpus |access-date=2 February 2024 |website=TechRadar |language=en}}</ref> Ryzen 9055HX series extreme mobile processors (codenamed "Fire Range"), --> [[Epyc]] 9005 server processors (codenamed "Turin"),<ref>{{cite web |last=Alcorn |first=Paul |date=2024-06-02 |title=AMD announces 3nm EPYC Turin with 192 cores and 384 threads — 5.4X faster than Intel Xeon in AI work, launches second half of 2024 |url=https://www.tomshardware.com/pc-components/cpus/amd-announces-3nm-epyc-turin-launching-with-192-cores-and-384-threads-in-second-half-of-2024-54x-faster-than-intel-xeon-in-ai-workload |language=en-US |access-date=2024-06-02 |archive-url=https://web.archive.org/web/20240603034741/https://www.tomshardware.com/pc-components/cpus/amd-announces-3nm-epyc-turin-launching-with-192-cores-and-384-threads-in-second-half-of-2024-54x-faster-than-intel-xeon-in-ai-workload |archive-date=2024-06-03 |url-status=live}}</ref> and Ryzen AI 300 thin and light mobile processors (codenamed <!-- "Kraken Point" and --> "Strix Point").<ref>{{cite web |last=Alcorn |first=Paul |date=2024-06-02 |title=AMD unwraps Ryzen AI 300 series 'Strix Point' processors — 50 TOPS of AI performance, Zen 5c density cores come to Ryzen 9 for the first time |url=https://www.tomshardware.com/pc-components/cpus/amd-unwraps-ryzen-ai-300-series-strix-point-processors-50-tops-of-ai-performance-zen-5c-density-cores-come-to-ryzen-9-for-the-first-time |website=Tom's Hardware |access-date=2024-06-02 |archive-url=https://web.archive.org/web/20240603033904/https://www.tomshardware.com/pc-components/cpus/amd-unwraps-ryzen-ai-300-series-strix-point-processors-50-tops-of-ai-performance-zen-5c-density-cores-come-to-ryzen-9-for-the-first-time |archive-date=2024-06-03 |url-status=live}}</ref><ref>{{Cite web |date=2023-09-04 |title=AMD Ryzen 8000 "Strix Point" APU Leak Points to 16 RDNA 3.5 CUs |url=https://www.techpowerup.com/313194/amd-ryzen-8000-strix-point-apu-leak-points-to-16-rdna-3-5-cus |access-date=2023-10-07 |website=TechPowerUp |language=en}}</ref><!--<ref>{{Cite web |title=AMD Ryzen 8000 "Hawk Point" officially in upcoming Minisforum 2-in-1 tablet |url=https://videocardz.com/newz/amd-ryzen-8000-hawk-point-officially-in-upcoming-minisforum-2-in-1-tablet |access-date=2023-10-07 |website=VideoCardz.com |language=en-US}}</ref>-->
+
+== Background ==
+Zen 5 was first officially mentioned during AMD's ''Ryzen Processors: One Year Later'' presentation on April 9, 2018.<ref>{{cite web |title=Ryzen Processors: One Year Later |url=https://www.youtube.com/watch?v=iQ_4C2TKHQ0 |website=YouTube |language=en-US |date=April 9, 2018 |access-date=August 23, 2024}}</ref>
+
+A roadmap shown during AMD's Financial Analyst Day on June 9, 2022 confirmed that Zen 5 and Zen 5c would be launching in 3&nbsp;nm and 4&nbsp;nm variants in 2024.<ref name="STH_FAD_2022">{{cite web |title=AMD FAD 2022 AMD CPU Core Roadmap To Zen 5 |url=https://www.servethehome.com/amd-technology-roadmap-from-amd-financial-analyst-day-2022/amd-fad-2022-amd-cpu-core-roadmap-to-zen-5/ |website=ServeTheHome |language=en-US |access-date=June 3, 2024}}</ref> The earliest details on the Zen 5 architecture promised a "re-pipelined front end and wide issue" with "integrated AI and Machine Learning optimizations".<ref name="STH_FAD_2022" />
+
+During AMD's Q4 2023 earnings call on January 30, 2024, AMD CEO [[Lisa Su]] stated that Zen 5 products would be "coming in the second half of the year".<ref>{{cite web |title=AMD reaffirms Ryzen CPUs with Zen5 architecture are coming in the second half of 2024 |url=https://videocardz.com/newz/amd-reaffirms-ryzen-cpus-with-zen5-architecture-are-coming-in-the-second-half-of-2024 |website=VideoCardz |language=en-US |date=January 31, 2024 |access-date=June 3, 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603153947/https://videocardz.com/newz/amd-reaffirms-ryzen-cpus-with-zen5-architecture-are-coming-in-the-second-half-of-2024 |url-status=live }}</ref>
+
+== Architecture ==
+[[File:AMD@4nmCCD(6nmIOD)@Zen5@Granite Ridge@Ryzen 5 9600X@100-000001405 BY 2429SUY 9AEQ579S40073 DSCx14 CCD poly@5xExt.jpg|thumb|alt=Die-Shot of an AMD Ryzen 5 9600X, mainly in blue, and rather symmetric structure|Die-Shot of an AMD Ryzen 5 9600X with a Zen 5 microarchitecture]]
+Zen 5 is a ground-up redesign of [[Zen 4]] with a wider front-end, increased floating-point throughput, and more-accurate branch prediction.<ref>{{cite web |last=Bonshor |first=Gavin |date=June 2, 2024 |title=AMD Unveils Ryzen 9000 CPUs For Desktop, Zen 5 Takes Center Stage at Computex 2024 |url=https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |archive-url=https://archive.today/20240603051702/https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |url-status=dead |archive-date=June 3, 2024 |website=AnandTech |language=en-US |access-date=June 3, 2024}}</ref>
+
+=== Fabrication process ===
+Zen 5 was designed with both 4&nbsp;nm and 3&nbsp;nm processes in mind. This acted as an insurance policy for AMD in the event that TSMC's mass production of its N3 nodes were to face delays, significant wafer defect issues, or capacity issues. One industry analyst estimated early N3 wafer yields to be at 55% while others estimated yields to be similar to those of N5 at between 60-80%.<ref>{{cite web |last=Norem |first=Josh |date=July 14, 2023 |title=Analyst: TSMC Hitting 55% Yields on 3nm Node for Apple's A17 Bionic, M3 SoCs |url=https://www.extremetech.com/computing/analyst-tsmc-hitting-55-yields-on-3nm-node-for-apples-a17-bionic-m3-socs |website=ExtremeTech |language=en-US |access-date=June 3, 2024}}</ref><ref>{{cite web |last=Shilov |first=Anton |date=December 31, 2022 |title=Analysts Estimate TSMC's 3nm Yields Between 60% and 80% |url=https://www.tomshardware.com/news/analysts-estimate-tsmc-n3-yields-between-60-and-80-percent |website=Tom's Hardware |language=en-US |access-date=June 3, 2024}}</ref> Additionally, [[Apple Inc.|Apple]], as TSMC's largest customer, gets priority access to the latest process nodes. In 2022, Apple was responsible for 23% of TSMC's $72 billion in total revenue.<ref>{{cite web |last=Norem |first=Josh |date=August 8, 2023 |title=Apple Bought All of TSMC's 3nm Capacity for an Entire Year |url=https://www.extremetech.com/computing/apple-bought-all-of-tsmcs-3nm-capacity-for-an-entire-year |website=ExtremeTech |language=en-US |access-date=June 3, 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603153947/https://www.extremetech.com/computing/apple-bought-all-of-tsmcs-3nm-capacity-for-an-entire-year |url-status=live }}</ref> After N3 began ramping at the end of 2022, Apple bought up the entirety of TSMC's early N3B wafer production capacity to fabricate their A17 and M3 SoCs.<ref>{{cite web |last=Norem |first=Josh |date=April 27, 2023 |title=TSMC Says It Can't Keep Up With Apple's Demands for 3nm Wafers |url=https://www.extremetech.com/computing/tsmc-says-it-cant-keep-up-with-apples-demands-for-3nm-wafers |website=ExtremeTech |language=en-US |access-date=June 3, 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603153948/https://www.extremetech.com/computing/tsmc-says-it-cant-keep-up-with-apples-demands-for-3nm-wafers |url-status=live }}</ref> Zen 5 desktop and server processors continue to use the N6 node for the I/O die fabrication.<ref name=":0">{{cite web |last=Bonshor |first=Gavin |date=2024-06-02 |title=AMD Unveils Ryzen 9000 CPUs For Desktop, Zen 5 Takes Center Stage at Computex 2024 |url=https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |url-status=dead |archive-url=https://web.archive.org/web/20240603033848/https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |archive-date=2024-06-03 |access-date=2024-06-02 |work=AnandTech |language=en-US}}</ref>
+
+Zen 5 Core Complex Dies (CCDs) are fabricated on TSMC's N4X node which is intended to accommodate higher frequencies for high-performance computing (HPC) applications.<ref>{{cite web |last=Norem |first=Josh |date=July 22, 2024 |title=AMD's Zen 5 Architectures Boast a 28% Increase in Density Over Zen 4 |url=https://www.extremetech.com/computing/amds-zen-5-architectures-boast-a-28-increase-in-density-over-zen-4 |website=ExtremeTech |language=en-US |access-date=September 16, 2024}}</ref> Zen 4-based mobile processors were fabricated on the N4P node which is targeted more toward power efficiency. N4X maintains IP compatibility with N4P and offers a 6% frequency gain over N4P at the same power but comes with the trade-off of moderate leakage.<ref>{{cite web |title=Advanced Technologies for HPC: N4/N4P/N4X |url=https://www.tsmc.com/english/dedicatedFoundry/technology/platform_HPC_tech_advancedTech |website=TSMC |language=en |access-date=June 3, 2024}}</ref> Compared to the N5 node used to produce Zen 4 CCDs, N4X can enable up to 15% higher frequencies while running at 1.2V.<ref>{{cite web |last=Shilov |first=Anton |date=December 17, 2021 |title=TSMC Unveils N4X Node: Extreme High-Performance at High Voltages |url=https://www.anandtech.com/show/17123/tsmc-unveils-n4x-node-high-voltages-for-high-clocks |archive-url=https://web.archive.org/web/20211218013526/https://www.anandtech.com/show/17123/tsmc-unveils-n4x-node-high-voltages-for-high-clocks |url-status=dead |archive-date=December 18, 2021 |website=AnandTech |language=en-US |access-date=June 3, 2024}}</ref>
+
+The Zen 5 CCD, codenamed "Eldora", has a [[Die (integrated circuit)|die]] size of 70.6mm<sup>2</sup>, a 0.5% reduction in area from Zen 4's 71mm<sup>2</sup> CCD while achieving a 28% increase in transistor density due to the N4X process node.<ref name="TPU 2024-07-16">{{cite web |title=AMD Granite Ridge and Strix Point Zen 5 Die-sizes and Transistor Counts Confirmed |url=https://www.techpowerup.com/324562/amd-granite-ridge-and-strix-point-zen-5-die-sizes-and-transistor-counts-confirmed |website=TechPowerUp |language=en |date=July 16, 2024 |access-date=September 16, 2024 |archive-date=February 1, 2025 |archive-url=https://web.archive.org/web/20250201175408/https://www.techpowerup.com/324562/amd-granite-ridge-and-strix-point-zen-5-die-sizes-and-transistor-counts-confirmed |url-status=live }}</ref> Zen 5's CCD contains 8.315 billion transistors compared to the Zen 4 CCD's 6.5 billion transistors.<ref>{{cite web |last=Shilov |first=Anton |date=July 18, 2024 |title=AMD's Zen 5 chips pack in 8.315 billion transistors per compute die, a 28% increase in density |url=https://www.tomshardware.com/pc-components/cpus/amds-zen-5-chips-pack-in-8315-billion-transistors-per-compute-die-a-28-increase-in-density |website=Tom's Hardware |language=en-US |access-date=September 16, 2024 |archive-date=January 21, 2025 |archive-url=https://web.archive.org/web/20250121120926/https://www.tomshardware.com/pc-components/cpus/amds-zen-5-chips-pack-in-8315-billion-transistors-per-compute-die-a-28-increase-in-density |url-status=live }}</ref> One Zen 5 core is larger than one Zen 4 core, but the CCD has been reduced via shrinking the L3 cache. The monolithic die used by "Strix Point" mobile processors, fabricated on TSMC's lower power N4P node, measures 232.5mm<sup>2</sup> in area.<ref name="TPU 2024-07-16"/>
+
+===Front end===
+====Branch prediction====
+Zen 5's changes to [[branch predictor|branch prediction]] are the most significant divergence from any previous Zen microarchitecture. The branch predictor in a core tries to predict the outcome when there are diverging code paths.
+Zen 5's branch predictor is able to operate two-ahead where it can predict up to two branches per clock cycle. Previous architectures were limited to one branch instruction per clock cycle, limiting the instruction-fetch throughput of branch-heavy programs.<ref>{{cite web |last=Posch |first=Maya |date=July 28, 2024 |title=AMD Returns to 1996 With Zen 5's Two-Block Ahead Branch Predictor |url=https://hackaday.com/2024/07/28/amd-returns-to-1996-with-zen-5s-two-block-ahead-branch-predictor/ |website=Hackaday |language=en-US |access-date=September 16, 2024}}</ref> Two-ahead branch predictors have been discussed in academic research dating back to André Seznec ''et al''.'s 1996 paper "Multiple-block ahead branch predictors".<ref>{{cite book |last1=Seznec |first1=André |last2=Jourdan |first2=Stéphan |last3=Sainrat |first3=Pascal |last4=Michaud |first4=Pierre |chapter=Multiple-block ahead branch predictors |year=1996 |title=Proceedings of the seventh international conference on Architectural support for programming languages and operating systems |chapter-url=https://dl.acm.org/doi/pdf/10.1145/237090.237169 |pages=116–127 |language=en-US |doi=10.1145/237090.237169 |isbn=0-89791-767-7 |archive-date=September 16, 2024 |access-date=September 16, 2024 |archive-url=https://web.archive.org/web/20240916104002/https://dl.acm.org/doi/pdf/10.1145/237090.237169 |url-status=live }}</ref> 28 years after it was first proposed in academic research, AMD's Zen 5 architecture became the first microarchitecture to fully implement two-ahead branch prediction.<ref name="TH" /> Increased data prefetching assists the branch predictor.<ref name="TH" />
+
+===Execution engines===
+
+====Integer units====
+Zen 5 contains six Arithmetic Logic Units (ALUs), up from four ALUs in prior Zen architectures. A greater number of ALUs that handle common integer operations can increase per-cycle scalar integer throughput by 50%.<ref>{{cite web |last=Lam |first=Chester |date=October 8, 2023 |title=Zen 5's Leaked Slides |url=https://chipsandcheese.com/2023/10/08/zen-5s-leaked-slides/ |website=Chips and Cheese |language=en-US |access-date=June 3, 2024}}</ref>
+
+====Vector engines and instructions====
+The vector engine in Zen 5 features four floating-point pipes compared to three pipes in Zen 4. Zen 4 introduced AVX-512 instructions. AVX-512 capabilities have been expanded with Zen 5 with a doubling of the floating-point pipe width to a native 512-bit floating-point datapath. The AVX-512 datapath is configurable depending on the product. Ryzen 9000 series desktop processors and EPYC 9005 server processors feature the full 512-bit datapath, but Ryzen AI 300/400 mobile processors feature a 256-bit datapath to reduce power consumption. AVX-512 instructions have been extended with the VP2INTERSECT extension, in addition to 256-bit AVX-VNNI. Additionally, there is greater <code>bfloat16</code> throughput.<ref name="TH" />
+
+=== Cache ===
+==== L1 ====
+The wider front end in the Zen 5 architecture necessitates larger caches and higher memory bandwidth in order to keep the cores fed with data. The L1 cache per core is increased from 64&nbsp;KB to 80&nbsp;KB per core. The L1 instruction cache remains the same at 32&nbsp;KB but the L1 data cache is increased from 32&nbsp;KB to 48&nbsp;KB per core. Furthermore, the bandwidth of the L1 data cache for 512-bit floating-point unit pipes has also been doubled. The L1 data cache's associativity has increased from 8-way to 12-way in order to accommodate its larger size.<ref name="TH" />
+
+==== L2 ====
+The L2 cache remains at 1&nbsp;MB but its associativity has increased from 8-way to 16-way. Zen 5 also has a doubled L2 cache bandwidth of 64 bytes per clock.<ref name="TH" />
+
+{| class="wikitable floatright" style="text-align:center; line-height:120%; font-size:92%"
+! colspan="2" | Cache
+! Zen 4
+! Zen 5
+|-
+! rowspan="3" style="line-height:90%; text-align:center" | L1 <br>&nbsp;<br/> <small>(Data)</small>
+! style="text-align:left; height:1.6em;"| Size
+| '''32&nbsp;KB'''
+| '''48&nbsp;KB'''
+|-
+! style="text-align:left;" | Associativity
+| <small>8-way</small>
+| <small>12-way</small>
+|-
+! style="text-align:left;" | Bandwidth
+| <small>32B/clk</small>
+| <small>64B/clk</small>
+|-
+! colspan="4" |
+|-
+! rowspan="3" style="line-height:90%; text-align:center | L1 <br>&nbsp;<br/> <small>(In-<br>struc-<br> tions)</small>
+! style="text-align:left; height:1.6em" | Size
+| '''32&nbsp;KB'''
+| '''32&nbsp;KB'''
+|-
+! style="text-align:left;" | Associativity
+| <small>8-way</small>
+| <small>8-way</small>
+|-
+! style="text-align:left;" | Bandwidth
+| <small>64B/clk</small>
+| <small>64B/clk</small>
+|-
+! colspan="4" |
+|-
+! rowspan="3" style="text-align:center;" | L2
+! style="text-align:left; height:1.6em" | Size
+| '''1&nbsp;MB'''
+| '''1&nbsp;MB'''
+|-
+! style="text-align:left;" | Associativity
+| <small>8-way</small>
+| <small>16-way</small>
+|-
+! style="text-align:left;" | Bandwidth
+| <small>32B/clk</small>
+| <small>64B/clk</small>
+|-
+! colspan="4" |
+|-
+! rowspan="3" style="text-align:center;" | L3
+! style="text-align:left; height:1.6em" | Size
+| '''32&nbsp;MB'''
+| '''32&nbsp;MB'''
+|-
+! style="text-align:left;" | Associativity
+| <small>16-way</small>
+| <small>16-way</small>
+|-
+! style="text-align:left;" | Bandwidth
+| <small>32B/clk Read <br/> 16B/clk Write</small>
+| <small>32B/clk Read <br/> 16B/clk Write</small>
+|}
+
+==== L3 ====
+The L3 cache is filled from L2 [[victim cache|cache victims]] and in-flight misses. Latency for accessing the L3 cache has been reduced by 3.5 cycles.<ref>{{cite web |last=Kennedy |first=Patrick |date=August 27, 2024 |title=AMD Zen 5 Core is at Hot Chips 2024 |url=https://www.servethehome.com/amd-zen-5-core-is-at-hot-chips-2024/ |website=ServeTheHome |language=en-US |access-date=September 16, 2024}}</ref> A Zen 5 Core Complex Die (CCD) contains 32&nbsp;MB of L3 cache shared between the 8 cores. In Zen 5 3D V-Cache CCDs, a piece of silicon containing 64&nbsp;MB of extra L3 cache is placed under the cores rather than on top like in prior generations for a total of 96&nbsp;MB.<ref>{{cite news |last1=Lilly |first1=Paul |date=October 31, 2024 |title=AMD Ryzen 7 9800X3D Unveiled With A 3D V-Cache Tweak For Gamers And Overclockers |url=https://hothardware.com/news/amd-ryzen-7-9800x3d-kicks-off-zen-5-3d-v-cache-party |website=HotHardware |language=en-US |access-date=November 1, 2024 |archive-date=November 7, 2024 |archive-url=https://web.archive.org/web/20241107073921/https://hothardware.com/news/amd-ryzen-7-9800x3d-kicks-off-zen-5-3d-v-cache-party |url-status=live }}</ref> This allows for increased core frequency compared to previous generation 3D V-Cache implementations which were sensitive to higher voltages. The Zen 5-based Ryzen 7 9800X3D has a 500&nbsp;MHz increased base frequency over the Zen 4-based Ryzen 7 7800X3D and allows overclocking for the first time.<ref>{{cite news |last1=Tyson |first1=Mark |date=October 31, 2024 |title=AMD crowns the Ryzen 7 9800X3D a 'gaming legend' in a surprise announcement — chipmaker claims $479 Zen 5 3D V-Cache chip is up to an average 20% faster than Intel Core Ultra 9 flagship |url=https://www.tomshardware.com/pc-components/cpus/amd-crowns-the-ryzen-7-9800x3d-a-gaming-legend-in-a-surprise-announcement-chipmaker-claims-usd479-zen-5-3d-v-cache-chip-is-up-to-an-average-20-percent-faster-than-intel-core-ultra-9-flagship |website=Tom's Hardware |language=en-US |access-date=November 1, 2024 |archive-date=November 1, 2024 |archive-url=https://web.archive.org/web/20241101042123/https://www.tomshardware.com/pc-components/cpus/amd-crowns-the-ryzen-7-9800x3d-a-gaming-legend-in-a-surprise-announcement-chipmaker-claims-usd479-zen-5-3d-v-cache-chip-is-up-to-an-average-20-percent-faster-than-intel-core-ultra-9-flagship |url-status=live }}</ref>
+
+Ryzen AI 300 APUs, codenamed "Strix Point", features 24&nbsp;MB of total L3 cache which is split into two separate cache arrays. 16&nbsp;MB of dedicated L3 cache is shared by the 4 Zen 5 cores and 8&nbsp;MB is shared by the 8 Zen 5c cores.<ref>{{cite web |title=AMD's Strix Point: Zen 5 Hits Mobile |url=https://chipsandcheese.com/2024/08/10/amds-strix-point-zen-5-hits-mobile/ |website=Chips and Cheese |language=en-US |date=August 10, 2024 |access-date=September 16, 2024 |archive-date=September 15, 2024 |archive-url=https://web.archive.org/web/20240915213355/https://chipsandcheese.com/2024/08/10/amds-strix-point-zen-5-hits-mobile/ |url-status=live }}</ref> Zen 5c cores are not able to access the 16&nbsp;MB L3 cache array and vice versa.<ref>{{cite web |title=AMD Strix Point SoC Reintroduces Dual-CCX CPU, Other Interesting Silicon Details Revealed |url=https://www.techpowerup.com/324872/amd-strix-point-soc-reintroduces-dual-ccx-cpu-other-interesting-silicon-details-revealed |website=TechPowerUp |language=en |date=July 24, 2024 |access-date=September 16, 2024 |archive-date=September 16, 2024 |archive-url=https://web.archive.org/web/20240916105504/https://www.techpowerup.com/324872/amd-strix-point-soc-reintroduces-dual-ccx-cpu-other-interesting-silicon-details-revealed |url-status=live }}</ref>
+
+=== Other changes ===
+Other features and changes in the Zen 5 architecture, compared to [[Zen 4]], include:
+* Memory speeds up to DDR5-5600 (From DDR5-5200) and LPDDR5X-7500 are officially supported.<ref>{{Cite web |last=Bonshor |first=Gavin |title=AMD Unveils Ryzen 9000 CPUs For Desktop, Zen 5 Takes Center Stage at Computex 2024 |url=https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |archive-url=https://archive.today/20240603051702/https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |url-status=dead |archive-date=June 3, 2024 |access-date=2024-06-15 |website=anandtech.com}}</ref>
+
+{| class="wikitable" style="text-align: center;"
+|+Zen 4 vs Zen 5 capabilities<ref>{{cite web |title=AMD Reveals More Zen 5 CPU Core Details |url=https://www.phoronix.com/review/amd-zen-5-core |website=Phoronix |language=en-US |date=July 24, 2024 |access-date=July 24, 2024 |archive-date=July 24, 2024 |archive-url=https://web.archive.org/web/20240724175019/https://www.phoronix.com/review/amd-zen-5-core |url-status=live }}</ref>
+! Attribute
+! Zen 4
+! Zen 5
+|-
+| L1/L2 BTB
+| 1.5K/7K
+| 16K/8K
+|-
+| Return Address Stack
+| 32
+| 52
+|-
+| ITLB L1/L2
+| 64/512
+| 64/2048
+|-
+| Fetched/Decoded Instruction Bytes/cycle
+| 32
+| 64
+|-
+| Op Cache associativity
+| 12-way
+| 16-way
+|-
+| Op Cache bandwidth
+| 9 macro-ops
+| 12 inst or fused inst
+|-
+| Dispatch bandwidth (macro-ops/cycle)
+| 6
+| 8
+|-
+| AGU Scheduler
+| 3x24 ALU/AGU
+| 56
+|-
+| ALU Scheduler
+| 1x24 ALU
+| 88
+|-
+| ALU/AGU
+| 4/3
+| 6/4
+|-
+| Int PRF (red/flag)
+| 224/126
+| 240/192
+|-
+| Vector Reg
+| 192
+| 384
+|-
+| FP Pre-Sched Queue
+| 64
+| 96
+|-
+| FP Scheduler
+| 2x32
+| 3x38
+|-
+| FP Pipes
+| 3
+| 4
+|-
+| Vector Width
+| 256
+| 256b/512b
+|-
+| ROB/Retire Queue
+| 320
+| 448
+|-
+| LS Mem Pipes support Load/Store
+| 3/1
+| 4/2
+|-
+| DTLB L1/L2
+| 72/3072
+| 96/4096
+|-
+|}
+
+== Products ==
+=== Desktop ===
+==== Granite Ridge ====
+AMD announced an initial lineup of four models of Ryzen 9000 processors on June 3, 2024, including one Ryzen 5, one Ryzen 7 and two Ryzen 9 models. Manufactured on a 4&nbsp;nm process, the processors feature between 6 and 16 cores.<ref name="videocardz-ryzen9k-computex">{{cite web |date=June 3, 2024 |title=AMD introduces Ryzen 9000 Zen5 desktop CPUs "Granite Ridge" |url=https://videocardz.com/newz/amd-introduces-ryzen-9000-zen5-desktop-cpus-granite-ridge |website=VideoCardz |language=en-US |access-date=June 3, 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603003535/https://videocardz.com/newz/amd-introduces-ryzen-9000-zen5-desktop-cpus-granite-ridge |url-status=live }}</ref> Ryzen 9000 processors were released in August 2024.<ref name="TH" />
+
+In May 2025 four of these processors were also released in the 4005 range of the EPYC brand,<ref name="EPYC-4005-AMD">{{cite web|url=https://www.amd.com/en/products/processors/server/epyc/4005-series.html|language=en-US|access-date=August 6, 2025|title=AMD EPYC 4005 Series Processors}}</ref> with the 4585PX corresponding to the [[9950X3D]], the 4565P to the 9950X, the 4345P to the 9700X, and the 4245P to the 9600. Two EPYC 4005 parts, both 65W, have no direct Ryzen 9000 series equivalent: the EPYC 4465P with 12 cores at 3.4&nbsp;GHz, and the 4545P with sixteen cores at 3.0&nbsp;GHz.<ref name="EPYC-4005-AMD" />
+
+In April 2026, AMD launches the Ryzen 9 9950X3D2 Dual Edition with a 200W TDP. This marks the return of 200W TDP in its consumer desktop CPU lineup for the first time since the 220W AMD FX-9590.
+
+{{AMD Ryzen 9000 Series}}
+
+==== Shimada Peak ====
+AMD announced the Threadripper 9000 series of high-end desktop processors at Computex 2025, which released on July 30, 2025. These processors succeed the Zen 4 "Storm Peak" lineup and feature up to 96 Zen 5 cores. The processors come in two variants—the consumer "Threadripper" models and the more expensive workstation "Threadripper PRO" variants, which support more memory channels and PCIe lanes.<ref name="amd-computex-2025">{{cite web |date=May 20, 2025 |title=AMD Introduces New Radeon Graphics Cards and Ryzen Threadripper Processors at COMPUTEX 2025 |url=https://ir.amd.com/news-events/press-releases/detail/1253/amd-introduces-new-radeon-graphics-cards-and-ryzen-threadripper-processors-at-computex-2025 |language=en-US |access-date=May 22, 2025 |archive-date=May 22, 2025 |archive-url=https://web.archive.org/web/20250522094358/https://ir.amd.com/news-events/press-releases/detail/1253/amd-introduces-new-radeon-graphics-cards-and-ryzen-threadripper-processors-at-computex-2025 |url-status=live }}</ref>
+
+{{AMD Ryzen Threadripper 9000 series}}
+
+Threadripper 9000 processors officially support up to 6400 MT/s DDR5 memory, a significant increase from 5200 MT/s in the previous generation.<ref name="threadripper-pro-9995wx-spec">{{cite web |date=May 20, 2025 |title=AMD Ryzen™ Threadripper™ PRO 9995WX |url=https://www.amd.com/en/products/processors/workstations/ryzen-threadripper/9000-wx-series/amd-ryzen-threadripper-pro-9995wx.html |language=en-US |access-date=May 22, 2025 |archive-date=May 21, 2025 |archive-url=https://web.archive.org/web/20250521203340/https://www.amd.com/en/products/processors/workstations/ryzen-threadripper/9000-wx-series/amd-ryzen-threadripper-pro-9995wx.html |url-status=live }}</ref>
+
+==== AI 400 Series ====
+AMD announced an initial lineup of 6 models of Ryzen AI 400 processors on March 2, 2026, including two Ryzen 5 and one Ryzen 7 models. Manufactured on a 4 nm process, the processors feature between 6 and 8 cores.<ref>{{Cite web |title=AMD Gives Consumers and Businesses More AI PC Options with Expanded Ryzen™ AI 400 Series Portfolio |url=https://www.amd.com/en/newsroom/press-releases/2026-3-2-amd-gives-consumers-and-businesses-more-ai-pc-opti.html |access-date=March 4, 2026 |archive-date=March 6, 2026 |archive-url=https://web.archive.org/web/20260306204017/https://www.amd.com/en/newsroom/press-releases/2026-3-2-amd-gives-consumers-and-businesses-more-ai-pc-opti.html |url-status=live }}</ref>
+{{AMD Ryzen AI 400 Series}}
+
+=== Mobile ===
+====Strix Point & Krackan Point====
+The Ryzen AI 300 series of notebook processors was announced on June 3, 2024. Codenamed ''Strix Point'' (for the high performance Ryzen AI 9 300 series) & ''Krackan Point'' (for the mid-range Ryzen AI 5 and 7 300 series), these processors are named under a new model numbering system similar to Intel's [[Intel Core|Core and Core Ultra]] model numbering. Strix Point features a 3rd-gen Ryzen AI engine based on XDNA 2, providing up to 50 TOPS of neural processing unit performance. The integrated graphics is upgraded to RDNA 3.5, and top-end models have 16 CUs of GPU and 12 cores of CPU, an increase from the maximum of 8 CPU cores on previous-generation Ryzen ultra-thin mobile processors.<ref>{{cite web |last1=Alcorn |first1=Paul |title=AMD unwraps Ryzen AI 300 series 'Strix Point' processors — 50 TOPS of AI performance, Zen 5c density cores come to Ryzen 9 for the first time |url=https://www.tomshardware.com/pc-components/cpus/amd-unwraps-ryzen-ai-300-series-strix-point-processors-50-tops-of-ai-performance-zen-5c-density-cores-come-to-ryzen-9-for-the-first-time |website=Tom's Hardware |access-date=3 June 2024 |language=en |date=3 June 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603033904/https://www.tomshardware.com/pc-components/cpus/amd-unwraps-ryzen-ai-300-series-strix-point-processors-50-tops-of-ai-performance-zen-5c-density-cores-come-to-ryzen-9-for-the-first-time |url-status=live }}</ref> Notebooks featuring Ryzen AI 300 series processors were released on July 17, 2024.<ref>{{cite web |last1=Shanto |first1=Abid Ahsan |title=Asus confirms delayed launch of AMD Ryzen AI 300 series laptops |url=https://www.notebookcheck.net/Asus-confirms-delayed-launch-of-AMD-Ryzen-AI-300-series-laptops.856408.0.html |website=NotebookCheck |access-date=4 July 2024 |date=3 July 2024 |archive-date=July 4, 2024 |archive-url=https://web.archive.org/web/20240704115300/https://www.notebookcheck.net/Asus-confirms-delayed-launch-of-AMD-Ryzen-AI-300-series-laptops.856408.0.html |url-status=live }}</ref>
+
+{{AMD Ryzen AI Mobile 300 series}}
+
+====Gorgon Point====
+
+{{AMD Ryzen AI Mobile 400 series}}
+
+==== Strix Halo ====
+Strix Halo represented a major departure of previous multi-chiplet mobile processors. Strix Halo's CCD is actually not the same type of CCD used on regular Zen 5 desktop processors. Instead it features a unique "sea of wires" interconnect that replaces the previous infinity fabric. This change allowed for greater power efficiency but also greater design complexity. This type of interconnect is rumored to be on Zen 6, the next generation of AMD CPU microarchitecture.<ref>{{Cite web |last=Zuhair |first=Muhammad |date=2025-09-28 |title=AMD to Pivot from SERDES to a "Sea-of-Wires" D2D Interconnect in Next-Gen Zen 6 CPUs, Bringing Major Power-Efficiency and Latency Gains |url=https://wccftech.com/amd-to-pivot-from-serdes-to-a-sea-of-wires-d2d-interconnect-with-zen-6-cpus/ |access-date=2025-10-03 |website=Wccftech |language=en-US |archive-date=September 30, 2025 |archive-url=https://web.archive.org/web/20250930155556/https://wccftech.com/amd-to-pivot-from-serdes-to-a-sea-of-wires-d2d-interconnect-with-zen-6-cpus/ |url-status=live }}</ref><ref>{{Cite AV media |url=https://www.youtube.com/watch?v=maH6KZ0YkXU |title=How AMD is re-thinking Chiplet Design |date=2025-09-27 |last=High Yield |access-date=2025-10-03 |via=YouTube |archive-date=October 3, 2025 |archive-url=https://web.archive.org/web/20251003103508/https://www.youtube.com/watch?v=maH6KZ0YkXU |url-status=live }}</ref>
+
+Common features of Strix Halo mobile CPUs:<ref>{{Cite web |last=Discuss |first=AleksandarK |date=2025-02-18 |title=AMD Ryzen AI Max+ "Strix Halo" Die Exposed and Annotated |url=https://www.techpowerup.com/332745/amd-ryzen-ai-max-strix-halo-die-exposed-and-annotated |access-date=2025-10-03 |website=TechPowerUp |language=en}}</ref>
+
+* Socket: BGA, FP 11 package type.
+* All CPUs only support soldered LPDDR5X memory with a 256-bit memory bus.
+* All CPUs support 16 lanes of PCIe 4.0 lanes.
+* iGPU uses the RDNA 3.5 architecture.
+* Fabrication process: TSMC N4P FinFET.
+
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="3" | Branding and Model
+! colspan="4" | CPU
+! colspan="2" | GPU
+! rowspan="3" | NPU<br />(Ryzen AI)
+! rowspan="3" | Chiplets
+! rowspan="3" | Core config
+! rowspan="3" | TDP
+! rowspan="3" | Release date
+|-
+! rowspan="2" | Cores (threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Model
+! rowspan="2" | Clock<br />(GHz)
+|-
+! Base
+! Boost
+|-
+! rowspan="2" | Ryzen AI MAX+
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-plus-pro-395.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html 395]
+| 16 (32)
+| 3.0
+| 5.1
+| rowspan="3" | 64&nbsp;MB
+| rowspan="2" | 8060S<br />40 CUs
+| rowspan="2" | 2.9
+| rowspan="6" | 50 TOPS
+| rowspan="3" | 2 × CCD<br />1 × I/OD&nbsp;with&nbsp;GPU
+| 2 × 8
+| rowspan="6" | 45–120&nbsp;W
+| Q1 2025 <ref name="amd-newsroom-2025ces">{{cite web |title=AMD Announces Expanded Consumer and Commercial AI PC Portfolio at CES |url=https://ir.amd.com/news-events/press-releases/detail/1232/amd-announces-expanded-consumer-and-commercial-ai-pc |website=AMD |access-date=7 January 2025 |date=6 January 2025 |archive-date=February 14, 2025 |archive-url=https://web.archive.org/web/20250214145844/https://ir.amd.com/news-events/press-releases/detail/1232/amd-announces-expanded-consumer-and-commercial-ai-pc |url-status=live }}</ref>
+|-
+![https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-392.html 392]
+| rowspan="2" |12 (24)
+| rowspan="2" |3.2
+| rowspan="4" |5.0
+| rowspan="2" |2 × 6
+|2026
+|-
+! Ryzen AI MAX
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-390.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html 390]
+| 8050S<br />32 CUs
+| 2.8
+|Q1 2025 <ref name="amd-newsroom-2025ces" />
+|-
+!Ryzen AI MAX+
+![https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-388.html 388]
+| rowspan="2" |8 (16)
+| rowspan="2" |3.6
+| rowspan="2" |32&nbsp;MB
+|8060S<br />40 CUs
+|2.9
+| rowspan="3" |1 × CCD<br />1 × I/OD&nbsp;with&nbsp;GPU
+| rowspan="2" |1 × 8
+|2026
+|-
+! rowspan="2" |Ryzen AI MAX
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-385.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-385.html 385]
+|8050S<br />32 CUs
+| rowspan="2" |2.8
+| rowspan="2" |Q1 2025 <ref name="amd-newsroom-2025ces" />
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-300-series/amd-ryzen-ai-max-pro-380.html PRO 380]
+| 6 (12)
+| 3.6
+| 4.9
+| 16&nbsp;MB
+| 8040S<br />16 CUs
+| 1 × 6
+|}
+
+==== Fire Range<span class="anchor" id="Fire Range"></span> ====
+Common features of Ryzen 9000 Fire Range series:
+
+* Socket: FL1.
+* All models support dual-channel DDR5-5600 with a maximum capacity of 96 GB.
+* All models support 28 PCIe 5.0 lanes.
+* Native USB 3.2 Gen 2 (10 Gbps): 4.
+* Native USB 2.0 (480 Mbps): 1.
+* iGPU: AMD Radeon 610M (2 CU @ 2200&nbsp;MHz).
+* No NPU.
+* Fabrication process: TSMC N4 FinFET (CCD) + TSMC N6 FinFET (I/OD).<ref name="tom-fire-range" />
+
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="2" | Branding and Model
+! rowspan="2" | Cores (threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Chiplets
+! rowspan="2" | Core config
+! rowspan="2" | TDP
+! rowspan="2" | Release date
+|-
+! Base
+! Boost
+|-
+! rowspan="3" | Ryzen 9
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9955hx3d.html 9955HX3D]<ref name="tom-fire-range">{{cite news |title=AMD Launches 'Fire Range' HX3D mobile processor with game-boosting 3D V-Cache, other HX Series SKUs built on Zen 5 desktop CPU silicon |first=Paul |last=Alcorn |date=6 January 2025 |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-fire-range-hx3d-mobile-processor-with-game-boosting-3d-v-cache-other-hx-series-skus-built-on-zen-5-desktop-cpu-silicon |work=[[Tom's Hardware]] |access-date=7 January 2025 |archive-date=January 29, 2025 |archive-url=https://web.archive.org/web/20250129053326/https://www.tomshardware.com/pc-components/cpus/amd-launches-fire-range-hx3d-mobile-processor-with-game-boosting-3d-v-cache-other-hx-series-skus-built-on-zen-5-desktop-cpu-silicon |url-status=live }}</ref>
+| 16 (32)
+| 2.3
+| rowspan="2" | 5.4
+| 128&nbsp;MB
+| rowspan="3" | 2 × CCD<br />1 × I/OD
+| rowspan="2" | 2 × 8
+| rowspan="3" | 54&nbsp;W
+| rowspan="3" | 1H 2025
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9955hx.html 9955HX]<ref name="tom-fire-range"/>
+| 16 (32)
+| 2.5
+| rowspan="2" | 64&nbsp;MB
+|-
+! [https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9850hx.html 9850HX]<ref name="tom-fire-range"/>
+| 12 (24)
+| 3.0
+| 5.2
+| 2 × 6
+|}
+
+=== Server ===
+==== Turin ====
+Alongside Granite Ridge desktop and Strix Point mobile processors, the Epyc 9005 series of high-performance server processors, codenamed ''Turin'', were also announced at Computex on June 3, 2024. It uses the same [[Socket SP5|SP5]] socket as the previous Epyc 9004 series processors, and packs up to 128 cores and 256 threads on the top-end model. Turin is built on a TSMC [[5 nm process|4 nm]] process.<ref name="tomshw-epyc9005-computex">{{cite web |last1=Alcorn |first1=Paul |title=AMD announces 3nm EPYC Turin with 192 cores and 384 threads — 5.4X faster than Intel Xeon in AI work, launches second half of 2024 |url=https://www.tomshardware.com/pc-components/cpus/amd-announces-3nm-epyc-turin-launching-with-192-cores-and-384-threads-in-second-half-of-2024-54x-faster-than-intel-xeon-in-ai-workload |website=Tom's Hardware |access-date=3 June 2024 |language=en |date=3 June 2024 |archive-date=June 3, 2024 |archive-url=https://web.archive.org/web/20240603034741/https://www.tomshardware.com/pc-components/cpus/amd-announces-3nm-epyc-turin-launching-with-192-cores-and-384-threads-in-second-half-of-2024-54x-faster-than-intel-xeon-in-ai-workload |url-status=live }}</ref>
+{{AMD EPYC 9000 Series}}
+
+==== Turin Dense ====
+A variant of Epyc 9005 using Zen 5c (''"Prometheus"'') cores was also shown off at Computex. It features a maximum of 192 cores and 384 threads, and is manufactured on a [[3 nm]] process.<ref name="tomshw-epyc9005-computex" />
+{{AMD EPYC Dense 9000 Series}}
+
+== Zen 5c ==
+'''Zen 5c''' (''"Prometheus"'') is a compact variant of the Zen 5 (''"Nirvana"'')<ref name="Zen 5 Nirvana"/> core, primarily targeted at hyperscale cloud compute server customers.<ref>{{Cite web |last=Smith |first=Ryan |date=June 9, 2022 |title=AMD Zen Architecture Roadmap: Zen 5 in 2024 With All-New Microarchitecture |url=https://www.anandtech.com/show/17439/amd-zen-architecture-roadmap-zen-5-in-2024-with-allnew-microarchitecture |archive-url=https://web.archive.org/web/20220609202748/https://www.anandtech.com/show/17439/amd-zen-architecture-roadmap-zen-5-in-2024-with-allnew-microarchitecture |url-status=dead |archive-date=June 9, 2022 |website=AnandTech |language=en-US |access-date=December 11, 2022}}</ref> It succeeds the Zen 4c (''"Dionysus"'') core.
+
+== See also ==
+* [[Arrow Lake (microprocessor)|Arrow Lake]] - a competing x86 CPU lineup from Intel for Granite Ridge, Fire Range, and the Ryzen AI 300 series
+* [[Lunar Lake]] - a competing mobile x86 CPU lineup for Ryzen AI 300 series
+* [[Granite Rapids]] - a competing x86 CPU lineup for Turin Classic
+* [[Sierra Forest]] - a competing x86 CPU lineup for Turin Dense
+
+== References ==
+{{reflist}}
+
+{{AMD processors}}
+{{AMD processor roadmap}}
+
+[[Category:AMD microarchitectures]]
+[[Category:AMD x86 microprocessors]]
+[[Category:X86 microarchitectures]]
+[[Category:Computer-related introductions in 2024]]

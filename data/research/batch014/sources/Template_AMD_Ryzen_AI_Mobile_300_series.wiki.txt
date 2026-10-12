@@ -1,0 +1,108 @@
+Common features of Ryzen AI 300 notebook APUs:
+* Socket: [[Ball_grid_array|BGA]], FP8 package type.
+* All models support [[DDR5]]-5600 or [[LPDDR5X]]-8000 in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode.
+* All models support 16 [[PCIe 4.0]] lanes.
+* Native USB 40Gbps (USB4) Ports: 2
+* Native USB 10Gbps (USB 3.2 Gen 2 operation mode) Ports: 2
+* iGPU uses the [[RDNA 3.5]] microarchitecture.
+* NPU uses the [[XDNA 2]] AI Engine (Ryzen AI).
+* Both [[Zen 5]] and [[Zen 5c]] cores support [[AVX-512]] using a half-width 256-bit FPU.
+* L1 [[Cache (computing)|cache]]: 80&nbsp;KB (48&nbsp;KB data + 32&nbsp;KB instruction) per core.
+* L2 cache: 1&nbsp;MB per core.
+* Fabrication process: [[TSMC]] [[5 nm process|N4P]] FinFET.
+{{row hover highlight}}
+{| class="wikitable sortable hover-highlight" style="text-align:center"
+! colspan=2 rowspan=3 | Branding and model
+! colspan=7 | [[Central processing unit|CPU]]
+! colspan=2 | [[Graphics processing unit|GPU]]
+! rowspan=3 | [[Neural processing unit | NPU]]<br />([[Ryzen AI]])
+! rowspan=3 | [[Thermal design power|TDP]]
+({{tooltip|2=AMD Configurable TDP|cTDP}})
+! rowspan=3 | Release<br />date
+|-
+! colspan=3 | [[Multi-core processor|Cores]] ([[Thread (computing)|threads]])
+! colspan=3 | [[Clock rate|Clock]] ([[Hertz|GHz]])
+! rowspan=2 | [[CPU cache|L3 cache]]<br />(total)
+! rowspan=2 | Model
+! rowspan=2 | Clock<br />(GHz)
+|-
+! Total
+! [[Zen 5]]
+! [[Zen 5c]]
+! Base
+! Boost<br />(Zen 5)
+! Boost<br />(Zen 5c)
+|-
+! rowspan=3 |Ryzen AI 9
+! style="text-align:left;" data-sort-value="sku7" | ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-300-series/amd-ryzen-ai-9-hx-pro-375.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-9-hx-375.html HX 375]
+| rowspan="2" | 12 (24)
+| rowspan="3" | 4 (8)
+| rowspan="2" | 8 (16)
+| rowspan="7" | 2.0
+| rowspan="2" | 5.1
+| rowspan="4" | 3.3
+| rowspan="3" | 24&nbsp;MB
+| rowspan="2" | 890M<br />16 CUs
+| rowspan="4" | 2.9
+| 55&nbsp;TOPS
+| rowspan="6" | 28 W
+(15−54&nbsp;W)
+| rowspan="3" | {{dts|2024|Jun|2|df=mdy|abbr=off}} <ref name="amd-newsroom-zen5ryzenai">{{cite web |title=AMD Unveils Next-Gen Zen 5 Ryzen Processors to Power Advanced AI Experiences |url=https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html |website=AMD |access-date=2 November 2024 |date=2 June 2024}}</ref>
+|-
+! style="text-align:left;" data-sort-value="sku6" | ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-300-series/amd-ryzen-ai-9-hx-pro-370.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-9-hx-370.html HX 370]<ref name="nbkchk-ryzenai300-computex">{{cite web |last1=Ganti |first1=Anil |title=Computex 2024 {{!}} AMD Ryzen AI 9 HX 370 and Ryzen AI 9 365 unveiled with new CPU cores and GPU |url=https://www.notebookcheck.net/AMD-Ryzen-AI-9-HX-370-and-Ryzen-AI-9-365-unveiled-with-new-CPU-cores-and-GPU.843464.0.html |website=NotebookCheck |access-date=3 June 2024 |date=3 June 2024}}</ref>
+| rowspan=6 | 50&nbsp;TOPS
+|-
+! style="text-align:left;" data-sort-value="sku5" | [https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-9-365.html 365]<ref name="nbkchk-ryzenai300-computex" />
+| 10 (20)
+| 6 (12)
+| rowspan=3 | 5.0
+| rowspan=2 | 880M<br />12 CUs
+|-
+! rowspan=2 | Ryzen AI 7
+! style="text-align:left;" data-sort-value="sku4" | [https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-300-series/amd-ryzen-ai-7-pro-360.html PRO 360]<ref name="ithome-aipro360">{{cite web |last=Yuan |first=Gu |title=AMD Ryzen AI 9 HX 370/7 PRO 360 APU 跑分曝光 |url=https://www.ithome.com/0/780/091.htm |website=IT Home |language=zh-hans |access-date=2024-07-08 |date=2024-07-06 |archive-url=https://web.archive.org/web/20240706102232/https://www.ithome.com/0/780/091.htm |archive-date=2024-07-06 |url-status=live}}</ref><ref name="toms-aipro160">{{cite web |last=Klotz |first=Aaron |title=Ryzen AI 7 Pro 160 bests previous-gen Ryzen 9 — chip hits Geekbench with three Zen 5 and five Zen 5c cores |url=https://www.tomshardware.com/pc-components/cpus/ryzen-ai-7-pro-160-bests-previous-gen-ryzen-9-chip-hits-geekbench-with-three-zen-5-and-five-zen-5c-cores |website=Tom's Hardware |language=en |access-date=2024-07-08 |date=2024-07-05 |archive-url=https://web.archive.org/web/20240707025644/https://www.tomshardware.com/pc-components/cpus/ryzen-ai-7-pro-160-bests-previous-gen-ryzen-9-chip-hits-geekbench-with-three-zen-5-and-five-zen-5c-cores |archive-date=2024-07-07 |url-status=live}}</ref>
+| rowspan="2" | 8 (16)
+| 3 (6)
+| 5 (10)
+| rowspan="3" | 16&nbsp;MB
+| {{dts|2024|Oct|10|df=mdy|abbr=off}} <ref name="amd-newsroom-ryzenaipro300">{{cite web |title=AMD Launches New Ryzen™ AI PRO 300 Series Processors to Power Next Generation of Commercial PCs |url=https://www.amd.com/en/newsroom/press-releases/2024-10-10-amd-launches-new-ryzen-ai-pro-300-series-processo.html |website=AMD |access-date=2 November 2024 |date=10 October 2024}}</ref>
+|-
+! style="text-align:left;" data-sort-value="sku3" | ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-300-series/amd-ryzen-ai-7-pro-350.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-7-350.html 350]
+| 4 (8)
+| 4 (8)
+| 3.5
+| 860M<br />8 CU
+| 3.0
+| rowspan="2" | (March 27, 2025)
+February 18, 2025
+|-
+! rowspan="2" | Ryzen AI 5
+! style="text-align:left;" data-sort-value="sku2" | ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-300-series/amd-ryzen-ai-5-pro-340.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-5-340.html 340]
+| 6 (12)
+| 3 (6)
+| rowspan="2" | 3 (6)
+| 4.8
+| rowspan="2" | 3.4
+| 840M<br />4 CU
+| 2.9
+|-
+! style="text-align:left;" data-sort-value="sku1" | [https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-5-330.html 330]
+| 4 (8)
+| 1 (2)
+| 4.5
+| 8&nbsp;MB
+| 820M<br />2 CU
+| 2.8
+| 28 W
+(15−28&nbsp;W)
+| {{dts|2025|Jul|df=my|abbr=off}} <ref name="amd-quietly-reveals-ai-5-330">{{cite news|title=AMD quietly reveals cheapest Ryzen AI yet — AI 5 330 is a quad-core budget processor with a 50 TOPS NPU |url=https://www.tomshardware.com/pc-components/cpus/amd-quietly-reveals-cheapest-ryzen-ai-yet-ai-5-330-is-a-quad-core-budget-processor-with-a-50-tops-npu |first=Anton |last=Shilov  |work=Tom's Hardware |date=17 July 2025 |access-date=21 July 2025}}</ref>
+|}
+{{navbar|AMD Ryzen AI Mobile 300 series|mini=y|plain=y|style=float: left;position: relative;top: -15px;right: 0px;}}
+{{notelist}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the AMD APU tables at: [[Talk:List of AMD processors with 3D graphics]].}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

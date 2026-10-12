@@ -1,0 +1,247 @@
+{{Short description|Intel microprocessor series released in 2024}}
+{{For|Core Ultra (Series 2) mainstream mobile and enthusiast mobile processors|Arrow Lake (microprocessor)}}
+{{Infobox CPU series
+| name               = Lunar Lake
+| image              = 
+| caption            = 
+| alt                = 
+| launching          = 
+| launched           = September 2024
+| discontinued       = 
+| designedby         = [[Intel]]
+| manuf1             = [[TSMC]]
+| process1           = TSMC [[3 nm process|N3B]]
+| process2           = TSMC [[7 nm process|N6]]
+| codename1          = LNL
+| platform1          = Mobile
+
+<!------------------  Branding  ------------------->
+| branding           = [[Intel Core|Core Ultra]]
+| generation         = Series 2
+| socket1            = BGA&nbsp;2833
+
+<!------------------ Instructions & Architecture ------------------->
+| instructions-set   = [[x86-64]]
+| instructions       = [[x86]], [[IA-32]], x86-64
+<!-- x86-64 is fully retrocompatible with IA-32, which is itself fully retrocompatible with x86 (the original 80x86) -->
+| extensions         = SSE4.1, SSE4.2, AVX2
+<!-- e.g. SSE, AVX2, AVX-512, quickly grabbed from Intel's website, incomplete -->
+| p-core-arch        = [[Lion Cove]]
+| e-core-arch        = Skymont
+
+<!------------------  Cores  ------------------->
+| core-codename1     = <!-- (1..9) Codename(s) for the CPU cores -->
+| core-count         = 8 cores: <br/> {{bulleted list|4 P-cores|4 E-cores}}
+| peak-clock         = <!-- Peak clock rate number, e.g. Up to 5.6 -->
+| peakclock-unit     = <!-- Peak clock rate unit, e.g. MHz or GHz -->
+| p-l0-cache         = 48{{nbsp}}KB data (per core)
+| p-l1-cache         = 256{{nbsp}}KB (per core): <br/> {{bulleted list|64{{nbsp}}KB instructions|192{{nbsp}}KB data}}
+| e-l1-cache         = 96{{nbsp}}KB (per core): <br/> {{bulleted list|64{{nbsp}}KB instructions|32{{nbsp}}KB data}}
+| p-l2-cache         = 2.5{{nbsp}}MB (per core)
+| e-l2-cache         = 4{{nbsp}}MB (per cluster)
+| p-l3-cache         = 3{{nbsp}}MB (per core)
+
+<!------------------  Graphics ------------------->
+| graphics-arch      = X<sup>e</sup>2-LPG <br/> (Battlemage)
+| gpu-model1         = <!-- (1..9) Name of GPU models featured, e.g. UHD 770, UHD 630, 780M -->
+| xe-count           = 8 
+| eu-count           = 64
+| graphics-clock     = <!-- Peak graphics clock for the integrated GPU, e.g. Up to 2100 MHz -->
+| graphics-clockunit =
+
+<!------------------  NPU ------------------->
+| npu-arch           = NPU 4
+| npu-tops           = Up to 48
+| npu-clock          = 
+| npu-clockunit      = GHz
+
+<!------------------  Memory Suppport ------------------->
+| memory-type        = [[LPDDR#LPDDR5X|LPDDR5X]]-8533
+| memory-channels    = 2 channels
+| amountmemory       = Up to 32{{nbsp}}GB
+
+<!------------------  I/O ------------------->
+| pcie-support       = [[PCI Express#PCI Express 5.0|PCIe 5.0]]
+| pcie-lanes         = 8 lanes: <br/> {{bulleted list|4 PCIe 5.0 lanes |4 [[PCI Express#PCI Express 4.0|PCIe 4.0]] lanes}}
+| cxl-support        = 
+| upi-links          = 
+| dmi-version        = 
+| ht-version         = 
+| ht-speeds          =
+
+<!--------- Products, models, variants ----------->
+| pcode1             = LNL
+
+<!------------------  History  ------------------->
+| predecessor        = [[Meteor Lake]]
+| variant            = [[Arrow Lake (microprocessor)|Arrow Lake]]
+| successor          = [[Panther Lake (microprocessor)|Panther Lake]]
+}}
+'''Lunar Lake''' is the codename for [[Intel Core|Core Ultra]] 200V Series mobile processors designed by [[Intel]], released in September 2024.<ref>{{Cite web |title=Intel's Next-Generation Core Ultra Launch Event on Sept. 3| url=https://www.intel.com/content/www/us/en/newsroom/news/media-alert-intels-next-gen-core-ultra-launch-event.html |website=Intel |language=en-US |access-date=2024-07-30}}</ref> It is a successor to [[Meteor Lake]] which saw Intel move from monolithic silicon to a disaggregated [[Multi-chip module|MCM]] design.
+
+== Background ==
+On May 24, 2024, details on the Lunar Lake architecture were unveiled during Intel's [[Computex]] presentation in [[Taiwan]]. SKU names of Lunar Lake processors or details such as clock speeds were not announced.<ref>{{cite web |last1=Wilson |first1=Matthew |date=June 4, 2024 |title=Computex 2024: Intel reveals Lunar Lake CPU details |url=https://www.kitguru.net/components/cpu/matthew-wilson/computex-2024-intel-reveals-lunar-lake-cpu-details/ |website=KitGuru |language=en-GB |access-date=June 4, 2024}}</ref>
+
+== Architecture ==
+[[File:2024-09-06 15 39 26-Intel Core Ultra Lunar Lake DEMO live HANDS-ON (DecodingIT).png|thumb|One model of the Intel Core Ultra (Series 2)]]
+[[File:Intel Core Ultra 258V, verbaut in einem ASUS Zenbook S 14 UX5406.png|thumb|Lunar Lake CPU in a laptop motherboard]]
+Lunar Lake is an ultra-low power mobile SoC design. It is a successor to 15&nbsp;W Meteor Lake-U processors while Arrow Lake replaces the midrange 28&nbsp;W Meteor Lake-H processors. Lunar Lake's focus on increased power efficiency targets premium ultra-thin laptops and compact mobile designs. Intel said that with Lunar Lake, it aimed to "bust the myth that <nowiki>[</nowiki>[[x86]]<nowiki>]</nowiki> can't be as efficient" as [[ARM architecture family|ARM]].<ref name="Burek">{{cite web |last1=Burek |first1=John |date=June 4, 2024 |title='Lunar Lake' Explained: How Intel's Moonshot Mobile CPUs Will Escalate the AI Wars |url=https://uk.pcmag.com/laptops/152630/lunar-lake-explained-how-intels-moonshot-mobile-cpus-will-escalate-the-ai-wars |website=PCMag |language=en-GB |access-date=June 4, 2024}}</ref> Analysis of tests performed on Lunar Lake CPUs available at market launch indicated that, although their multi-core performance was not particularly good under full load, their efficiency under everyday use was good, even if the ARM competition still has its advantages.<ref>{{cite web |last1=Osthoff |first1=Andreas |title=Intel Lunar Lake CPU analysis – The Core Ultra 7 258V's multi-core performance is disappointing, but its everyday efficiency is good |url=https://www.notebookcheck.net/Intel-Lunar-Lake-CPU-analysis-The-Core-Ultra-7-258V-s-multi-core-performance-is-disappointing-but-its-everyday-efficiency-is-good.893405.0.html |website=notebookcheck.net |access-date=11 October 2024 |date=24 September 2024 |quote=After the release of the Snapdragon X Elite chips as well as the AMD Zen 5 CPUs, Intel has finally launched its new Lunar Lake mobile processors. These are completely new chips with a focus on efficiency—plus, Intel has done without hyperthreading for the first time. But how efficient are the new models really and has too much performance perhaps been sacrificed? Updated 04 October 2024 }}</ref>
+
+=== Process node ===
+Lunar Lake is the first processor design by Intel where all logic dies are entirely fabricated on external nodes outsourced to [[TSMC]]. An analysis by [[Goldman Sachs]] indicated that Intel would be spending $5.6 billion in 2024 and $9.7 billion in 2025 outsourcing to TSMC.<ref>{{cite web |last=Shilov |first=Anton |date=September 3, 2023 |title=Intel To Spend $9.7 Billion On TSMC Outsourcing In 2025: Goldman Sachs |url=https://www.tomshardware.com/news/intel-to-spend-dollar97-billion-on-tsmc-outsourcing-in-2025-goldman-sachs |website=Tom's Hardware |language=en-US |access-date=June 4, 2024}}</ref> In March 2024, Intel's chief financial officer admitted during an investment call that the company was "a little bit heavier than we want to be in terms of external wafer manufacturing versus internal".<ref>{{cite web |last=Evanson |first=Nick |date=March 11, 2024 |title=Intel's chief financial officer admits the company is 'heavier than we want to be in terms of external wafer manufacturing' |url=https://www.pcgamer.com/hardware/processors/intels-chief-financial-officer-admits-the-company-is-heavier-than-we-want-to-be-in-terms-of-external-wafer-manufacturing/ |website=PC Gamer |language=en-US |access-date=June 4, 2024}}</ref> The following month, Intel disclosed that their foundry business made a $7 billion operating loss during 2023.<ref>{{cite web |last=Bajwa |first=Arsheeya |date=April 3, 2024 |title=Intel slides as foundry business loss spotlights wide gap with rival TSMC |url=https://www.reuters.com/markets/intel-slides-foundry-business-loss-spotlights-wide-gap-with-rival-tsmc-2024-04-03/ |website=Reuters |language=en-US |access-date=June 4, 2024}}</ref>
+
+{| class="wikitable plainrowheaders" style="text-align: left;"
+! Tile
+! Node
+! EUV
+! Die size
+! {{Tooltip|Ref.|Reference(s)}}
+|-
+! scope="row" | Compute tile
+| [[TSMC]] [[3 nm process|N3B]]
+| {{ya}}
+| 140mm<sup>2</sup>
+| <ref name="Bonshor">{{cite web |last1=Bonshor |first1=Gavin |date=June 3, 2024 |title=Intel Unveils Lunar Lake Architecture: New P and E cores, Xe2-LPG Graphics, New NPU 4 Brings More AI Performance |url=https://www.anandtech.com/show/21425/intel-lunar-lake-architecture-deep-dive-lion-cove-xe2-and-npu4 |archive-url=https://web.archive.org/web/20240604032237/https://www.anandtech.com/show/21425/intel-lunar-lake-architecture-deep-dive-lion-cove-xe2-and-npu4 |url-status=dead |archive-date=June 4, 2024 |website=AnandTech |language=en-US |access-date=}}</ref>
+|-
+! scope="row" | Platform controller tile
+| [[TSMC]] [[7 nm process|N6]]
+| {{ya}}
+| 46mm<sup>2</sup>
+| 
+|-
+! scope="row" | Foveros interposer base tile
+| [[Intel]] [[22 nm process|22FFL]]
+| {{na}}
+| {{unknown}}
+| 
+|}
+
+=== Compute tile ===
+The Compute tile is Lunar Lake's largest tile. It has expanded functions over Meteor Lake's compute tile which solely housed CPU cores and cache. Instead, Lunar Lake's compute tile houses CPU cores and their cache, the GPU and the NPU. The previous generation Meteor Lake used the [[7 nm process|Intel 4]] process on its compute tile while Lunar Lake moves to [[TSMC]]'s [[3 nm process|N3B]] node.<ref name="Hachman">{{cite web |last1=Hachman |first1=Mark |date=June 3, 2024 |title=Lunar Lake deep-dive: Intel's new laptop CPU is radically different |url=https://www.pcworld.com/article/2350967/intels-lunar-lake-debuts-combining-low-power-performance-and-ai.html |website=PCWorld |language=en-US |access-date=June 4, 2024}}</ref> N3B is TSMC's first generation 3&nbsp;nm node with lower yields compared to the updated N3E node. Lunar Lake's compute tile was originally planned to be built on Intel's [[2 nm process|18A]] node.<ref name="Hachman"/> 18A will not debut until 2025 with Panther Lake mobile processors and Clearwater Forest server processors. Lunar Lake shares the same Lion Cove P-core and Skymont E-core architectures with Arrow Lake desktop and mobile processors.
+
+With the [[Lion Cove]] P-core, Intel claims a 14% IPC uplift on average over [[Redwood Cove]]. [[Simultaneous multithreading]] (SMT) has been removed from Lunar Lake's Lion Cove P-cores.<ref>{{cite web |last1=Crider |first1=Michael |date=June 3, 2024 |title=Intel ditches hyperthreading for Lunar Lake CPUs |url=https://www.pcworld.com/article/2355112/intel-ditches-hyperthreading-for-lunar-lake-cpus.html |website=PCWorld |language=en-US |access-date=June 4, 2024}}</ref> SMT first made its debut in an Intel desktop processor with the Northwood-based [[Pentium 4]] in 2002. The last [[x86-64]] Intel desktop processor lineup not to feature SMT in any way was [[Core 2]],<ref>{{cite web |last1=Sexton |first1=Michael |title=Intel Dumping Hyper-Threading in Its Next-Gen Chips? That Could Be a Good Thing |url=https://www.pcmag.com/opinions/intel-dumping-hyper-threading-in-arrow-lake-chips-a-good-thing |archive-url=https://web.archive.org/web/20240604034032/https://www.pcmag.com/opinions/intel-dumping-hyper-threading-in-arrow-lake-chips-a-good-thing |url-status=dead |archive-date=2024-06-04 |website=PC Mag |access-date=4 June 2024}}</ref> which was discontinued in 2011<ref>{{cite web |last1=Shvets |first1=Anthony |title=Intel discontinues Pentium, Core 2 Duo and Core 2 Quad CPUs |url=http://www.cpu-world.com/news_2011/2011020801_Intel_discontinues_Pentium_Core_2_Duo_and_Core_2_Quad_CPUs.html |archive-url=https://web.archive.org/web/20151010045552/http://www.cpu-world.com/news_2011/2011020801_Intel_discontinues_Pentium_Core_2_Duo_and_Core_2_Quad_CPUs.html |url-status=dead |archive-date=2015-10-10 |website=CPU World |access-date=10 October 2015}}</ref>{{efn|name="SMT"}}. SMT, or Intel's marketing term [[HyperThreading]], allows a single physical CPU core with 2 threads to execute two tasks simultaneously. In the early 2000s, SMT was a way to add more processing threads to dual and quad-core CPUs while not using too much die space. The removal of SMT allows the physical core die area to be reduced. Increasing the number of processing threads with a greater number of physical cores can compensate for the removal of SMT providing 2 threads per core.<ref>{{cite web |last=Sexton |first=Michael Justin Allen |date=March 5, 2024 |title=Intel Dumping Hyper-Threading in Its Next-Gen Chips? That Could Be a Good Thing |url=https://uk.pcmag.com/processors/151318/intel-dumping-hyper-threading-in-its-next-gen-chips-that-could-be-a-good-thing |website=PC Magazine |language=en-GB |access-date=June 4, 2024}}</ref> Intel's removal of SMT yields a 15% saving in die area and 5% greater performance-per-watt.<ref>{{cite web |title=Intel Lunar Lake Technical Deep Dive – So many Revolutions in One Chip |url=https://www.techpowerup.com/review/intel-lunar-lake-technical-deep-dive/3.html |website=TechPowerUp |language=en-US |date=June 4, 2024 |access-date=June 4, 2024}}</ref> To counteract the removal of SMT, Intel prioritized executing more instructions per cycle for high single-threaded performance rather than parallel execution. L2 cache per core for Lion Cove is increased to 2.5&nbsp;MB from Redwood Cove's 2&nbsp;MB. Lunar Lake is able to exercise more granular control over Lion Cove's boost clocks. Lion Cove's boost clocks are able to increase in increments of 16.67{{nbsp}}MHz rather than in 100{{nbsp}}MHz increments.<ref name="Burek"/>
+
+Lunar Lake's cluster of 4 Skymont E-cores exist on a 'Low Power Island' separate from the P-cores. As a result, the E-cores have their own dedicated L3 cache not accessible to the P-cores rather than sitting on a ringbus fabric with P-cores. Intel claims a massive 68% IPC gain in Skymont E-cores over Crestmont.<ref>{{cite web |last1=Alcorn |first1=Paul |date=June 3, 2024 |title=Intel unwraps Lunar Lake architecture: Up to 68% IPC gain for E-cores, 16% IPC gain for P-Cores |url=https://www.tomshardware.com/pc-components/cpus/intel-unwraps-lunar-lake-architecture-up-to-68-ipc-gain-for-e-cores-16-ipc-gain-for-p-cores |website=Tom's Hardware |language=en-US |access-date=June 4, 2024}}</ref> It achieves this with the inclusion of new 8-wide integer ALUs, doubled from Crestmont.
+
+==== Neural Processing Unit (NPU) ====
+Lunar Lake's [[Neural Processing Unit]] (NPU), which performs AI operations locally, in-silicon rather than in the [[Cloud computing|cloud]], has been updated to Intel's "NPU 4" architecture with increased clock speeds. Intel claims that Lunar Lake can achieve a total of 120 int8 TOPS of performance in AI workloads, with 48 int8 TOPS coming from the NPU alone while an additional 67 int8 TOPS come from the GPU and 5 int8 TOPS from the CPU. Lunar Lake's 48 dedicated NPU TOPS meets [[Microsoft]]'s requirements for laptops in order to be certified as [[Microsoft Copilot|Copilot+]] PCs.<ref>{{cite web |last1=Hardawar |first1=Devindra |date=June 4, 2024 |title=Intel officially unveils Lunar Lake, its Copilot+ AI PC chip |url=https://www.engadget.com/intel-officially-unveils-lunar-lake-its-copilot-ai-pc-chip-030029548.html?guccounter=1 |website=Engadget |language=en-GB |access-date=June 4, 2024}}</ref> [[Microsoft]] has mandated 40 <!-- type of workload? -->TOPs on NPU performance in order to run [[Microsoft Copilot|Copilot]] locally on [[Microsoft Windows|Windows]] PCs.<ref>{{cite web |last=Alcorn |first=Paul |date=March 27, 2024 |title=Intel confirms Microsoft's Copilot AI will soon run locally on PCs, next-gen AI PCs require 40 TOPS of NPU performance |url=https://www.tomshardware.com/pc-components/cpus/intel-confirms-microsoft-copilot-will-soon-run-locally-on-pcs-next-gen-ai-pcs-require-40-tops-of-npu-performance |website=Tom's Hardware |language=en-US |access-date=June 4, 2024}}</ref> For comparison, the NPU in Meteor Lake and Arrow Lake processors is able to output 10 TOPs.<ref>{{cite web |last=Alcorn |first=Paul |date=April 9, 2024 |title=Intel says Lunar Lake will have 100+ TOPS of AI performance — 45 TOPS from the NPU alone meets requirement for next-gen AI PCs |url=https://www.tomshardware.com/pc-components/cpus/intel-says-lunar-lake-will-have-100-tops-of-ai-performance-45-tops-from-the-npu-alone-meeting-requirement-for-next-gen-ai-pcs |website=Tom's Hardware |language=en-US |access-date=June 4, 2024}}</ref>
+
+==== Graphics ====
+Lunar Lake's GPU features second generation [[Intel Xe#Intel Xe 2|X<sup>e</sup>2]]-LPG cores based on the Battlemage graphics architecture. The Battlemage architecture launched in Lunar Lake mobile processors before discrete Arc desktop graphics cards. It contains eight X<sup>e</sup>2-LPG cores that share an 8&nbsp;MB L2 cache. The GPU is able to provide up to 67 TOPS of <code>INT8</code> compute for AI processing.<ref>{{cite web |last1=Hollister |first1=Sean |date=June 4, 2024 |title=This is Lunar Lake — Intel's utterly overhauled AI laptop chip that ditches memory sticks |url=https://www.theverge.com/2024/6/3/24169115/intel-lunar-lake-architecture-platform-feature-reveal |website=The Verge |language=en-US |access-date=June 4, 2024}}</ref> The display engine has three display pipes with [[HDMI#Version 2.1|HDMI 2.1]], [[DisplayPort#2.1|DisplayPort 2.1]] and a new eDP 1.5 connection.<ref name="Hachman"/> It features [[Versatile Video Coding|H.266 VVC]] hardware fixed-function decoding support.
+
+=== Platform controller tile ===
+The small platform controller tile provides security functions and I/O connectivity including Wi-Fi 7, [[Thunderbolt (interface)|Thunderbolt 4]], 4 [[PCI Express#PCI Express 4.0|PCIe 4.0]] lanes and 4 [[PCI Express#PCI Express 5.0|PCIe 5.0]] lanes. Lunar Lake's platform controller tile uses the same N6 node from TSMC that is used by Meteor Lake and Arrow Lake's SoC tiles.<ref name="Bonshor"/> The platform controller tile in Lunar Lake does not feature two dedicated low power E-cores like those in Meteor Lake and Arrow Lake's SoC tile. This change has been attributed to the power efficiency gains from the compute tile moving from the Intel 4 process to TSMC's more advanced N3B node.<ref>{{cite web |title=Intel's next-gen "Skymont" efficient core details leak out |url=https://videocardz.com/newz/intels-next-gen-skymont-efficient-core-details-leak-out |website=VideoCardz |language=en-US |date=May 30, 2024 |access-date=June 4, 2024}}</ref>
+
+=== Memory ===
+Lunar Lake features on-package [[LPDDR#LPDDR5X|LPDDR5X]]-8533 [[Random-access memory|RAM]] available in 16&nbsp;GB or 32&nbsp;GB capacities.<ref>{{cite web |last1=Norem |first1=Josh |date=May 16, 2024 |title=Intel Lunar Lake Mobile Chips to Feature 16GB or 32GB of Embedded Memory |url=https://www.extremetech.com/computing/intel-lunar-lake-mobile-chips-to-feature-16gb-or-32gb-of-embedded-memory |website=ExtremeTech |language=en-US |access-date=June 4, 2024}}</ref> This on-package memory is a similar approach to [[Apple Inc.|Apple]] with its M series SoCs that integrate unified LPDDR memory onto the package beside the CPU silicon.<ref>{{cite web |last=Shilov |first=Anton |date=September 6, 2023 |title=Intel Demos Meteor Lake CPU with On-Package LPDDR5X |url=https://www.tomshardware.com/news/intel-demos-meteor-lake-cpu-with-on-package-lpddr5x |website=Tom's Hardware |language=en-US |access-date=}}</ref> On-package memory allows the CPU to benefit from higher memory bandwidth at lower power and decreased latency as memory is physically closer to the CPU. Intel claims that Lunar Lake's on-package memory achieved a reduction of 40% in power consumption and "up to 250 square millimeters" of space.<ref name="Crider">{{cite web |last1=Crider |first1=Michael |date=June 3, 2024 |title=Intel's latest laptops get rid of replaceable memory |url=https://www.pcworld.com/article/2355077/lunar-lake-tops-out-at-32gb-ram-will-not-allow-upgrades.html |website=PCWorld |language=en-US |access-date=June 4, 2024}}</ref> Furthermore, memory that is integrated onto the CPU package means that the overall processor physical footprint in laptops can be reduced as memory does not need to be placed onto a separate board with its own cooling solution. Less complex cooling being required means that Lunar Lake processors can more easily fit in ultra-low power compact mobile solutions. The downside of Lunar Lake's on-package memory is that is not user replaceable or upgradable to higher capacities beyond 32&nbsp;GB with SO-DIMMs.<ref name="Crider"/> Due to the inclusion of on-package memory, an extra 2{{nbsp}}W is added to the [[Thermal design power|TDP]] of Lunar Lake processors. Lunar Lake processors have a TDP ranging from 17 to 30{{nbsp}}W compared to the 15–28{{nbsp}}W TDP of Meteor Lake-H processors.
+
+== List of Lunar Lake processors ==
+=== Mobile processors ===<!-- use core config like in the intel arc gpu list -->
+Common features of mobile Lunar Lake CPUs:
+
+* Release date: September 24, 2024
+* RAM support: LPDDR5X-8533
+
+{| class="wikitable sortable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="2" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="3" |[[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (int8 TOPS)
+! rowspan="3" | [[Smart cache|Smart <br /> cache]]{{efn-lr|Only the P-cores can access this L3 cache.<ref>https://chipsandcheese.com/2024/09/27/lion-cove-intels-p-core-roars/</ref>}}
+! rowspan="2" | Memory
+! colspan="3" rowspan="2" | [[Thermal design power|TDP]]
+|-
+! rowspan="2" | Base
+! colspan="2" | [[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|LP-E|Low Power Efficient}}
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|LP-E|Low Power Efficient}}
+! X<sup>e</sup> cores<br />({{Abbr|XVEs|X<sup>e</sup> Vector Engines}})
+! Max. freq.<br />(GHz)
+! Capacity
+! Base
+! Turbo
+! {{abbr|cTDP|Configurable TDP}}
+|-
+! Core Ultra 9
+! [https://ark.intel.com/content/www/us/en/ark/products/240961/intel-core-ultra-9-processor-288v-12m-cache-up-to-5-10-ghz.html 288V]
+| rowspan="9" | 4 (4)
+| rowspan="9" | 4 (4)
+| 3.3
+| 5.1
+| rowspan="5" | 3.7
+| rowspan="5" | 8 (64)
+| 2.05
+| rowspan="3" | 48
+| rowspan="5" | 12&nbsp;MB
+| rowspan="2" | 32&nbsp;GB
+| 30&nbsp;W
+| rowspan="9" | 37&nbsp;W
+| 17-37&nbsp;W
+|-
+! rowspan="4" | Core Ultra 7
+! [https://ark.intel.com/content/www/us/en/ark/products/240958/intel-core-ultra-7-processor-268v-12m-cache-up-to-5-00-ghz.html 268V]
+| rowspan="4" | 2.2
+| rowspan="2" | 5.0
+| rowspan="2" | 2.0
+| rowspan="8" | 17&nbsp;W
+| rowspan="8" | 8–37&nbsp;W
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240956/intel-core-ultra-7-processor-266v-12m-cache-up-to-5-00-ghz.html 266V]
+| 16&nbsp;GB
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240957/intel-core-ultra-7-processor-258v-12m-cache-up-to-4-80-ghz.html 258V]
+| rowspan="2" | 4.8
+| rowspan="2" | 1.95
+| rowspan="2" | 47
+| 32&nbsp;GB
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240954/intel-core-ultra-7-processor-256v-12m-cache-up-to-4-80-ghz.html 256V]
+| 16&nbsp;GB
+|-
+! rowspan="4" | Core Ultra 5
+! [https://ark.intel.com/content/www/us/en/ark/products/240951/intel-core-ultra-5-processor-238v-8m-cache-up-to-4-70-ghz.html 238V]
+| rowspan="4" | 2.1
+| rowspan="2" | 4.7
+| rowspan="4" | 3.5
+| rowspan="4" | 7 (56)
+| rowspan="4" | 1.85
+| rowspan="4" | 40
+| rowspan="4" | 8&nbsp;MB
+| 32&nbsp;GB
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240959/intel-core-ultra-5-processor-236v-8m-cache-up-to-4-70-ghz.html 236V]
+| 16&nbsp;GB
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240955/intel-core-ultra-5-processor-228v-8m-cache-up-to-4-50-ghz.html 228V]
+| rowspan="2" | 4.5
+| 32&nbsp;GB
+|-
+! [https://ark.intel.com/content/www/us/en/ark/products/240960/intel-core-ultra-5-processor-226v-8m-cache-up-to-4-50-ghz.html 226V]
+| 16&nbsp;GB
+|-
+|}
+{{notelist-lr}}
+
+== See also ==
+* [[Zen 5]] – a competing x86 architecture from AMD
+* [[Arrow Lake (microprocessor)|Arrow Lake]]
+
+== Notes ==
+{{Notelist|refs=
+{{efn|name="SMT"|SMT was physically present in previous Intel core architectures like [[Sandy Bridge]], [[Haswell (microarchitecture)|Haswell]] and [[Skylake (microarchitecture)|Skylake]] but it could be disabled from the factory in some lower-end Celeron and Pentium SKUs. For example, [[Coffee Lake]]'s Skylake cores contained SMT but it was disabled in the Core i7-9700K with 8 cores and 8 threads while the Core i9-9900K had 8 cores and 16 threads.}}
+}}
+
+== References ==
+{{reflist}}
+
+{{Intel processors}}
+{{Intel processor roadmap}}
+
+[[Category:Computer-related introductions in 2024]]
+[[Category:Intel x86 microprocessors]]
+[[Category:X86 microarchitectures]]

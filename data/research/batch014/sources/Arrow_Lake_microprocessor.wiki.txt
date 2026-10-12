@@ -1,0 +1,942 @@
+{{Short description|2024 Intel product line}}
+{{Use American English|date=October 2024}}
+{{Use dmy dates|date=October 2024}}
+{{Infobox CPU series
+| name               = Arrow Lake
+| image              = Czy nowe procesory Intela to ULTRA rozczarowanie¿ (2160p 30fps VP9 LQ-128kbit AAC)-00.01.16.400.png
+| caption            = Three Arrow Lake-S desktop processors
+| alt                = 
+| launched           = October 24, 2024
+| discontinued       = 
+| designedby         = [[Intel]]
+| manuf1             = Intel
+| manuf2             = [[TSMC]]
+| process1           = TSMC [[3 nm process|N3B]]
+| process2           = TSMC [[5 nm process|N5P]]
+| process3           = TSMC [[7 nm process|N6]]
+| codename1          = ARL
+| platform1          = Desktop
+| platform2          = Mobile
+
+<!------------------  Branding  ------------------->
+| branding           = [[Intel Core|Core Ultra]]
+| generation         = Series 2
+| socket1            = [[LGA 1851]]
+| socket2            = BGA{{nbsp}}2114<ref>{{cite web |title=Intel lists testing interposers for Next-Gen Xe2 "Battlemage2 GPUs and Core Ultra "Arrow Lake-HX" CPUs |url=https://videocardz.com/newz/intel-lists-testing-interposers-for-next-gen-xe2-battlemage-gpus-and-core-ultra-arrow-lake-hx-cpus |website=VideoCardz |language=en-US |date=August 16, 2023 |access-date=October 30, 2024}}</ref>
+
+<!------------------ Instructions and Architecture ------------------->
+| instructions-set   = [[x86-64]]
+| instructions       = [[x86]] ([[IA-32]], [[x86-64]])
+| extensions         = [[AES instruction set|AES-NI]], [[CLMUL instruction set|CLMUL]], [[SM3 (hash function)|SM3]], [[SM4 (cipher)|SM4]], [[Intel SHA extensions|SHA]], [[Trusted Execution Technology|TXT]], [[RDRAND]], [[MMX (instruction set)|MMX]], [[Streaming SIMD Extensions|SSE]], [[SSE2]], [[SSE3]], [[SSSE3]], [[SSE4]], [[SSE4.1]], [[SSE4.2]], [[Advanced Vector Extensions|AVX]], [[Advanced Vector Extensions#Advanced Vector Extensions 2|AVX2]], [[FMA3]], [[Advanced Vector Extensions#AVX-VNNI|AVX-VNNI]], [[Advanced Vector Extensions#AVX-IFMA|AVX-IFMA]], [[VT-x]], [[VT-d]]
+| extensions2        = 
+| extensions3        = 
+| p-core-arch        = [[Lion Cove]]
+| e-core-arch        = [[Skymont]]
+
+
+<!------------------  Cores  ------------------->
+| core-codename1     = <!-- (1..9) Codename(s) for the CPU cores -->
+| core count         = 24 cores: <br/> {{ubl|8 P-cores|16 E-cores}}
+| peak-clock         = 5.7
+| peakclock-unit     = GHz
+| p-l0-cache         = 48{{nbsp}}KB data (per core)
+| p-l1-cache         = 256{{nbsp}}KB (per core): <br/> {{bulleted list|64{{nbsp}}KB instructions|192{{nbsp}}KB data}}
+| e-l1-cache         = 96{{nbsp}}KB (per core): <br /> {{bulleted list|64{{nbsp}}KB instructions|32{{nbsp}}KB data}}
+| p-l2-cache         = 3{{nbsp}}MB (per core)
+| e-l2-cache         = 4{{nbsp}}MB (per cluster)
+| l3-cache           = Up to 36{{nbsp}}MB (globally shared)
+
+
+<!------------------  Integrated Graphics ------------------->
+| graphics-arch      = X<sup>e</sup>-LPG <br/> X<sup>e</sup>-LPG+
+| gpu-model1         = <!-- (1..9) Name of GPU models featured, e.g. UHD 770, UHD 630, 780M -->
+| xe-count           = 8
+| eu-count           = 64
+| graphics-clock     = 2.0
+| graphics-clockunit = GHz
+
+<!------------------  NPU ------------------->
+| npu-arch           = NPU 3720
+| npu-tops           = 13
+| npu-clock          = 
+| npu-clockunit      = 
+
+<!------------------  Memory Suppport ------------------->
+| memory-type        = [[DDR5 SDRAM|DDR5]]-6400
+| memory-channels    = 2 channels
+| amountmemory       = 256{{nbsp}}GB
+
+<!------------------  I/O ------------------->
+| pcie-support       = [[PCI Express#PCI Express 5.0|PCIe 5.0]]
+| pcie-lanes         = 20 PCIe 5.0 lanes <br/> 4 [[PCI Express#PCI Express 4.0|PCIe 4.0]] lanes
+| cxl-support        = 
+| upi-links          = 
+| dmi-version        = [[Direct Media Interface|DMI 4.0]] x8
+| ht-version         = 
+| ht-speeds          = 
+
+<!------------------  History  ------------------->
+| predecessor        = {{unbulleted list|[[Meteor Lake]] (mobile)|[[Raptor Lake]] (desktop and mobile)}}
+| variant            = [[Lunar Lake]]
+| successor          = [[Panther Lake (microprocessor)|Panther Lake]] (mobile)<br>[[Nova Lake (microprocessor)|Nova Lake]] (desktop and mobile)
+}}
+'''Arrow Lake''' is the [[List of Intel codenames|codename]] for Core Ultra Series 2 processors designed by [[Intel]], released on October 24, 2024. It follows on from [[Meteor Lake]] which saw Intel move from monolithic silicon to a disaggregated [[multi-chip module]] design. Meteor Lake was limited to a mobile release while Arrow Lake includes both socketable desktop processors and mainstream and enthusiast mobile processors. Core Ultra 200H and 200HX series mobile processors followed in early 2025.<ref>{{Cite news |author=WhyCry |date=2024-10-10 |title=Intel confirms Core Ultra 200H and 200HX mobile series launching in Q1 2025 |url=https://videocardz.com/newz/intel-confirms-core-ultra-200h-and-200hx-mobile-series-launching-in-q1-2025 |website=VideoCardz |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Arrow Lake desktop [[CPU]]s integrated [[Thunderbolt (interface)|Thunderbolt 4]] and [[USB4]] support in the CPU, which allowed it to not be limited by [[PCIe]] 3.0 speeds and use simple re-timers instead. The chipset has the same maximum five integrated USB 3.2 2×2, and is Thunderbolt 5 ready if a discrete board is used.<ref>{{Cite web |last=Edmonds |first=Rich |date=2024-10-10 |title=Intel's highly anticipated Arrow Lake is finally here with new AI CPUs for gaming |url=https://www.xda-developers.com/intel-launches-arrow-lake/ |access-date=2026-07-06 |website=XDA |language=en|url-status=live}}</ref> The integrated [[GPU]] added [[HDMI]] 2.1 FRL 48 Gbit/s (also in Meteor Lake) and variable refresh rate (VRR) support. CU-DIMM [[DDR5]] memory support was added and is needed for optimal performance.<ref>{{Cite web |last=Rice-Jones |first=Joe |date=2024-11-22 |title=Intel has a serious problem with Arrow Lake and memory compatibility |url=https://www.xda-developers.com/intel-serious-problem-arrow-lake-memory-compatibility/ |access-date=2026-07-06 |website=XDA |language=en|url-status=live}}</ref><ref>{{Cite web |author1=Morales |date=2024-10-15 |title=Intel's Arrow Lake official memory speeds are unchanged with standard memory sticks — pricier CUDIMM memory needed for faster base spec |url=https://www.tomshardware.com/pc-components/ram/intels-arrow-lake-official-memory-speeds-are-unchanged-with-standard-memory-sticks-pricier-cudimm-memory-needed-for-faster-base-spec |access-date=2026-07-06 |website=Tom's Hardware |language=en|first=Jowi|url-status=live}}</ref>
+
+== Background ==
+The first official mention of Arrow Lake came on February 17, 2022 at Intel's Investor Meeting where it was confirmed that Arrow Lake would be the successor to Meteor Lake. Arrow Lake was confirmed to use a disaggregated construction and would be fabricated on Intel's 20A node and external nodes.<ref>{{cite web |title=Intel Technology Roadmaps and Milestones |url=https://download.intel.com/newsroom/archive/2025/en-us-2022-02-17-intel-technology-roadmaps-and-milestones.pdf |website=Intel Newsroom |language=en-US |date=2022-02-17 |access-date=2026-07-06|url-status=live|publisher=Intel}}</ref>
+
+In September 2023, Intel CEO [[Pat Gelsinger]] showcased a [[2 nm process|20A]] [[Wafer (electronics)|wafer]] at Intel's Innovation event containing Arrow Lake test dies, reiterating that Arrow Lake products were on schedule.<ref>{{cite web |last=Alcorn |first=Paul |date=2023-09-19 |title=Intel Displays Arrow Lake Wafer With 20A Process Node, Chips Arrive in 2024 |url=https://www.tomshardware.com/news/intel-displays-arrow-lake-wafer-with-20a-process-node-chips-arrive-in-2024 |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref> On December 14, 2023, Meteor Lake launched in 9&nbsp;W and 15&nbsp;W form factors for premium notebooks,<ref>{{cite web |last=Bonshor |first=Gavin |date=2023-12-14 |title=Intel Releases Core Ultra H and U-Series Processors: Meteor Lake Brings AI and Arc to Ultra Thin Notebooks |url=https://www.anandtech.com/show/21185/intel-releases-core-ultra-h-and-u-series-processors-meteor-lake-brings-ai-and-arc-to-ultra-thin-notebooks |archive-url=https://web.archive.org/web/20231214152400/https://www.anandtech.com/show/21185/intel-releases-core-ultra-h-and-u-series-processors-meteor-lake-brings-ai-and-arc-to-ultra-thin-notebooks |url-status=dead |archive-date=2023-12-14 |website=AnandTech |language=en-US |access-date=2024-10-24}}</ref> followed by 15&nbsp;W Raptor Lake-U Refresh for entry-level laptops on January 9, 2024, at [[Consumer Electronics Show|CES]].
+
+Also, at [[Consumer Electronics Show|CES]] 2024, Intel stated that Arrow Lake would launch for desktop in the second half of 2024.<ref>{{cite web |last=Alcorn |first=Paul |date=2024-01-09 |title=Intel's Arrow Lake and Lunar Lake CPUs will arrive in 2024 – three times more AI performance for both GPU and NPU |url=https://www.tomshardware.com/pc-components/cpus/intel-announces-arrow-lake-and-lunar-lake-will-arrive-in-2024-with-3-times-more-gpu-and-ai-acceleration-performance |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Intel claimed that Arrow Lake would be the "world's first gaming processor with an [[AI accelerator]]" despite AMD's Ryzen 8000G desktop APUs, codenamed "Phoenix-G", with a dedicated [[AMD XDNA|XDNA]] AI engine launching first in January 2024.<ref>{{cite web |last=Evanson |first=Nick |date=2024-01-09 |title='World's first gaming processor with an AI accelerator': Intel's Arrow Lake will be coming to desktop PCs in the second half of this year |url=https://www.pcgamer.com/worlds-first-gaming-processor-with-an-ai-accelerator-intels-arrow-lake-will-be-coming-to-desktop-pcs-in-the-second-half-of-this-year/ |website=PC Gamer |language=en-US |access-date=2026-07-06|url-status=live}}</ref> On May 20, 2024, Intel reaffirmed that Arrow Lake was on track for a Q4 2024 release with an update promised at [[Computex]] in the following weeks. On June 4, 2024, Intel shared details on the [[Lion Cove]] P-cores and Skymont E-core architectures that are shared between Arrow Lake and [[Lunar Lake]].
+
+Arrow Lake-S desktop processors were announced on October 10, 2024 with an October 24 release date.<ref>{{cite web |last1=Alcorn |first1=Paul |date=2024-10-10 |title=Intel Launches Arrow Lake Core Ultra 200S — big gains in productivity and power efficiency, but not in gaming |url=https://www.tomshardware.com/pc-components/cpus/intel-launches-arrow-lake-core-ultra-200s-big-gains-in-productivity-and-power-efficiency-but-not-in-gaming |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+
+== Architecture ==
+Arrow Lake is a two-way [[x86]] architecture designed to scale from 28W mobile form factors to 125&nbsp;W enthusiast desktop segments. The architectural construction behind Arrow Lake maintains many of the direct elements from [[Meteor Lake]]. It is a disaggregated [[Multi-chip module|MCM]] design fabricated on various nodes from [[TSMC]]. Arrow Lake reuses the same SoC and I/O extender tiles from Meteor Lake while adding a new compute tile and a smaller graphics tile intended for desktop.
+
+=== Process node ===
+{| class="wikitable" style="text-align: left;"
+! Tile
+! Node
+! EUV
+! Die size
+! {{Tooltip|Ref.|Reference(s)}}
+|-
+| scope="row" | Compute tile
+| [[TSMC]] [[3 nm process|N3B]]
+| {{ya}}
+| 117.241{{nbsp}}mm<sup>2</sup>
+| <ref name="High Yield Arrow Lake">{{cite web |title=Arrow Lake: Intel's 1st Tile-based Desktop CPU |url=https://www.youtube.com/watch?v=wusyYscQi0o |website=YouTube |language=en-US |date=2025-05-03 |access-date=2026-07-06}}</ref>
+|-
+| scope="row" | Graphics tile
+| [[TSMC]] [[5 nm process|N5P]]
+| {{ya}}
+| 23{{nbsp}}mm<sup>2</sup>
+| <ref name="High Yield Arrow Lake"/>
+|-
+| scope="row" | SoC tile
+| [[TSMC]] [[7 nm process|N6]]
+| {{ya}}
+| 86.648{{nbsp}}mm<sup>2</sup>
+| <ref name="High Yield Arrow Lake"/>
+|-
+| scope="row" | I/O extender tile
+| [[TSMC]] [[7 nm process|N6]]
+| {{ya}}
+| 24.475{{nbsp}}mm<sup>2</sup>
+| <ref name="High Yield Arrow Lake"/>
+|-
+| scope="row" | Foveros interposer base tile
+| [[14 nm process|Intel 16]] (22FFL){{efn|Intel 16 is built on their previous 22FFL process.}}
+| {{na}}
+| 302.944{{nbsp}}mm<sup>2</sup>
+| <ref name="High Yield Arrow Lake"/>
+|}
+
+=== Compute tile ===
+The previous generation Meteor Lake used the [[7 nm process|Intel 4]] process on its compute tile with Arrow Lake originally planning to move to Intel's [[2 nm process|20A]] node. In September 2024, Intel announced the cancellation of its 20A node so it could shift its focus to the development of 18A instead. Intel's 20A node planned to introduce gate-all-around (GAA) transistors, which Intel refers to as RibbonFET, and those transistors receive backside power delivery that Intel calls PowerVia. RibbonFET is Intel's first new transistor design since the introduction of FinFET in 2011.<ref>{{cite web |last=Alcorn |first=Paul |date=2021-07-26 |title=Intel Process Roadmap Through 2025: Renamed Process Nodes, Angstrom Era Begins |url=https://www.tomshardware.com/news/intel-process-packaging-roadmap-2025 |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Arrow Lake's compute tile is fabricated on TSMC's [[3 nm process|N3B]] node instead of 20A.<ref>{{cite web |last=Norem |first=Josh |date=2024-09-05 |title=Intel Announces Cancellation of 20A Process, Will Use 'External' Foundry for Arrow Lake |url=https://www.extremetech.com/computing/intel-announces-cancellation-of-20a-process-will-use-external-foundry-for |website=ExtremeTech |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Similar to what the previous generation Meteor Lake did, Arrow Lake's compute tile introduces both new Lion Cove P-cores and new Skymont E-cores. Arrow Lake's Lion Cove and Skymont core architectures are also shared with Lunar Lake.
+
+==== Lion Cove ====
+{{main|Lion Cove}}
+Lion Cove P-cores features wider decoder and dispatch engines, a greater number of integers [[Arithmetic logic unit|ALUs]], larger L2 [[cache (computing)|caches]], and a redesigned cache hierarchy. Intel claims a 9% IPC ([[instructions per cycle]]) improvement for Arrow Lake's Lion Cove cores.<ref>{{cite web |title=Intel Core Ultra 200 "Arrow Lake-S" to offer 9% IPC gain on P-Cores and 32% on E-Cores |url=https://videocardz.com/newz/intel-core-ultra-200-arrow-lake-s-to-offer-9-ipc-gain-on-p-cores-and-32-on-e-cores |website=VideoCardz |language=en-US |date=2024-10-08 |access-date=2026-07-06|url-status=live}}</ref> Lion Cove in Arrow Lake has an increased 3&nbsp;MB of L2 cache compared to 2.5&nbsp;MB in Lunar Lake's Lion Cove implementation. Lion Cove's L2 cache is 50% larger over the previous generation Raptor Cove core with 2&nbsp;MB of L2 cache. Lion Cove has an L2 bandwidth of 32 bytes per cycle.<ref>{{cite web |last=Lam |first=Chester |date=2024-09-27 |title=Lion Cove: Intel's P-Core Roars |url=https://chipsandcheese.com/2024/09/27/lion-cove-intels-p-core-roars/ |website=Chips and Cheese |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Lion Cove P-cores include support for AVX-512 instructions but AVX-512 has been disabled in Arrow Lake processors due to its heterogeneous architecture. The Skymont E-cores do not feature AVX-512 instructions support so AVX-512 is disabled to ensure that both core types are equal in their capabilities.
+
+There has been a clock speed regression for Lion Cove P-cores in Arrow Lake-S desktop processors.<ref>{{cite web |last=Cunnigham |first=Andrew |date=2024-10-10 |title=Intel's Core Ultra 200S CPUs are its biggest desktop refresh in three years |url=https://arstechnica.com/gadgets/2024/10/intels-core-ultra-200s-cpus-are-its-biggest-desktop-refresh-in-three-years/ |website=Ars Technica |language=en-US |access-date=2024-10-30|url-status=live}}</ref> The Core Ultra 9 285K has a peak clock speed of 5.7{{nbsp}}GHz compared to the higher 6.2{{nbsp}}GHz clock speed of the [[Raptor Lake]] Core i9-14900KS.<ref>{{cite web |last=Kundu |first=Kishalaya |date=2024-08-21 |title=Intel Core Ultra 9 285K "Arrow Lake" CPU surfaces with 5.7GHz clock speed |url=https://www.techspot.com/news/104372-intel-core-ultra-9-285k-arrow-lake-cpu.html |website=TechSpot |language=en-US |access-date=2026-07-06|url-status=live}}</ref> One of key features introduced in Lion Cove was the ability to have 3 multiplications per cycle (assuming they are independent of course).
+
+===== Simultaneous multithreading (SMT) =====
+[[Simultaneous multithreading]] (SMT) has been removed from Arrow Lake's Lion Cove P-cores.<ref>{{cite web |last=Norem |first=Josh |date=2024-01-22 |title=Intel's Arrow Lake CPUs Will Allegedly Ditch Hyper-Threading: Leak |url=https://www.extremetech.com/computing/intels-arrow-lake-cpus-will-allegedly-ditch-hyper-threading-leak |website=ExtremeTech |language=en-US |access-date=2026-07-06|url-status=live}}</ref> SMT first made its debut in an Intel desktop processor with the Northwood-based [[Pentium 4]] in November 2002. Its removal in Arrow Lake marks the second time since then that SMT has been completely removed from a new [[x86-64]] Intel performance-oriented core architecture rather than it simply being disabled in some lower-end Celeron and Pentium SKUs.{{efn|name=SMT}} SMT, or Intel's marketing term [[HyperThreading]], allows a single physical CPU core with two threads to execute two tasks simultaneously. In the early 2000s, SMT was a way to add more processing threads to dual- and quad-core CPUs while not using too much die space. The removal of SMT allows the physical core die area to be reduced. Increasing the number of processing threads with a greater number of physical cores can compensate for the removal of SMT providing two threads per core.<ref name="Sexton">{{cite web |last=Sexton |first=Michael Justin Allen |date=2024-03-05 |title=Intel Dumping Hyper-Threading in Its Next-Gen Chips? That Could Be a Good Thing |url=https://uk.pcmag.com/processors/151318/intel-dumping-hyper-threading-in-its-next-gen-chips-that-could-be-a-good-thing |website=PCMag |language=en-GB |access-date=2026-07-06|url-status=live}}</ref> Many [[ARM architecture family|ARM]]-based processors, such as Apple's M series [[System on a chip]] (SoCs), do not feature SMT as it is less beneficial on processors with a short processor pipeline and including it increases the physical core area. With a longer processor pipeline, like the one used by Intel, it is more difficult to keep the CPU cores fed with useful data in a workload. Cores with longer pipelines are able to support high clock speeds but with fewer instructions per clock (IPC).<ref name="Sexton"/> Further, Intel argued SMT was not needed with the additional cores offered in Arrow Lake and related hybrid designs with greater numbers of P and E cores, and reduced power and transistor requirements.<ref>{{cite news |last1=Cozma |first1=George |title=Interviewing Intel's Chief Architect of x86 Cores at Intel Tech Tour 2025 |url=https://chipsandcheese.com/p/interviewing-intels-chief-architect |access-date=2026-07-06 |publisher=Chips and Cheese |date=2025-10-09|url-status=live}}</ref>
+
+==== Skymont ====
+{{main|Skymont}}
+
+Skymont E-cores focus on enhanced branch prediction and instruction fetch, increased throughput for 128-bit [[floating-point arithmetic|floating-point]] and [[SIMD]] vector data types, and their L2 cache receiving a doubling in bandwidth. Intel claims a 32% IPC uplift in multi-threaded integer workloads compared to Gracemont and 55% in multi-threaded floating point.<ref>{{cite web |last1=Larabel |first1=Michael |title=Intel Announces Core Ultra 200S Arrow Lake CPUs |url=https://www.phoronix.com/review/intel-core-ultra-200-arrow-lake |website=Phoronix |access-date=2026-07-06|date=2024-10-10|url-status=live}}</ref>
+
+==== Core layout ====
+[[File:Intel-ARL-Core-Layout.png|thumb|right|300px]]
+The physical layout of P-cores and E-cores has changed in Arrow Lake with a cluster of four E-cores placed between two P-cores.<ref>{{cite web |title=Intel "Arrow Lake-S" to See a Rearrangement of P-cores and E-cores Along the Ringbus |url=https://www.techpowerup.com/324033/intel-arrow-lake-s-to-see-a-rearrangement-of-p-cores-and-e-cores-along-the-ringbus |website=TechPowerUp |language=en-US |date=2024-07-01 |access-date=2026-07-06|url-status=live}}</ref> In contrast, [[Alder Lake]], [[Raptor Lake]], and [[Meteor Lake]] placed all P-cores together in one group and all E-cores together in another which reduces core-to-core [[Latency (engineering)|latency]] when moving instructions or data between the P-cores and E-cores. The previous approach required data to travel a longer distance along the ring bus between both core types. The new approach also helps to alleviate some of thermal issues of Raptor Lake, as the heat from the high-powered P-cores is more spread out, allowing for easier cooling.<ref>{{Cite AV media |url=https://www.youtube.com/watch?v=wusyYscQi0o |title=Intel Arrow Lake Chip Deep-Dive |date=2025-05-03 |last=High Yield |access-date=2026-07-06 |via=YouTube}}</ref>
+
+=== Graphics tile ===
+Arrow Lake's graphics tile remains largely unchanged architecturally from Meteor Lake. Just like Meteor Lake, the graphics tile in Arrow Lake is fabricated on [[TSMC]]'s [[5 nm process|N5P]] node.<ref>{{cite web |last=Mujtaba |first=Hassan |date=2024-10-22 |title=Intel Core Ultra 9 285K CPU Gets Detailed Die Shots: 3nm Arrow Lake Compared To 10nm Raptor Lake |url=https://wccftech.com/intel-core-ultra-9-285k-cpu-detailed-die-shots-3nm-arrow-lake-compared-10nm-raptor-lake/ |website=Wccftech |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Arrow Lake-S desktop processors feature 4 X<sup>e</sup>-LPG cores based on the Alchemist graphics architecture. However, Arrow Lake mobile processors feature up to 8 slightly modified X<sup>e</sup>-LPG+ (Gen12.74) cores which add support for Dot Product Accumulate Systolic (DPAS) instructions. DPAS instructions were included in X<sup>e</sup>-HPG cores for discrete [[Intel Arc|Arc]] graphics but were disabled in the lower power X<sup>e</sup>-LPG variant. DPAS instructions allow <code>FP16</code>, <code>BF16</code> and <code>INT4</code> data types to be multiplied, giving the GPU the ability to perform more operations per cycle.
+
+=== SoC tile ===
+Arrow Lake reuses the same SoC tile design from Meteor Lake, fabricated on TSMC's [[7 nm process|N6]] node. The SoC tile used for Arrow Lake-S desktop processors was originally designed for cancelled Meteor Lake-S processors for desktop. It does not contain any low power E-cores. Mobile variants of Arrow Lake reuse Meteor Lake's SoC tile that includes two Crestmont low-power E-cores, which are different to the Skymont E-cores in the CPU compute tile. The Crestmont low-power E-cores do not have an L3 cache like the Skymont E-cores do in the CPU tile.
+
+== NPU ==
+Arrow Lake uses the same Neural Processing Unit (NPU) as found in [[Meteor Lake]] that provides 13 TOPS of <code>INT8</code> rather than the 45 TOPS NPU 4 found in Lunar Lake.<ref>{{Cite web |date=2024-09-29 |title=Intel Core Ultra 7 vs i7: Welcher ist 2026 besser? |url=https://www.geekom.de/intel-core-ultra-7-vs-i7/ |access-date=2026-07-06 |website=GEEKOM |language=de}}</ref> For comparison, [[Ryzen]] 8000G desktop APUs have an [[AMD XDNA|XDNA]]-based NPU capable of 16 TOPS. Across the NPU, CPU and integrated GPU, Intel advertises Core Ultra 200S CPUs to hit 36 overall TOPS,<ref>{{Cite web |title=What is an AI PC? |url=https://www.intel.com/content/www/us/en/support/articles/000099561/processors/intel-core-ultra-processors.html |access-date=2026-07-06 |website=Intel |language=en|date=2026-06-08|url-status=live}}</ref> while AMD's Ryzen 8000G desktop APUs are capable of delivering a theoretical 39 TOPS of AI performance.<ref>{{cite web |last1=Paul |first1=Alcorn |date=2024-01-08 |title=AMD launches Ryzen 8000G 'Phoenix' APUs, brings AI to the desktop PC — reveals Zen 4c clocks for the first time |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-8000g-phoenix-apus-brings-ai-to-the-desktop-pc-reveals-zen-4c-clocks-for-the-first-time |access-date=2024-01-08 |website=Tom's Hardware|url-status=live}}</ref>
+
+=== Memory controller ===
+Arrow Lake is Intel's first desktop architecture to feature [[DDR5 SDRAM|DDR5]] memory support exclusively with support for DDR4 being removed. Alder Lake and Raptor Lake supported both DDR4 and DDR5 memory. Arrow Lake-S desktop processors support the same DDR5-5600 UDIMM speeds as Raptor Lake but Arrow Lake has added support for Clock Unbuffered [[DIMM]] ([[CUDIMM]]) and Clock Small Outline DIMM (CSODIMM) memory. CUDIMMs add a clock driver to traditional unbuffered DIMMs that is able to regenerate the clock signal locally on the DIMM for better stability at high memory speeds.<ref>{{cite web |last1=Smith |first1=Ryan |last2=Shilov |first2=Anton |date=2024-06-21 |title=CUDIMM Standard Set to Make Desktop Memory a Bit Smarter and a Lot More Robust |url=https://www.anandtech.com/show/21455/making-desktop-ddr5-even-faster-cudimms-debut-at-computex |archive-url=https://web.archive.org/web/20240621150743/https://www.anandtech.com/show/21455/making-desktop-ddr5-even-faster-cudimms-debut-at-computex |url-status=dead |archive-date=2024-06-21 |website=AnandTech |language=en-US |access-date=2024-10-30}}</ref> With CUDIMMs and motherboard support, Arrow Lake is able to run overclocked DDR5-10000.<ref>{{cite web |last1=Fox |first1=Jacob |date=2024-09-18 |title=Intel's next-gen Arrow Lake CPUs could support up to 10,000 MT/s DDR5 CUDIMM RAM, but that'll be using the Gear 2 setting which is pretty rubbish for gaming |url=https://www.pcgamer.com/hardware/processors/intels-next-gen-arrow-lake-cpus-could-support-up-to-10000-mts-ddr5-cudimm-ram-but-thatll-be-using-the-gear-2-setting-which-is-pretty-rubbish-for-gaming/ |website=PC Gamer |language=en-US |access-date=2026-07-06|url-status=live}}</ref> At Computex in June 2024, [[ASRock]] showed a [[LGA 1851]] socket motherboard with [[CAMM (memory module)|CAMM2]] memory slots.<ref>{{cite web |last1=Klotz |first1=Aaron |date=2024-06-06 |title=ASRock unveils a slew of Arrow Lake-compatible motherboards, including a new Taichi variant with CAMM2 memory |url=https://www.tomshardware.com/pc-components/motherboards/asrock-unveils-a-gauntlet-of-arrow-lake-compatible-motherboards-including-a-new-taichi-variant-sporting-camm2-memory |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+{| class="wikitable" style="text-align: center;"
+|+ Arrow Lake-S officially supported DDR5 speeds
+! rowspan="2" colspan="2" | 
+! colspan="2" | Memory clock (MT/s)
+|-
+! {{abbr|1DPC|1 DIMM per channel}}
+! {{abbr|2DPC|2 DIMMs per channel}}
+|-
+! rowspan="2" | {{abbr|UDIMM|Unbuffered DIMM}}
+! {{abbr|1R|Single rank}}
+| 5600
+| 4800
+|-
+! {{abbr|2R|Dual rank}}
+| 
+| 4400
+|-
+! rowspan="2" | {{abbr|SODIMM|Short Outline DIMM}}
+! {{abbr|1R|Single rank}}
+| 5600
+| 5600
+|-
+! {{abbr|2R|Dual rank}}
+| 
+| 
+|-
+! rowspan="2" | {{abbr|CUDIMM|Clocked Unbuffered DIMM}}
+! {{abbr|1R|Single rank}}
+| 6400
+| 4800
+|-
+! {{abbr|2R|Dual rank}}
+| 
+| 4400
+|-
+! rowspan="2" | {{abbr|CSODIMM|Clocked Short Outline DIMM}}
+! {{abbr|1R|Single rank}}
+| 6400
+| 
+|-
+! {{abbr|2R|Dual rank}}
+| 
+| 
+|}
+
+== List of Arrow Lake processors ==
+Each Xe core on the integrated GPU contains 16 vector engines (VEs) and one ray-tracing unit.
+
+=== Desktop ===
+==== Arrow Lake-S ====
+CPUs <u>underlined</u> support [[Intel vPro]] with the Q870 (enterprise) and W880 (entry-level workstation) chipsets, and [[ECC memory]] only on the W880 chipset.
+
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="2" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="4" | [[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="4" rowspan="2" | [[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|Power]]
+! rowspan="3" | Released
+! rowspan="3" | Price <br /> (USD)
+|-
+! colspan="2" | Base
+! colspan="2" | [[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L0
+! L1
+! L2
+! L3
+! Base
+! Turbo
+|-
+
+! rowspan="3" | [[List of Intel Core i9 processors|Core Ultra 9]]
+! style="text-align:left; height:2em;" | [https://ark.intel.com/content/www/us/en/ark/products/241060/intel-core-ultra-9-processor-285k-36m-cache-up-to-5-70-ghz.html <u>285K</u>]
+| rowspan="8" | 8 (8)
+| rowspan="3" | 16 (16)
+| 3.7
+| 3.2
+| 5.7
+| rowspan="10" | 4.6
+| rowspan="4" | 4 (64:4)
+| rowspan="4" | 2.0
+| rowspan="2" | 36
+| rowspan="3" | 2.6 MB
+| rowspan="3" | 3 MB
+| rowspan="3" | 40 MB
+| rowspan="3" | 36 MB
+| 125&nbsp;W
+| 250&nbsp;W
+| Oct 24, 2024
+| $589
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241061/intel-core-ultra-9-processor-285-36m-cache-up-to-5-60-ghz/specifications.html <u>285</u>]
+| 2.5
+| 1.9
+| 5.4
+| 65 W
+| 182 W
+| rowspan="2" | Jan 6, 2025
+| rowspan="2" | $549
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241059/intel-core-ultra-9-processor-285t-36m-cache-up-to-5-40-ghz/specifications.html <u>285T</u>]
+| 1.4
+| 1.2
+| 5.3
+| 35
+| 35 W
+| 112 W
+|-
+
+! rowspan="5" | [[List of Intel Core i7 processors|Core Ultra 7]]
+! style="text-align:left; height:2em;" | [https://ark.intel.com/content/www/us/en/ark/products/241063/intel-core-ultra-7-processor-265k-30m-cache-up-to-5-50-ghz.html <u>265K</u>]
+| rowspan="5" | 12 (12)
+| rowspan="2" | 3.9
+| rowspan="2" | 3.3
+| rowspan="2" | 5.5
+| 33
+| rowspan="5" | 2.2 MB
+| rowspan="5" | 2.7 MB
+| rowspan="5" | 36 MB
+| rowspan="5" | 30 MB
+| rowspan="2" | 125 W
+| rowspan="2" | 250 W
+| rowspan="2" | Oct 24, 2024
+| $394
+|-
+! style="text-align:left; height:2em;" | [https://ark.intel.com/content/www/us/en/ark/products/241062/intel-core-ultra-7-processor-265kf-30m-cache-up-to-5-50-ghz.html 265KF]
+| colspan="2" {{N/A}}
+| 25
+| $379
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241068/intel-core-ultra-7-processor-265-30m-cache-up-to-5-30-ghz/specifications.html <u>265</u>]
+| rowspan="2" | 2.4
+| rowspan="2" | 1.8
+| rowspan="5" | 5.2
+| 4 (64:4)
+| 1.95
+| 33
+| rowspan="2" | 65 W
+| rowspan="2" | 182 W
+| rowspan="3" | Jan 6, 2025
+| $384
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241064/intel-core-ultra-7-processor-265f-30m-cache-up-to-5-30-ghz/specifications.html 265F]
+| colspan="2" {{N/A}}
+| 25
+| $369
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241065/intel-core-ultra-7-processor-265t-30m-cache-up-to-5-30-ghz/specifications.html <u>265T</u>]
+| 1.5
+| 1.2
+| 4 (64:4)
+| 1.95
+| 33
+| 35 W
+| 112 W
+| $384
+|-
+
+! rowspan="9" | [[List of Intel Core i5 processors|Core Ultra 5]]
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/241067/intel-core-ultra-5-processor-245k-24m-cache-up-to-5-20-ghz/specifications.html <u>245K</u>]
+| rowspan="9" | 6 (6)
+| rowspan="6" | 8 (8)
+| rowspan="2" | 4.2
+| rowspan="2" | 3.6
+| 4 (64:4)
+| 1.9
+| 30
+| rowspan="6" | 1.5 MB
+| rowspan="6" | 1.9 MB
+| rowspan="6" | 26 MB
+| rowspan="6" | 24 MB
+| rowspan="2" | 125 W
+| rowspan="2" | 159 W
+| rowspan="2" | Oct 24, 2024
+| $309
+|-
+! style="text-align:left; height:2em;" | [https://ark.intel.com/content/www/us/en/ark/products/241066/intel-core-ultra-5-processor-245kf-24m-cache-up-to-5-20-ghz.html 245KF]
+| colspan="2" {{N/A}}
+| 22
+| $294
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241876/intel-core-ultra-5-processor-245-24m-cache-up-to-5-10-ghz/specifications.html <u>245</u>]
+| 3.5
+| 3.0
+| rowspan="2" | 5.1
+| rowspan="2" | 4.5
+| rowspan="2" | 4 (64:4)
+| rowspan="2" | 1.9
+| rowspan="2" | 29
+| 65 W
+| 121 W
+| rowspan="7" | Jan 6, 2025
+| rowspan="2" | $270
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241874/intel-core-ultra-5-processor-245t-24m-cache-up-to-5-10-ghz/specifications.html <u>245T</u>]
+| 2.2
+| 1.7
+| 35 W
+| 114 W
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241674/intel-core-ultra-5-processor-235-24m-cache-up-to-5-00-ghz/specifications.html <u>235</u>]
+| 3.4
+| 2.9
+| rowspan="2" | 5.0
+| rowspan="7" | 4.4
+| rowspan="2" | 3 (48:3)
+| rowspan="2" | 2.0
+| rowspan="2" | 27
+| 65 W
+| 121 W
+| rowspan="2" | $247
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241872/intel-core-ultra-5-processor-235t-24m-cache-up-to-5-00-ghz/specifications.html <u>235T</u>]
+| 2.2
+| 1.6
+| 35 W
+| 114 W
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241070/intel-core-ultra-5-processor-225-20m-cache-up-to-4-90-ghz/specifications.html 225]
+| rowspan="5" | 4 (4)
+| rowspan="2" | 3.3
+| rowspan="2" | 2.7
+| rowspan="5" | 4.9
+| 2 (32:2)
+| 1.8
+| 23
+| rowspan="3" | 1.1 MB
+| rowspan="5" | 1.5 MB
+| rowspan="3" | 22 MB
+| rowspan="3" | 20 MB
+| rowspan="2" | 65 W
+| rowspan="2" | 121 W
+| $236
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241069/intel-core-ultra-5-processor-225f-20m-cache-up-to-4-90-ghz/specifications.html 225F]
+| colspan="2" {{N/A}}
+| 19
+| $221
+|-
+![https://www.intel.fr/content/www/fr/fr/products/sku/241870/intel-core-ultra-5-processor-225t-20m-cache-up-to-4-90-ghz/specifications.html 225T]
+|2.5
+|1.9
+| rowspan="3" |2 (32:2)
+| rowspan="2" |1.8
+|23
+|35 W
+|114 W
+|$236
+|-
+
+! rowspan="2" | [[List of Intel Core i3 processors|Core Ultra 3]]
+| 205<ref>{{Cite web |title=Intel Accidently Publishes Core Ultra 3 205 "Arrow Lake-S" CPU Specs |url=https://www.techpowerup.com/331503/intel-accidently-publishes-core-ultra-3-205-arrow-lake-s-cpu-specs |access-date=2026-07-06 |website=TechPowerUp |language=en|date=2025-01-23|url-status=live}}</ref>
+| rowspan="2" | 4 (4)
+| 3.8
+| 3.2
+| rowspan="2" | 13
+| rowspan="2" | 896 KB
+| rowspan="2" | 16 MB
+| rowspan="2" | 15 MB
+| 57 W
+| 76 W
+| Aug, 2025
+| $130-$150 (Europe Only)
+|-
+|205T<ref>{{Cite web |title=Intel Core Ultra 3 processeur 205, 205T, processeur Ultra 5 225, 225F, 225T, 230F, 235, 235T, 245, 245T - 96617 - MDDS |url=https://www.intel.fr/content/www/fr/fr/content-details/838629/intel-core-ultra-3-processor-205-205t-ultra-5-processor-225-225f-225t-230f-235-235t-245-245t-96617-mdds.html |access-date=2026-06-17 |website=Intel |language=fr}}</ref><ref>https://psrefstuff.lenovo.com/syspool/Sys/PDF/ThinkCentre/ThinkCentre_M70q_Gen_6/ThinkCentre_M70q_Gen_6_Spec.PDF?v=1e2903a7-eb51-45e1-9c30-db4de10b7780</ref>
+|2.7
+|2.4
+|?
+|35 W
+|?
+|?
+|?
+|}
+
+=== Mobile ===
+
+==== Arrow Lake-U ====
+Arrow Lake-U uses refreshed [[Meteor Lake]] silicon fabricated on the [[3 nm process|Intel 3]] node, and as such still supports [[HyperThreading]] while the rest of the Arrow Lake product line does not.
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="3" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="6" |[[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="4" rowspan="2" |[[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|Power]]
+! rowspan="3" |Released
+! rowspan="3" |Price <br /> (USD)
+|-
+! colspan="3" |Base
+! colspan="3" |[[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|LP-E|Low Power - Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|LP-E|Low Power - Efficient}}
+! {{abbr|P|Performance}}
+! {{abbr|E|Efficient}}
+! {{abbr|LP-E|Low Power - Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L0
+! L1
+! L2
+! L3
+! Base
+! Turbo
+|-
+
+! rowspan="2" | [[List of Intel Core i7 processors|Core Ultra 7]]
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/241859/intel-core-ultra-7-processor-265u-12m-cache-up-to-5-30-ghz/specifications.html 265U]
+| rowspan="4" | 2 (4)
+| rowspan="4" | 8 (8)
+| rowspan="4" | 2 (2)
+| 2.1
+| rowspan="2" | 1.7
+| rowspan="4" | 0.7
+| 5.3
+| rowspan="2" | 4.2
+| rowspan="4" | 2.4
+| rowspan="4" | 4 (64:4)
+| rowspan="2" | 2.1
+| rowspan="4" | 12
+| rowspan="4" | 96 KB
+| rowspan="4" | 1.3 MB
+| rowspan="4" | 14 MB
+| rowspan="4" | 12 MB
+| rowspan="4" | 15 W
+| rowspan="4" | 57 W
+| rowspan="4" | Jan 6, 2025
+| $448
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241860/intel-core-ultra-7-processor-255u-12m-cache-up-to-5-20-ghz/specifications.html 255U]
+| rowspan="2" |2.0
+| 5.2
+| $490
+|-
+! rowspan="2" | [[List of Intel Core i5 processors|Core Ultra 5]]
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/241862/intel-core-ultra-5-processor-235u-12m-cache-up-to-4-90-ghz/specifications.html 235U]
+| 1.5
+| 4.9
+| 4.1
+| 2.05
+| $332
+|-
+
+! [https://www.intel.com/content/www/us/en/products/sku/241861/intel-core-ultra-5-processor-225u-12m-cache-up-to-4-80-ghz/specifications.html 225U]
+| 1.5
+| 1.8
+| 4.8
+| 3.8
+| 2.0
+| $363
+|}
+
+==== Arrow Lake-H ====
+CPUs <u>underlined</u> support Intel vPro.
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="3" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="6" | [[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="2" rowspan="2" | [[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="3" | Released
+! rowspan="3" | Price <br /> (USD){{efn-lr|name="RCP"}}
+|-
+! colspan="3" | Base
+! colspan="3" | [[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+!{{abbr|LP-E|Low Power – Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+!{{abbr|LP-E|Low Power – Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+!{{abbr|LP-E|Low Power – Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L2
+! L3
+! Base
+! Turbo
+|-
+![[List of Intel Core i9 processors|Core Ultra 9]]
+![https://www.intel.com/content/www/us/en/products/sku/241747/intel-core-ultra-9-processor-285h-24m-cache-up-to-5-40-ghz/specifications.html <u>285H</u>]
+| rowspan="3" |6 (6)
+| rowspan="5" |8 (8)
+| rowspan="5" |2 (2)
+|2.9
+|2.7
+|1.0
+|5.4
+| rowspan="2" |4.5
+| rowspan="5" |2.5
+| rowspan="4" |8 (128:8)
+|2.35
+| rowspan="5" |13
+| rowspan="3" |26&nbsp;MB
+| rowspan="3" |24&nbsp;MB
+|45&nbsp;W
+| rowspan="5" |115&nbsp;W
+| rowspan="5" |Jan 6, 2025
+|$651
+|-
+! rowspan="2" |[[List of Intel Core i7 processors|Core Ultra 7]]
+![https://www.intel.com/content/www/us/en/products/sku/241750/intel-core-ultra-7-processor-265h-24m-cache-up-to-5-30-ghz/specifications.html <u>265H</u>]
+|2.2
+|1.7
+| rowspan="4" |0.7
+|5.3
+|2.3
+| rowspan="4" |28&nbsp;W
+|$471
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241751/intel-core-ultra-7-processor-255h-24m-cache-up-to-5-10-ghz/specifications.html 255H]
+|2.0
+|1.5
+|5.1
+| rowspan="2" |4.4
+| rowspan="2" |2.25
+|$514
+|-
+! rowspan="2" |[[List of Intel Core i5 processors|Core Ultra 5]]
+![https://www.intel.com/content/www/us/en/products/sku/241748/intel-core-ultra-5-processor-235h-18m-cache-up-to-5-00-ghz/specifications.html <u>235H</u>]
+| rowspan="2" |4 (4)
+|2.4
+|1.8
+|5
+| rowspan="2" |20&nbsp;MB
+| rowspan="2" |18&nbsp;MB
+|$354
+|-
+![https://www.intel.com/content/www/us/en/products/sku/241749/intel-core-ultra-5-processor-225h-18m-cache-up-to-4-90-ghz/specifications.html 225H]
+|1.7
+|1.3
+|4.9
+|4.3
+|7 (112:7)
+|2.2
+|$385
+|}
+
+==== Arrow Lake-HX ====
+CPUs <u>underlined</u> support Intel vPro, and [[UDIMM]] [[ECC memory]] with the WM880 chipset, intended for desktop replacement-class mobile workstations.
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="2" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="4" | [[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="2" rowspan="2" | [[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="3" | Released
+! rowspan="3" | Price <br /> (USD){{efn-lr|name="RCP"}}
+|-
+! colspan="2" | Base
+! colspan="2" | [[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! {{abbr|P|Performance}}
+! {{abbr|E|Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L2
+! L3
+! Base
+! Turbo
+|-
+! rowspan="2" |[[List of Intel Core i9 processors|Core Ultra 9]]
+![https://www.intel.com/content/www/us/en/products/sku/242297/intel-core-ultra-9-processor-285hx-36m-cache-up-to-5-50-ghz/specifications.html <u>285HX</u>]
+| rowspan="4" |8 (8)
+| rowspan="2" |16 (16)
+| 2.8
+| rowspan="2" |2.1
+| 5.5
+| rowspan="3" |4.6
+| rowspan="4" |4 (64:4)
+| 2.0
+| rowspan="8" |13
+| rowspan="2" |40&nbsp;MB
+| rowspan="2" |36&nbsp;MB
+| rowspan="8" |55&nbsp;W
+| rowspan="8" |160&nbsp;W
+| rowspan="4" |Jan 6, 2025
+| $680
+|-
+![https://www.intel.com/content/www/us/en/products/sku/242293/intel-core-ultra-9-processor-275hx-36m-cache-up-to-5-40-ghz/specifications.html 275HX]
+| 2.7
+| 5.4
+| rowspan="2" |1.9
+| $612
+|-
+
+! rowspan="3" |[[List of Intel Core i7 processors|Core Ultra 7]]
+! style="text-align:left; height:2em;" |[https://www.intel.com/content/www/us/en/products/sku/242294/intel-core-ultra-7-processor-265hx-30m-cache-up-to-5-30-ghz/specifications.html <u>265HX</u>]
+| rowspan="3" |12 (12)
+| 2.6
+| 2.3
+| 5.3
+| rowspan="2" |36&nbsp;MB
+| rowspan="3" |30&nbsp;MB
+| $450
+|-
+![https://www.intel.com/content/www/us/en/products/sku/242292/intel-core-ultra-7-processor-255hx-30m-cache-up-to-5-20-ghz/specifications.html 255HX]
+| 2.4
+| 1.8
+| 5.2
+| rowspan="5" |4.5
+| 1.85
+| $507
+|-
+![https://www.intel.com/content/www/us/en/products/sku/245959/intel-core-ultra-7-processor-251hx-30m-cache-up-to-5-10-ghz/specifications.html 251HX]
+| rowspan="4" |6 (6)
+| rowspan="2" |2.9
+| 2.5
+| rowspan="4" |5.1
+| rowspan="4" |3 (48:3)
+| rowspan="2" |1.8
+| 30&nbsp;MB
+| rowspan="2" | Q1 2026
+| 
+|-
+
+! [[List of Intel Core i7 processors|Core 7]]
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/246051/intel-core-7-processor-245hx-24m-cache-up-to-5-10-ghz/specifications.html 245HX]
+| rowspan="3" |8 (8)
+| rowspan="3" |2.6
+| rowspan="3" |26&nbsp;MB
+| rowspan="3" |24&nbsp;MB
+| 
+|-
+
+! rowspan="2" |[[List of Intel Core i5 processors|Core Ultra 5]]
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/242295/intel-core-ultra-5-processor-245hx-24m-cache-up-to-5-10-ghz/specifications.html <u>245HX</u>]
+| 3.1
+| 1.9
+| rowspan="2" |Jan 6, 2025
+| $306
+|-
+
+![https://www.intel.com/content/www/us/en/products/sku/242296/intel-core-ultra-5-processor-235hx-24m-cache-up-to-5-10-ghz/specifications.html 235HX]
+| 2.9
+| 1.8
+| $349
+|}
+
+== List of Arrow Lake Refresh processors ==
+
+=== Desktop ===
+
+==== Arrow Lake-S ====
+CPUs <u>underlined</u> support [[Intel vPro]] with the Q870 (enterprise) and W880 (entry-level workstation) chipsets, and [[ECC memory]] only on the W880 chipset.
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="2" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="4" |[[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="2" rowspan="2" |[[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="3" |Released
+! rowspan="3" |Price <br /> (USD){{efn-lr|name="RCP"}}
+|-
+! colspan="2" |Base
+! colspan="2" |[[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! {{abbr|P|Performance}}
+! {{abbr|E|Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L2
+! L3
+! Base
+! Turbo
+|-
+
+! [[List of Intel Core i7 processors|Core Ultra 7]] 
+! style="text-align:left; height:2em;" | <u>[https://www.intel.com/content/www/us/en/products/sku/245692/intel-core-ultra-7-processor-270k-plus-36m-cache-up-to-5-50-ghz/specifications.html 270K Plus]</u>
+| 8 (8)
+| 16 (16)
+| 3.7
+| 3.2
+| 5.5
+| 4.7
+| rowspan="2" |4 (64:4)
+| 2.0
+| rowspan="3" |13
+| 40&nbsp;MB
+| 36&nbsp;MB
+| rowspan="3" |125&nbsp;W
+| 250&nbsp;W
+| rowspan="3" |March 26, 2026
+| $299
+|-
+
+! rowspan="2" | [[List of Intel Core i5 processors|Core Ultra 5]] 
+! style="text-align:left; height:2em;" | <u>[https://www.intel.com/content/www/us/en/products/sku/245694/intel-core-ultra-5-processor-250k-plus-30m-cache-up-to-5-30-ghz/specifications.html 250K Plus]</u>
+| rowspan="2" |6 (6)
+| rowspan="2" |12 (12)
+| rowspan="2" |4.2
+| rowspan="2" |3.3
+| rowspan="2" | 5.3
+| rowspan="2" | 4.6
+| 1.9
+| rowspan="2" |30&nbsp;MB
+| rowspan="2" |30&nbsp;MB
+| rowspan="2" |159 W
+| $199
+|-
+! [https://www.intel.com/content/www/us/en/products/sku/245689/intel-core-ultra-5-processor-250kf-plus-30m-cache-up-to-5-30-ghz/specifications.html 250KF Plus]
+| colspan="2" {{N/A}}
+| $184
+|}
+
+=== Mobile ===
+
+==== Arrow Lake-HX ====
+{| class="wikitable" style="text-align:center; white-space:nowrap; font-size:95%"
+! rowspan="3" | Branding
+! rowspan="3" | SKU
+! colspan="2" rowspan="2" | [[Multi-core processor|Cores]] <br /> ([[Thread (computing)|threads]])
+! colspan="4" |[[Clock rate]] (GHz)
+! colspan="2" rowspan="2" | [[Intel Arc|Arc]] Graphics
+! rowspan="3" | [[AI accelerator|NPU]] <br /> (TOPS)
+! colspan="2" rowspan="2" |[[CPU cache|Cache]]
+! colspan="2" rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="3" |Released
+! rowspan="3" |Price <br /> (USD){{efn-lr|name="RCP"}}
+|-
+! colspan="2" |Base
+! colspan="2" |[[Intel Turbo Boost|Turbo]]
+|-
+! style="width:3em;" | {{abbr|P|Performance}}
+! style="width:3em;" | {{abbr|E|Efficient}}
+! style="width:1.5em;" | {{abbr|P|Performance}}
+! style="width:1.5em;" | {{abbr|E|Efficient}}
+! {{abbr|P|Performance}}
+! {{abbr|E|Efficient}}
+! X<sup>e</sup> Cores <br /> ({{abbr|VE|Vector Engines}}:{{abbr|RT|Raytracing Units}})
+! Clock <br />(GHz)
+! L2
+!L3
+!Base
+!Turbo
+|-
+![[List of Intel Core i9 processors|Core Ultra 9]] 
+![https://www.intel.com/content/www/us/en/products/sku/245960/intel-core-ultra-9-processor-290hx-plus-36m-cache-up-to-5-50-ghz/specifications.html 290HX Plus]
+| rowspan="2" |8 (8)
+|16 (16)
+|2.7
+|1.8
+|5.5
+| rowspan="2" |4.7
+| rowspan="2" |4 (64:4)
+|2.0
+| rowspan="2" |13
+|40&nbsp;MB
+|36&nbsp;MB
+| rowspan="2" |55&nbsp;W
+| rowspan="2" |160&nbsp;W
+| rowspan="2" |March 17, 2026
+|
+|-
+
+! [[List of Intel Core i7 processors|Core Ultra 7]] 
+! style="text-align:left; height:2em;" | [https://www.intel.com/content/www/us/en/products/sku/245961/intel-core-ultra-7-processor-270hx-plus-30m-cache-up-to-5-30-ghz/specifications.html 270HX Plus]
+| 12 (12)
+| 2.4
+| 1.8
+|5.3
+|1.9
+| 36&nbsp;MB
+|30&nbsp;MB
+|
+|}
+
+== Reception ==
+{| class="wikitable" style="text-align:left; font-size:90%;
+! style="width:10em;" | Source 
+! Reviewed processor
+! Rating
+! Notes
+|-
+
+| scope="row" | ''[[PC Gamer]]''
+| 245K
+| {{Rating|3.5|5}}
+| <ref>{{cite web |last=Evanson |first=Nick |date=2024-10-29 |title=Intel Core Ultra 5 245K review |url=https://www.pcgamer.com/hardware/processors/intel-core-ultra-5-245k-review/ |website=PC Gamer |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+|-
+
+| scope="row" | ''[[PCGamesN]]''
+| 265K
+| 5/10
+| <ref>{{cite web |last1=Hardwidge |first1=Ben |date=2024-11-06 |title=Intel Core Ultra 7 265K review: Avoid Arrow Lake if you want a gaming CPU |url=https://www.pcgamesn.com/intel/core-ultra-7-265k-review |website=PCGamesN |language=en-GB |access-date=2026-07-06|url-status=live}}</ref>
+|-
+
+| scope="row" | ''[[PCMag]]''
+| 285K
+| {{Rating|4|5}}
+| <ref>{{cite web |last=Sexton |first=Michael Justin Allen |date=2024-10-24 |title=Intel Core Ulra 9 285K Review |url=https://www.pcmag.com/reviews/intel-core-ultra-9-285k |website=PCMag |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+|-
+
+| scope="row" | ''[[TechSpot]]''
+| 285K
+| {{Rating|3|5}}
+| <ref name="Walton-285K-Review">{{cite web |last1=Walton |first1=Steven |date=2024-10-24 |title=Intel Core Ultra 9 285K Review |url=https://www.techspot.com/review/2911-intel-core-ultra-9-285k/ |website=TechSpot |language=en-AU |access-date=2026-07-06|url-status=live}}</ref>
+|-
+
+| scope="row" | ''[[Tom's Hardware]]''
+| 285K
+| {{Rating|3|5}}
+| <ref name="Alcorn 285K Review">{{cite web |last=Alcorn |first=Paul |date=2024-10-24 |title=Intel Core Ultra 9 285K and Core 5 245K Review: Intel Throws a Lateral with Arrow Lake |url=https://www.tomshardware.com/pc-components/cpus/intel-core-ultra-9-285k-cpu-review/ |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+|}
+
+Arrow Lake-S desktop processors received mixed reviews at launch due to its lack of generational performance uplift or even performance regression in some cases. Paul Alcorn's review for ''Tom's Hardware'' gave the Core Ultra 9 285K three out of five stars. Alcorn concluded that it is "hard to recommend the Core Ultra 9 285K over competing processors" due to struggling to "keep up with their prior generation counterparts in gaming". On average, the 285K loses to AMD's [[Zen 5]]-based Ryzen 7 9700X while the Core Ultra 5 245K is outperformed by the [[Zen 3]]-based Ryzen 7 5700X3D,<ref name="Alcorn 285K Review"/> whereas the 5700X3D in itself is in turn of what's essentially a lower-clocked variant of the 5800X3D being released in April 2022 (which has been virtually held back since in favor of the 5800X3D itself) – A by then already 2-year old CPU at the time of the release and following test of Arrow&nbsp;Lake itself.
+
+Steven Walton's three star review for ''TechSpot'' found similarly lacking gaming performance with the 285K particularly struggling in ''[[Cyberpunk 2077: Phantom Liberty]]'', falling behind the 14900K by 20%, and in ''[[A Plague Tale: Requiem]]'' where it was outperformed by the 14900K by 17%. Some titles saw less of a regression such as ''[[Hitman 3]]'' where it was 2% slower than the 14900K with Walton calling it "14700K-like performance". In productivity, ''TechSpot'' found the 285K to be weaker than the 14700K and 14900K in [[Adobe Inc.|Adobe]] [[Adobe Premiere Pro|Premiere Pro 2024]] and was bested by the 12600K in [[Adobe Photoshop|Photoshop 2025]].<ref name="Walton-285K-Review"/> Another concern for Arrow Lake was its higher pricing compared to the similarly performing 14900K's street pricing.<ref>{{cite web |last1=Roach |first1=Jacob |date=2024-10-29 |title=Intel Core Ultra 5 245K review: where Arrow Lake breaks down |url=https://www.digitaltrends.com/computing/intel-core-ultra-5-245k-review/ |website=Digital Trends |language=en-US |access-date=2026-07-06|url-status=live}}</ref> This is in addition to requiring a new motherboard due to the new [[LGA 1851]] socket.
+
+Arrow Lake was commended for advances in power efficiency compared to [[Raptor Lake]]. ''TechSpot'' observed that, in gaming, Arrow Lake's power consumption is "much improved over the 14900K" but "the results still fall short when compared to [[Ryzen]] processors".<ref name="Walton-285K-Review"/> ''[[PC World|PCWorld]]'' found a 17% (65 watts) decrease in power consumption during a [[HandBrake]] [[AV1]] encode and a 16% (22 watts) decrease during Cinebench 2024's single-core benchmark.<ref>{{cite web |last1=Yee |first1=Alaina |last2=Murray |first2=Adam Patrick |last3=Smith |first3=Will |date=2024-10-24 |title=Core Ultra 9 285K tested: 10 must-know facts about Intel’s radically new CPUs |url=https://www.pcworld.com/article/2499641/core-ultra-9-285k-review-10-must-know-facts-intel-new-desktop-cpus.html |website=PCWorld |language=en-US |access-date=2026-07-06|url-status=live}}</ref> The Skymont E-cores in Arrow Lake were praised by Nick Evanson in ''PC Gamer''. Evanson found that newer, more multithreaded games like ''[[Cyberpunk 2077]]'' and ''[[Baldur's Gate 3]]'' could utilize E-cores alongside the P-cores for increased performance rather than being limited to the 8 threads provided by the more powerful P-cores.<ref>{{cite web |last=Evanson |first=Nick |date=2024-10-30 |title=Intel's Arrow Lake chips aren't winning any awards for gaming performance but I think its new E-cores deserve a gold star |url=https://www.pcgamer.com/hardware/processors/intels-arrow-lake-chips-arent-winning-any-awards-for-gaming-performance-but-i-think-its-new-e-cores-deserve-a-gold-star/ |website=PC Gamer |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Games having to increasingly rely on E-cores may be due to the removal of [[Simultaneous multithreading|SMT]] from the P-cores, providing 8 fewer P-core threads compared to Raptor Lake.
+
+=== Sales ===
+In the United States and Japan, the Core Ultra 9 285K sold out at major retailers, though supply to retailers was reported to be limited at launch due to enthusiasts.<ref>{{cite web |last=Khan |first=Sarfraz |date=2024-10-26 |title=Intel Core Ultra 9 285K Sold Out In a Flash In Japan & Out of Stock In US Too, Retailers Confirm Supply Is Low |url=https://wccftech.com/intel-core-ultra-9-285k-sold-out-in-flash-japan-out-of-stock-us-retailers-supply-low/ |website=Wccftech |language=en-US |access-date=2026-07-06|url-status=live}}</ref>
+
+=== Response from Intel ===
+In November 2024, Robert Hallock, vice president and general manager of client AI and technical marketing at Intel, acknowledged that Arrow Lake's launch "didn't go as planned" as gaming performance regression was observed in reviews.<ref>{{cite web |last1=Davis |first1=Wes |date=2024-11-09 |title=Intel exec says Arrow Lake launch 'just didn't go as planned' |url=https://www.theverge.com/2024/11/9/24292221/intel-acknowledged-arrow-lake-performance-issues-robert-hallock-exec |website=The Verge |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Hallock claimed that Arrow Lake processors suffer from a "series of issues" at both the [[operating system]] and [[BIOS]] levels.<ref>{{cite web |last1=Hachman |first1=Mark |date=2024-11-08 |title=Intel pledges to ‘fix’ Arrow Lake after launch ‘didn’t go as planned’ |url=https://www.pcworld.com/article/2516084/intel-pledges-to-fix-arrow-lake-after-launch-didnt-go-as-planned.html |website=PCWorld |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Third-party reviews did not reflect Intel's own internal testing according to Hallock. One reviewer recorded Arrow Lake memory latency as high as 180&nbsp;ns, over twice the 70–80&nbsp;ns expected memory latency.<ref name="Klotz 2024">{{cite web |last1=Klotz |first1=Aaron |date=2024-11-08 |title=Intel announces Arrow Lake fix coming within a month — Robert Hallock confirms poor gaming performance is due to optimization issues |url=https://www.tomshardware.com/pc-components/cpus/intel-announces-arrow-lake-fix-coming-within-a-month-robert-hallock-confirms-poor-gaming-performance-is-due-to-optimization-issues |website=Tom's Hardware |language=en-US |access-date=2026-07-06|url-status=live}}</ref> Hallock promised updates and fixes for Arrow Lake to come by early December 2024.<ref name="Klotz 2024"/> Intel subsequently released a report addressing the poor gaming performance.<ref>{{Cite web |last1=Evanson |first1=Nick |date=2024-12-18 |title=Intel reveals the four fails of Arrow Lake in a new blog post, promising more performance fixes in January |url=https://www.pcgamer.com/hardware/processors/intel-reveals-the-four-fails-of-arrow-lake-in-a-new-blog-post-promising-more-performance-fixes-in-january/ |website=PC Gamer |access-date=2026-07-06|url-status=live}}</ref> The ostensibly "untapped performance" was never restored and subsequent benchmarking by independent reviewers didn't reveal any serious performance uplift vs. the initial released firmware, and the lineup continued to underperform vs. even the previous generation AMD Zen 4 chips.<ref>{{Cite web |author1=Alcorn |date=2025-01-18 |title=Intel's Arrow Lake fix doesn't 'fix' overall gaming performance or match the company's bad marketing claims - Core Ultra 200S still trails AMD and previous-gen chips |url=https://www.tomshardware.com/pc-components/cpus/intels-arrow-lake-fix-doesnt-fix-overall-gaming-performance-or-correct-the-companys-bad-marketing-claims-core-ultra-200s-still-trails-amd-and-previous-gen-chips |access-date=2026-07-06 |website=Tom's Hardware |language=en|first=Paul|url-status=live}}</ref><ref>{{Cite web |last=Maruccia |first=Alfonso |date=2025-01-02 |title=Intel's latest microcode update fails to fix Arrow Lake performance issues |url=https://www.techspot.com/news/106173-intel-latest-microcode-update-fails-fix-arrow-lake.html |access-date=2026-07-06 |website=TechSpot |language=en-US|url-status=live}}</ref> Intel later admitted that they had "fumbled" the Arrow Lake architecture and they were hopeful for the future.<ref>{{Cite web |last=Batt |first=Simon |date=2025-08-29 |title=Intel admits the whole Arrow Lake range wasn't its best work, but it's still hopeful for the future |url=https://www.xda-developers.com/intel-admits-arrow-lake-range-wasnt-its-best-work/ |access-date=2026-07-06 |website=XDA |language=en|url-status=live}}</ref>
+
+== See also ==
+
+* [[Zen 5]] – a competing x86 architecture from AMD
+* [[Lunar Lake]] – other variants of Arrow Lake microprocessor featuring X<sup>e</sup>2-LPG graphics and a faster NPU
+
+== Notes ==
+{{notelist|refs=
+{{efn|name=SMT|SMT was physically present in previous Intel core architectures like [[Sandy Bridge]], [[Haswell (microarchitecture)|Haswell]] and [[Skylake (microarchitecture)|Skylake]] but it was disabled in some lower-end [[Celeron]] and [[Pentium]] SKUs. For example, [[Coffee Lake]]'s Skylake cores contained SMT but it was disabled in the Core i7-9700K with 8 cores and 8 threads while the Core i9-9900K had 8 cores and 16 threads.}}
+}}
+{{Notelist-lr|refs=
+{{efn-lr|name=RCP|Price is Recommended Customer Price (RCP) at launch. RCP is the trade price that processors are sold by Intel to retailers and OEMs. Actual MSRP for consumers is higher.}}<!-- There needs to be a disclaimer that price is not reflective of MSRP unlike AMD and Nvidia CPU and GPU tables which give official MSRP -->
+}}<references group="lower-roman" />
+== References ==
+{{reflist}}{{Intel processors}}
+{{Intel processor roadmap}}
+
+[[Category:Intel x86 microprocessors]]
+[[Category:Computer-related introductions in 2024]]
+==External links==
+* [https://newsroom.intel.com/client-computing/intel-launches-core-ultra-200hx-plus-series-mobile-processors Intel Launches New Core Ultra 200HX Plus Series Mobile Processors] – ''Official website - Intel Newsroom''

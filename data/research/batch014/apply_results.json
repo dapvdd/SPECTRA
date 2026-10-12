@@ -1,0 +1,74 @@
+{
+  "batch": "batch014",
+  "commit_subject": "feat(data): expand modern CPU catalog coverage",
+  "applied": 141,
+  "inserted": {
+    "hardware": 141,
+    "cpu_specifications": 141,
+    "field_provenance": 1097
+  },
+  "updated": 0,
+  "deleted": 0,
+  "backup": "C:\\SPECTRA\\data\\backups\\spectra.db.batch014-20261012T053835Z.bak",
+  "pre_apply_sha256": "a0539d3042e37f1a6cca431bc5f002823a80e0f9bb221df7aa3604ea4d450214",
+  "post_apply_sha256": "401a3974586265804ed55f07a998adfafbc3dd7eb46f2f226e3a32e3eabd9035",
+  "before": {
+    "hardware": 5239,
+    "cpu": 3360,
+    "gpu": 1879,
+    "cpu_specifications": 3360,
+    "field_provenance": 35849,
+    "external_identifiers": 3575,
+    "benchmark_results": 1040,
+    "build_conversations": 5
+  },
+  "after": {
+    "hardware": 5380,
+    "cpu": 3501,
+    "gpu": 1879,
+    "cpu_specifications": 3501,
+    "field_provenance": 36946,
+    "external_identifiers": 3575,
+    "benchmark_results": 1040,
+    "build_conversations": 5
+  },
+  "new_record_coverage": {
+    "records": 141,
+    "release_date_nonnull": 102,
+    "architecture_nonnull": 141,
+    "cores": 141,
+    "threads": 141,
+    "base_clock_ghz": 141,
+    "boost_clock_ghz": 141,
+    "tdp_w": 141,
+    "process_node_nm": 76,
+    "socket": 73
+  },
+  "insert_id_range": [5240, 5380],
+  "verification": {
+    "integrity_check": "ok",
+    "quick_check": "ok",
+    "foreign_key_violations": 0,
+    "duplicate_cpu_names": 0,
+    "hardware_rows_modified": 0,
+    "spec_rows_modified": 0,
+    "spec_rows_removed": 0,
+    "benchmark_rows_before": 1040,
+    "benchmark_rows_after": 1040,
+    "external_identifiers_before": 3575,
+    "external_identifiers_after": 3575,
+    "build_conversations_before": 5,
+    "build_conversations_after": 5,
+    "idempotent_rerun_inserts": 0,
+    "independent_audit_checks": 16,
+    "independent_audit_failures": 0,
+    "verdict": "PASS"
+  },
+  "source": {
+    "source_id": 5,
+    "name": "Wikipedia (English)",
+    "url": "https://en.wikipedia.org/",
+    "license": "CC BY-SA 4.0",
+    "access_date": "2026-10-12"
+  }
+}

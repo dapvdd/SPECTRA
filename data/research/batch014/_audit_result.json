@@ -1,0 +1,123 @@
+{
+  "db": "C:\\SPECTRA\\data\\spectra.db",
+  "before": "C:\\SPECTRA\\data\\backups\\spectra.db.batch014-20261012T053835Z.bak",
+  "counts": {
+    "hardware": 5380,
+    "cpu": 3501,
+    "cpu_specifications": 3501,
+    "field_provenance": 36946,
+    "external_identifiers": 3575,
+    "benchmark_results": 1040,
+    "build_conversations": 5
+  },
+  "provenance_batch14": 1097,
+  "candidates": 141,
+  "candidates_by_table": {
+    "intel_rpl_refresh_desktop": 25,
+    "intel_mtl_h": 5,
+    "intel_mtl_u": 7,
+    "intel_mtl_hl": 4,
+    "intel_mtl_ul": 5,
+    "intel_arl_s": 19,
+    "intel_arl_u": 4,
+    "intel_arl_h": 5,
+    "intel_arl_hx": 7,
+    "intel_lnl": 9,
+    "amd_ryzen_9000_desktop": 19,
+    "amd_ryzen_8000g_desktop": 8,
+    "amd_ryzen_8000_f_desktop": 2,
+    "amd_ryzen_8040_mobile": 11,
+    "amd_ryzen_8045_mobile": 4,
+    "amd_ryzen_ai_300_mobile": 7
+  },
+  "reconcile": {
+    "before_ids": 5239,
+    "after_ids": 5380,
+    "added": 141,
+    "deleted": 0
+  },
+  "checks": [
+    {
+      "check": "integrity_check",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "foreign_key_check",
+      "ok": true,
+      "detail": "0 violations"
+    },
+    {
+      "check": "candidates_present",
+      "ok": true,
+      "detail": "141/141 present; "
+    },
+    {
+      "check": "specs_match",
+      "ok": true,
+      "detail": "all match"
+    },
+    {
+      "check": "provenance_complete",
+      "ok": true,
+      "detail": "all present"
+    },
+    {
+      "check": "no_duplicate_cpu_names",
+      "ok": true,
+      "detail": "0 duplicate groups"
+    },
+    {
+      "check": "no_deletions",
+      "ok": true,
+      "detail": "0 hardware ids removed"
+    },
+    {
+      "check": "added_count",
+      "ok": true,
+      "detail": "141 added (expected 141)"
+    },
+    {
+      "check": "no_hardware_rows_modified",
+      "ok": true,
+      "detail": "0 modified"
+    },
+    {
+      "check": "no_specs_modified",
+      "ok": true,
+      "detail": "0 modified"
+    },
+    {
+      "check": "no_specs_removed",
+      "ok": true,
+      "detail": "0 removed"
+    },
+    {
+      "check": "no_provenance_lost",
+      "ok": true,
+      "detail": "35849 -> 36946"
+    },
+    {
+      "check": "benchmarks_preserved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "external_ids_preserved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "build_conversations_preserved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "idempotent_rerun",
+      "ok": true,
+      "detail": "0 would be re-inserted"
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

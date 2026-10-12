@@ -100,7 +100,9 @@ class PersistentStorageCycleTests(unittest.TestCase):
         engine = create_engine(db_url)
         with Session(engine) as session:
             count = session.query(Hardware).count()
-            self.assertEqual(count, 5239)
+            # 5,239 before Batch 014; +141 modern CPU records inserted by
+            # Batch 014 ("expand modern CPU catalog coverage").
+            self.assertEqual(count, 5380)
 
     def test_database_persistence_across_restart_cycle(self):
         # Step 1: Initialize database in volume

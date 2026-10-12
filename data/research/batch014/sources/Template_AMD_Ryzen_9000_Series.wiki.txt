@@ -1,0 +1,171 @@
+Common features of Ryzen 9000 desktop CPUs:
+* Socket: [[Socket AM5|AM5]].
+* All the CPUs support [[DDR5 SDRAM|DDR5]]-5600 RAM in [[Multi-channel memory architecture#Dual-channel architecture|dual-channel]] mode in 2x1R and 2x2R configuration, but only DDR5-3600 for 4x1R and 4x2R.
+* All the CPUs support 28 [[PCIe 5.0]] lanes. 4 of the lanes are reserved as link to the chipset.
+* Includes integrated [[RDNA 2]] GPU with 2 CUs and base and boost clock speeds of 0.4 GHz and 2.2 GHz, respectively. Models with "F" suffixes are without iGPUs.
+* L1 [[Cache (computing)|cache]]: 80 KB (48 KB data + 32 KB instruction) per core.
+* L2 cache: 1 MB per core.
+* Models with an "X3D" suffix include 2nd-generation 3D V-Cache in the form of a 64 MB cache die, which augments the L3 cache of one CCD.<ref>{{cite web |url=https://www.amd.com/en/products/processors/technologies/3d-v-cache.html |title=AMD 3D V-Cache™ Technology |website=AMD |date=2026 |access-date=2026-01-14 |url-status=live |archive-date=2025-10-07 |archive-url=https://web.archive.org/web/20251007083147/https://www.amd.com/en/products/processors/technologies/3d-v-cache.html |quote=the AMD Ryzen™ 9000X3D Series [...] 2nd Gen AMD 3D V-Cache™ Technology [...] 64MB L3 Cache Die }}</ref>
+* Models with an "X3D2" suffix or branded as "Dual Edition" include 2nd-generation 3D V-Cache in the form of two 64 MB cache dies (totaling to 128 MB), one die per CCD, which augment the L3 cache of their respective CCD.<ref name="pcw-9950x3d2"/>
+* Fabrication process: [[TSMC]] [[5 nm process|N4X]] [[Fin_field-effect_transistor|FinFET]] ([[7 nm process|N6]] FinFET for the I/O die).
+
+{| class="wikitable sortable nowrap" style="text-align: center"
+! colspan="2" rowspan="2" | Branding and Model
+! rowspan="2" class="unsortable" | [[Multi-core processor|Cores]]<br />([[Thread (computing)|threads]])
+! colspan="2" | [[Clock rate]] ([[Gigahertz|GHz]])
+! rowspan="2" class="unsortable" | [[CPU Cache|L3 cache]]<br />(total)
+! rowspan="2" | [[Thermal design power|TDP]]
+! rowspan="2" class="unsortable" | [[Multi-chip module|Chiplets]]
+! rowspan="2" class="unsortable" | Core<br />config{{efn-lr|Core Complexes (CCX) × cores per CCX}}
+! rowspan="2" | Thermal<br />solution
+! rowspan="2" | Release<br />date
+! rowspan="2" class="unsortable" | Launch<br />[[MSRP]]
+|-
+! class="unsortable" | Base
+! class="unsortable" | Boost
+|-
+! rowspan="9" | Ryzen 9
+! style="text-align: left" data-sort-value="sku19" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d2-dual-edition.html 9950X3D2<br/>Dual Edition]<ref name="pcw-9950x3d2">{{cite news |first=Michael |last=Crider |date=8 April 2026 |title=The new Ryzen 9: Did AMD just announce a CPU for exactly no one? |url=https://www.pcworld.com/article/3099764/the-new-ryzen-9-did-amd-just-announce-a-cpu-for-exactly-no-one.html |work=[[PC World]] |access-date=2026-04-11}}</ref>
+| rowspan="5" | 16 (32)
+| rowspan="5" | 4.3
+| 5.6
+| {{tooltip|192 MB|64 MB + 128 MB 3D V-Cache}} {{efn-lr|Both CCXes have a 3D V-Cache.}}
+| 200 W
+| rowspan="9" | 2 × {{abbr|CCD|Core Complex Die}}<br />1 × {{abbr|I/OD|Input/Output Die}}
+| rowspan="5" | 2 × 8
+| rowspan="6" {{NA}}
+| {{DTS|2026|Apr|22|df=mdy|abbr=off}}
+| US $899
+|-
+! style="text-align: left" data-sort-value="sku18" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html 9950X3D]<ref name="9950x3d-9900x3d-pr">{{cite press release |title=AMD Announces New Gaming Products for Ultimate Gameplay Experience at CES |url=https://www.amd.com/en/newsroom/press-releases/2025-1-6-amd-announces-new-graphics-and-gaming-products-for.html |location=Las Vegas |publisher=[[AMD]] |agency=Globe Newswire |date=6 January 2025 |access-date=6 January 2025}}</ref><ref name="99_0X3D-msrp-release">{{cite news |first=Dallin |last=Grimm |date=7 March 2025 |title=AMD announces pricing for Ryzen 9 9950X3D and 9900X3D at $699 and $599; chips arrive March 12th |url=https://www.tomshardware.com/pc-components/cpus/amd-announces-usd699-ryzen-9-9950x3d-and-usd599-ryzen-9-9900x3d-arrives-march-12th |work=[[Tom's Hardware]] |access-date=7 March 2025 |archive-date=7 March 2025 |archive-url=https://web.archive.org/web/20250307160821/https://www.tomshardware.com/pc-components/cpus/amd-announces-usd699-ryzen-9-9950x3d-and-usd599-ryzen-9-9900x3d-arrives-march-12th |url-status=live }}</ref>
+| 5.7
+| rowspan="2" |{{tooltip|128 MB|32 MB + 96 MB 3D V-Cache}}{{efn-lr|name="3D-VCache"|Only one of the two CCXes has 3D V-Cache.<ref>{{cite news |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-9-9950x3d-and-9900x3d-claims-20-percent-faster-gaming-performance-than-intels-flagship-arrow-lake-processors |first=Paul |last=Alcorn |date=6 January 2025 |title=AMD launches Ryzen 9 9950X3D and 9900X3D, claims 20% faster gaming performance than Intel’s flagship Arrow Lake processors |work=[[Tom's Hardware]] |access-date=6 January 2025 |archive-date=6 January 2025 |archive-url=https://web.archive.org/web/20250106202421/https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-9-9950x3d-and-9900x3d-claims-20-percent-faster-gaming-performance-than-intels-flagship-arrow-lake-processors |url-status=live }}</ref>}}
+| rowspan="4" | 170 W
+| {{DTS|2025|Mar|12|df=mdy|abbr=off}}
+| US $699
+|-
+! style="text-align: left" data-sort-value="sku17" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-9-pro-9965x3d.html PRO 9965X3D]
+| rowspan="2" | 5.5
+| {{DTS|2026|Jun|30|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku16" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-9-pro-9965.html PRO 9965]
+| rowspan="4" | {{tooltip|64 MB|32 MB + 32 MB}}
+| {{DTS|2026|Jun|30|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku15" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x.html 9950X]<ref name="anandtech-ryzen9k-computex">{{cite news |last1=Bonshor |first1=Gavin |title=AMD Unveils Ryzen 9000 CPUs For Desktop, Zen 5 Takes Center Stage at Computex 2024 |url=https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 |access-date=3 June 2024 |work=[[AnandTech]] |date=2 June 2024 |url-status=dead |archive-date=2025-07-18 |archive-url=https://web.archive.org/web/20250718203029/https://www.anandtech.com/show/21415/amd-unveils-ryzen-9000-cpus-for-desktop-zen-5-takes-center-stage-at-computex-2024 }}</ref><ref name="guru3d-ryzen9k-pricing">{{cite web |last1=Hagedoorn |first1=Hilbert |title=AMD Ryzen 9000 Series Processors: Pricing Now official |url=https://www.guru3d.com/story/amd-ryzen-9000-series-processors-pricing-now-official/ |website=guru3d.com |access-date=7 August 2024 |date=6 August 2024 |archive-date=7 August 2024 |archive-url=https://web.archive.org/web/20240807103839/https://www.guru3d.com/story/amd-ryzen-9000-series-processors-pricing-now-official/ |url-status=live }}</ref>
+| 5.7
+| {{DTS|2024|Aug|15|df=mdy|abbr=off}}
+| US $649
+|-
+! style="text-align: left" data-sort-value="sku14" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-9-pro-9955.html PRO 9955]
+| rowspan="4" | 12 (24)
+| rowspan="2" | 3.4
+| rowspan="2" | 5.4
+| 120 W
+| rowspan="4" | 2 × 6
+| {{DTS|2026|Jun|30|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku13" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-9-pro-9945.html PRO 9945]
+| 65 W
+| [[AMD Wraith#Wraith Stealth|Wraith<br />Stealth]]
+| {{DTS|2025|Sep|16|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku12" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x3d.html 9900X3D]<ref name="9950x3d-9900x3d-pr"/><ref name="99_0X3D-msrp-release"/>
+| rowspan="2" | 4.4
+| 5.5
+| {{tooltip|128 MB|32 MB + 96 MB 3D V-Cache}}{{efn-lr|name="3D-VCache"}}
+| rowspan="4" | 120 W
+| rowspan="5" {{NA}}
+| {{DTS|2025|Mar|12|df=mdy|abbr=off}}
+| US $599
+|-
+! style="text-align: left" data-sort-value="sku11" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9900x.html 9900X]<ref name="anandtech-ryzen9k-computex" /><ref name="guru3d-ryzen9k-pricing" />
+| rowspan="2"| 5.6
+| {{tooltip|64 MB|32 MB + 32 MB}}
+| {{DTS|2024|Aug|15|df=mdy|abbr=off}}
+| US $499
+|-
+! rowspan="6" | Ryzen 7
+! style="text-align: left" data-sort-value="sku10" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9850x3d.html 9850X3D]<ref name="9850x3d-price">{{Cite news |last=Cunningham |first=Andrew |date=28 January 2026 |title=Ryzen 9850X3D review: AMD's bragging-rights gaming CPU gets more to brag about |url=https://arstechnica.com/gadgets/2026/01/review-amds-ryzen-7-9850x3d-is-a-little-faster-and-a-lot-more-power-hungry/ |access-date=2026-01-29 |website=[[Ars Technica]] |language=en |archive-date=2026-01-29 |archive-url=https://web.archive.org/web/20260129043725/https://arstechnica.com/gadgets/2026/01/review-amds-ryzen-7-9850x3d-is-a-little-faster-and-a-lot-more-power-hungry/ |url-status=live }}</ref>
+| rowspan="6" | 8 (16)
+| rowspan="2" | 4.7
+| rowspan="2" | {{tooltip|96 MB|32 MB + 64 MB 3D V-Cache}}
+| rowspan="10" | 1 × {{abbr|CCD|Core Complex Die}}<br />1 × {{abbr|I/OD|Input/Output Die}}
+| rowspan="6" | 1 × 8
+| {{DTS|2026|Jan|29|df=mdy|abbr=off}}
+| US $499
+|-
+! style="text-align: left" data-sort-value="sku09" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html 9800X3D]<ref name="9800x3d-price">{{cite press release |title=The Gaming Legend Continues — AMD Introduces Next-Generation AMD Ryzen 7 9800X3D Processor |url=https://www.amd.com/en/newsroom/press-releases/2024-10-31-the-gaming-legend-continues--amd-introduces-next-.html |location=[[Santa Clara, California]] |publisher=[[AMD]] |agency=Globe Newswire |date=31 October 2024 |access-date=31 October 2024 |archive-date=1 November 2024 |archive-url=https://web.archive.org/web/20241101044035/https://www.amd.com/en/newsroom/press-releases/2024-10-31-the-gaming-legend-continues--amd-introduces-next-.html |url-status=live }}</ref><ref name="x3d-rel-nov7">{{cite news |first=Tom |last=Warren |date=21 October 2024 |title=AMD’s highly anticipated 9000-series X3D desktop CPUs arrive on November 7th |url=https://www.theverge.com/2024/10/21/24273397/amd-ryzen-x3d-processor-zen-5-release-date |work=[[The Verge]] |access-date=2024-10-26 |archive-date=2024-10-21 |archive-url=https://web.archive.org/web/20241021140328/https://www.theverge.com/2024/10/21/24273397/amd-ryzen-x3d-processor-zen-5-release-date |url-status=live }}</ref>{{efn-lr|Model also available as PRO version as [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-7-pro-9755x3d.html PRO 9755X3D].}}
+| 5.2
+| {{DTS|2024|Nov|7|df=mdy|abbr=off}}
+| US $479
+|-
+! style="text-align: left" data-sort-value="sku08" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-7-pro-9755.html PRO 9755]
+| rowspan="4" | 3.8
+| rowspan="2" | 5.4
+| rowspan="8" | 32 MB
+| 120 W
+| {{DTS|2026|Jun|30|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku07" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-7-pro-9745.html PRO 9745]
+| 65 W
+| [[AMD Wraith#Wraith Stealth|Wraith<br />Stealth]]
+| {{DTS|2025|Sep|16|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku06" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9700x.html 9700X]<ref name="anandtech-ryzen9k-computex" /><ref name="guru3d-ryzen9k-pricing" />
+| rowspan="2" | 5.5
+| 65 W{{efn-lr|name="cfg105w"|TDP configurable to 105 W}}
+| rowspan="4" {{NA}}
+| {{DTS|2024|Aug|8|df=mdy|abbr=off}}
+| US $359
+|-
+! style="text-align: left" data-sort-value="sku05" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9700f.html 9700F]<ref>{{cite news |first=Aaron |last=Klotz |date=16 September 2025 |title=AMD launches four new Ryzen CPUs, including cut-down Zen 4 and Zen 3 models — most only available in global markets |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-four-new-ryzen-cpus-including-cutdown-zen-4-and-zen-3-models-most-only-available-in-global-markets |work=[[Tom's Hardware]] |access-date=2025-11-16 |archive-date=2025-11-25 |archive-url=https://web.archive.org/web/20251125214636/https://www.tomshardware.com/pc-components/cpus/amd-launches-four-new-ryzen-cpus-including-cutdown-zen-4-and-zen-3-models-most-only-available-in-global-markets |url-status=live }}</ref>
+| 65 W
+| {{DTS|2025|Sep|16|df=mdy|abbr=off}}
+| TBA
+|-
+! rowspan="4" | Ryzen 5
+! style="text-align: left" data-sort-value="sku04" | [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-5-pro-9655.html PRO 9655]
+| rowspan="4" | 6 (12)
+| rowspan="2" | 3.9
+| rowspan="2" | 5.4
+| 120 W
+| rowspan="4" | 1 × 6
+| {{DTS|2026|Jun|30|df=mdy|abbr=off}}
+| OEM
+|-
+! style="text-align: left" data-sort-value="sku03" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600x.html 9600X]<ref name="anandtech-ryzen9k-computex" /><ref name="guru3d-ryzen9k-pricing" />{{efn-lr|Model also available as PRO version as [https://www.amd.com/en/products/processors/desktops/ryzen-pro/9000-series/amd-ryzen-5-pro-9645.html PRO 9645].}}
+| 65 W{{efn-lr|name="cfg105w"}}
+| {{DTS|2024|Aug|8|df=mdy|abbr=off}}
+| US $279
+|-
+! style="text-align: left" data-sort-value="sku02" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600.html 9600]<ref>{{cite news |url=https://www.tomshardware.com/pc-components/cpus/amd-quietly-introduces-ryzen-5-9600-non-x-variant-brings-back-wraith-stealth-cooler |work=[[Tom's Hardware]] |first=Dallin |last=Grimm |date=7 January 2025 |title=AMD quietly introduces Ryzen 5 9600 — non-X variant brings back Wraith Stealth cooler |access-date=7 January 2025 |archive-date=7 January 2025 |archive-url=https://web.archive.org/web/20250107222105/https://www.tomshardware.com/pc-components/cpus/amd-quietly-introduces-ryzen-5-9600-non-x-variant-brings-back-wraith-stealth-cooler |url-status=live }}</ref>
+| rowspan="2" | 3.8
+| 5.2
+| rowspan="2" | 65 W
+| rowspan="2" | [[AMD Wraith#Wraith Stealth|Wraith<br />Stealth]]
+| {{DTS|2025|Feb|19|df=mdy|abbr=off}}
+| TBA
+|-
+! style="text-align: left" data-sort-value="sku01" | [https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9500F.html 9500F]<ref>{{cite news |author=AleksandarK |date=8 September 2025 |title=AMD Ryzen 5 9500F Arrives in Stores on September 16 |url=https://www.techpowerup.com/340773/amd-ryzen-5-9500f-arrives-in-stores-on-september-16 |work=TechPowerUp |access-date=2025-09-16 |archive-date=2025-09-13 |archive-url=https://web.archive.org/web/20250913075120/https://www.techpowerup.com/340773/amd-ryzen-5-9500f-arrives-in-stores-on-september-16 |url-status=live }}</ref>
+|5.0
+| {{DTS|2025|Sep|16|df=mdy|abbr=off}}
+| CN ¥1,299
+|}
+{{navbar|Template:AMD Ryzen 9000 Series|mini=y|plain=y|style=float:left; position:relative; top:-15px; right:-0px;}}
+{{notelist}}
+{{notelist-lr}}<noinclude>
+{{Documentation|content=
+{{Consensus|Common place to discuss layout and style of the Zen CPU tables at: [[Talk:List of AMD Ryzen processors]]}}
+{{Vedit notice}}
+{{template reference list}}
+[[Category:Computer hardware templates]]
+[[Category:AMD products]]
+[[Category:Templates that generate named references]]
+}}</noinclude>

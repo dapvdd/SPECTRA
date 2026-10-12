@@ -1,0 +1,281 @@
+{{short description|2022 AMD 5-nanometer processor microarchitecture}}
+{{Use American English|date=April 2023}}
+{{Use mdy dates|date=May 2022}}
+{{Infobox CPU
+| name           = AMD Zen 4
+| image          = [[File:AMD_Zen_4_logo.png|frameless|class=skin-invert]]
+| image_size     = 
+| caption        = 
+| l1cache        = 64{{nbsp}}KB (per core): <br /> {{bulleted list|32{{nbsp}}KB{{nbsp}}instructions|32{{nbsp}}KB{{nbsp}}data}}
+| l2cache        = 1{{nbsp}}MB (per core)
+| l3cache        = {{ubl|32&nbsp;MB (per {{abbr|CCD|Core Complex Die}})|96&nbsp;MB (per {{abbr|CCD|Core Complex Die}} with 3D V-Cache)|16&nbsp;MB (in APUs)}}
+| created        = {{Start date and age|September 27, 2022}}
+| produced-start = 
+| designfirm     = [[AMD]]
+| manuf1         = [[TSMC]]
+| manuf2         = 
+| cpuid          = Family 19h
+| size-from      = [[TSMC]] [[5 nm process|N4P]] <br> [[TSMC]] [[5 nm process|N5]] (CCDs) <br>  [[TSMC]] [[7 nm process|N6]] (I/O die)<ref name="Leather 2022">{{cite web |last1=Leather |first1=Antony |date=May 23, 2022 |title=AMD Just Revealed Exciting Ryzen 7000 Details: 15% Faster, 5.5GHz, More Cache And Onboard Graphics |url=https://www.forbes.com/sites/antonyleather/2022/05/23/amd-just-announced-exciting-ryzen-7000-series-details-15-faster-55ghz-more-cache-and-onboard-graphics/?sh=6db255a07cbc |website=Forbes |language=en-US |access-date=August 16, 2022}}</ref>
+| size-to        = 
+| arch           = [[X86-64#AMD64|AMD64]] (x86-64)
+| microarch      = [[Zen (microarchitecture)|Zen]]
+| pack1          = {{bulleted list|FP7|FP7r2|FP8|FL1}}
+| numcores       = '''Desktop:''' 4 to 16 <br/> '''HEDT:''' 24 to 64 <br/> '''Workstation:''' 12 to 96 <br/> '''Server:''' 16 to 128
+| sock1          = '''Desktop''' {{bulleted list |[[Socket AM5]]}} 
+| sock2          = '''HEDT/Workstation''' {{bulleted list |[[Socket sTR5]]}}
+| sock3          = '''Server''' {{bulleted list |[[Socket SP5]] |[[Socket SP6]]}}
+| extensions     = '''Crypto''' [[Advanced Encryption Standard|AES]], [[Secure Hash Algorithms|SHA]]
+| extensions1    = '''SIMD''' [[MMX (instruction set)|MMX-plus]], [[Streaming SIMD Extensions|SSE]], [[SSE2]], [[SSE3]], [[SSSE3]], [[SSE4#SSE4.1|SSE4.1]], [[SSE4#SSE4.2|SSE4.2]], [[SSE4#SSE4a|SSE4A]], [[FMA instruction set#FMA3 instruction set|FMA3]], [[Advanced Vector Extensions|AVX]], [[AVX2]], [[AVX-512]]
+| pcode1         = '''Desktop''' {{bulleted list |Raphael |Phoenix (APUs)}}
+| pcode2         = '''HEDT/Workstation''' {{bulleted list |Storm Peak<ref>{{cite web |last1=Shilov |first1=Anton |date=September 28, 2022 |title=Ryzen Threadripper 7000 Storm Peak CPU Surfaces With 64 Zen 4 Cores |url=https://www.tomshardware.com/news/ryzen-threadripper-7000-storm-peak-cpu-surfaces-with-64-zen-4-cores |website=Tom's Hardware |access-date=October 2, 2022}}</ref>}}
+| pcode3         = '''Thin & Light Mobile''' {{bulleted list |Phoenix |Hawk Point<ref>{{Cite web |title=AMD Ryzen 8000 "Hawk Point" officially in upcoming Minisforum 2-in-1 tablet |url=https://videocardz.com/newz/amd-ryzen-8000-hawk-point-officially-in-upcoming-minisforum-2-in-1-tablet |access-date=2023-10-07 |website=VideoCardz.com |language=en-US |archive-date=October 3, 2023 |archive-url=https://web.archive.org/web/20231003032433/https://videocardz.com/newz/amd-ryzen-8000-hawk-point-officially-in-upcoming-minisforum-2-in-1-tablet |url-status=live }}</ref>}}
+| pcode4         = '''Extreme Mobile''' {{bulleted list |Dragon Range}}
+| brand1         = [[Ryzen]]
+| brand2         = [[Threadripper]]
+| brand3         = [[Epyc]]
+| predecessor    = [[Zen 3]]<br/>[[Zen 3+]]
+| successor      = [[Zen 5]]
+|support_status=Supported|pcode5='''Server''' {{bulleted list |Genoa |Genoa-X}}|memory=[[DDR5]]}}
+
+'''Zen 4''' is the name for a [[CPU]] [[microarchitecture]] designed by [[Advanced Micro Devices|AMD]], released on September 27, 2022.<ref name="VideoCardz 2022-05-03">{{cite news |title=AMD confirms Zen4 & Ryzen 7000 series lineup: Raphael in 2022, Dragon Range and Phoenix in 2023 |url=https://videocardz.com/newz/amd-confirms-zen4-ryzen-7000-series-lineup-raphael-in-2022-dragon-range-and-phoenix-in-2023 |work=VideoCardz |language=en-US |date=May 3, 2022 |access-date=August 16, 2022 |archive-date=June 6, 2022 |archive-url=https://web.archive.org/web/20220606070454/https://videocardz.com/newz/amd-confirms-zen4-ryzen-7000-series-lineup-raphael-in-2022-dragon-range-and-phoenix-in-2023 |url-status=live }}</ref><ref name="Liu 2022">{{cite news |last=Liu |first=Zhiye |date=May 3, 2022 |title=AMD Confirms Zen 4 Dragon Range, Phoenix APUs for 2023 |url=https://www.tomshardware.com/news/amd-confirms-zen-4-dragon-range-phoenix-apus-for-2023 |work=Tom's Hardware |language=en-US |access-date=August 16, 2022 |archive-date=December 9, 2023 |archive-url=https://web.archive.org/web/20231209030754/https://www.tomshardware.com/news/amd-confirms-zen-4-dragon-range-phoenix-apus-for-2023 |url-status=live }}</ref><ref name="Garreffa 2022">{{cite news |last=Garreffa |first=Anthony |date=May 3, 2022 |title=AMD confirms Ryzen 7000 series CPUs this year: Zen 4 + DDR5 + PCIe 5.0 |url=https://www.tweaktown.com/news/85980/amd-confirms-ryzen-7000-series-cpus-this-year-zen-4-ddr5-pcie-5-0/index.html |work=TweakTown |language=en-US |access-date=August 16, 2022 |archive-date=June 7, 2022 |archive-url=https://web.archive.org/web/20220607205014/https://www.tweaktown.com/news/85980/amd-confirms-ryzen-7000-series-cpus-this-year-zen-4-ddr5-pcie-5-0/index.html |url-status=live }}</ref> It is the successor to [[Zen 3]] and uses [[TSMC]]'s N6 process for I/O dies, [[5 nm process|N5]] process for [[CPU die|CCDs]], and N4 process for APUs.<ref name="Bonshor 2022b">{{cite news |last1=Bonshor |first1=Gavin |date=June 9, 2022 |title=AMD's Desktop CPU Roadmap: 2024 Brings Zen 5-based "Granite Ridge" |url=https://www.anandtech.com/show/17435/amd-s-desktop-cpu-roadmap-until-2024-zen-5-to-coming-desktop-in-2024 |archive-url=https://web.archive.org/web/20220609231023/https://www.anandtech.com/show/17435/amd-s-desktop-cpu-roadmap-until-2024-zen-5-to-coming-desktop-in-2024 |url-status=dead |archive-date=June 9, 2022 |work=AnandTech |language=en-US |access-date=June 11, 2022}}</ref> 
+
+Zen 4 powers [[Ryzen 7000]] performance desktop processors (codenamed "Raphael"), Ryzen 8000G series mainstream desktop APUs (codenamed "Phoenix"), and Ryzen Threadripper 7000 series HEDT and workstation processors (codenamed "Storm Peak"). It is also used in extreme mobile processors (codenamed "Dragon Range"), thin & light mobile processors (codenamed "Phoenix" and "Hawk Point"), as well as [[Epyc|EPYC]] 8004/9004 server processors (codenamed "Siena", "Genoa" and "Bergamo"). Zen 4 is the first microarchitecture whose chips (Ryzen 7000) use the [[Socket AM5|AM5 motherboard socket]].
+
+== Features ==
+Like its predecessor, Zen 4 in its Desktop Ryzen variants features one or two Core Complex Dies (CCDs) built on TSMC's 5&nbsp;nm process and one I/O die built on 6&nbsp;nm.<ref name="Alcorn 2022">{{cite web |last1=Alcorn |first1=Paul |date=May 23, 2022 |title=AMD Intros Zen 4 Ryzen 7000 CPUs and Motherboards: Up to 5.5 GHz, 15%+ Performance, RDNA 2 Graphics |url=https://www.tomshardware.com/news/amd-intros-zen-4-ryzen-7000-cpus-and-600-series-chipset-up-to-55-ghz-15-performance-rdna-2-igpus-pcie-5-ddr5 |website=Tom's Hardware |language=en-US |access-date=August 16, 2022 |archive-date=August 16, 2022 |archive-url=https://web.archive.org/web/20220816174624/https://www.tomshardware.com/news/amd-intros-zen-4-ryzen-7000-cpus-and-600-series-chipset-up-to-55-ghz-15-performance-rdna-2-igpus-pcie-5-ddr5 |url-status=live }}</ref><ref>{{cite web |last1=Garreffa |first1=Anthony |date=May 29, 2022 |title=AMD RDNA2 GPU 'is standard' on ALL next-gen Ryzen 7000 series CPUs |url=https://www.tweaktown.com/news/86508/amd-rdna2-gpu-is-standard-on-all-next-gen-ryzen-7000-series-cpus/index.html |website=TweakTown |language=en-US |access-date=August 16, 2022 |archive-date=August 16, 2022 |archive-url=https://web.archive.org/web/20220816174708/https://www.tweaktown.com/news/86508/amd-rdna2-gpu-is-standard-on-all-next-gen-ryzen-7000-series-cpus/index.html |url-status=live }}</ref> Previously, the I/O die on Zen 3 was built on [[GlobalFoundries]]' [[14 nm process]] for EPYC and 12&nbsp;nm process for Ryzen. Zen 4's I/O die includes integrated [[RDNA (microarchitecture)#RDNA 2|RDNA 2]] graphics for the first time on any Zen architecture. Zen 4 marks the first utilization of the 5&nbsp;nm process for x86-based desktop processors and also marks the return of 5.0 GHz [[clock rate]] to any AMD processors for the first time since the AMD FX-9590.
+
+On all platforms, Zen 4 supports only [[DDR5 SDRAM|DDR5]] memory and [[LPDDR#LPDDR5X|LPDDR5X]] in mobile, with support for [[DDR4 SDRAM|DDR4]] and [[LPDDR#LPDDR4X|LPDDR4X]] dropped. Additionally, Zen 4 supports new [[Serial presence detect#AMD Extended Profiles for Overclocking (EXPO)|AMD EXPO]] SPD profiles for more comprehensive memory tuning and overclocking by the RAM manufacturers. Unlike [[Serial presence detect#Intel Extreme Memory Profile (XMP)|Intel's XMP]], EXPO is marketed as an open, license- and royalty-free standard for describing memory kit parameters, such as operating frequency, timings and voltages. It allows to encode a wider set of timings to achieve better performance and compatibility. However, XMP memory profiles are still supported.<ref name="anandtech_zen4_review">{{cite web |last1=Smith |first1=Ryan |last2=Bonshor |first2=Gavin |date=September 26, 2022 |title=AMD Zen 4 Ryzen 9 7950X and Ryzen 5 7600X Review: Retaking The High-End |url=https://www.anandtech.com/show/17585/amd-zen-4-ryzen-9-7950x-and-ryzen-5-7600x-review-retaking-the-high-end/ |archive-url=https://web.archive.org/web/20220926130934/https://www.anandtech.com/show/17585/amd-zen-4-ryzen-9-7950x-and-ryzen-5-7600x-review-retaking-the-high-end |url-status=dead |archive-date=September 26, 2022 |website=AnandTech |language=en-US |access-date=September 27, 2022}}</ref> EXPO can also support Intel processors.<ref>{{cite web |last1=Roach |first1=Jacob |date=September 6, 2022 |title=What is AMD EXPO and should my DDR5 have it? |url=https://www.digitaltrends.com/computing/what-is-amd-expo/ |website=Digital Trends |language=en-US |access-date=October 2, 2022 |archive-date=March 15, 2023 |archive-url=https://web.archive.org/web/20230315021444/https://www.digitaltrends.com/computing/what-is-amd-expo/ |url-status=live }}</ref>
+
+All Zen 4 Ryzen desktop processors feature 28 (24 usable + 4 reserved) [[PCI Express#PCI Express 5.0|PCI Express 5.0]] lanes. This means that a discrete GPU can be connected by 16 PCIe lanes or two GPUs by 8 PCIe lanes each. Additionally, there are now 2 x 4 lane PCIe interfaces, most often used for M.2 storage devices. Whether the lanes connecting the GPUs in the mechanical x16 slots are executed as PCIe 4.0 or PCIe 5.0 can be configured by the mainboard manufacturers. Finally, 4 PCIe 5.0 lanes are reserved for connecting the south bridge chip or chipset.
+
+Zen 4 is the first AMD microarchitecture to support [[AVX-512]] instruction set extensions. 512-bit vector instructions are split in two and executed by the 256-bit [[SIMD]] execution units internally. The two halves execute in parallel on a pair of execution units and are still tracked as a single micro-OP (except for stores), which means the execution latency isn't doubled compared to 256-bit vector instructions. There are four 256-bit execution units, which gives a maximum throughput of two 512-bit vector instructions per clock cycle, e.g. one multiplication and one addition. The maximum number of instructions per clock cycle is doubled for vectors of 256 bits or less. Load and store units are also 256 bits each, retaining the throughput of up to two 256-bit loads or one store per cycle that was supported by [[Zen 3]]. This translates to up to one 512-bit load per cycle or one 512-bit store per two cycles.<ref name="anandtech_zen4_review"/><ref name="chipsandcheese_zen4_review_part1">{{cite web |author=clamchowder |date=November 5, 2022 |title=AMD's Zen 4 Part 1: Frontend and Execution Engine |url=https://chipsandcheese.com/2022/11/05/amds-zen-4-part-1-frontend-and-execution-engine/ |website=Chips and Cheese |language=en-US |access-date=November 16, 2022 |archive-date=November 18, 2022 |archive-url=https://web.archive.org/web/20221118123845/https://chipsandcheese.com/2022/11/05/amds-zen-4-part-1-frontend-and-execution-engine/ |url-status=live }}</ref><ref name="Fog">{{cite web |last1=Fog |first1=Agner |title=The microarchitecture of Intel, AMD and VIA CPUs |url=https://www.agner.org/optimize/microarchitecture.pdf |website=Agner Fog. Technical University of Denmark |language=en |access-date=November 10, 2022 |archive-date=March 22, 2019 |archive-url=https://web.archive.org/web/20190322145155/https://www.agner.org/optimize/microarchitecture.pdf |url-status=live }}</ref>
+
+Other features and improvements, compared to [[Zen 3]], include:<ref name="anandtech_zen4_review"/><ref name="chipsandcheese_zen4_review_part1"/>
+* L1 [[Branch Target Buffer]] (BTB) size increased by 50%, to 1.5K entries. Each entry is now able to store up to two branch targets, provided that the first branch is a conditional branch and the second branch is located within the same aligned 64-byte cache line as the first one.
+* L2 BTB increased to 7K entries.
+* Improved direct and indirect branch predictors.
+* OP cache size increased by 69%, from 4K to 6.75K OPs. The OP cache is now able to produce up to 9 macro-OPs per cycle (up from 6).
+* [[Re-order buffer]] (ROB) is increased by 25%, to 320 instructions.
+* Integer register file increased to 224 registers, FP/vector register file increased to 192 registers. FP/vector register file widened to 512 bits to support AVX-512. Added a new mask register file, capable of storing 68 mask registers.
+* Load queue size increased by 22%, to 88 pending loads.
+* [[CPU cache|L2 cache]] is doubled, from 512&nbsp;KiB to 1&nbsp;MiB per core, 8-way associative.
+* Automatic IBRS, where indirect branch restricted speculation mode is automatically enabled and disabled when control enters and leaves [[Protection ring|Ring 0]] (kernel mode). This reduces the cost of user/kernel mode transitions.
+* ~13% [[Instructions per cycle|IPC]] increase on average.
+* Up to 5.7&nbsp;GHz max core frequency.
+* Memory speeds up to DDR5-5200 and LPDDR5X-7500 are officially supported.
+* In [[Ryzen 7000]] desktop processors and Ryzen 7045HX mobile processors, the integrated GPU contains two RDNA&nbsp;2 Compute Units running at up to 2.2&nbsp;GHz.
+* Supports up to '''four''' display outputs, including [[HDMI#Version 2.1|HDMI 2.1]] and [[DisplayPort#2.0|DisplayPort 2]] interfaces,<ref name="Alcorn 2022" /> but possible to attach more displays with discrete GPU.
+* 5-level [[memory paging]] support for [[page table]]<ref>{{Cite web |last=Larabel |first=Michael |date=2024-07-04 |title=Linux Looking To Make 5-Level Paging Support Unconditional For x86_64 Kernel Builds |url=https://www.phoronix.com/news/Linux-Unconditional-5-Level-x86 |access-date=2024-07-05 |website=Phoronix.com |language=en}}</ref>
+
+== Products ==
+
+=== Desktop ===
+
+==== Raphael ====
+[[File:AMD@5nmCCD(6nmIOD)@Zen4@Raphael@Ryzen 7 7800X3D@100-000000910 BS 2312PGY 9LW3390030138 DSCx01.jpg|thumb|alt=The front of a Ryzen 7 7800X3D CPU, showing the heatspreader with the information imprint on it|Ryzen 7 7800X3D]]
+On August 29, 2022, AMD announced four Zen 4-based Ryzen 7000 series desktop processors. The four Ryzen 7000 processors that were launched on September 27, 2022 consist of the Ryzen 5 7600X, Ryzen 7 7700X, and two Ryzen 9 CPUs: the 7900X and 7950X. The processors feature between 6 and 16 cores.<ref>{{cite web |title=AMD Ryzen 7000 "Zen4" desktop series launch September 27th, Ryzen 9 7950X for 699 USD |url=https://videocardz.com/newz/amd-ryzen-7000-zen4-desktop-series-launch-september-27th-ryzen-9-7950x-for-699-usd |website=VideoCardz |date=August 29, 2022 |access-date=August 30, 2022 |archive-date=September 2, 2022 |archive-url=https://web.archive.org/web/20220902071628/https://videocardz.com/newz/amd-ryzen-7000-zen4-desktop-series-launch-september-27th-ryzen-9-7950x-for-699-usd |url-status=live }}</ref>
+
+A further three models were added to the Ryzen 7000 desktop processors lineup on January 10, 2023, after a keynote by AMD at CES that announced them alongside 3D V-Cache variants of Ryzen 7 and Ryzen 9 processors, which drop the X in the name of the first CPUs in the lineup. These three models are the Ryzen 5 7600, Ryzen 7 7700, and Ryzen 9 7900, which feature a lower TDP of 65&nbsp;W, and come bundled with stock coolers, unlike the X-suffix processors.<ref>{{cite web |last1=Delgado |first1=Camilo |title=AMD Ryzen 7000 non-X series: 7600, 7700, 7900 specs, price, release date |url=https://www.pcguide.com/cpu/ryzen-7000-non-x-series/ |website=PC Guide |access-date=24 July 2023 |date=10 January 2023 |archive-date=July 24, 2023 |archive-url=https://web.archive.org/web/20230724051004/https://www.pcguide.com/cpu/ryzen-7000-non-x-series/ |url-status=live }}</ref><ref>{{cite web |last1=Hong |first1=Soon Kai |date=13 January 2023 |title=Ryzen 7000 Non-X Review: This Is Some Serious EfficiencyThis time, we’re taking a look at the Ryzen 5 7600 as well as the Ryzen 9 7900. Both of which are rated at just a mere 65W. |url=https://www.tech360.tv/ryzen-7000-non-x-review |access-date=24 July 2023 |website=tech360tv |language=en |archive-date=July 24, 2023 |archive-url=https://web.archive.org/web/20230724051004/https://www.tech360.tv/ryzen-7000-non-x-review |url-status=live }}</ref>
+
+The Ryzen 9 7900X3D and 7950X3D processors with 3D V-Cache were released on February 28, 2023,<ref>{{cite web |last1=White |first1=Monica J. |title=AMD Ryzen 9 7950X vs. Ryzen 9 7950X3D: 3D V-cache compared |url=https://www.digitaltrends.com/computing/amd-ryzen-9-7950x-vs-ryzen-9-7950x3d/ |website=Digital Trends |access-date=24 July 2023 |language=en |date=7 March 2023}}</ref> followed by the Ryzen 7 7800X3D on April 6.<ref>{{cite web |last1=Epps |first1=Ryan |title=Ryzen 7 7800X3D release date - confirmed |url=https://www.pcguide.com/cpu/ryzen-7-7800x3d-release-date/ |website=PC Guide |access-date=24 July 2023 |date=6 April 2023 |archive-date=July 24, 2023 |archive-url=https://web.archive.org/web/20230724051004/https://www.pcguide.com/cpu/ryzen-7-7800x3d-release-date/ |url-status=live }}</ref>
+
+{{AMD Ryzen 7000 Series}}
+
+==== Phoenix ====
+The ''Phoenix'' desktop APU's were launched on January 8, 2024 as the "Ryzen 8000G" series for the AM5 socket and marketed as first desktop processor to feature a dedicated AI Accelerator branded as "Ryzen AI".<ref>{{Cite web |last=Bonshor |first=Gavin |title=AMD Unveils Ryzen 8000G Series Processors: Zen 4 APUs For Desktop with Ryzen AI |url=https://www.anandtech.com/show/21208/amd-unveils-ryzen-8000g-series-processors-zen-4-apus-for-desktop-with-ryzen-ai |archive-url=https://web.archive.org/web/20240108154846/https://www.anandtech.com/show/21208/amd-unveils-ryzen-8000g-series-processors-zen-4-apus-for-desktop-with-ryzen-ai |url-status=dead |archive-date=January 8, 2024 |date=2024-01-08 |access-date=2024-01-09 |website=anandtech.com}}</ref><ref>{{Cite web |last=Alcorn |first=Paul |date=2024-01-08 |title=AMD launches Ryzen 8000G ‘Phoenix’ APUs, brings AI to the desktop PC — reveals Zen 4c clocks for the first time |url=https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-8000g-phoenix-apus-brings-ai-to-the-desktop-pc-reveals-zen-4c-clocks-for-the-first-time |access-date=2024-01-09 |website=Tom's Hardware |language=en |archive-date=May 18, 2024 |archive-url=https://web.archive.org/web/20240518145159/https://www.tomshardware.com/pc-components/cpus/amd-launches-ryzen-8000g-phoenix-apus-brings-ai-to-the-desktop-pc-reveals-zen-4c-clocks-for-the-first-time |url-status=live }}</ref>
+
+{{AMD Ryzen 8000 desktop APUs}}
+
+On April 1, 2024, AMD quietly released the Ryzen 8000 series of desktop processors without integrated graphics.<ref>{{cite web |title=AMD officially introduces Ryzen 7 8700F and Ryzen 5 8400F CPUs |url=https://videocardz.com/newz/amd-officially-introduces-ryzen-7-8700f-and-ryzen-5-8400f-cpus |website=videocardz.com |access-date=12 April 2024 |date=11 April 2024 |archive-date=April 22, 2024 |archive-url=https://web.archive.org/web/20240422134038/https://videocardz.com/newz/amd-officially-introduces-ryzen-7-8700f-and-ryzen-5-8400f-cpus |url-status=live }}</ref>
+
+{{AMD Ryzen 8000 series}}
+
+==== Storm Peak ====
+[[File:Unterseite des AMD Ryzen Threadripper 7970X 20240406 HOF1915 RAW-Export 000157.png|thumb|alt=Oblique view of an AMD Ryzen Threadripper 7970X with golden-colored surface areas|Bottom of an AMD Ryzen Threadripper 7970X]]
+''Storm Peak'' is the codename given to Ryzen Threadripper 7000X HEDT and Ryzen Threadripper PRO 7000WX workstation processors, announced by AMD on October 19, 2023, and released on November 21, 2023. The Threadripper 7000X HEDT lineup consists of three models ranging from 24 to 64 cores, while the Threadripper PRO 7000WX workstation lineup encompasses six models ranging from 12 to 96 cores.<ref>{{cite web |last1=Hachman |first1=Mark |title=AMD's monstrous Threadripper 7000 CPUs aim for desktop PC dominance |url=https://www.pcworld.com/article/2109168/amds-monstrous-threadripper-7000-returns-to-desktop-pcs.html |website=PCWorld |access-date=23 October 2023 |language=en |date=19 October 2023}}</ref>
+
+{{AMD Ryzen Threadripper 7000 series}}
+
+=== Mobile ===
+On January 4, 2023, AMD announced its ''Phoenix'' and ''Dragon Range'' series of mobile processors based on Zen 4 at the 2023 [[Consumer Electronics Show]] (CES). The Phoenix processors target the mainstream notebook segment, feature an [[AI accelerator]] branded as "Ryzen AI", similar to Apple's Neural Engine, and are of a monolithic chip design, while the Dragon Range processors target the high-end segment, providing core counts up to 16 cores and 32 threads, and are built on a [[multi-chip module]] design, utilizing an I/O die and up to two core complex dies (CCDs).<ref>{{cite web |last1=Burek |first1=John |title='Phoenix' and 'Dragon Range' Arrive! AMD Outlines Ryzen 7000 Mobile CPUs, Some With Onboard 'Ryzen AI' |url=https://au.pcmag.com/laptops/98105/phoenix-and-dragon-range-arrive-amd-outlines-ryzen-7000-mobile-cpus-some-with-onboard-ryzen-ai |website=PCMag Australia |access-date=February 13, 2023 |language=en-au |date=January 5, 2023 |archive-date=January 26, 2023 |archive-url=https://web.archive.org/web/20230126132755/https://au.pcmag.com/laptops/98105/phoenix-and-dragon-range-arrive-amd-outlines-ryzen-7000-mobile-cpus-some-with-onboard-ryzen-ai |url-status=live }}</ref><ref>{{cite web |last1=Norem |first1=Josh |title=AMD's 'Dragon Range' 12-Core Mobile CPU Is 90% Faster Than 6900HX in PassMark |url=https://www.extremetech.com/gaming/342874-amds-dragon-range-12-core-mobile-cpu-is-90-faster-than-intel-6900hx-in-passmark |website=ExtremeTech |access-date=February 13, 2023 |date=February 6, 2023 |archive-date=February 13, 2023 |archive-url=https://web.archive.org/web/20230213114631/https://www.extremetech.com/gaming/342874-amds-dragon-range-12-core-mobile-cpu-is-90-faster-than-intel-6900hx-in-passmark |url-status=live }}</ref>
+
+==== Phoenix ====
+The Phoenix mobile processors are named as the "Ryzen 7040" series, and include U, H, and HS-suffix variants.<ref name="toms-hardware-zen4-mobile">{{cite web |last1=Alcorn |first1=Paul |title=AMD Brings Chiplets, Zen 4, RDNA 3 and XDNA AI to Laptops: 5nm Dragon Range and 4nm Phoenix Arrive |url=https://www.tomshardware.com/news/amd-brings-chiplets-zen-4-rdna-3-and-xdna-ai-to-laptops-5nm-dragon-range-and-4nm-phoenix-arrive |website=Tom's Hardware |access-date=February 3, 2023 |language=en |date=January 5, 2023 |archive-date=May 25, 2023 |archive-url=https://web.archive.org/web/20230525012803/https://www.tomshardware.com/news/amd-brings-chiplets-zen-4-rdna-3-and-xdna-ai-to-laptops-5nm-dragon-range-and-4nm-phoenix-arrive |url-status=live }}</ref>
+
+{{AMD Ryzen Mobile 7040 series}}
+
+==== Dragon Range ====
+The Dragon Range mobile processors are named as the "Ryzen 7045" series, and consist of HX, and HX3D suffix models only.<ref name="toms-hardware-zen4-mobile" />
+
+{{AMD Ryzen Mobile 7045 series}}
+
+==== Dragon Range Refresh ====
+Dragon Range Refresh is a Refresh of Dragon Range mobile processors, which are named as the "Ryzen 8045" series.
+
+{{AMD Ryzen Mobile 8045 series}}
+
+==== Hawk Point ====
+Hawk Point is a refresh of Phoenix mobile processors, named as the "Ryzen 8040" and "Ryzen 8045" series, released on December 6, 2023. It features a 60% faster NPU compared to the 7040 series.<ref>{{cite web |title=AMD Ryzen 8040 Series "Hawk Point" Mobile Processors Announced with a Faster NPU |url=https://www.techpowerup.com/316436/amd-ryzen-8040-series-hawk-point-mobile-processors-announced-with-a-faster-npu |website=TechPowerUp |access-date=12 April 2024 |date=7 December 2023}}</ref>
+
+{{AMD Ryzen Mobile 8040 series}}
+
+==== Hawk Point Refresh <span class="anchor" id="Hawk Point Refresh"></span> ====
+Hawk Point Refresh is a Refresh of Hawk Point mobile processors, named as the "Ryzen 200" series similar to [[Intel]] Core Ultra model numbering, specification similar to Hawk Point, released on Q2 2025.
+{| class="wikitable nowrap" style="text-align:center;"
+|-
+! colspan="2" rowspan="3" | Branding and Model
+! colspan="7" | CPU
+! colspan="2" | GPU
+! rowspan="3" | NPU<br />(Ryzen AI)
+! rowspan="3" | TDP
+! rowspan="3" | Release date
+|-
+! colspan="3" | Cores (threads)
+! colspan="2" | Clock (GHz)
+! rowspan="2" | L3 cache<br />(total)
+! rowspan="2" | Core config
+! rowspan="2" | Model
+! rowspan="2" | Clock<br />(GHz)
+|-
+! Total
+! Zen 4
+! Zen 4c
+! Base
+! Boost
+|-
+! Ryzen 9
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-9-270.html 270]
+| rowspan="3" | 8 (16)
+| rowspan="3" | 8 (16)
+| rowspan="5" {{n/a}}
+| 4.0
+| 5.2
+| rowspan="6" | 16&nbsp;MB
+| rowspan="3" | 1 × 8
+| rowspan="3" | 780M<br />12 CU
+| 2.8
+| rowspan="5" |16 TOPS
+| rowspan="2" |35–54&nbsp;W
+| rowspan="7" | Q2 2025<ref name="ces-2025-ai-pc">{{cite press release |title=AMD Announces Expanded Consumer and Commercial AI PC Portfolio at CES |url=https://www.amd.com/en/newsroom/press-releases/2025-1-6-amd-announces-expanded-consumer-and-commercial-ai-.html |location=Las Vegas |publisher=[[AMD]] |agency=Globe Newswire |date=6 January 2025 |access-date=7 January 2025 |archive-date=January 8, 2025 |archive-url=https://web.archive.org/web/20250108145341/https://www.amd.com/en/newsroom/press-releases/2025-1-6-amd-announces-expanded-consumer-and-commercial-ai-.html |url-status=live }}</ref>
+|-
+! rowspan="2" | Ryzen 7
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-260.html 260]
+| 3.8
+| rowspan="2" | 5.1
+| rowspan="2" | 2.7
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-7-pro-250.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-7-250.html 250]
+| 3.3
+| 15–30&nbsp;W
+|-
+! rowspan="3" | Ryzen 5
+! [https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-240.html 240]
+| rowspan="3" | 6 (12)
+| rowspan="2" | 6 (12)
+| 4.3
+| 5.0
+| rowspan="2" | 1 × 6
+| rowspan="2" | 760M<br />8 CU
+| rowspan="2" | 2.6
+| 35–54&nbsp;W
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-230.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-230.html 230]
+| 3.5
+| 4.9
+| rowspan="3" | 15–30&nbsp;W
+|-
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-5-pro-220.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-5-220.html 220]
+| 2 (4)
+| 4 (8)
+| 3.7 / 3.0
+| 4.9 / 3.5
+| 2 + 4
+| rowspan="2" | 740M<br />4 CU
+| 2.8
+| rowspan="2" {{n/a}}
+|-
+! Ryzen 3
+! ([https://www.amd.com/en/products/processors/laptop/ryzen-pro/200-series/amd-ryzen-3-pro-210.html PRO])<br />[https://www.amd.com/en/products/processors/laptop/ryzen/200-series/amd-ryzen-3-210.html 210]
+| 4 (8)
+| 1 (2)
+| 3 (6)
+| 3.6 / 2.8
+| 4.7 / 3.3
+| 8&nbsp;MB
+| 1 + 3
+| 2.5
+|}
+
+{{AMD Ryzen Mobile 100 Zen 4 based series}}
+
+=== Server ===
+
+==== Genoa, Bergamo, and Siena ====
+On November 10, 2022, AMD launched the fourth generation (also known as the 9004 series) of EPYC server and [[data center]] processors based on the Zen 4 microarchitecture, codenamed Genoa.<ref>{{cite web |last1=Mujtaba |first1=Hassan |date=November 10, 2022 |title=AMD 4th Gen EPYC 9004 "Genoa Zen 4" CPUs Launched: Up To 96 Cores, 192 Threads, 384 MB L3 Cache & Crushing All Other Server Chips |url=https://wccftech.com/amd-4th-gen-epyc-genoa-zen-4-cpus-official-launch-96-cores-192-threads-worlds-fastest-server-chips/ |website=Wccftech |language=en-US |access-date=November 13, 2022 |archive-date=November 10, 2022 |archive-url=https://web.archive.org/web/20221110194331/https://wccftech.com/amd-4th-gen-epyc-genoa-zen-4-cpus-official-launch-96-cores-192-threads-worlds-fastest-server-chips/ |url-status=live }}</ref> Genoa features between 16 and 96 Zen 4 cores, alongside [[PCI Express#PCI Express 5.0|PCIe 5.0]] and [[DDR5 SDRAM|DDR5]], designed for enterprise and cloud data center clients.
+
+{{AMD Epyc 9004 series}}
+
+== Zen 4c ==
+'''Zen 4c''' is a variant of Zen 4 featuring smaller Zen 4 cores with lower clock frequencies, power usage, reduced [[CPU cache#Multi-level caches|L3 cache]] per core, and is intended to fit a greater number of cores in a given space. Zen 4c's smaller cores and higher core counts are designed for heavily [[multi-threaded]] workloads such as [[cloud computing]].<ref>{{cite web |last1=Klotz |first1=Aaron |date=September 1, 2022 |title=Zen 4 EPYC's New Naming Scheme Leaked |url=https://www.tomshardware.com/news/model-numbering-updates-zen-4-epyc |website=Tom's Hardware |language=en-US |access-date=November 8, 2022 |archive-date=March 25, 2023 |archive-url=https://web.archive.org/web/20230325120726/https://www.tomshardware.com/news/model-numbering-updates-zen-4-epyc |url-status=live }}</ref><ref>{{cite press release |title=AMD Unveils Workload-Tailored Innovations and Products at The Accelerated Data Center Premiere |url=https://www.amd.com/en/press-releases/2021-11-08-amd-unveils-workload-tailored-innovations-and-products-the-accelerated |location=Santa Clara, CA |website=AMD |language=en-US |date=November 8, 2021 |access-date=November 8, 2022}}</ref>
+
+A Zen 4c CCD features 16 smaller Zen 4c cores, divided into two Core Complexes (CCX) of 8 cores each.<ref>{{cite web |last=Mujtaba |first=Hassan |date=June 7, 2023 |title=AMD EPYC Bergamo CPU Die Detailed: 16 Zen 4C "Vindhya" Cores Per CCD & 35% Smaller Core Area |url=https://wccftech.com/amd-epyc-bergamo-cpu-die-detailed-16-zen-4c-vindhya-cores-per-ccd-35-percent-smaller-core-area/ |website=Wccftech |language=en-US |access-date=November 17, 2023 |archive-date=November 17, 2023 |archive-url=https://web.archive.org/web/20231117194056/https://wccftech.com/amd-epyc-bergamo-cpu-die-detailed-16-zen-4c-vindhya-cores-per-ccd-35-percent-smaller-core-area/ |url-status=live }}</ref> The 16 core Zen 4c CCD is 9.6% larger in area than the regular 8 core Zen 4 CCD.<ref>{{cite web |title=AMD EPYC "Bergamo" Uses 16-core Zen 4c CCDs, Barely 10% Larger than Regular Zen 4 CCDs |url=https://www.techpowerup.com/309741/amd-epyc-bergamo-uses-16-core-zen-4c-ccds-barely-10-larger-than-regular-zen-4-ccds |website=TechPowerUp |language=en-US |date=June 7, 2023 |access-date=November 17, 2023 |archive-date=November 17, 2023 |archive-url=https://web.archive.org/web/20231117194056/https://www.techpowerup.com/309741/amd-epyc-bergamo-uses-16-core-zen-4c-ccds-barely-10-larger-than-regular-zen-4-ccds |url-status=live }}</ref> The Zen 4c CCD die size measures at 72.7&nbsp;mm<sup>2</sup> compared to the 66.3&nbsp;mm<sup>2</sup> die area for the Zen 4 CCD. However, an individual Zen 4c core has a smaller footprint than a Zen 4 core, meaning that a larger number of smaller cores can be fitted into the CCD. A Zen 4c core is about 35.4% smaller than a Zen 4 core.<ref name="Shilov 2023">{{cite web |last=Shilov |first=Anton |date=June 7, 2023 |title=AMD's EPYC 'Bergamo' and Zen 4c Detailed: Same as Zen 4, But Denser |url=https://www.tomshardware.com/news/amds-epyc-bergamo-and-zen-4c-detailed-same-as-zen-4-but-denser |website=Tom's Hardware |language=en-US |access-date=November 17, 2023 |archive-date=November 17, 2023 |archive-url=https://web.archive.org/web/20231117195558/https://www.tomshardware.com/news/amds-epyc-bergamo-and-zen-4c-detailed-same-as-zen-4-but-denser |url-status=live }}</ref> In addition to the reduced core footprint, die space is further saved in the Zen 4c CCD via the use of denser 6T dual-port SRAM cells and an overall reduction of L3 cache to 16{{nbsp}}MB per 8-core CCX. Zen 4c cores have the same sized L1 and L2 caches as Zen 4 cores but the cache die area in Zen 4c cores is lower due to using denser SRAM and slower cache.<ref name="Shilov 2023"/> The [[through-silicon via]] (TSV) connection arrays, which are used for vertical die stacking in Zen 4 3D V-Cache CCDs, are removed from the Zen 4c CCD to save silicon space.<ref name="SemiAnalysis">{{cite web |last1=Patel |first1=Dylan |last2=Wong |first2=Gerald |date=June 5, 2023 |title=Zen 4c: AMD's Response to Hyperscale ARM & Intel Atom |url=https://www.semianalysis.com/p/zen-4c-amds-response-to-hyperscale |website=SemiAnalysis |language=en-US |access-date=November 17, 2023}}</ref> Even though the Zen 4c core has a smaller footprint, it is still able to maintain the same [[Instructions_per_cycle|IPC]] as the larger Zen 4 core.<ref>{{cite web |title=AMD Zen 4c Not an E-core, 35% Smaller than Zen 4, but with Identical IPC |url=https://www.techpowerup.com/310057/amd-zen-4c-not-an-e-core-35-smaller-than-zen-4-but-with-identical-ipc |website=TechPowerUp |language=en-US |date=June 14, 2023 |access-date=November 17, 2023}}</ref>
+{{Quote box
+| quote    = "Our Zen 4c, it's our compact density that's an addition, it's a new swimlane to our cores roadmap, and it delivers the identical functionality of Zen 4 at about half of the core area."<ref name="SemiAnalysis"/>
+| fontsize = 90%
+| author   = [[Mark Papermaster]], AMD Chief Technical Officer (CTO)
+| align    = right
+| width    = 40%
+}}
+
+Unlike [[Intel]]'s competing [[Gracemont (microarchitecture)|Gracemont]] E-cores, Zen 4c features 2 threads per core with [[simultaneous multithreading]].<ref name="Laird 2023">{{cite web |last=Laird |first=Jeremy |date=June 7, 2023 |title=AMD's mini Zen 4c cores could have Intel's Efficient cores well beaten |url=https://www.pcgamer.com/amds-mini-zen-4c-cores-could-have-intels-efficient-cores-well-beaten/ |website=PC Gamer |language=en-US |access-date=November 17, 2023 |archive-date=November 17, 2023 |archive-url=https://web.archive.org/web/20231117194055/https://www.pcgamer.com/amds-mini-zen-4c-cores-could-have-intels-efficient-cores-well-beaten/ |url-status=live }}</ref> The [[Instructions per cycle|IPC]] of a Zen 4c core is closer to that of a Zen 4 core than an Intel Gracemont E-core IPC is to a P-core.<ref name="Laird 2023"/> Additionally, Zen 4c supports the same instruction sets as Zen 4 such as [[AVX-512]] which is not the case with Intel's P-cores and E-cores. Intel's Gracemont E-cores lack support for the AVX-512 instructions contained in Golden Cove P-cores.<ref>{{cite web |last=Laird |first=Jeremy |date=July 26, 2023 |title=AMD's mini Zen 4c cores explained: They're nothing like Intel's Efficient cores |url=https://www.pcgamer.com/amds-mini-zen-4c-cores-explained-theyre-nothing-like-intels-efficient-cores/ |website=PC Gamer |language=en-US |access-date=November 17, 2023 |archive-date=November 17, 2023 |archive-url=https://web.archive.org/web/20231117194055/https://www.pcgamer.com/amds-mini-zen-4c-cores-explained-theyre-nothing-like-intels-efficient-cores/ |url-status=live }}</ref>
+
+{| class="wikitable" style="text-align: center;"
+! colspan="2" | Core
+! style="width:8em" | Zen{{nbsp}}4
+! style="width:8em" | Zen{{nbsp}}4c
+|-
+! style="text-align: left;" rowspan="2" | {{resize|Codename(s)}}
+! style="text-align: left;" | {{resize|Core}}
+| ''Persephone''
+| ''Dionysus''
+|-
+! style="text-align: left;" | {{resize|CCD}}
+| ''Durango''
+| ''Vindhya''
+|-
+! style="text-align: left;" colspan="2" | {{resize|Cores (threads) per CCD}}
+| 8 (16)
+| 16 (32)
+|-
+! colspan="2" |{{resize|Cores (threads) per CCX}}
+|8 (16)
+|8 (16)
+|-
+! style="text-align: left;" colspan="2" | {{resize|L3 cache per CCD}}
+| 32{{nbsp}}MB<br>{{resize|(32{{nbsp}}MB per CCX)}}
+| 32{{nbsp}}MB<br>{{resize|(16{{nbsp}}MB per CCX)}}
+|-
+! style="text-align: left;" rowspan="2" | {{resize|Die size}}
+! style="text-align: left;" | {{resize|CCD area}}
+| 66.3{{nbsp}}mm<sup>2</sup>
+| 72.7{{nbsp}}mm<sup>2</sup>
+|-
+! style="text-align: left;" | {{resize|Core area}}
+| 3.84{{nbsp}}mm<sup>2</sup>
+| 2.48{{nbsp}}mm<sup>2</sup>
+|}
+
+The Zen 4c core launched on June 13, 2023 with three Epyc Bergamo SKUs: 9734, 9754 and 9754S.<ref>{{cite web |last1=Szewczyk |first1=Chris |date=June 10, 2022 |title=AMD provides new Zen 4 details and touts a greater than 25% performance-per-watt gain |url=https://www.pcgamer.com/amd-provides-new-zen-4-details-and-touts-a-greater-than-25-performance-per-watt-gain/ |website=PC Gamer |language=en-US |access-date=November 8, 2022 |archive-date=March 21, 2023 |archive-url=https://web.archive.org/web/20230321185514/https://www.pcgamer.com/amd-provides-new-zen-4-details-and-touts-a-greater-than-25-performance-per-watt-gain/ |url-status=live }}</ref> The 9754S SKU features 128 Zen 4c cores but only 128 threads rather than the full 256 threads as simultaneous multithreading is disabled.<ref>{{cite web |last1=Norem |first1=Josh |date=June 9, 2022 |title=Zen 4 on the Floor: AMD Promises 35 Percent Performance Jump For Next-Gen CPUs |url=https://www.extremetech.com/computing/336933-zen-4-on-the-floor-amd-promises-35-percent-performance-jump-for-next-gen-cpus |website=ExtremeTech |language=en-US |access-date=November 8, 2022 |archive-date=April 2, 2023 |archive-url=https://web.archive.org/web/20230402031322/https://www.extremetech.com/computing/336933-zen-4-on-the-floor-amd-promises-35-percent-performance-jump-for-next-gen-cpus |url-status=live }}</ref> Zen 4c launched in Epyc 8004 series processors, codenamed "Siena", on September 18, 2023. With up to 64 cores and 128 threads, Siena is designed with a lower cost platform in mind for entry-level server, edge computing, and telecommunications segments where higher energy efficiency is a priority.<ref>{{cite web |last1=Smith |first1=Ryan |date=18 September 2023 |title=AMD Releases EPYC 8004 "Siena" CPUs: Zen 4c For Edge-Optimized Server Chips |url=https://www.anandtech.com/show/20057/amd-releases-epyc-8004-siena-cpus-zen4c-for-edge |archive-url=https://web.archive.org/web/20230918130507/https://www.anandtech.com/show/20057/amd-releases-epyc-8004-siena-cpus-zen4c-for-edge |url-status=dead |archive-date=September 18, 2023 |website=AnandTech |access-date=October 23, 2023}}</ref>
+
+Zen 4c made its debut outside of server processors in the Ryzen 7040U series, codenamed "Phoenix 2", which launched on November 2, 2023. The Ryzen 3 7440U and Ryzen 5 7545U processors feature both standard Zen 4 cores and smaller Zen 4c cores.<ref>{{Cite web |last1=Bonshor |first1=Gavin |last2=Smith |first2=Ryan |date=November 2, 2023 |title=AMD Unveils Ryzen Mobile 7040U Series with Zen 4c: Smaller Cores, Bigger Efficiency |url=https://www.anandtech.com/show/21111/amd-unveils-ryzen-7040u-series-with-zen-4c-smaller-cores-bigger-efficiency |archive-url=https://web.archive.org/web/20231102135424/https://www.anandtech.com/show/21111/amd-unveils-ryzen-7040u-series-with-zen-4c-smaller-cores-bigger-efficiency |url-status=dead |archive-date=November 2, 2023 |website=AnandTech |language=en-US |access-date=November 11, 2023}}</ref>
+
+== References ==
+{{reflist}}
+
+{{AMD processors}}
+{{AMD processor roadmap}}
+
+[[Category:AMD microarchitectures]]
+[[Category:AMD x86 microprocessors]]
+[[Category:Computer-related introductions in 2022]]
+[[Category:X86 microarchitectures]]
