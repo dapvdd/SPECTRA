@@ -1,0 +1,313 @@
+{
+  "generated_at": "2026-10-12T08:25:53.444062+00:00",
+  "base_url": "http://127.0.0.1:8000",
+  "db": "C:\\Users\\user\\AppData\\Local\\Temp\\opencode\\spectra_b016.db",
+  "ids": {
+    "bench_cpu": 6,
+    "any_cpu": 1,
+    "any_gpu": 3361,
+    "no_bench_gpu": 3361,
+    "no_spec_prov_cpu": 15,
+    "benchmark_id": 1,
+    "multi_prov_hardware": 3350,
+    "multi_prov_table": "hardware",
+    "multi_prov_field": "architecture",
+    "multi_prov_count": 2,
+    "totals": {
+      "hardware": 5380,
+      "cpu": 3501,
+      "gpu": 1879,
+      "sources": 9
+    }
+  },
+  "checks": [
+    {
+      "name": "health",
+      "passed": true,
+      "detail": "200 {'status': 'healthy'}"
+    },
+    {
+      "name": "root_online",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "hardware_list_count",
+      "passed": true,
+      "detail": "200 n=5380 expected=5380"
+    },
+    {
+      "name": "hardware_row_schema",
+      "passed": true,
+      "detail": "id/name/manufacturer/type"
+    },
+    {
+      "name": "hardware_type_counts",
+      "passed": true,
+      "detail": "cpu=3501 gpu=1879"
+    },
+    {
+      "name": "hardware_filter_cpu",
+      "passed": true,
+      "detail": "200 n=3501"
+    },
+    {
+      "name": "hardware_filter_gpu",
+      "passed": true,
+      "detail": "200 n=1879"
+    },
+    {
+      "name": "hardware_filter_unknown_empty",
+      "passed": true,
+      "detail": "200 []"
+    },
+    {
+      "name": "cpu_detail_schema",
+      "passed": true,
+      "detail": "200 keys=['base_clock_ghz', 'boost_clock_ghz', 'cores', 'process_node_nm', 'socket', 'tdp_w', 'threads']"
+    },
+    {
+      "name": "gpu_detail_schema",
+      "passed": true,
+      "detail": "200 keys=['boost_clock_mhz', 'core_clock_mhz', 'interface', 'length_mm', 'memory_gb', 'memory_type', 'tdp_w', 'vram_bandwidth_gbps']"
+    },
+    {
+      "name": "missing_hardware_detail_shape",
+      "passed": true,
+      "detail": "200 {'error': 'Hardware not found'}"
+    },
+    {
+      "name": "invalid_hardware_id_422",
+      "passed": true,
+      "detail": "422"
+    },
+    {
+      "name": "benchmarks_distinguish_test_types",
+      "passed": true,
+      "detail": "200 types=['multi-core', 'single-core']"
+    },
+    {
+      "name": "benchmark_row_schema",
+      "passed": true,
+      "detail": "keys ok, name=Geekbench 7"
+    },
+    {
+      "name": "benchmark_filter_single_core",
+      "passed": true,
+      "detail": "200 n=1"
+    },
+    {
+      "name": "benchmark_filter_multi_core",
+      "passed": true,
+      "detail": "200 n=1"
+    },
+    {
+      "name": "benchmark_filter_source",
+      "passed": true,
+      "detail": "200 n=2"
+    },
+    {
+      "name": "benchmark_filter_name",
+      "passed": true,
+      "detail": "200 n=2"
+    },
+    {
+      "name": "benchmarks_missing_hardware_404",
+      "passed": true,
+      "detail": "404 {'detail': 'Hardware not found: 999999'}"
+    },
+    {
+      "name": "gpu_no_fabricated_gaming_benchmark",
+      "passed": true,
+      "detail": "200 []"
+    },
+    {
+      "name": "sources_list",
+      "passed": true,
+      "detail": "200 n=9"
+    },
+    {
+      "name": "source_wikipedia_licence",
+      "passed": true,
+      "detail": "200 CC BY-SA 4.0"
+    },
+    {
+      "name": "source_gpu_ark_licence",
+      "passed": true,
+      "detail": "200 CC BY 4.0"
+    },
+    {
+      "name": "source_restricted_reported",
+      "passed": true,
+      "detail": "200 source1=restricted"
+    },
+    {
+      "name": "source_missing_404",
+      "passed": true,
+      "detail": "404 {'detail': 'Source not found: 999'}"
+    },
+    {
+      "name": "hardware_provenance_shape",
+      "passed": true,
+      "detail": "200 keys=['benchmarks', 'fields', 'hardware_id', 'hardware_name', 'hardware_type', 'summary']"
+    },
+    {
+      "name": "hardware_provenance_field_shape",
+      "passed": true,
+      "detail": "table_name/field_name/has_value/status/records"
+    },
+    {
+      "name": "provenance_summary_counts_match",
+      "passed": true,
+      "detail": "total=9 fields=9"
+    },
+    {
+      "name": "hardware_provenance_missing_404",
+      "passed": true,
+      "detail": "404 {'detail': 'Hardware not found: 999999'}"
+    },
+    {
+      "name": "benchmark_provenance_payload",
+      "passed": true,
+      "detail": "200 keys=['benchmark_name', 'benchmark_result_id', 'hardware_id', 'records', 'score', 'source', 'test_type', 'unit']"
+    },
+    {
+      "name": "benchmark_provenance_has_record",
+      "passed": true,
+      "detail": "records=1"
+    },
+    {
+      "name": "benchmark_provenance_missing_404",
+      "passed": true,
+      "detail": "404 {'detail': 'Benchmark not found: 999999'}"
+    },
+    {
+      "name": "multiple_provenance_records_per_field",
+      "passed": true,
+      "detail": "records=2 expected=2"
+    },
+    {
+      "name": "empty_provenance_reported_honestly",
+      "passed": true,
+      "detail": "200 empty_fields=9"
+    },
+    {
+      "name": "build_conversation_create",
+      "passed": true,
+      "detail": "200 {'id': 6, 'cpu_hardware_id': 1, 'gpu_hardware_id': 3361, 'created_at': '2026-10-12T15:15:08.513914', 'updated_at': '2026-10-12T15:15:19.440537'}"
+    },
+    {
+      "name": "build_conversation_fetch",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "build_message_append",
+      "passed": true,
+      "detail": "201"
+    },
+    {
+      "name": "build_messages_list",
+      "passed": true,
+      "detail": "200 n=3"
+    },
+    {
+      "name": "build_turn_append",
+      "passed": true,
+      "detail": "201"
+    },
+    {
+      "name": "build_conversation_reset",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "build_conversation_missing_404",
+      "passed": true,
+      "detail": "404 {'detail': 'Build conversation not found: 999999'}"
+    },
+    {
+      "name": "build_chat_rejects_empty_question",
+      "passed": true,
+      "detail": "422"
+    },
+    {
+      "name": "hardware_chat_rejects_invalid_payload",
+      "passed": true,
+      "detail": "422"
+    }
+  ],
+  "passed": 43,
+  "failed": 0,
+  "all_passed": true,
+  "ai_provider": {
+    "comparison_explanation_status": 422,
+    "comparison_explanation_detail": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "comparison",
+            "cpu_a"
+          ],
+          "msg": "Field required",
+          "input": {
+            "cpu_a_name": "A",
+            "cpu_b_name": "B"
+          }
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "comparison",
+            "cpu_b"
+          ],
+          "msg": "Field required",
+          "input": {
+            "cpu_a_name": "A",
+            "cpu_b_name": "B"
+          }
+        }
+      ]
+    },
+    "hardware_chat_status": 200,
+    "hardware_chat_detail": {
+      "answer": "Based on the supplied hardware context, this device is identified as the **Smoke CPU** (Type: CPU, ID: 1). \n\nNo further specifications (such as manufacturer, core/thread count, architecture, clock speeds, or TDP) or benchmark data are provided in the supplied information."
+    },
+    "build_chat_status": 200,
+    "build_chat_detail": {
+      "answer": "It cannot be determined which component to upgrade first because no specifications, benchmark data, or use case details are provided for either the CPU or the GPU.",
+      "evidence": {
+        "known_facts": [
+          "The build includes a CPU named 'Smoke CPU' and a GPU named 'Smoke GPU'.",
+          "All specifications (cores, threads, clock speeds, VRAM, TDP) for both the CPU and GPU are null in the provided build context.",
+          "No benchmark records are provided for either component.",
+          "The use case and target resolution are listed as unspecified."
+        ],
+        "interpretation": [
+          "Without performance benchmarks, detailed specifications, or a defined use case, it is impossible to evaluate relative performance or identify a system bottleneck."
+        ],
+        "unknown": [
+          "CPU specifications including core count, thread count, clock speeds, and TDP.",
+          "GPU specifications including VRAM capacity, memory type, bandwidth, clock speeds, and TDP.",
+          "Real-world performance, benchmark scores, or FPS numbers for both components.",
+          "Target workload/use case and display resolution.",
+          "Power supply, motherboard, cooling, memory, and physical enclosure details."
+        ]
+      },
+      "analysis": {
+        "strengths": [],
+        "considerations": [
+          "Upgrade priority depends on whether the workload is bottlenecked by the CPU or GPU, which requires knowing component specifications and performance data."
+        ],
+        "data_gaps": [
+          "CPU and GPU specification data.",
+          "CPU and GPU benchmark results.",
+          "Defined user use case and target resolution."
+        ]
+      }
+    }
+  }
+}

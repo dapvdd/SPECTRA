@@ -1,0 +1,225 @@
+{
+  "generated_at": "2026-10-12T08:26:36.419Z",
+  "app_url": "http://127.0.0.1:5173/",
+  "chrome": "Chrome/155.0.8059.40",
+  "checks": [
+    {
+      "name": "known_fixtures_resolved",
+      "passed": true,
+      "detail": "Intel Pentium G4560 @ 3.50GHz / AMD Ryzen Z1 Extreme"
+    },
+    {
+      "name": "catalog_renders_mobile-390",
+      "passed": true,
+      "detail": "cards=12"
+    },
+    {
+      "name": "no_horizontal_overflow_mobile-390",
+      "passed": true,
+      "detail": "scrollWidth=390 innerWidth=390 offenders=[]"
+    },
+    {
+      "name": "catalog_renders_tablet-768",
+      "passed": true,
+      "detail": "cards=12"
+    },
+    {
+      "name": "no_horizontal_overflow_tablet-768",
+      "passed": true,
+      "detail": "scrollWidth=390 innerWidth=390 offenders=[]"
+    },
+    {
+      "name": "catalog_renders_desktop-1440",
+      "passed": true,
+      "detail": "cards=12"
+    },
+    {
+      "name": "no_horizontal_overflow_desktop-1440",
+      "passed": true,
+      "detail": "scrollWidth=390 innerWidth=390 offenders=[]"
+    },
+    {
+      "name": "catalog_total_is_real",
+      "passed": true,
+      "detail": "value=5,380"
+    },
+    {
+      "name": "catalog_readout_meta",
+      "passed": true,
+      "detail": "All manufacturers · Showing 12 of 5380 hardware records"
+    },
+    {
+      "name": "nav_links_present",
+      "passed": true,
+      "detail": "names=[\"Explore\",\"Compare\",\"Build\",\"About\"]"
+    },
+    {
+      "name": "theme_dark",
+      "passed": true,
+      "detail": "{\"theme\":\"dark\",\"pref\":\"dark\"}"
+    },
+    {
+      "name": "theme_light",
+      "passed": true,
+      "detail": "{\"theme\":\"light\",\"pref\":\"light\"}"
+    },
+    {
+      "name": "theme_system",
+      "passed": true,
+      "detail": "{\"theme\":\"light\",\"pref\":\"system\"}"
+    },
+    {
+      "name": "search_filters_catalog",
+      "passed": true,
+      "detail": "n=2 readout=\"All manufacturers · Showing 2 of 2 hardware records\""
+    },
+    {
+      "name": "type_filter_gpu",
+      "passed": true,
+      "detail": "n=12 readout=\"All manufacturers · Showing 12 of 1879 GPUs\""
+    },
+    {
+      "name": "filter_reset_all",
+      "passed": true,
+      "detail": "readout=\"All manufacturers · Showing 12 of 5380 hardware records\""
+    },
+    {
+      "name": "manufacturer_filter",
+      "passed": true,
+      "detail": "readout=\"Intel · Showing 12 of 2959 Intel hardware records\""
+    },
+    {
+      "name": "load_more_pagination",
+      "passed": true,
+      "detail": "before=12 after=24"
+    },
+    {
+      "name": "cpu_detail_opens",
+      "passed": true,
+      "detail": "detailReady=true"
+    },
+    {
+      "name": "cpu_detail_has_spec_source_disclosures",
+      "passed": true,
+      "detail": "rows=7 name=\"Intel Pentium G4560 @ 3.50GHz\""
+    },
+    {
+      "name": "source_disclosure_expands_with_record",
+      "passed": true,
+      "detail": "records=8 first=\"Wikipedia (English)Wikimedia Foundation — Wikipedia contributorsVerified sourceL\""
+    },
+    {
+      "name": "benchmark_source_footnotes_present",
+      "passed": true,
+      "detail": "footnotes=1 licenseTags=10"
+    },
+    {
+      "name": "cpu_detail_no_overflow",
+      "passed": true,
+      "detail": "{\"scrollWidth\":390,\"innerWidth\":390,\"overflow\":false,\"offenders\":[]}"
+    },
+    {
+      "name": "hardware_chat_composer_present",
+      "passed": true,
+      "detail": "n=1"
+    },
+    {
+      "name": "hardware_chat_out_of_scope_handled",
+      "passed": true,
+      "detail": "state=answered"
+    },
+    {
+      "name": "comparison_selection_tray",
+      "passed": true,
+      "detail": "items=2"
+    },
+    {
+      "name": "comparison_view_renders",
+      "passed": true,
+      "detail": "ready=true"
+    },
+    {
+      "name": "comparison_keeps_benchmark_evidence_separate",
+      "passed": true,
+      "detail": "benchmarkBlocks=1 sourceMarks=19"
+    },
+    {
+      "name": "comparison_no_overflow",
+      "passed": true,
+      "detail": "{\"scrollWidth\":1430,\"innerWidth\":1440,\"overflow\":false,\"offenders\":[]}"
+    },
+    {
+      "name": "comparison_ai_analysis",
+      "passed": true,
+      "detail": "state=success"
+    },
+    {
+      "name": "build_slots_added",
+      "passed": true,
+      "detail": "cpu=true gpu=true"
+    },
+    {
+      "name": "build_summary_populated",
+      "passed": true,
+      "detail": "[\"AMD Athlon Gold 7220C\",\"i752 Graphics\"]"
+    },
+    {
+      "name": "build_intelligence_renders",
+      "passed": true,
+      "detail": "blocks=5"
+    },
+    {
+      "name": "build_chat_present",
+      "passed": true,
+      "detail": "n=1"
+    },
+    {
+      "name": "build_no_overflow",
+      "passed": true,
+      "detail": "{\"scrollWidth\":1430,\"innerWidth\":1440,\"overflow\":false,\"offenders\":[]}"
+    },
+    {
+      "name": "build_chat_answers",
+      "passed": true,
+      "detail": "state=answered restored=true ready=true"
+    },
+    {
+      "name": "keyboard_tab_focuses_skip_link",
+      "passed": true,
+      "detail": "{\"tag\":\"A\",\"text\":\"Skip to main content\",\"href\":\"#main-content\",\"outlineStyle\":\"solid\",\"outlineWidth\":\"3px\"}"
+    },
+    {
+      "name": "reduced_motion_disables_transition",
+      "passed": true,
+      "detail": "{\"transitionDuration\":\"1e-05s\",\"animationDuration\":\"1e-05s\"}"
+    },
+    {
+      "name": "no_console_errors",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_page_exceptions",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_failed_requests",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no_error_responses",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "passed": 42,
+  "failed": 0,
+  "all_passed": true,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedRequests": [],
+  "badResponses": [],
+  "screenshots": 42
+}

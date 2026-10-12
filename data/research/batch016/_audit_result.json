@@ -1,0 +1,191 @@
+{
+  "generated_at": "recorded by the runner",
+  "live_db": "C:\\SPECTRA\\data\\spectra.db",
+  "live_db_sha256": "9aee08794eeaf0ddabcaaed3b0462e8116aa5f1a339414dd12244e1ecd7b0160",
+  "expected_counts": {
+    "hardware": 5380,
+    "cpu_specifications": 3501,
+    "gpu_specifications": 1879,
+    "benchmark_results": 1040,
+    "external_identifiers": 3575,
+    "field_provenance": 36946,
+    "sources": 9,
+    "build_conversations": 5,
+    "build_messages": 10
+  },
+  "checks": [
+    {
+      "name": "nothing_left_staged",
+      "passed": true,
+      "detail": "staged=[]"
+    },
+    {
+      "name": "working_tree_clean_for_batch_files",
+      "passed": true,
+      "detail": "residual_modified=[]"
+    },
+    {
+      "name": "commit_contains_fix_and_regression_test",
+      "passed": true,
+      "detail": "committed=['data/research/batch016/README.md', 'data/research/batch016/_api_smoke_result.json', 'data/research/batch016/_audit_result.json', 'data/research/batch016/_browser_result.json', 'data/research/batch016/api_smoke_test.py', 'data/research/batch016/audit_batch016.py', 'data/research/batch016/browser_verify.mjs', 'data/research/batch016/screenshots/desktop-1440-landing.png', 'data/research/batch016/screenshots/desktop-build-chat.png', 'data/research/batch016/screenshots/desktop-build.png', 'data/research/batch016/screenshots/desktop-comparison.png', 'data/research/batch016/screenshots/desktop-cpu-detail.png', 'data/research/batch016/screenshots/desktop-hardware-chat.png', 'data/research/batch016/screenshots/light-theme-mobile-detail.png', 'data/research/batch016/screenshots/mobile-390-landing.png', 'data/research/batch016/screenshots/mobile-long-name-detail.png', 'data/research/batch016/screenshots/mobile-source-disclosure-open.png', 'data/research/batch016/screenshots/tablet-768-landing.png', 'data/research/batch016/supplementary_screenshots.mjs', 'frontend/src/App.jsx', 'frontend/src/markdownRendering.test.js']"
+    },
+    {
+      "name": "commit_only_frontend_and_research",
+      "passed": true,
+      "detail": "unexpected=[]"
+    },
+    {
+      "name": "commit_excludes_backups_opencode_and_db",
+      "passed": true,
+      "detail": "no db/backup/.opencode path in the commit"
+    },
+    {
+      "name": "opencode_untouched",
+      "passed": true,
+      "detail": "no .opencode path in the commit or diff"
+    },
+    {
+      "name": "fix_is_additive_import_only",
+      "passed": true,
+      "detail": "added_lines=['+import { parseMarkdown } from \"./markdown.js\";']"
+    },
+    {
+      "name": "no_spec_benchmark_or_licence_touched",
+      "passed": true,
+      "detail": "diff contains no data/licence/provenance token"
+    },
+    {
+      "name": "live_db_integrity_ok",
+      "passed": true,
+      "detail": "integrity=ok"
+    },
+    {
+      "name": "live_db_no_fk_violations",
+      "passed": true,
+      "detail": "violations=0"
+    },
+    {
+      "name": "count_hardware_unchanged",
+      "passed": true,
+      "detail": "5380 == 5380"
+    },
+    {
+      "name": "count_cpu_specifications_unchanged",
+      "passed": true,
+      "detail": "3501 == 3501"
+    },
+    {
+      "name": "count_gpu_specifications_unchanged",
+      "passed": true,
+      "detail": "1879 == 1879"
+    },
+    {
+      "name": "count_benchmark_results_unchanged",
+      "passed": true,
+      "detail": "1040 == 1040"
+    },
+    {
+      "name": "count_external_identifiers_unchanged",
+      "passed": true,
+      "detail": "3575 == 3575"
+    },
+    {
+      "name": "count_field_provenance_unchanged",
+      "passed": true,
+      "detail": "36946 == 36946"
+    },
+    {
+      "name": "count_sources_unchanged",
+      "passed": true,
+      "detail": "9 == 9"
+    },
+    {
+      "name": "count_build_conversations_unchanged",
+      "passed": true,
+      "detail": "5 == 5"
+    },
+    {
+      "name": "count_build_messages_unchanged",
+      "passed": true,
+      "detail": "10 == 10"
+    },
+    {
+      "name": "live_db_sha256_unchanged",
+      "passed": true,
+      "detail": "9aee08794eeaf0ddabcaaed3b0462e8116aa5f1a339414dd12244e1ecd7b0160"
+    },
+    {
+      "name": "parse_markdown_imported",
+      "passed": true,
+      "detail": "import present"
+    },
+    {
+      "name": "parse_markdown_used_at_every_render_site",
+      "passed": true,
+      "detail": "MarkdownContent references=4"
+    },
+    {
+      "name": "markdown_helper_exported",
+      "passed": true,
+      "detail": "helper exists"
+    },
+    {
+      "name": "regression_test_guards_missing_import",
+      "passed": true,
+      "detail": "test references the helper and its module"
+    },
+    {
+      "name": "regression_test_guards_local_redefinition",
+      "passed": true,
+      "detail": "test rejects an inline redeclaration"
+    },
+    {
+      "name": "regression_test_committed",
+      "passed": true,
+      "detail": "regression test is in the commit"
+    },
+    {
+      "name": "browser_checks_all_passed",
+      "passed": true,
+      "detail": "passed=42 failed=0"
+    },
+    {
+      "name": "browser_run_has_no_console_or_network_errors",
+      "passed": true,
+      "detail": "clean runtime log"
+    },
+    {
+      "name": "browser_covers_three_viewports",
+      "passed": true,
+      "detail": "all three widths present"
+    },
+    {
+      "name": "api_smoke_tests_all_passed",
+      "passed": true,
+      "detail": "passed=43 failed=0"
+    },
+    {
+      "name": "api_provider_actually_responded",
+      "passed": true,
+      "detail": "real AI answers returned"
+    },
+    {
+      "name": "screenshots_captured",
+      "passed": true,
+      "detail": "n=11 min_bytes=143293"
+    },
+    {
+      "name": "no_env_file_tracked",
+      "passed": true,
+      "detail": "no .env tracked"
+    },
+    {
+      "name": "no_secrets_in_artefacts",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "passed": 34,
+  "failed": 0,
+  "all_passed": true
+}
