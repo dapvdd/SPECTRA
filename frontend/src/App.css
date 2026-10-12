@@ -1247,6 +1247,12 @@ h1 {
 
 .comparison-selection-item strong {
   color: var(--text-primary);
+  display: -webkit-box;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
 }
 
 .comparison-selection-item div > span {
@@ -1532,9 +1538,12 @@ h1 {
 
 .benchmark-bar-label span {
   min-width: 0;
+  display: -webkit-box;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
 }
 
 .benchmark-bar-label strong {

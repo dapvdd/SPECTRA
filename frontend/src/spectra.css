@@ -432,8 +432,33 @@ h4 {
   letter-spacing: var(--spectra-track-label);
 }
 
-/* Numerals - a distinct treatment from body copy. Tabular everywhere so
-   columns of figures align like a readout. */
+/* Micro-label floor. The product grew a scatter of near-identical label sizes
+   (0.6, 0.62, 0.65, 0.68rem) that read as noise rather than hierarchy. Every
+   uppercase technical label now sits on one size, --spectra-type-2xs, so the
+   smallest voice in the system is still legible and consistent across screens.
+   Larger labels (eyebrows, section heads) are deliberately untouched. */
+.filter-group-label,
+.performance-status,
+.performance-badge,
+.hardware-card-specs em,
+.comparison-selection-index,
+.comparison-empty-index,
+.comparison-overview-slot,
+.comparison-row-direction,
+.comparison-cell-marker,
+.comparison-header span::before,
+.decision-fact dt,
+.build-intelligence-fact dt,
+.build-intelligence-signal-state,
+.build-chat-message-label,
+.build-chat-context-label,
+.build-chat-evidence-label,
+.build-chat-analysis-title,
+.build-chat-analysis-label,
+.hardware-chat-question span,
+.hardware-chat-answer-label {
+  font-size: var(--spectra-type-2xs);
+}
 .performance-value strong,
 .benchmark-bar-label strong,
 .comparison-cell-value,
@@ -884,10 +909,9 @@ h4 {
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--spectra-space-sm) var(--spectra-space-lg);
-  margin-top: var(--spectra-space-3xl);
+  gap: var(--spectra-space-2xs) var(--spectra-space-lg);
+  margin-top: var(--spectra-space-lg);
   padding-bottom: var(--spectra-space-sm);
-  border-bottom: 1px solid var(--spectra-hairline-strong);
 }
 
 .catalog-readout-figure {
@@ -1245,6 +1269,14 @@ h4 {
    Motion communicates state or a real value. No entrance fades, no parallax,
    no fake progress.
    ========================================================================== */
+
+/* Anchor navigation settles into place instead of jumping. This is spatial
+   orientation, not entrance decoration; reduced motion opts out below. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 
 /* Benchmark bars grow into the width they actually represent. transform-based
    so it works with the inline width the component already renders. */

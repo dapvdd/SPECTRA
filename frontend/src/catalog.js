@@ -25,6 +25,26 @@ export const getCatalogFilterState = (value, activeValue) => {
   };
 };
 
+/* The catalog result count belongs to the catalog, so its label and scope are
+   derived here next to the summary rather than hand-assembled in the view.
+   Keeping one owner means the count, its noun and its filter scope can never
+   disagree with the summary line printed beside them. */
+export const getCatalogReadout = ({
+  totalCount = 0,
+  manufacturerFilter = "All",
+  typeFilter = "All",
+} = {}) => {
+  const recordNoun =
+    typeFilter === "All" ? "hardware records" : `${typeFilter} records`;
+
+  return {
+    value: totalCount,
+    label: `matching ${recordNoun}`,
+    meta:
+      manufacturerFilter === "All" ? "All manufacturers" : manufacturerFilter,
+  };
+};
+
 export const getCatalogResultSummary = ({
   loading = false,
   error = "",

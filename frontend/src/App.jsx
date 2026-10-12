@@ -88,6 +88,7 @@ import {
   MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
   getCatalogFilterState,
+  getCatalogReadout,
   getCatalogResultSummary,
   requestHardwareCatalog,
 } from "./catalog.js";
@@ -2803,6 +2804,12 @@ function App() {
     typeFilter: hardwareTypeFilter,
   });
 
+  const catalogReadout = getCatalogReadout({
+    totalCount: filteredHardware.length,
+    manufacturerFilter,
+    typeFilter: hardwareTypeFilter,
+  });
+
   const comparisonSummary = getComparisonSelectionSummary(compareList);
 
   useEffect(() => {
@@ -3302,28 +3309,6 @@ function App() {
         />
       </main>
 
-      <div className="catalog-readout" aria-live="polite" id="catalog-count">
-        <div className="catalog-readout-figure">
-          <span className="catalog-readout-value">
-            {formatSignalCount(filteredHardware.length)}
-          </span>
-          <span className="catalog-readout-label">
-            matching{" "}
-            {hardwareTypeFilter === "All"
-              ? "hardware records"
-              : `${hardwareTypeFilter} records`}
-          </span>
-        </div>
-
-        <span className="catalog-readout-meta">
-          {manufacturerFilter === "All"
-            ? "All manufacturers"
-            : manufacturerFilter}
-          {" · "}
-          {catalogResultSummary}
-        </span>
-      </div>
-
       {compareList.length > 0 && (
         <section
           className="comparison-selection"
@@ -3410,6 +3395,21 @@ function App() {
               ? `${HARDWARE_TYPES.filter((type) => type !== "All").length} classes indexed`
               : "Awaiting records"}
           </p>
+        </div>
+
+        <div className="catalog-readout" aria-live="polite" id="catalog-count">
+          <div className="catalog-readout-figure">
+            <span className="catalog-readout-value">
+              {formatSignalCount(catalogReadout.value)}
+            </span>
+            <span className="catalog-readout-label">{catalogReadout.label}</span>
+          </div>
+
+          <span className="catalog-readout-meta">
+            {catalogReadout.meta}
+            {" · "}
+            {catalogResultSummary}
+          </span>
         </div>
 
         <div

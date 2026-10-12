@@ -7,6 +7,7 @@ import {
   MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
   getCatalogFilterState,
+  getCatalogReadout,
   getCatalogResultSummary,
   getCatalogTypeLabel,
   getHardwareCatalogUrl,
@@ -45,6 +46,30 @@ test("catalog filter state marks only the active filter as pressed", () => {
     isActive: false,
     className: "filter-button",
     pressed: false,
+  });
+});
+
+test("catalog readout labels the count with the active type's record noun", () => {
+  assert.deepEqual(getCatalogReadout({ totalCount: 5239 }), {
+    value: 5239,
+    label: "matching hardware records",
+    meta: "All manufacturers",
+  });
+
+  assert.equal(getCatalogReadout({ totalCount: 40, typeFilter: "GPU" }).label, "matching GPU records");
+  assert.equal(getCatalogReadout({ totalCount: 40, typeFilter: "CPU" }).label, "matching CPU records");
+});
+
+test("catalog readout scopes the meta line to the manufacturer filter", () => {
+  assert.equal(
+    getCatalogReadout({ totalCount: 12, manufacturerFilter: "AMD" }).meta,
+    "AMD"
+  );
+
+  assert.deepEqual(getCatalogReadout({}), {
+    value: 0,
+    label: "matching hardware records",
+    meta: "All manufacturers",
   });
 });
 
