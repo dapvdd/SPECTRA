@@ -6,6 +6,7 @@ import { API_BASE_URL, apiUrl, getApiBaseUrl } from "./api.js";
 test("API base URL defaults to the local backend", () => {
   assert.equal(getApiBaseUrl(undefined), "http://127.0.0.1:8000");
   assert.equal(API_BASE_URL, "http://127.0.0.1:8000");
+  assert.equal(getApiBaseUrl(""), "http://127.0.0.1:8000");
 });
 
 test("configured Vite API base URL is used", () => {
@@ -28,4 +29,13 @@ test("API endpoint paths remain unchanged", () => {
     apiUrl("/comparison/explanation"),
     "http://127.0.0.1:8000/comparison/explanation"
   );
+});
+
+test("configured /api base URL produces /api prefixed paths", () => {
+  assert.equal(getApiBaseUrl("/api"), "/api");
+  assert.equal(getApiBaseUrl("/api/"), "/api");
+  assert.equal(apiUrl("/", "/api"), "/api/");
+  assert.equal(apiUrl("hardware", "/api"), "/api/hardware");
+  assert.equal(apiUrl("/hardware/7/benchmarks", "/api"), "/api/hardware/7/benchmarks");
+  assert.equal(apiUrl("/comparison/explanation", "/api"), "/api/comparison/explanation");
 });
