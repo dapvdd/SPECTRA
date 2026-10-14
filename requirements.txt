@@ -1,5 +1,5 @@
 fastapi==0.128.1
-uvicorn==0.41.1
+uvicorn==0.41.0
 pydantic==2.12.5
 SQLAlchemy==2.0.52
 greenlet==3.5.5
