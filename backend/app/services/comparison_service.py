@@ -7,10 +7,22 @@ from backend.app.schemas.comparison import (
 
 def _compare_metric(
     name: str,
-    value_a: float,
-    value_b: float,
+    value_a: float | None,
+    value_b: float | None,
     unit: str,
 ) -> MetricComparison:
+    # A metric with an unknown side is reported as unavailable rather than
+    # crashing or fabricating a winner, a tie, or a numeric difference.
+    if value_a is None or value_b is None:
+        return MetricComparison(
+            name=name,
+            value_a=value_a,
+            value_b=value_b,
+            unit=unit,
+            winner="unavailable",
+            difference=None,
+        )
+
     if value_a > value_b:
         winner = "a"
     elif value_b > value_a:
