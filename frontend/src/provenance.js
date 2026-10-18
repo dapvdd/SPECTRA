@@ -49,6 +49,7 @@ export const SPEC_SOURCE_KEYS = {
     VRAM: ["gpu_specifications", "memory_gb"],
     "Memory Type": ["gpu_specifications", "memory_type"],
     Bandwidth: ["gpu_specifications", "vram_bandwidth_gbps"],
+    "Memory Bus Width": ["gpu_specifications", "memory_bus_width_bits"],
     "Core Clock": ["gpu_specifications", "core_clock_mhz"],
     "Boost Clock": ["gpu_specifications", "boost_clock_mhz"],
     TDP: ["gpu_specifications", "tdp_w"],

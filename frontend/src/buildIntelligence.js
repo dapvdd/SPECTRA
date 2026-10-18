@@ -114,6 +114,12 @@ const GPU_SPEC_FIELDS = [
     unit: "GB/s",
     format: "decimal",
   },
+  {
+    key: "memory_bus_width_bits",
+    label: "Memory Bus Width",
+    unit: "bits",
+    format: "integer",
+  },
   { key: "tdp_w", label: "TDP", unit: "W", format: "integer" },
   { key: "interface", label: "Interface", unit: "", format: "text" },
   { key: "length_mm", label: "Length", unit: "mm", format: "integer" },

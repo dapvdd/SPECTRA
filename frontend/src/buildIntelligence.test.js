@@ -46,6 +46,7 @@ const gpuDetail = (overrides = {}, specifications = {}) => ({
     core_clock_mhz: 1980,
     boost_clock_mhz: 2475,
     vram_bandwidth_gbps: 504,
+    memory_bus_width_bits: 192,
     tdp_w: 200,
     interface: "PCIe 4.0 x16",
     length_mm: 244,
@@ -534,7 +535,7 @@ test("missing specification fields are counted, never substituted", () => {
   assert.equal(cpuSignal.state, BUILD_SIGNAL_STATES.partial);
   assert.equal(cpuSignal.value, "3 of 7 stored fields");
   assert.equal(gpuSignal.state, BUILD_SIGNAL_STATES.partial);
-  assert.equal(gpuSignal.value, "6 of 8 stored fields");
+  assert.equal(gpuSignal.value, "7 of 9 stored fields");
   assert.ok(
     model.considerations.includes(
       "CPU specification data is missing 4 of 7 stored fields.",
@@ -542,7 +543,7 @@ test("missing specification fields are counted, never substituted", () => {
   );
   assert.ok(
     model.considerations.includes(
-      "GPU specification data is missing 2 of 8 stored fields.",
+      "GPU specification data is missing 2 of 9 stored fields.",
     ),
   );
   assert.ok(
@@ -713,7 +714,7 @@ test("strengths are generated only from verified populated data", () => {
     "Both CPU and GPU slots are populated for this build.",
     "Verified CPU benchmark records are available.",
     "CPU specification data covers 7 of 7 stored fields.",
-    "GPU specification data covers 8 of 8 stored fields.",
+    "GPU specification data covers 9 of 9 stored fields.",
     "Both CPU and GPU have listed TDP values.",
     "Architecture and release date are recorded for both components.",
   ]);

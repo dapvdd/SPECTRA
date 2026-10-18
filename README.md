@@ -62,6 +62,7 @@ GPU comparison currently supports:
 * VRAM
 * Memory type
 * Memory bandwidth
+* Memory bus width
 * Core clock
 * Boost clock
 * TDP

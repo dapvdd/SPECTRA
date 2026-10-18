@@ -450,7 +450,7 @@ test("GPU comparison never exposes benchmark metric rows", () => {
 });
 
 test("comparison table specs are selected by hardware type", () => {
-  assert.equal(getComparisonTableSpecs("GPU").length, 10);
+  assert.equal(getComparisonTableSpecs("GPU").length, 11);
   assert.equal(getComparisonTableSpecs("CPU").length, CPU_TABLE_SPECS.length);
   assert.deepEqual(
     getComparisonTableSpecs("GPU").map((spec) => spec.key),
@@ -458,6 +458,7 @@ test("comparison table specs are selected by hardware type", () => {
       "memory_gb",
       "memory_type",
       "vram_bandwidth_gbps",
+      "memory_bus_width_bits",
       "core_clock_mhz",
       "boost_clock_mhz",
       "tdp_w",
@@ -559,7 +560,7 @@ test("GPU spec rows read hardware-level fields and format the release date", () 
       manufacturer: "NVIDIA",
       architecture: "Ada Lovelace",
       release_date: "2025-01-30",
-      specifications: { memory_gb: 24, memory_type: "GDDR6X" },
+      specifications: { memory_gb: 24, memory_type: "GDDR6X", memory_bus_width_bits: 384 },
     },
     {
       id: 2,
@@ -568,7 +569,7 @@ test("GPU spec rows read hardware-level fields and format the release date", () 
       manufacturer: "AMD",
       architecture: "RDNA 3",
       release_date: "2023-12-12",
-      specifications: { memory_gb: 16, memory_type: "GDDR6" },
+      specifications: { memory_gb: 16, memory_type: "GDDR6", memory_bus_width_bits: 256 },
     },
   ]);
 
@@ -576,6 +577,8 @@ test("GPU spec rows read hardware-level fields and format the release date", () 
   assert.equal(findRow(rows, "memory_gb").cells[0].display, "24 GB");
   assert.equal(findRow(rows, "memory_type").state, "informational");
   assert.equal(findRow(rows, "memory_type").cells[0].display, "GDDR6X");
+  assert.equal(findRow(rows, "memory_bus_width_bits").state, "informational");
+  assert.equal(findRow(rows, "memory_bus_width_bits").cells[0].display, "384 bits");
   assert.equal(findRow(rows, "architecture").cells[0].display, "Ada Lovelace");
   assert.equal(findRow(rows, "release_date").cells[0].display, "Jan 30, 2025");
   assert.equal(findRow(rows, "release_date").cells[1].display, "Dec 12, 2023");

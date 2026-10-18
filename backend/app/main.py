@@ -164,6 +164,11 @@ def get_hardware_detail(hardware_id: int):
                         if gpu_spec
                         else None
                     ),
+                    "memory_bus_width_bits": (
+                        gpu_spec.memory_bus_width_bits
+                        if gpu_spec
+                        else None
+                    ),
                     "tdp_w": (
                         gpu_spec.tdp_w
                         if gpu_spec

@@ -137,6 +137,34 @@ test("buildSpecSourceItems tolerates missing provenance and bad input", () => {
   assert.deepEqual(buildSpecSourceItems(null, "CPU", provenance), []);
 });
 
+test("GPU memory bus width resolves to its recorded provenance field", () => {
+  const items = [
+    { label: "Memory Bus Width", value: "192 bits" },
+    { label: "VRAM", value: "12 GB" },
+  ];
+
+  const result = buildSpecSourceItems(items, "GPU", {
+    fields: [
+      {
+        table_name: "gpu_specifications",
+        field_name: "memory_bus_width_bits",
+        has_value: true,
+        status: "verified",
+        records: [
+          record({
+            field_name: "memory_bus_width_bits",
+            evidenced_value: "192",
+          }),
+        ],
+      },
+    ],
+  });
+
+  assert.equal(result[0].source.status, "verified");
+  assert.equal(result[0].source.records[0].sourceName, "Wikipedia (English)");
+  assert.equal(result[1].source, undefined);
+});
+
 test("getBenchmarkSources dedupes and exposes attribution", () => {
   const sources = getBenchmarkSources({
     results: [

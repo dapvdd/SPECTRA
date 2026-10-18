@@ -14,6 +14,7 @@ const gpuSpecs = {
   core_clock_mhz: null,
   boost_clock_mhz: 2407,
   vram_bandwidth_gbps: 1790,
+  memory_bus_width_bits: 512,
   tdp_w: 575,
   interface: "PCIe 5.0 x16",
   length_mm: 304,
@@ -81,6 +82,7 @@ test("GPU detail view model renders grouped sections", () => {
     { label: "VRAM", value: "32 GB" },
     { label: "Memory Type", value: "GDDR7" },
     { label: "Bandwidth", value: "1790 GB/s" },
+    { label: "Memory Bus Width", value: "512 bits" },
   ]);
   assert.deepEqual(viewModel.clocks, [
     { label: "Core Clock", value: "N/A" },
@@ -106,6 +108,7 @@ test("GPU detail view model covers every GPU specification field", () => {
       core_clock_mhz: 2295,
       boost_clock_mhz: 2617,
       vram_bandwidth_gbps: 960,
+      memory_bus_width_bits: 512,
       tdp_w: 360,
       interface: "PCIe 5.0 x16",
       length_mm: 304,
@@ -123,6 +126,7 @@ test("GPU detail view model covers every GPU specification field", () => {
     "16 GB",
     "GDDR7",
     "960 GB/s",
+    "512 bits",
     "2295 MHz",
     "2617 MHz",
     "360 W",
@@ -145,6 +149,7 @@ test("GPU detail view model keeps missing fields as N/A", () => {
   ]);
   assert.equal(viewModel.memory[0].value, "N/A");
   assert.equal(viewModel.memory[2].value, "N/A");
+  assert.equal(viewModel.memory[3].value, "N/A");
   assert.equal(viewModel.clocks[0].value, "N/A");
   assert.equal(viewModel.clocks[1].value, "N/A");
   assert.equal(viewModel.powerPhysical[0].value, "N/A");

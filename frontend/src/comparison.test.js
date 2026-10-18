@@ -436,6 +436,7 @@ test("GPU comparison table specs separate winner metrics from informational rows
       "memory_gb",
       "memory_type",
       "vram_bandwidth_gbps",
+      "memory_bus_width_bits",
       "core_clock_mhz",
       "boost_clock_mhz",
       "tdp_w",
@@ -448,7 +449,7 @@ test("GPU comparison table specs separate winner metrics from informational rows
   assert.equal(GPU_TABLE_SPECS.filter((spec) => spec.direction).length, 6);
   assert.deepEqual(
     GPU_TABLE_SPECS.filter((spec) => !spec.direction).map((spec) => spec.key),
-    ["memory_type", "interface", "architecture", "release_date"],
+    ["memory_type", "memory_bus_width_bits", "interface", "architecture", "release_date"],
   );
 });
 

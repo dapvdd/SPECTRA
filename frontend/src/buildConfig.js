@@ -514,6 +514,7 @@ const GPU_SPEC_FIELDS = [
   "core_clock_mhz",
   "boost_clock_mhz",
   "vram_bandwidth_gbps",
+  "memory_bus_width_bits",
   "tdp_w",
   "interface",
   "length_mm",

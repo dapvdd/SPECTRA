@@ -92,6 +92,13 @@ export const getGpuDetailViewModel = (hardware) => {
           "GB/s"
         ),
       },
+      {
+        label: "Memory Bus Width",
+        value: formatDetailValue(
+          specifications.memory_bus_width_bits,
+          "bits"
+        ),
+      },
     ],
     clocks: [
       {

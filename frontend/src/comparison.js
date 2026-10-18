@@ -119,6 +119,7 @@ export const GPU_TABLE_SPECS = [
     unit: "GB/s",
     direction: "higher",
   },
+  { key: "memory_bus_width_bits", label: "Memory Bus Width", unit: "bits" },
   { key: "core_clock_mhz", label: "Core Clock", unit: "MHz", direction: "higher" },
   { key: "boost_clock_mhz", label: "Boost Clock", unit: "MHz", direction: "higher" },
   { key: "tdp_w", label: "TDP", unit: "W", direction: "lower" },
