@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-10-28",
+  "source": "local copy of deployed SPECTRA database (data/spectra.db)",
+  "counts": {
+    "hardware": 5380,
+    "hardware_by_type": {"CPU": 3501, "GPU": 1879},
+    "cpu_spec_rows": 3501,
+    "gpu_spec_rows": 1879,
+    "benchmark_results": 1040,
+    "external_identifiers": 3575,
+    "field_provenance": 36946
+  },
+  "field_completeness": {
+    "cpu": {
+      "cores_present_pct": 99.9,
+      "threads_present_pct": 86.8,
+      "base_clock_present_pct": 93.5,
+      "boost_clock_present_pct": 69.3,
+      "tdp_present_pct": 92.1,
+      "process_node_present_pct": 70.6,
+      "socket_present_pct": 94.6
+    },
+    "gpu": {
+      "memory_gb_present_pct": 81.9,
+      "memory_type_present_pct": 100.0,
+      "core_clock_present_pct": 99.8,
+      "boost_clock_present_pct": 59.8,
+      "bandwidth_present_pct": 81.9,
+      "bus_width_present_pct": 76.8,
+      "tdp_present_pct": 89.1,
+      "interface_present_pct": 45.2,
+      "length_present_pct": 40.8
+    }
+  },
+  "validated_coverage": {
+    "hardware_with_provenance": {"numerator": 5360, "denominator": 5380, "pct": 99.6},
+    "hardware_without_provenance": 20,
+    "benchmark_records_with_provenance": {"numerator": 1040, "denominator": 1040, "pct": 100.0},
+    "hardware_with_any_benchmark": {"numerator": 518, "denominator": 5380, "pct": 9.6},
+    "benchmark_type": "Geekbench 7",
+    "benchmark_by_type": {"CPU": 518, "GPU": 0}
+  },
+  "provenance": {
+    "verified_hardware": 3642,
+    "verified_cpu_spec": 19515,
+    "verified_gpu_spec": 12687,
+    "excluded_or_unmatched": 62,
+    "confidence_high": 34523,
+    "confidence_medium": 2361,
+    "confidence_none": 60,
+    "confidence_rejected": 2
+  },
+  "segments": {
+    "note": "segment column added (additive Batch 017 migration); value is NULL for the 5,380 legacy records pending evidence-based backfill from manufacturer categories."
+  },
+  "honesty_bounds": [
+    "Catalog breadth (5,380 rows) is NOT completeness: only 9.6% of records carry a benchmark.",
+    "GPU interface and length fields are <50% present; boost clocks ~60-70% present on both CPU and GPU.",
+    "20 hardware rows have no provenance at all; 62 GPU/provenance rows are excluded/unmatched.",
+    "No GPU benchmark results are presented (deliberate: no source meets all of licensing, provenance, accessibility, reproducibility)."
+  ]
+}
