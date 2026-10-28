@@ -24,6 +24,7 @@ _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://
 CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.strip()]
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.middleware.rate_limit import RateLimitMiddleware
 from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
@@ -73,6 +74,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Opt-in rate/cost control for the AI endpoints. Disabled unless configured
+# (SPECTRA_RATE_LIMIT_ENABLED=1) so existing behaviour and tests are unchanged.
+app.add_middleware(RateLimitMiddleware)
+
 
 @app.get("/")
 def root():
@@ -110,6 +115,7 @@ def get_hardware(
                 "name": hardware.name,
                 "manufacturer": hardware.manufacturer,
                 "type": hardware.type,
+                "segment": hardware.segment,
             }
             for hardware in hardware_list
         ]
@@ -135,6 +141,7 @@ def get_hardware_detail(hardware_id: int):
                 "name": hardware.name,
                 "manufacturer": hardware.manufacturer,
                 "type": hardware.type,
+                "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
 
@@ -194,6 +201,7 @@ def get_hardware_detail(hardware_id: int):
             "name": hardware.name,
             "manufacturer": hardware.manufacturer,
             "type": hardware.type,
+            "segment": hardware.segment,
             "release_date": hardware.release_date,
             "architecture": hardware.architecture,
 

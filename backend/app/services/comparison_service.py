@@ -75,6 +75,15 @@ def compare_cpus(
             spec_b.boost_clock_ghz,
             "GHz",
         ),
+        # Derived metric: cores per watt of TDP — higher is more power-efficient
+        # per core. Requires both tdp_w and cores on both sides.
+        # If either side is missing either value, reports unavailable.
+        _compare_metric(
+            "power_efficiency",
+            _cores_per_watt(spec_a.tdp_w, spec_a.cores),
+            _cores_per_watt(spec_b.tdp_w, spec_b.cores),
+            "cores/W",
+        ),
     ]
 
     return ComparisonResult(
@@ -82,3 +91,10 @@ def compare_cpus(
         hardware_b=hardware_b.name,
         metrics=metrics,
     )
+
+
+def _cores_per_watt(tdp_w: float | None, cores: int | None) -> float | None:
+    """Derived: cores divided by TDP in watts. None if either input is None."""
+    if tdp_w is None or cores is None or tdp_w <= 0:
+        return None
+    return cores / tdp_w

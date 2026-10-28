@@ -118,7 +118,7 @@ class TestGpuApi:
         assert types == {"CPU", "GPU"}
         for item in items:
             assert set(item.keys()) == {
-                "id", "name", "manufacturer", "type",
+                "id", "name", "manufacturer", "type", "segment",
             }
 
     def test_catalog_gpu_filter(self):

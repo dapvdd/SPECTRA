@@ -6,7 +6,18 @@ import {
 
 export const HARDWARE_TYPES = ["All", "CPU", "GPU"];
 
-export const MANUFACTURER_FILTERS = ["All", "Intel", "AMD"];
+/* Derived from the current DB snapshot (3,501 CPU + 1,879 GPU records):
+   CPU vendors: Intel (2,784), AMD (717)
+   GPU vendors: NVIDIA (876), AMD (722), Intel (175), ATI (106 legacy)
+   All GPU ATI records carry manufacturer "ATI"; they are AMD-branded legacy parts
+   kept distinct for provenance accuracy. */
+export const MANUFACTURER_FILTERS = [
+  "All",
+  "Intel",
+  "AMD",
+  "NVIDIA",
+  "ATI",
+];
 
 const TYPE_LABELS = {
   CPU: "CPUs",

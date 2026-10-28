@@ -25,8 +25,8 @@ test("catalog exposes All, CPU, and GPU type filters", () => {
   assert.deepEqual(HARDWARE_TYPES, ["All", "CPU", "GPU"]);
 });
 
-test("catalog exposes the All, Intel, and AMD manufacturer filters", () => {
-  assert.deepEqual(MANUFACTURER_FILTERS, ["All", "Intel", "AMD"]);
+test("catalog exposes the All, Intel, AMD, NVIDIA, and ATI manufacturer filters", () => {
+  assert.deepEqual(MANUFACTURER_FILTERS, ["All", "Intel", "AMD", "NVIDIA", "ATI"]);
 });
 
 test("catalog type labels pluralize known types and fall back generically", () => {
