@@ -1,0 +1,10 @@
+{
+  "source": "GPU Ark GPU specifications & benchmarks dataset",
+  "url": "https://gpuark.com/datasets/gpuark-gpu-specs.csv",
+  "license": "CC BY 4.0",
+  "attribution": "GPU Ark (2026). GPU specifications & benchmarks dataset. https://gpuark.com/datasets/",
+  "retrieved_on": "2026-10-28",
+  "sha256": "bcaba010961cdeca4d2260028d7f27f2c18317e67ffbddec7a09d3dddfa9f734",
+  "size_bytes": 3383295,
+  "row_count_hint": 13566
+}

@@ -113,14 +113,61 @@ most modern GPUs. TechPowerUp (source #3, `restricted`) has older records.
 some server Xeons. Document those as `HT=unknown` rather than `HT=false` unless
 confirmed from source.
 
-### 2.6 Add segment/form-factor column to hardware
+### 2.6 Add segment/form-factor column to hardware  ✅ DONE (Phase B)
 
-**Priority**: high (enables the "don't confuse laptop/desktop" constraint)
-**Approach**: additive `ALTER TABLE hardware ADD COLUMN segment VARCHAR(50)`
-(migration `batchNNN`); values: `desktop`, `mobile`, `server`, `embedded`,
-`workstation`, `unknown`. Backfill from source manufacturer pages (AMD.com ARK
-pages distinguish "Desktop", "Mobile", "Server" categories). This is not an
-opinion — it is a data field that reflects the manufacturer's own categorization.
+**Status**: Completed 2026-10-28. Implementation:
+- `backend/app/migrations/add_hardware_segment.py`: additive `ALTER TABLE`
+  (additive, idempotent; creates `hardware.segment` with CHECK constraint)
+- `data/research/segment_classifier.py`: deterministic rule-based classifier
+  (no external fetch; derives from manufacturer product naming conventions)
+- `backend/app/migrations/backfill_segment.py`: idempotent backfill with
+  provenance tracking (applies to local copy only; never touches production DB)
+- `data/research/test_segment_classifier.py`: 29 unit tests, all passing
+
+**Classification logic** (deterministic, auditable — 15 distinct rules):
+| Priority | Check | Result |
+|---|---|---|
+| 1st | Explicit "Mobile / Laptop / Mobility / Mobile Processor" | mobile |
+| 1st | NVIDIA `GeForce GTX/RTX NNNM` (single M = mobile GeForce) | mobile |
+| 1st | NVIDIA `Max-Q / Max-Q` (thin-mobile suffix) | mobile |
+| 1st | NVIDIA `GeForce MX450/550…` | mobile |
+| 1st | NVIDIA `NVS NNNM` (NVS is mobile only) | mobile |
+| 1st | NVIDIA `RTX NNN A-Ada` (Ada laptop variant) | mobile |
+| 1st | Intel `Arc A370M / A730M…` (M-suffix Arc) | mobile |
+| 1st | AMD `Mobility Radeon` | mobile |
+| 1st | AMD `FirePro Mxxxx / WxxxM` | mobile |
+| 1st | AMD `Radeon RX/R NNNM` / `R5 M230` | mobile |
+| 1st | AMD `Radeon Pro NNNxM / Vega NNM` | mobile |
+| 1st | CPU suffix: `H/HX/HK/U/HS/E` (Ryzen + Intel) | mobile |
+| 1st | CPU suffix: `M` (standard mobile, all vendors) | mobile |
+| 1st | CPU suffix: `P` — REFUSED (ambiguous: `6402P` desktop, `1240P` mobile) | NULL |
+| 2nd | NVIDIA `Tesla / T / A100 / H100 / GB200…` | server |
+| 2nd | Intel `Xeon` / AMD `EPYC` | server |
+| 2nd | AMD `Instinct MI/MX/M300…` | server |
+| 2nd | AMD `FirePro Sxxxx / Dxxxx` (compute rack GPU) | server |
+| 3rd | NVIDIA `Quadro` / `NVS` / `RTX A…` / `RTX NNNN` | workstation |
+| 3rd | AMD/ATI `FirePro` (non-mobile) | workstation |
+| 3rd | AMD/ATI `Radeon Pro WX…` / `Arc Pro` | workstation |
+| 3rd | Intel CPU whose name embeds "Radeon Pro" (Kaby Lake-G) — REFUSED | NULL |
+| REFUSE | Bare `GeForce RTX/GTX NNN` (no suffix) | NULL |
+| REFUSE | Bare `M+digits` without family context (M2000: Quadro vs FirePro vs Tesla) | NULL |
+| REFUSE | Intel `HD/UHD/Iris Graphics` without explicit "mobile" | NULL |
+| REFUSE | Any Apple Silicon | NULL |
+
+**Result**: 2,494 / 5,380 classified (46.3%). 2,886 remain NULL (honest unknown).
+
+**Integrity**: zero overrides (additive-only on newly-added column); every classified
+record has exactly one segment provenance row (source #10); zero conflicts;
+zero duplicate provenance rows; re-running classifier on classified records produces
+zero new classifications (idempotence verified).
+
+**Source for this batch**: "Derived from manufacturer product naming conventions"
+(source #10, `license_status=clear`). The classification is grounded in each
+vendor's published naming convention, which is public. A token that carries a
+different meaning across families is deliberately returned NULL rather than guessed.
+
+**Safety**: all writes go to local staging copy only; never touches production DB
+or david-lab server.
 
 ### 2.7 External GPU benchmark integration
 

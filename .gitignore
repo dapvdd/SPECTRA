@@ -18,9 +18,12 @@ htmlcov/
 *.db
 *.sqlite
 *.sqlite3
+*.db.*_bak
+*.bak
 
 # Raw external datasets (acquired, not versioned)
 data/raw/
+data/research/batch017/gpuark-gpu-specs.csv
 
 # IDE
 .vscode/
