@@ -25,6 +25,11 @@ htmlcov/
 data/raw/
 data/research/batch017/gpuark-gpu-specs.csv
 
+# Generated batch018 migration artifact (reproduced by generate_selfcontained.py)
+data/research/batch018_prod/migrate_batch018_selfcontained.py
+# Generated batch018 read-only null-guard checker (reproduced by emit_nullguard_checker.py)
+data/research/batch017/verify_prod_nullguard_selfcontained.py
+
 # IDE
 .vscode/
 
