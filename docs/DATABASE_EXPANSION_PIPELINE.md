@@ -92,12 +92,13 @@ can be used as a proxy (Zen 4 = 5nm, Raptor Lake = Intel 7). Document
 architecture→process_node mapping as an explicit inference assumption in the
 provenance row (`match_method="architecture_inference"`).
 
-### 2.3 GPU: fill interface gaps (1,030 missing, 45.2% coverage)
+### 2.3 GPU: fill interface gaps (1,030 missing, 45.2% coverage)  ✅ DONE (Batch 018)
 
-**Priority**: medium
-**Approach**: GPU Ark (source #4, `clear` licence) has PCIe interface data for
-most modern GPUs. TechPowerUp (source #3, `restricted`) has older records.
-**Constraints**: TechPowerUp is `restricted`; use GPU Ark as primary source.
+**Status**: Completed 2026-10-29. GPU Ark (`bus_interface`) filled 938 of the
+1,030 gaps via deterministic normalized-name matching; `interface` now 95.1%
+covered. 28 remaining gaps are console/APU/embedded GPUs where GPU Ark has no
+bus_interface (none fabricated). Scripts: `data/research/batch017/`; provenance
+source_id=4, batch_no=18.
 
 ### 2.4 GPU: fill length_mm gaps (1,113 missing, 40.8% coverage)
 
@@ -105,6 +106,9 @@ most modern GPUs. TechPowerUp (source #3, `restricted`) has older records.
 **Approach**: TechPowerUp (source #3, `restricted`) and GPU Ark (source #4,
 `clear`) both have physical dimensions. Document the restriction in
 `source.terms_notes`.
+**Note**: GPU Ark's `gpuark-gpu-specs.csv` does **not** provide `length_mm`
+(verified against the CSV schema in batch017); only TechPowerUp (restricted)
+has it. Remains open.
 
 ### 2.5 CPU: fill threads gaps (461 missing, 86.8% coverage)
 
