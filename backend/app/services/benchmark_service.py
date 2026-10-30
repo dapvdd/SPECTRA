@@ -20,7 +20,9 @@ def get_benchmarks_for_hardware(
     (every result for the hardware, ordered by id). Filters are applied as
     parameterised ORM ``WHERE`` clauses; no raw SQL is used and the
     ``source`` relationship is loaded with ``selectinload`` (never a join that
-    could duplicate result rows).
+    could duplicate result rows). Since Phase 1.2, ``field_provenance`` is also
+    eager-loaded so the route can compute the quality score without lazy-load
+    errors after the session closes.
     """
 
     with SessionLocal() as session:
@@ -36,6 +38,7 @@ def get_benchmarks_for_hardware(
         statement = (
             select(BenchmarkResult)
             .options(selectinload(BenchmarkResult.source))
+            .options(selectinload(BenchmarkResult.field_provenance))
             .where(
                 BenchmarkResult.hardware_id == hardware.id
             )

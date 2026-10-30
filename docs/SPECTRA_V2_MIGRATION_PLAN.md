@@ -60,9 +60,9 @@
 - Verified: `GET /hardware` now additive (`q`, `limit`, `offset`, `manufacturer`, `segment` + `X-Total-Count` header, default byte-identical); new `GET /hardware/facets` additive. Backend 777 passed (2 skipped, 1 warning) — 26 new backend tests (`test_hardware_catalog_api.py`); frontend 598 passed (+8), vite build green, oxlint still 1 pre-existing warning only.
 
 ### Step 6 — Benchmark quality scoring (1.2)
-- Add quality columns via a new migration (rehearsed on a copy) and the deterministic scoring service.
-- Expose score in benchmark API; frontend quality badges (this is 2.3, orderable after).
-- **Apply to:** DB via migration on a **copy** first; then promote to staging/local; production only after approval. Verify: formula tests; no GPU benchmark changes; provenance intact.
+- Compute a deterministic quality score strictly from existing data (no schema change, no DB write); expose additively in the benchmark API for later 2.3 inline badges.
+- **Apply to:** source tree only (per approval: signature of the Plan spec, compute-only, no migration). A DB-column migration remains a possible later additive step if a persisted score is ever wanted.
+- Verified: `GET /hardware/{id}/benchmarks` now returns an additive `quality` per row (heuristic 0..1 band from attribution/timestamp/licence/provenance signals; `None` when provenance is `excluded`/`unmatched`). Backend 789 passed (2 skipped, 1 warning) — 12 new tests in `backend/app/test_benchmark_quality.py`; frontend 598 passed, vite build green, oxlint 1 pre-existing warning only. No GPU benchmark data changed; provenance intact.
 
 ### Step 7 — Reusable normalizer/validator (1.5) ✅ DONE
 - Promote shared normalization primitives (`strip_invisible_characters`, `normalize_name`, `parse_watt`, `parse_int`) into `backend/app/normalization/`; existing importer modules re-export them so importer-facing API is unchanged.

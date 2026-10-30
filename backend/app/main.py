@@ -35,6 +35,10 @@ from backend.app.services.hardware_catalog_service import (
     get_hardware_facets,
     query_hardware,
 )
+from backend.app.services.benchmark_quality_service import (
+    quality_to_response_field,
+    score_benchmark_quality,
+)
 from backend.app.logging_config import configure_logging, get_logger
 from backend.app.middleware.rate_limit import RateLimitMiddleware
 from backend.app.middleware.request_id import (
@@ -392,7 +396,7 @@ def get_hardware_benchmarks(
     test_type: str | None = Query(default=None),
 ) -> list[BenchmarkResultResponse]:
     try:
-        return get_benchmarks_for_hardware(
+        benchmark_results = get_benchmarks_for_hardware(
             hardware_id,
             source_id=source_id,
             benchmark_name=benchmark_name,
@@ -401,10 +405,26 @@ def get_hardware_benchmarks(
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
-
-    except ValueError as error:
-        raise HTTPException(status_code=404, detail=str(error)) from error
-
+    # Additive Phase 1.2 quality: computed for every row, presented as None
+    # when a provenance vote vetoes the score. The source relationship was
+    # eager-loaded along with provenance, so no lazy-load can fire after the
+    # session closes.
+    return [
+        {
+            "id": benchmark.id,
+            "hardware_id": benchmark.hardware_id,
+            "benchmark_name": benchmark.benchmark_name,
+            "score": benchmark.score,
+            "unit": benchmark.unit,
+            "test_type": benchmark.test_type,
+            "source": benchmark.source,
+            "recorded_at": benchmark.recorded_at,
+            "quality": quality_to_response_field(
+                score_benchmark_quality(benchmark=benchmark)
+            ),
+        }
+        for benchmark in benchmark_results
+    ]
 
 @app.get(
     "/sources",
