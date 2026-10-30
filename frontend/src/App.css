@@ -292,6 +292,24 @@ h1 {
   font-weight: 700;
 }
 
+.filter-facet-count {
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.filter-button.active .filter-facet-count {
+  background: var(--accent-contrast);
+  border-color: var(--accent-contrast);
+  color: var(--accent-solid);
+}
+
 /* ---------- Shared primitives ---------- */
 
 .secondary-button {

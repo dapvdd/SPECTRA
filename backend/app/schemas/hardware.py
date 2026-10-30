@@ -20,6 +20,26 @@ class HardwareCatalogItem(HardwareIdentity):
     pass
 
 
+class FacetCount(BaseModel):
+    """One facet bucket: a distinct value and how many rows carry it."""
+
+    value: str
+    count: int
+
+
+class HardwareFacetsResponse(BaseModel):
+    """Accurate facet counts under the active catalog filters.
+
+    ``None`` (unknown) facet values are excluded; only real, non-null values are
+    counted. Each list is ordered by count (descending), then value (ascending)
+    for a deterministic contract.
+    """
+
+    types: list[FacetCount]
+    manufacturers: list[FacetCount]
+    segments: list[FacetCount]
+
+
 class HardwareDetail(HardwareIdentity):
     """Detail payload whose ``specifications`` shape varies by type.
 

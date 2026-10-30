@@ -101,6 +101,8 @@ import {
   getCatalogReadout,
   getCatalogResultSummary,
   requestHardwareCatalog,
+  requestHardwareCatalogPage,
+  requestHardwareFacets,
 } from "./catalog.js";
 import {
   getGpuDetailViewModel,
@@ -2435,6 +2437,8 @@ function App() {
   const [hardware, setHardware] = useState([]);
   const [hardwareLoading, setHardwareLoading] = useState(true);
   const [hardwareError, setHardwareError] = useState("");
+  const [hardwareTotalCount, setHardwareTotalCount] = useState(0);
+  const [hardwareFacets, setHardwareFacets] = useState(null);
   const [hardwareTypeFilter, setHardwareTypeFilter] = useState("All");
   const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
@@ -3125,6 +3129,41 @@ function App() {
     loadHardwareCatalog("All");
   }, []);
 
+  /* Server-driven catalog pages (1.3): keep the total accurate and load facet
+     counts whenever the filter set changes. The effect follows the established
+     AbortController idiom — a stale response can never overwrite a newer one,
+     and cleanup aborts the in-flight request. The base list still flows through
+     loadHardwareCatalog so the card grid behaves exactly as before; these fetch
+     only the metadata that page needs (total + facet counts). */
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    requestHardwareCatalogPage(
+      hardwareTypeFilter,
+      { q: search, manufacturer: manufacturerFilter },
+      (url, options) => fetch(url, { ...options, signal })
+    )
+      .then(({ totalCount }) => {
+        setHardwareTotalCount(totalCount);
+      })
+      .catch(() => {
+        // The whole-catalog default load above still covers the grid; a lost
+        // total only degrades the readout, never the page.
+      });
+
+    requestHardwareFacets(
+      { type: hardwareTypeFilter, q: search, manufacturer: manufacturerFilter },
+      (url, options) => fetch(url, { ...options, signal })
+    )
+      .then((facets) => {
+        setHardwareFacets(facets);
+      })
+      .catch(() => {});
+
+    return () => controller.abort();
+  }, [hardwareTypeFilter, search, manufacturerFilter]);
+
   useEffect(() => {
     fetch(apiUrl("/"))
       .then((response) => response.json())
@@ -3196,22 +3235,37 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
+  /* Server-provided total for the active filters, degraded gracefully to the
+     client-visible set so the readout never shows a larger number than we can
+     render. The server total is authoritative when present. */
+  const catalogTotalCount =
+    hardwareTotalCount > 0 ? hardwareTotalCount : filteredHardware.length;
+
   const catalogResultSummary = getCatalogResultSummary({
     loading: hardwareLoading,
     error: hardwareError,
     visibleCount,
-    totalCount: filteredHardware.length,
+    totalCount: catalogTotalCount,
     manufacturerFilter,
     typeFilter: hardwareTypeFilter,
   });
 
   const catalogReadout = getCatalogReadout({
-    totalCount: filteredHardware.length,
+    totalCount: catalogTotalCount,
     manufacturerFilter,
     typeFilter: hardwareTypeFilter,
   });
 
   const comparisonSummary = getComparisonSelectionSummary(compareList);
+
+  /* Facet counts from the backend for the current filter set, keyed by value
+     so the manufacturer buttons can show what each filter would find next. */
+  const manufacturerFacetCounts = {};
+  if (hardwareFacets?.manufacturers) {
+    hardwareFacets.manufacturers.forEach((facet) => {
+      manufacturerFacetCounts[facet.value] = facet.count;
+    });
+  }
 
   useEffect(() => {
     const visibleCards = filteredHardware.slice(0, visibleCount);
@@ -3690,6 +3744,11 @@ function App() {
                     manufacturerFilter
                   );
 
+                  const facetCount =
+                    manufacturer === "All"
+                      ? null
+                      : manufacturerFacetCounts[manufacturer];
+
                   return (
                     <button
                       type="button"
@@ -3699,6 +3758,11 @@ function App() {
                       onClick={() => setManufacturerFilter(manufacturer)}
                     >
                       {manufacturer}
+                      {facetCount != null && (
+                        <span className="filter-facet-count" aria-hidden="true">
+                          {facetCount}
+                        </span>
+                      )}
                     </button>
                   );
                 })}

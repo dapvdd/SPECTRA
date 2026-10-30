@@ -11,7 +11,10 @@ import {
   getCatalogResultSummary,
   getCatalogTypeLabel,
   getHardwareCatalogUrl,
+  getHardwareFacetsUrl,
   requestHardwareCatalog,
+  requestHardwareCatalogPage,
+  requestHardwareFacets,
 } from "./catalog.js";
 
 const gpuItem = {
@@ -216,4 +219,129 @@ test("catalog client CPU type requests the CPU-filtered list", async () => {
   });
 
   assert.equal(receivedUrl, apiUrl("/hardware?type=CPU"));
+});
+
+/* --- Phase 1.3 server pages + facets --- */
+
+test("catalog URL includes server filters and pagination when provided", () => {
+  assert.equal(
+    getHardwareCatalogUrl("GPU", {
+      q: "rtx",
+      manufacturer: "NVIDIA",
+      limit: 20,
+      offset: 40,
+    }),
+    apiUrl("/hardware?type=GPU&q=rtx&manufacturer=NVIDIA&limit=20&offset=40")
+  );
+
+  assert.equal(
+    getHardwareCatalogUrl("All", { manufacturer: "AMD", limit: 10 }),
+    apiUrl("/hardware?manufacturer=AMD&limit=10")
+  );
+});
+
+test("catalog URL omits default filter values", () => {
+  assert.equal(getHardwareCatalogUrl("All", {}), apiUrl("/hardware"));
+  assert.equal(
+    getHardwareCatalogUrl("All", { manufacturer: "All", offset: 0, limit: null }),
+    apiUrl("/hardware")
+  );
+  assert.equal(
+    getHardwareCatalogUrl("All", { segment: "" }),
+    apiUrl("/hardware")
+  );
+});
+
+test("catalog page request sends server filters and returns items plus total", async () => {
+  let receivedUrl;
+  const { items, totalCount } = await requestHardwareCatalogPage(
+    "GPU",
+    { q: "rtx", manufacturer: "NVIDIA", limit: 20, offset: 0 },
+    async (url) => {
+      receivedUrl = url;
+      return {
+        ok: true,
+        headers: { get: () => "35" },
+        json: async () => [gpuItem],
+      };
+    }
+  );
+
+  assert.equal(
+    receivedUrl,
+    apiUrl("/hardware?type=GPU&q=rtx&manufacturer=NVIDIA&limit=20")
+  );
+  assert.deepEqual(items, [gpuItem]);
+  assert.equal(totalCount, 35);
+});
+
+test("catalog page falls back to item count when header absent", async () => {
+  const { items, totalCount } = await requestHardwareCatalogPage(
+    "GPU",
+    { limit: 20 },
+    async () => ({
+      ok: true,
+      headers: { get: () => null },
+      json: async () => [gpuItem, { ...gpuItem, id: 8 }],
+    })
+  );
+
+  assert.deepEqual(items, [gpuItem, { ...gpuItem, id: 8 }]);
+  assert.equal(totalCount, 2);
+});
+
+test("catalog page request validates payload shape", async () => {
+  await assert.rejects(
+    requestHardwareCatalogPage(
+      "GPU",
+      { limit: 20 },
+      async () => ({
+        ok: true,
+        headers: { get: () => "1" },
+        json: async () => [{ id: "bad", name: 42, type: "GPU" }],
+      })
+    ),
+    /id/
+  );
+});
+
+test("facets URL reflects active filters and omits defaults", () => {
+  assert.equal(getHardwareFacetsUrl(), apiUrl("/hardware/facets"));
+  assert.equal(getHardwareFacetsUrl({}), apiUrl("/hardware/facets"));
+  assert.equal(
+    getHardwareFacetsUrl({ type: "GPU", manufacturer: "NVIDIA" }),
+    apiUrl("/hardware/facets?type=GPU&manufacturer=NVIDIA")
+  );
+  assert.equal(
+    getHardwareFacetsUrl({ q: "ryzen", segment: "desktop" }),
+    apiUrl("/hardware/facets?q=ryzen&segment=desktop")
+  );
+});
+
+test("facets client requests and returns the facet payload", async () => {
+  let receivedUrl;
+  const payload = await requestHardwareFacets(
+    { type: "GPU" },
+    async (url) => {
+      receivedUrl = url;
+      return {
+        ok: true,
+        json: async () => ({ types: [], manufacturers: [], segments: [] }),
+      };
+    }
+  );
+
+  assert.equal(receivedUrl, apiUrl("/hardware/facets?type=GPU"));
+  assert.deepEqual(payload, {
+    types: [],
+    manufacturers: [],
+    segments: [],
+  });
+});
+
+test("facets client surfaces API errors", async () => {
+  await assert.rejects(
+    requestHardwareFacets({}, async () => ({ ok: false, status: 500 })),
+    /HTTP error/
+  );
 });

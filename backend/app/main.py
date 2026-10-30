@@ -18,7 +18,7 @@ load_backend_environment()
 from backend.app.database import SessionLocal
 from backend.app.models import Hardware
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://localhost:8080")
@@ -26,8 +26,14 @@ CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
 from backend.app.schemas.hardware import (
+    FacetCount,
     HardwareCatalogItem,
     HardwareDetail,
+    HardwareFacetsResponse,
+)
+from backend.app.services.hardware_catalog_service import (
+    get_hardware_facets,
+    query_hardware,
 )
 from backend.app.logging_config import configure_logging, get_logger
 from backend.app.middleware.rate_limit import RateLimitMiddleware
@@ -174,32 +180,80 @@ def readiness_check():
     response_model=list[HardwareCatalogItem],
 )
 def get_hardware(
+    response: Response,
     hardware_type: str | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1),
+    manufacturer: str | None = Query(default=None),
+    segment: str | None = Query(default=None),
+    limit: int | None = Query(default=None, ge=1, le=200),
+    offset: int = Query(default=0, ge=0),
 ) -> list[HardwareCatalogItem]:
-    statement = select(Hardware)
+    """Server-side catalog query (Phase 1.3).
 
-    if hardware_type is not None:
-        statement = statement.where(
-            Hardware.type == hardware_type
-        )
+    All parameters are additive. With no parameters the endpoint returns the
+    full catalog exactly as before 1.3 (byte-identical default behavior).
+    ``q`` filters by case-insensitive name substring; ``type``/``manufacturer``/
+    ``segment`` filter exactly; ``limit``/``offset`` paginate the result. The
+    ``X-Total-Count`` header always carries the total rows under the active
+    filters (the full filtered set, not the page), so clients can page without
+    guessing.
+    """
+    page, total = query_hardware(
+        hardware_type=hardware_type,
+        q=q,
+        manufacturer=manufacturer,
+        segment=segment,
+        limit=limit,
+        offset=offset,
+    )
 
-    with SessionLocal() as session:
-        hardware_list = session.scalars(
-            statement
-        ).all()
+    # Always set the header so default callers also learn the whole catalog
+    # size, and paginated callers learn the full filtered total.
+    response.headers["X-Total-Count"] = str(total)
 
-        return [
-            {
-                "id": hardware.id,
-                "name": hardware.name,
-                "manufacturer": hardware.manufacturer,
-                "type": hardware.type,
-                "segment": hardware.segment,
-                "release_date": hardware.release_date,
-                "architecture": hardware.architecture,
-            }
-            for hardware in hardware_list
-        ]
+    return [
+        {
+            "id": hardware.id,
+            "name": hardware.name,
+            "manufacturer": hardware.manufacturer,
+            "type": hardware.type,
+            "segment": hardware.segment,
+            "release_date": hardware.release_date,
+            "architecture": hardware.architecture,
+        }
+        for hardware in page
+    ]
+
+
+@app.get(
+    "/hardware/facets",
+    response_model=HardwareFacetsResponse,
+)
+def get_hardware_facet_counts(
+    hardware_type: str | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1),
+    manufacturer: str | None = Query(default=None),
+    segment: str | None = Query(default=None),
+) -> HardwareFacetsResponse:
+    """Accurate facet counts for the active catalog filters.
+
+    Counts are computed with the same WHERE clauses the catalog query applies,
+    so each facet reflects the rows visible under the other active filters.
+    Declared before ``/hardware/{hardware_id}`` so the literal ``facets`` path
+    is not shadowed by the id route.
+    """
+    facets = get_hardware_facets(
+        hardware_type=hardware_type,
+        q=q,
+        manufacturer=manufacturer,
+        segment=segment,
+    )
+
+    return {
+        "types": facets["types"],
+        "manufacturers": facets["manufacturers"],
+        "segments": facets["segments"],
+    }
 
 @app.get(
     "/hardware/{hardware_id}",

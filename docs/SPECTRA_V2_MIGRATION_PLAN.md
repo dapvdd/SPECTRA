@@ -57,6 +57,7 @@
 - Add optional params to `GET /hardware` (default preserves current behavior).
 - Frontend server-driven pages + facets.
 - **Apply to:** source tree only. Verify: contract tests both sides; catalog default unchanged.
+- Verified: `GET /hardware` now additive (`q`, `limit`, `offset`, `manufacturer`, `segment` + `X-Total-Count` header, default byte-identical); new `GET /hardware/facets` additive. Backend 777 passed (2 skipped, 1 warning) — 26 new backend tests (`test_hardware_catalog_api.py`); frontend 598 passed (+8), vite build green, oxlint still 1 pre-existing warning only.
 
 ### Step 6 — Benchmark quality scoring (1.2)
 - Add quality columns via a new migration (rehearsed on a copy) and the deterministic scoring service.

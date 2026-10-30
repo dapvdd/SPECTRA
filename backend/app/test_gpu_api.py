@@ -13,6 +13,7 @@ from backend.app.models import (
     Hardware,
 )
 from backend.app.services import benchmark_service
+from backend.app.services import hardware_catalog_service
 from backend.app import main
 
 
@@ -28,8 +29,10 @@ class TestGpuApi:
 
         self.original_main_session_local = main.SessionLocal
         self.original_benchmark_session_local = benchmark_service.SessionLocal
+        self.original_catalog_session_local = hardware_catalog_service.SessionLocal
         main.SessionLocal = self.session_factory
         benchmark_service.SessionLocal = self.session_factory
+        hardware_catalog_service.SessionLocal = self.session_factory
 
         self.client = TestClient(main.app)
 
@@ -38,6 +41,7 @@ class TestGpuApi:
     def teardown_method(self):
         main.SessionLocal = self.original_main_session_local
         benchmark_service.SessionLocal = self.original_benchmark_session_local
+        hardware_catalog_service.SessionLocal = self.original_catalog_session_local
         self.engine.dispose()
 
     def _add_cpu(self):
