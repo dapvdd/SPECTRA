@@ -63,9 +63,10 @@
 - Expose score in benchmark API; frontend quality badges (this is 2.3, orderable after).
 - **Apply to:** DB via migration on a **copy** first; then promote to staging/local; production only after approval. Verify: formula tests; no GPU benchmark changes; provenance intact.
 
-### Step 7 — Reusable normalizer/validator (1.5)
-- Promote importer code into a public module; importers reuse it; behavior identical.
-- **Apply to:** source tree only. Verify: full suite green.
+### Step 7 — Reusable normalizer/validator (1.5) ✅ DONE
+- Promote shared normalization primitives (`strip_invisible_characters`, `normalize_name`, `parse_watt`, `parse_int`) into `backend/app/normalization/`; existing importer modules re-export them so importer-facing API is unchanged.
+- **Apply to:** source tree only. Verify: full suite green, behavior-identical.
+- Verified: 751 backend tests (2 skipped), 1 warning — 12 new tests in `backend/app/normalization/test_primitives.py`; full suite green.
 
 ### Step 8 — Authentication & ownership (2.1)
 - Feature flag `SPECTRA_AUTH_ENABLED` (default off). Add users + owners when on.
