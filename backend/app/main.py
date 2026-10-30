@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from sqlalchemy import select
+from sqlalchemy import select, text
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -28,7 +28,12 @@ from backend.app.schemas.hardware import (
     HardwareCatalogItem,
     HardwareDetail,
 )
+from backend.app.logging_config import configure_logging, get_logger
 from backend.app.middleware.rate_limit import RateLimitMiddleware
+from backend.app.middleware.request_id import (
+    REQUEST_ID_HEADER,
+    install_request_id_middleware,
+)
 from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
@@ -64,6 +69,12 @@ from backend.app.services import hardware_chat_service
 from backend.app.services import source_service
 
 
+# Configure structured JSON logging before any request handling. Running the
+# JSON handler twice is a no-op thanks to configure_logging idempotency.
+configure_logging()
+
+logger = get_logger(__name__)
+
 app = FastAPI(
     title="SPECTRA API",
     description="Hardware Intelligence Platform",
@@ -82,6 +93,11 @@ app.add_middleware(
 # (SPECTRA_RATE_LIMIT_ENABLED=1) so existing behaviour and tests are unchanged.
 app.add_middleware(RateLimitMiddleware)
 
+# Request-id correlation. Additive: sets a header on every response and never
+# changes behaviour. Setting it is safe because no existing test asserts the
+# absence of a header.
+install_request_id_middleware(app)
+
 
 @app.get("/")
 def root():
@@ -95,6 +111,55 @@ def root():
 def health_check():
     return {
         "status": "healthy",
+    }
+
+
+@app.get("/ready")
+def readiness_check():
+    """Readiness probe: DB reachable and migrations current.
+
+    Semantics for orchestration: returns 200 only when ready, 503 with a JSON
+    body when not. The DB check is a ``SELECT 1`` through the app's own session
+    factory. Migration status is reported over the versioned runner's
+    ``schema_version`` table (0 = baseline not yet applied, which is an
+    informational state, not a readiness failure — the runner is new and the
+    deployed DB predates it). No production migration is ever applied here.
+    """
+    db_ready = False
+    migrations_status = "unknown"
+
+    try:
+        with SessionLocal() as session:
+            session.execute(select(Hardware.id).limit(1))
+            has_version_table = session.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' "
+                    "AND name='schema_version'"
+                )
+            ).scalar()
+            if has_version_table:
+                version = session.execute(
+                    text("SELECT version FROM schema_version WHERE id=1")
+                ).scalar()
+                migrations_status = f"tracked-version-{version}"
+            else:
+                migrations_status = "untracked"
+        db_ready = True
+    except Exception as error:  # noqa: BLE001 - report any probe failure
+        logger.error(
+            "readiness probe failed",
+            extra={"error": str(error)},
+        )
+        db_ready = False
+
+    ready = db_ready
+    if not ready:
+        raise HTTPException(status_code=503, detail="not ready")
+
+    return {
+        "status": "ready",
+        "database": "reachable",
+        "migrations": migrations_status,
     }
 
 @app.get(

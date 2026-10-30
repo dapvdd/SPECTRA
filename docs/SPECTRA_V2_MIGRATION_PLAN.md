@@ -29,11 +29,11 @@
 
 ## 3. Migration steps (in order)
 
-### Step 1 — Repository & CI foundation (Phase 0)
+### Step 1 — Repository & CI foundation (Phase 0 + 1.4)
 - Add `.github/workflows/ci.yml` running: backend `pytest backend -q`, frontend `node --test src/*.test.js`, `vite build`, `oxlint`, data-integrity check. AI suites gated on `GEMINI_API_KEY` presence. ✅ DONE (`6b40aa9`): `backend/app/scripts/check_data_integrity.py` (quick_check + FK + row counts), `backend/app/scripts/ci_verify_schema.py` (fresh schema + runner + integrity), `.github/workflows/ci.yml`.
-- Add structured logging + request-id middleware + `/ready` endpoint (source code only). ⏳ NOT DONE — this is roadmap 1.4 (Phase 1); deliberately not bundled into the CI increment.
+- Add structured logging + request-id middleware + `/ready` endpoint (source code only). ✅ DONE (`1.4`): `backend/app/logging_config.py` (JSON stdout, idempotent), `backend/app/middleware/request_id.py` (echo/generate `X-Request-ID`), `/ready` (DB reachable + migration state, 503 when unreachable). 7 new tests.
 - **Apply to:** source tree only. **No DB write.** Verify: CI passes on a PR; local test baseline still green.
-- Verified: CI builds a fresh schema, runs the migration runner, and runs the integrity check; local baseline 719 backend + 574 frontend tests, build, lint green.
+- Verified: CI builds a fresh schema, runs the migration runner, and runs the integrity check; local baseline 726 backend + 574 frontend tests, build, lint green.
 
 ### Step 2 — API contract conformance (0.1) ✅ DONE (`1972e66`)
 - Change `GET /hardware/{id}` to raise `HTTPException(404)`; add Pydantic `response_model` to catalog/detail routes; add `release_date`+`architecture` to catalog payload.
