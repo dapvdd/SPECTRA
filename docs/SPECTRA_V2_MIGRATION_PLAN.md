@@ -34,10 +34,11 @@
 - Add structured logging + request-id middleware + `/ready` endpoint (source code only).
 - **Apply to:** source tree only. **No DB write.** Verify: CI passes on a PR; local test baseline still green.
 
-### Step 2 — API contract conformance (0.1)
+### Step 2 — API contract conformance (0.1) ✅ DONE (`1972e66`)
 - Change `GET /hardware/{id}` to raise `HTTPException(404)`; add Pydantic `response_model` to catalog/detail routes; add `release_date`+`architecture` to catalog payload.
 - Update frontend `apiValidation.js`/call sites in the same PR so no stale special-case remains.
 - **Apply to:** source tree only. **DB untouched.** Verify: 703 + 572 tests pass; manual curl 404 check.
+- Verified: 703 + 574 frontend tests, build, lint (only pre-existing warning).
 
 ### Step 3 — Versioned migration runner (0.2)
 - Introduce Alembic initialized against a **copy** of `data/spectra.db`.
