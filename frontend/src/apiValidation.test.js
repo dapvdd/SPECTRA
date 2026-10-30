@@ -97,6 +97,25 @@ test("accepts catalog items with optional fields omitted", () => {
   );
 });
 
+test("accepts catalog items with release_date and architecture", () => {
+  assert.doesNotThrow(() =>
+    validateCatalogPayload([
+      catalogCpu({ release_date: "2022-11-03", architecture: "RDNA 3.0" }),
+    ]),
+  );
+});
+
+test("rejects catalog items with invalid release_date or architecture", () => {
+  assert.throws(
+    () => validateCatalogPayload([catalogCpu({ release_date: 7 })]),
+    /invalid text field/,
+  );
+  assert.throws(
+    () => validateCatalogPayload([catalogCpu({ architecture: ["nested"] })]),
+    /invalid text field/,
+  );
+});
+
 test("accepts a valid hardware detail payload", () => {
   assert.deepEqual(
     validateHardwareDetailPayload(detailCpu(), 1),
@@ -112,10 +131,13 @@ test("HTTP errors are handled before payload validation", () => {
   assert.equal(assertSuccessfulResponse({ ok: true }).ok, true);
 });
 
-test("rejects an explicit hardware error payload", () => {
+test("rejects a missing hardware id before any error detail", () => {
+  // The backend now returns a real 404 (HTTP layer) for missing hardware, so an
+  // error-carrying 200 payload is no longer part of the contract. Any such
+  // unexpected payload still fails validation for lacking a usable id.
   assert.throws(
     () => validateHardwareDetailPayload({ error: "Hardware not found" }, 1),
-    /Hardware not found/,
+    /invalid id/,
   );
 });
 

@@ -119,6 +119,7 @@ class TestGpuApi:
         for item in items:
             assert set(item.keys()) == {
                 "id", "name", "manufacturer", "type", "segment",
+                "release_date", "architecture",
             }
 
     def test_catalog_gpu_filter(self):
@@ -206,7 +207,8 @@ class TestGpuApi:
     def test_hardware_detail_not_found(self):
         response = self.client.get("/hardware/999999")
 
-        assert response.json() == {"error": "Hardware not found"}
+        assert response.status_code == 404
+        assert response.json() == {"detail": "Hardware not found"}
 
     def test_hardware_detail_malformed_id(self):
         response = self.client.get("/hardware/not-an-int")

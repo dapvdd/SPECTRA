@@ -24,6 +24,10 @@ _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://
 CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.strip()]
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.schemas.hardware import (
+    HardwareCatalogItem,
+    HardwareDetail,
+)
 from backend.app.middleware.rate_limit import RateLimitMiddleware
 from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
@@ -93,10 +97,13 @@ def health_check():
         "status": "healthy",
     }
 
-@app.get("/hardware")
+@app.get(
+    "/hardware",
+    response_model=list[HardwareCatalogItem],
+)
 def get_hardware(
     hardware_type: str | None = Query(default=None, alias="type"),
-):
+) -> list[HardwareCatalogItem]:
     statement = select(Hardware)
 
     if hardware_type is not None:
@@ -116,12 +123,17 @@ def get_hardware(
                 "manufacturer": hardware.manufacturer,
                 "type": hardware.type,
                 "segment": hardware.segment,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
             }
             for hardware in hardware_list
         ]
 
-@app.get("/hardware/{hardware_id}")
-def get_hardware_detail(hardware_id: int):
+@app.get(
+    "/hardware/{hardware_id}",
+    response_model=HardwareDetail,
+)
+def get_hardware_detail(hardware_id: int) -> HardwareDetail:
     with SessionLocal() as session:
         hardware = session.get(
             Hardware,
@@ -129,9 +141,7 @@ def get_hardware_detail(hardware_id: int):
         )
 
         if not hardware:
-            return {
-                "error": "Hardware not found"
-            }
+            raise HTTPException(status_code=404, detail="Hardware not found")
 
         if hardware.type == "GPU":
             gpu_spec = hardware.gpu_specification

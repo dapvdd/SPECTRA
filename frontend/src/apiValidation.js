@@ -55,10 +55,6 @@ const assertHardwareIdentity = (payload, expectedId) => {
     throw new Error("Hardware response must be an object.");
   }
 
-  if (isNonEmptyString(payload.error)) {
-    throw new Error(payload.error);
-  }
-
   if (!isUsableHardwareId(payload.id)) {
     throw new Error("Hardware response has an invalid id.");
   }

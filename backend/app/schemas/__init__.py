@@ -21,6 +21,11 @@ from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
 )
+from backend.app.schemas.hardware import (
+    HardwareCatalogItem,
+    HardwareDetail,
+    HardwareIdentity,
+)
 
 __all__ = [
     "MAX_HISTORY_MESSAGES",
@@ -40,4 +45,7 @@ __all__ = [
     "ComparisonFacts",
     "ExplanationRequest",
     "ExplanationResponse",
+    "HardwareCatalogItem",
+    "HardwareDetail",
+    "HardwareIdentity",
 ]
