@@ -1,4 +1,4 @@
-from backend.app.models import Hardware
+from backend.app.models import Hardware, GPUSpecification
 from backend.app.schemas.comparison import (
     ComparisonResult,
     MetricComparison,
@@ -10,6 +10,7 @@ def _compare_metric(
     value_a: float | None,
     value_b: float | None,
     unit: str,
+    direction: str = "higher",
 ) -> MetricComparison:
     # A metric with an unknown side is reported as unavailable rather than
     # crashing or fabricating a winner, a tie, or a numeric difference.
@@ -23,9 +24,20 @@ def _compare_metric(
             difference=None,
         )
 
-    if value_a > value_b:
+    # ``direction`` encodes whether a higher ("higher") or lower ("lower")
+    # numeric value is the better outcome. CPU comparison is entirely
+    # higher-is-better; GPU comparison adds lower-is-better for TDP and length
+    # so the backend matches the frontend's GPU table semantics exactly.
+    if direction == "lower":
+        a_better = value_a < value_b
+        b_better = value_b < value_a
+    else:
+        a_better = value_a > value_b
+        b_better = value_b > value_a
+
+    if a_better:
         winner = "a"
-    elif value_b > value_a:
+    elif b_better:
         winner = "b"
     else:
         winner = "tie"
@@ -98,3 +110,74 @@ def _cores_per_watt(tdp_w: float | None, cores: int | None) -> float | None:
     if tdp_w is None or cores is None or tdp_w <= 0:
         return None
     return cores / tdp_w
+
+
+def compare_gpus(
+    hardware_a: Hardware,
+    hardware_b: Hardware,
+) -> ComparisonResult:
+    """Compare two GPU hardware records by their specification metrics.
+
+    Metrics follow the same unavailable/tie/winner semantics as CPU comparison.
+    Higher-is-better: memory_gb, vram_bandwidth_gbps, core_clock_mhz,
+    boost_clock_mhz, memory_bus_width_bits.
+    Lower-is-better: tdp_w, length_mm.
+    """
+    spec_a = hardware_a.gpu_specification
+    spec_b = hardware_b.gpu_specification
+
+    if spec_a is None or spec_b is None:
+        raise ValueError("Both hardware must have GPU specifications.")
+
+    metrics = [
+        _compare_metric(
+            "memory_gb",
+            spec_a.memory_gb,
+            spec_b.memory_gb,
+            "GB",
+        ),
+        _compare_metric(
+            "vram_bandwidth_gbps",
+            spec_a.vram_bandwidth_gbps,
+            spec_b.vram_bandwidth_gbps,
+            "GB/s",
+        ),
+        _compare_metric(
+            "core_clock_mhz",
+            spec_a.core_clock_mhz,
+            spec_b.core_clock_mhz,
+            "MHz",
+        ),
+        _compare_metric(
+            "boost_clock_mhz",
+            spec_a.boost_clock_mhz,
+            spec_b.boost_clock_mhz,
+            "MHz",
+        ),
+        _compare_metric(
+            "tdp_w",
+            spec_a.tdp_w,
+            spec_b.tdp_w,
+            "W",
+            direction="lower",
+        ),
+        _compare_metric(
+            "length_mm",
+            spec_a.length_mm,
+            spec_b.length_mm,
+            "mm",
+            direction="lower",
+        ),
+        _compare_metric(
+            "memory_bus_width_bits",
+            spec_a.memory_bus_width_bits,
+            spec_b.memory_bus_width_bits,
+            "bits",
+        ),
+    ]
+
+    return ComparisonResult(
+        hardware_a=hardware_a.name,
+        hardware_b=hardware_b.name,
+        metrics=metrics,
+    )

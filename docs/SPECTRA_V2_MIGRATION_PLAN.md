@@ -47,10 +47,11 @@
 - Replay existing migrations as Alembic revisions where safe, or record them as baseline.
 - **Apply to:** a copy only (`data/spectra.db` untouched). Verify: `upgrade head` on a copy matches schema; `downgrade` back to baseline identical; hash preserved.
 
-### Step 4 — GPU comparison parity (1.1)
-- Add backend GPU comparison route + tests; keep CPU `/comparison/explanation` unchanged.
-- Frontend GPU comparison calls the backend; remove the client-side GPU comparison copy.
-- **Apply to:** source tree only. Verify: CPU + GPU parity tests pass; existing suites green.
+### Step 4 — GPU comparison parity (1.1) ✅ DONE
+- Backend: `POST /comparison/gpu` returns deterministic `unavailable/tie/difference` semantics with direction-aware TDP/length (lower-is-better); GPU comparison service `compare_gpus`; API tests in `backend/app/test_gpu_comparison_api.py`.
+- Frontend: GPU comparison calls the backend via `comparisonGpu.js`/`requestGpuComparison` + `comparisonGpuInsights.js` `buildGpuInsightsFromStatus`; wiring in `App.jsx` uses an idiomatic effect with AbortController (stale requests cannot overwrite newer results, loading derived in render). CPU path unchanged.
+- **Apply to:** source tree only. Verify: parity tests pass; existing suites green; lint adds no new warnings.
+- Verified: 739 backend (2 skipped) + 590 frontend tests, vite build green, oxlint 1 warning — identical to the pre-existing baseline; GPU + CPU parity tests pass.
 
 ### Step 5 — Search, pagination, facets (1.3)
 - Add optional params to `GET /hardware` (default preserves current behavior).

@@ -26,6 +26,8 @@ import {
   AI_ANALYSIS_STATUS,
   requestComparisonExplanation,
 } from "./comparisonExplanation.js";
+import { GPU_METRICS } from "./comparison.js";
+import { buildGpuInsightsFromStatus } from "./comparisonGpuInsights.js";
 import {
   getCpuDetailViewModel,
   getDetailBackLabel,
@@ -2448,6 +2450,11 @@ function App() {
   const [comparisonDetailState, setComparisonDetailState] = useState(
     createComparisonDetailState,
   );
+  const [gpuComparisonPayload, setGpuComparisonPayload] = useState(null);
+  const [gpuComparisonError, setGpuComparisonError] = useState(false);
+  const [gpuComparisonInstalledFor, setGpuComparisonInstalledFor] = useState(
+    "",
+  );
   const [benchmarkStates, setBenchmarkStates] = useState({});
   const [specProvenanceById, setSpecProvenanceById] = useState({});
   const [sourcesById, setSourcesById] = useState({});
@@ -2479,6 +2486,68 @@ function App() {
     compareList,
     comparisonDetailState.detailsById,
   );
+
+  /* The backend is the single source of truth for GPU comparison verdicts.
+     Whenever a GPU pair is fully loaded, POST to /comparison/gpu and store the
+     verdicts. The CPU path is untouched and remains entirely client-side.
+
+     The loading status is derived in render (see gpuComparisonStatus below)
+     from the installed pair key versus the settled payload/error, so the
+     effect never synchronously writes loaded/pending state. AbortController
+     cancels the in-flight request on re-run/cleanup, so a stale response can
+     never overwrite a newer one: settled updates only land when the request
+     that produced them is still the current one. */
+  const compareIdsKey = compareList.map((item) => item.id).join(",");
+  const gpuPairLoadedKey =
+    compareList.length === 2 &&
+    compareList.every((item) => item.type === "GPU")
+      ? compareList
+          .map(
+            (item) =>
+              comparisonDetailState.requestStatesById[item.id]?.status ?? "missing",
+          )
+          .join(",")
+      : "";
+
+  const gpuComparisonStatus =
+    gpuPairLoadedKey !== "success,success"
+      ? "idle"
+      : gpuComparisonInstalledFor !== compareIdsKey
+        ? "loading"
+        : gpuComparisonError
+          ? "error"
+          : "success";
+
+  useEffect(() => {
+    if (gpuPairLoadedKey !== "success,success") {
+      return undefined;
+    }
+
+    if (gpuComparisonInstalledFor === compareIdsKey) {
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    const [gpuA, gpuB] = compareList;
+
+    requestGpuComparison(gpuA.id, gpuB.id, fetch, controller.signal)
+      .then((payload) => {
+        setGpuComparisonInstalledFor(compareIdsKey);
+        setGpuComparisonError(false);
+        setGpuComparisonPayload(payload);
+      })
+      .catch((error) => {
+        if (error?.name === "AbortError") {
+          return;
+        }
+        console.error("Failed to load GPU comparison verdict:", error);
+        setGpuComparisonInstalledFor(compareIdsKey);
+        setGpuComparisonError(true);
+        setGpuComparisonPayload(null);
+      });
+
+    return () => controller.abort();
+  }, [compareIdsKey, gpuPairLoadedKey, compareList, gpuComparisonInstalledFor]);
 
   const buildCpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
   const buildGpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
@@ -3197,18 +3266,28 @@ function App() {
     });
   }, [filteredHardware, visibleCount, cardSpecsById]);
 
-  const comparisonInsights = calculateComparisonInsights(
-    compareDetails,
-    benchmarkStates
-  );
+  const comparisonInsights = isGpuComparison
+    ? buildGpuInsightsFromStatus(
+        gpuComparisonStatus,
+        gpuComparisonPayload,
+        compareDetails,
+        GPU_METRICS,
+      )
+    : calculateComparisonInsights(
+        compareDetails,
+        benchmarkStates,
+      );
   const benchmarkComparison = getBenchmarkComparisonData(
     compareDetails,
-    benchmarkStates
+    benchmarkStates,
   );
-  const comparisonFacts = buildComparisonFacts(compareDetails, benchmarkStates);
+  const comparisonFacts = buildComparisonFacts(
+    compareDetails,
+    benchmarkStates,
+  );
   const decisionSummary = buildComparisonDecisionSummary(
     compareDetails,
-    benchmarkStates
+    benchmarkStates,
   );
 
   const comparisonSourceSummaries = compareDetails.map((hardware) => ({

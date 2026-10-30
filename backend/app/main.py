@@ -3,6 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from sqlalchemy import select, text
+from sqlalchemy.orm import selectinload
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -50,6 +51,11 @@ from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
 )
+from backend.app.schemas.comparison import (
+    GPUComparisonRequest,
+    ComparisonResultResponse,
+    MetricComparisonResponse,
+)
 from backend.app.schemas.hardware_chat import (
     HardwareChatRequest,
     HardwareChatResponse,
@@ -64,6 +70,7 @@ from backend.app.services.benchmark_service import (
 )
 from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
+from backend.app.services import comparison_service
 from backend.app.services import explanation_service
 from backend.app.services import hardware_chat_service
 from backend.app.services import source_service
@@ -387,6 +394,64 @@ def get_benchmark_provenance(
         return source_service.get_benchmark_provenance(benchmark_result_id)
     except source_service.ProvenanceLookupError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.post(
+    "/comparison/gpu",
+    response_model=ComparisonResultResponse,
+)
+def compare_gpu_hardware(
+    request_data: GPUComparisonRequest,
+) -> ComparisonResultResponse:
+    """Deterministic GPU comparison by specification metrics.
+
+    Mirrors the CPU comparison semantics (unavailable / tie / winner). Returns
+    404 when either hardware id does not exist, and 422 when either record is
+    not a GPU with a specification.
+    """
+    with SessionLocal() as session:
+        hardware_a = session.scalars(
+            select(Hardware)
+            .where(Hardware.id == request_data.hardware_id_a)
+            .options(selectinload(Hardware.gpu_specification))
+        ).first()
+        hardware_b = session.scalars(
+            select(Hardware)
+            .where(Hardware.id == request_data.hardware_id_b)
+            .options(selectinload(Hardware.gpu_specification))
+        ).first()
+
+    if hardware_a is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Hardware not found: {request_data.hardware_id_a}",
+        )
+    if hardware_b is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Hardware not found: {request_data.hardware_id_b}",
+        )
+
+    try:
+        result = comparison_service.compare_gpus(hardware_a, hardware_b)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+    return ComparisonResultResponse(
+        hardware_a=result.hardware_a,
+        hardware_b=result.hardware_b,
+        metrics=[
+            MetricComparisonResponse(
+                name=metric.name,
+                value_a=metric.value_a,
+                value_b=metric.value_b,
+                unit=metric.unit,
+                winner=metric.winner,
+                difference=metric.difference,
+            )
+            for metric in result.metrics
+        ],
+    )
 
 
 @app.post(
