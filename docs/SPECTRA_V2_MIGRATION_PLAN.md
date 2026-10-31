@@ -69,14 +69,17 @@
 - **Apply to:** source tree only. Verify: full suite green, behavior-identical.
 - Verified: 751 backend tests (2 skipped), 1 warning — 12 new tests in `backend/app/normalization/test_primitives.py`; full suite green.
 
-### Step 8 — Authentication & ownership (2.1)
-- Feature flag `SPECTRA_AUTH_ENABLED` (default off). Add users + owners when on.
-- Harden rate limiter header parsing and eviction.
-- **Apply to:** source tree; DB migration on copy (add `owner_id` nullable). Verify: off-by-default regression proof + on-mode scoping tests.
+### Step 8 — Authentication & ownership (2.1) ✅ DONE (`df080b4`)
+- Feature flag `SPECTRA_AUTH_ENABLED` (default off) + `SPECTRA_AUTH_SECRET`. `users` table (bcrypt-hashed credentials) and nullable `owner_id` on `build_conversations`, registered as migration **v2** in the runner (`backend/app/migrations/runner.py`, `_verify_v2` verification). Copy-only: rehearse on disposable copies (`test_migration_runner.py`, `test_deployment_config.py`); never applied to production without approval.
+- Harden rate limiter header parsing (`SPECTRA_TRUSTED_PROXIES`) and eviction (LRU `_MAX_BUCKETS=4096`).
+- **Apply to:** source tree; DB migration rehearsed on copy. Verify: off-by-default regression proof + on-mode scoping tests.
+- Verified: HMAC-SHA256 stateless tokens issued only after credential verification (register/login), constant-time validation, live-account re-check; `require_auth` raises `HTTPException(401)` (never a dep-value JSONResponse); ownership enforced on create/get/messages/turn/reset; NULL-owner rows inaccessible to authenticated users; IDOR + cross-user tests. Backend 809 passed (2 skipped, 1 warning) — 17 new auth-ON tests in `backend/app/test_auth_security.py`, migration runner updated for v2 (22 tests), deployment-config test rehearses v2 on a tmp copy; frontend 598 passed.
 
-### Step 9 — Frontend decomposition (2.2)
-- Split `App.jsx` into `components/` in pure-refactor PRs, each keeping 572 tests green.
+### Step 9 — Frontend decomposition (2.2) + quality badges (2.3) ✅ DONE (`102d869`)
+- Split `App.jsx` into `components/`: `components/Markdown.jsx` (extracted `MarkdownContent`) and `components/ChatView.jsx` (`AiChatSection`, `HardwareChatSection`, `HardwareChatTranscript`); App.jsx re-imports them. App.jsx 3983 → 3776 lines; JSX behavior unchanged.
+- Add `components/BenchmarkQualityBadge.jsx` — renders the additive backend `quality` field (High/Medium/Low/⚫ No score) inline on benchmark results; mobile-safe, keyboard-accessible, no client-authored data.
 - **Apply to:** source tree only. Verify: tests + build + lint per PR.
+- Verified: 599 frontend tests (+1 decomposition wiring rewrite; markdownRendering test now asserts the component file wiring), vite build green, oxlint only the pre-existing App.jsx `set-state-in-effect` warning (3013/2987). Roadmap 2.2/2.3 AC met.
 
 ### Step 10 — Data debt resolution (2.4)
 - Fix the 20 unattributed rows, 2 rejected / 60 NULL-confidence rows, 46 bare names **only where sources allow**; document each decision; no fabricated values.

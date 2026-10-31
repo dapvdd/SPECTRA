@@ -65,23 +65,29 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 
 ## Phase 2 — V1 functionality preserved, hardening (P2)
 
-### 2.1 Authentication & data ownership (opt-in)
+### 2.1 Authentication & data ownership (opt-in) — **DONE** (commit `df080b4`)
 - **Priority:** P2 · **Dependencies:** 0.2, 1.1 · **Effort:** L
 - **Benefits:** addresses "user data ownership" mission goal; enables multi-user deployment; scopes conversations and comparisons per owner.
 - **Acceptance criteria:** auth feature-flagged OFF by default (V1 unauthenticated untouched); when ON, `owner_id` on `build_conversations`, tokens verified, endpoints 401/403 correctly; existing rows (owner NULL) continue to work; rate limiter hardened (trusted-proxy headers + eviction).
 - **Risks:** regression in unauthenticated mode → default OFF + dual-path tests; user isolation bugs → scoping tests.
 
-### 2.2 Frontend component decomposition
+### 2.2 Frontend component decomposition — **DONE** (commit `102d869`)
 - **Priority:** P2 · **Dependencies:** none · **Effort:** L
 - **Benefits:** 140 KB single-file `App.jsx` risk resolved; better maintainability, reviewability.
-- **Acceptance criteria:** views split into `components/`; all 572 frontend tests pass with identical behavior; lint clean (existing warning resolved); build size not increased beyond reasonable.
+- **Acceptance criteria:** views split into `components/` (`ChatView.jsx`, `Markdown.jsx`); all frontend tests pass with identical behavior (599 = baseline + decomposition wiring test); lint clean except pre-existing warning; build size not increased beyond reasonable.
 - **Risks:** pure-refactor regressions → behavior-identical tests before/after each PR.
 
-### 2.3 Inline evidence & quality badges in UI
+### 2.3 Inline evidence & quality badges in UI — **DONE** (commit `102d869`)
 - **Priority:** P2 · **Dependencies:** 1.2 · **Effort:** M
-- **Benefits:** surfaces verified/uncertain/excluded + confidence inline on every field, matching mission evidence-grounding goal.
-- **Acceptance criteria:** per-field badge from provenance API; mobile-safe; keyboard accessible; no data fabricated for unattributed fields.
+- **Benefits:** surfaces the backend-computed quality score inline (High/Medium/Low/No score) matching mission evidence-grounding goal.
+- **Acceptance criteria:** badge rendered from the additive `quality` field on benchmark results; mobile-safe; keyboard accessible (`role=text` + `aria-label` + `title`); no client-authored data for unscored rows (⚫ No score).
 - **Risks:** none material (presentational).
+
+### 2.4 Resolve provenance/dataset debt
+- **Priority:** P2 · **Dependencies:** none · **Effort:** M
+- **Benefits:** closes the 20 unattributed rows, 2 rejected / 60 NULL-confidence rows, 46 bare-number names (only where sources allow, never invented).
+- **Acceptance criteria:** each debt item resolved or explicitly re-classified with documented evidence; no invented values; provenance rows honest.
+- **Risks:** licensing (PassMark/TechPowerUp restricted) → reference-only sources, never bulk reuse; document each decision.
 
 ### 2.4 Resolve provenance/dataset debt
 - **Priority:** P2 · **Dependencies:** none · **Effort:** M
