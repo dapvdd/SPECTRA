@@ -3,33 +3,46 @@ import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 /*
- * Batch 016 regression coverage.
-
- * `MarkdownContent` in App.jsx renders AI answers, build-chat messages and the
- * comparison explanation by calling the `parseMarkdown` helper from
- * ./markdown.js. That helper is used but was never imported, so every one of
- * those surfaces threw `ReferenceError: parseMarkdown is not defined` at
- * render time and crashed the whole React tree.
-
+ * Regression coverage for the markdown rendering wiring.
+ *
+ * After Phase 2.2 component decomposition, `MarkdownContent` lives in
+ * `components/Markdown.jsx` and delegates to the `parseMarkdown` helper from
+ * ./markdown.js. App.jsx imports `MarkdownContent` from the component file.
+ *
  * There is no DOM renderer available in this project's test setup, so the
- * defect is covered the way the rest of the suite covers the JSX/CSS contract:
- * by asserting the import wiring directly, then asserting the imported symbol
- * is the real helper. A missing import cannot slip back through unnoticed.
+ * contract is covered by asserting the import wiring directly, then asserting
+ * the imported symbol is the real helper. A missing import cannot slip back
+ * through unnoticed.
  */
+
+const markdownComponentSource = readFileSync(
+  new URL("./components/Markdown.jsx", import.meta.url),
+  "utf8",
+);
 
 const appSource = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
 
-const markdownImport = appSource.match(
-  /^import\s*\{([^}]*)\}\s*from\s*["']\.\/markdown\.js["'];/m,
+const markdownImportInComponent = markdownComponentSource.match(
+  /^import\s*\{([^}]*)\}\s*from\s*["']\.\.\/markdown\.js["'];/m,
 );
 
 describe("markdown rendering wiring", () => {
-  it("imports parseMarkdown from ./markdown.js", () => {
-    assert.ok(
-      markdownImport,
-      'App.jsx must import parseMarkdown from "./markdown.js"',
+  it("imports parseMarkdown from ../markdown.js in the component file", () => {
+    const localSource = markdownComponentSource;
+    const localRedefinition = localSource.match(
+      /(?:const|function)\s+parseMarkdown\s*=|parseMarkdown:\s*function/,
     );
-    const imported = markdownImport[1]
+    assert.equal(
+      localRedefinition,
+      null,
+      "parseMarkdown must come from ../markdown.js, not be redeclared locally",
+    );
+
+    assert.ok(
+      markdownImportInComponent,
+      'components/Markdown.jsx must import parseMarkdown from "../markdown.js"',
+    );
+    const imported = markdownImportInComponent[1]
       .split(",")
       .map((name) => name.trim())
       .filter(Boolean);
@@ -39,18 +52,28 @@ describe("markdown rendering wiring", () => {
     );
   });
 
-  it("actually uses the imported helper rather than a local redefinition", () => {
-    const localDefinition = appSource.match(
-      /(?:const|function)\s+parseMarkdown\s*=/,
+  it("MarkdownContent delegates to parseMarkdown", () => {
+    assert.ok(
+      markdownComponentSource.includes("parseMarkdown(markdown)"),
+      "MarkdownContent should delegate to parseMarkdown",
     );
-    assert.equal(
-      localDefinition,
-      null,
-      "parseMarkdown must come from ./markdown.js, not be redeclared locally",
+  });
+
+  it("App.jsx uses the extracted MarkdownContent component", () => {
+    assert.ok(
+      /import\s*\{[^}]*MarkdownContent[^}]*\}\s*from\s*["']\.\/components\/Markdown\.jsx["'];/.test(
+        appSource,
+      ),
+      "App.jsx must import MarkdownContent from ./components/Markdown.jsx",
     );
     assert.ok(
-      appSource.includes("parseMarkdown(markdown)"),
-      "MarkdownContent should delegate to parseMarkdown",
+      appSource.includes("<MarkdownContent"),
+      "App.jsx must use <MarkdownContent> after decomposition",
+    );
+    assert.equal(
+      /(?:const|function)\s+MarkdownContent\s*=/.test(appSource),
+      false,
+      "MarkdownContent must not be redefined locally in App.jsx",
     );
   });
 
