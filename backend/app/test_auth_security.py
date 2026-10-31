@@ -235,6 +235,53 @@ class TestTokenValidation:
         resp = auth.create_conversation(token)
         assert resp.status_code == 401
 
+    def test_token_for_deleted_user_returns_401(self, auth):
+        # A token minted while a user exists must stop working once that user
+        # is deleted: require_auth re-checks the live account after the
+        # signature verifies (defense-in-depth against stale bearer tokens).
+        auth.register("gina", GOOD_PW)
+        token = auth.login("gina", GOOD_PW).json()["token"]
+
+        # Token works while the account exists.
+        assert auth.create_conversation(token).status_code == 200
+
+        # Delete the account directly (as an admin/pruning would).
+        with auth.session_factory() as session:
+            User = auth_module.User
+            user = session.query(User).filter_by(username="gina").one()
+            session.delete(user)
+            session.commit()
+
+        # Same bearer token, same signature and expiry, is now rejected.
+        resp = auth.create_conversation(token)
+        assert resp.status_code == 401
+
+    def test_non_bearer_or_wrong_case_scheme_returns_401(self, auth):
+        # Only the canonical "Bearer <token>" scheme is accepted. Basic/Token
+        # schemes, a wrong-case "bearer", and a bare token with no scheme must
+        # all be rejected even when the payload is well-formed.
+        auth.register("hank", GOOD_PW)
+        token = auth.login("hank", GOOD_PW).json()["token"]
+
+        bad_headers = {
+            "Basic " + token: "basic scheme must be rejected",
+            "Token " + token: "token scheme must be rejected",
+            "bearer " + token: "lowercase scheme must be rejected",
+            token: "bare token without scheme must be rejected",
+        }
+        for header, msg in bad_headers.items():
+            resp = auth.client.post(
+                "/build/conversations",
+                json={"cpu_hardware_id": auth.cpu_id,
+                      "gpu_hardware_id": auth.gpu_id},
+                headers={AUTH: header},
+            )
+            assert resp.status_code == 401, msg
+
+        # Sanity: the canonical scheme still succeeds.
+        ok = auth.create_conversation(token)
+        assert ok.status_code == 200
+
 
 class TestOwnershipAndIDOR:
     """No authenticated user can read or mutate another user's data."""
