@@ -20,6 +20,16 @@ from backend.app.models import Hardware
 
 from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.params import Depends  # noqa: F401 — used in route signatures
+
+from backend.app.auth import (
+    InvalidCredentialsError,
+    create_user,
+    is_auth_enabled,
+    issue_token,
+    login_response,
+    require_auth,
+)
 
 _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://localhost:8080")
 CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.strip()]
@@ -178,6 +188,82 @@ def readiness_check():
         "database": "reachable",
         "migrations": migrations_status,
     }
+
+
+# ---------------------------------------------------------------------------
+# Auth schema definitions (inline to avoid circular imports with auth.py)
+# ---------------------------------------------------------------------------
+
+from pydantic import BaseModel, Field
+
+
+class LoginRequest(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=1)
+
+
+class RegisterRequest(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=12, max_length=128)
+
+
+class TokenResponse(BaseModel):
+    token: str
+    token_type: str = "bearer"
+    username: str
+
+
+class AuthStatusResponse(BaseModel):
+    auth_enabled: bool
+
+
+@app.get("/auth/status", response_model=AuthStatusResponse)
+def auth_status() -> AuthStatusResponse:
+    """Report whether auth is currently enabled. Safe to call without a token."""
+    return AuthStatusResponse(auth_enabled=is_auth_enabled())
+
+
+@app.post("/auth/register", response_model=TokenResponse, status_code=201)
+def register(request_data: RegisterRequest) -> TokenResponse:
+    """Register a new user. Available regardless of SPECTRA_AUTH_ENABLED.
+
+    When auth is OFF this endpoint still works so users can pre-register;
+    the token it returns is only meaningful when auth is ON."""
+    try:
+        user = create_user(
+            username=request_data.username,
+            password=request_data.password,
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+    token = issue_token(user.id)
+    return TokenResponse(token=token, token_type="bearer", username=user.username)
+
+
+@app.post("/auth/login", response_model=TokenResponse)
+def login(request_data: LoginRequest) -> TokenResponse:
+    """Authenticate with username/password and receive a bearer token.
+
+    The token is only valid when SPECTRA_AUTH_ENABLED=1. When auth is OFF
+    this endpoint still validates credentials (so the same call works in both
+    modes) but the token has no effect on any protected endpoint."""
+    try:
+        return login_response(
+            username=request_data.username,
+            password=request_data.password,
+        )
+    except InvalidCredentialsError:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid username or password.",
+            headers={"WWW-Authenticate": "Bearer"},
+        ) from None
+
 
 @app.get(
     "/hardware",
@@ -534,6 +620,7 @@ def compare_gpu_hardware(
 )
 def generate_comparison_explanation(
     request_data: ExplanationRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> ExplanationResponse:
     try:
         explanation = explanation_service.generate_explanation(
@@ -551,8 +638,13 @@ def generate_comparison_explanation(
     "/hardware/chat",
     response_model=HardwareChatResponse,
 )
+@app.post(
+    "/hardware/chat",
+    response_model=HardwareChatResponse,
+)
 def generate_hardware_chat_answer(
     request_data: HardwareChatRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> HardwareChatResponse:
     try:
         answer = hardware_chat_service.generate_chat_answer(request_data)
@@ -570,6 +662,7 @@ def generate_hardware_chat_answer(
 )
 def generate_build_chat_answer(
     request_data: BuildHardwareChatRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> BuildHardwareChatResponse:
     try:
         return build_chat_service.generate_build_chat_answer(request_data)
@@ -585,10 +678,12 @@ def generate_build_chat_answer(
 )
 def create_build_conversation(
     request_data: BuildConversationCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
         return build_conversation_service.create_or_get_conversation(
-            request_data
+            request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.BuildIdentityError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
@@ -600,9 +695,13 @@ def create_build_conversation(
 )
 def get_build_conversation(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
-        return build_conversation_service.get_conversation(conversation_id)
+        return build_conversation_service.get_conversation(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
@@ -613,9 +712,13 @@ def get_build_conversation(
 )
 def get_build_conversation_messages(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> list[BuildMessageResponse]:
     try:
-        return build_conversation_service.list_messages(conversation_id)
+        return build_conversation_service.list_messages(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
     except build_conversation_service.StoredConversationDataError as error:
@@ -630,11 +733,13 @@ def get_build_conversation_messages(
 def append_build_conversation_message(
     conversation_id: int,
     request_data: BuildMessageCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildMessageResponse:
     try:
         return build_conversation_service.append_message(
             conversation_id,
             request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
@@ -648,11 +753,13 @@ def append_build_conversation_message(
 def append_build_conversation_turn(
     conversation_id: int,
     request_data: BuildTurnCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildTurnResponse:
     try:
         return build_conversation_service.append_turn(
             conversation_id,
             request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
@@ -664,8 +771,12 @@ def append_build_conversation_turn(
 )
 def reset_build_conversation(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
-        return build_conversation_service.reset_conversation(conversation_id)
+        return build_conversation_service.reset_conversation(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error

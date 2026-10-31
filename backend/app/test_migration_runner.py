@@ -27,11 +27,15 @@ from backend.app.migrations import runner
 # ---------------------------------------------------------------------------
 
 def _clone_schema(target: Path) -> None:
-    """Create a fresh DB at target that mirrors the current expected schema.
+    """Create a fresh DB at target that mirrors the v1 (baseline) schema.
 
     All models must be imported so their tables are registered with Base.metadata
     before create_all() is called. We import them directly rather than calling
     init_database (which uses the live global engine).
+
+    The ORM model also declares the v2 auth additions (User model, owner_id
+    column); those are dropped here so the clone matches the v1 baseline the
+    runner migrates from.
     """
     # Import all models so their Table objects are registered with Base.metadata.
     from backend.app.models import (  # noqa: F401  (registers tables)
@@ -43,6 +47,49 @@ def _clone_schema(target: Path) -> None:
         Hardware,
         Source,
     )
+    from backend.app.auth import User  # noqa: F401  (registers the users table)
+
+    from sqlalchemy import create_engine as _ce
+
+    target_url = "sqlite:///" + str(target).replace("\\", "/")
+    target_engine = _ce(target_url, connect_args={"check_same_thread": False})
+    try:
+        Base.metadata.create_all(bind=target_engine)
+    finally:
+        target_engine.dispose()
+
+    # Simulate the real pre-v2 database: no `users` table and no owner_id column.
+    conn = sqlite3.connect(target)
+    conn.execute("DROP TABLE IF EXISTS users")
+    conn.execute(
+        "CREATE TABLE build_conversations_v1 AS "
+        "SELECT id, cpu_hardware_id, gpu_hardware_id, created_at, updated_at "
+        "FROM build_conversations"
+    )
+    conn.execute("DROP TABLE build_conversations")
+    conn.execute(
+        "ALTER TABLE build_conversations_v1 RENAME TO build_conversations"
+    )
+    conn.commit()
+    conn.close()
+
+
+def _clone_v2_schema(target: Path) -> None:
+    """Create a fresh DB at target that mirrors the v2 (auth) schema.
+
+    Used by tests that operate post-v2-migration without running the runner,
+    e.g. to exercise services that assume owner_id/users are present.
+    """
+    from backend.app.models import (  # noqa: F401  (registers tables)
+        BenchmarkResult,
+        BuildConversation,
+        BuildMessage,
+        CPUSpecification,
+        GPUSpecification,
+        Hardware,
+        Source,
+    )
+    from backend.app.auth import User  # noqa: F401  (registers the users table)
 
     from sqlalchemy import create_engine as _ce
 
@@ -157,7 +204,7 @@ def _columns(target: Path, table: str) -> set[str]:
 # ---------------------------------------------------------------------------
 
 class TestMigrationRunnerUpgradeBaseline:
-    def test_upgrade_records_version_one_on_fresh_schema_db(self, tmp_path):
+    def test_upgrade_records_version_two_on_fresh_schema_db(self, tmp_path):
         db = tmp_path / "spectra.db"
         _clone_schema(db)
 
@@ -165,10 +212,8 @@ class TestMigrationRunnerUpgradeBaseline:
 
         assert result["status"] == "upgraded"
         assert result["from_version"] == 0
-        assert result["to_version"] == 1
-        assert len(result["applied"]) == 1
-        assert result["applied"][0]["version"] == 1
-        assert result["applied"][0]["name"] == "baseline-current-schema"
+        assert result["to_version"] == 2
+        assert [m["version"] for m in result["applied"]] == [1, 2]
 
     def test_upgrade_is_idempotent_on_already_baseline_db(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -178,7 +223,7 @@ class TestMigrationRunnerUpgradeBaseline:
         result2 = runner.upgrade(db)
 
         assert result2["status"] == "up-to-date"
-        assert result2["current_version"] == 1
+        assert result2["current_version"] == 2
         assert result2["applied"] == []
 
     def test_dry_run_does_not_record_version(self, tmp_path):
@@ -191,6 +236,41 @@ class TestMigrationRunnerUpgradeBaseline:
         assert _version(db) == 0  # not recorded
 
 
+class TestMigrationRunnerAuthV2:
+    def test_v2_creates_users_and_owner_id(self, tmp_path):
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+
+        result = runner.upgrade(db, dry_run=False)
+
+        assert result["status"] == "upgraded"
+        assert result["to_version"] == 2
+        assert "users" in _tables(db)
+        assert "owner_id" in _columns(db, "build_conversations")
+
+    def test_v2_upgrade_is_idempotent(self, tmp_path):
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+        runner.upgrade(db)
+
+        result = runner.upgrade(db)
+
+        assert result["status"] == "up-to-date"
+        assert _version(db) == 2
+
+    def test_v2_run_on_copy_then_rollback(self, tmp_path):
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+        runner.upgrade(db)
+
+        result = runner.downgrade(db, target_version=1)
+
+        assert result["status"] == "downgraded"
+        assert _version(db) == 1
+        assert "users" not in _tables(db)
+        assert "owner_id" not in _columns(db, "build_conversations")
+
+
 class TestMigrationRunnerVerify:
     def test_verify_passes_on_correct_schema(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -200,8 +280,8 @@ class TestMigrationRunnerVerify:
         result = runner.verify(db)
 
         assert result["status"] == "verified"
-        assert result["version"] == 1
-        assert result["name"] == "baseline-current-schema"
+        assert result["version"] == 2
+        assert result["name"] == "auth-tables"
 
     def test_verify_fails_when_table_is_missing(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -228,9 +308,8 @@ class TestMigrationRunnerReport:
         result = runner.report(db)
 
         assert result["current_version"] == 0
-        assert result["pending_count"] == 1
-        assert result["pending"][0]["version"] == 1
-        assert result["pending"][0]["name"] == "baseline-current-schema"
+        assert result["pending_count"] == 2
+        assert [m["version"] for m in result["pending"]] == [1, 2]
 
     def test_report_shows_zero_pending_after_upgrade(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -239,7 +318,7 @@ class TestMigrationRunnerReport:
 
         result = runner.report(db)
 
-        assert result["current_version"] == 1
+        assert result["current_version"] == 2
         assert result["pending_count"] == 0
         assert result["pending"] == []
 

@@ -5,3 +5,4 @@ SQLAlchemy==2.0.52
 greenlet==3.5.5
 typing_extensions==4.16.0
 python-dotenv==1.2.3
+bcrypt==5.0.0

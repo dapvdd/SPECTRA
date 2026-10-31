@@ -94,6 +94,36 @@ _EXPECTED_TABLES: dict[str, set[str]] = {
     },
 }
 
+# v2 (auth): adds the users table and owner_id on build_conversations.
+_EXPECTED_TABLES_V2: dict[str, set[str]] = {
+    **_EXPECTED_TABLES,
+    "users": {
+        "id", "username", "password_hash",
+    },
+    "build_conversations": {
+        "id", "cpu_hardware_id", "gpu_hardware_id",
+        "created_at", "updated_at", "owner_id",
+    },
+}
+
+
+def _verify_v2(conn: sqlite3.Connection) -> None:
+    """Verify the v2 schema: users table present, owner_id column present."""
+    tables = {
+        r[0]
+        for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+        ).fetchall()
+    }
+    if "users" not in tables:
+        raise RuntimeError("v2 verification FAILED: missing table 'users'")
+
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(build_conversations)").fetchall()}
+    if "owner_id" not in cols:
+        raise RuntimeError(
+            "v2 verification FAILED: build_conversations missing owner_id column"
+        )
+
 
 # ---------------------------------------------------------------------------
 # Migration definitions
@@ -167,6 +197,37 @@ MIGRATIONS: list[Migration] = [
         downgrade=None,
         verify=_baseline_verify,
         reversible=False,
+    ),
+    # v2: Phase 2.1 auth — copy-first, never applied to production without approval.
+    Migration(
+        version=2,
+        name="auth-tables",
+        description=(
+            "Adds the `users` table (bcrypt-credential store) and the nullable "
+            "`owner_id` column on `build_conversations`. Existing rows get "
+            "owner_id=NULL (legacy). New conversations always carry an owner_id. "
+            "When SPECTRA_AUTH_ENABLED=1, authenticated users see only their own "
+            "conversations; NULL-owner rows are inaccessible to all authenticated "
+            "users. Run on a disposable copy first: "
+            "  python backend/app/migrations/runner.py --database data/spectra_copy.db"
+        ),
+        statements=[
+            "CREATE TABLE IF NOT EXISTS users ("
+            "  id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "  username TEXT NOT NULL UNIQUE,"
+            "  password_hash TEXT NOT NULL"
+            ")",
+            "ALTER TABLE build_conversations ADD COLUMN owner_id INTEGER",
+            "CREATE INDEX IF NOT EXISTS ix_build_conversations_owner_id "
+            "  ON build_conversations(owner_id)",
+        ],
+        downgrade=[
+            "DROP INDEX IF EXISTS ix_build_conversations_owner_id",
+            "ALTER TABLE build_conversations DROP COLUMN owner_id",
+            "DROP TABLE IF EXISTS users",
+        ],
+        reversible=True,
+        verify=_verify_v2,
     ),
 ]
 

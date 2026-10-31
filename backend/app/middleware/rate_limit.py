@@ -26,7 +26,7 @@ single-user / small-team self-hosted deployment, not as a login gate.
 
 import os
 import time
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
@@ -44,6 +44,9 @@ DEFAULT_AI_LIMIT_PER_MINUTE = 30
 _WINDOW_SECONDS = 60
 _DEFAULT_COST_SAFETY = None
 
+# Bounded limiter memory: evict least-recently-used buckets beyond this count.
+_MAX_BUCKETS = 4096
+
 
 def _env_int(name: str, default: int | None) -> int | None:
     raw = os.getenv(name)
@@ -59,12 +62,24 @@ def _is_enabled() -> bool:
     return os.getenv("SPECTRA_RATE_LIMIT_ENABLED", "0").strip() in {"1", "true", "yes"}
 
 
+def _trusted_proxy_ips() -> frozenset[str]:
+    """IPs allowed to set X-Forwarded-For.
+
+    When SPECTRA_TRUSTED_PROXIES is empty/unset, no proxy header is trusted and
+    the limiter keys on the direct peer (safe default for a self-hosted app).
+    """
+    raw = os.getenv("SPECTRA_TRUSTED_PROXIES", "").strip()
+    if not raw:
+        return frozenset()
+    return frozenset(part.strip() for part in raw.split(",") if part.strip())
+
+
 class _SlidingWindowLimiter:
-    """Per-key fixed-window counter with an optional per-key record of hits."""
+    """Per-key fixed-window counter with LRU eviction of dead buckets."""
 
     def __init__(self) -> None:
         self._hits: dict[tuple[str, int], int] = defaultdict(int)
-        self._window_started: dict[tuple[str, int], float] = {}
+        self._window_started: OrderedDict[tuple[str, int], float] = OrderedDict()
 
     def allow(self, key: str, limit: int) -> int:
         """Return 0 when allowed, else seconds until the window resets."""
@@ -78,13 +93,21 @@ class _SlidingWindowLimiter:
         if started is None or now - started >= _WINDOW_SECONDS:
             self._window_started[bucket] = now
             self._hits[bucket] = 1
-            return 0
-
-        if self._hits[bucket] >= limit:
+        elif self._hits[bucket] >= limit:
             retry_after = max(1, int(_WINDOW_SECONDS - (now - started)) + 1)
             return retry_after
+        else:
+            self._hits[bucket] += 1
 
-        self._hits[bucket] += 1
+        # Evict when the table exceeds the bound. The bucket touched just now
+        # is moved to the end of the OrderedDict (most-recently-used) so the
+        # eviction walks genuinely cold buckets first.
+        self._window_started.move_to_end(bucket)
+
+        while len(self._window_started) > _MAX_BUCKETS:
+            stale, _ = self._window_started.popitem(last=False)
+            self._hits.pop(stale, None)
+
         return 0
 
 
@@ -119,11 +142,22 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         self._limiter = _SlidingWindowLimiter()
 
     def _identify_client(self, request) -> str:
+        """Rate-limit key.
+
+        Trusted-proxy aware: only when the immediate peer is in the configured
+        trusted set, take the left-most X-Forwarded-For entry (the value added
+        by the first untrusted hop is ignored). Otherwise fall back to the
+        direct peer host name.
+        """
         forwarded = request.headers.get("x-forwarded-for", "")
-        if forwarded:
+        remote = request.client.host if request.client else None
+
+        trusted = _trusted_proxy_ips()
+        if forwarded and remote in trusted:
             return forwarded.split(",")[0].strip()
-        remote = request.client
-        return remote.host if remote else "unknown"
+
+        # X-Forwarded-For is present? Ignore it: not trusted. Use direct peer.
+        return remote or "unknown"
 
     def _limit_for(self, path: str) -> int:
         if self.ai_limit is not None and path.startswith(AI_ENDPOINT_PREFIXES):
