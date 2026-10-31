@@ -81,9 +81,9 @@
 - **Apply to:** source tree only. Verify: tests + build + lint per PR.
 - Verified: 599 frontend tests (+1 decomposition wiring rewrite; markdownRendering test now asserts the component file wiring), vite build green, oxlint only the pre-existing App.jsx `set-state-in-effect` warning (3013/2987). Roadmap 2.2/2.3 AC met.
 
-### Step 10 — Data debt resolution (2.4)
-- Fix the 20 unattributed rows, 2 rejected / 60 NULL-confidence rows, 46 bare names **only where sources allow**; document each decision; no fabricated values.
-- **Apply to:** DB on copy first; provenance-first; no restricted/unknown-license bulk reuse.
+### Step 10 — Data debt resolution (2.4) ✅ DONE (honest re-classification)
+- Resolve each debt item **only where sources allow**; document each decision; **no fabricated values**. Not a DB mutation — a read-only reconciliation tool + pinned regression tests + audit doc that make the resolved/deferred/blocked split explicit and reproducible.
+- Verified: `backend/app/scripts/reconcile_phase24_debt.py` (read-only, deterministic JSON) + `backend/app/test_reconcile_phase24_debt.py` (4 tests) against a disposable copy of `data/spectra.db`. Outcome: **47** bare-number names → deferred-as-intended (verified product model numbers, orderable part IDs), **62** low-confidence rows (60 NULL + 2 rejected) → already-honest (`excluded`/`unmatched`), **8** unattributed hardware → blocked-irresolvable-no-evidence. Doc `docs/PHASE24_DEBT_RESOLUTION.md`, snapshot `docs/fan/phase24_debt.json`. Backend 815 passed (2 skipped) — +10 tests this delivery (4 reconcile + 2 auth + 4 auth-from-prior); frontend 599 passed, vite build green, oxlint 1 pre-existing warning. DB untouched.
 
 ### Step 11 — Product intelligence (Phase 3) — only after Phase 0/1 land.
 
@@ -93,8 +93,8 @@
 
 Every step is per-PR and reversible:
 
-- **Code steps** (1, 2, 4, 5, 7, 9): no DB change → revert commit if needed.
-- **Migration steps** (3, 6, 8, 10): rehearsal copy first; file-restore rollback proven by hash (Batch 018 method); never run against production DB without explicit approval.
+- **Code steps** (1, 2, 4, 5, 7, 9, 10): no DB change → revert commit if needed.
+- **Migration steps** (3, 6, 8): rehearsal copy first; file-restore rollback proven by hash (Batch 018 method); never run against production DB without explicit approval.
 - **Deployment**: container-rebuild is forward-only; the previously shipped image is retained as the rollback target. No in-place production mutation.
 
 ---

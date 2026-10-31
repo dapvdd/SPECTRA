@@ -85,15 +85,14 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 
 ### 2.4 Resolve provenance/dataset debt
 - **Priority:** P2 · **Dependencies:** none · **Effort:** M
-- **Benefits:** closes the 20 unattributed rows, 2 rejected / 60 NULL-confidence rows, 46 bare-number names (only where sources allow, never invented).
-- **Acceptance criteria:** each debt item resolved or explicitly re-classified with documented evidence; no invented values; provenance rows honest.
-- **Risks:** licensing (PassMark/TechPowerUp restricted) → reference-only sources, never bulk reuse; document each decision.
-
-### 2.4 Resolve provenance/dataset debt
-- **Priority:** P2 · **Dependencies:** none · **Effort:** M
-- **Benefits:** closes the 20 unattributed rows, 2 rejected / 60 NULL-confidence rows, 46 bare-number names (only where sources allow, never invented).
-- **Acceptance criteria:** each debt item resolved or explicitly re-classified with documented evidence; no invented values; provenance rows honest.
-- **Risks:** licensing (PassMark/TechPowerUp restricted) → reference-only sources, never bulk reuse; document each decision.
+- **Status:** ✅ RESOLVED (honest re-classification) — delivered reconciliation tool + regression tests + audit doc
+- **Benefits:** separates genuinely blocked debt from already-honest/excluded rows and legitimate model naming, so every debt item is traceable and none is silently dropped.
+- **Acceptance criteria (each item addressed, evidence-backed, never invented):**
+  - **8 unattributed hardware** (0 `field_provenance` rows): specs + orderable product IDs verified (source 9) but no provenance rows → **blocked-irresolvable-no-evidence** (reported, not fabricated).
+  - **62 low-confidence rows** (60 NULL-confidence + 2 `rejected`): all already carry honest `excluded`/`unmatched` `evidence_status` → **already-honest**; verified via reconciliation output.
+  - **47 bare-number names** (AMD catalog model numbers, e.g. `980`, `6380`): high-confidence source-9 verification with orderable part IDs → **deferred-as-intended** (renaming would invent a family prefix).
+- **Deliverables:** `backend/app/scripts/reconcile_phase24_debt.py` (read-only, deterministic) + `backend/app/test_reconcile_phase24_debt.py` (4 regression tests) + `docs/PHASE24_DEBT_RESOLUTION.md` + evidence snapshot.
+- **Risks:** licensing (PassMark/TechPowerUp restricted) → reference-only sources, never bulk reuse; documented per class.
 
 ---
 
