@@ -124,6 +124,55 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 
 ---
 
+## Phase 4 — Hardware Decision Intelligence (P2/P3) — **DONE** (`2026-11-01`)
+
+Delivery branch: `feature/spectra-delivery-20261028` — explainable Hardware
+Decision Intelligence. All backend work is read-only; no production writes.
+
+### 4.1 Catalog completeness audit — ✅ DONE
+`backend/app/scripts/completeness_audit.py` (read-only) + `docs/fan/completeness_audit.json`.
+CPU benchmark coverage 14.8% (518/3,501), GPU 0% (0/1,879), CPU spec 75.9%,
+GPU spec 71.3%, no-evidence tier 0.
+
+### 4.2 Suitability rating engine — ✅ DONE
+`rate_suitability` — 0–5 stars, workload-aware, benchmark-driven or
+spec-based-capped, with rationale and caveats. 5 workloads. See
+`docs/SCORING_METHODOLOGY.md`.
+
+### 4.3 Evidence-quality scoring — ✅ DONE
+`score_evidence_quality` — a separate 0–1 dimension with confidence. Weighted
+signals (attribution 0.35, spec 0.25, provenance 0.20, workload_match 0.20).
+
+### 4.4 Hardware Fit user experience — ✅ DONE
+`SuitabilityCard`, `HardwareFitModal`, `useSuitability`, `useRecommendation`;
+Hardware Fit button on CPU/GPU detail + side-by-side suitability in comparison.
+
+### 4.5 Recommendation engine — ✅ DONE
+`recommend` / `GET /hardware/recommend` — deterministic ranking, evidence
+threshold filter. `budget_max` accepted but no-op (no pricing data).
+
+### 4.6 Validation & delivery — ✅ DONE
+Backend suite (+40 since baseline → 855), frontend suite (599 → 611), sensitivity
+tests, scoring methodology + evidence-gaps docs.
+
+### Honest status by data type
+
+| Data | Status |
+|---|---|
+| GPU gaming | Evidence-limited — spec-based only, capped, reduced confidence |
+| GPU AI/ML | Evidence-limited — no GPU benchmarks → unrated, documented |
+| CPU gaming / workstation | Tested — benchmark-driven for 518 hardware |
+| Recommendation | Tested — evidence threshold, rank stability |
+| Production DB | Preserved — no writes, copy-only |
+| Auth | Preserved — not activated |
+
+### Deferred (documented, not blocking)
+- **Data enrichment pipeline** (dry-run/review/quarantine/batch-import) —
+  requires DB writes; deferred pending explicit approval.
+- **GPU benchmark / pricing sources** — gated on licensed sources (see 3.1, 3.4).
+
+---
+
 ## Dependencies & sequencing summary
 
 ```
