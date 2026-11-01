@@ -1,0 +1,10 @@
+{
+  "cpu": {
+    "total": 3501,
+    "with_boost_clock": 2425
+  },
+  "gpu": {
+    "total": 1879,
+    "with_tdp_w": 1675
+  }
+}

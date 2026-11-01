@@ -93,6 +93,8 @@ class AcquiredValue:
     license_name: str
     hardware_name: str
     hardware_id: int | None = None
+    hardware_kind: str = "GPU"
+    segment_hint: str | None = None
     field: str = ""
     raw_value: object = None
     normalized_value: object = None
@@ -193,6 +195,7 @@ def build_acquired_value(
     source_pointer: str = "",
     confidence: str = "high",
     hardware_id: int | None = None,
+    hardware_kind: str = "GPU",
 ) -> AcquiredValue:
     """Construct an ``AcquiredValue`` with the adapter's provenance filled in."""
     return AcquiredValue(
@@ -204,6 +207,7 @@ def build_acquired_value(
         license_name=adapter.license_name or "",
         hardware_name=hardware_name,
         hardware_id=hardware_id,
+        hardware_kind=hardware_kind,
         field=field,
         raw_value=raw_value,
         normalized_value=normalized_value,
@@ -243,6 +247,7 @@ def acquire(adapter: SourceAdapter, field: str) -> list[AcquiredValue]:
                 unit=unit,
                 source_pointer=f"row {index + 1}",
                 confidence=str(mapped.get("confidence") or "high"),
+                hardware_kind=str(mapped.get("hardware_kind") or "GPU"),
             )
         )
     return values

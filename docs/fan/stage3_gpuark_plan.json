@@ -1,0 +1,9 @@
+{
+  "sample_size": 2000,
+  "validate": {
+    "accepted": 1983,
+    "blocked": false,
+    "quarantined": 0,
+    "rejected": 17
+  }
+}
