@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { BenchmarkQualityBadge } from "./components/BenchmarkQualityBadge.jsx";
 import { MarkdownContent } from "./components/Markdown.jsx";
+import { HardwareFitModal } from "./components/HardwareFitModal.jsx";
+import { SuitabilityCard } from "./components/SuitabilityCard.jsx";
+import { CATEGORIES } from "./suitabilityDisplay.js";
+import { useSuitability } from "./hooks/useSuitability.js";
 import {
   AiChatSection,
   HardwareChatSection,
@@ -1104,6 +1108,7 @@ function CpuDetailView({
   onBack,
   onCompare,
   onAddToBuild,
+  onOpenFit,
   detailError,
   chatState,
   onAskQuestion,
@@ -1184,6 +1189,14 @@ function CpuDetailView({
           >
             {buildAction.actionLabel}
           </button>
+
+          <button
+            type="button"
+            className="detail-compare-button hardware-fit-btn"
+            onClick={onOpenFit}
+          >
+            Hardware Fit
+          </button>
         </div>
       </div>
 
@@ -1227,6 +1240,7 @@ function GpuHardwareDetail({
   buildAction,
   onBack,
   onAddToBuild,
+  onOpenFit,
   provenance,
 }) {
   const viewModel = getGpuDetailViewModel(hardware);
@@ -1280,6 +1294,14 @@ function GpuHardwareDetail({
             aria-pressed={buildAction.alreadySelected}
           >
             {buildAction.actionLabel}
+          </button>
+
+          <button
+            type="button"
+            className="detail-compare-button hardware-fit-btn"
+            onClick={onOpenFit}
+          >
+            Hardware Fit
           </button>
         </div>
       </div>
@@ -2198,6 +2220,66 @@ function BuildConfigurationSection({
   );
 }
 
+function SuitabilitySide({ hardwareId, hardwareName, workload }) {
+  const { data, loading, error } = useSuitability(hardwareId);
+  const rating = data?.ratings?.find((r) => r.category === workload);
+
+  return (
+    <div className="suitability-comparison-side">
+      <h4>{hardwareName}</h4>
+      {loading && <p className="hardware-fit-loading">Loading…</p>}
+      {error && <p className="hardware-fit-error">{String(error)}</p>}
+      {!loading && !error && rating && <SuitabilityCard rating={rating} />}
+      {!loading && !error && !rating && (
+        <p className="hardware-fit-empty">No suitability data.</p>
+      )}
+    </div>
+  );
+}
+
+function SuitabilityComparisonSection({ compareDetails }) {
+  const [workload, setWorkload] = useState("gaming");
+
+  return (
+    <section
+      className="suitability-comparison"
+      aria-labelledby="suitability-comparison-title"
+    >
+      <div className="suitability-comparison-header">
+        <div>
+          <p className="detail-section-label">HARDWARE FIT</p>
+          <h3 id="suitability-comparison-title">
+            Suitability by workload
+          </h3>
+        </div>
+        <label className="suitability-comparison-workload">
+          Workload
+          <select
+            value={workload}
+            onChange={(event) => setWorkload(event.target.value)}
+          >
+            {CATEGORIES.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat.replace("_", " ")}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="suitability-comparison-grid">
+        {compareDetails.map((item) => (
+          <SuitabilitySide
+            key={item.id}
+            hardwareId={item.id}
+            hardwareName={item.name}
+            workload={workload}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [themeState, setThemeState] = useState(() =>
     createThemePreferenceState(
@@ -2220,6 +2302,7 @@ function App() {
   const [detailView, setDetailView] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
+  const [showFit, setShowFit] = useState(false);
   const [compareList, setCompareList] = useState([]);
   const [comparisonSelectionNotice, setComparisonSelectionNotice] =
     useState("");
@@ -3867,6 +3950,7 @@ function App() {
               buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
               onBack={returnToCatalog}
               onAddToBuild={() => addToBuild(selectedHardware)}
+              onOpenFit={() => setShowFit(true)}
               provenance={specProvenanceById[selectedHardware.id]}
             />
           ) : (
@@ -3878,6 +3962,7 @@ function App() {
               onBack={returnToCatalog}
               onCompare={compareSelectedHardware}
               onAddToBuild={() => addToBuild(selectedHardware)}
+              onOpenFit={() => setShowFit(true)}
               detailError={detailError}
               chatState={hardwareChatState}
               onAskQuestion={askHardwareChat}
@@ -3885,6 +3970,15 @@ function App() {
               sourcesById={sourcesById}
             />
           )
+        )}
+
+        {showFit && selectedHardware && (
+          <HardwareFitModal
+            hardwareId={selectedHardware.id}
+            hardwareName={selectedHardware.name}
+            hardwareType={selectedHardware.type}
+            onClose={() => setShowFit(false)}
+          />
         )}
 
         <BuildConfigurationSection
@@ -4200,6 +4294,10 @@ function App() {
                     </tbody>
                   </table>
                 </div>
+              )}
+
+              {compareDetails.length === 2 && (
+                <SuitabilityComparisonSection compareDetails={compareDetails} />
               )}
             </div>
           )}

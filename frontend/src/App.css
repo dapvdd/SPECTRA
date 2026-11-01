@@ -4144,3 +4144,56 @@ h1 {
 .hardware-fit-error {
   color: #f87171;
 }
+
+/* Suitability comparison section (Task 10) */
+
+.suitability-comparison {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-default, #2a2f37);
+}
+
+.suitability-comparison-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.suitability-comparison-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.suitability-comparison-workload {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted, #9aa3ad);
+  font-size: 0.85rem;
+}
+
+.suitability-comparison-workload select {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border-default, #2a2f37);
+  border-radius: 8px;
+  background: var(--surface-raised, #1b1f26);
+  color: var(--text-primary, #e8eaed);
+  text-transform: capitalize;
+}
+
+.suitability-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.suitability-comparison-side h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted, #9aa3ad);
+  font-weight: 600;
+}
