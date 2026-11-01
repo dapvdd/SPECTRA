@@ -37,6 +37,10 @@ from backend.app.schemas.suitability import (
     evidence_quality_to_response,
     rating_to_response,
 )
+from backend.app.schemas.recommendation import (
+    RecommendationCandidate,
+    RecommendationResponse,
+)
 
 __all__ = [
     "MAX_HISTORY_MESSAGES",
@@ -68,4 +72,6 @@ __all__ = [
     "WorkloadRequest",
     "evidence_quality_to_response",
     "rating_to_response",
+    "RecommendationCandidate",
+    "RecommendationResponse",
 ]
