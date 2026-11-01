@@ -47,10 +47,12 @@ from backend.app.schemas.suitability import (
     WorkloadCategory,
     rating_to_response,
 )
+from backend.app.schemas.recommendation import RecommendationResponse
 from backend.app.services.suitability_service import (
     WORKLOADS,
     rate_suitability,
 )
+from backend.app.services import recommendation_service
 from backend.app.services.hardware_catalog_service import (
     get_hardware_facets,
     query_hardware,
@@ -354,6 +356,37 @@ def get_hardware_facet_counts(
         "manufacturers": facets["manufacturers"],
         "segments": facets["segments"],
     }
+
+@app.get(
+    "/hardware/recommend",
+    response_model=RecommendationResponse,
+)
+def get_recommendations(
+    hardware_type: str = Query(..., alias="type"),
+    workload: str = Query(...),
+    limit: int = Query(default=10, ge=1, le=50),
+    budget_max: int | None = Query(default=None, ge=0),
+) -> RecommendationResponse:
+    """Rank hardware recommendations for a workload.
+
+    Hardware is filtered to ``type`` (CPU/GPU) and ranked by suitability for
+    ``workload``. Candidates must clear an evidence threshold — weak or
+    unratable hardware is excluded, never guessed at. Declared before
+    ``/hardware/{hardware_id}`` so the literal ``recommend`` path is not
+    shadowed by the id route.
+    """
+    if workload not in WORKLOADS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid workload: {workload}",
+        )
+
+    return recommendation_service.recommend_response(
+        hardware_type=hardware_type,
+        workload=workload,
+        budget_max=budget_max,
+        limit=limit,
+    )
 
 @app.get(
     "/hardware/{hardware_id}",

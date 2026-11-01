@@ -151,3 +151,57 @@ def test_suitability_missing_hardware_returns_404():
         assert resp.status_code == 404
     finally:
         setup.teardown()
+
+
+def test_recommend_returns_empty_for_gpu_ai_ml():
+    setup = SuitabilityAPISetup()
+    try:
+        resp = setup.client.get(
+            "/hardware/recommend",
+            params={"type": "GPU", "workload": "ai_ml"},
+        )
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["candidates"] == []
+        assert body["filter_reason"] is not None
+    finally:
+        setup.teardown()
+
+
+def test_recommend_returns_ranked_candidates_for_benchmarked_cpu():
+    setup = SuitabilityAPISetup()
+    try:
+        resp = setup.client.get(
+            "/hardware/recommend",
+            params={"type": "CPU", "workload": "gaming"},
+        )
+        assert resp.status_code == 200
+        body = resp.json()
+        # The fully benchmarked Ryzen 9 7950X should be recommended
+        assert len(body["candidates"]) >= 1
+        stars = [c["suitability"]["stars"] for c in body["candidates"]]
+        assert stars == sorted(stars, reverse=True)
+    finally:
+        setup.teardown()
+
+
+def test_recommend_validates_workload_parameter():
+    setup = SuitabilityAPISetup()
+    try:
+        resp = setup.client.get(
+            "/hardware/recommend",
+            params={"type": "CPU", "workload": "not_a_real_workload"},
+        )
+        assert resp.status_code in (422, 400)
+    finally:
+        setup.teardown()
+
+
+def test_hardware_recommend_does_not_shadow_hardware_id_route():
+    setup = SuitabilityAPISetup()
+    try:
+        # `recommend` is a literal path that must not be treated as an id.
+        resp = setup.client.get("/hardware/recommend")
+        assert resp.status_code == 422  # missing required query params
+    finally:
+        setup.teardown()
