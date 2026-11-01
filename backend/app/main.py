@@ -41,6 +41,16 @@ from backend.app.schemas.hardware import (
     HardwareDetail,
     HardwareFacetsResponse,
 )
+from backend.app.schemas.suitability import (
+    HardwareSuitabilityResponse,
+    SuitabilityRatingResponse,
+    WorkloadCategory,
+    rating_to_response,
+)
+from backend.app.services.suitability_service import (
+    WORKLOADS,
+    rate_suitability,
+)
 from backend.app.services.hardware_catalog_service import (
     get_hardware_facets,
     query_hardware,
@@ -554,6 +564,76 @@ def get_benchmark_provenance(
         return source_service.get_benchmark_provenance(benchmark_result_id)
     except source_service.ProvenanceLookupError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+def _load_hardware_for_suitability(session, hardware_id: int):
+    """Load one hardware record with its spec, benchmarks and provenance.
+
+    Returns None when the id does not exist (the callers raise 404 on None).
+    """
+    return session.scalar(
+        select(Hardware)
+        .where(Hardware.id == hardware_id)
+        .options(
+            selectinload(Hardware.cpu_specification),
+            selectinload(Hardware.gpu_specification),
+            selectinload(Hardware.benchmark_results),
+            selectinload(Hardware.field_provenance),
+            selectinload(Hardware.external_identifiers),
+        )
+    )
+
+
+@app.get(
+    "/hardware/{hardware_id}/suitability",
+    response_model=HardwareSuitabilityResponse,
+)
+def get_hardware_suitability(
+    hardware_id: int,
+) -> HardwareSuitabilityResponse:
+    """Workload-aware suitability ratings for every supported category.
+
+    Ratings are derived from benchmark evidence where available, otherwise
+    capped spec-based estimates. AI/ML reports ``unrated`` because there is
+    no GPU/VRAM benchmark evidence in this dataset. Nothing is fabricated.
+    """
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+
+        ratings = [
+            rating_to_response(
+                rate_suitability(hardware, category)
+            )
+            for category in sorted(WORKLOADS)
+        ]
+
+        return {
+            "hardware_id": hardware.id,
+            "hardware_name": hardware.name,
+            "hardware_type": hardware.type,
+            "ratings": ratings,
+        }
+
+
+@app.get(
+    "/hardware/{hardware_id}/suitability/{category}",
+    response_model=SuitabilityRatingResponse,
+)
+def get_hardware_suitability_category(
+    hardware_id: int,
+    category: WorkloadCategory,
+) -> SuitabilityRatingResponse:
+    """Single-category suitability rating for one hardware record."""
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+
+        return rating_to_response(
+            rate_suitability(hardware, category)
+        )
 
 
 @app.post(
