@@ -26,6 +26,17 @@ from backend.app.schemas.hardware import (
     HardwareDetail,
     HardwareIdentity,
 )
+from backend.app.schemas.suitability import (
+    EvidenceConfidence,
+    EvidenceQualityResponse,
+    HardwareSuitabilityResponse,
+    RatingConfidence,
+    SuitabilityRatingResponse,
+    WorkloadCategory,
+    WorkloadRequest,
+    evidence_quality_to_response,
+    rating_to_response,
+)
 
 __all__ = [
     "MAX_HISTORY_MESSAGES",
@@ -48,4 +59,13 @@ __all__ = [
     "HardwareCatalogItem",
     "HardwareDetail",
     "HardwareIdentity",
+    "EvidenceConfidence",
+    "EvidenceQualityResponse",
+    "HardwareSuitabilityResponse",
+    "RatingConfidence",
+    "SuitabilityRatingResponse",
+    "WorkloadCategory",
+    "WorkloadRequest",
+    "evidence_quality_to_response",
+    "rating_to_response",
 ]
