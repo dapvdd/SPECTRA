@@ -309,9 +309,21 @@ class GpuArkAdapter(CsvSourceAdapter):
             extracted[mapped] = row.get(csv_col)
         return extracted
 
+    # Known missing-value sentinels that appear in the GPU Ark CSV. These are
+    # not real TDP/spec values — they must be normalized to None so the
+    # enrichment pipeline never writes fabricated hardware data.
+    _MISSING_SENTINELS = frozenset({
+        "unknown", "n/a", "na", "none", "null", "-",
+        # em-dash and en-dash variants
+        "\u2014", "\u2013",
+    })
+
     def normalize_field_value(self, field: str, value: object) -> tuple[object, str]:
         unit = self._COLUMN_MAP.get(field, (None, ""))[1]
-        if value is None or str(value).strip() == "":
+        if value is None:
+            return None, unit
+        v = str(value).strip().lower()
+        if v == "" or v in self._MISSING_SENTINELS:
             return None, unit
         return value, unit
 

@@ -221,11 +221,20 @@ class EnrichmentPlan:
                 **base,
             )
         table_name, field_name = mapping
-        # 3) null value -> never invent
-        if value.normalized_value is None or str(value.normalized_value).strip() == "":
+        # 3) null value → never invent
+        #    Defense-in-depth: check both None/empty AND known sentinel strings
+        #    that could slip through a buggy adapter's normalize_field_value.
+        norm_str = str(value.normalized_value).strip().lower() if value.normalized_value is not None else ""
+        KNOWN_SENTINELS = frozenset({
+            "unknown", "n/a", "na", "none", "null", "-",
+            "\u2014", "\u2013",          # em-dash, en-dash
+        })
+        if (value.normalized_value is None
+                or str(value.normalized_value).strip() == ""
+                or norm_str in KNOWN_SENTINELS):
             return EnrichmentAction(
                 status="reject",
-                reason=f"null/empty normalized value for {field_name}; nothing invented",
+                reason=f"null/empty or sentinel normalized value for {field_name}; nothing invented",
                 table_name=table_name,
                 field_name=field_name,
                 **base,

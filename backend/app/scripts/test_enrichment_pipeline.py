@@ -125,6 +125,42 @@ class TestEnrichmentPlan:
         assert action.status == "reject"
         assert "null" in action.reason.lower()
 
+    @pytest.mark.parametrize("sentinel", [
+        "unknown", "Unknown", "UNKNOWN",
+        "n/a", "N/A", "na", "NA",
+        "none", "None", "NONE",
+        "-", "—", "–",
+        "null", "Null", "NULL",
+    ], ids=lambda s: repr(s))
+    def test_sentinel_string_normalized_value_is_rejected(self, sentinel):
+        """Sentinel strings must be rejected as fabricated data, not persisted.
+
+        Defense-in-depth: even if normalize_field_value somehow returns a sentinel
+        string (e.g. due to a bug in an adapter), _classify must catch it.
+        """
+        value = make_value(hardware_name="GPU A", normalized=sentinel)
+        plan = ep.EnrichmentPlan([value], source_reference="x.csv", batch_no=19)
+        action = plan.actions[0]
+        assert action.status == "reject", (
+            f"sentinel {sentinel!r} passed _classify as status={action.status}; "
+            "expected 'reject' — fabricated values must never be imported"
+        )
+
+    def test_empty_string_normalized_value_is_rejected(self):
+        value = make_value(hardware_name="GPU A", normalized="   ")
+        plan = ep.EnrichmentPlan([value], source_reference="x.csv", batch_no=19)
+        action = plan.actions[0]
+        assert action.status == "reject"
+
+    def test_valid_numeric_value_is_not_rejected(self):
+        """Sanity check: real numeric values must still be accepted."""
+        value = make_value(hardware_name="GPU A", field="tdp_w",
+                           normalized="450 W", raw="450 W")
+        plan = ep.EnrichmentPlan([value], source_reference="x.csv", batch_no=19)
+        action = plan.actions[0]
+        assert action.status == "apply"
+        assert action.normalized_value == "450 W"
+
 
 # ---------------------------------------------------------------------------
 # Hardware identity resolution (in-memory engine)
