@@ -120,8 +120,12 @@ def main():
     )
     record(
         "hardware_row_schema",
-        all(set(h) == {"id", "name", "manufacturer", "type"} for h in hardware),
-        "id/name/manufacturer/type",
+        all(
+            set(h)
+            == {"id", "name", "manufacturer", "type", "architecture", "release_date", "segment"}
+            for h in hardware
+        ),
+        "id/name/manufacturer/type/architecture/release_date/segment",
     )
     cpu_only = [h for h in hardware if h["type"] == "CPU"]
     gpu_only = [h for h in hardware if h["type"] == "GPU"]
@@ -159,11 +163,11 @@ def main():
     record(
         "gpu_detail_schema",
         status == 200 and gpu.get("type") == "GPU" and gpu_keys
-        == {"memory_gb", "memory_type", "core_clock_mhz", "boost_clock_mhz", "vram_bandwidth_gbps", "tdp_w", "interface", "length_mm"},
+        == {"memory_gb", "memory_type", "core_clock_mhz", "boost_clock_mhz", "vram_bandwidth_gbps", "memory_bus_width_bits", "tdp_w", "interface", "length_mm"},
         f"{status} keys={sorted(gpu_keys)}",
     )
     status, body = call(base, "GET", "/hardware/999999")
-    record("missing_hardware_detail_shape", status == 200 and body == {"error": "Hardware not found"}, f"{status} {body}")
+    record("missing_hardware_detail_shape", status == 404 and body == {"detail": "Hardware not found"}, f"{status} {body}")
     status, body = call(base, "GET", "/hardware/not-an-int")
     record("invalid_hardware_id_422", status == 422, f"{status}")
 
@@ -180,7 +184,7 @@ def main():
         isinstance(benches, list)
         and len(benches) > 0
         and all(
-            set(row) == {"id", "hardware_id", "benchmark_name", "score", "unit", "test_type", "source", "recorded_at"}
+            set(row) == {"id", "hardware_id", "benchmark_name", "score", "unit", "test_type", "source", "quality", "recorded_at"}
             for row in benches
         )
         and all(row["benchmark_name"] == "Geekbench 7" and row["unit"] == "points" for row in benches),
