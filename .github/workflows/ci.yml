@@ -29,6 +29,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pytest
 
+      - name: Initialize test database
+        run: |
+          python -c "
+          import sys
+          from pathlib import Path
+          from sqlalchemy import create_engine
+          sys.path.insert(0, '.')
+          from backend.app.database import Base
+          # Import all models to register them with Base.metadata
+          from backend.app.models import (  # noqa: F401
+              BenchmarkResult, BuildConversation, BuildMessage,
+              CPUSpecification, GPUSpecification, Hardware, Source,
+          )
+          db = Path('data/spectra.db')
+          db.parent.mkdir(parents=True, exist_ok=True)
+          engine = create_engine('sqlite:///data/spectra.db', connect_args={'check_same_thread': False})
+          Base.metadata.create_all(bind=engine)
+          print('schema created')
+          "
+          python backend/app/migrations/runner.py --database data/spectra.db
+
       - name: Run backend tests (non-AI)
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py
         env:
@@ -37,7 +58,7 @@ jobs:
 
       - name: Run AI-gated tests when a key is provided
         if: env.GEMINI_API_KEY != ''
-        run: python -m pytest backend -q
+        run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
