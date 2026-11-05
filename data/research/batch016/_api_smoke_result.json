@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-04T13:27:47.237623+00:00",
-  "base_url": "http://127.0.0.1:8773",
+  "generated_at": "2026-11-04T15:18:49.107188+00:00",
+  "base_url": "http://127.0.0.1:8774",
   "db": "C:\\Users\\user\\AppData\\Local\\Temp\\opencode\\spectra_e2e_migrated.db",
   "ids": {
     "bench_cpu": 6,
@@ -194,7 +194,7 @@
     {
       "name": "build_conversation_create",
       "passed": true,
-      "detail": "200 {'id': 7, 'cpu_hardware_id': 1, 'gpu_hardware_id': 3361, 'owner_id': None, 'created_at': '2026-11-03T15:01:40.903045', 'updated_at': '2026-11-04T20:26:01.573123'}"
+      "detail": "200 {'id': 7, 'cpu_hardware_id': 1, 'gpu_hardware_id': 3361, 'owner_id': None, 'created_at': '2026-11-03T15:01:40.903045', 'updated_at': '2026-11-04T20:27:45.471107'}"
     },
     {
       "name": "build_conversation_fetch",
