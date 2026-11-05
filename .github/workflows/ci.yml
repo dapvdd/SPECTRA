@@ -32,34 +32,55 @@ jobs:
       - name: Initialize test database
         run: |
           python -c "
-          import sys
+          import sys, os, sqlite3
           from pathlib import Path
-          from sqlalchemy import create_engine
           sys.path.insert(0, '.')
+          from sqlalchemy import create_engine
           from backend.app.database import Base
           from backend.app.models import (  # noqa: F401
               BenchmarkResult, BuildConversation, BuildMessage,
               CPUSpecification, GPUSpecification, Hardware, Source,
           )
           from backend.app.auth import User  # noqa: F401
-          db = Path('data/spectra.db')
-          db.parent.mkdir(parents=True, exist_ok=True)
-          engine = create_engine('sqlite:///data/spectra.db', connect_args={'check_same_thread': False})
+
+          db_path = Path('data/spectra.db').resolve()
+          db_path.parent.mkdir(parents=True, exist_ok=True)
+
+          # Remove stale DB to ensure fresh start
+          if db_path.exists():
+              db_path.unlink()
+
+          url = f'sqlite:///{db_path}'
+          print(f'DEBUG: Creating DB at {url}')
+          engine = create_engine(url, connect_args={'check_same_thread': False})
           Base.metadata.create_all(bind=engine)
+          engine.dispose()
+
+          # Verify tables were created
+          conn = sqlite3.connect(str(db_path))
+          tables = [r[0] for r in conn.execute(
+              \"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\"
+          )]
+          conn.close()
+          print(f'DEBUG: Created {len(tables)} tables: {sorted(tables)}')
           print('fresh v2 schema created')
           "
+        env:
+          SPECTRA_DATABASE_URL: "sqlite:///data/spectra.db"
 
       - name: Run backend tests (non-AI)
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py --deselect=backend/app/test_auth_security.py::TestProtectedRoutesWhenAuthOn::test_public_routes_stay_open --deselect=backend/app/test_suitability_api.py::test_recommend_returns_ranked_candidates_for_benchmarked_cpu --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_database_persistence_across_restart_cycle --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
         env:
           # AI suites skip when no key is present (provider unavailable).
           GEMINI_API_KEY: ""
+          SPECTRA_DATABASE_URL: "sqlite:///data/spectra.db"
 
       - name: Run AI-gated tests when a key is provided
         if: env.GEMINI_API_KEY != ''
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py --deselect=backend/app/test_auth_security.py::TestProtectedRoutesWhenAuthOn::test_public_routes_stay_open --deselect=backend/app/test_suitability_api.py::test_recommend_returns_ranked_candidates_for_benchmarked_cpu --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_database_persistence_across_restart_cycle --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SPECTRA_DATABASE_URL: "sqlite:///data/spectra.db"
 
   frontend:
     name: Frontend (test + build + lint)
