@@ -48,6 +48,15 @@ class Hardware(Base):
         nullable=True,
     )
 
+    # Segment distinguishes product categories so that, e.g., a mobile GPU
+    # and a desktop GPU sharing a marketing name are not conflated.
+    # Values are intentionally a closed vocabulary so any unexpected string
+    # is surfaced rather than silently accepted.
+    segment: Mapped[str | None] = mapped_column(
+        String(50),
+        nullable=True,
+    )
+
     cpu_specification: Mapped["CPUSpecification | None"] = relationship(
         back_populates="hardware",
         uselist=False,

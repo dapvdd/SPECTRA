@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "generated_at": "2026-10-28",
+    "database": "C:\\Users\\user\\spectra-local\\data\\spectra.db",
+    "operation": "DATA COMPLETENESS \u2014 Phase A inventory"
+  },
+  "records_by_type": {
+    "CPU": 3501,
+    "GPU": 1879
+  },
+  "records_by_manufacturer": {
+    "Intel": 2959,
+    "AMD": 1439,
+    "NVIDIA": 876,
+    "ATI": 106
+  },
+  "completeness": {
+    "cpu": {
+      "cores": {
+        "missing": 5,
+        "present": 3496,
+        "null_pct": 0.1
+      },
+      "threads": {
+        "missing": 461,
+        "present": 3040,
+        "null_pct": 13.2
+      },
+      "base_clock_ghz": {
+        "missing": 229,
+        "present": 3272,
+        "null_pct": 6.5
+      },
+      "boost_clock_ghz": {
+        "missing": 1076,
+        "present": 2425,
+        "null_pct": 30.7
+      },
+      "tdp_w": {
+        "missing": 277,
+        "present": 3224,
+        "null_pct": 7.9
+      },
+      "process_node_nm": {
+        "missing": 1028,
+        "present": 2473,
+        "null_pct": 29.4
+      },
+      "socket": {
+        "missing": 190,
+        "present": 3311,
+        "null_pct": 5.4
+      }
+    },
+    "gpu": {
+      "memory_gb": {
+        "missing": 341,
+        "present": 1538,
+        "null_pct": 18.1
+      },
+      "memory_type": {
+        "missing": 0,
+        "present": 1879,
+        "null_pct": 0.0
+      },
+      "core_clock_mhz": {
+        "missing": 4,
+        "present": 1875,
+        "null_pct": 0.2
+      },
+      "boost_clock_mhz": {
+        "missing": 755,
+        "present": 1124,
+        "null_pct": 40.2
+      },
+      "vram_bandwidth_gbps": {
+        "missing": 341,
+        "present": 1538,
+        "null_pct": 18.1
+      },
+      "memory_bus_width_bits": {
+        "missing": 436,
+        "present": 1443,
+        "null_pct": 23.2
+      },
+      "tdp_w": {
+        "missing": 204,
+        "present": 1675,
+        "null_pct": 10.9
+      },
+      "interface": {
+        "missing": 1030,
+        "present": 849,
+        "null_pct": 54.8
+      },
+      "length_mm": {
+        "missing": 1113,
+        "present": 766,
+        "null_pct": 59.2
+      }
+    },
+    "hardware": {
+      "release_date": {
+        "missing": 4329,
+        "present": 1051,
+        "null_pct": 80.5
+      },
+      "architecture": {
+        "missing": 2789,
+        "present": 2591,
+        "null_pct": 51.8
+      },
+      "segment": {
+        "missing": 5380,
+        "present": 0,
+        "null_pct": 100.0
+      }
+    }
+  },
+  "provenance": {
+    "hardware_with_provenance": 5360,
+    "hardware_total": 5380,
+    "hardware_without_provenance": [
+      {
+        "id": 152,
+        "name": "AMD Athlon 320GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 153,
+        "name": "AMD Athlon 300GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 195,
+        "name": "AMD Ryzen 7 PRO 6860Z",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 235,
+        "name": "AMD Ryzen 5 PRO 3600",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 339,
+        "name": "AMD EPYC 9554",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 358,
+        "name": "AMD EPYC 9254",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 388,
+        "name": "AMD EPYC 7713P",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 389,
+        "name": "AMD EPYC 7713",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 396,
+        "name": "AMD EPYC 7513",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 417,
+        "name": "AMD EPYC 7702",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 419,
+        "name": "AMD EPYC 7702P",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 428,
+        "name": "AMD EPYC 7502",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 429,
+        "name": "AMD EPYC 7502P",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 431,
+        "name": "AMD EPYC 7402",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 432,
+        "name": "AMD EPYC 7402P",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 447,
+        "name": "AMD EPYC 7601",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 589,
+        "name": "AMD Athlon 240GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 591,
+        "name": "AMD Athlon 220GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 593,
+        "name": "AMD Athlon 200GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "id": 601,
+        "name": "AMD Athlon PRO 200GE",
+        "manufacturer": "AMD",
+        "type": "CPU"
+      }
+    ],
+    "missing_provenance_count": 20
+  },
+  "duplicates": {
+    "groups": 0,
+    "records_involved": 0,
+    "by_name": []
+  },
+  "invalid_ranges": {
+    "grouped": [],
+    "total": 0
+  },
+  "conflicts": {
+    "cpu_contradictions": []
+  },
+  "benchmark_coverage": {
+    "by_type": {
+      "CPU": 518
+    },
+    "hardware_with_benchmark": 518,
+    "hardware_total": 5380,
+    "benchmark_rows": 1040,
+    "benchmark_names": {
+      "Geekbench 7": 1040
+    }
+  },
+  "schema": {
+    "benchmark_results": [
+      "id",
+      "hardware_id",
+      "benchmark_name",
+      "score",
+      "unit",
+      "test_type",
+      "source_id",
+      "recorded_at"
+    ],
+    "build_conversations": [
+      "id",
+      "cpu_hardware_id",
+      "gpu_hardware_id",
+      "created_at",
+      "updated_at"
+    ],
+    "build_messages": [
+      "id",
+      "conversation_id",
+      "role",
+      "content",
+      "evidence_json",
+      "analysis_json",
+      "created_at"
+    ],
+    "cpu_specifications": [
+      "id",
+      "hardware_id",
+      "cores",
+      "threads",
+      "base_clock_ghz",
+      "boost_clock_ghz",
+      "tdp_w",
+      "process_node_nm",
+      "socket"
+    ],
+    "external_identifiers": [
+      "id",
+      "hardware_id",
+      "source_id",
+      "external_id",
+      "identifier_type"
+    ],
+    "field_provenance": [
+      "id",
+      "hardware_id",
+      "source_id",
+      "table_name",
+      "field_name",
+      "evidenced_value",
+      "source_url",
+      "license_name",
+      "license_notes",
+      "attribution",
+      "access_date",
+      "confidence",
+      "evidence_status",
+      "source_reference",
+      "match_method",
+      "batch_no",
+      "notes",
+      "recorded_at",
+      "benchmark_result_id"
+    ],
+    "gpu_specifications": [
+      "id",
+      "hardware_id",
+      "memory_gb",
+      "memory_type",
+      "core_clock_mhz",
+      "boost_clock_mhz",
+      "vram_bandwidth_gbps",
+      "tdp_w",
+      "interface",
+      "length_mm",
+      "memory_bus_width_bits"
+    ],
+    "hardware": [
+      "id",
+      "name",
+      "manufacturer",
+      "type",
+      "release_date",
+      "architecture",
+      "segment"
+    ],
+    "sources": [
+      "id",
+      "name",
+      "url",
+      "publisher",
+      "description",
+      "license_name",
+      "license_url",
+      "license_status",
+      "terms_notes",
+      "attribution",
+      "retrieved_on"
+    ]
+  },
+  "non_applicable_fields": {
+    "GPU vram_bandwidth_gbps": []
+  },
+  "missing_value_classification": {
+    "A": "missing but publicly verifiable (source exists)",
+    "B": "missing and requires licensed data",
+    "C": "not applicable (whole category)",
+    "D": "ambiguous hardware identity",
+    "E": "not publicly available",
+    "F": "pending verification"
+  }
+}

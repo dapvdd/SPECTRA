@@ -2,7 +2,8 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from sqlalchemy import select
+from sqlalchemy import select, text
+from sqlalchemy.orm import selectinload
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -17,13 +18,55 @@ load_backend_environment()
 from backend.app.database import SessionLocal
 from backend.app.models import Hardware
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.params import Depends  # noqa: F401 — used in route signatures
+
+from backend.app.auth import (
+    InvalidCredentialsError,
+    create_user,
+    is_auth_enabled,
+    issue_token,
+    login_response,
+    require_auth,
+)
 
 _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://localhost:8080")
 CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.strip()]
 
 from backend.app.schemas.benchmark import BenchmarkResultResponse
+from backend.app.schemas.hardware import (
+    FacetCount,
+    HardwareCatalogItem,
+    HardwareDetail,
+    HardwareFacetsResponse,
+)
+from backend.app.schemas.suitability import (
+    HardwareSuitabilityResponse,
+    SuitabilityRatingResponse,
+    WorkloadCategory,
+    rating_to_response,
+)
+from backend.app.schemas.recommendation import RecommendationResponse
+from backend.app.services.suitability_service import (
+    WORKLOADS,
+    rate_suitability,
+)
+from backend.app.services import recommendation_service
+from backend.app.services.hardware_catalog_service import (
+    get_hardware_facets,
+    query_hardware,
+)
+from backend.app.services.benchmark_quality_service import (
+    quality_to_response_field,
+    score_benchmark_quality,
+)
+from backend.app.logging_config import configure_logging, get_logger
+from backend.app.middleware.rate_limit import RateLimitMiddleware
+from backend.app.middleware.request_id import (
+    REQUEST_ID_HEADER,
+    install_request_id_middleware,
+)
 from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
@@ -40,6 +83,11 @@ from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
 )
+from backend.app.schemas.comparison import (
+    GPUComparisonRequest,
+    ComparisonResultResponse,
+    MetricComparisonResponse,
+)
 from backend.app.schemas.hardware_chat import (
     HardwareChatRequest,
     HardwareChatResponse,
@@ -54,10 +102,17 @@ from backend.app.services.benchmark_service import (
 )
 from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
+from backend.app.services import comparison_service
 from backend.app.services import explanation_service
 from backend.app.services import hardware_chat_service
 from backend.app.services import source_service
 
+
+# Configure structured JSON logging before any request handling. Running the
+# JSON handler twice is a no-op thanks to configure_logging idempotency.
+configure_logging()
+
+logger = get_logger(__name__)
 
 app = FastAPI(
     title="SPECTRA API",
@@ -72,6 +127,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Opt-in rate/cost control for the AI endpoints. Disabled unless configured
+# (SPECTRA_RATE_LIMIT_ENABLED=1) so existing behaviour and tests are unchanged.
+app.add_middleware(RateLimitMiddleware)
+
+# Request-id correlation. Additive: sets a header on every response and never
+# changes behaviour. Setting it is safe because no existing test asserts the
+# absence of a header.
+install_request_id_middleware(app)
 
 
 @app.get("/")
@@ -88,34 +152,247 @@ def health_check():
         "status": "healthy",
     }
 
-@app.get("/hardware")
-def get_hardware(
-    hardware_type: str | None = Query(default=None, alias="type"),
-):
-    statement = select(Hardware)
 
-    if hardware_type is not None:
-        statement = statement.where(
-            Hardware.type == hardware_type
+@app.get("/ready")
+def readiness_check():
+    """Readiness probe: DB reachable and migrations current.
+
+    Semantics for orchestration: returns 200 only when ready, 503 with a JSON
+    body when not. The DB check is a ``SELECT 1`` through the app's own session
+    factory. Migration status is reported over the versioned runner's
+    ``schema_version`` table (0 = baseline not yet applied, which is an
+    informational state, not a readiness failure — the runner is new and the
+    deployed DB predates it). No production migration is ever applied here.
+    """
+    db_ready = False
+    migrations_status = "unknown"
+
+    try:
+        with SessionLocal() as session:
+            session.execute(select(Hardware.id).limit(1))
+            has_version_table = session.execute(
+                text(
+                    "SELECT name FROM sqlite_master WHERE type='table' "
+                    "AND name='schema_version'"
+                )
+            ).scalar()
+            if has_version_table:
+                version = session.execute(
+                    text("SELECT version FROM schema_version WHERE id=1")
+                ).scalar()
+                migrations_status = f"tracked-version-{version}"
+            else:
+                migrations_status = "untracked"
+        db_ready = True
+    except Exception as error:  # noqa: BLE001 - report any probe failure
+        logger.error(
+            "readiness probe failed",
+            extra={"error": str(error)},
+        )
+        db_ready = False
+
+    ready = db_ready
+    if not ready:
+        raise HTTPException(status_code=503, detail="not ready")
+
+    return {
+        "status": "ready",
+        "database": "reachable",
+        "migrations": migrations_status,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Auth schema definitions (inline to avoid circular imports with auth.py)
+# ---------------------------------------------------------------------------
+
+from pydantic import BaseModel, Field
+
+
+class LoginRequest(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=1)
+
+
+class RegisterRequest(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=12, max_length=128)
+
+
+class TokenResponse(BaseModel):
+    token: str
+    token_type: str = "bearer"
+    username: str
+
+
+class AuthStatusResponse(BaseModel):
+    auth_enabled: bool
+
+
+@app.get("/auth/status", response_model=AuthStatusResponse)
+def auth_status() -> AuthStatusResponse:
+    """Report whether auth is currently enabled. Safe to call without a token."""
+    return AuthStatusResponse(auth_enabled=is_auth_enabled())
+
+
+@app.post("/auth/register", response_model=TokenResponse, status_code=201)
+def register(request_data: RegisterRequest) -> TokenResponse:
+    """Register a new user. Available regardless of SPECTRA_AUTH_ENABLED.
+
+    When auth is OFF this endpoint still works so users can pre-register;
+    the token it returns is only meaningful when auth is ON."""
+    try:
+        user = create_user(
+            username=request_data.username,
+            password=request_data.password,
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+    token = issue_token(user.id)
+    return TokenResponse(token=token, token_type="bearer", username=user.username)
+
+
+@app.post("/auth/login", response_model=TokenResponse)
+def login(request_data: LoginRequest) -> TokenResponse:
+    """Authenticate with username/password and receive a bearer token.
+
+    The token is only valid when SPECTRA_AUTH_ENABLED=1. When auth is OFF
+    this endpoint still validates credentials (so the same call works in both
+    modes) but the token has no effect on any protected endpoint."""
+    try:
+        return login_response(
+            username=request_data.username,
+            password=request_data.password,
+        )
+    except InvalidCredentialsError:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid username or password.",
+            headers={"WWW-Authenticate": "Bearer"},
+        ) from None
+
+
+@app.get(
+    "/hardware",
+    response_model=list[HardwareCatalogItem],
+)
+def get_hardware(
+    response: Response,
+    hardware_type: str | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1),
+    manufacturer: str | None = Query(default=None),
+    segment: str | None = Query(default=None),
+    limit: int | None = Query(default=None, ge=1, le=200),
+    offset: int = Query(default=0, ge=0),
+) -> list[HardwareCatalogItem]:
+    """Server-side catalog query (Phase 1.3).
+
+    All parameters are additive. With no parameters the endpoint returns the
+    full catalog exactly as before 1.3 (byte-identical default behavior).
+    ``q`` filters by case-insensitive name substring; ``type``/``manufacturer``/
+    ``segment`` filter exactly; ``limit``/``offset`` paginate the result. The
+    ``X-Total-Count`` header always carries the total rows under the active
+    filters (the full filtered set, not the page), so clients can page without
+    guessing.
+    """
+    page, total = query_hardware(
+        hardware_type=hardware_type,
+        q=q,
+        manufacturer=manufacturer,
+        segment=segment,
+        limit=limit,
+        offset=offset,
+    )
+
+    # Always set the header so default callers also learn the whole catalog
+    # size, and paginated callers learn the full filtered total.
+    response.headers["X-Total-Count"] = str(total)
+
+    return [
+        {
+            "id": hardware.id,
+            "name": hardware.name,
+            "manufacturer": hardware.manufacturer,
+            "type": hardware.type,
+            "segment": hardware.segment,
+            "release_date": hardware.release_date,
+            "architecture": hardware.architecture,
+        }
+        for hardware in page
+    ]
+
+
+@app.get(
+    "/hardware/facets",
+    response_model=HardwareFacetsResponse,
+)
+def get_hardware_facet_counts(
+    hardware_type: str | None = Query(default=None, alias="type"),
+    q: str | None = Query(default=None, min_length=1),
+    manufacturer: str | None = Query(default=None),
+    segment: str | None = Query(default=None),
+) -> HardwareFacetsResponse:
+    """Accurate facet counts for the active catalog filters.
+
+    Counts are computed with the same WHERE clauses the catalog query applies,
+    so each facet reflects the rows visible under the other active filters.
+    Declared before ``/hardware/{hardware_id}`` so the literal ``facets`` path
+    is not shadowed by the id route.
+    """
+    facets = get_hardware_facets(
+        hardware_type=hardware_type,
+        q=q,
+        manufacturer=manufacturer,
+        segment=segment,
+    )
+
+    return {
+        "types": facets["types"],
+        "manufacturers": facets["manufacturers"],
+        "segments": facets["segments"],
+    }
+
+@app.get(
+    "/hardware/recommend",
+    response_model=RecommendationResponse,
+)
+def get_recommendations(
+    hardware_type: str = Query(..., alias="type"),
+    workload: str = Query(...),
+    limit: int = Query(default=10, ge=1, le=50),
+    budget_max: int | None = Query(default=None, ge=0),
+) -> RecommendationResponse:
+    """Rank hardware recommendations for a workload.
+
+    Hardware is filtered to ``type`` (CPU/GPU) and ranked by suitability for
+    ``workload``. Candidates must clear an evidence threshold — weak or
+    unratable hardware is excluded, never guessed at. Declared before
+    ``/hardware/{hardware_id}`` so the literal ``recommend`` path is not
+    shadowed by the id route.
+    """
+    if workload not in WORKLOADS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Invalid workload: {workload}",
         )
 
-    with SessionLocal() as session:
-        hardware_list = session.scalars(
-            statement
-        ).all()
+    return recommendation_service.recommend_response(
+        hardware_type=hardware_type,
+        workload=workload,
+        budget_max=budget_max,
+        limit=limit,
+    )
 
-        return [
-            {
-                "id": hardware.id,
-                "name": hardware.name,
-                "manufacturer": hardware.manufacturer,
-                "type": hardware.type,
-            }
-            for hardware in hardware_list
-        ]
-
-@app.get("/hardware/{hardware_id}")
-def get_hardware_detail(hardware_id: int):
+@app.get(
+    "/hardware/{hardware_id}",
+    response_model=HardwareDetail,
+)
+def get_hardware_detail(hardware_id: int) -> HardwareDetail:
     with SessionLocal() as session:
         hardware = session.get(
             Hardware,
@@ -123,9 +400,7 @@ def get_hardware_detail(hardware_id: int):
         )
 
         if not hardware:
-            return {
-                "error": "Hardware not found"
-            }
+            raise HTTPException(status_code=404, detail="Hardware not found")
 
         if hardware.type == "GPU":
             gpu_spec = hardware.gpu_specification
@@ -135,6 +410,7 @@ def get_hardware_detail(hardware_id: int):
                 "name": hardware.name,
                 "manufacturer": hardware.manufacturer,
                 "type": hardware.type,
+                "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
 
@@ -194,6 +470,7 @@ def get_hardware_detail(hardware_id: int):
             "name": hardware.name,
             "manufacturer": hardware.manufacturer,
             "type": hardware.type,
+            "segment": hardware.segment,
             "release_date": hardware.release_date,
             "architecture": hardware.architecture,
 
@@ -248,7 +525,7 @@ def get_hardware_benchmarks(
     test_type: str | None = Query(default=None),
 ) -> list[BenchmarkResultResponse]:
     try:
-        return get_benchmarks_for_hardware(
+        benchmark_results = get_benchmarks_for_hardware(
             hardware_id,
             source_id=source_id,
             benchmark_name=benchmark_name,
@@ -257,10 +534,26 @@ def get_hardware_benchmarks(
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
-
-    except ValueError as error:
-        raise HTTPException(status_code=404, detail=str(error)) from error
-
+    # Additive Phase 1.2 quality: computed for every row, presented as None
+    # when a provenance vote vetoes the score. The source relationship was
+    # eager-loaded along with provenance, so no lazy-load can fire after the
+    # session closes.
+    return [
+        {
+            "id": benchmark.id,
+            "hardware_id": benchmark.hardware_id,
+            "benchmark_name": benchmark.benchmark_name,
+            "score": benchmark.score,
+            "unit": benchmark.unit,
+            "test_type": benchmark.test_type,
+            "source": benchmark.source,
+            "recorded_at": benchmark.recorded_at,
+            "quality": quality_to_response_field(
+                score_benchmark_quality(benchmark=benchmark)
+            ),
+        }
+        for benchmark in benchmark_results
+    ]
 
 @app.get(
     "/sources",
@@ -306,12 +599,141 @@ def get_benchmark_provenance(
         raise HTTPException(status_code=404, detail=str(error)) from error
 
 
+def _load_hardware_for_suitability(session, hardware_id: int):
+    """Load one hardware record with its spec, benchmarks and provenance.
+
+    Returns None when the id does not exist (the callers raise 404 on None).
+    """
+    return session.scalar(
+        select(Hardware)
+        .where(Hardware.id == hardware_id)
+        .options(
+            selectinload(Hardware.cpu_specification),
+            selectinload(Hardware.gpu_specification),
+            selectinload(Hardware.benchmark_results),
+            selectinload(Hardware.field_provenance),
+            selectinload(Hardware.external_identifiers),
+        )
+    )
+
+
+@app.get(
+    "/hardware/{hardware_id}/suitability",
+    response_model=HardwareSuitabilityResponse,
+)
+def get_hardware_suitability(
+    hardware_id: int,
+) -> HardwareSuitabilityResponse:
+    """Workload-aware suitability ratings for every supported category.
+
+    Ratings are derived from benchmark evidence where available, otherwise
+    capped spec-based estimates. AI/ML reports ``unrated`` because there is
+    no GPU/VRAM benchmark evidence in this dataset. Nothing is fabricated.
+    """
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+
+        ratings = [
+            rating_to_response(
+                rate_suitability(hardware, category)
+            )
+            for category in sorted(WORKLOADS)
+        ]
+
+        return {
+            "hardware_id": hardware.id,
+            "hardware_name": hardware.name,
+            "hardware_type": hardware.type,
+            "ratings": ratings,
+        }
+
+
+@app.get(
+    "/hardware/{hardware_id}/suitability/{category}",
+    response_model=SuitabilityRatingResponse,
+)
+def get_hardware_suitability_category(
+    hardware_id: int,
+    category: WorkloadCategory,
+) -> SuitabilityRatingResponse:
+    """Single-category suitability rating for one hardware record."""
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+
+        return rating_to_response(
+            rate_suitability(hardware, category)
+        )
+
+
+@app.post(
+    "/comparison/gpu",
+    response_model=ComparisonResultResponse,
+)
+def compare_gpu_hardware(
+    request_data: GPUComparisonRequest,
+) -> ComparisonResultResponse:
+    """Deterministic GPU comparison by specification metrics.
+
+    Mirrors the CPU comparison semantics (unavailable / tie / winner). Returns
+    404 when either hardware id does not exist, and 422 when either record is
+    not a GPU with a specification.
+    """
+    with SessionLocal() as session:
+        hardware_a = session.scalars(
+            select(Hardware)
+            .where(Hardware.id == request_data.hardware_id_a)
+            .options(selectinload(Hardware.gpu_specification))
+        ).first()
+        hardware_b = session.scalars(
+            select(Hardware)
+            .where(Hardware.id == request_data.hardware_id_b)
+            .options(selectinload(Hardware.gpu_specification))
+        ).first()
+
+    if hardware_a is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Hardware not found: {request_data.hardware_id_a}",
+        )
+    if hardware_b is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Hardware not found: {request_data.hardware_id_b}",
+        )
+
+    try:
+        result = comparison_service.compare_gpus(hardware_a, hardware_b)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+    return ComparisonResultResponse(
+        hardware_a=result.hardware_a,
+        hardware_b=result.hardware_b,
+        metrics=[
+            MetricComparisonResponse(
+                name=metric.name,
+                value_a=metric.value_a,
+                value_b=metric.value_b,
+                unit=metric.unit,
+                winner=metric.winner,
+                difference=metric.difference,
+            )
+            for metric in result.metrics
+        ],
+    )
+
+
 @app.post(
     "/comparison/explanation",
     response_model=ExplanationResponse,
 )
 def generate_comparison_explanation(
     request_data: ExplanationRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> ExplanationResponse:
     try:
         explanation = explanation_service.generate_explanation(
@@ -329,8 +751,13 @@ def generate_comparison_explanation(
     "/hardware/chat",
     response_model=HardwareChatResponse,
 )
+@app.post(
+    "/hardware/chat",
+    response_model=HardwareChatResponse,
+)
 def generate_hardware_chat_answer(
     request_data: HardwareChatRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> HardwareChatResponse:
     try:
         answer = hardware_chat_service.generate_chat_answer(request_data)
@@ -348,6 +775,7 @@ def generate_hardware_chat_answer(
 )
 def generate_build_chat_answer(
     request_data: BuildHardwareChatRequest,
+    _user_id: int | None = Depends(require_auth),
 ) -> BuildHardwareChatResponse:
     try:
         return build_chat_service.generate_build_chat_answer(request_data)
@@ -363,10 +791,12 @@ def generate_build_chat_answer(
 )
 def create_build_conversation(
     request_data: BuildConversationCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
         return build_conversation_service.create_or_get_conversation(
-            request_data
+            request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.BuildIdentityError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
@@ -378,9 +808,13 @@ def create_build_conversation(
 )
 def get_build_conversation(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
-        return build_conversation_service.get_conversation(conversation_id)
+        return build_conversation_service.get_conversation(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
 
@@ -391,9 +825,13 @@ def get_build_conversation(
 )
 def get_build_conversation_messages(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> list[BuildMessageResponse]:
     try:
-        return build_conversation_service.list_messages(conversation_id)
+        return build_conversation_service.list_messages(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
     except build_conversation_service.StoredConversationDataError as error:
@@ -408,11 +846,13 @@ def get_build_conversation_messages(
 def append_build_conversation_message(
     conversation_id: int,
     request_data: BuildMessageCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildMessageResponse:
     try:
         return build_conversation_service.append_message(
             conversation_id,
             request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
@@ -426,11 +866,13 @@ def append_build_conversation_message(
 def append_build_conversation_turn(
     conversation_id: int,
     request_data: BuildTurnCreateRequest,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildTurnResponse:
     try:
         return build_conversation_service.append_turn(
             conversation_id,
             request_data,
+            owner_id=user_id,
         )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
@@ -442,8 +884,12 @@ def append_build_conversation_turn(
 )
 def reset_build_conversation(
     conversation_id: int,
+    user_id: int | None = Depends(require_auth),
 ) -> BuildConversationResponse:
     try:
-        return build_conversation_service.reset_conversation(conversation_id)
+        return build_conversation_service.reset_conversation(
+            conversation_id,
+            owner_id=user_id,
+        )
     except build_conversation_service.ConversationNotFoundError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error

@@ -13,6 +13,7 @@ from backend.app.models import (
     Hardware,
 )
 from backend.app.services import benchmark_service
+from backend.app.services import hardware_catalog_service
 from backend.app import main
 
 
@@ -28,8 +29,10 @@ class TestGpuApi:
 
         self.original_main_session_local = main.SessionLocal
         self.original_benchmark_session_local = benchmark_service.SessionLocal
+        self.original_catalog_session_local = hardware_catalog_service.SessionLocal
         main.SessionLocal = self.session_factory
         benchmark_service.SessionLocal = self.session_factory
+        hardware_catalog_service.SessionLocal = self.session_factory
 
         self.client = TestClient(main.app)
 
@@ -38,6 +41,7 @@ class TestGpuApi:
     def teardown_method(self):
         main.SessionLocal = self.original_main_session_local
         benchmark_service.SessionLocal = self.original_benchmark_session_local
+        hardware_catalog_service.SessionLocal = self.original_catalog_session_local
         self.engine.dispose()
 
     def _add_cpu(self):
@@ -118,7 +122,8 @@ class TestGpuApi:
         assert types == {"CPU", "GPU"}
         for item in items:
             assert set(item.keys()) == {
-                "id", "name", "manufacturer", "type",
+                "id", "name", "manufacturer", "type", "segment",
+                "release_date", "architecture",
             }
 
     def test_catalog_gpu_filter(self):
@@ -206,7 +211,8 @@ class TestGpuApi:
     def test_hardware_detail_not_found(self):
         response = self.client.get("/hardware/999999")
 
-        assert response.json() == {"error": "Hardware not found"}
+        assert response.status_code == 404
+        assert response.json() == {"detail": "Hardware not found"}
 
     def test_hardware_detail_malformed_id(self):
         response = self.client.get("/hardware/not-an-int")

@@ -58,13 +58,22 @@ def _require_hardware(
     return hardware
 
 
-def _require_conversation(
-    session: Session,
+def _require_conversation_for_owner(
+    session,
     conversation_id: int,
+    owner_id: int | None,
 ) -> BuildConversation:
     conversation = session.get(BuildConversation, conversation_id)
 
     if conversation is None:
+        raise ConversationNotFoundError(
+            f"Build conversation not found: {conversation_id}"
+        )
+
+    # Ownership enforcement: when auth is enabled (owner_id is not None),
+    # the caller may only touch their own conversations.
+    # When auth is OFF (owner_id is None), all conversations are accessible.
+    if owner_id is not None and conversation.owner_id != owner_id:
         raise ConversationNotFoundError(
             f"Build conversation not found: {conversation_id}"
         )
@@ -164,6 +173,7 @@ def build_turn_response(
 
 def create_or_get_conversation(
     request_data: BuildConversationCreateRequest,
+    owner_id: int | None = None,
 ) -> BuildConversationResponse:
     with SessionLocal() as session:
         _require_hardware(
@@ -185,6 +195,13 @@ def create_or_get_conversation(
                 == request_data.cpu_hardware_id,
                 BuildConversation.gpu_hardware_id
                 == request_data.gpu_hardware_id,
+                # owner_id None: guest/anonymous (auth OFF) — return any existing
+                # conversation as before. owner_id >= 0: scoped to that user.
+                *(
+                    [BuildConversation.owner_id == owner_id]
+                    if owner_id is not None
+                    else []
+                ),
             )
         )
 
@@ -195,6 +212,7 @@ def create_or_get_conversation(
                 gpu_hardware_id=request_data.gpu_hardware_id,
                 created_at=now,
                 updated_at=now,
+                owner_id=owner_id,
             )
             session.add(conversation)
             session.commit()
@@ -203,16 +221,24 @@ def create_or_get_conversation(
         return BuildConversationResponse.model_validate(conversation)
 
 
-def get_conversation(conversation_id: int) -> BuildConversationResponse:
+def get_conversation(
+    conversation_id: int,
+    owner_id: int | None = None,
+) -> BuildConversationResponse:
     with SessionLocal() as session:
-        conversation = _require_conversation(session, conversation_id)
+        _require_conversation_for_owner(session, conversation_id, owner_id)
 
-        return BuildConversationResponse.model_validate(conversation)
+        return BuildConversationResponse.model_validate(
+            session.get(BuildConversation, conversation_id)
+        )
 
 
-def list_messages(conversation_id: int) -> list[BuildMessageResponse]:
+def list_messages(
+    conversation_id: int,
+    owner_id: int | None = None,
+) -> list[BuildMessageResponse]:
     with SessionLocal() as session:
-        _require_conversation(session, conversation_id)
+        _require_conversation_for_owner(session, conversation_id, owner_id)
 
         messages = session.scalars(
             select(BuildMessage)
@@ -228,9 +254,12 @@ def list_messages(conversation_id: int) -> list[BuildMessageResponse]:
 def append_message(
     conversation_id: int,
     message_data: BuildMessageCreateRequest,
+    owner_id: int | None = None,
 ) -> BuildMessageResponse:
     with SessionLocal() as session:
-        conversation = _require_conversation(session, conversation_id)
+        conversation = _require_conversation_for_owner(
+            session, conversation_id, owner_id
+        )
 
         message = _add_message(
             session,
@@ -251,9 +280,12 @@ def append_message(
 def append_turn(
     conversation_id: int,
     turn_data: BuildTurnCreateRequest,
+    owner_id: int | None = None,
 ) -> BuildTurnResponse:
     with SessionLocal() as session:
-        conversation = _require_conversation(session, conversation_id)
+        conversation = _require_conversation_for_owner(
+            session, conversation_id, owner_id
+        )
         now = datetime.now()
 
         user_message = _add_message(
@@ -286,9 +318,14 @@ def append_turn(
         )
 
 
-def reset_conversation(conversation_id: int) -> BuildConversationResponse:
+def reset_conversation(
+    conversation_id: int,
+    owner_id: int | None = None,
+) -> BuildConversationResponse:
     with SessionLocal() as session:
-        conversation = _require_conversation(session, conversation_id)
+        conversation = _require_conversation_for_owner(
+            session, conversation_id, owner_id
+        )
 
         session.execute(
             delete(BuildMessage).where(

@@ -21,6 +21,26 @@ from backend.app.schemas.explanation import (
     ExplanationRequest,
     ExplanationResponse,
 )
+from backend.app.schemas.hardware import (
+    HardwareCatalogItem,
+    HardwareDetail,
+    HardwareIdentity,
+)
+from backend.app.schemas.suitability import (
+    EvidenceConfidence,
+    EvidenceQualityResponse,
+    HardwareSuitabilityResponse,
+    RatingConfidence,
+    SuitabilityRatingResponse,
+    WorkloadCategory,
+    WorkloadRequest,
+    evidence_quality_to_response,
+    rating_to_response,
+)
+from backend.app.schemas.recommendation import (
+    RecommendationCandidate,
+    RecommendationResponse,
+)
 
 __all__ = [
     "MAX_HISTORY_MESSAGES",
@@ -40,4 +60,18 @@ __all__ = [
     "ComparisonFacts",
     "ExplanationRequest",
     "ExplanationResponse",
+    "HardwareCatalogItem",
+    "HardwareDetail",
+    "HardwareIdentity",
+    "EvidenceConfidence",
+    "EvidenceQualityResponse",
+    "HardwareSuitabilityResponse",
+    "RatingConfidence",
+    "SuitabilityRatingResponse",
+    "WorkloadCategory",
+    "WorkloadRequest",
+    "evidence_quality_to_response",
+    "rating_to_response",
+    "RecommendationCandidate",
+    "RecommendationResponse",
 ]

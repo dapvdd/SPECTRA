@@ -55,6 +55,7 @@ class TestBuildConversationModels:
             "id",
             "cpu_hardware_id",
             "gpu_hardware_id",
+            "owner_id",
             "created_at",
             "updated_at",
         }

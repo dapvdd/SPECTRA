@@ -40,6 +40,15 @@ class BuildConversation(Base):
         nullable=False,
     )
 
+    # Phase 2.1: ownership. NULL only for legacy conversations created before
+    # the auth feature; new conversations always carry an owner_id. When auth
+    # is ON, NULL-owner rows are not accessible to any authenticated user.
+    owner_id: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+        index=True,
+    )
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,

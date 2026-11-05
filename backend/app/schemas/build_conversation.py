@@ -116,6 +116,7 @@ class BuildConversationResponse(BaseModel):
     id: int
     cpu_hardware_id: int
     gpu_hardware_id: int
+    owner_id: int | None
     created_at: datetime
     updated_at: datetime
 

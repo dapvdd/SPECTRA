@@ -107,6 +107,17 @@ class PersistentStorageCycleTests(unittest.TestCase):
     def test_database_persistence_across_restart_cycle(self):
         # Step 1: Initialize database in volume
         shutil.copy2(self.template_db, self.volume_db)
+
+        # The production template is at schema v1 (pre-auth). The deployment
+        # entrypoint rehearses pending migrations on the volume copy (copy-first;
+        # the source template file is never touched). Do the same here so the
+        # copy matches the ORM model (owner_id column) before we write rows.
+        from backend.app.migrations import runner
+
+        upgrade_result = runner.upgrade(self.volume_db)
+        self.assertEqual(upgrade_result["status"], "upgraded")
+        self.assertIn(2, [m["version"] for m in upgrade_result["applied"]])
+
         db_url = f"sqlite:///{self.volume_db.as_posix()}"
 
         # Step 2: First container run - create a persistent conversation record

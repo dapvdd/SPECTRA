@@ -1,0 +1,630 @@
+{
+  "benchmark_coverage": {
+    "cpu": {
+      "coverage_pct": 14.8,
+      "total": 3501,
+      "with_benchmarks": 518
+    },
+    "gpu": {
+      "coverage_pct": 0.0,
+      "total": 1879,
+      "with_benchmarks": 0
+    }
+  },
+  "duplicate_conflicts": {
+    "rows": []
+  },
+  "licensing_summary": {
+    "rows": [
+      {
+        "count": 3,
+        "license_status": "clear"
+      },
+      {
+        "count": 2,
+        "license_status": "restricted"
+      },
+      {
+        "count": 4,
+        "license_status": "unknown"
+      },
+      {
+        "count": 1,
+        "license_status": "unresolved"
+      }
+    ]
+  },
+  "missing_spec_fields": {
+    "cpu": [
+      {
+        "field": "cores",
+        "impact": 9,
+        "missing": 5
+      },
+      {
+        "field": "boost_clock_ghz",
+        "impact": 8,
+        "missing": 1076
+      },
+      {
+        "field": "threads",
+        "impact": 8,
+        "missing": 461
+      },
+      {
+        "field": "tdp_w",
+        "impact": 6,
+        "missing": 277
+      },
+      {
+        "field": "base_clock_ghz",
+        "impact": 5,
+        "missing": 229
+      },
+      {
+        "field": "socket",
+        "impact": 4,
+        "missing": 190
+      },
+      {
+        "field": "process_node_nm",
+        "impact": 2,
+        "missing": 1028
+      }
+    ],
+    "gpu": [
+      {
+        "field": "memory_bus_width_bits",
+        "impact": 7,
+        "missing": 436
+      },
+      {
+        "field": "memory_gb",
+        "impact": 7,
+        "missing": 341
+      },
+      {
+        "field": "core_clock_mhz",
+        "impact": 6,
+        "missing": 4
+      },
+      {
+        "field": "memory_type",
+        "impact": 6,
+        "missing": 0
+      },
+      {
+        "field": "tdp_w",
+        "impact": 5,
+        "missing": 204
+      },
+      {
+        "field": "vram_bandwidth_gbps",
+        "impact": 5,
+        "missing": 341
+      },
+      {
+        "field": "boost_clock_mhz",
+        "impact": 3,
+        "missing": 755
+      },
+      {
+        "field": "interface",
+        "impact": 2,
+        "missing": 1030
+      },
+      {
+        "field": "length_mm",
+        "impact": 1,
+        "missing": 1113
+      }
+    ]
+  },
+  "priority_gaps": {
+    "cpu": [
+      {
+        "id": 10,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 7645HX",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 22,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 PRO 7640U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 24,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 PRO 7730U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 25,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 7540U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 27,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 7440U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 28,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 PRO 7330U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 29,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 7736U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 33,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 7335U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 66,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 9 6980HX",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 80,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 6800U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 87,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 9 5980HX",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 89,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 6600U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 140,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 4600U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 141,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 4500U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 145,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 4980U Microsoft Surface Edition",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 147,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 4680U Microsoft Surface Edition",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 148,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 3780U Microsoft Surface Edition",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 151,
+        "manufacturer": "AMD",
+        "name": "AMD Athlon Gold 7220U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 158,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 3350U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 160,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 3300U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 161,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 3580U Microsoft Surface Edition",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 163,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 3450U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 166,
+        "manufacturer": "AMD",
+        "name": "AMD Athlon Gold 3150U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 193,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 9 PRO 6950H",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 198,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 2800H",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 199,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 5 2600H",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 204,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 2300U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 229,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 PRO 5475U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 231,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 PRO 5450U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 273,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 PRO 3300U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 275,
+        "manufacturer": "AMD",
+        "name": "AMD Athlon PRO 300U Mobile Processor with Radeon Vega 3 Graphics",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 276,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 7 PRO 2700U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 285,
+        "manufacturer": "AMD",
+        "name": "AMD Ryzen 3 PRO 2300U",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 598,
+        "manufacturer": "AMD",
+        "name": "AMD Athlon PRO 200U Mobile Processor with Radeon Vega 3 Graphics",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 697,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13900H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 698,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13900HK Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 699,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13900HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 702,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13905H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 703,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13950HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 704,
+        "manufacturer": "Intel",
+        "name": "Intel Core i9-13980HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 707,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-1355U Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 709,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13620H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 710,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13650HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 711,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-1365U Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 712,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-1365UE Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 716,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13700H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 717,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13700HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 720,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13705H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 723,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13800H Processor",
+        "release_date": null,
+        "segment": "mobile"
+      },
+      {
+        "id": 725,
+        "manufacturer": "Intel",
+        "name": "Intel Core i7-13850HX Processor",
+        "release_date": null,
+        "segment": "mobile"
+      }
+    ],
+    "gpu": {
+      "coverage_pct": 0.0,
+      "total": 1879,
+      "with_benchmarks": 0
+    }
+  },
+  "provenance_summary": {
+    "by_status": [
+      {
+        "count": 58,
+        "status": "excluded"
+      },
+      {
+        "count": 4,
+        "status": "unmatched"
+      },
+      {
+        "count": 39378,
+        "status": "verified"
+      }
+    ],
+    "hardware_total": 5380,
+    "hardware_with_provenance": 5372,
+    "provenance_total": 39440,
+    "verified": 39378
+  },
+  "spec_completeness": {
+    "cpu": {
+      "complete": 3501,
+      "per_field": [
+        {
+          "field": "base_clock_ghz",
+          "missing": 229
+        },
+        {
+          "field": "boost_clock_ghz",
+          "missing": 1076
+        },
+        {
+          "field": "cores",
+          "missing": 5
+        },
+        {
+          "field": "process_node_nm",
+          "missing": 1028
+        },
+        {
+          "field": "socket",
+          "missing": 190
+        },
+        {
+          "field": "tdp_w",
+          "missing": 277
+        },
+        {
+          "field": "threads",
+          "missing": 461
+        }
+      ],
+      "total": 3501
+    },
+    "gpu": {
+      "complete": 1879,
+      "per_field": [
+        {
+          "field": "boost_clock_mhz",
+          "missing": 755
+        },
+        {
+          "field": "core_clock_mhz",
+          "missing": 4
+        },
+        {
+          "field": "interface",
+          "missing": 1030
+        },
+        {
+          "field": "length_mm",
+          "missing": 1113
+        },
+        {
+          "field": "memory_bus_width_bits",
+          "missing": 436
+        },
+        {
+          "field": "memory_gb",
+          "missing": 341
+        },
+        {
+          "field": "memory_type",
+          "missing": 0
+        },
+        {
+          "field": "tdp_w",
+          "missing": 204
+        },
+        {
+          "field": "vram_bandwidth_gbps",
+          "missing": 341
+        }
+      ],
+      "total": 1879
+    }
+  },
+  "tool": "completeness_intelligence",
+  "totals": {
+    "cpu": 3501,
+    "gpu": 1879,
+    "hardware": 5380
+  },
+  "unit_inconsistency": {
+    "inconsistent": [],
+    "pairs": [
+      {
+        "benchmark_name": "Geekbench 7",
+        "test_types": 2,
+        "unit": "points"
+      }
+    ]
+  },
+  "vendor_coverage": {
+    "rows": [
+      {
+        "count": 717,
+        "manufacturer": "AMD",
+        "type": "CPU"
+      },
+      {
+        "count": 722,
+        "manufacturer": "AMD",
+        "type": "GPU"
+      },
+      {
+        "count": 106,
+        "manufacturer": "ATI",
+        "type": "GPU"
+      },
+      {
+        "count": 2784,
+        "manufacturer": "Intel",
+        "type": "CPU"
+      },
+      {
+        "count": 175,
+        "manufacturer": "Intel",
+        "type": "GPU"
+      },
+      {
+        "count": 876,
+        "manufacturer": "NVIDIA",
+        "type": "GPU"
+      }
+    ]
+  }
+}

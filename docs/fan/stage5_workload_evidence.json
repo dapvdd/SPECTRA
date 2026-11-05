@@ -1,0 +1,96 @@
+{
+  "by_type": {
+    "cpu": [
+      {
+        "total": 3501,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 518,
+        "with_provenance": 3493,
+        "with_spec_evidence": 2851,
+        "workload": "gaming"
+      },
+      {
+        "total": 3501,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 518,
+        "with_provenance": 3493,
+        "with_spec_evidence": 2851,
+        "workload": "workstation"
+      },
+      {
+        "total": 3501,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 518,
+        "with_provenance": 3493,
+        "with_spec_evidence": 2851,
+        "workload": "productivity"
+      },
+      {
+        "total": 3501,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 518,
+        "with_provenance": 3493,
+        "with_spec_evidence": 2851,
+        "workload": "content_creation"
+      },
+      {
+        "total": 3501,
+        "unrated_boundary": true,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 3493,
+        "with_spec_evidence": 2851,
+        "workload": "ai_ml"
+      }
+    ],
+    "gpu": [
+      {
+        "total": 1879,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 1879,
+        "with_spec_evidence": 1535,
+        "workload": "gaming"
+      },
+      {
+        "total": 1879,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 1879,
+        "with_spec_evidence": 1535,
+        "workload": "workstation"
+      },
+      {
+        "total": 1879,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 1879,
+        "with_spec_evidence": 1535,
+        "workload": "productivity"
+      },
+      {
+        "total": 1879,
+        "unrated_boundary": false,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 1879,
+        "with_spec_evidence": 1535,
+        "workload": "content_creation"
+      },
+      {
+        "total": 1879,
+        "unrated_boundary": true,
+        "with_benchmark_evidence": 0,
+        "with_provenance": 1879,
+        "with_spec_evidence": 1535,
+        "workload": "ai_ml"
+      }
+    ]
+  },
+  "target": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_dev.db",
+  "tool": "workload_evidence",
+  "totals": {
+    "benchmark_results": 1040,
+    "cpu": 3501,
+    "gpu": 1879,
+    "hardware": 5380
+  }
+}

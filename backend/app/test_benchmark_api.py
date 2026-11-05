@@ -94,6 +94,20 @@ class TestBenchmarkAPI:
                     "url": "https://example.com/benchmarks",
                 },
                 "recorded_at": "2026-09-16T12:30:00",
+                "quality": {
+                    "score": 0.6,
+                    "band": "medium",
+                    "signals": {
+                        "attribution": True,
+                        "timestamp": True,
+                        "licence": False,
+                        "evidence_verified": False,
+                        "evidence_uncertain": False,
+                    },
+                    "vetoed": False,
+                    "label": "medium",
+                    "reason": None,
+                },
             },
             {
                 "id": 2,
@@ -104,6 +118,20 @@ class TestBenchmarkAPI:
                 "test_type": "multi-core",
                 "source": None,
                 "recorded_at": None,
+                "quality": {
+                    "score": 0.0,
+                    "band": "low",
+                    "signals": {
+                        "attribution": False,
+                        "timestamp": False,
+                        "licence": False,
+                        "evidence_verified": False,
+                        "evidence_uncertain": False,
+                    },
+                    "vetoed": False,
+                    "label": "low",
+                    "reason": None,
+                },
             },
         ]
 

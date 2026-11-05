@@ -200,5 +200,5 @@ class TestBenchmarkAPIFilters:
         row = response.json()[0]
         assert set(row) == {
             "id", "hardware_id", "benchmark_name", "score", "unit",
-            "test_type", "source", "recorded_at",
+            "test_type", "source", "recorded_at", "quality",
         }

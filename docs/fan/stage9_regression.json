@@ -1,0 +1,27 @@
+{
+  "backend": {
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 932,
+    "skipped": 2,
+    "suite": "backend",
+    "summary": "932 passed, 2 skipped, 1 warning in 28.38s",
+    "verdict": "PASS"
+  },
+  "combined_verdict": "ALL_GREEN",
+  "frontend_build": {
+    "exit_code": 0,
+    "suite": "frontend_build",
+    "summary": "ok",
+    "verdict": "PASS"
+  },
+  "frontend_tests": {
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 0,
+    "suite": "frontend_tests",
+    "summary": "\u00e2\u201e\u00b9 duration_ms 908.7901",
+    "verdict": "PASS"
+  },
+  "root": "C:\\Users\\user\\spectra-local"
+}

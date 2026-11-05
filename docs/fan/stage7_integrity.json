@@ -1,0 +1,53 @@
+{
+  "curated_counts": {
+    "benchmark_results": 1040,
+    "cpu_specifications": 3501,
+    "external_identifiers": 3575,
+    "field_provenance": 39440,
+    "gpu_specifications": 1879,
+    "hardware": 5380,
+    "sources": 10
+  },
+  "foreign_key_check_violations": 0,
+  "min_met": {
+    "benchmark_results": true,
+    "field_provenance": true,
+    "hardware": true,
+    "sources": true
+  },
+  "quick_check": "ok",
+  "row_counts": {
+    "benchmark_results": 1040,
+    "field_provenance": 39440,
+    "hardware": 5380,
+    "sources": 10
+  },
+  "row_counts_minimum": {
+    "benchmark_results": 800,
+    "field_provenance": 1000,
+    "hardware": 4500,
+    "sources": 5
+  },
+  "schema_present": {
+    "complete": true,
+    "expected": [
+      "benchmark_results",
+      "field_provenance",
+      "hardware",
+      "sources"
+    ],
+    "tables": [
+      "benchmark_results",
+      "build_conversations",
+      "build_messages",
+      "cpu_specifications",
+      "external_identifiers",
+      "field_provenance",
+      "gpu_specifications",
+      "hardware",
+      "sources"
+    ]
+  },
+  "target": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_dev.db",
+  "verdict": "PASS"
+}

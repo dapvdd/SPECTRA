@@ -442,5 +442,6 @@ class TestBackwardCompatibility(ProvenanceAPITestBase):
             "test_type",
             "source",
             "recorded_at",
+            "quality",
         }
         assert set(body[0]["source"]) == {"id", "name", "url"}

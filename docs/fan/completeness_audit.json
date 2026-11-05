@@ -1,0 +1,397 @@
+{
+  "benchmark_coverage": {
+    "cpu": {
+      "coverage_pct": 14.8,
+      "total": 3501,
+      "with_benchmarks": 518
+    },
+    "gpu": {
+      "coverage_pct": 0.0,
+      "total": 1879,
+      "with_benchmarks": 0
+    }
+  },
+  "benchmark_distribution": [
+    {
+      "benchmark_name": "Geekbench 7",
+      "count": 520,
+      "test_type": "multi-core",
+      "unit": "points"
+    },
+    {
+      "benchmark_name": "Geekbench 7",
+      "count": 520,
+      "test_type": "single-core",
+      "unit": "points"
+    }
+  ],
+  "database": "data\\spectra.db",
+  "no_evidence_tier": {
+    "cpu_count": 0,
+    "cpu_rows": [],
+    "gpu_count": 0,
+    "gpu_rows": []
+  },
+  "priority_gaps": [
+    {
+      "id": 5380,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 5 330",
+      "release_date": null,
+      "segment": null
+    },
+    {
+      "id": 5379,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 5 340",
+      "release_date": "2025-02-18",
+      "segment": null
+    },
+    {
+      "id": 5378,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 7 350",
+      "release_date": "2025-02-18",
+      "segment": null
+    },
+    {
+      "id": 5377,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 7 PRO 360",
+      "release_date": "2024-10-10",
+      "segment": null
+    },
+    {
+      "id": 5376,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 9 365",
+      "release_date": "2024-06-02",
+      "segment": null
+    },
+    {
+      "id": 5375,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 9 HX 370",
+      "release_date": "2024-06-02",
+      "segment": null
+    },
+    {
+      "id": 5374,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen AI 9 HX 375",
+      "release_date": "2024-06-02",
+      "segment": null
+    },
+    {
+      "id": 5373,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8745HX",
+      "release_date": "2025-04-23",
+      "segment": "mobile"
+    },
+    {
+      "id": 5372,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8840HX",
+      "release_date": "2025-04-23",
+      "segment": "mobile"
+    },
+    {
+      "id": 5371,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 9 8940HX",
+      "release_date": "2025-04-23",
+      "segment": "mobile"
+    },
+    {
+      "id": 5370,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 9 8945HX",
+      "release_date": "2025-04-23",
+      "segment": "mobile"
+    },
+    {
+      "id": 5369,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 3 8440U",
+      "release_date": null,
+      "segment": "mobile"
+    },
+    {
+      "id": 5368,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8540U",
+      "release_date": null,
+      "segment": "mobile"
+    },
+    {
+      "id": 5367,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8640U",
+      "release_date": "2023-12-06",
+      "segment": "mobile"
+    },
+    {
+      "id": 5366,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8640HS",
+      "release_date": "2023-12-06",
+      "segment": null
+    },
+    {
+      "id": 5365,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8645HS",
+      "release_date": "2023-12-06",
+      "segment": null
+    },
+    {
+      "id": 5364,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8745H",
+      "release_date": null,
+      "segment": "mobile"
+    },
+    {
+      "id": 5363,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8745HS",
+      "release_date": null,
+      "segment": null
+    },
+    {
+      "id": 5362,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8840U",
+      "release_date": "2023-12-06",
+      "segment": "mobile"
+    },
+    {
+      "id": 5361,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8840HS",
+      "release_date": "2023-12-06",
+      "segment": null
+    },
+    {
+      "id": 5360,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8845HS",
+      "release_date": "2023-12-06",
+      "segment": null
+    },
+    {
+      "id": 5359,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 9 8945HS",
+      "release_date": "2023-12-06",
+      "segment": null
+    },
+    {
+      "id": 5358,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8400F",
+      "release_date": "2024-04-01",
+      "segment": null
+    },
+    {
+      "id": 5357,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 7 8700F",
+      "release_date": "2024-04-01",
+      "segment": null
+    },
+    {
+      "id": 5356,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 3 8300GE",
+      "release_date": "2024-04-16",
+      "segment": null
+    },
+    {
+      "id": 5355,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 3 8300G",
+      "release_date": null,
+      "segment": null
+    },
+    {
+      "id": 5354,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8500GE",
+      "release_date": "2024-04-16",
+      "segment": null
+    },
+    {
+      "id": 5353,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8500G",
+      "release_date": "2024-01-31",
+      "segment": null
+    },
+    {
+      "id": 5352,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 PRO 8600GE",
+      "release_date": "2024-04-16",
+      "segment": null
+    },
+    {
+      "id": 5351,
+      "manufacturer": "AMD",
+      "name": "AMD Ryzen 5 8600G",
+      "release_date": "2024-01-31",
+      "segment": null
+    }
+  ],
+  "segment_benchmark_coverage": [
+    {
+      "pct": 3.2,
+      "segment": "server",
+      "total": 1054,
+      "with_benchmarks": 34
+    },
+    {
+      "pct": 34.9,
+      "segment": "mobile",
+      "total": 398,
+      "with_benchmarks": 139
+    }
+  ],
+  "source_summary": [
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 306,
+      "id": 1,
+      "license_name": null,
+      "license_status": "restricted",
+      "name": "PassMark CPU benchmark catalog (benchmark-cpus.csv)",
+      "provenance_records": 546,
+      "url": "https://www.cpubenchmark.net/"
+    },
+    {
+      "benchmark_records": 1040,
+      "hardware_covered": 518,
+      "id": 2,
+      "license_name": null,
+      "license_status": "unknown",
+      "name": "Geekbench Browser - Geekbench 7 CPU",
+      "provenance_records": 1081600,
+      "url": "https://browser.geekbench.com/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 1879,
+      "id": 3,
+      "license_name": null,
+      "license_status": "restricted",
+      "name": "TechPowerUp GPU Database (gpu_1986-2026.csv)",
+      "provenance_records": 12884,
+      "url": "https://www.techpowerup.com/gpu-specs/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 1666,
+      "id": 4,
+      "license_name": "CC BY 4.0",
+      "license_status": "clear",
+      "name": "GPU Ark GPU specifications & benchmarks dataset",
+      "provenance_records": 2573,
+      "url": "https://gpuark.com/datasets/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 713,
+      "id": 5,
+      "license_name": "CC BY-SA 4.0",
+      "license_status": "clear",
+      "name": "Wikipedia (English)",
+      "provenance_records": 1854,
+      "url": "https://en.wikipedia.org/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 2,
+      "id": 6,
+      "license_name": null,
+      "license_status": "unknown",
+      "name": "Intel ARK (archived via Wayback Machine)",
+      "provenance_records": 2,
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 6,
+      "id": 7,
+      "license_name": null,
+      "license_status": "unresolved",
+      "name": "Unknown (source not documented in artifact)",
+      "provenance_records": 6,
+      "url": ""
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 2659,
+      "id": 8,
+      "license_name": null,
+      "license_status": "unknown",
+      "name": "Intel ARK (intel-cpus.csv snapshot)",
+      "provenance_records": 16276,
+      "url": "https://ark.intel.com/"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 404,
+      "id": 9,
+      "license_name": null,
+      "license_status": "unknown",
+      "name": "AMD product specifications (amd-cpus.csv snapshot)",
+      "provenance_records": 1765,
+      "url": "https://www.amd.com/en/products/specifications/processors"
+    },
+    {
+      "benchmark_records": 0,
+      "hardware_covered": 2494,
+      "id": 10,
+      "license_name": null,
+      "license_status": "clear",
+      "name": "Derived from manufacturer product naming conventions",
+      "provenance_records": 2494,
+      "url": "https://www.intel.com/content/www/us/en/products/docs/processors/core/core-technical-resources.html"
+    }
+  ],
+  "spec_completeness": {
+    "cpu": {
+      "complete_pct": 75.9,
+      "complete_spec": 2659,
+      "key_fields": [
+        "cores",
+        "threads",
+        "base_clock_ghz",
+        "socket",
+        "tdp_w"
+      ],
+      "total": 3501,
+      "with_spec": 3501
+    },
+    "gpu": {
+      "complete_pct": 71.3,
+      "complete_spec": 1339,
+      "key_fields": [
+        "memory_gb",
+        "memory_type",
+        "core_clock_mhz",
+        "memory_bus_width_bits",
+        "tdp_w"
+      ],
+      "total": 1879,
+      "with_spec": 1879
+    }
+  },
+  "tool": "completeness_audit",
+  "totals": {
+    "cpu": 3501,
+    "gpu": 1879,
+    "hardware": 5380
+  }
+}

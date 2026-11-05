@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { parseMarkdown } from "./markdown.js";
+import { BenchmarkQualityBadge } from "./components/BenchmarkQualityBadge.jsx";
+import { MarkdownContent } from "./components/Markdown.jsx";
+import { HardwareFitModal } from "./components/HardwareFitModal.jsx";
+import { SuitabilityCard } from "./components/SuitabilityCard.jsx";
+import { CATEGORIES } from "./suitabilityDisplay.js";
+import { useSuitability } from "./hooks/useSuitability.js";
+import {
+  AiChatSection,
+  HardwareChatSection,
+} from "./components/ChatView.jsx";
 import {
   getBenchmarkComparisonData,
   getPerformanceState,
@@ -26,6 +35,8 @@ import {
   AI_ANALYSIS_STATUS,
   requestComparisonExplanation,
 } from "./comparisonExplanation.js";
+import { GPU_METRICS } from "./comparison.js";
+import { buildGpuInsightsFromStatus } from "./comparisonGpuInsights.js";
 import {
   getCpuDetailViewModel,
   getDetailBackLabel,
@@ -73,7 +84,6 @@ import {
   getBuildChatAnalysisSections,
   getBuildChatConversationError,
   getBuildChatEvidenceSections,
-  getChatLoadingParts,
   getLastBuildChatTurn,
   isBuildChatBusy,
   isBuildChatRestoringConversation,
@@ -99,6 +109,8 @@ import {
   getCatalogReadout,
   getCatalogResultSummary,
   requestHardwareCatalog,
+  requestHardwareCatalogPage,
+  requestHardwareFacets,
 } from "./catalog.js";
 import {
   getGpuDetailViewModel,
@@ -124,7 +136,6 @@ import {
 } from "./apiValidation.js";
 import { apiUrl } from "./api.js";
 import {
-  CHAT_ERROR_KIND,
   CHAT_STATUS,
   buildHardwareChatContext,
   completeHardwareChatRequest,
@@ -450,6 +461,12 @@ function PerformanceSection({
                     <strong>{formatBenchmarkScore(result.score)}</strong>
                     <span>{result.unit}</span>
                   </div>
+
+                  {result.quality !== undefined && (
+                    <div className="performance-quality">
+                      <BenchmarkQualityBadge quality={result.quality} />
+                    </div>
+                  )}
 
                   <p>{metric.description}</p>
 
@@ -1091,6 +1108,7 @@ function CpuDetailView({
   onBack,
   onCompare,
   onAddToBuild,
+  onOpenFit,
   detailError,
   chatState,
   onAskQuestion,
@@ -1171,6 +1189,14 @@ function CpuDetailView({
           >
             {buildAction.actionLabel}
           </button>
+
+          <button
+            type="button"
+            className="detail-compare-button hardware-fit-btn"
+            onClick={onOpenFit}
+          >
+            Hardware Fit
+          </button>
         </div>
       </div>
 
@@ -1214,6 +1240,7 @@ function GpuHardwareDetail({
   buildAction,
   onBack,
   onAddToBuild,
+  onOpenFit,
   provenance,
 }) {
   const viewModel = getGpuDetailViewModel(hardware);
@@ -1267,6 +1294,14 @@ function GpuHardwareDetail({
             aria-pressed={buildAction.alreadySelected}
           >
             {buildAction.actionLabel}
+          </button>
+
+          <button
+            type="button"
+            className="detail-compare-button hardware-fit-btn"
+            onClick={onOpenFit}
+          >
+            Hardware Fit
           </button>
         </div>
       </div>
@@ -1458,85 +1493,6 @@ function AiAnalysis({ analysis, onGenerate }) {
   );
 }
 
-const CHAT_SUGGESTED_PROMPTS = [
-  "Kuat buat GTA V?",
-  "Cocok buat Figma?",
-  "Buat coding project gede?",
-  "Cocok buat Android Studio?",
-];
-
-const CHAT_ERROR_COPY = {
-  [CHAT_ERROR_KIND.validation]:
-    "The question could not be sent. Reword it and try again.",
-  [CHAT_ERROR_KIND.provider]:
-    "SPECTRA's AI provider could not answer right now.",
-  [CHAT_ERROR_KIND.empty]:
-    "SPECTRA returned an empty answer. Try again.",
-  [CHAT_ERROR_KIND.request]:
-    "The request could not be completed. Check the connection and try again.",
-};
-
-function MarkdownContent({ markdown, headingOffset = 0, className = "" }) {
-  const blockClassName = className
-    ? `markdown-content ${className}`
-    : "markdown-content";
-
-  return (
-    <div className={blockClassName}>
-      {parseMarkdown(markdown).map((block, blockIndex) => {
-        const renderInline = (parts) =>
-          parts.map((part, partIndex) =>
-            part.type === "bold" ? (
-              <strong key={`${blockIndex}-${partIndex}`}>{part.value}</strong>
-            ) : (
-              <span key={`${blockIndex}-${partIndex}`}>{part.value}</span>
-            ),
-          );
-
-        if (block.type === "heading") {
-          const Heading = `h${Math.min(6, Math.max(1, block.level + headingOffset))}`;
-          return (
-            <Heading key={blockIndex}>
-              {renderInline(block.children)}
-            </Heading>
-          );
-        }
-
-        if (block.type === "list") {
-          return (
-            <ul key={blockIndex}>
-              {block.items.map((item, itemIndex) => (
-                <li key={itemIndex}>{renderInline(item)}</li>
-              ))}
-            </ul>
-          );
-        }
-
-        return <p key={blockIndex}>{renderInline(block.children)}</p>;
-      })}
-    </div>
-  );
-}
-
-function HardwareChatTranscript({ chatState }) {
-  if (!chatState.answeredQuestion) {
-    return null;
-  }
-
-  return (
-    <div className="hardware-chat-qna">
-      <div className="hardware-chat-question">
-        <span>You</span>
-        <strong>{chatState.answeredQuestion}</strong>
-      </div>
-      <div className="hardware-chat-answer">
-        <span className="hardware-chat-answer-label">SPECTRA</span>
-        <MarkdownContent markdown={chatState.answer} />
-      </div>
-    </div>
-  );
-}
-
 function BuildChatEvidence({ evidence }) {
   const sections = getBuildChatEvidenceSections(evidence).filter(
     (section) => section.items.length > 0
@@ -1651,164 +1607,6 @@ function BuildChatTranscript({ messages }) {
   );
 }
 
-function AiChatSection({
-  id,
-  eyebrow = "ASK SPECTRA",
-  title,
-  intro,
-  introId,
-  loadingMessage,
-  composerLabel,
-  composerPlaceholder,
-  submitLabel,
-  prompts,
-  promptsLabel = "Suggested questions",
-  transcript,
-  loadingDetail = "",
-  promptsSecondary = false,
-  onRetry,
-  chatState,
-  onAsk,
-}) {
-  const [draft, setDraft] = useState("");
-  const loading = chatState.status === CHAT_STATUS.loading;
-  const loadingParts = getChatLoadingParts(loadingMessage, loadingDetail);
-  const resolvedIntroId = introId || `${id}-intro`;
-
-  const submit = (question) => {
-    const trimmed = (question ?? draft).trim();
-    if (!trimmed || loading) {
-      return;
-    }
-
-    setDraft("");
-    onAsk(trimmed);
-  };
-
-  return (
-    <section className="hardware-chat" aria-busy={loading} aria-labelledby={id}>
-      <div className="hardware-chat-header">
-        <div>
-          <p className="detail-section-label">{eyebrow}</p>
-          <h3 id={id}>{title}</h3>
-        </div>
-        <span className="hardware-chat-mark" aria-hidden="true">AI</span>
-      </div>
-
-      <p className="hardware-chat-intro" id={resolvedIntroId}>
-        {intro}
-      </p>
-
-      {transcript}
-
-      {loading && (
-        <div className="hardware-chat-message" role="status">
-          <span className="state-spinner" aria-hidden="true" />
-          <span>
-            {chatState.answeredQuestion
-              ? "Asking a follow-up..."
-              : loadingParts.label}
-            {loadingParts.detail && <strong>{loadingParts.detail}</strong>}
-          </span>
-        </div>
-      )}
-
-      {chatState.status === CHAT_STATUS.error && (
-        <div className="hardware-chat-error" role="alert">
-          <strong>Could not get an answer.</strong>
-          <span>
-            {CHAT_ERROR_COPY[chatState.error?.kind] ??
-              CHAT_ERROR_COPY[CHAT_ERROR_KIND.request]}
-          </span>
-          <button
-            type="button"
-            className="hardware-chat-retry"
-            disabled={loading}
-            onClick={() => {
-              if (onRetry) {
-                onRetry();
-                return;
-              }
-
-              submit(chatState.lastQuestion);
-            }}
-          >
-            Retry
-          </button>
-        </div>
-      )}
-
-      <div
-        className={
-          promptsSecondary
-            ? "hardware-chat-prompts hardware-chat-prompts-secondary"
-            : "hardware-chat-prompts"
-        }
-        aria-label={promptsLabel}
-        role="group"
-      >
-        {prompts.map((prompt) => (
-          <button
-            type="button"
-            className="hardware-chat-prompt"
-            key={prompt}
-            disabled={loading}
-            onClick={() => submit(prompt)}
-          >
-            {prompt}
-          </button>
-        ))}
-      </div>
-
-      <form
-        className="hardware-chat-composer"
-        onSubmit={(event) => {
-          event.preventDefault();
-          submit();
-        }}
-      >
-        <label className="sr-only" htmlFor={`${id}-composer`}>
-          {composerLabel}
-        </label>
-
-        <input
-          id={`${id}-composer`}
-          type="text"
-          aria-describedby={resolvedIntroId}
-          autoComplete="off"
-          enterKeyHint="send"
-          placeholder={composerPlaceholder}
-          value={draft}
-          disabled={loading}
-          onChange={(event) => setDraft(event.target.value)}
-        />
-
-        <button type="submit" disabled={loading}>
-          {loading ? "Asking…" : submitLabel}
-        </button>
-      </form>
-    </section>
-  );
-}
-
-function HardwareChatSection({ chatState, onAsk }) {
-  return (
-    <AiChatSection
-      id="hardware-chat-title"
-      title="Ask your hardware anything"
-      intro="Ask a natural-language question about this CPU. SPECTRA answers from verified specifications and benchmark data only."
-      loadingMessage="Asking SPECTRA..."
-      composerLabel="Ask about this CPU"
-      composerPlaceholder="Ask about this CPU..."
-      submitLabel="Ask"
-      prompts={CHAT_SUGGESTED_PROMPTS}
-      promptsLabel="Suggested questions for this CPU"
-      transcript={<HardwareChatTranscript chatState={chatState} />}
-      chatState={chatState}
-      onAsk={onAsk}
-    />
-  );
-}
 
 const BUILD_CONVERSATION_ERROR_COPY = {
   [BUILD_CHAT_CONVERSATION_ERROR_KIND.load]: {
@@ -2422,6 +2220,66 @@ function BuildConfigurationSection({
   );
 }
 
+function SuitabilitySide({ hardwareId, hardwareName, workload }) {
+  const { data, loading, error } = useSuitability(hardwareId);
+  const rating = data?.ratings?.find((r) => r.category === workload);
+
+  return (
+    <div className="suitability-comparison-side">
+      <h4>{hardwareName}</h4>
+      {loading && <p className="hardware-fit-loading">Loading…</p>}
+      {error && <p className="hardware-fit-error">{String(error)}</p>}
+      {!loading && !error && rating && <SuitabilityCard rating={rating} />}
+      {!loading && !error && !rating && (
+        <p className="hardware-fit-empty">No suitability data.</p>
+      )}
+    </div>
+  );
+}
+
+function SuitabilityComparisonSection({ compareDetails }) {
+  const [workload, setWorkload] = useState("gaming");
+
+  return (
+    <section
+      className="suitability-comparison"
+      aria-labelledby="suitability-comparison-title"
+    >
+      <div className="suitability-comparison-header">
+        <div>
+          <p className="detail-section-label">HARDWARE FIT</p>
+          <h3 id="suitability-comparison-title">
+            Suitability by workload
+          </h3>
+        </div>
+        <label className="suitability-comparison-workload">
+          Workload
+          <select
+            value={workload}
+            onChange={(event) => setWorkload(event.target.value)}
+          >
+            {CATEGORIES.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat.replace("_", " ")}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="suitability-comparison-grid">
+        {compareDetails.map((item) => (
+          <SuitabilitySide
+            key={item.id}
+            hardwareId={item.id}
+            hardwareName={item.name}
+            workload={workload}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [themeState, setThemeState] = useState(() =>
     createThemePreferenceState(
@@ -2433,6 +2291,8 @@ function App() {
   const [hardware, setHardware] = useState([]);
   const [hardwareLoading, setHardwareLoading] = useState(true);
   const [hardwareError, setHardwareError] = useState("");
+  const [hardwareTotalCount, setHardwareTotalCount] = useState(0);
+  const [hardwareFacets, setHardwareFacets] = useState(null);
   const [hardwareTypeFilter, setHardwareTypeFilter] = useState("All");
   const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
@@ -2442,11 +2302,17 @@ function App() {
   const [detailView, setDetailView] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState("");
+  const [showFit, setShowFit] = useState(false);
   const [compareList, setCompareList] = useState([]);
   const [comparisonSelectionNotice, setComparisonSelectionNotice] =
     useState("");
   const [comparisonDetailState, setComparisonDetailState] = useState(
     createComparisonDetailState,
+  );
+  const [gpuComparisonPayload, setGpuComparisonPayload] = useState(null);
+  const [gpuComparisonError, setGpuComparisonError] = useState(false);
+  const [gpuComparisonInstalledFor, setGpuComparisonInstalledFor] = useState(
+    "",
   );
   const [benchmarkStates, setBenchmarkStates] = useState({});
   const [specProvenanceById, setSpecProvenanceById] = useState({});
@@ -2479,6 +2345,68 @@ function App() {
     compareList,
     comparisonDetailState.detailsById,
   );
+
+  /* The backend is the single source of truth for GPU comparison verdicts.
+     Whenever a GPU pair is fully loaded, POST to /comparison/gpu and store the
+     verdicts. The CPU path is untouched and remains entirely client-side.
+
+     The loading status is derived in render (see gpuComparisonStatus below)
+     from the installed pair key versus the settled payload/error, so the
+     effect never synchronously writes loaded/pending state. AbortController
+     cancels the in-flight request on re-run/cleanup, so a stale response can
+     never overwrite a newer one: settled updates only land when the request
+     that produced them is still the current one. */
+  const compareIdsKey = compareList.map((item) => item.id).join(",");
+  const gpuPairLoadedKey =
+    compareList.length === 2 &&
+    compareList.every((item) => item.type === "GPU")
+      ? compareList
+          .map(
+            (item) =>
+              comparisonDetailState.requestStatesById[item.id]?.status ?? "missing",
+          )
+          .join(",")
+      : "";
+
+  const gpuComparisonStatus =
+    gpuPairLoadedKey !== "success,success"
+      ? "idle"
+      : gpuComparisonInstalledFor !== compareIdsKey
+        ? "loading"
+        : gpuComparisonError
+          ? "error"
+          : "success";
+
+  useEffect(() => {
+    if (gpuPairLoadedKey !== "success,success") {
+      return undefined;
+    }
+
+    if (gpuComparisonInstalledFor === compareIdsKey) {
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    const [gpuA, gpuB] = compareList;
+
+    requestGpuComparison(gpuA.id, gpuB.id, fetch, controller.signal)
+      .then((payload) => {
+        setGpuComparisonInstalledFor(compareIdsKey);
+        setGpuComparisonError(false);
+        setGpuComparisonPayload(payload);
+      })
+      .catch((error) => {
+        if (error?.name === "AbortError") {
+          return;
+        }
+        console.error("Failed to load GPU comparison verdict:", error);
+        setGpuComparisonInstalledFor(compareIdsKey);
+        setGpuComparisonError(true);
+        setGpuComparisonPayload(null);
+      });
+
+    return () => controller.abort();
+  }, [compareIdsKey, gpuPairLoadedKey, compareList, gpuComparisonInstalledFor]);
 
   const buildCpuDetail = getBuildSlotDetail(buildDetailState, "CPU");
   const buildGpuDetail = getBuildSlotDetail(buildDetailState, "GPU");
@@ -3056,6 +2984,41 @@ function App() {
     loadHardwareCatalog("All");
   }, []);
 
+  /* Server-driven catalog pages (1.3): keep the total accurate and load facet
+     counts whenever the filter set changes. The effect follows the established
+     AbortController idiom — a stale response can never overwrite a newer one,
+     and cleanup aborts the in-flight request. The base list still flows through
+     loadHardwareCatalog so the card grid behaves exactly as before; these fetch
+     only the metadata that page needs (total + facet counts). */
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    requestHardwareCatalogPage(
+      hardwareTypeFilter,
+      { q: search, manufacturer: manufacturerFilter },
+      (url, options) => fetch(url, { ...options, signal })
+    )
+      .then(({ totalCount }) => {
+        setHardwareTotalCount(totalCount);
+      })
+      .catch(() => {
+        // The whole-catalog default load above still covers the grid; a lost
+        // total only degrades the readout, never the page.
+      });
+
+    requestHardwareFacets(
+      { type: hardwareTypeFilter, q: search, manufacturer: manufacturerFilter },
+      (url, options) => fetch(url, { ...options, signal })
+    )
+      .then((facets) => {
+        setHardwareFacets(facets);
+      })
+      .catch(() => {});
+
+    return () => controller.abort();
+  }, [hardwareTypeFilter, search, manufacturerFilter]);
+
   useEffect(() => {
     fetch(apiUrl("/"))
       .then((response) => response.json())
@@ -3127,22 +3090,37 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
+  /* Server-provided total for the active filters, degraded gracefully to the
+     client-visible set so the readout never shows a larger number than we can
+     render. The server total is authoritative when present. */
+  const catalogTotalCount =
+    hardwareTotalCount > 0 ? hardwareTotalCount : filteredHardware.length;
+
   const catalogResultSummary = getCatalogResultSummary({
     loading: hardwareLoading,
     error: hardwareError,
     visibleCount,
-    totalCount: filteredHardware.length,
+    totalCount: catalogTotalCount,
     manufacturerFilter,
     typeFilter: hardwareTypeFilter,
   });
 
   const catalogReadout = getCatalogReadout({
-    totalCount: filteredHardware.length,
+    totalCount: catalogTotalCount,
     manufacturerFilter,
     typeFilter: hardwareTypeFilter,
   });
 
   const comparisonSummary = getComparisonSelectionSummary(compareList);
+
+  /* Facet counts from the backend for the current filter set, keyed by value
+     so the manufacturer buttons can show what each filter would find next. */
+  const manufacturerFacetCounts = {};
+  if (hardwareFacets?.manufacturers) {
+    hardwareFacets.manufacturers.forEach((facet) => {
+      manufacturerFacetCounts[facet.value] = facet.count;
+    });
+  }
 
   useEffect(() => {
     const visibleCards = filteredHardware.slice(0, visibleCount);
@@ -3197,18 +3175,28 @@ function App() {
     });
   }, [filteredHardware, visibleCount, cardSpecsById]);
 
-  const comparisonInsights = calculateComparisonInsights(
-    compareDetails,
-    benchmarkStates
-  );
+  const comparisonInsights = isGpuComparison
+    ? buildGpuInsightsFromStatus(
+        gpuComparisonStatus,
+        gpuComparisonPayload,
+        compareDetails,
+        GPU_METRICS,
+      )
+    : calculateComparisonInsights(
+        compareDetails,
+        benchmarkStates,
+      );
   const benchmarkComparison = getBenchmarkComparisonData(
     compareDetails,
-    benchmarkStates
+    benchmarkStates,
   );
-  const comparisonFacts = buildComparisonFacts(compareDetails, benchmarkStates);
+  const comparisonFacts = buildComparisonFacts(
+    compareDetails,
+    benchmarkStates,
+  );
   const decisionSummary = buildComparisonDecisionSummary(
     compareDetails,
-    benchmarkStates
+    benchmarkStates,
   );
 
   const comparisonSourceSummaries = compareDetails.map((hardware) => ({
@@ -3611,6 +3599,11 @@ function App() {
                     manufacturerFilter
                   );
 
+                  const facetCount =
+                    manufacturer === "All"
+                      ? null
+                      : manufacturerFacetCounts[manufacturer];
+
                   return (
                     <button
                       type="button"
@@ -3620,6 +3613,11 @@ function App() {
                       onClick={() => setManufacturerFilter(manufacturer)}
                     >
                       {manufacturer}
+                      {facetCount != null && (
+                        <span className="filter-facet-count" aria-hidden="true">
+                          {facetCount}
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -3952,6 +3950,7 @@ function App() {
               buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
               onBack={returnToCatalog}
               onAddToBuild={() => addToBuild(selectedHardware)}
+              onOpenFit={() => setShowFit(true)}
               provenance={specProvenanceById[selectedHardware.id]}
             />
           ) : (
@@ -3963,6 +3962,7 @@ function App() {
               onBack={returnToCatalog}
               onCompare={compareSelectedHardware}
               onAddToBuild={() => addToBuild(selectedHardware)}
+              onOpenFit={() => setShowFit(true)}
               detailError={detailError}
               chatState={hardwareChatState}
               onAskQuestion={askHardwareChat}
@@ -3970,6 +3970,15 @@ function App() {
               sourcesById={sourcesById}
             />
           )
+        )}
+
+        {showFit && selectedHardware && (
+          <HardwareFitModal
+            hardwareId={selectedHardware.id}
+            hardwareName={selectedHardware.name}
+            hardwareType={selectedHardware.type}
+            onClose={() => setShowFit(false)}
+          />
         )}
 
         <BuildConfigurationSection
@@ -4285,6 +4294,10 @@ function App() {
                     </tbody>
                   </table>
                 </div>
+              )}
+
+              {compareDetails.length === 2 && (
+                <SuitabilityComparisonSection compareDetails={compareDetails} />
               )}
             </div>
           )}

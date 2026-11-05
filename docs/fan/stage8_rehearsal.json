@@ -1,0 +1,29 @@
+{
+  "baseline": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_dev.baseline_rollback.db",
+  "baseline_sha256": "f3553cbb40627253ff5d510ece720c808e4dd4792ccf429347dfaacb7baec882",
+  "confirm": "scratch-after-import:f3553cbb40627253ff5d510ece720c808e4dd4792ccf429347dfaacb7baec882",
+  "gap_rows_before": 204,
+  "idempotent": true,
+  "import_first": {
+    "applied": 0,
+    "quarantined": 0,
+    "rejected": 40698,
+    "skipped": 0,
+    "status": "ok"
+  },
+  "import_second": {
+    "applied": 0,
+    "quarantined": 0,
+    "rejected": 40698,
+    "skipped": 0,
+    "status": "ok"
+  },
+  "scratch": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_rehearsal_READY.db",
+  "scratch_sha256_before": "f3553cbb40627253ff5d510ece720c808e4dd4792ccf429347dfaacb7baec882",
+  "validation": {
+    "accepted": 37250,
+    "blocked": false,
+    "quarantined": 0,
+    "rejected": 3448
+  }
+}

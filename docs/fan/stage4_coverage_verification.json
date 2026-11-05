@@ -1,0 +1,114 @@
+{
+  "feasibility": {
+    "cpu_specifications": [
+      {
+        "field": "cores",
+        "fillable": false,
+        "missing": 5,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "threads",
+        "fillable": false,
+        "missing": 461,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "base_clock_ghz",
+        "fillable": false,
+        "missing": 229,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "boost_clock_ghz",
+        "fillable": false,
+        "missing": 1076,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "tdp_w",
+        "fillable": false,
+        "missing": 277,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "process_node_nm",
+        "fillable": false,
+        "missing": 1028,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      },
+      {
+        "field": "socket",
+        "fillable": false,
+        "missing": 190,
+        "reason": "no clear-licensed CPU source (CPU sources are unknown/restricted license) - blocked"
+      }
+    ],
+    "gpu_specifications": [
+      {
+        "field": "memory_gb",
+        "fillable": true,
+        "missing": 341,
+        "reason": "clear-licensed adapter covers this field; NULL can be filled where the source has a value"
+      },
+      {
+        "field": "memory_type",
+        "fillable": false,
+        "missing": 0,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      },
+      {
+        "field": "core_clock_mhz",
+        "fillable": false,
+        "missing": 4,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      },
+      {
+        "field": "boost_clock_mhz",
+        "fillable": true,
+        "missing": 755,
+        "reason": "clear-licensed adapter covers this field; NULL can be filled where the source has a value"
+      },
+      {
+        "field": "vram_bandwidth_gbps",
+        "fillable": false,
+        "missing": 341,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      },
+      {
+        "field": "memory_bus_width_bits",
+        "fillable": false,
+        "missing": 436,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      },
+      {
+        "field": "tdp_w",
+        "fillable": true,
+        "missing": 204,
+        "reason": "clear-licensed adapter covers this field; NULL can be filled where the source has a value"
+      },
+      {
+        "field": "interface",
+        "fillable": false,
+        "missing": 1030,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      },
+      {
+        "field": "length_mm",
+        "fillable": false,
+        "missing": 1113,
+        "reason": "no clear-licensed adapter maps this field - blocked"
+      }
+    ]
+  },
+  "target": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_dev.db",
+  "tool": "coverage_verification",
+  "totals": {
+    "benchmark_results": 1040,
+    "cpu": 3501,
+    "cpu_specifications": 3501,
+    "gpu": 1879,
+    "gpu_specifications": 1879,
+    "hardware": 5380
+  }
+}

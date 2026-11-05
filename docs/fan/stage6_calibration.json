@@ -1,0 +1,41 @@
+{
+  "families": {
+    "multi-core": {
+      "documented": [
+        1409.0,
+        2809.0,
+        5001.0,
+        8017.0,
+        16347.0
+      ],
+      "max_pct_err": 24.74,
+      "observed": [
+        1409.0,
+        3214.0,
+        5001.0,
+        7266.0,
+        12303.0
+      ],
+      "status": "drift"
+    },
+    "single-core": {
+      "documented": [
+        667.0,
+        983.0,
+        1325.0,
+        1637.0,
+        2020.0
+      ],
+      "max_pct_err": 9.36,
+      "observed": [
+        667.0,
+        1075.0,
+        1325.0,
+        1562.0,
+        2016.0
+      ],
+      "status": "ok"
+    }
+  },
+  "target": "C:\\Users\\user\\spectra-local\\data\\dev\\spectra_dev.db"
+}
