@@ -36,7 +36,7 @@ jobs:
           GEMINI_API_KEY: ""
 
       - name: Run AI-gated tests when a key is provided
-        if: env.GEMINI_API_KEY != ""
+        if: env.GEMINI_API_KEY != ''
         run: python -m pytest backend -q
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
