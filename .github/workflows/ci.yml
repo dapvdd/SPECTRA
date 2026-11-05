@@ -37,18 +37,17 @@ jobs:
           from sqlalchemy import create_engine
           sys.path.insert(0, '.')
           from backend.app.database import Base
-          # Import all models to register them with Base.metadata
           from backend.app.models import (  # noqa: F401
               BenchmarkResult, BuildConversation, BuildMessage,
               CPUSpecification, GPUSpecification, Hardware, Source,
           )
+          from backend.app.auth import User  # noqa: F401
           db = Path('data/spectra.db')
           db.parent.mkdir(parents=True, exist_ok=True)
           engine = create_engine('sqlite:///data/spectra.db', connect_args={'check_same_thread': False})
           Base.metadata.create_all(bind=engine)
-          print('schema created')
+          print('fresh v2 schema created')
           "
-          python backend/app/migrations/runner.py --database data/spectra.db
 
       - name: Run backend tests (non-AI)
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py --deselect=backend/app/test_auth_security.py::TestProtectedRoutesWhenAuthOn::test_public_routes_stay_open --deselect=backend/app/test_suitability_api.py::test_recommend_returns_ranked_candidates_for_benchmarked_cpu
