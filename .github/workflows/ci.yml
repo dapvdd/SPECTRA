@@ -66,12 +66,14 @@ jobs:
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py --deselect=backend/app/test_auth_security.py::TestProtectedRoutesWhenAuthOn::test_public_routes_stay_open --deselect=backend/app/test_suitability_api.py::test_recommend_returns_ranked_candidates_for_benchmarked_cpu --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_database_persistence_across_restart_cycle --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
         env:
           GEMINI_API_KEY: ""
+          SPECTRA_DATABASE_URL: "sqlite:///./data/spectra.db"
 
       - name: Run AI-gated tests when a key is provided
         if: env.GEMINI_API_KEY != ''
         run: python -m pytest backend -q --ignore=backend/app/test_benchmark_matching.py --ignore=backend/app/importers/test_benchmark_cpu_import.py --deselect=backend/app/test_auth_security.py::TestProtectedRoutesWhenAuthOn::test_public_routes_stay_open --deselect=backend/app/test_suitability_api.py::test_recommend_returns_ranked_candidates_for_benchmarked_cpu --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_database_persistence_across_restart_cycle --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SPECTRA_DATABASE_URL: "sqlite:///./data/spectra.db"
 
   frontend:
     name: Frontend (test + build + lint)
