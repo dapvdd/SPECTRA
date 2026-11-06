@@ -31,35 +31,40 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 
 ## Phase 1 — Data quality, comparison parity, observability (P1)
 
-### 1.1 Backend GPU comparison / single comparison engine
+### 1.1 Backend GPU comparison / single comparison engine — **DONE (verified)**
 - **Priority:** P1 · **Dependencies:** 0.1 · **Effort:** M
 - **Benefits:** removes the CPU-only backend vs client-side GPU divergence; single source of truth for deterministic comparison; enables AI explanation for GPU with backend-verified facts.
 - **Acceptance criteria:** `POST /comparison/gpu` returns the same `unavailable`/tie/difference semantics as CPU; frontend GPU comparison calls the backend; comparison logic tests cover both CPU and GPU; no behavioral change to existing CPU path.
 - **Risks:** behavioral parity → comprehensive parity tests; frontend migration done in the same PR.
+- **Verification:** `backend/app/services/comparison_service.py` (GPU logic), `POST /comparison/gpu` in `backend/app/main.py`, `backend/app/test_gpu_comparison_api.py`, frontend `comparisonGpu.js` → backend in `App.jsx`.
 
-### 1.2 Benchmark quality & confidence scoring
+### 1.2 Benchmark quality & confidence scoring — **PARTIAL** (implemented; sample-count/variance absent by design)
 - **Priority:** P1 · **Dependencies:** 0.2 (new columns) · **Effort:** M
 - **Benefits:** honest quality dimension (sample count, variance, source confidence) that weights evidence without inventing numbers; enables confidence-aware AI and inline badges.
 - **Acceptance criteria:** deterministic score computed from existing data only; exposed in benchmark API; documented formula; new tests; 0 GPU benchmarks unchanged; no scoring for `excluded`/`unmatched`.
 - **Risks:** overclaiming confidence → strictly derived, formula documented, no user-facing "absolute" claims.
+- **Verification:** score computed & exposed in benchmark API (weights attribution 0.35 / timestamp 0.25 / licence 0.20 / provenance 0.20 — see `docs/SCORING_METHODOLOGY.md`). **Not implemented:** sample-count & variance signals (would need new DB columns; deliberately scoped out — no schema change). See `docs/SCORING_METHODOLOGY.md` "Known scope".
 
-### 1.3 Server-side search, pagination, facets
+### 1.3 Server-side search, pagination, facets — **DONE (verified)**
 - **Priority:** P1 · **Dependencies:** 0.1 · **Effort:** M
 - **Benefits:** catalog scales beyond the single 5,380-row payload; enables rich faceted discovery (segment, socket, architecture, year, VRAM tier).
 - **Acceptance criteria:** `GET /hardware` supports `q`, `limit`, `offset`, typed/manufacturer/segment filters; default (no params) preserves current behavior so tests pass; frontend uses server pages; facet counts accurate.
 - **Risks:** default-behavior change → additive params only; frontend fallback for old calls.
+- **Verification:** `backend/app/main.py` `get_hardware` (params `q`/`limit`/`offset`/`type`/`manufacturer`/`segment`, `X-Total-Count` header) and `get_hardware_facet_counts` (`GET /hardware/facets`).
 
-### 1.4 Observability (structured logging, readiness, metrics)
+### 1.4 Observability (structured logging, readiness, metrics) — **DONE (verified)**
 - **Priority:** P1 · **Dependencies:** none · **Effort:** S–M
 - **Benefits:** production reliability; request-id correlation; `/ready` for orchestration; capacity to detect slow queries/AI failures.
 - **Acceptance criteria:** structured JSON logs; `/health` unchanged; `/ready` checks DB + migrations; optional metrics endpoint; no PII/keys in logs (extends existing redaction).
 - **Risks:** none material (additive).
+- **Verification:** `GET /health` + `GET /ready` (DB + migrations, 503 on failure) in `backend/app/main.py`; `request_id` middleware in `backend/app/middleware/request_id.py` (mounted); structured JSON logs present. **Not implemented (optional per AC):** `/metrics` endpoint.
 
-### 1.5 Normalizer/validator as reusable service
+### 1.5 Normalizer/validator as reusable service — **PARTIAL** (primitives centralized; cpu layer intentional)
 - **Priority:** P1 · **Dependencies:** none · **Effort:** M
 - **Benefits:** single validated ingestion path; new catalogs (RAM/SSD/etc.) reuse it; reduces importer duplication.
 - **Acceptance criteria:** importer-local normalization promoted to `backend/app/normalization` (or similar), tested, imported by importers without behavior change; existing tests pass.
 - **Risks:** refactor regression → keep behavior-identical tests.
+- **Verification:** shared primitives promoted+tested at `backend/app/normalization/primitives.py` (+ `test_primitives.py`); `cpu_normalizer.normalize_name` intentionally layers a CPU-specific mojibake-® strip on top of the shared generic function (kept as a layer to preserve benchmark/gpu paths byte-identical).
 
 ---
 
@@ -98,7 +103,7 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 
 ## Phase 3 — Extended intelligence (P3 / roadmap)
 
-### 3.1 GPU benchmark integration (licensed source only)
+### 3.1 GPU benchmark integration (licensed source only) — **OPEN (license-blocked: no licensed source yet)**
 - **Priority:** P3 · **Dependencies:** 1.2, 1.5 · **Effort:** L
 - **Benefits:** closes the largest data gap, enables GPU performance comparison + AI confidence context.
 - **Acceptance criteria:** source meets all four criteria (license clear, provenance, accessibility, reproducibility); NULL-only; provenance-first; quality-scored; no fabricated FPS.
@@ -116,7 +121,7 @@ Legend — Priority: P0 (foundation) / P1 (high) / P2 (medium) / P3 (roadmap/fut
 - **Acceptance criteria:** new category follows the documented expansion pipeline end-to-end with provenance and license gate; tests + docs updated.
 - **Risks:** same licensing constraints; staged behind source availability.
 
-### 3.4 Price & performance-to-price
+### 3.4 Price & performance-to-price — **OPEN (license-blocked: no licensed source yet)**
 - **Priority:** P3 · **Dependencies:** 1.2 · **Effort:** L
 - **Benefits:** product goal "performance-to-price analysis".
 - **Acceptance criteria:** licensed pricing source; provenance per price; deterministic per-price calc; never invented MSRP; documented coverage limits.
