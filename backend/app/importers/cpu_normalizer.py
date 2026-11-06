@@ -1,14 +1,14 @@
 import re
 
-from backend.app.importers.benchmark_normalizer import (
-    strip_invisible_characters,
-)
+from backend.app.normalization import primitives
 
 
 def normalize_name(value: str | None) -> str | None:
     if not value:
         return None
-
+    # CPU importer layer: strip encoding-mojibake Ark brand tokens before the
+    # shared whitespace/invisible-char collapse. Layered so the generic
+    # primitive stays behavior-identical for benchmark/gpu paths.
     value = (
         value.replace("IntelÂ®", "Intel")
         .replace("AMDÂ®", "AMD")
@@ -17,11 +17,7 @@ def normalize_name(value: str | None) -> str | None:
         .replace("™", "")
         .replace("®", "")
     )
-
-    value = re.sub(r"\s+", " ", value)
-    value = strip_invisible_characters(value)
-
-    return value.strip()
+    return primitives.normalize_name(value)
 
 
 def parse_ghz(value: str | None) -> float | None:

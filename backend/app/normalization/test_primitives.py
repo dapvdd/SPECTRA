@@ -99,5 +99,19 @@ class PackageExportsTests(unittest.TestCase):
         self.assertIs(package_strip, strip_invisible_characters)
 
 
+class NormalizeNameCPUDeduplicationTests(unittest.TestCase):
+    def test_shared_normalize_does_not_invent_cpu_ark_strip(self):
+        from backend.app.normalization.primitives import normalize_name as base
+        # The shared primitive must stay generic: it does NOT strip ®/™/mojibake marks.
+        self.assertEqual(base("  Intel\u00c2\u00ae Core i7-9700K  "), "Intel\u00c2\u00ae Core i7-9700K")
+
+    def test_cpu_normalizer_layers_ark_mojibake_strip_on_shared(self):
+        from backend.app.importers.cpu_normalizer import normalize_name as cpu
+        # The CPU importer keeps its historical mojibake-® strip.
+        # Empirical verification: IntelÂ® -> Intel (keeps brand), AMDÂ® -> AMD
+        self.assertEqual(cpu("Intel\u00c2\u00ae Core i7-9700K"), "Intel Core i7-9700K")
+        self.assertEqual(cpu("AMD\u00c2\u00ae Ryzen 5 5600"), "AMD Ryzen 5 5600")
+
+
 if __name__ == "__main__":
     unittest.main()
