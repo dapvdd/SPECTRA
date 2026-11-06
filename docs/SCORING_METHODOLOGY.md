@@ -219,3 +219,63 @@ data (`budget_max` is documented as deferred in `docs/EVIDENCE_GAPS.md`).
 | `productivity` | No single-core benchmark and no CPU/GPU spec |
 | `content_creation` | No multi-core or single-core benchmark and no spec |
 | `ai_ml` | Always — no GPU/VRAM benchmark family in this dataset |
+
+---
+
+## 7. Benchmark quality score — scope (Phase 1.2)
+
+`score_benchmark_quality(*, benchmark) -> dict`
+
+A separate, deterministic **0..1** quality score for a single `BenchmarkResult`
+row (distinct from the suitability evidence-quality score in Section 2).
+Reference implementation: `backend/app/services/benchmark_quality_service.py`.
+
+The score is computed strictly from data that **already exists** on the row and
+its linked `source` and `field_provenance` — no new columns, no DB writes, no
+invented numbers.
+
+### 7.1 Signals and weights (sum = 1.0)
+
+| Signal | Weight | Meaning |
+|---|---|---|
+| `attribution` | 0.35 | the row carries a non-null `source_id` |
+| `timestamp` | 0.25 | the row carries a `recorded_at` value |
+| `licence` | 0.20 | the source's `license_status` is `clear` |
+| `evidence` | 0.20 | provenance votes: `verified` = 1.0, `uncertain` = 0.5, absent = 0 |
+
+### 7.2 Veto rule
+
+A provenance vote of `excluded` or `unmatched` **vetoes the row entirely**: the
+score is `None`, `band` is `None`, and the payload is labelled `"no score"`
+("excluded or unmatched provenance"). A row with no disposing evidence still
+receives a (low) score; a vetoed row never does.
+
+### 7.3 Score bands
+
+| Score | Band |
+|---|---|
+| `>= 0.8` | `high` |
+| `>= 0.5` | `medium` |
+| `< 0.5` | `low` |
+
+### 7.4 Determinism
+
+The function is a pure function of its inputs; the same row always yields the
+identical payload. Bands and signals are surfaced so consumers can reason about
+the raw score without any absolute "this is correct" claim.
+
+### 7.5 Known scope — sample count and variance are deliberately absent
+
+This score does **not** include a sample-count (`record_count`) signal or a
+score-variance signal. Those would require new database columns, and the
+migration plan explicitly adopted **no schema change** for this phase
+(`docs/SPECTRA_V2_MIGRATION_PLAN.md` — "Compute a deterministic quality score
+strictly from existing data (no schema change, no DB write)"). The signal list
+above is therefore the complete, honest coverage of what current data can
+support; a sample/variance dimension is future work, not a silent omission.
+
+Consistent with this, the roadmap keeps `1.2 Benchmark quality & confidence
+scoring` marked **PARTIAL** — the implemented score is real and deterministic,
+but the sample-count/variance dimension that the roadmap's acceptance criteria
+envision is documented as not yet implemented.
+
