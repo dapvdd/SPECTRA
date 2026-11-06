@@ -40,6 +40,7 @@ from backend.app.models import (  # noqa: E402
 )
 
 from backend.app import main  # noqa: E402
+from backend.app.services import benchmark_service  # noqa: E402
 from backend.app.services import build_conversation_service  # noqa: E402
 
 AUTH = "Authorization"
@@ -64,6 +65,7 @@ class AuthSetup:
         self._saved = {
             "main.SessionLocal": main.SessionLocal,
             "service.SessionLocal": build_conversation_service.SessionLocal,
+            "benchmark.SessionLocal": benchmark_service.SessionLocal,
             "auth.SessionLocal": auth_module.SessionLocal,
             "auth.enabled": auth_module._AUTH_ENABLED,
             "auth.secret": auth_module._AUTH_SECRET,
@@ -84,6 +86,7 @@ class AuthSetup:
         main.SessionLocal = self.session_factory
         build_conversation_service.SessionLocal = self.session_factory
         auth_module.SessionLocal = self.session_factory
+        benchmark_service.SessionLocal = self.session_factory
 
         self.client = TestClient(main.app)
         self.cpu_id, self.gpu_id = self._seed()
@@ -123,6 +126,7 @@ class AuthSetup:
         main.SessionLocal = self._saved["main.SessionLocal"]
         build_conversation_service.SessionLocal = self._saved["service.SessionLocal"]
         auth_module.SessionLocal = self._saved["auth.SessionLocal"]
+        benchmark_service.SessionLocal = self._saved["benchmark.SessionLocal"]
         auth_module._AUTH_ENABLED = self._saved["auth.enabled"]
         auth_module._AUTH_SECRET = self._saved["auth.secret"]
         self.engine.dispose()

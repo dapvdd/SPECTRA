@@ -21,6 +21,7 @@ from backend.app.models import (
     GPUSpecification,
     Hardware,
 )
+from backend.app.services import recommendation_service  # noqa: E402
 
 
 class SuitabilityAPISetup:
@@ -34,6 +35,7 @@ class SuitabilityAPISetup:
         Base.metadata.create_all(bind=self.engine)
         self.session_factory = sessionmaker(bind=self.engine)
         main.SessionLocal = self.session_factory
+        recommendation_service.SessionLocal = self.session_factory
         self.client = TestClient(main.app)
         self.cpu_id, self.gpu_id, self.bench_cpu_id = self._seed()
 
@@ -74,6 +76,7 @@ class SuitabilityAPISetup:
 
     def teardown(self):
         main.SessionLocal = self._saved
+        recommendation_service.SessionLocal = self._saved
         self.engine.dispose()
 
 
