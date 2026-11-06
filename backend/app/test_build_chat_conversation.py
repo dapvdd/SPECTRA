@@ -562,11 +562,19 @@ class TestBuildChatConversationProviderFailures:
         self.original_generator = build_chat_service.generate_build_chat_answer
         self.original_chat_response = explanation_service.generate_chat_response
         self.original_urlopen = explanation_service.request.urlopen
+        self.original_get_provider = explanation_service._get_provider
+        # Patch _get_provider so CI env (no GEMINI_API_KEY) doesn't raise
+        # ProviderUnavailableError before urlopen is called. The urlopen mock
+        # below still intercepts the HTTP call regardless.
+        explanation_service._get_provider = (
+            lambda: explanation_service.GeminiProvider("test-key", "test-model")
+        )
 
     def teardown_method(self):
         build_chat_service.generate_build_chat_answer = self.original_generator
         explanation_service.generate_chat_response = self.original_chat_response
         explanation_service.request.urlopen = self.original_urlopen
+        explanation_service._get_provider = self.original_get_provider
 
     def _history_payload(self):
         return _build_payload(messages=_turns(1))
