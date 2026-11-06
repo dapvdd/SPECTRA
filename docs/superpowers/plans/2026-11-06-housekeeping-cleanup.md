@@ -249,3 +249,25 @@ Run: `git status -s` -> only doc modified.
 Plan complete. Recommend **subagent-driven** because Task 2's behavior-pinning tests and Task 4's gap selection both benefit from a fresh reviewer's eyes, and Tasks 1/2/4 touch the test suite whose CG is the whole `pytest backend -q` run. But **native** works too since the tasks are largely independent and each commits separately.
 
 Which execution approach would you prefer - subagent-driven or native?
+
+---
+
+## Completion (2026-11-06)
+
+**Status: PLAN COMPLETE — all 5 tasks delivered, reviewed, and merged to `main`.**
+
+Execution: subagent-driven (user choice), with controller rulings to run Tasks 3-5 inline after
+repeated subagent context-confusion (see ledger `.superpowers/sdd/housekeeping-cleanup/progress.md`).
+
+| # | Commit | Task |
+|---|---|---|
+| 1 | `c08e8b5` | Delete dead `sprint18b/` (8 files, 1437 lines, 54 tests, 0 external refs) |
+| 2 | `5594ab8` | Dedup `cpu_normalizer.normalize_name` onto shared `primitives.normalize_name` (chain byte-identical) |
+| 3 | `46c303e` | Roadmap statuses truthful (1.1/1.3/1.4 DONE verified, 1.2/1.5 PARTIAL, 3.1/3.4 OPEN) |
+| 4 | `d291c7a` | 8 coverage tests closing 3 user-facing gaps (recommendation empty-branch, single-cat 404, star bounds) |
+| 5 | `b4fb5b6` | SCORING_METHODOLOGY.md Section 7: benchmark quality scope (no sample/variance) |
+
+Final gate: **971 passed, 2 skipped, 2 deselected, 0 failed** (verified on final tree).
+CI green on every commit. Final whole-branch review: **Ready to finish**. Work committed
+directly to `main` per plan + user authorization. Prod DB untouched; no test weakened;
+`pytest-cov` added dev-only.
