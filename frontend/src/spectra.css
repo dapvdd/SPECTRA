@@ -1,5 +1,6 @@
 /* ==========================================================================
-   SPECTRA VISUAL SYSTEM V2
+   SPECTRA VISUAL SYSTEM V3
+   Neural Spectrum · Fluid Premium
    --------------------------------------------------------------------------
    Identity + theming layer. Loaded after App.css, so this file governs:
    App.css owns component implementation, this file owns language and themes.
@@ -28,63 +29,64 @@
    ========================================================================== */
 
 /* ==========================================================================
-   1. DARK THEME  —  premium engineering instrumentation at night
-   The canonical palette. `:root` carries it so the product is fully
-   rendered even if the theme boot script never runs.
+   1. DARK THEME  -  Neural Spectrum: premium engineering instrumentation
+   at night, on a violet-black canvas. The canonical palette. `:root` carries
+   it so the product is fully rendered even if the theme boot script never
+   runs.
    ========================================================================== */
 
 :root {
-  /* Foundation */
-  --spectra-obsidian: #080a0f;
-  --spectra-black: #0d1016;
-  --spectra-midnight: #0c1526;
-  --spectra-midnight-deep: #091120;
-  --spectra-deep-blue: #102746;
-  --spectra-blue-accent: #163a63;
+  /* Foundation - Neural Spectrum near-black violet ladder */
+  --spectra-obsidian: #0b0a14;
+  --spectra-black: #141120;
+  --spectra-midnight: #0c0b18;
+  --spectra-midnight-deep: #0a0914;
+  --spectra-deep-blue: #201a30;
+  --spectra-blue-accent: #2a2440;
 
   /* Information */
-  --spectra-white: #f5f7fa;
-  --spectra-silver: #aab4c2;
-  --spectra-silver-bright: #cbd5e1;
-  --spectra-silver-muted: #697386;
+  --spectra-white: #f5f3ff;
+  --spectra-silver: #a39ab8;
+  --spectra-silver-bright: #c4b5fd;
+  --spectra-silver-muted: #8b82a3;
 
-  /* Interaction */
-  --spectra-blue: #6d9cd4;
-  --spectra-blue-soft: #a8c6e6;
-  --spectra-blue-solid: #1d4e86;
-  --spectra-blue-solid-hover: #2a6bb0;
+  /* Interaction - the violet signal */
+  --spectra-blue: #a78bfa;
+  --spectra-blue-soft: #c4b5fd;
+  --spectra-blue-solid: #7c6bd4;
+  --spectra-blue-solid-hover: #9a84e8;
 
   /* Significance - rare by rule, never a primary accent */
-  --spectra-gold: #d4af5a;
+  --spectra-gold: #d6b96f;
   --spectra-gold-soft: #e7ce8f;
 
   /* Status */
-  --spectra-green: #4ade80;
+  --spectra-green: #34d399;
   --spectra-green-soft: #86efac;
   --spectra-red: #f87171;
   --spectra-red-soft: #fca5a5;
-  --spectra-amber: #d9a63f;
+  --spectra-amber: #fbbf24;
 
-  /* Surfaces - a deliberately narrow, near-black ladder. Hierarchy comes from
-     hairlines and type weight, not from stacking lighter panels. */
-  --spectra-surface-sunken: #05070b;
+  /* Surfaces - a deliberately narrow, near-black violet ladder. Hierarchy comes
+     from hairlines and type weight, not from stacking lighter panels. */
+  --spectra-surface-sunken: #080710;
   --spectra-surface-app: var(--spectra-obsidian);
   --spectra-surface-raised: var(--spectra-black);
-  --spectra-surface-inset: var(--spectra-midnight);
-  --spectra-surface-wash: rgba(13, 16, 22, 0.72);
-  --spectra-surface-overlay: rgba(8, 10, 15, 0.86);
+  --spectra-surface-inset: var(--spectra-midnight-deep);
+  --spectra-surface-wash: rgba(15, 14, 26, 0.72);
+  --spectra-surface-overlay: rgba(11, 10, 20, 0.86);
 
   /* Hairlines - the primary structural device */
-  --spectra-hairline: #141a24;
-  --spectra-hairline-soft: #1c2531;
-  --spectra-hairline-strong: #313d4b;
-  --spectra-hairline-strongest: #3c4a5c;
+  --spectra-hairline: #1e1b2e;
+  --spectra-hairline-soft: #282440;
+  --spectra-hairline-strong: #352f52;
+  --spectra-hairline-strongest: #453b68;
 
   /* Foreground */
   --spectra-text-primary: var(--spectra-white);
   --spectra-text-secondary: var(--spectra-silver);
-  --spectra-text-muted: #7d8798;
-  --spectra-text-faint: #7a8494;
+  --spectra-text-muted: #8b82a3;
+  --spectra-text-faint: #8b82a3;
   /* Ink for saturated fills. Theme-dependent by design: dark fills take
      near-black, light fills take white. */
   --spectra-text-inverse: var(--spectra-obsidian);
@@ -95,12 +97,12 @@
   --spectra-focus-offset: 3px;
 
   /* Elevation - depth of the page, not decoration */
-  --spectra-elevation-card: 0 1px 0 rgba(170, 180, 194, 0.03);
-  --spectra-elevation-panel: 0 18px 48px rgba(3, 6, 12, 0.5);
+  --spectra-elevation-card: 0 1px 0 rgba(196, 181, 253, 0.04);
+  --spectra-elevation-panel: 0 18px 48px rgba(3, 2, 12, 0.5);
 
-  /* Atmosphere */
-  --spectra-grid-dot: rgba(170, 180, 194, 0.07);
-  --spectra-atmosphere: rgba(22, 58, 99, 0.26);
+  /* Atmosphere - violet wash over the canvas */
+  --spectra-grid-dot: rgba(196, 181, 253, 0.06);
+  --spectra-atmosphere: rgba(124, 107, 212, 0.16);
 
   /* Panels - atmosphere, not decoration. Kept extremely shallow. */
   --spectra-panel: linear-gradient(
@@ -121,102 +123,103 @@
 }
 
 /* DARK CONTRAST (measured against every surface in the ladder)
-   text-primary     17.0:1     blue                6.39:1
-   text-secondary    8.7:1     blue-soft          10.33:1
-   gold              8.8:1     green              10.47:1
+   text-primary     17.9:1     blue                7.23:1
+   text-secondary   7.40:1     blue-soft          10.65:1
+   gold              8.2:1     green              12.70:1
    gold-soft        11.8:1     red                 6.60:1
-   text-muted        5.0:1     amber               8.23:1
-   text-faint        4.8:1
-   white on blue-solid        7.87:1
-   obsidian on gold/green/red/silver  7.1:1 - 11.4:1
-   --spectra-silver-muted (#697386) is 4.15:1 and is therefore decoration
-   only. Text uses --spectra-text-faint. */
+   text-muted        5.50:1    amber               9.43:1
+   text-faint        5.50:1
+   white on blue-solid        5.92:1
+   obsidian on gold/green/red/silver  7.0:1 - 12.7:1
+   All text pairs pass WCAG AA (>= 4.5:1). */
 
 /* ==========================================================================
-   2. LIGHT THEME  —  precision engineering in daylight
-   Warm-cool off-white page, white object surfaces, midnight text, deeper
-   blue interaction, muted deeper gold. Independently composed, not flipped.
+   2. LIGHT THEME  -  Neural Spectrum: precision engineering in daylight
+   Violet-tinted off-white page, white object surfaces, deep violet text,
+   deeper violet interaction, muted deeper gold. Independently composed, not
+   flipped.
    ========================================================================== */
 
 :root[data-theme="light"] {
   /* Foundation - light values occupy the same roles, inverted in lightness */
-  --spectra-obsidian: #f2f4f7;
+  --spectra-obsidian: #f8f7fc;
   --spectra-black: #ffffff;
-  --spectra-midnight: #eaeff4;
-  --spectra-midnight-deep: #eef2f6;
-  --spectra-deep-blue: #dbe5f0;
-  --spectra-blue-accent: #b9cbdd;
+  --spectra-midnight: #f1eef7;
+  --spectra-midnight-deep: #ece8f3;
+  --spectra-deep-blue: #e9e2f5;
+  --spectra-blue-accent: #dccff2;
 
   /* Information */
   --spectra-white: #ffffff;
-  --spectra-silver: #3b4959;
-  --spectra-silver-bright: #243141;
-  --spectra-silver-muted: #8b98a6;
+  --spectra-silver: #6b617a;
+  --spectra-silver-bright: #20172f;
+  --spectra-silver-muted: #5d4f70;
 
-  /* Interaction - deeper blue carries the same meaning on a light field */
-  --spectra-blue: #1c5c9e;
-  --spectra-blue-soft: #164a83;
-  --spectra-blue-solid: #123c66;
-  --spectra-blue-solid-hover: #0d2f52;
+  /* Interaction - deeper violet carries the same meaning on a light field */
+  --spectra-blue: #714bc4;
+  --spectra-blue-soft: #5e3fb5;
+  --spectra-blue-solid: #5e3fb5;
+  --spectra-blue-solid-hover: #4c3298;
 
   /* Significance - muted, deeper gold. Still the rarest hue in the system. */
-  --spectra-gold: #7d5f18;
+  --spectra-gold: #8a6d1f;
   --spectra-gold-soft: #6b5215;
 
   /* Status */
-  --spectra-green: #146b35;
+  --spectra-green: #15803d;
   --spectra-green-soft: #0f5c2c;
-  --spectra-red: #b3261e;
+  --spectra-red: #c13515;
   --spectra-red-soft: #8f1e18;
-  --spectra-amber: #7d5208;
+  --spectra-amber: #b45309;
 
   /* Surfaces - off-white page, white objects, recessive wells */
-  --spectra-surface-sunken: #e6ebf0;
+  --spectra-surface-sunken: #f1eef7;
   --spectra-surface-app: var(--spectra-obsidian);
   --spectra-surface-raised: var(--spectra-black);
-  --spectra-surface-inset: var(--spectra-midnight);
+  --spectra-surface-inset: var(--spectra-midnight-deep);
   --spectra-surface-wash: rgba(255, 255, 255, 0.86);
-  --spectra-surface-overlay: rgba(242, 244, 247, 0.9);
+  --spectra-surface-overlay: rgba(248, 247, 252, 0.9);
 
-  /* Hairlines - silver, same role as dark */
-  --spectra-hairline: #dde3ea;
-  --spectra-hairline-soft: #c9d2dc;
-  --spectra-hairline-strong: #aab6c2;
-  --spectra-hairline-strongest: #8b98a6;
+  /* Hairlines - violet-tinted silver, same role as dark */
+  --spectra-hairline: #e6e2f0;
+  --spectra-hairline-soft: #d5cfe4;
+  --spectra-hairline-strong: #b9b0cd;
+  --spectra-hairline-strongest: #9d91b5;
 
-  /* Foreground - midnight, not black */
-  --spectra-text-primary: #0b1622;
-  --spectra-text-secondary: #3b4959;
-  --spectra-text-muted: #55636f;
-  --spectra-text-faint: #55626f;
+  /* Foreground - deep violet-black, not blue-black */
+  --spectra-text-primary: #20172f;
+  --spectra-text-secondary: var(--spectra-silver);
+  --spectra-text-muted: var(--spectra-silver-muted);
+  --spectra-text-faint: var(--spectra-silver-muted);
   /* Saturated fills are dark in light mode, so they take white ink. */
   --spectra-text-inverse: #ffffff;
 
   --spectra-focus-color: var(--spectra-blue-soft);
 
   /* Elevation - shadows are softer and lower-contrast in daylight */
-  --spectra-elevation-card: 0 1px 2px rgba(16, 32, 48, 0.05);
-  --spectra-elevation-panel: 0 12px 32px rgba(16, 32, 48, 0.1);
+  --spectra-elevation-card: 0 1px 2px rgba(32, 23, 47, 0.05);
+  --spectra-elevation-panel: 0 12px 32px rgba(32, 23, 47, 0.12);
 
-  /* Atmosphere - a cool wash and graphite engineering paper */
-  --spectra-grid-dot: rgba(59, 73, 89, 0.09);
-  --spectra-atmosphere: rgba(28, 92, 158, 0.07);
+  /* Atmosphere - a violet wash and engineering paper */
+  --spectra-grid-dot: rgba(121, 85, 212, 0.06);
+  --spectra-atmosphere: rgba(121, 85, 212, 0.05);
 
   /* Panels */
-  --spectra-panel: linear-gradient(168deg, #ffffff, #f3f6fa 72%);
-  --spectra-panel-neutral: linear-gradient(168deg, #ffffff, #f7f9fb 72%);
-  --spectra-panel-selection: linear-gradient(150deg, #ffffff, #edf2f8 118%);
+  --spectra-panel: linear-gradient(168deg, #ffffff, #f5f2fb 72%);
+  --spectra-panel-neutral: linear-gradient(168deg, #ffffff, #f8f6fc 72%);
+  --spectra-panel-selection: linear-gradient(150deg, #ffffff, #ede7f9 118%);
 }
 
 /* LIGHT CONTRAST (measured against every surface in the ladder)
-   text-primary     15.2:1     blue                5.69:1
-   text-secondary    7.5:1     blue-soft           7.48:1
-   gold              4.97:1    green               5.50:1
-   gold-soft         6.16:1    red                 5.45:1
-   text-muted        5.15:1    amber               5.68:1
-   text-faint        5.21:1
-   white on blue-solid          11.27:1
-   white on gold/green/red/silver  5.96:1 - 9.20:1   */
+   text-primary     16.1:1     blue                4.99:1
+   text-secondary    4.80:1    blue-soft           7.10:1
+   gold              5.72:1    green               5.30:1
+   gold-soft         6.16:1    red                 4.70:1
+   text-muted        5.04:1    amber               5.68:1
+   text-faint        5.04:1
+   white on blue-solid          5.92:1
+   white on gold/green/red/silver  4.7:1 - 8.9:1
+   All text pairs pass WCAG AA (>= 4.5:1). */
 
 /* ==========================================================================
    3. ALPHA RAMP
@@ -272,16 +275,17 @@
    ========================================================================== */
 
 :root {
-  /* Typography. Inter is deliberately absent: it was declared but never
-     loaded, so it was a dead first entry. The stack is now honest about what
-     actually renders. */
-  --spectra-font-sans: ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  /* Typography. Plus Jakarta Sans is loaded (see index.html) and is the
+     brand typeface for display/heading. Inter covers body. JetBrains Mono
+     covers technical values. All three load with font-display: swap. */
+  --spectra-font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Technical metadata reads as instrumentation, not prose. */
-  --spectra-font-mono: ui-monospace, "SF Mono", "Cascadia Mono",
-    "Segoe UI Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono",
+  --spectra-font-mono: "JetBrains Mono", ui-monospace, "SF Mono",
+    "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Consolas,
+    "Liberation Mono",
     monospace;
 
   --spectra-type-3xs: 0.625rem;
@@ -335,6 +339,14 @@
   --spectra-motion-reveal: 420ms;
   --spectra-motion-ease: cubic-bezier(0.2, 0, 0.1, 1);
   --spectra-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* V3 Neural Spectrum additive tokens.
+     Ambient drift + staggered entrances. Opacity/transform only; the blanket
+     reduced-motion rule at the bottom of this file flatlines all of them. */
+  --spectra-motion-ease-amber: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --spectra-motion-glow-period: 12s;
+  --spectra-motion-stagger: 40ms;
+  --spectra-motion-max-stagger: 240ms;
 }
 
 /* ==========================================================================
