@@ -355,6 +355,9 @@
    ========================================================================== */
 
 .app {
+  /* isolation creates a stacking context so the ::before atmosphere layer
+     (z-index -1) stays above this canvas yet below all page content. */
+  isolation: isolate;
   background-color: var(--spectra-surface-app);
   background-image:
     radial-gradient(
@@ -1439,6 +1442,101 @@ h4 {
 
 .theme-switch-option[aria-pressed="true"] .theme-switch-glyph {
   color: var(--spectra-blue);
+}
+
+/* ==========================================================================
+   11b. V3 NEURAL SPECTRUM — MOTION SYSTEM (Phase C)
+   Ambient glow, staggered entrances, theme cross-fade.
+   All animated properties are transform/opacity. The blanket reduced-motion
+   rule in section 12 flatlines everything below.
+   ========================================================================== */
+
+/* Ambient atmosphere drift. The canvas wash breathes between two near-identical
+   transparencies (opacity-only, 12s cycle). Applies to a dedicated pseudo
+   layer so it never touches dense data regions or the dot-grid texture. */
+@keyframes spectra-ambient-glow {
+  from {
+    opacity: 0.06;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      68rem 42rem at 84% -8%,
+      var(--spectra-atmosphere),
+      transparent 72%
+    );
+    animation: spectra-ambient-glow var(--spectra-motion-glow-period)
+      var(--spectra-motion-ease-amber) infinite alternate;
+  }
+}
+
+/* Staggered entrance for grouped records (catalog grid, build results).
+   Index-based cap: items 1..6 step, res-everything settles within 240ms+
+   base. Runs once on mount (animation fill backwards starts hidden); deltas
+   added later fade at motion-fast via the transition on opacity below. */
+@keyframes spectra-stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hardware-card,
+  .build-fact {
+    animation: spectra-stagger-in var(--spectra-motion-reveal)
+      var(--spectra-motion-ease-out) backwards;
+    opacity: 1;
+    transition: opacity var(--spectra-motion-fast) var(--spectra-motion-ease);
+  }
+  .hardware-card:nth-child(2),
+  .build-fact:nth-child(2) {
+    animation-delay: var(--spectra-motion-stagger);
+  }
+  .hardware-card:nth-child(3),
+  .build-fact:nth-child(3) {
+    animation-delay: calc(var(--spectra-motion-stagger) * 2);
+  }
+  .hardware-card:nth-child(4),
+  .build-fact:nth-child(4) {
+    animation-delay: calc(var(--spectra-motion-stagger) * 3);
+  }
+  .hardware-card:nth-child(5),
+  .build-fact:nth-child(5) {
+    animation-delay: calc(var(--spectra-motion-stagger) * 4);
+  }
+  .hardware-card:nth-child(6),
+  .build-fact:nth-child(6) {
+    animation-delay: calc(var(--spectra-motion-stagger) * 5);
+  }
+}
+
+/* Theme cross-fade. Background/color/elevation transition 320ms when the
+   data-theme attribute flips. Opacity of the page itself is not animated
+   (would flash), only the paint of theme-sourced surfaces. */
+@media (prefers-reduced-motion: no-preference) {
+  .app,
+  .navbar {
+    transition:
+      background-color var(--spectra-motion-slow) var(--spectra-motion-ease-out),
+      background var(--spectra-motion-slow) var(--spectra-motion-ease-out),
+      color var(--spectra-motion-slow) var(--spectra-motion-ease-out),
+      border-color var(--spectra-motion-slow) var(--spectra-motion-ease-out);
+  }
 }
 
 /* ==========================================================================

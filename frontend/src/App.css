@@ -104,11 +104,11 @@
   color: var(--text-muted);
   cursor: pointer;
   text-decoration: none;
-  transition: color var(--spectra-motion-base) var(--spectra-motion-ease);
+  transition: color var(--spectra-motion-instant) var(--spectra-motion-ease);
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--spectra-blue);
 }
 
 #explore,
@@ -272,12 +272,13 @@ h1 {
   color: var(--text-muted);
   cursor: pointer;
   font-size: 0.85rem;
-  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease), box-shadow var(--spectra-motion-base) var(--spectra-motion-ease);
 }
 
 .filter-button:hover {
   color: var(--text-primary);
-  border-color: var(--accent);
+  border-color: var(--spectra-blue-a45);
+  background: var(--spectra-blue-a06);
 }
 
 .filter-buttons-type .filter-button {
@@ -286,10 +287,11 @@ h1 {
 }
 
 .filter-button.active {
-  background: var(--accent-solid);
-  border-color: var(--accent-solid-hover);
-  color: var(--accent-contrast);
+  background: var(--spectra-blue-a14);
+  border-color: var(--spectra-blue-a55);
+  color: var(--spectra-blue-soft);
   font-weight: 700;
+  box-shadow: inset 2px 0 0 var(--spectra-blue-soft);
 }
 
 .filter-facet-count {
@@ -305,9 +307,9 @@ h1 {
 }
 
 .filter-button.active .filter-facet-count {
-  background: var(--accent-contrast);
-  border-color: var(--accent-contrast);
-  color: var(--accent-solid);
+  background: var(--spectra-blue-a14);
+  border-color: var(--spectra-blue-a45);
+  color: var(--spectra-blue-soft);
 }
 
 /* ---------- Shared primitives ---------- */
@@ -322,13 +324,13 @@ h1 {
   cursor: pointer;
   font: inherit;
   font-size: 0.85rem;
-  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), border-color var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
+  transition: background var(--spectra-motion-fast) var(--spectra-motion-ease), border-color var(--spectra-motion-fast) var(--spectra-motion-ease), color var(--spectra-motion-fast) var(--spectra-motion-ease);
 }
 
 .secondary-button:hover {
   color: var(--text-primary);
-  border-color: var(--accent);
-  background: var(--surface-raised);
+  border-color: var(--spectra-blue-a55);
+  background: var(--spectra-blue-a08);
 }
 
 .secondary-button:disabled {
@@ -1592,7 +1594,6 @@ h1 {
   min-width: 0;
   background: var(--border-strong);
   border-radius: inherit;
-  transition: width var(--spectra-motion-slow) var(--spectra-motion-ease-out);
 }
 
 .benchmark-bar-fill-winner {
@@ -2064,6 +2065,11 @@ h1 {
 }
 
 .comparison-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface-raised);
+  box-shadow: 0 1px 0 var(--border-default);
   color: var(--text-primary);
   font-weight: 700;
   vertical-align: top;
@@ -3858,6 +3864,10 @@ h1 {
   place-items: center;
   padding: 1.25rem;
   background: rgba(0, 0, 0, 0.55);
+  /* V3 modal/drawer contract: scrim fades in, panel settles up.
+     Reduced-motion blanket rule in spectra.css overrides to instant. */
+  animation: spectra-scrim-in var(--spectra-motion-base)
+    var(--spectra-motion-ease) both;
 }
 
 .hardware-fit-modal-panel {
@@ -3871,6 +3881,21 @@ h1 {
   background: var(--surface, var(--spectra-surface-raised));
   border: 1px solid var(--border-default, var(--spectra-hairline-strong));
   color: var(--text-primary, var(--spectra-text-primary));
+  animation: spectra-panel-in var(--spectra-motion-slow)
+    var(--spectra-motion-ease-out) both;
+}
+
+@keyframes spectra-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes spectra-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 .hardware-fit-modal-header {
