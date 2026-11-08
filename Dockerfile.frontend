@@ -29,6 +29,18 @@ RUN printf 'server {\n\
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\
         proxy_set_header X-Forwarded-Proto $scheme;\n\
     }\n\
+    # Vite emits content-hashed filenames, so hashed assets are immutable.\n\
+    # Long cache here is safe: a new build changes the URL, not the content.\n\
+    location /assets/ {\n\
+        expires 1y;\n\
+        add_header Cache-Control "public, immutable";\n\
+    }\n\
+    # The HTML shell references the hashed assets by name, so it must always\n\
+    # be revalidated: no-cache keeps the ETag revalidation but never serves\n\
+    # a stale shell pointing at assets that no longer exist.\n\
+    location = /index.html {\n\
+        add_header Cache-Control "no-cache";\n\
+    }\n\
     location / {\n\
         try_files $uri $uri/ /index.html;\n\
     }\n\
