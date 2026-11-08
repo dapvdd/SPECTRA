@@ -1,0 +1,446 @@
+[
+  {
+    "shot": "after--home--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 1180,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "dark"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--detail--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 0,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "dark"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--compare--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 1180,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "dark"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--home--dark--tablet-768.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "48px",
+      "heroHeightPx": 799,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 704,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "dark"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--home--dark--mobile-390.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "33.15px",
+      "heroHeightPx": 691,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 350,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "dark"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--home--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 1180,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "light"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--detail--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 0,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "light"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--compare--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "64px",
+      "heroHeightPx": 549,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 1180,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "light"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/benchmarks",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/hardware/1/provenance",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--home--light--tablet-768.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "48px",
+      "heroHeightPx": 799,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 704,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "light"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "shot": "after--home--light--mobile-390.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1FontSize": "33.15px",
+      "heroHeightPx": 691,
+      "heroDominatesViewport": false,
+      "navHeightPx": 80,
+      "cardCount": 12,
+      "firstCardWidth": 350,
+      "bodyFont": "\"Plus Jakarta Sans\"",
+      "h1Font": "\"Plus Jakarta Sans\"",
+      "theme": "light"
+    },
+    "errors": [],
+    "api": [
+      {
+        "url": "http://127.0.0.1:8000/hardware/facets",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:8000/sources",
+        "status": 200
+      }
+    ]
+  }
+]
