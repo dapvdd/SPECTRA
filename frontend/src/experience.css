@@ -571,6 +571,57 @@
   }
 }
 
+/* ---- E4. Hardware detail masthead ---------------------------------------
+   The detail header becomes the product masthead: name, maker, and the
+   key-spec readout strip carry the identity; actions sit as a compact
+   vertical instrument cluster on wide screens. */
+
+.hardware-detail-header {
+  align-items: flex-start;
+}
+
+.detail-header-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spectra-space-xs);
+  min-width: 13rem;
+}
+
+.detail-header-actions .detail-compare-button,
+.detail-header-actions .detail-build-button,
+.detail-header-actions .hardware-fit-btn {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .detail-header-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .detail-header-actions .detail-compare-button,
+  .detail-header-actions .detail-build-button,
+  .detail-header-actions .hardware-fit-btn {
+    width: auto;
+    flex: 1 1 auto;
+  }
+}
+
+/* Readout strip: values get the primary voice; labels stay instrument-small.
+   The strip is the masthead's data line, so it keeps the hairline top edge
+   but gains breathing room and a slightly larger value step. */
+.detail-readout-strip {
+  margin-top: var(--spectra-space-md);
+  padding: var(--spectra-space-sm) 0 0;
+  gap: var(--spectra-space-xs) var(--spectra-space-2xl);
+}
+
+.detail-readout dd {
+  font-size: var(--spectra-type-lg);
+}
+
 /* ---- E3. Catalog card spec-strip states ---------------------------------
    Pending shows a quiet skeleton, a failed fetch offers retry, and a loaded
    but empty payload says "No spec data" honestly. CPUs show identity data

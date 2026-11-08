@@ -1278,7 +1278,7 @@ function CpuDetailView({
         <div className="detail-header-actions">
           <button
             type="button"
-            className={`detail-compare-button ${
+            className={`detail-compare-button detail-actions-compare ${
               comparisonAction.alreadySelected ? "added" : ""
             }`}
             onClick={onCompare}
