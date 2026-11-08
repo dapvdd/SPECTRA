@@ -3,9 +3,8 @@ import assert from "node:assert/strict";
 
 import {
   formatReleaseDate,
+  getCatalogRowSpecs,
   getGpuDetailViewModel,
-  getGpuPrimarySpecRows,
-  getHardwareCardPrimarySpecs,
 } from "./hardwareCard.js";
 
 const gpuSpecs = {
@@ -20,44 +19,72 @@ const gpuSpecs = {
   length_mm: 304,
 };
 
-test("GPU cards show primary spec rows with units", () => {
-  assert.deepEqual(getHardwareCardPrimarySpecs("GPU", gpuSpecs), [
+test("catalog rows show only available specs, capped at three", () => {
+  assert.deepEqual(getCatalogRowSpecs("GPU", gpuSpecs), [
     { label: "VRAM", value: "32 GB" },
-    { label: "Memory Type", value: "GDDR7" },
+    { label: "Memory", value: "GDDR7" },
     { label: "Boost Clock", value: "2407 MHz" },
-    { label: "TDP", value: "575 W" },
   ]);
 });
 
-test("nullable GPU specs render as N/A", () => {
-  const rows = getGpuPrimarySpecRows({
-    memory_gb: null,
-    memory_type: null,
-    boost_clock_mhz: null,
-    tdp_w: null,
-  });
-
-  assert.equal(rows.length, 4);
-  rows.forEach((row) => assert.equal(row.value, "N/A"));
-});
-
-test("GPU cards without spec details show no fabricated rows", () => {
-  assert.deepEqual(getHardwareCardPrimarySpecs("GPU", undefined), []);
-  assert.deepEqual(getHardwareCardPrimarySpecs("GPU", null), []);
-});
-
-test("CPU cards do not render GPU spec rows", () => {
+test("catalog rows skip missing values instead of rendering N/A", () => {
   assert.deepEqual(
-    getHardwareCardPrimarySpecs("CPU", { memory_gb: 32 }),
-    []
+    getCatalogRowSpecs("GPU", {
+      memory_gb: null,
+      memory_type: "System Shared",
+      boost_clock_mhz: null,
+      tdp_w: 105,
+    }),
+    [
+      { label: "Memory", value: "System Shared" },
+      { label: "TDP", value: "105 W" },
+    ]
   );
+});
+
+test("catalog rows prefer the most useful specs when fields are missing", () => {
+  /* boost_clock_mhz is null on 40% of GPUs; core clock carries the signal. */
+  assert.deepEqual(
+    getCatalogRowSpecs("GPU", {
+      memory_gb: null,
+      memory_type: null,
+      boost_clock_mhz: null,
+      core_clock_mhz: 777,
+    }),
+    [{ label: "Core Clock", value: "777 MHz" }]
+  );
+});
+
+test("catalog rows render an honest empty state when nothing is measured", () => {
+  assert.deepEqual(getCatalogRowSpecs("GPU", {}), []);
+  assert.deepEqual(getCatalogRowSpecs("GPU", null), []);
+  assert.deepEqual(getCatalogRowSpecs("GPU", undefined), []);
+});
+
+test("CPU catalog rows carry identity from the list payload, no fabricated specs", () => {
+  assert.deepEqual(
+    getCatalogRowSpecs("CPU", undefined, {
+      architecture: "Zen 2",
+      release_date: "2022-11-03",
+    }),
+    [
+      { label: "Architecture", value: "Zen 2" },
+      { label: "Released", value: "Nov 3, 2022" },
+    ]
+  );
+});
+
+test("CPU catalog rows without identity data render no filler", () => {
+  assert.deepEqual(getCatalogRowSpecs("CPU", undefined, {}), []);
+  assert.deepEqual(getCatalogRowSpecs("CPU", undefined, null), []);
+});
+
+test("CPU catalog rows never render GPU spec rows", () => {
+  assert.deepEqual(getCatalogRowSpecs("CPU", gpuSpecs, null), []);
 });
 
 test("unknown hardware types fail gracefully without spec rows", () => {
-  assert.deepEqual(
-    getHardwareCardPrimarySpecs("SSD", { memory_gb: 32 }),
-    []
-  );
+  assert.deepEqual(getCatalogRowSpecs("SSD", { memory_gb: 32 }), []);
 });
 
 test("GPU detail view model renders grouped sections", () => {

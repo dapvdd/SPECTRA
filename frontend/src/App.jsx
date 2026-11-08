@@ -120,8 +120,8 @@ import {
   requestHardwareFacets,
 } from "./catalog.js";
 import {
+  getCatalogRowSpecs,
   getGpuDetailViewModel,
-  getHardwareCardPrimarySpecs,
 } from "./hardwareCard.js";
 import {
   createDetailRequestGuard,
@@ -4108,7 +4108,11 @@ function App() {
                       : "catalog-only";
                   const cardSpecRows =
                     specState === "loaded"
-                      ? getHardwareCardPrimarySpecs(item.type, cardSpecsById[item.id])
+                      ? getCatalogRowSpecs(
+                          item.type,
+                          cardSpecsById[item.id],
+                          item
+                        )
                       : [];
                   const specEmpty =
                     specState === "loaded" && cardSpecRows.length === 0;
@@ -4171,7 +4175,7 @@ function App() {
                           <div className="hardware-card-specs hardware-card-specs-identity">
                             <span>
                               <em>Specs</em>
-                              <strong>No spec data</strong>
+                              <strong>Not listed</strong>
                             </span>
                           </div>
                         ) : (

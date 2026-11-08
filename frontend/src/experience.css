@@ -1449,3 +1449,106 @@
   outline: 2px solid var(--spectra-cyan);
   outline-offset: 2px;
 }
+
+/* ==========================================================================
+   G1. CATALOG INFORMATION ARCHITECTURE
+   The row already reads identity left, data middle, actions right. This
+   layer repairs what F screenshots showed: clipped/truncated spec values,
+   N/A repetition, labels that were smaller than legible, and an identity
+   block with no room to breathe. Hierarchy: name (primary) > available
+   specs (secondary) > actions (tertiary). Token-driven; both themes.
+   ========================================================================== */
+
+/* Identity column: the name is the row's primary information. Kickers and
+   maker keep the technical voice but at the shared micro-label floor. */
+.hardware-card-kicker {
+  color: var(--spectra-blue-soft);
+  letter-spacing: 0.09em;
+}
+
+.hardware-card-main h3 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.hardware-card-manufacturer {
+  color: var(--spectra-text-muted);
+}
+
+/* Spec strip: labels stop being 0.62rem microtext and values stop clipping.
+   The strip aligns as an instrument column (label left, value right) with a
+   generous column so "System Shared" and "PCIe 1.0 x16" fit without ellipsis.
+   Values keep tabular numerals (carried by spectra.css). */
+.hardware-card-specs em {
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: 0.07em;
+  color: var(--spectra-text-muted);
+}
+
+.hardware-card-specs span {
+  gap: 0.65rem;
+  justify-content: flex-start;
+}
+
+.hardware-card-specs span::after {
+  content: "";
+  order: 2;
+  flex: 0 1 0.9rem;
+  height: 1px;
+  background: var(--spectra-hairline-soft);
+  align-self: center;
+}
+
+.hardware-card-specs strong {
+  order: 3;
+  flex: 0 1 auto;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+  color: var(--spectra-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Missing data states stay honest and quiet; they never shout. */
+.hardware-card-specs-identity {
+  opacity: 1;
+}
+
+.hardware-card-specs-identity strong,
+.hardware-card-specs-pending strong {
+  color: var(--spectra-text-faint);
+}
+
+/* Tertiary affordance: the row is clickable but the pointer hint stays quiet;
+   hover illumination is carried by the row, not the link text. */
+.hardware-card-action {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+/* Row padding breathes: tighter than a card, looser than F's cramped strip.
+   Hairline separators stay the structural device. */
+.hardware-card {
+  padding: var(--spectra-space-md) 0;
+}
+
+/* Desktop gives the identity column real room; F's 5.5rem kicker column and
+   1.15fr name column made long model names wrap under their own weight. */
+@media (min-width: 861px) {
+  .hardware-card-main {
+    grid-template-columns: 4.25rem minmax(13rem, 1.35fr) minmax(0, 1.5fr) 7.5rem;
+    grid-template-areas:
+      'kicker name specs action'
+      'kicker maker specs action';
+  }
+}
+
+@media (max-width: 1180px) {
+  .hardware-card-main {
+    grid-template-columns: 4.25rem minmax(12rem, 1.3fr) minmax(0, 1.45fr);
+    grid-template-areas:
+      'kicker name specs'
+      'kicker maker specs';
+  }
+}
