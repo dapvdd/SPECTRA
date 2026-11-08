@@ -1403,3 +1403,49 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---- F5. Interaction and motion refinement -------------------------------
+   Restrained, meaning-carrying motion on top of F2-F4. All opacity/transform,
+   all guarded by prefers-reduced-motion, all within the 120-640ms budget. */
+
+/* Comparison content reveals once the pair is complete. */
+@media (prefers-reduced-motion: no-preference) {
+  .comparison-content {
+    animation: spectra-compare-in var(--spectra-motion-reveal)
+      var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes spectra-compare-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Press feedback: a barely-there settle on primary controls. Layout never
+   shifts; the transform is 1px on a non-layout axis. */
+@media (prefers-reduced-motion: no-preference) {
+  .build-component-select-button:active,
+  .comparison-slot-action:active,
+  .build-action-button:active,
+  .clear-compare-button:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Focus visibility for the new slot actions (keyboard parity). */
+.comparison-slot-action:focus-visible {
+  outline: 2px solid var(--spectra-cyan);
+  outline-offset: 2px;
+}
+
+.build-component-select-button:focus-visible {
+  outline: 2px solid var(--spectra-cyan);
+  outline-offset: 2px;
+}
