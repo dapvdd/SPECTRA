@@ -1,0 +1,440 @@
+[
+  {
+    "shot": "after--home--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-empty--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-cpu--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "ready",
+          "name": "AMD Athlon Gold 7220C"
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-cpu-gpu--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "ready",
+          "name": "AMD Athlon Gold 7220C"
+        },
+        {
+          "state": "ready",
+          "name": "i752 Graphics"
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-empty--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-one--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-two--dark--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [],
+      "comparisonTable": 1,
+      "winnerCells": 2,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--home--dark--tablet-768.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--home--dark--mobile-390.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "dark"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--home--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-empty--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-cpu--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "ready",
+          "name": "AMD Athlon Gold 7220C"
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--build-cpu-gpu--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "ready",
+          "name": "AMD Athlon Gold 7220C"
+        },
+        {
+          "state": "ready",
+          "name": "i752 Graphics"
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-empty--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-one--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--compare-two--light--desktop-1440.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [],
+      "comparisonTable": 1,
+      "winnerCells": 2,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--home--light--tablet-768.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  },
+  {
+    "shot": "after--home--light--mobile-390.png",
+    "metrics": {
+      "horizontalOverflow": false,
+      "h1StageOverlap": false,
+      "buildStates": [
+        {
+          "state": "empty",
+          "name": null
+        },
+        {
+          "state": "empty",
+          "name": null
+        }
+      ],
+      "comparisonSlots": [
+        "01",
+        "02"
+      ],
+      "comparisonTable": 0,
+      "winnerCells": 0,
+      "theme": "light"
+    },
+    "errors": []
+  }
+]
