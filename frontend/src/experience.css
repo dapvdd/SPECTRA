@@ -238,26 +238,36 @@
   font-weight: 600;
 }
 
-/* ---- 6. Comparison: sticky participant header + winner emphasis ------- */
-
-.comparison-table-wrapper {
-  max-height: none;
-}
+/* ---- 6. Comparison: sticky identity + winner emphasis ------------------
+   The wrapper is the scroll container, so the useful sticky surface is the
+   first column (spec labels + row identity) while the table scrolls
+   horizontally; the header row keeps a backdrop for that same case. */
 
 .comparison-table thead th {
-  position: sticky;
-  top: calc(var(--nav-height, 80px) - 1px);
-  z-index: 5;
   background: color-mix(
     in srgb,
-    var(--spectra-surface-app) 92%,
+    var(--spectra-surface-raised) 94%,
     transparent
   );
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Winner cell: carried by a gold text rule (meaningful better value),
+.comparison-table thead th:first-child {
+  left: 0;
+  z-index: 3;
+  background: var(--spectra-surface-raised);
+}
+
+.comparison-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--spectra-surface-raised);
+}
+
+/* Winner cells keep their gold fill from the component layer; only the
+   sticky identity column needs an opaque background here. */
+
+/* Winner cell: carried by the gold text rule (meaningful better value),
    never by a filled box. */
 .comparison-cell-value {
   transition: color var(--spectra-motion-fast) var(--spectra-motion-ease);
@@ -266,12 +276,12 @@
 /* ---- 7. Drawer transitions (HardwareFitModal) --------------------------
    Slide-in panel with a fading scrim; transform/opacity only. */
 
-.hardware-fit-modal .hardware-fit-panel {
+.hardware-fit-modal-panel {
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hardware-fit-modal .hardware-fit-panel {
+  .hardware-fit-modal-panel {
     animation: spectra-drawer-in var(--spectra-motion-slow)
       var(--spectra-motion-ease-out) backwards;
   }
