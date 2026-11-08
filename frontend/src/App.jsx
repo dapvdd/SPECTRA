@@ -265,6 +265,87 @@ function ThemeControl({ preference, onSelect }) {
   );
 }
 
+/* Decorative hardware centerpiece (Phase E2): an original stylized CPU/GPU
+   pair drawn with SVG primitives. It is identity art, not data: aria-hidden,
+   never labeled as a specific model, never carrying real measurements. The
+   amber-free palette keeps it inside the Neural Spectrum identity. */
+function HeroHardwareArt() {
+  return (
+    <div className="hero-art" aria-hidden="true">
+      <svg
+        className="hero-art-svg"
+        viewBox="0 0 560 420"
+        fill="none"
+        focusable="false"
+      >
+        <defs>
+          <linearGradient id="heroArtDie" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="var(--spectra-vis-signal)" stopOpacity="0.55" />
+            <stop offset="1" stopColor="var(--spectra-blue)" stopOpacity="0.5" />
+          </linearGradient>
+          <linearGradient id="heroArtBoard" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="var(--spectra-vis-body)" />
+            <stop offset="1" stopColor="var(--spectra-surface-raised)" />
+          </linearGradient>
+        </defs>
+
+        {/* Substrate board */}
+        <rect x="60" y="40" width="440" height="340" rx="18" fill="url(#heroArtBoard)" stroke="var(--spectra-vis-edge)" />
+
+        {/* CPU package with die */}
+        <g className="hero-art-cpu">
+          <rect x="96" y="76" width="168" height="168" rx="12" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="1.5" />
+          <rect x="132" y="112" width="96" height="96" rx="6" fill="url(#heroArtDie)" />
+          {/* pins */}
+          {Array.from({ length: 9 }, (_, i) => (
+            <g key={`p${i}`}>
+              <rect x={104 + i * 18} y="60" width="3" height="12" rx="1.5" fill="var(--spectra-vis-pin)" />
+              <rect x={104 + i * 18} y="248" width="3" height="12" rx="1.5" fill="var(--spectra-vis-pin)" />
+            </g>
+          ))}
+          {/* traces */}
+          <path d="M180 208 V 300 H 300" stroke="var(--spectra-vis-signal)" strokeOpacity="0.4" strokeWidth="1.5" />
+          <path d="M150 244 H 110 V 330" stroke="var(--spectra-vis-signal)" strokeOpacity="0.28" strokeWidth="1.5" />
+          <path d="M228 244 V 300 H 340" stroke="var(--spectra-vis-signal)" strokeOpacity="0.34" strokeWidth="1.5" />
+        </g>
+
+        {/* GPU die cluster */}
+        <g className="hero-art-gpu">
+          <rect x="300" y="118" width="176" height="130" rx="12" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="1.5" />
+          <rect x="322" y="140" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
+          <rect x="392" y="140" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
+          <rect x="322" y="192" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
+          <rect x="392" y="192" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
+          <path d="M300 262 H 476" stroke="var(--spectra-vis-edge)" />
+          <path d="M336 248 V 262 M 382 248 V 262 M 428 248 V 262" stroke="var(--spectra-vis-pin)" />
+        </g>
+
+        {/* Interconnect: CPU <-> GPU signal path */}
+        <path
+          className="hero-art-link"
+          d="M264 160 H 282 V 182 H 300"
+          stroke="var(--spectra-vis-signal)"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        {/* Bus lanes to board edge */}
+        <path d="M476 183 H 512 V 380" stroke="var(--spectra-vis-signal)" strokeOpacity="0.3" strokeWidth="1.5" />
+        <path d="M96 160 H 74" stroke="var(--spectra-vis-signal)" strokeOpacity="0.3" strokeWidth="1.5" />
+
+        {/* Board mounting points */}
+        {[[74, 52], [486, 52], [74, 368], [486, 368]].map(([cx, cy]) => (
+          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="6" stroke="var(--spectra-vis-pin)" strokeWidth="2" fill="none" />
+        ))}
+      </svg>
+
+      <span className="hero-art-caption">
+        Circuit diagram · decorative
+      </span>
+    </div>
+  );
+}
+
 /* SPECTRA SIGNAL
    The hero's right half. Reads real composition out of the catalog payload the
    app has already loaded - nothing is estimated, and no benchmark figure is
@@ -3552,9 +3633,9 @@ function App() {
           </div>
 
           <h1>
-            Explore hardware.
+            Know your hardware.
             <br />
-            Understand performance.
+            Beyond the specs.
           </h1>
 
           <div className="hero-search-row">
@@ -3637,7 +3718,7 @@ function App() {
             Catalog {apiStatus === "online" ? "connected" : apiStatus}
           </p>
 
-          <span className="spectra-spectrum" aria-hidden="true" />
+          <HeroHardwareArt />
         </div>
 
         <SignalReadout

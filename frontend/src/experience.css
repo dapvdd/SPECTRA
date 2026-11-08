@@ -150,6 +150,8 @@
   flex-direction: column;
   align-items: flex-start;
   max-width: 40rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* Search and the CPU/GPU quick paths share one row; the row wraps below
@@ -507,6 +509,67 @@
   }
 }
 
+/* ==========================================================================
+   PHASE E — NEURAL LUXURY
+   ========================================================================== */
+
+/* ---- E2. Hero hardware centerpiece --------------------------------------
+   A decorative die-and-substrate composition. It is art, not an instrument:
+   no data claims, aria-hidden, captioned honestly. Sizing stays bounded so
+   the catalog never leaves the first viewport on desktop. */
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spectra-space-2xs);
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.hero-art-svg {
+  width: min(100%, 34rem);
+  height: auto;
+  margin-inline: auto;
+}
+
+.hero-art-caption {
+  color: var(--spectra-text-faint);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-3xs);
+  letter-spacing: var(--spectra-track-label);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Traces carry a quiet signal pulse; opacity only. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-art-link {
+    animation: spectra-trace-pulse 6s var(--spectra-motion-ease) infinite;
+  }
+
+  @keyframes spectra-trace-pulse {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-art {
+    display: none;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .hardware-detail {
