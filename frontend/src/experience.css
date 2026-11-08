@@ -675,6 +675,90 @@
   opacity: 0.9;
 }
 
+/* ---- E5. Build workspace: refined slots ----------------------------------
+   Empty slots become deliberate invitation surfaces; filled slots gain the
+   elevation ladder. The boundary statements (what SPECTRA does not assess)
+   stay copy-level: honesty is content, not chrome. */
+
+.build-component-card {
+  border-radius: var(--spectra-radius-lg);
+  transition:
+    box-shadow var(--spectra-motion-base) var(--spectra-motion-ease),
+    border-color var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.build-component-card:hover {
+  box-shadow: var(--spectra-elevation-1);
+}
+
+.build-component-empty {
+  padding: var(--spectra-space-md) 0 var(--spectra-space-xs);
+}
+
+.build-component-empty strong {
+  color: var(--spectra-text-secondary);
+  font-size: var(--spectra-type-lg);
+}
+
+.build-component-select-button {
+  border-color: var(--spectra-hairline-strongest);
+  transition:
+    border-color var(--spectra-motion-fast) var(--spectra-motion-ease),
+    color var(--spectra-motion-fast) var(--spectra-motion-ease),
+    background-color var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+.build-component-select-button:hover,
+.build-component-select-button:focus-visible {
+  background: var(--spectra-blue-a08);
+  border-color: var(--spectra-blue-a30);
+  color: var(--spectra-blue-soft);
+}
+
+/* ---- E5. Comparison: engaged empty state + slot identity ----------------- */
+
+.comparison-empty {
+  position: relative;
+  background: var(--spectra-surface-raised);
+  box-shadow: var(--spectra-elevation-1);
+  overflow: hidden;
+}
+
+/* A quiet signal wash anchors the empty state without fabricating data. */
+.comparison-empty::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      24rem 14rem at 88% 12%,
+      var(--spectra-ambient-warm),
+      transparent 70%
+    ),
+    radial-gradient(
+      18rem 12rem at 8% 90%,
+      var(--spectra-ambient-cool),
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+.comparison-empty > div {
+  position: relative;
+  z-index: 1;
+}
+
+.comparison-empty h3 {
+  color: var(--spectra-text-primary);
+  font-size: var(--spectra-type-xl);
+}
+
+.comparison-explore-link {
+  position: relative;
+  z-index: 1;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hardware-detail {
     animation: spectra-view-in var(--spectra-motion-page)
