@@ -8,6 +8,7 @@
      4. Detail masthead readout strip
      5. Comparison sticky header + winner emphasis
      6. Drawer transitions for the fit modal
+   Phase E appends the Neural Luxury foundation (tokens marked "Phase E").
    All motion is transform/opacity; reduced motion falls back everywhere.
    ========================================================================== */
 
@@ -20,6 +21,110 @@
   /* Entrances. Opacity/transform only. */
   --spectra-motion-page: 320ms;
   --spectra-motion-page-fade: 160ms;
+
+  /* ---- Phase E · Neural Night -----------------------------------------
+     Reference anchors: canvas #0C0915, surface #151022, elevated #241B35,
+     primary #A78BFA, highlight #C4B5FD, signal #67E8F9, text #F5F1FC.
+     The Phase D foundation already sits within a shade of every anchor, so
+     these tokens refine roles the foundation lacks rather than fork it. */
+
+  /* Surface elevation: the third step of the ladder (raised -> elevated). */
+  --spectra-surface-elevated: color-mix(
+    in srgb,
+    var(--spectra-deep-blue) 70%,
+    var(--spectra-black)
+  );
+
+  /* Signal cyan: the second identity hue. Rare, same discipline as gold:
+     interaction and evidence accents, never a large fill. */
+  --spectra-cyan: #67e8f9;
+  --spectra-cyan-soft: #a5f3fc;
+  --spectra-cyan-a08: color-mix(in srgb, var(--spectra-cyan) 8%, transparent);
+  --spectra-cyan-a12: color-mix(in srgb, var(--spectra-cyan) 12%, transparent);
+  --spectra-cyan-a30: color-mix(in srgb, var(--spectra-cyan) 30%, transparent);
+
+  /* Elevation ladder: hairline first, shadow second. Dark shadows only. */
+  --spectra-elevation-1:
+    0 0 0 1px var(--spectra-hairline-soft),
+    0 1px 3px rgba(2, 1, 8, 0.4);
+  --spectra-elevation-2:
+    0 0 0 1px var(--spectra-hairline-soft),
+    0 8px 24px rgba(2, 1, 8, 0.45);
+  --spectra-elevation-3:
+    0 0 0 1px var(--spectra-hairline-strong),
+    0 18px 48px rgba(2, 1, 8, 0.55);
+
+  /* Interactive glow: a focus-grade ring + short bloom. Cyan reads as
+     "live signal", violet as "interaction". Both transform/opacity safe. */
+  --spectra-glow-interactive:
+    0 0 0 1px var(--spectra-cyan-a30),
+    0 0 20px var(--spectra-cyan-a12);
+  --spectra-glow-soft: 0 0 28px var(--spectra-cyan-a08);
+
+  /* Ambient lighting: two slow washes behind the content field. */
+  --spectra-ambient-warm: color-mix(
+    in srgb,
+    var(--spectra-blue) 10%,
+    transparent
+  );
+  --spectra-ambient-cool: color-mix(
+    in srgb,
+    var(--spectra-cyan) 6%,
+    transparent
+  );
+
+  /* Hardware visualization palette (decorative illustrations only). */
+  --spectra-vis-body: var(--spectra-surface-elevated);
+  --spectra-vis-edge: var(--spectra-hairline-strong);
+  --spectra-vis-signal: var(--spectra-cyan);
+  --spectra-vis-pin: var(--spectra-silver-muted);
+}
+
+:root[data-theme="light"] {
+  /* ---- Phase E · Neural Day -------------------------------------------
+     Reference anchors: canvas #F8F7FC, surface #FFFFFF, elevated #F0EBFA,
+     primary #7150C2, signal #087F98, text #20172F. The light theme already
+     matches the anchors; the cyan signal deepens for contrast on white. */
+
+  --spectra-surface-elevated: var(--spectra-deep-blue);
+
+  --spectra-cyan: #087f98;
+  --spectra-cyan-soft: #0e5f72;
+  --spectra-cyan-a08: color-mix(in srgb, var(--spectra-cyan) 8%, transparent);
+  --spectra-cyan-a12: color-mix(in srgb, var(--spectra-cyan) 12%, transparent);
+  --spectra-cyan-a30: color-mix(in srgb, var(--spectra-cyan) 30%, transparent);
+
+  /* Light shadows are softer and lower; hairlines carry the separation. */
+  --spectra-elevation-1:
+    0 0 0 1px var(--spectra-hairline-soft),
+    0 1px 3px rgba(32, 23, 47, 0.08);
+  --spectra-elevation-2:
+    0 0 0 1px var(--spectra-hairline-soft),
+    0 8px 24px rgba(32, 23, 47, 0.1);
+  --spectra-elevation-3:
+    0 0 0 1px var(--spectra-hairline-strong),
+    0 18px 48px rgba(32, 23, 47, 0.14);
+
+  --spectra-glow-interactive:
+    0 0 0 1px var(--spectra-cyan-a30),
+    0 0 20px var(--spectra-cyan-a12);
+  --spectra-glow-soft: 0 0 28px var(--spectra-cyan-a08);
+
+  --spectra-ambient-warm: color-mix(
+    in srgb,
+    var(--spectra-blue) 7%,
+    transparent
+  );
+  --spectra-ambient-cool: color-mix(
+    in srgb,
+    var(--spectra-cyan) 5%,
+    transparent
+  );
+
+  --spectra-vis-body: var(--spectra-surface-elevated);
+  --spectra-vis-edge: var(--spectra-hairline-strong);
+  --spectra-vis-signal: var(--spectra-cyan);
+  --spectra-vis-pin: var(--spectra-silver-muted);
 }
 
 /* ---- 2. Compact hero ---------------------------------------------------
