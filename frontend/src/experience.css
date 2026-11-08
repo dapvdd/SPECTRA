@@ -1086,3 +1086,180 @@
     width: min(100%, 17rem);
   }
 }
+
+/* ---- F3. Build Studio: hardware slots ------------------------------------
+   Slots become workspace surfaces: class label + live status on the slot
+   head, the hardware illustration as identity, and a data-state attribute
+   driving restrained crossfades (opacity only, reduced-motion guarded).
+   State machine: empty -> loading -> error | ready. */
+
+.build-component-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spectra-space-md);
+  min-width: 0;
+  padding: var(--spectra-space-lg);
+  background: var(--spectra-surface-raised);
+  border: 1px solid var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-lg);
+  transition:
+    border-color var(--spectra-motion-base) var(--spectra-motion-ease),
+    box-shadow var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.build-component-card:hover {
+  box-shadow: var(--spectra-elevation-1);
+}
+
+.build-component-card[data-state="ready"] {
+  border-color: var(--spectra-hairline-strong);
+}
+
+.build-component-card[data-state="error"] {
+  border-color: var(--spectra-red-a40);
+}
+
+.build-component-slot-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spectra-space-sm);
+}
+
+.build-component-slot-class {
+  color: var(--spectra-text-primary);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-sm);
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-label);
+}
+
+.build-component-slot-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spectra-space-2xs);
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+/* A live dot marks a populated slot; cyan reads as "selected" signal. */
+.build-component-slot-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--spectra-hairline-strongest);
+}
+
+.build-component-card[data-state="ready"] .build-component-slot-status::before {
+  background: var(--spectra-cyan);
+  box-shadow: 0 0 8px var(--spectra-cyan-a30);
+}
+
+.build-component-card[data-state="loading"] .build-component-slot-status::before {
+  background: var(--spectra-blue);
+}
+
+.build-component-card[data-state="error"] .build-component-slot-status::before {
+  background: var(--spectra-red-soft);
+}
+
+/* The illustration anchors the empty slot; it fades back when identity
+   arrives (opacity crossfade, no layout shift). */
+.build-component-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.build-component-empty strong {
+  color: var(--text-secondary);
+}
+
+.build-component-select-button {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  background: transparent;
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-md);
+  color: var(--accent-soft);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.build-component-select-button:hover {
+  background: var(--spectra-blue-a12);
+  color: var(--text-primary);
+}
+
+/* Slot state crossfade: content fades/slides in as the slot changes state
+   (opacity/transform only, once per state change). */
+@media (prefers-reduced-motion: no-preference) {
+  .build-component-card .build-component-head,
+  .build-component-card .build-component-empty,
+  .build-component-card .build-component-specs,
+  .build-component-card .build-component-error {
+    animation: spectra-slot-content-in var(--spectra-motion-base)
+      var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes spectra-slot-content-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Build Intelligence empty state: guidance with a quiet visual anchor. */
+.build-intelligence-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--spectra-space-lg);
+  padding: var(--spectra-space-md) 0 0;
+}
+
+.build-intelligence-empty-art {
+  flex: 0 0 7.5rem;
+}
+
+.build-intelligence-empty-art .hwv-svg {
+  width: 100%;
+}
+
+.build-intelligence-empty p {
+  margin: 0;
+  max-width: 26rem;
+  color: var(--spectra-text-secondary);
+  font-size: var(--spectra-type-base);
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .build-intelligence-empty {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spectra-space-sm);
+  }
+
+  .build-intelligence-empty-art {
+    flex: 0 0 auto;
+    width: 7rem;
+  }
+}

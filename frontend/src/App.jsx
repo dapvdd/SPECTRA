@@ -3,6 +3,8 @@ import "./App.css";
 import { BenchmarkQualityBadge } from "./components/BenchmarkQualityBadge.jsx";
 import { MarkdownContent } from "./components/Markdown.jsx";
 import { HardwareFitModal } from "./components/HardwareFitModal.jsx";
+import { HardwareSlotVisual } from "./components/HardwareVisual.jsx";
+
 import { SuitabilityCard } from "./components/SuitabilityCard.jsx";
 import {
   CATEGORIES } from "./suitabilityDisplay.js";
@@ -1872,6 +1874,11 @@ function BuildChatSection({
   );
 }
 
+/* PHASE F3 — BUILD HARDWARE SLOT
+   A slot is a workspace surface, not a form card: the slot's hardware class
+   leads, the illustration carries identity, and the state (empty / loading /
+   error / ready) is visible at a glance via data-state. All names, specs and
+   statuses come from the existing build-detail pipeline — nothing invented. */
 function BuildComponentCard({
   type,
   selection,
@@ -1885,12 +1892,36 @@ function BuildComponentCard({
   const specs = getBuildComponentSpecs(detail);
   const busy = requestState.status === BUILD_DETAIL_STATUS.loading;
   const errored = requestState.status === BUILD_DETAIL_STATUS.error;
+  const state = !selection
+    ? "empty"
+    : busy
+      ? "loading"
+      : errored
+        ? "error"
+        : "ready";
 
   return (
-    <section className="build-component-card" aria-labelledby={`build-slot-${type}`}>
-      <p className="detail-section-label" id={`build-slot-${type}`}>
-        {type}
-      </p>
+    <section
+      className="build-component-card"
+      aria-labelledby={`build-slot-${type}`}
+      data-state={state}
+    >
+      <div className="build-component-slot-head">
+        <span className="build-component-slot-class" aria-hidden="true">
+          {type}
+        </span>
+        <span className="build-component-slot-status">
+          {!selection
+            ? "Empty slot"
+            : busy
+              ? "Loading details"
+              : errored
+                ? "Details unavailable"
+                : "Selected"}
+        </span>
+      </div>
+
+      <HardwareSlotVisual kind={type === "GPU" ? "gpu" : "cpu"} />
 
       {!selection ? (
         <div className="build-component-empty">
@@ -2037,9 +2068,12 @@ function BuildIntelligenceSection({ intelligence }) {
       </p>
 
       {isEmpty ? (
-        <p className="build-intelligence-empty">
-          Select a CPU or a GPU to build verified intelligence for this build.
-        </p>
+        <div className="build-intelligence-empty">
+          <HardwareSlotVisual kind="cpu" className="build-intelligence-empty-art" />
+          <p>
+            Select a CPU or a GPU to build verified intelligence for this build.
+          </p>
+        </div>
       ) : (
         <>
           <dl className="build-intelligence-facts">
