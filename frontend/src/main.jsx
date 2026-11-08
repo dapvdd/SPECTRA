@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import "./index.css"
 import App from './App.jsx'
 // SPECTRA Visual System V1. Loaded last so the system governs component CSS.
 import './spectra.css'
+// SPECTRA Phase D experience layer. Loaded after spectra.css so it governs.
+import './experience.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

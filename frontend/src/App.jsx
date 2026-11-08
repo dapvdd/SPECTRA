@@ -4,8 +4,13 @@ import { BenchmarkQualityBadge } from "./components/BenchmarkQualityBadge.jsx";
 import { MarkdownContent } from "./components/Markdown.jsx";
 import { HardwareFitModal } from "./components/HardwareFitModal.jsx";
 import { SuitabilityCard } from "./components/SuitabilityCard.jsx";
-import { CATEGORIES } from "./suitabilityDisplay.js";
+import {
+  CATEGORIES } from "./suitabilityDisplay.js";
 import { useSuitability } from "./hooks/useSuitability.js";
+import {
+  CATALOG_SORTS,
+  sortCatalogItems,
+} from "./catalogSort.js";
 import {
   AiChatSection,
   HardwareChatSection,
@@ -1048,6 +1053,31 @@ function DetailSpecGrid({ items }) {
   );
 }
 
+/* Key specifications as a readout strip under the detail name: the first
+   instrument row of the masthead. Values come straight from the detail view
+   model; nothing here re-derives or estimates. Unavailable values render the
+   honest N/A from formatDetailValue. */
+function DetailReadoutStrip({ items, limit = 4 }) {
+  const readouts = items
+    .filter((item) => item.value !== "N/A")
+    .slice(0, limit);
+
+  if (readouts.length === 0) {
+    return null;
+  }
+
+  return (
+    <dl className="detail-readout-strip">
+      {readouts.map((item) => (
+        <div className="detail-readout" key={item.label}>
+          <dt>{item.label}</dt>
+          <dd>{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function BenchmarkSourceFootnotes({ benchmarkState, sourcesById, label }) {
   const sources = getBenchmarkSources(benchmarkState);
 
@@ -1160,6 +1190,8 @@ function CpuDetailView({
             </span>
             {viewModel.manufacturer} · {viewModel.type}
           </p>
+
+          <DetailReadoutStrip items={keySpecifications} />
         </div>
 
         <div className="detail-header-actions">
@@ -1282,6 +1314,8 @@ function GpuHardwareDetail({
             </span>
             {viewModel.manufacturer} · {viewModel.type}
           </p>
+
+          <DetailReadoutStrip items={viewModel.memory} />
         </div>
 
         <div className="detail-header-actions">
@@ -2297,6 +2331,7 @@ function App() {
   const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
   const [manufacturerFilter, setManufacturerFilter] = useState("All");
+  const [catalogSort, setCatalogSort] = useState("default");
   const [visibleCount, setVisibleCount] = useState(12);
   const [selectedHardware, setSelectedHardware] = useState(null);
   const [detailView, setDetailView] = useState(false);
@@ -3068,7 +3103,7 @@ function App() {
 
   useEffect(() => {
     setVisibleCount(12);
-  }, [search, manufacturerFilter, hardwareTypeFilter]);
+  }, [search, manufacturerFilter, hardwareTypeFilter, catalogSort]);
 
   const normalizeSearch = (text) => {
     return text
@@ -3090,12 +3125,15 @@ function App() {
     return matchesSearch && matchesManufacturer;
   });
 
+  /* Ordering is a pure view concern on the already-filtered client set (see
+     catalogSort.js); the backend still owns filtering and totals. */
+  const sortedHardware = sortCatalogItems(filteredHardware, catalogSort);
+
   /* Server-provided total for the active filters, degraded gracefully to the
      client-visible set so the readout never shows a larger number than we can
      render. The server total is authoritative when present. */
   const catalogTotalCount =
     hardwareTotalCount > 0 ? hardwareTotalCount : filteredHardware.length;
-
   const catalogResultSummary = getCatalogResultSummary({
     loading: hardwareLoading,
     error: hardwareError,
@@ -3122,8 +3160,15 @@ function App() {
     });
   }
 
+  const typeFacetCounts = {};
+  if (hardwareFacets?.types) {
+    hardwareFacets.types.forEach((facet) => {
+      typeFacetCounts[facet.value] = facet.count;
+    });
+  }
+
   useEffect(() => {
-    const visibleCards = filteredHardware.slice(0, visibleCount);
+    const visibleCards = sortedHardware.slice(0, visibleCount);
 
     visibleCards.forEach((item) => {
       if (item.type !== "GPU") {
@@ -3173,7 +3218,7 @@ function App() {
           }));
         });
     });
-  }, [filteredHardware, visibleCount, cardSpecsById]);
+  }, [sortedHardware, visibleCount, cardSpecsById]);
 
   const comparisonInsights = isGpuComparison
     ? buildGpuInsightsFromStatus(
@@ -3512,116 +3557,73 @@ function App() {
             Understand performance.
           </h1>
 
-          <p className="description">
-            Discover detailed specifications and explore
-            computer hardware through SPECTRA.
-          </p>
+          <div className="hero-search-row">
+            <div className="search-box">
+              <span aria-hidden="true">⌕</span>
 
-          <div className="search-box">
-            <span aria-hidden="true">⌕</span>
+              <label className="sr-only" htmlFor="catalog-search">
+                Search hardware by name
+              </label>
 
-            <label className="sr-only" htmlFor="catalog-search">
-              Search hardware by name
-            </label>
+              <input
+                id="catalog-search"
+                type="search"
+                autoComplete="off"
+                placeholder="Search hardware..."
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
 
-            <input
-              id="catalog-search"
-              type="search"
-              autoComplete="off"
-              placeholder="Search hardware..."
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-            />
-
-            {search && (
-              <button
-                type="button"
-                className="clear-search-icon"
-                aria-label="Clear hardware search"
-                onClick={() => setSearch("")}
-              >
-                ×
-              </button>
-            )}
-          </div>
-
-          <div className="catalog-filters">
-            <div
-              className="filter-group"
-              role="group"
-              aria-label="Filter hardware by type"
-            >
-              <span className="filter-group-label" id="filter-type-label">
-                Hardware type
-              </span>
-
-              <div
-                className="filter-buttons filter-buttons-type"
-                aria-labelledby="filter-type-label"
-              >
-                {HARDWARE_TYPES.map((type) => {
-                  const filterState = getCatalogFilterState(
-                    type,
-                    hardwareTypeFilter
-                  );
-
-                  return (
-                    <button
-                      type="button"
-                      key={type}
-                      className={filterState.className}
-                      aria-pressed={filterState.pressed}
-                      onClick={() => changeHardwareTypeFilter(type)}
-                    >
-                      {type === "All" ? "All hardware" : type}
-                    </button>
-                  );
-                })}
-              </div>
+              {search && (
+                <button
+                  type="button"
+                  className="clear-search-icon"
+                  aria-label="Clear hardware search"
+                  onClick={() => setSearch("")}
+                >
+                  ✕
+                </button>
+              )}
             </div>
 
             <div
-              className="filter-group"
+              className="hero-quick-paths"
               role="group"
-              aria-label="Filter hardware by manufacturer"
+              aria-label="Explore a hardware class"
             >
-              <span className="filter-group-label" id="filter-maker-label">
-                Manufacturer
-              </span>
-
-              <div
-                className="filter-buttons"
-                aria-labelledby="filter-maker-label"
+              <a
+                className="hero-quick-path"
+                href="#explore"
+                onClick={() => {
+                  setManufacturerFilter("All");
+                  changeHardwareTypeFilter("CPU");
+                }}
               >
-                {MANUFACTURER_FILTERS.map((manufacturer) => {
-                  const filterState = getCatalogFilterState(
-                    manufacturer,
-                    manufacturerFilter
-                  );
+                <span className="hero-quick-path-class">CPU</span>
+                <span className="hero-quick-path-count" aria-hidden="true">
+                  {typeFacetCounts.CPU != null
+                    ? formatSignalCount(typeFacetCounts.CPU)
+                    : ""}
+                </span>
+                <span className="sr-only">processors in the catalog</span>
+              </a>
 
-                  const facetCount =
-                    manufacturer === "All"
-                      ? null
-                      : manufacturerFacetCounts[manufacturer];
-
-                  return (
-                    <button
-                      type="button"
-                      key={manufacturer}
-                      className={filterState.className}
-                      aria-pressed={filterState.pressed}
-                      onClick={() => setManufacturerFilter(manufacturer)}
-                    >
-                      {manufacturer}
-                      {facetCount != null && (
-                        <span className="filter-facet-count" aria-hidden="true">
-                          {facetCount}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+              <a
+                className="hero-quick-path"
+                href="#explore"
+                onClick={() => {
+                  setManufacturerFilter("All");
+                  changeHardwareTypeFilter("GPU");
+                }}
+              >
+                <span className="hero-quick-path-class">GPU</span>
+                <span className="hero-quick-path-count" aria-hidden="true">
+                  {typeFacetCounts.GPU != null
+                    ? formatSignalCount(typeFacetCounts.GPU)
+                    : ""}
+                </span>
+                <span className="sr-only">graphics cards in the catalog</span>
+              </a>
             </div>
           </div>
 
@@ -3727,10 +3729,99 @@ function App() {
           </div>
 
           <p className="section-head-meta">
-            {filteredHardware.length > 0
-              ? `${HARDWARE_TYPES.filter((type) => type !== "All").length} classes indexed`
+            {sortedHardware.length > 0
+              ? `${sortedHardware.length} shown`
               : "Awaiting records"}
           </p>
+        </div>
+
+        <div className="catalog-command">
+          <div
+            className="filter-buttons filter-buttons-type"
+            role="group"
+            aria-label="Filter hardware by type"
+          >
+            {HARDWARE_TYPES.map((type) => {
+              const filterState = getCatalogFilterState(
+                type,
+                hardwareTypeFilter
+              );
+
+              const facetCount =
+                type === "All" ? null : typeFacetCounts[type];
+
+              return (
+                <button
+                  type="button"
+                  key={type}
+                  className={filterState.className}
+                  aria-pressed={filterState.pressed}
+                  onClick={() => changeHardwareTypeFilter(type)}
+                >
+                  {type === "All" ? "All hardware" : type}
+                  {facetCount != null && (
+                    <span className="filter-facet-count" aria-hidden="true">
+                      {facetCount}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div
+            className="filter-buttons"
+            role="group"
+            aria-label="Filter hardware by manufacturer"
+          >
+            {MANUFACTURER_FILTERS.map((manufacturer) => {
+              const filterState = getCatalogFilterState(
+                manufacturer,
+                manufacturerFilter
+              );
+
+              const facetCount =
+                manufacturer === "All"
+                  ? null
+                  : manufacturerFacetCounts[manufacturer];
+
+              return (
+                <button
+                  type="button"
+                  key={manufacturer}
+                  className={filterState.className}
+                  aria-pressed={filterState.pressed}
+                  onClick={() => setManufacturerFilter(manufacturer)}
+                >
+                  {manufacturer}
+                  {facetCount != null && (
+                    <span className="filter-facet-count" aria-hidden="true">
+                      {facetCount}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="catalog-command-sort">
+            <label className="catalog-sort-label" htmlFor="catalog-sort">
+              Sort
+            </label>
+
+            <select
+              id="catalog-sort"
+              className="catalog-sort-select"
+              value={catalogSort}
+              onChange={(event) => setCatalogSort(event.target.value)}
+            >
+              {CATALOG_SORTS.map((sort) => (
+                <option key={sort.key} value={sort.key}>
+                  {sort.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="catalog-readout" aria-live="polite" id="catalog-count">
@@ -3753,10 +3844,26 @@ function App() {
           aria-busy={hardwareLoading}
         >
           {hardwareLoading ? (
-            <div className="catalog-state" role="status" aria-live="polite">
-              <span className="state-spinner" aria-hidden="true" />
-              <h3>Loading the catalog</h3>
-              <p>Fetching verified hardware records.</p>
+            <div
+              className="hardware-grid hardware-grid-skeleton"
+              role="status"
+              aria-live="polite"
+            >
+              <span className="sr-only">
+                Loading the catalog: fetching verified hardware records.
+              </span>
+
+              {Array.from({ length: 6 }, (_, index) => (
+                <div
+                  className="skeleton-row"
+                  key={index}
+                  aria-hidden="true"
+                >
+                  <span className="skeleton-block" />
+                  <span className="skeleton-block skeleton-block-title" />
+                  <span className="skeleton-block" />
+                </div>
+              ))}
             </div>
           ) : hardwareError ? (
             <div className="catalog-state catalog-state-error" role="alert">
@@ -3770,7 +3877,7 @@ function App() {
                 Try Again
               </button>
             </div>
-          ) : filteredHardware.length === 0 ? (
+          ) : sortedHardware.length === 0 ? (
             <div className="hardware-empty">
               <span className="hardware-empty-icon" aria-hidden="true">
                 ◈
@@ -3796,7 +3903,7 @@ function App() {
             </div>
           ) : (
             <div className="hardware-grid">
-              {filteredHardware
+              {sortedHardware
                 .slice(0, visibleCount)
                 .map((item) => {
                   const cardSpecRows = getHardwareCardPrimarySpecs(
@@ -3893,14 +4000,14 @@ function App() {
           )}
         </div>
 
-        {!detailView && visibleCount < filteredHardware.length && (
+        {!detailView && visibleCount < sortedHardware.length && (
           <div className="load-more-container">
             <button
               type="button"
               className="secondary-button load-more-button"
               onClick={() =>
                 setVisibleCount((prev) =>
-                  Math.min(prev + 12, filteredHardware.length)
+                  Math.min(prev + 12, sortedHardware.length)
                 )
               }
             >

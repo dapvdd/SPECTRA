@@ -1,0 +1,313 @@
+/* ==========================================================================
+   SPECTRA EXPERIENCE LAYER — PHASE D
+   Loaded after spectra.css, so this file governs the Phase D experience
+   reconstruction. It extends the V3 token set (no hardcoded hues) for:
+     1. Compact hero + quick paths          (homepage reconstruction)
+     2. Catalog command bar                 (type/manufacturer/sort)
+     3. Skeleton loading states
+     4. Detail masthead readout strip
+     5. Comparison sticky header + winner emphasis
+     6. Drawer transitions for the fit modal
+   All motion is transform/opacity; reduced motion falls back everywhere.
+   ========================================================================== */
+
+/* ---- 1. Token extensions --------------------------------------------- */
+
+:root {
+  /* Compact hero display scale (Phase D supersedes the 5.5rem band). */
+  --spectra-type-display-hero: clamp(2.4rem, 5.2vw, 4rem);
+
+  /* Entrances. Opacity/transform only. */
+  --spectra-motion-page: 320ms;
+  --spectra-motion-page-fade: 160ms;
+}
+
+/* ---- 2. Compact hero ---------------------------------------------------
+   The hero is a band, not a page: no viewport-height claim, and the
+   headline shares the first viewport with the catalog command bar. */
+
+.hero {
+  min-height: 0;
+  align-items: start;
+  align-content: center;
+  padding-top: clamp(3rem, 7vh, 5rem);
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+
+.hero h1 {
+  margin-top: var(--spectra-space-md);
+  margin-bottom: 0;
+  font-size: var(--spectra-type-display-hero);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 40rem;
+}
+
+/* Search and the CPU/GPU quick paths share one row; the row wraps below
+   the hero grid's own 1023px collapse. */
+.hero-search-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--spectra-space-sm);
+  width: 100%;
+  margin-top: var(--spectra-space-xl);
+}
+
+.hero-search-row .search-box {
+  flex: 1 1 16rem;
+  max-width: 34rem;
+  margin-top: 0;
+}
+
+.hero-quick-paths {
+  display: flex;
+  gap: var(--spectra-space-sm);
+}
+
+.hero-quick-path {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spectra-space-2xs);
+  min-height: 3.25rem;
+  padding: 0 var(--spectra-space-md);
+  background: var(--spectra-panel-neutral);
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: var(--spectra-radius-lg);
+  color: var(--spectra-text-secondary);
+  text-decoration: none;
+  transition:
+    border-color var(--spectra-motion-fast) var(--spectra-motion-ease),
+    background-color var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+.hero-quick-path:hover,
+.hero-quick-path:focus-visible {
+  background: var(--spectra-blue-a08);
+  border-color: var(--spectra-hairline-strongest);
+}
+
+.hero-quick-path:hover .hero-quick-path-count,
+.hero-quick-path:focus-visible .hero-quick-path-count {
+  color: var(--spectra-blue-soft);
+}
+
+.hero-quick-path-class {
+  font-weight: 800;
+  letter-spacing: var(--spectra-track-label);
+}
+
+.hero-quick-path-count {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.spectra-spectrum {
+  margin-top: var(--spectra-space-xl);
+}
+
+/* ---- 3. Catalog command bar --------------------------------------------
+   Search lives in the hero; type, manufacturer and sort sit directly on the
+   catalog head as one instrument row. */
+
+.catalog-command {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spectra-space-sm) var(--spectra-space-md);
+  margin-top: var(--spectra-space-xl);
+}
+
+.catalog-command .filter-buttons {
+  flex-wrap: wrap;
+  gap: var(--spectra-space-2xs);
+}
+
+.catalog-command-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spectra-space-2xs);
+  margin-left: auto;
+}
+
+.catalog-sort-label {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+.catalog-sort-select {
+  min-height: 2.25rem;
+  padding: 0 var(--spectra-space-sm);
+  background: var(--spectra-surface-raised);
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: var(--spectra-radius-md);
+  color: var(--spectra-text-secondary);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-sm);
+  cursor: pointer;
+}
+
+.catalog-sort-select:hover {
+  border-color: var(--spectra-hairline-strongest);
+  color: var(--spectra-text-primary);
+}
+
+/* ---- 4. Skeleton loading ----------------------------------------------
+   Shimmering record rows instead of a spinner+paragraph, so the eventual
+   composition is visible while it loads. Skeletons are presentation only. */
+
+.hardware-grid-skeleton {
+  border-top: 1px solid var(--spectra-hairline);
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1.2fr) minmax(0, 1.6fr);
+  gap: var(--spectra-space-md);
+  align-items: center;
+  padding: var(--spectra-space-lg) 0;
+  border-bottom: 1px solid var(--spectra-hairline);
+}
+
+.skeleton-block {
+  height: 0.9rem;
+  border-radius: var(--spectra-radius-sm);
+  background: var(--spectra-hairline-soft);
+}
+
+.skeleton-block-title {
+  height: 1.05rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-block {
+    animation: spectra-shimmer 1.4s var(--spectra-motion-ease) infinite;
+  }
+
+  @keyframes spectra-shimmer {
+    from {
+      opacity: 0.55;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ---- 5. Detail masthead readout strip ----------------------------------
+   Key specifications as instrument readouts under the detail name. */
+
+.detail-readout-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spectra-space-xs) var(--spectra-space-2xl);
+  margin-top: var(--spectra-space-lg);
+  padding: var(--spectra-space-sm) 0;
+  border-top: 1px solid var(--spectra-hairline);
+}
+
+.detail-readout {
+  display: grid;
+  gap: var(--spectra-space-3xs);
+}
+
+.detail-readout dt {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+.detail-readout dd {
+  margin: 0;
+  color: var(--spectra-text-primary);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-md);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* ---- 6. Comparison: sticky participant header + winner emphasis ------- */
+
+.comparison-table-wrapper {
+  max-height: none;
+}
+
+.comparison-table thead th {
+  position: sticky;
+  top: calc(var(--nav-height, 80px) - 1px);
+  z-index: 5;
+  background: color-mix(
+    in srgb,
+    var(--spectra-surface-app) 92%,
+    transparent
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Winner cell: carried by a gold text rule (meaningful better value),
+   never by a filled box. */
+.comparison-cell-value {
+  transition: color var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+/* ---- 7. Drawer transitions (HardwareFitModal) --------------------------
+   Slide-in panel with a fading scrim; transform/opacity only. */
+
+.hardware-fit-modal .hardware-fit-panel {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hardware-fit-modal .hardware-fit-panel {
+    animation: spectra-drawer-in var(--spectra-motion-slow)
+      var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes spectra-drawer-in {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ---- 8. View entrances --------------------------------------------------
+   A view swap (detail open/close) settles with a short fade + rise. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hardware-detail {
+    animation: spectra-view-in var(--spectra-motion-page)
+      var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes spectra-view-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
