@@ -299,8 +299,109 @@
   }
 }
 
-/* ---- 8. View entrances --------------------------------------------------
-   A view swap (detail open/close) settles with a short fade + rise. */
+/* ---- 9. Compact hero on collapsed viewports ----------------------------
+   Below 1023px the hero is one column: content then signal. The band stays
+   a band by tightening spacing and letting the decorative trace go. */
+
+@media (max-width: 1023px) {
+  .hero {
+    padding-top: clamp(2rem, 5vh, 3rem);
+    padding-bottom: var(--spectra-space-2xl);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+
+  .hero-search-row {
+    margin-top: var(--spectra-space-lg);
+  }
+
+  .hero-content .spectra-spectrum {
+    display: none;
+  }
+
+  .signal {
+    margin-top: 0;
+    padding-top: var(--spectra-space-md);
+  }
+
+  .signal-total {
+    margin-top: var(--spectra-space-md);
+  }
+
+  .signal-channels {
+    margin-top: var(--spectra-space-lg);
+  }
+
+  .signal-manufacturers {
+    margin-top: var(--spectra-space-md);
+  }
+
+  .signal-foot {
+    margin-top: var(--spectra-space-md);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: var(--spectra-space-2xl);
+    padding-bottom: var(--spectra-space-xl);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 8.5vw, 2.4rem);
+  }
+
+  .hero-search-row {
+    margin-top: var(--spectra-space-md);
+  }
+
+  /* The signal becomes a compact strip: channels in two columns, the
+     manufacturer list (duplicated by the catalog's filter bar) and the
+     decorative foot collapse away. */
+  .signal-total {
+    margin-top: var(--spectra-space-sm);
+  }
+
+  .signal-value {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+  }
+
+  .signal-channels {
+    gap: var(--spectra-space-xs) var(--spectra-space-lg);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: var(--spectra-space-md);
+    padding-top: var(--spectra-space-md);
+  }
+
+  .signal-channel {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+  }
+
+  .signal-channel-meter {
+    grid-column: 1 / -1;
+  }
+
+  .signal-manufacturers,
+  .signal-foot {
+    display: none;
+  }
+
+  .hero-quick-paths {
+    width: 100%;
+  }
+
+  .hero-quick-path {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  .catalog-command-sort {
+    margin-left: 0;
+  }
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .hardware-detail {
