@@ -778,3 +778,311 @@
   }
 }
 
+/* ==========================================================================
+   PHASE F — HARDWARE EXPERIENCE
+   ========================================================================== */
+
+/* ---- F1. Hardware visual system ------------------------------------------
+   Original SVG primitives (ProcessorVisual / GraphicsVisual) rendered inside
+   token-driven frames. Identity art only: aria-hidden, no data claims, no
+   model-specific shapes. The die glow is a one-time settle, opacity only. */
+
+:root {
+  /* Visualization palette extension: die gradient endpoints + the well a
+     die sits in. Derived from existing tokens, never raw hex here. */
+  --spectra-vis-die-a: color-mix(
+    in srgb,
+    var(--spectra-vis-signal) 55%,
+    var(--spectra-blue)
+  );
+  --spectra-vis-die-b: color-mix(
+    in srgb,
+    var(--spectra-blue) 62%,
+    transparent
+  );
+  --spectra-vis-well: color-mix(
+    in srgb,
+    var(--spectra-black) 45%,
+    var(--spectra-vis-body)
+  );
+  --spectra-vis-body-deep: color-mix(
+    in srgb,
+    var(--spectra-black) 30%,
+    var(--spectra-vis-body)
+  );
+  --spectra-vis-shadow: rgba(2, 1, 8, 0.5);
+}
+
+:root[data-theme="light"] {
+  --spectra-vis-die-a: color-mix(
+    in srgb,
+    var(--spectra-vis-signal) 48%,
+    var(--spectra-blue)
+  );
+  --spectra-vis-die-b: color-mix(
+    in srgb,
+    var(--spectra-blue) 55%,
+    transparent
+  );
+  --spectra-vis-well: color-mix(
+    in srgb,
+    var(--spectra-black) 8%,
+    var(--spectra-vis-body)
+  );
+  --spectra-vis-body-deep: color-mix(
+    in srgb,
+    var(--spectra-black) 6%,
+    var(--spectra-vis-body)
+  );
+  --spectra-vis-shadow: rgba(32, 23, 47, 0.16);
+}
+
+.hwv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spectra-space-2xs);
+  min-width: 0;
+}
+
+.hwv-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  border-radius: var(--spectra-radius-lg);
+  background:
+    radial-gradient(
+      22rem 16rem at 50% 0%,
+      var(--spectra-ambient-warm),
+      transparent 72%
+    ),
+    radial-gradient(
+      18rem 14rem at 82% 88%,
+      var(--spectra-ambient-cool),
+      transparent 70%
+    );
+  border: 1px solid var(--spectra-hairline-soft);
+}
+
+.hwv-svg {
+  display: block;
+  width: min(100%, 21rem);
+  height: auto;
+}
+
+/* A single one-time die settle on mount; opacity only, no loop. */
+@media (prefers-reduced-motion: no-preference) {
+  .hwv-die {
+    animation: hwv-die-settle 900ms var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes hwv-die-settle {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.hwv-caption {
+  color: var(--spectra-text-faint);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-3xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+.hwv-caption-empty {
+  display: none;
+}
+
+/* Slot-sized rendering: tighter frame, soft inner well. */
+.hwv-slot {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: var(--spectra-space-md) var(--spectra-space-sm);
+  border-radius: var(--spectra-radius-md);
+  background:
+    radial-gradient(
+      12rem 9rem at 50% 8%,
+      var(--spectra-ambient-warm),
+      transparent 74%
+    );
+  border: 1px solid var(--spectra-hairline-soft);
+}
+
+.hwv-slot .hwv-svg {
+  width: min(100%, 10.5rem);
+}
+
+/* ---- F2. Hero reconstruction ---------------------------------------------
+   Two in-flow zones: content (left) and the hardware scene (right). The
+   SignalReadout moves out of the hero grid into a full-width band below it,
+   so catalog statistics are subordinate to discovery. The old absolutely
+   positioned `.hero-art` (headline overlap) is gone. */
+
+.hero {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 6fr);
+  gap: clamp(2rem, 4.5vw, 4rem);
+  align-items: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 34rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 4.6vw, 4.05rem);
+  text-wrap: balance;
+}
+
+.hero-lede {
+  margin: var(--spectra-space-lg) 0 0;
+  max-width: 30rem;
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-lg);
+  line-height: 1.6;
+}
+
+.hero-search-row {
+  margin-top: var(--spectra-space-2xl);
+}
+
+.hero-search-row .search-box {
+  flex: 1 1 18rem;
+  max-width: 30rem;
+  border-color: var(--spectra-hairline-strongest);
+  background: var(--spectra-panel-neutral);
+  transition:
+    border-color var(--spectra-motion-fast) var(--spectra-motion-ease),
+    box-shadow var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+.hero-search-row .search-box:focus-within {
+  border-color: var(--spectra-cyan-a30);
+  box-shadow: var(--spectra-glow-interactive);
+}
+
+/* The scene: an in-flow grid item with its own elevation and halo. */
+.hero-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spectra-space-2xs);
+  min-width: 0;
+}
+
+.hero-stage-svg {
+  display: block;
+  width: min(100%, 32rem);
+  height: auto;
+  filter: drop-shadow(0 24px 48px var(--spectra-vis-shadow));
+  transition: transform var(--spectra-motion-slow) var(--spectra-motion-ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stage:hover .hero-stage-svg {
+    transform: translateY(-4px);
+  }
+}
+
+.hero-stage-caption {
+  color: var(--spectra-text-faint);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-3xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+/* One-time entrance: the scene settles in, opacity/transform only. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stage-svg {
+    animation: spectra-stage-in 640ms var(--spectra-motion-ease-out) backwards;
+  }
+
+  @keyframes spectra-stage-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.985);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Signal band: the catalog readout becomes a subordinate full-width strip
+   below the hero. Stats stay real and secondary. */
+.signal {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--spectra-space-lg) var(--spectra-space-3xl);
+  align-items: start;
+  width: min(var(--shell-width), calc(100% - var(--shell-gutter)));
+  margin: 0 auto;
+  padding: var(--spectra-space-lg) 0 0;
+  border-top: 1px solid var(--spectra-hairline);
+}
+
+.signal .signal-head {
+  grid-column: 1 / -1;
+}
+
+.signal .signal-total {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.signal .signal-channels {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.signal .signal-manufacturers {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.signal .signal-foot {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+@media (max-width: 1023px) {
+  /* Below the desktop band the hero stacks: content first (search and quick
+     paths stay up top), scene after, compact. */
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spectra-space-2xl);
+  }
+
+  .hero-stage-svg {
+    width: min(100%, 22rem);
+  }
+
+  .signal {
+    max-width: 32rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-stage-svg {
+    width: min(100%, 17rem);
+  }
+}

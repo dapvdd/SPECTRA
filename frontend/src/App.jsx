@@ -265,86 +265,123 @@ function ThemeControl({ preference, onSelect }) {
   );
 }
 
-/* Decorative hardware centerpiece (Phase E2): an original stylized CPU/GPU
-   pair drawn with SVG primitives. It is identity art, not data: aria-hidden,
-   never labeled as a specific model, never carrying real measurements. The
-   amber-free palette keeps it inside the Neural Spectrum identity. */
-function HeroHardwareArt() {
+/* PHASE F2 — HERO STAGE
+   The hero's right zone: an original layered hardware scene (substrate board,
+   processor package, graphics module, illuminated interconnect). It renders
+   in-flow in its own grid column, so it can never sit behind or under the
+   headline. Identity art, not data: aria-hidden, never labeled as a specific
+   model, never carrying real measurements. Palette is token-driven. */
+function HeroStage() {
+  const cpuPins = Array.from({ length: 8 }, (_, i) => 132 + i * 25);
+  const cpuCaps = Array.from({ length: 6 }, (_, i) => 138 + i * 28);
+  const stageFins = Array.from({ length: 9 }, (_, i) => 328 + i * 13);
+
   return (
-    <div className="hero-art" aria-hidden="true">
+    <div className="hero-stage" aria-hidden="true" data-testid="hero-stage">
       <svg
-        className="hero-art-svg"
-        viewBox="0 0 560 420"
+        className="hero-stage-svg"
+        viewBox="0 0 560 520"
         fill="none"
         focusable="false"
       >
         <defs>
-          <linearGradient id="heroArtDie" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="var(--spectra-vis-signal)" stopOpacity="0.55" />
-            <stop offset="1" stopColor="var(--spectra-blue)" stopOpacity="0.5" />
+          <linearGradient id="stageCpuDie" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="var(--spectra-vis-die-a)" />
+            <stop offset="1" stopColor="var(--spectra-vis-die-b)" />
           </linearGradient>
-          <linearGradient id="heroArtBoard" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="stageGpuDie" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="var(--spectra-vis-die-b)" />
+            <stop offset="1" stopColor="var(--spectra-vis-die-a)" />
+          </linearGradient>
+          <linearGradient id="stagePackage" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--spectra-vis-body)" />
-            <stop offset="1" stopColor="var(--spectra-surface-raised)" />
+            <stop offset="1" stopColor="var(--spectra-vis-body-deep)" />
           </linearGradient>
+          <radialGradient id="stageHalo" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stopColor="var(--spectra-blue)" stopOpacity="0.22" />
+            <stop offset="1" stopColor="var(--spectra-blue)" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
-        {/* Substrate board */}
-        <rect x="60" y="40" width="440" height="340" rx="18" fill="url(#heroArtBoard)" stroke="var(--spectra-vis-edge)" />
+        {/* Ambient halo behind the whole scene */}
+        <ellipse cx="280" cy="250" rx="270" ry="230" fill="url(#stageHalo)" />
 
-        {/* CPU package with die */}
-        <g className="hero-art-cpu">
-          <rect x="96" y="76" width="168" height="168" rx="12" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="1.5" />
-          <rect x="132" y="112" width="96" height="96" rx="6" fill="url(#heroArtDie)" />
-          {/* pins */}
-          {Array.from({ length: 9 }, (_, i) => (
-            <g key={`p${i}`}>
-              <rect x={104 + i * 18} y="60" width="3" height="12" rx="1.5" fill="var(--spectra-vis-pin)" />
-              <rect x={104 + i * 18} y="248" width="3" height="12" rx="1.5" fill="var(--spectra-vis-pin)" />
+        {/* Substrate board */}
+        <rect x="52" y="60" width="456" height="400" rx="22" fill="url(#stagePackage)" stroke="var(--spectra-vis-edge)" strokeWidth="1.5" />
+        <rect x="68" y="76" width="424" height="368" rx="16" fill="none" stroke="var(--spectra-vis-edge)" strokeOpacity="0.55" />
+
+        {/* Board traces (decorative circuitry) */}
+        <g stroke="var(--spectra-vis-signal)" strokeOpacity="0.26" strokeWidth="1.5" strokeLinecap="round">
+          <path d="M68 140 H 132" />
+          <path d="M68 170 H 112 V 220 H 132" />
+          <path d="M428 120 H 492 V 190" />
+          <path d="M440 330 H 492" />
+          <path d="M380 444 V 400 H 340" />
+          <path d="M96 400 V 444" />
+        </g>
+
+        {/* Processor package (left, larger) */}
+        <g className="hero-stage-cpu">
+          <rect x="108" y="118" width="216" height="216" rx="18" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="2" />
+          {cpuCaps.map((x) => (
+            <rect key={`cap${x}`} x={x} y="128" width="12" height="7" rx="2" fill="var(--spectra-vis-pin)" />
+          ))}
+          <rect x="132" y="152" width="168" height="168" rx="10" fill="var(--spectra-vis-well)" stroke="var(--spectra-vis-edge)" />
+          <rect x="156" y="176" width="120" height="120" rx="6" className="hwv-die" fill="url(#stageCpuDie)" />
+          <g stroke="var(--spectra-vis-edge)" strokeOpacity="0.5" strokeWidth="1">
+            <path d="M186 176 V 296 M 216 176 V 296 M 246 176 V 296 M 276 176 V 296" />
+            <path d="M156 206 H 276 M156 236 H 276 M156 266 H 276" />
+          </g>
+          {cpuPins.map((x) => (
+            <g key={`pin${x}`}>
+              <rect x={x} y="102" width="4" height="12" rx="2" fill="var(--spectra-vis-pin)" />
+              <rect x={x} y="338" width="4" height="12" rx="2" fill="var(--spectra-vis-pin)" />
             </g>
           ))}
-          {/* traces */}
-          <path d="M180 208 V 300 H 300" stroke="var(--spectra-vis-signal)" strokeOpacity="0.4" strokeWidth="1.5" />
-          <path d="M150 244 H 110 V 330" stroke="var(--spectra-vis-signal)" strokeOpacity="0.28" strokeWidth="1.5" />
-          <path d="M228 244 V 300 H 340" stroke="var(--spectra-vis-signal)" strokeOpacity="0.34" strokeWidth="1.5" />
         </g>
 
-        {/* GPU die cluster */}
-        <g className="hero-art-gpu">
-          <rect x="300" y="118" width="176" height="130" rx="12" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="1.5" />
-          <rect x="322" y="140" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
-          <rect x="392" y="140" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
-          <rect x="322" y="192" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
-          <rect x="392" y="192" width="58" height="42" rx="4" fill="url(#heroArtDie)" />
-          <path d="M300 262 H 476" stroke="var(--spectra-vis-edge)" />
-          <path d="M336 248 V 262 M 382 248 V 262 M 428 248 V 262" stroke="var(--spectra-vis-pin)" />
+        {/* Graphics module (right) */}
+        <g className="hero-stage-gpu">
+          <rect x="348" y="176" width="164" height="128" rx="14" fill="var(--spectra-vis-body)" stroke="var(--spectra-vis-edge)" strokeWidth="2" />
+          <rect x="366" y="194" width="58" height="44" rx="5" className="hwv-die" fill="url(#stageGpuDie)" />
+          <rect x="436" y="194" width="58" height="44" rx="5" fill="var(--spectra-vis-well)" stroke="var(--spectra-vis-edge)" />
+          <rect x="366" y="248" width="58" height="44" rx="5" fill="var(--spectra-vis-well)" stroke="var(--spectra-vis-edge)" />
+          <rect x="436" y="248" width="58" height="44" rx="5" className="hwv-die" fill="url(#stageGpuDie)" />
+          {stageFins.map((x) => (
+            <path key={`fin${x}`} d={`M${x} 316 V 330`} stroke="var(--spectra-vis-pin)" strokeOpacity="0.55" strokeWidth="2.4" strokeLinecap="round" />
+          ))}
         </g>
 
-        {/* Interconnect: CPU <-> GPU signal path */}
+        {/* Interconnect: CPU <-> GPU live signal */}
         <path
-          className="hero-art-link"
-          d="M264 160 H 282 V 182 H 300"
+          className="hero-stage-link"
+          d="M324 236 H 348"
           stroke="var(--spectra-vis-signal)"
-          strokeWidth="2"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+        />
+        <path
+          className="hero-stage-link"
+          d="M324 272 H 348"
+          stroke="var(--spectra-vis-signal)"
+          strokeOpacity="0.6"
+          strokeWidth="1.6"
           strokeLinecap="round"
         />
 
-        {/* Bus lanes to board edge */}
-        <path d="M476 183 H 512 V 380" stroke="var(--spectra-vis-signal)" strokeOpacity="0.3" strokeWidth="1.5" />
-        <path d="M96 160 H 74" stroke="var(--spectra-vis-signal)" strokeOpacity="0.3" strokeWidth="1.5" />
-
         {/* Board mounting points */}
-        {[[74, 52], [486, 52], [74, 368], [486, 368]].map(([cx, cy]) => (
-          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="6" stroke="var(--spectra-vis-pin)" strokeWidth="2" fill="none" />
+        {[[70, 78], [490, 78], [70, 442], [490, 442]].map(([cx, cy]) => (
+          <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="5.5" fill="none" stroke="var(--spectra-vis-pin)" strokeWidth="2" />
         ))}
       </svg>
 
-      <span className="hero-art-caption">
-        Circuit diagram · decorative
+      <span className="hero-stage-caption">
+        Circuit scene · decorative
       </span>
     </div>
   );
 }
+
 
 /* SPECTRA SIGNAL
    The hero's right half. Reads real composition out of the catalog payload the
@@ -3656,6 +3693,11 @@ function App() {
             Beyond the specs.
           </h1>
 
+          <p className="hero-lede">
+            A catalog of CPUs and GPUs with verified benchmark records and
+            traceable provenance.
+          </p>
+
           <div className="hero-search-row">
             <div className="search-box">
               <span aria-hidden="true">⌕</span>
@@ -3735,16 +3777,16 @@ function App() {
             <span className="status-dot" aria-hidden="true" />
             Catalog {apiStatus === "online" ? "connected" : apiStatus}
           </p>
-
-          <HeroHardwareArt />
         </div>
 
-        <SignalReadout
-          profile={signalProfile}
-          loading={hardwareLoading}
-          error={hardwareError}
-        />
+        <HeroStage />
       </main>
+
+      <SignalReadout
+        profile={signalProfile}
+        loading={hardwareLoading}
+        error={hardwareError}
+      />
 
       {compareList.length > 0 && (
         <section
