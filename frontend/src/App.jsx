@@ -3301,6 +3301,24 @@ function App() {
     });
   }, [sortedHardware, visibleCount, cardSpecsById]);
 
+  /* Phase E3: retry a failed spec fetch. Clears the failed marker so the
+     effect above refetches on the next pass. */
+  const retryCardSpecs = (hardwareId, hardwareType) => {
+    if (hardwareType !== "GPU") {
+      return;
+    }
+
+    setCardSpecsById((prev) => {
+      if (prev[hardwareId] === undefined) {
+        return prev;
+      }
+
+      const next = { ...prev };
+      delete next[hardwareId];
+      return next;
+    });
+  };
+
   const comparisonInsights = isGpuComparison
     ? buildGpuInsightsFromStatus(
         gpuComparisonStatus,
@@ -3887,13 +3905,14 @@ function App() {
 
           <div className="catalog-command-sort">
             <label className="catalog-sort-label" htmlFor="catalog-sort">
-              Sort
+              Sort page
             </label>
 
             <select
               id="catalog-sort"
               className="catalog-sort-select"
               value={catalogSort}
+              aria-describedby="catalog-sort-scope"
               onChange={(event) => setCatalogSort(event.target.value)}
             >
               {CATALOG_SORTS.map((sort) => (
@@ -3902,6 +3921,10 @@ function App() {
                 </option>
               ))}
             </select>
+            <span className="sr-only" id="catalog-sort-scope">
+              Applies to the records currently shown on this page. The server
+              decides which records are listed.
+            </span>
           </div>
         </div>
 
@@ -3987,15 +4010,32 @@ function App() {
               {sortedHardware
                 .slice(0, visibleCount)
                 .map((item) => {
-                  const cardSpecRows = getHardwareCardPrimarySpecs(
-                    item.type,
-                    cardSpecsById[item.id]
-                  );
                   const buildAction = getBuildComponentAction(buildConfig, item);
                   const inComparison = compareList.some(
                     (hardware) => hardware.id === item.id
                   );
                   const comparisonFull = !inComparison && compareList.length >= 2;
+
+                  /* Spec-strip state (Phase E3): the cache holds undefined
+                     (fetch in flight), null (fetch failed) or the specs
+                     object (loaded, possibly empty). Each state renders
+                     honestly: pending shows the skeleton, a failed fetch
+                     offers a retry, loaded-but-empty says so. CPUs carry
+                     catalog-identity data instead of a fabricated strip. */
+                  const specState =
+                    item.type === "GPU"
+                      ? cardSpecsById[item.id] === undefined
+                        ? "pending"
+                        : cardSpecsById[item.id] === null
+                          ? "failed"
+                          : "loaded"
+                      : "catalog-only";
+                  const cardSpecRows =
+                    specState === "loaded"
+                      ? getHardwareCardPrimarySpecs(item.type, cardSpecsById[item.id])
+                      : [];
+                  const specEmpty =
+                    specState === "loaded" && cardSpecRows.length === 0;
 
                   return (
                     <article
@@ -4017,7 +4057,7 @@ function App() {
                           {item.manufacturer}
                         </span>
 
-                        {cardSpecRows.length > 0 ? (
+                        {specState === "loaded" && cardSpecRows.length > 0 ? (
                           <div className="hardware-card-specs">
                             {cardSpecRows.map((row) => (
                               <span key={row.label}>
@@ -4026,11 +4066,47 @@ function App() {
                               </span>
                             ))}
                           </div>
-                        ) : (
+                        ) : specState === "pending" ? (
                           <div className="hardware-card-specs hardware-card-specs-pending">
                             <span>
                               <em>Specs</em>
-                              <strong>Loading…</strong>
+                              <strong aria-hidden="true">····</strong>
+                              <span className="sr-only">Loading specifications</span>
+                            </span>
+                          </div>
+                        ) : specState === "failed" ? (
+                          <div className="hardware-card-specs hardware-card-specs-failed">
+                            <span>
+                              <em>Specs</em>
+                              <strong>Unavailable</strong>
+                            </span>
+                            <button
+                              type="button"
+                              className="hardware-specs-retry"
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                retryCardSpecs(item.id, item.type);
+                              }}
+                            >
+                              Retry
+                            </button>
+                          </div>
+                        ) : specEmpty ? (
+                          <div className="hardware-card-specs hardware-card-specs-identity">
+                            <span>
+                              <em>Specs</em>
+                              <strong>No spec data</strong>
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="hardware-card-specs hardware-card-specs-identity">
+                            <span>
+                              <em>Class</em>
+                              <strong>{item.type || "CPU"}</strong>
+                            </span>
+                            <span>
+                              <em>Maker</em>
+                              <strong>{item.manufacturer}</strong>
                             </span>
                           </div>
                         )}

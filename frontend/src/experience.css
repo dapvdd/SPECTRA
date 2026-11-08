@@ -571,6 +571,59 @@
   }
 }
 
+/* ---- E3. Catalog card spec-strip states ---------------------------------
+   Pending shows a quiet skeleton, a failed fetch offers retry, and a loaded
+   but empty payload says "No spec data" honestly. CPUs show identity data
+   instead of a fake spec strip. */
+
+.hardware-card-specs-pending strong {
+  color: var(--spectra-text-muted);
+  letter-spacing: 0.3em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hardware-card-specs-pending strong {
+    animation: spectra-shimmer 1.4s var(--spectra-motion-ease) infinite;
+  }
+}
+
+.hardware-card-specs-failed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spectra-space-sm);
+}
+
+.hardware-card-specs-failed strong {
+  color: var(--spectra-red-soft);
+}
+
+.hardware-specs-retry {
+  padding: 0.15rem 0.55rem;
+  background: transparent;
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: var(--spectra-radius-pill);
+  color: var(--spectra-text-secondary);
+  font-size: var(--spectra-type-3xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color var(--spectra-motion-fast) var(--spectra-motion-ease),
+    color var(--spectra-motion-fast) var(--spectra-motion-ease);
+}
+
+.hardware-specs-retry:hover,
+.hardware-specs-retry:focus-visible {
+  border-color: var(--spectra-cyan-a30);
+  color: var(--spectra-cyan-soft);
+}
+
+.hardware-card-specs-identity {
+  opacity: 0.9;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hardware-detail {
     animation: spectra-view-in var(--spectra-motion-page)
