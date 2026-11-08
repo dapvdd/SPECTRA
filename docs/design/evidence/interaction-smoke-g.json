@@ -1,0 +1,42 @@
+[
+  {
+    "check": "no nested buttons inside catalog rows",
+    "ok": true,
+    "detail": "0 nested"
+  },
+  {
+    "check": "compare button has accessible name",
+    "ok": true,
+    "detail": "Add AMD Athlon Gold 7220C to comparison"
+  },
+  {
+    "check": "build button has accessible name",
+    "ok": true,
+    "detail": "Add AMD Athlon Gold 7220C to the build"
+  },
+  {
+    "check": "specs retry button has accessible name",
+    "ok": true,
+    "detail": "None"
+  },
+  {
+    "check": "compare selects a row",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "compare toggle removes a selected row",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "build slot announces selected identity",
+    "ok": true,
+    "detail": "detail='AMD Athlon Gold 7220C' slot='AMD Athlon Gold 7220C'"
+  },
+  {
+    "check": "no page errors during interactions",
+    "ok": true,
+    "detail": "[]"
+  }
+]

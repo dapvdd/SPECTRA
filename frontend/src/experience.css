@@ -1544,11 +1544,126 @@
   }
 }
 
-@media (max-width: 1180px) {
+@media (min-width: 861px) and (max-width: 1180px) {
   .hardware-card-main {
     grid-template-columns: 4.25rem minmax(12rem, 1.3fr) minmax(0, 1.45fr);
     grid-template-areas:
       'kicker name specs'
       'kicker maker specs';
+  }
+}
+
+/* ==========================================================================
+   G2. CATALOG INTERACTION POLISH
+   Hover illuminates the row surface; focus is always visible; press settles;
+   compared rows carry a distinct, restrained state; skeletons breathe.
+   Everything animates transform/opacity only, inside reduced-motion guards,
+   and nothing animates more than the first six rows at once.
+   ========================================================================== */
+
+/* Row illumination: a left-origin gradient wash reads as light entering the
+   row, not a box appearing. No shadow, no scale — density stays honest. */
+.hardware-card:hover {
+  background: linear-gradient(
+    to right,
+    var(--spectra-blue-a08),
+    var(--spectra-blue-a06) 55%,
+    transparent
+  );
+}
+
+.hardware-card:focus-within {
+  background: var(--spectra-blue-a08);
+}
+
+/* Compared rows: the edge marker stays (spectra.css); add a quiet wash that
+   survives both themes and distinguish it from hover. */
+.hardware-card.in-comparison {
+  background: var(--spectra-blue-a08);
+}
+
+.hardware-card.in-comparison:hover {
+  background: linear-gradient(
+    to right,
+    var(--spectra-blue-a14),
+    var(--spectra-blue-a08) 55%,
+    transparent
+  );
+}
+
+/* Keyboard parity: the row-level action keeps its ring; the small action
+   buttons rely on the global focus-visible rule (index.css) and get a theme-
+   aware pressed settle here. */
+.compare-button:active:not(:disabled),
+.build-button:active:not(:disabled),
+.hardware-specs-retry:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-button:active,
+  .build-button:active,
+  .hardware-specs-retry:active {
+    transform: none;
+  }
+}
+
+/* Press feedback on the row itself is deliberately absent: the row opens a
+   view; a settle there would read as the page moving, not a press. */
+
+/* Filter re-apply: when the filter set changes, the grid crossfades instead
+   of snapping. Opacity only — layout is never animated. */
+@media (prefers-reduced-motion: no-preference) {
+  .hardware-grid {
+    animation: spectra-grid-in var(--spectra-motion-base) var(--spectra-motion-ease-out);
+  }
+
+  @keyframes spectra-grid-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Skeletons: shimmer on the whole row block, not per-block opacity flicker,
+   so pending state reads as one quiet instrument. */
+.skeleton-row {
+  transition: opacity var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.skeleton-block {
+  background: linear-gradient(
+    90deg,
+    var(--spectra-hairline-soft),
+    var(--spectra-hairline) 55%,
+    var(--spectra-hairline-soft)
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-block {
+    animation: spectra-skeleton-sweep 1.6s var(--spectra-motion-ease) infinite;
+  }
+
+  @keyframes spectra-skeleton-sweep {
+    from {
+      background-position: 120% 0;
+    }
+
+    to {
+      background-position: -80% 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block {
+    animation: none;
+    background: var(--spectra-hairline-soft);
   }
 }

@@ -4160,16 +4160,6 @@ function App() {
                               <em>Specs</em>
                               <strong>Unavailable</strong>
                             </span>
-                            <button
-                              type="button"
-                              className="hardware-specs-retry"
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                retryCardSpecs(item.id, item.type);
-                              }}
-                            >
-                              Retry
-                            </button>
                           </div>
                         ) : specEmpty ? (
                           <div className="hardware-card-specs hardware-card-specs-identity">
@@ -4201,8 +4191,17 @@ function App() {
                           type="button"
                           className={`compare-button ${inComparison ? "added" : ""}`}
                           aria-pressed={inComparison}
+                          aria-label={
+                            inComparison
+                              ? `Remove ${item.name} from comparison`
+                              : `Add ${item.name} to comparison`
+                          }
                           onClick={(event) => {
                             event.stopPropagation();
+                            if (inComparison) {
+                              removeFromCompare(item.id);
+                              return;
+                            }
                             addToCompare(item);
                           }}
                           disabled={comparisonFull}
@@ -4221,6 +4220,11 @@ function App() {
                               buildAction.alreadySelected ? "added" : ""
                             }`}
                             aria-pressed={buildAction.alreadySelected}
+                            aria-label={
+                              buildAction.alreadySelected
+                                ? `${item.name} is selected in the build`
+                                : `Add ${item.name} to the build`
+                            }
                             onClick={(event) => {
                               event.stopPropagation();
                               addToBuild(item);
