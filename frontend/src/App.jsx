@@ -4358,19 +4358,43 @@ function App() {
           </div>
 
           {compareList.length === 0 ? (
-            <div className="comparison-empty">
-              <div>
-                <span className="comparison-empty-index">01 — 02</span>
-                <h3>Build a side-by-side view</h3>
-                <p>
-                  Choose up to two CPUs or GPUs from Explore Hardware. Selected
-                  hardware will appear here with verified specs and benchmark
-                  results.
-                </p>
+            <div className="comparison-empty" data-testid="comparison-empty">
+              <div className="comparison-slots" role="list">
+                <div className="comparison-slot" role="listitem">
+                  <div className="comparison-slot-head">
+                    <span className="comparison-slot-index">01</span>
+                    <span className="comparison-slot-status">Empty</span>
+                  </div>
+                  <HardwareSlotVisual kind="cpu" />
+                  <div className="comparison-slot-copy">
+                    <strong>Slot A</strong>
+                    <span>Choose a CPU or GPU from Explore Hardware.</span>
+                  </div>
+                  <a className="comparison-slot-action" href="#explore">
+                    Browse catalog <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+
+                <div className="comparison-slot" role="listitem">
+                  <div className="comparison-slot-head">
+                    <span className="comparison-slot-index">02</span>
+                    <span className="comparison-slot-status">Empty</span>
+                  </div>
+                  <HardwareSlotVisual kind="gpu" />
+                  <div className="comparison-slot-copy">
+                    <strong>Slot B</strong>
+                    <span>The second selection completes the pair.</span>
+                  </div>
+                  <a className="comparison-slot-action" href="#explore">
+                    Browse catalog <span aria-hidden="true">→</span>
+                  </a>
+                </div>
               </div>
-              <a className="comparison-explore-link" href="#explore">
-                Browse hardware <span aria-hidden="true">→</span>
-              </a>
+
+              <p className="comparison-empty-note">
+                Selected hardware appears here with verified specs and benchmark
+                results.
+              </p>
             </div>
           ) : (
             <div className="comparison-content">

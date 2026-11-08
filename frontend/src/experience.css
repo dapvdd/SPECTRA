@@ -1263,3 +1263,143 @@
     width: 7rem;
   }
 }
+
+/* ---- F4. Comparison Decision Workspace -----------------------------------
+   The empty state becomes two explicit side-by-side slots (A/B) with the
+   hardware primitives, selection actions, and one shared note. When one slot
+   fills, the identity panel carries it; when both fill, the existing semantic
+   table takes over. No scoring changes, no fabricated winners. */
+
+.comparison-empty {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spectra-space-md);
+  margin-top: 2rem;
+  padding: var(--spectra-space-xl);
+  background: var(--spectra-surface-raised);
+  border: 1px solid var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-lg);
+  box-shadow: var(--spectra-elevation-1);
+  overflow: hidden;
+}
+
+/* A quiet signal wash anchors the empty state without fabricating data. */
+.comparison-empty::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      24rem 14rem at 88% 12%,
+      var(--spectra-ambient-warm),
+      transparent 70%
+    ),
+    radial-gradient(
+      18rem 12rem at 8% 90%,
+      var(--spectra-ambient-cool),
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+.comparison-empty > * {
+  position: relative;
+  z-index: 1;
+}
+
+.comparison-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spectra-space-md);
+}
+
+.comparison-slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spectra-space-sm);
+  padding: var(--spectra-space-lg);
+  background: var(--spectra-surface-elevated);
+  border: 1px dashed var(--spectra-hairline-strongest);
+  border-radius: var(--spectra-radius-md);
+  transition:
+    border-color var(--spectra-motion-base) var(--spectra-motion-ease),
+    box-shadow var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.comparison-slot:hover {
+  border-color: var(--spectra-cyan-a30);
+  box-shadow: var(--spectra-glow-soft);
+}
+
+.comparison-slot-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spectra-space-sm);
+}
+
+.comparison-slot-index {
+  color: var(--spectra-text-primary);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-sm);
+  font-weight: 700;
+  letter-spacing: var(--spectra-track-label);
+}
+
+.comparison-slot-status {
+  color: var(--spectra-text-muted);
+  font-family: var(--spectra-font-mono);
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: var(--spectra-track-label);
+  text-transform: uppercase;
+}
+
+.comparison-slot-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.comparison-slot-copy strong {
+  color: var(--spectra-text-secondary);
+  font-size: var(--spectra-type-base);
+}
+
+.comparison-slot-copy span {
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-sm);
+  line-height: 1.5;
+}
+
+.comparison-slot-action {
+  align-self: flex-start;
+  padding: 0.45rem 0.8rem;
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-md);
+  color: var(--accent-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--spectra-motion-base) var(--spectra-motion-ease), color var(--spectra-motion-base) var(--spectra-motion-ease);
+}
+
+.comparison-slot-action:hover,
+.comparison-slot-action:focus-visible {
+  background: var(--spectra-blue-a12);
+  color: var(--text-primary);
+}
+
+.comparison-empty-note {
+  margin: 0;
+  color: var(--spectra-text-muted);
+  font-size: var(--spectra-type-sm);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .comparison-slots {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
