@@ -1,0 +1,67 @@
+[
+  {
+    "check": "skip link is first tab stop",
+    "ok": true,
+    "detail": "skip-link"
+  },
+  {
+    "check": "search narrows to ryzen",
+    "ok": true,
+    "detail": "12 cards: ['amd ryzen 5 7520c', 'amd ryzen 3 7320c', 'amd ryzen z1']"
+  },
+  {
+    "check": "clear search restores",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "CPU filter shows only CPUs",
+    "ok": true,
+    "detail": "{'CPU'} across 12 cards"
+  },
+  {
+    "check": "sort newest puts newest-dated first",
+    "ok": true,
+    "detail": "'AMD Ryzen 5 PRO 9655' in ['AMD Ryzen 9 PRO 9965X3D', 'AMD Ryzen 9 PRO 9965', 'AMD Ryzen 9 PRO 9955']"
+  },
+  {
+    "check": "detail opens with readout strip",
+    "ok": true,
+    "detail": "4 readouts"
+  },
+  {
+    "check": "back returns to catalog",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "comparison selection badge",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "two slots filled",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "comparison table renders",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "fit modal opens",
+    "ok": true,
+    "detail": "panel visible"
+  },
+  {
+    "check": "ESC closes fit modal",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "no page errors during interactions",
+    "ok": true,
+    "detail": "[]"
+  }
+]
