@@ -1667,3 +1667,62 @@
     background: var(--spectra-hairline-soft);
   }
 }
+
+/* ==========================================================================
+   G4. HARDWARE IDENTITY AND SELECTED STATES
+   Identity reads the same from catalog row, detail masthead, build slot, and
+   comparison slot: technical kicker, strong name, quiet manufacturer. The
+   selection marker on compared rows and the one-selected comparison state
+   gain the same restrained treatment. Token-driven; both themes.
+   ========================================================================== */
+
+/* Catalog -> Detail: the detail masthead name matches the row's identity
+   weight (spectra.css carries the detail h2 at display scale; this aligns
+   the manufacturer line and readout strip rhythm). */
+.hardware-meta {
+  margin-top: var(--spectra-space-2xs);
+}
+
+/* Catalog -> Compare: compared rows keep the edge marker; the floating
+   selection banner indexes read as slot identity, not microtext. */
+.comparison-selection-index,
+.comparison-empty-index {
+  color: var(--spectra-blue-soft);
+  font-size: var(--spectra-type-2xs);
+  letter-spacing: 0.09em;
+}
+
+/* Compare one-selected: the remaining empty slot invites the second pick
+   with the same surface language as the build slots. */
+.comparison-selection-slot {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.92;
+}
+
+/* The comparison instruction (one selected) gets a quiet accent wash so the
+   state change reads without a modal or a shout. */
+.comparison-instruction {
+  padding: var(--spectra-space-sm) var(--spectra-space-md);
+  background: var(--spectra-blue-a08);
+  border: 1px solid var(--spectra-blue-a30);
+  border-radius: var(--spectra-radius-md);
+  color: var(--spectra-text-secondary);
+}
+
+/* Build slot identity: the slot head class and status read as one instrument
+   line; the selected slot's name matches the catalog row's identity weight. */
+.build-component-head h3 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.build-component-manufacturer {
+  color: var(--spectra-text-muted);
+}
+
+/* Detail -> Build: Change/Clear actions align with the catalog row's action
+   row (same height, same quiet hover). */
+.build-component-actions {
+  gap: var(--spectra-space-xs);
+}
