@@ -57,7 +57,7 @@ test("catalog readout labels the count with the active type's record noun", () =
   assert.deepEqual(getCatalogReadout({ totalCount: 5239 }), {
     value: 5239,
     label: "matching hardware records",
-    meta: "All manufacturers",
+    meta: "",
   });
 
   assert.equal(getCatalogReadout({ totalCount: 40, typeFilter: "GPU" }).label, "matching GPU records");
@@ -73,8 +73,15 @@ test("catalog readout scopes the meta line to the manufacturer filter", () => {
   assert.deepEqual(getCatalogReadout({}), {
     value: 0,
     label: "matching hardware records",
-    meta: "All manufacturers",
+    meta: "",
   });
+
+  /* An unfiltered count says nothing about manufacturers: repeating "All"
+     next to an already-unqualified number is the same fact twice. */
+  assert.equal(
+    getCatalogReadout({ totalCount: 12, manufacturerFilter: "All" }).meta,
+    ""
+  );
 });
 
 test("catalog result summary reports the loading and error states first", () => {

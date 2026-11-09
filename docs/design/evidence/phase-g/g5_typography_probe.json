@@ -1,0 +1,238 @@
+{
+ "dark": {
+  "catalog": [
+   {
+    "name": "build-chat-context-label",
+    "missing": true
+   },
+   {
+    "name": "build-chat-analysis-title",
+    "missing": true
+   },
+   {
+    "name": "comparison-overview-slot",
+    "missing": true
+   },
+   {
+    "name": "decision-fact dt",
+    "missing": true
+   },
+   {
+    "name": "build-intelligence-fact dt",
+    "missing": true
+   },
+   {
+    "name": "comparison-header::before",
+    "missing": true
+   },
+   {
+    "name": "filter-group-label",
+    "missing": true
+   },
+   {
+    "name": "eyebrow",
+    "fs": "12.8px",
+    "ls": "1.28px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "detail-section-label",
+    "fs": "12px",
+    "ls": "1.2px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "build-summary-label",
+    "fs": "13.6px",
+    "ls": "1.36px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "hardware-card-kicker",
+    "fs": "11.52px",
+    "ls": "1.0368px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   }
+  ],
+  "build": [
+   {
+    "name": "build-chat-context-label",
+    "missing": true
+   },
+   {
+    "name": "build-chat-analysis-title",
+    "missing": true
+   },
+   {
+    "name": "comparison-overview-slot",
+    "missing": true
+   },
+   {
+    "name": "decision-fact dt",
+    "missing": true
+   },
+   {
+    "name": "build-intelligence-fact dt",
+    "missing": true
+   },
+   {
+    "name": "comparison-header::before",
+    "missing": true
+   },
+   {
+    "name": "filter-group-label",
+    "missing": true
+   },
+   {
+    "name": "eyebrow",
+    "fs": "12.8px",
+    "ls": "1.28px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "detail-section-label",
+    "fs": "12px",
+    "ls": "1.2px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "build-summary-label",
+    "fs": "13.6px",
+    "ls": "1.36px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "hardware-card-kicker",
+    "fs": "11.52px",
+    "ls": "1.0368px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   }
+  ]
+ },
+ "light": {
+  "catalog": [
+   {
+    "name": "build-chat-context-label",
+    "missing": true
+   },
+   {
+    "name": "build-chat-analysis-title",
+    "missing": true
+   },
+   {
+    "name": "comparison-overview-slot",
+    "missing": true
+   },
+   {
+    "name": "decision-fact dt",
+    "missing": true
+   },
+   {
+    "name": "build-intelligence-fact dt",
+    "missing": true
+   },
+   {
+    "name": "comparison-header::before",
+    "missing": true
+   },
+   {
+    "name": "filter-group-label",
+    "missing": true
+   },
+   {
+    "name": "eyebrow",
+    "fs": "12.8px",
+    "ls": "1.28px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "detail-section-label",
+    "fs": "12px",
+    "ls": "1.2px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "build-summary-label",
+    "fs": "13.6px",
+    "ls": "1.36px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "hardware-card-kicker",
+    "fs": "11.52px",
+    "ls": "1.0368px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   }
+  ],
+  "build": [
+   {
+    "name": "build-chat-context-label",
+    "missing": true
+   },
+   {
+    "name": "build-chat-analysis-title",
+    "missing": true
+   },
+   {
+    "name": "comparison-overview-slot",
+    "missing": true
+   },
+   {
+    "name": "decision-fact dt",
+    "missing": true
+   },
+   {
+    "name": "build-intelligence-fact dt",
+    "missing": true
+   },
+   {
+    "name": "comparison-header::before",
+    "missing": true
+   },
+   {
+    "name": "filter-group-label",
+    "missing": true
+   },
+   {
+    "name": "eyebrow",
+    "fs": "12.8px",
+    "ls": "1.28px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "detail-section-label",
+    "fs": "12px",
+    "ls": "1.2px",
+    "transform": "none",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "build-summary-label",
+    "fs": "13.6px",
+    "ls": "1.36px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   },
+   {
+    "name": "hardware-card-kicker",
+    "fs": "11.52px",
+    "ls": "1.0368px",
+    "transform": "uppercase",
+    "family": "\"JetBrains Mono\", ui-monospace"
+   }
+  ]
+ }
+}

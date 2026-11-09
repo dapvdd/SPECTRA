@@ -51,8 +51,10 @@ export const getCatalogReadout = ({
   return {
     value: totalCount,
     label: `matching ${recordNoun}`,
-    meta:
-      manufacturerFilter === "All" ? "All manufacturers" : manufacturerFilter,
+    /* The manufacturer only earns a mention when it narrows the field;
+       "All manufacturers" next to an unfiltered count says the same thing
+       twice. */
+    meta: manufacturerFilter === "All" ? "" : manufacturerFilter,
   };
 };
 

@@ -2118,16 +2118,14 @@ h1 {
   overflow-wrap: anywhere;
 }
 
-.comparison-header span::before {
-  content: "CPU";
-  display: block;
+/* The type kicker renders from JSX (G5) so it can follow the compared type;
+   size, tracking and mono voice come from the spectra label rules. */
+.comparison-header span.comparison-header-type {
   margin-bottom: 0.35rem;
   color: var(--accent);
-  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-
 .remove-compare-button {
   width: fit-content;
   padding: 0.4rem 0.7rem;

@@ -124,6 +124,7 @@ import {
   getCatalogRowSpecs,
   getGpuDetailViewModel,
 } from "./hardwareCard.js";
+import { requestGpuComparison } from "./comparisonGpu.js";
 import {
   createDetailRequestGuard,
   requestHardwareDetail,
@@ -3909,10 +3910,8 @@ function App() {
             </h2>
           </div>
 
-          <p className="section-head-meta">
-            {sortedHardware.length > 0
-              ? `${sortedHardware.length} shown`
-              : "Awaiting records"}
+          <p className="section-head-meta" role="status">
+            {hardwareLoading ? "Updating" : "Live"}
           </p>
         </div>
 
@@ -3987,7 +3986,7 @@ function App() {
 
           <div className="catalog-command-sort">
             <label className="catalog-sort-label" htmlFor="catalog-sort">
-              Sort page
+              Sort
             </label>
 
             <select
@@ -4019,8 +4018,7 @@ function App() {
           </div>
 
           <span className="catalog-readout-meta">
-            {catalogReadout.meta}
-            {" · "}
+            {catalogReadout.meta ? `${catalogReadout.meta} · ` : ""}
             {catalogResultSummary}
           </span>
         </div>
@@ -4615,6 +4613,12 @@ function App() {
                         {compareDetails.map((item) => (
                           <th scope="col" key={item.id}>
                             <div className="comparison-header">
+                              <span
+                                className="comparison-header-type"
+                                aria-hidden="true"
+                              >
+                                {item.type}
+                              </span>
                               <span>{item.name}</span>
 
                               <button

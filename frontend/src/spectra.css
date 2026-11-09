@@ -423,6 +423,7 @@ h4 {
 .comparison-selection-index,
 .comparison-empty-index,
 .comparison-overview-slot,
+.comparison-header-type,
 .performance-card-index,
 .performance-status,
 .performance-badge,
@@ -461,7 +462,7 @@ h4 {
 .comparison-overview-slot,
 .comparison-row-direction,
 .comparison-cell-marker,
-.comparison-header span::before,
+.comparison-header-type,
 .decision-fact dt,
 .build-intelligence-fact dt,
 .build-intelligence-signal-state,
@@ -471,7 +472,11 @@ h4 {
 .build-chat-analysis-title,
 .build-chat-analysis-label,
 .hardware-chat-question span,
-.hardware-chat-answer-label {
+.hardware-chat-answer-label,
+.benchmark-comparison-result,
+.source-license-tag,
+.benchmark-quality-badge,
+.suitability-confidence {
   font-size: var(--spectra-type-2xs);
 }
 .performance-value strong,

@@ -30,9 +30,24 @@
     "detail": ""
   },
   {
+    "check": "GPU-first comparison renders the table",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "app survives GPU comparison",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "comparison kicker follows the compared type",
+    "ok": true,
+    "detail": "['GPU', 'GPU']"
+  },
+  {
     "check": "build slot announces selected identity",
     "ok": true,
-    "detail": "detail='AMD Athlon Gold 7220C' slot='AMD Athlon Gold 7220C'"
+    "detail": "detail='i752 Graphics' slot='i752 Graphics'"
   },
   {
     "check": "no page errors during interactions",

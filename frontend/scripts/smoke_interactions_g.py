@@ -79,6 +79,39 @@ with sync_playwright() as p:
         page.locator(".compare-button[aria-pressed='true']").count() == 0,
     )
 
+    # G5. GPU-first comparison must not crash (regression: a missing import in
+    # the GPU verdict effect unmounted the whole app when the first compared
+    # item was a GPU; the Phase 10 smoke only compared CPU-first).
+    page.locator(".filter-buttons-type button", has_text="GPU").click()
+    page.wait_for_timeout(1200)
+    btns = page.locator(".compare-button[aria-pressed='false']:not([disabled])")
+    btns.nth(0).click()
+    page.wait_for_timeout(400)
+    btns = page.locator(".compare-button[aria-pressed='false']:not([disabled])")
+    btns.nth(0).click()
+    page.wait_for_selector(".comparison-table", timeout=20000)
+    page.wait_for_timeout(800)
+    check(
+        "GPU-first comparison renders the table",
+        page.locator(".comparison-table").count() == 1,
+    )
+    check(
+        "app survives GPU comparison",
+        page.locator(".app").count() == 1 and not errors,
+        errors[:2],
+    )
+    kickers = page.locator(".comparison-header-type")
+    check(
+        "comparison kicker follows the compared type",
+        kickers.count() == 2
+        and all(k.inner_text().strip() == "GPU" for k in
+                [kickers.nth(0), kickers.nth(1)]),
+        [k.inner_text() for k in [kickers.nth(0), kickers.nth(1)]] if kickers.count() == 2 else "missing",
+    )
+    # reset compare list for later checks
+    page.locator(".clear-compare-button").click()
+    page.wait_for_timeout(400)
+
     # G4. Build slot filled state announces identity (verified against API).
     page.locator(".hardware-card-main >> nth=0").click()
     page.wait_for_selector(".hardware-detail", timeout=15000)
