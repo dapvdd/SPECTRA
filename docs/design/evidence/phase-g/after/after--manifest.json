@@ -1,0 +1,3026 @@
+{
+  "label": "after",
+  "tool": "playwright chromium, full-page screenshots",
+  "note": "PNGs are structural evidence only; the working model cannot visually inspect them. Aesthetic review is a human step.",
+  "states": [
+    "catalog-default",
+    "catalog-gpu",
+    "catalog-row-hover",
+    "catalog-row-focus",
+    "build-empty",
+    "detail-cpu",
+    "build-cpu",
+    "build-cpu-gpu",
+    "compare-empty",
+    "compare-one",
+    "compare-two-cpu",
+    "compare-two-gpu",
+    "mobile-320 spot-check"
+  ],
+  "shots": [
+    {
+      "shot": "after--catalog-default--dark--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--dark--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-row-hover--dark--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-row-focus--dark--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-empty--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--detail-cpu--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-cpu--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "ready",
+            "name": "i752 Graphics"
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "selectedIds": [
+          "i752 Graphics"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-cpu-gpu--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "ready",
+            "name": "i752 Graphics"
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "selectedIds": [
+          "i752 Graphics",
+          "i752 Graphics"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-empty--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-one--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-two-cpu--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 1,
+        "winnerCells": 2,
+        "comparisonKickers": [
+          "CPU",
+          "CPU"
+        ],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-two-gpu--dark.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 1,
+        "winnerCells": 1,
+        "comparisonKickers": [
+          "GPU",
+          "GPU"
+        ],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--dark--tablet-768.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 768,
+          "h": 1024
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--dark--tablet-768.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 768,
+          "h": 1024
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--dark--mobile-390.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--dark--mobile-390.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--dark--mobile-320.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 320,
+          "h": 640
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--dark--mobile-320.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "dark",
+        "viewport": {
+          "w": 320,
+          "h": 640
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--light--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--light--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-row-hover--light--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-row-focus--light--desktop-1440.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-empty--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--detail-cpu--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-cpu--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "ready",
+            "name": "i752 Graphics"
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "selectedIds": [
+          "i752 Graphics"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--build-cpu-gpu--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "ready",
+            "name": "i752 Graphics"
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "selectedIds": [
+          "i752 Graphics",
+          "i752 Graphics"
+        ]
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-empty--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-one--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-two-cpu--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 1,
+        "winnerCells": 2,
+        "comparisonKickers": [
+          "CPU",
+          "CPU"
+        ],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--compare-two-gpu--light.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [],
+        "comparisonTable": 1,
+        "winnerCells": 1,
+        "comparisonKickers": [
+          "GPU",
+          "GPU"
+        ],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--light--tablet-768.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 768,
+          "h": 1024
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--light--tablet-768.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 768,
+          "h": 1024
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--light--mobile-390.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--light--mobile-390.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-default--light--mobile-320.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "AMD Athlon Gold 7220C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Athlon Silver 7120C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7520C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 3 7320C",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
+          }
+        ],
+        "typeFilter": "All hardware",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 320,
+          "h": 640
+        }
+      },
+      "errors": []
+    },
+    {
+      "shot": "after--catalog-gpu--light--mobile-320.png",
+      "metrics": {
+        "horizontalOverflow": false,
+        "cardOverflowCount": 0,
+        "h1StageOverlap": false,
+        "buildStates": [
+          {
+            "state": "empty",
+            "name": null
+          },
+          {
+            "state": "empty",
+            "name": null
+          }
+        ],
+        "comparisonSlots": [
+          "01",
+          "02"
+        ],
+        "comparisonTable": 0,
+        "winnerCells": 0,
+        "comparisonKickers": [],
+        "catalogRows": [
+          {
+            "name": "i752 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i810 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i815 Graphics",
+            "specCount": 2
+          },
+          {
+            "name": "i830M Graphics",
+            "specCount": 3
+          },
+          {
+            "name": "GeForce2 MX + nForce 220",
+            "specCount": 2
+          },
+          {
+            "name": "GeForce2 MX + nForce 420",
+            "specCount": 2
+          },
+          {
+            "name": "Stream Processor",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9170",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9250",
+            "specCount": 3
+          },
+          {
+            "name": "FireStream 9270",
+            "specCount": 3
+          },
+          {
+            "name": "Radeon HD 6570M Mac Edition",
+            "specCount": 3
+          },
+          {
+            "name": "FirePro M3900",
+            "specCount": 3
+          }
+        ],
+        "typeFilter": "GPU1879",
+        "manufacturerFilter": "All",
+        "theme": "light",
+        "viewport": {
+          "w": 320,
+          "h": 640
+        },
+        "note": "missing-spec rows visible among GPUs"
+      },
+      "errors": []
+    }
+  ]
+}

@@ -1524,6 +1524,16 @@
   }
 }
 
+/* 390-class screens keep the 2-column grid, so long GPU values ("System
+   Shared") wrap instead of overflowing their cell; desktop keeps the
+   single-line instrument read. */
+@media (max-width: 480px) {
+  .hardware-card-specs strong {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 .hardware-card-specs-identity strong,
 .hardware-card-specs-pending strong {
   color: var(--spectra-text-faint);
