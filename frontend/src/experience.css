@@ -1515,6 +1515,15 @@
   opacity: 1;
 }
 
+/* 320-class screens: the 2-column spec grid leaves ~88px cells, narrower
+   than a mono label plus a no-clip value (values refuse to truncate by
+   design). Single column keeps every value whole; 390px keeps its two. */
+@media (max-width: 380px) {
+  .hardware-card-specs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .hardware-card-specs-identity strong,
 .hardware-card-specs-pending strong {
   color: var(--spectra-text-faint);

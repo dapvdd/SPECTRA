@@ -1,0 +1,222 @@
+[
+  {
+    "check": "dark 1440px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "dark 1440px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "dark 1440px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "dark 1440px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "dark 1440px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "dark 1440px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "dark 768px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "dark 768px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "dark 768px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "dark 768px: toolbar touch targets >= 24px",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "dark 768px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "dark 768px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "dark 768px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "dark 390px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "dark 390px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "dark 390px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "dark 390px: toolbar touch targets >= 24px",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "dark 390px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "dark 390px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "dark 390px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "dark 320px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "dark 320px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "light 1440px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "light 1440px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "light 1440px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "light 1440px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "light 1440px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "light 1440px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "light 768px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "light 768px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "light 768px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "light 768px: toolbar touch targets >= 24px",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "light 768px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "light 768px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "light 768px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "light 390px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "light 390px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  },
+  {
+    "check": "light 390px: catalog names not hard-truncated",
+    "ok": true,
+    "detail": "0 names clipped"
+  },
+  {
+    "check": "light 390px: toolbar touch targets >= 24px",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "light 390px: first tab stop has visible focus",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "light 390px: filter button focus ring present",
+    "ok": true,
+    "detail": "{'outline': 'solid', 'width': '3px'}"
+  },
+  {
+    "check": "light 390px: no console errors",
+    "ok": true,
+    "detail": "[]"
+  },
+  {
+    "check": "light 320px: no page horizontal overflow",
+    "ok": true,
+    "detail": "overflowX=0px"
+  },
+  {
+    "check": "light 320px: cards do not overflow",
+    "ok": true,
+    "detail": "0 cards overflow"
+  }
+]
