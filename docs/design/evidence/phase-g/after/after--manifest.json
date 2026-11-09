@@ -2,6 +2,7 @@
   "label": "after",
   "tool": "playwright chromium, full-page screenshots",
   "note": "PNGs are structural evidence only; the working model cannot visually inspect them. Aesthetic review is a human step.",
+  "known_baseline_failure": null,
   "states": [
     "catalog-default",
     "catalog-gpu",
@@ -376,55 +377,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "dark",
         "viewport": {
@@ -459,55 +460,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "dark",
         "viewport": {
@@ -525,12 +526,12 @@
         "h1StageOverlap": false,
         "buildStates": [
           {
-            "state": "empty",
-            "name": null
+            "state": "ready",
+            "name": "AMD Athlon Gold 7220C"
           },
           {
-            "state": "ready",
-            "name": "i752 Graphics"
+            "state": "empty",
+            "name": null
           }
         ],
         "comparisonSlots": [
@@ -542,55 +543,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "dark",
         "viewport": {
@@ -598,7 +599,7 @@
           "h": 900
         },
         "selectedIds": [
-          "i752 Graphics"
+          "AMD Athlon Gold 7220C"
         ]
       },
       "errors": []
@@ -611,8 +612,8 @@
         "h1StageOverlap": false,
         "buildStates": [
           {
-            "state": "empty",
-            "name": null
+            "state": "ready",
+            "name": "AMD Athlon Gold 7220C"
           },
           {
             "state": "ready",
@@ -684,7 +685,7 @@
           "h": 900
         },
         "selectedIds": [
-          "i752 Graphics",
+          "AMD Athlon Gold 7220C",
           "i752 Graphics"
         ]
       },
@@ -1878,55 +1879,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "light",
         "viewport": {
@@ -1961,55 +1962,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "light",
         "viewport": {
@@ -2027,12 +2028,12 @@
         "h1StageOverlap": false,
         "buildStates": [
           {
-            "state": "empty",
-            "name": null
+            "state": "ready",
+            "name": "AMD Athlon Gold 7220C"
           },
           {
-            "state": "ready",
-            "name": "i752 Graphics"
+            "state": "empty",
+            "name": null
           }
         ],
         "comparisonSlots": [
@@ -2044,55 +2045,55 @@
         "comparisonKickers": [],
         "catalogRows": [
           {
-            "name": "i752 Graphics",
+            "name": "AMD Athlon Gold 7220C",
             "specCount": 2
           },
           {
-            "name": "i810 Graphics",
+            "name": "AMD Athlon Silver 7120C",
             "specCount": 2
           },
           {
-            "name": "i815 Graphics",
+            "name": "AMD Ryzen 5 7520C",
             "specCount": 2
           },
           {
-            "name": "i830M Graphics",
-            "specCount": 3
-          },
-          {
-            "name": "GeForce2 MX + nForce 220",
+            "name": "AMD Ryzen 3 7320C",
             "specCount": 2
           },
           {
-            "name": "GeForce2 MX + nForce 420",
+            "name": "AMD Ryzen Z1",
             "specCount": 2
           },
           {
-            "name": "Stream Processor",
-            "specCount": 3
+            "name": "AMD Ryzen Z1 Extreme",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9170",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7945HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9250",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7845HX",
+            "specCount": 2
           },
           {
-            "name": "FireStream 9270",
-            "specCount": 3
+            "name": "AMD Ryzen 7 7745HX",
+            "specCount": 2
           },
           {
-            "name": "Radeon HD 6570M Mac Edition",
-            "specCount": 3
+            "name": "AMD Ryzen 5 7645HX",
+            "specCount": 2
           },
           {
-            "name": "FirePro M3900",
-            "specCount": 3
+            "name": "AMD Ryzen 9 7940HS",
+            "specCount": 2
+          },
+          {
+            "name": "AMD Ryzen 7 7840HS",
+            "specCount": 2
           }
         ],
-        "typeFilter": "GPU1879",
+        "typeFilter": "All hardware",
         "manufacturerFilter": "All",
         "theme": "light",
         "viewport": {
@@ -2100,7 +2101,7 @@
           "h": 900
         },
         "selectedIds": [
-          "i752 Graphics"
+          "AMD Athlon Gold 7220C"
         ]
       },
       "errors": []
@@ -2113,8 +2114,8 @@
         "h1StageOverlap": false,
         "buildStates": [
           {
-            "state": "empty",
-            "name": null
+            "state": "ready",
+            "name": "AMD Athlon Gold 7220C"
           },
           {
             "state": "ready",
@@ -2186,7 +2187,7 @@
           "h": 900
         },
         "selectedIds": [
-          "i752 Graphics",
+          "AMD Athlon Gold 7220C",
           "i752 Graphics"
         ]
       },

@@ -118,6 +118,12 @@ def capture_catalog_states(page, outdir, label, theme, errors, results, vp):
 
 def capture_flow_states(page, outdir, label, theme, errors, results, base_url):
     """Build + comparison flows (desktop-1440 only, per Phase F discipline)."""
+    # The catalog-states pass may have left a type filter active; the build
+    # flow must start from the unfiltered default (CPU cards first), matching
+    # the Phase F evidence contract (build-cpu fills the CPU slot).
+    page.locator(".filter-buttons-type button", has_text="All hardware").click()
+    page.wait_for_timeout(1500)
+
     # build empty
     page.locator("#build").scroll_into_view_if_needed()
     page.wait_for_timeout(700)
