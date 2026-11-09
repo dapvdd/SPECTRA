@@ -12,6 +12,7 @@ import {
   getCatalogTypeLabel,
   getHardwareCatalogUrl,
   getHardwareFacetsUrl,
+  mergeTypeFacetCounts,
   requestHardwareCatalog,
   requestHardwareCatalogPage,
   requestHardwareFacets,
@@ -303,6 +304,36 @@ test("catalog page request validates payload shape", async () => {
     ),
     /id/
   );
+});
+
+test("facet merge keeps last-known counts for types absent from a response", () => {
+  /* The facets endpoint scopes to the active type filter, so a GPU-filtered
+     response carries only {GPU: n}. The hero quick-paths read both counts
+     unconditionally; merging (not overwriting) keeps the other type stable. */
+  const previous = { CPU: 3501, GPU: 1879 };
+
+  assert.deepEqual(
+    mergeTypeFacetCounts(previous, [{ value: "GPU", count: 1879 }]),
+    { CPU: 3501, GPU: 1879 }
+  );
+
+  assert.deepEqual(
+    mergeTypeFacetCounts(previous, [{ value: "CPU", count: 3501 }]),
+    { CPU: 3501, GPU: 1879 }
+  );
+});
+
+test("facet merge updates counts that are present and tolerates empty state", () => {
+  assert.deepEqual(
+    mergeTypeFacetCounts({ CPU: 3501 }, [{ value: "CPU", count: 3502 }]),
+    { CPU: 3502 }
+  );
+
+  assert.deepEqual(mergeTypeFacetCounts({}, []), {});
+  assert.deepEqual(mergeTypeFacetCounts(undefined, [{ value: "CPU", count: 3 }]), {
+    CPU: 3,
+  });
+  assert.deepEqual(mergeTypeFacetCounts({ CPU: 3 }, undefined), { CPU: 3 });
 });
 
 test("facets URL reflects active filters and omits defaults", () => {

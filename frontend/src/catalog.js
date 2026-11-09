@@ -167,6 +167,27 @@ export const requestHardwareCatalogPage = async (
 /* Facet counts tell the UI what the next click would do before it clicks: the
    counts are computed server-side under the *same* filters the catalog query
    uses, so they stay accurate even when those filters change. */
+
+/* The facets endpoint scopes its `types` list to the active type filter, so a
+   GPU-filtered response carries only {GPU: n}. The hero quick-paths and the
+   type buttons read both types' counts unconditionally, so a fresh response
+   must MERGE with the previous map — absent keys keep their last-known count
+   instead of being wiped. Counts that are present always win (they are
+   computed under the current filters and are the more recent observation). */
+export const mergeTypeFacetCounts = (previous, facets) => {
+  const next = { ...(previous || {}) };
+
+  if (Array.isArray(facets)) {
+    facets.forEach((facet) => {
+      if (facet && facet.value != null) {
+        next[facet.value] = facet.count;
+      }
+    });
+  }
+
+  return next;
+};
+
 export const getHardwareFacetsUrl = (
   {
     type = "All",

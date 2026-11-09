@@ -115,6 +115,7 @@ import {
   getCatalogFilterState,
   getCatalogReadout,
   getCatalogResultSummary,
+  mergeTypeFacetCounts,
   requestHardwareCatalog,
   requestHardwareCatalogPage,
   requestHardwareFacets,
@@ -2479,6 +2480,9 @@ function App() {
   const [hardwareError, setHardwareError] = useState("");
   const [hardwareTotalCount, setHardwareTotalCount] = useState(0);
   const [hardwareFacets, setHardwareFacets] = useState(null);
+  /* Type facet counts survive across filter changes: merged per type, because
+     the facets endpoint only reports the type currently being filtered. */
+  const [typeFacetCountsState, setTypeFacetCounts] = useState({});
   const [hardwareTypeFilter, setHardwareTypeFilter] = useState("All");
   const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
@@ -3200,6 +3204,10 @@ function App() {
     )
       .then((facets) => {
         setHardwareFacets(facets);
+        /* Merge, don't overwrite: the endpoint scopes `types` to the active
+           type filter, so a GPU-filtered response would otherwise erase the
+           CPU count (and vice versa) that the hero quick-paths display. */
+        setTypeFacetCounts((prev) => mergeTypeFacetCounts(prev, facets.types));
       })
       .catch(() => {});
 
@@ -3304,7 +3312,10 @@ function App() {
   const comparisonSummary = getComparisonSelectionSummary(compareList);
 
   /* Facet counts from the backend for the current filter set, keyed by value
-     so the manufacturer buttons can show what each filter would find next. */
+     so the manufacturer buttons can show what each filter would find next.
+     Type counts come from merged state (see the facets effect): the endpoint
+     scopes `types` to the active filter, so overwriting would blank the
+     other type's count in the hero quick-paths. */
   const manufacturerFacetCounts = {};
   if (hardwareFacets?.manufacturers) {
     hardwareFacets.manufacturers.forEach((facet) => {
@@ -3312,12 +3323,7 @@ function App() {
     });
   }
 
-  const typeFacetCounts = {};
-  if (hardwareFacets?.types) {
-    hardwareFacets.types.forEach((facet) => {
-      typeFacetCounts[facet.value] = facet.count;
-    });
-  }
+  const typeFacetCounts = typeFacetCountsState;
 
   useEffect(() => {
     const visibleCards = sortedHardware.slice(0, visibleCount);
