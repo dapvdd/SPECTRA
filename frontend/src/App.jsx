@@ -3379,24 +3379,6 @@ function App() {
     });
   }, [sortedHardware, visibleCount, cardSpecsById]);
 
-  /* Phase E3: retry a failed spec fetch. Clears the failed marker so the
-     effect above refetches on the next pass. */
-  const retryCardSpecs = (hardwareId, hardwareType) => {
-    if (hardwareType !== "GPU") {
-      return;
-    }
-
-    setCardSpecsById((prev) => {
-      if (prev[hardwareId] === undefined) {
-        return prev;
-      }
-
-      const next = { ...prev };
-      delete next[hardwareId];
-      return next;
-    });
-  };
-
   const comparisonInsights = isGpuComparison
     ? buildGpuInsightsFromStatus(
         gpuComparisonStatus,
