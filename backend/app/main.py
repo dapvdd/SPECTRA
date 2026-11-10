@@ -30,6 +30,7 @@ from backend.app.auth import (
     login_response,
     require_auth,
 )
+from backend.app.release import ReleaseIdentity, get_release_identity
 
 _cors_origins = os.getenv("SPECTRA_CORS_ORIGINS", "http://localhost:5173,http://localhost:8080")
 CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(",") if origin.strip()]
@@ -158,6 +159,17 @@ def health_check():
     return {
         "status": "healthy",
     }
+
+
+@app.get("/release", response_model=ReleaseIdentity)
+def release_identity() -> ReleaseIdentity:
+    """Report the deployed release identity.
+
+    Diagnostic surface for stale-client and misdeployment diagnosis. Reports
+    version, git SHA, build timestamp, image digest (when injected), auth
+    state, and AI provider state. Never reports secrets or internal paths.
+    """
+    return get_release_identity()
 
 
 @app.get("/ready")
