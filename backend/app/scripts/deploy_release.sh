@@ -30,6 +30,8 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 RELEASE_DIR=""
 EXPECTED_SHA=""
+SOURCE_DIR=""
+REPO_ROOT_ARG=""
 DRY_RUN=0
 
 while [[ $# -gt 0 ]]; do
@@ -42,13 +44,21 @@ while [[ $# -gt 0 ]]; do
             EXPECTED_SHA="$2"
             shift 2
             ;;
+        --source-dir)
+            SOURCE_DIR="$2"
+            shift 2
+            ;;
+        --repo-root)
+            REPO_ROOT_ARG="$2"
+            shift 2
+            ;;
         --dry-run)
             DRY_RUN=1
             shift
             ;;
         *)
             echo "Unknown argument: $1" >&2
-            echo "Usage: $0 --release-dir DIR --expected-sha SHA [--dry-run]" >&2
+            echo "Usage: $0 --release-dir DIR --expected-sha SHA [--source-dir DIR] [--repo-root DIR] [--dry-run]" >&2
             exit 2
             ;;
     esac
@@ -90,10 +100,29 @@ fi
 # ---------------------------------------------------------------------------
 # Guard 3: preflight must pass.
 # ---------------------------------------------------------------------------
+PYTHON_BIN="$(command -v python3 || command -v python)"
+if [[ -z "${PYTHON_BIN}" ]]; then
+    echo "REFUSED: neither python3 nor python found on PATH." >&2
+    exit 2
+fi
+
 echo "Running deployment preflight for ${release_dir_name} ..."
-python "${REPO_ROOT}/backend/app/scripts/deploy_preflight.py" \
-    --release-dir "${RELEASE_DIR}" \
+PREFLIGHT_ARGS=(
+    --release-dir "${RELEASE_DIR}"
     --expected-sha "${EXPECTED_SHA}"
+)
+if [[ -n "${SOURCE_DIR}" ]]; then
+    PREFLIGHT_ARGS+=(--source-dir "${SOURCE_DIR}")
+fi
+if [[ -n "${REPO_ROOT_ARG}" ]]; then
+    PREFLIGHT_ARGS+=(--repo-root "${REPO_ROOT_ARG}")
+    PREFLIGHT_SCRIPT="${REPO_ROOT_ARG}/backend/app/scripts/deploy_preflight.py"
+else
+    PREFLIGHT_SCRIPT="${REPO_ROOT}/backend/app/scripts/deploy_preflight.py"
+fi
+
+"${PYTHON_BIN}" "${PREFLIGHT_SCRIPT}" \
+    "${PREFLIGHT_ARGS[@]}"
 
 PREFLIGHT_RC=$?
 if [[ ${PREFLIGHT_RC} -ne 0 ]]; then
