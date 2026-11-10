@@ -40,3 +40,5 @@ data/research/batch017/verify_prod_nullguard_selfcontained.py
 # OS
 .DS_Store
 Thumbs.db
+# Worktrees
+.worktrees/
