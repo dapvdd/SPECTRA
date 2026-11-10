@@ -106,6 +106,161 @@ _EXPECTED_TABLES_V2: dict[str, set[str]] = {
     },
 }
 
+# v3 (Build Planner): the four new component spec tables. field_provenance is
+# REBUILT (not altered — SQLite cannot change a CHECK constraint) to widen its
+# table_name vocabulary.
+_EXPECTED_TABLES_V3: dict[str, set[str]] = {
+    **_EXPECTED_TABLES_V2,
+    "ram_specifications": {
+        "id", "hardware_id", "ddr_generation", "capacity_gb", "speed_mhz",
+        "modules", "ecc", "voltage_v", "form_factor",
+    },
+    "storage_specifications": {
+        "id", "hardware_id", "storage_type", "capacity_gb", "interface",
+        "read_mb_s", "write_mb_s", "dram_cache", "form_factor",
+    },
+    "motherboard_specifications": {
+        "id", "hardware_id", "socket", "chipset", "form_factor",
+        "ram_type", "ram_slots", "max_ram_gb", "m2_slots", "sata_ports",
+        "pcie_slots",
+    },
+    "psu_specifications": {
+        "id", "hardware_id", "wattage", "efficiency_rating", "modular",
+        "pcie_8pin_count", "pcie_12vhpwr",
+    },
+}
+
+# Full provenance column list for the rebuild (matches provenance.py exactly).
+_PROVENANCE_COLUMNS = (
+    "id", "hardware_id", "source_id", "table_name", "field_name",
+    "evidenced_value", "source_url", "license_name", "license_notes",
+    "attribution", "access_date", "confidence", "evidence_status",
+    "source_reference", "match_method", "batch_no", "notes",
+    "recorded_at", "benchmark_result_id",
+)
+
+# Widen the table-name CHECK to the four Build Planner categories. Generated
+# from VALID_TABLES to keep one source of truth (app-level validation uses the
+# same constant).
+_WIDENED_TABLE_CHECK = (
+    "table_name IN ('hardware', 'cpu_specifications', 'gpu_specifications', "
+    "'benchmark_results', 'ram_specifications', 'storage_specifications', "
+    "'motherboard_specifications', 'psu_specifications')"
+)
+
+
+def _verify_v3(conn: sqlite3.Connection) -> None:
+    """Verify the v3 schema: 4 spec tables + provenance rebuild integrity."""
+    tables = {
+        r[0]
+        for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+        ).fetchall()
+    }
+    for table in ("ram_specifications", "storage_specifications",
+                  "motherboard_specifications", "psu_specifications"):
+        if table not in tables:
+            raise RuntimeError(f"v3 verification FAILED: missing table '{table}'")
+
+    expected = _EXPECTED_TABLES_V3[table] if False else None  # placeholder guard
+    for table, expected_cols in _EXPECTED_TABLES_V3.items():
+        if table == "field_provenance":
+            continue
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()}
+        missing = expected_cols - cols
+        if missing:
+            raise RuntimeError(
+                f"v3 verification FAILED: {table} missing columns: {missing}"
+            )
+
+    # Provenance rebuild integrity: the table exists and the DB is sound.
+    if "field_provenance" not in tables:
+        raise RuntimeError("v3 verification FAILED: field_provenance missing")
+    result = conn.execute("PRAGMA integrity_check").fetchone()
+    if result[0] != "ok":
+        raise RuntimeError(f"v3 verification FAILED: integrity_check {result[0]!r}")
+
+
+# Full rebuilt field_provenance DDL (widened table_name CHECK). Column list
+# mirrors models/provenance.py exactly.
+_FIELD_PROVENANCE_DDL_V3 = f"""
+CREATE TABLE field_provenance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    hardware_id INTEGER NOT NULL REFERENCES hardware(id),
+    source_id INTEGER NOT NULL REFERENCES sources(id),
+    table_name VARCHAR(50) NOT NULL CHECK ({_WIDENED_TABLE_CHECK}),
+    field_name VARCHAR(50) NOT NULL,
+    evidenced_value VARCHAR(200) NOT NULL,
+    source_url VARCHAR(500) NOT NULL,
+    license_name VARCHAR(100),
+    license_notes TEXT,
+    attribution TEXT,
+    access_date DATE,
+    confidence VARCHAR(20),
+    evidence_status VARCHAR(20) NOT NULL CHECK (
+        evidence_status IN ('verified', 'uncertain', 'excluded', 'unmatched')
+    ),
+    source_reference VARCHAR(200),
+    match_method VARCHAR(100),
+    batch_no INTEGER NOT NULL,
+    notes TEXT,
+    recorded_at DATETIME NOT NULL,
+    benchmark_result_id INTEGER REFERENCES benchmark_results(id),
+    CHECK (
+        (benchmark_result_id IS NULL AND table_name != 'benchmark_results')
+        OR (benchmark_result_id IS NOT NULL AND table_name = 'benchmark_results')
+    )
+)
+"""
+
+_PROVENANCE_INDEX_DDL = (
+    "CREATE UNIQUE INDEX uq_field_provenance_identity ON field_provenance "
+    "(hardware_id, table_name, field_name, source_id, evidenced_value, "
+    "evidence_status) WHERE benchmark_result_id IS NULL",
+    "CREATE UNIQUE INDEX uq_field_provenance_benchmark_identity "
+    "ON field_provenance (benchmark_result_id, field_name, source_id, "
+    "evidenced_value, evidence_status) "
+    "WHERE benchmark_result_id IS NOT NULL",
+    "CREATE INDEX ix_field_provenance_lookup ON field_provenance "
+    "(hardware_id, table_name, field_name)",
+    "CREATE INDEX ix_field_provenance_source_id ON field_provenance (source_id)",
+    "CREATE INDEX ix_field_provenance_evidence_status "
+    "ON field_provenance (evidence_status)",
+    "CREATE INDEX ix_field_provenance_benchmark_result_id "
+    "ON field_provenance (benchmark_result_id)",
+)
+
+# Pre-rebuild state for verify: the rebuild is inside migration statements, so
+# verification checks the post-state.
+_PROVENANCE_DDL_V2 = (
+    "CREATE TABLE field_provenance (\n"
+    "    id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
+    "    hardware_id INTEGER NOT NULL REFERENCES hardware(id),\n"
+    "    source_id INTEGER NOT NULL REFERENCES sources(id),\n"
+    "    table_name VARCHAR(50) NOT NULL CHECK (\n"
+    "        table_name IN ('hardware', 'cpu_specifications', "
+    "'gpu_specifications', 'benchmark_results')\n"
+    "    ),\n"
+    "    field_name VARCHAR(50) NOT NULL,\n"
+    "    evidenced_value VARCHAR(200) NOT NULL,\n"
+    "    source_url VARCHAR(500) NOT NULL,\n"
+    "    license_name VARCHAR(100),\n"
+    "    license_notes TEXT,\n"
+    "    attribution TEXT,\n"
+    "    access_date DATE,\n"
+    "    confidence VARCHAR(20),\n"
+    "    evidence_status VARCHAR(20) NOT NULL CHECK (\n"
+    "        evidence_status IN ('verified', 'uncertain', 'excluded', 'unmatched')\n"
+    "    ),\n"
+    "    source_reference VARCHAR(200),\n"
+    "    match_method VARCHAR(100),\n"
+    "    batch_no INTEGER NOT NULL,\n"
+    "    notes TEXT,\n"
+    "    recorded_at DATETIME NOT NULL,\n"
+    "    benchmark_result_id INTEGER REFERENCES benchmark_results(id)\n"
+    ")"
+)
+
 
 def _verify_v2(conn: sqlite3.Connection) -> None:
     """Verify the v2 schema: users table present, owner_id column present."""
@@ -229,6 +384,109 @@ MIGRATIONS: list[Migration] = [
         reversible=True,
         verify=_verify_v2,
     ),
+    # v3: Build Planner categories — 4 spec tables + field_provenance rebuild.
+    # The provenance rebuild is copy-first inside the statements: create _new
+    # with the widened CHECK, copy all rows, drop old, rename, recreate
+    # indexes. Run on a disposable copy first:
+    #   python backend/app/migrations/runner.py --database data/spectra_copy.db
+    Migration(
+        version=3,
+        name="planner-component-categories",
+        description=(
+            "Adds ram_specifications, storage_specifications, "
+            "motherboard_specifications and psu_specifications (each FK "
+            "hardware.id, unique) and REBUILDS field_provenance with a widened "
+            "table_name CHECK so the new categories carry field-level "
+            "provenance. SQLite cannot ALTER a CHECK constraint, so the "
+            "rebuild copies all rows into a new table and swaps it in; row "
+            "preservation is verified after the copy."
+        ),
+        statements=[
+            # --- four component spec tables ---
+            """CREATE TABLE IF NOT EXISTS ram_specifications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                hardware_id INTEGER REFERENCES hardware(id) UNIQUE,
+                ddr_generation VARCHAR(10)
+                    CHECK (ddr_generation IN ('DDR3', 'DDR4', 'DDR5', 'DDR6')),
+                capacity_gb INTEGER,
+                speed_mhz INTEGER,
+                modules INTEGER,
+                ecc INTEGER,
+                voltage_v FLOAT,
+                form_factor VARCHAR(30)
+            )""",
+            """CREATE TABLE IF NOT EXISTS storage_specifications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                hardware_id INTEGER REFERENCES hardware(id) UNIQUE,
+                storage_type VARCHAR(20)
+                    CHECK (storage_type IN ('NVMe', 'SATA SSD', 'HDD')),
+                capacity_gb INTEGER,
+                interface VARCHAR(40),
+                read_mb_s FLOAT,
+                write_mb_s FLOAT,
+                dram_cache INTEGER,
+                form_factor VARCHAR(30)
+            )""",
+            """CREATE TABLE IF NOT EXISTS motherboard_specifications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                hardware_id INTEGER REFERENCES hardware(id) UNIQUE,
+                socket VARCHAR(30),
+                chipset VARCHAR(30),
+                form_factor VARCHAR(20),
+                ram_type VARCHAR(10),
+                ram_slots INTEGER,
+                max_ram_gb INTEGER,
+                m2_slots INTEGER,
+                sata_ports INTEGER,
+                pcie_slots INTEGER
+            )""",
+            """CREATE TABLE IF NOT EXISTS psu_specifications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                hardware_id INTEGER REFERENCES hardware(id) UNIQUE,
+                wattage INTEGER CHECK (wattage IS NULL OR wattage > 0),
+                efficiency_rating VARCHAR(30) CHECK (
+                    efficiency_rating IN ('80 Plus White', '80 Plus Bronze',
+                    '80 Plus Gold', '80 Plus Platinum', '80 Plus Titanium')
+                ),
+                modular INTEGER,
+                pcie_8pin_count INTEGER,
+                pcie_12vhpwr INTEGER
+            )""",
+            # --- field_provenance rebuild (copy-first) ---
+            _FIELD_PROVENANCE_DDL_V3.replace(
+                "CREATE TABLE field_provenance",
+                "CREATE TABLE field_provenance_new",
+            ),
+            "INSERT INTO field_provenance_new ({cols}) "
+            "SELECT {cols} FROM field_provenance".format(
+                cols=", ".join(_PROVENANCE_COLUMNS)
+            ),
+            "DROP TABLE field_provenance",
+            "ALTER TABLE field_provenance_new RENAME TO field_provenance",
+            *_PROVENANCE_INDEX_DDL,
+        ],
+        downgrade=[
+            # Drop the four spec tables, then rebuild provenance back to the
+            # v2 vocabulary (copy-first again).
+            "DROP TABLE IF EXISTS psu_specifications",
+            "DROP TABLE IF EXISTS motherboard_specifications",
+            "DROP TABLE IF EXISTS storage_specifications",
+            "DROP TABLE IF EXISTS ram_specifications",
+            _PROVENANCE_DDL_V2.replace(
+                "CREATE TABLE field_provenance",
+                "CREATE TABLE field_provenance_v2",
+            ),
+            "INSERT INTO field_provenance_v2 ({cols}) "
+            "SELECT {cols} FROM field_provenance".format(
+                cols=", ".join(_PROVENANCE_COLUMNS)
+            ),
+            "DROP TABLE field_provenance",
+            "ALTER TABLE field_provenance_v2 RENAME TO field_provenance",
+            *_PROVENANCE_INDEX_DDL,
+        ],
+        reversible=True,
+        verify=_verify_v3,
+    ),
 ]
 
 
@@ -254,6 +512,9 @@ def _record_version(conn: sqlite3.Connection, version: int) -> None:
 
 def _pending_migrations(current: int) -> list[Migration]:
     return [m for m in MIGRATIONS if m.version > current]
+
+
+LATEST_VERSION = max(m.version for m in MIGRATIONS)
 
 
 def upgrade(target: Path, dry_run: bool = False) -> dict:

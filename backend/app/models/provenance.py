@@ -37,6 +37,10 @@ VALID_TABLES = (
     "cpu_specifications",
     "gpu_specifications",
     "benchmark_results",
+    "ram_specifications",
+    "storage_specifications",
+    "motherboard_specifications",
+    "psu_specifications",
 )
 
 

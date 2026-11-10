@@ -9,6 +9,10 @@ from backend.app.database import Base
 if TYPE_CHECKING:
     from backend.app.models.cpu import CPUSpecification
     from backend.app.models.gpu import GPUSpecification
+    from backend.app.models.ram import RAMSpecification
+    from backend.app.models.storage import StorageSpecification
+    from backend.app.models.motherboard import MotherboardSpecification
+    from backend.app.models.psu import PSUSpecification
     from backend.app.models.benchmark import BenchmarkResult
     from backend.app.models.external_identifier import ExternalIdentifier
     from backend.app.models.provenance import FieldProvenance
@@ -63,6 +67,26 @@ class Hardware(Base):
     )
 
     gpu_specification: Mapped["GPUSpecification | None"] = relationship(
+        back_populates="hardware",
+        uselist=False,
+    )
+
+    ram_specification: Mapped["RAMSpecification | None"] = relationship(
+        back_populates="hardware",
+        uselist=False,
+    )
+
+    storage_specification: Mapped["StorageSpecification | None"] = relationship(
+        back_populates="hardware",
+        uselist=False,
+    )
+
+    motherboard_specification: Mapped["MotherboardSpecification | None"] = relationship(
+        back_populates="hardware",
+        uselist=False,
+    )
+
+    psu_specification: Mapped["PSUSpecification | None"] = relationship(
         back_populates="hardware",
         uselist=False,
     )

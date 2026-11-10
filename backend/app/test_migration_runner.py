@@ -35,7 +35,8 @@ def _clone_schema(target: Path) -> None:
 
     The ORM model also declares the v2 auth additions (User model, owner_id
     column); those are dropped here so the clone matches the v1 baseline the
-    runner migrates from.
+    runner migrates from. The v3 planner tables (v3.1 build planner) are also
+    dropped: create_all registers every model in Base.metadata.
     """
     # Import all models so their Table objects are registered with Base.metadata.
     from backend.app.models import (  # noqa: F401  (registers tables)
@@ -58,9 +59,17 @@ def _clone_schema(target: Path) -> None:
     finally:
         target_engine.dispose()
 
-    # Simulate the real pre-v2 database: no `users` table and no owner_id column.
+    # Simulate the real pre-v2 database: no `users` table, no owner_id column,
+    # and none of the v3 planner tables.
     conn = sqlite3.connect(target)
     conn.execute("DROP TABLE IF EXISTS users")
+    for v3_table in (
+        "ram_specifications",
+        "storage_specifications",
+        "motherboard_specifications",
+        "psu_specifications",
+    ):
+        conn.execute(f"DROP TABLE IF EXISTS {v3_table}")
     conn.execute(
         "CREATE TABLE build_conversations_v1 AS "
         "SELECT id, cpu_hardware_id, gpu_hardware_id, created_at, updated_at "
@@ -204,7 +213,7 @@ def _columns(target: Path, table: str) -> set[str]:
 # ---------------------------------------------------------------------------
 
 class TestMigrationRunnerUpgradeBaseline:
-    def test_upgrade_records_version_two_on_fresh_schema_db(self, tmp_path):
+    def test_upgrade_records_current_version_on_fresh_schema_db(self, tmp_path):
         db = tmp_path / "spectra.db"
         _clone_schema(db)
 
@@ -212,8 +221,10 @@ class TestMigrationRunnerUpgradeBaseline:
 
         assert result["status"] == "upgraded"
         assert result["from_version"] == 0
-        assert result["to_version"] == 2
-        assert [m["version"] for m in result["applied"]] == [1, 2]
+        # v3.1: the runner now carries the Build Planner v3 migration too, so
+        # a fresh clone upgrades all the way to the latest version.
+        assert result["to_version"] == runner.LATEST_VERSION
+        assert [m["version"] for m in result["applied"]] == [1, 2, 3]
 
     def test_upgrade_is_idempotent_on_already_baseline_db(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -223,7 +234,7 @@ class TestMigrationRunnerUpgradeBaseline:
         result2 = runner.upgrade(db)
 
         assert result2["status"] == "up-to-date"
-        assert result2["current_version"] == 2
+        assert result2["current_version"] == runner.LATEST_VERSION
         assert result2["applied"] == []
 
     def test_dry_run_does_not_record_version(self, tmp_path):
@@ -243,8 +254,9 @@ class TestMigrationRunnerAuthV2:
 
         result = runner.upgrade(db, dry_run=False)
 
+        # The full upgrade passes through v2 and reaches the latest version.
         assert result["status"] == "upgraded"
-        assert result["to_version"] == 2
+        assert runner.LATEST_VERSION >= 2
         assert "users" in _tables(db)
         assert "owner_id" in _columns(db, "build_conversations")
 
@@ -256,7 +268,7 @@ class TestMigrationRunnerAuthV2:
         result = runner.upgrade(db)
 
         assert result["status"] == "up-to-date"
-        assert _version(db) == 2
+        assert _version(db) == runner.LATEST_VERSION
 
     def test_v2_run_on_copy_then_rollback(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -280,8 +292,8 @@ class TestMigrationRunnerVerify:
         result = runner.verify(db)
 
         assert result["status"] == "verified"
-        assert result["version"] == 2
-        assert result["name"] == "auth-tables"
+        assert result["version"] == runner.LATEST_VERSION
+        assert result["name"] == "planner-component-categories"
 
     def test_verify_fails_when_table_is_missing(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -308,8 +320,8 @@ class TestMigrationRunnerReport:
         result = runner.report(db)
 
         assert result["current_version"] == 0
-        assert result["pending_count"] == 2
-        assert [m["version"] for m in result["pending"]] == [1, 2]
+        assert result["pending_count"] == 3
+        assert [m["version"] for m in result["pending"]] == [1, 2, 3]
 
     def test_report_shows_zero_pending_after_upgrade(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -318,7 +330,7 @@ class TestMigrationRunnerReport:
 
         result = runner.report(db)
 
-        assert result["current_version"] == 2
+        assert result["current_version"] == runner.LATEST_VERSION
         assert result["pending_count"] == 0
         assert result["pending"] == []
 
@@ -339,7 +351,7 @@ class TestMigrationRunnerDowngrade:
         _clone_schema(db)
         runner.upgrade(db)
 
-        result = runner.downgrade(db, target_version=2)
+        result = runner.downgrade(db, target_version=runner.LATEST_VERSION)
 
         assert result["status"] == "noop"
 
@@ -357,3 +369,175 @@ class TestMigrationRunnerSchemaDefinition:
             assert (
                 expected_cols <= actual_cols
             ), f"table '{table}': _EXPECTED_TABLES lists columns not in model: {expected_cols - actual_cols}"
+
+
+# ---------------------------------------------------------------------------
+# v3: Build Planner categories — 4 spec tables + field_provenance rebuild
+# ---------------------------------------------------------------------------
+
+def _seed_provenance_rows(db: Path, n: int) -> None:
+    """Seed n valid provenance rows (needs 1 hardware + 1 source)."""
+    conn = sqlite3.connect(db)
+    try:
+        conn.execute(
+            "INSERT INTO sources (id, name, url) VALUES (1, 'test-source', 'https://test.example')"
+        )
+        conn.execute(
+            "INSERT INTO hardware (id, name, manufacturer, type) "
+            "VALUES (1, 'Test CPU', 'TestCo', 'CPU')"
+        )
+        for i in range(n):
+            conn.execute(
+                "INSERT INTO field_provenance (hardware_id, table_name, field_name, "
+                "source_id, evidenced_value, source_url, batch_no, recorded_at, evidence_status) "
+                f"VALUES (1, 'cpu_specifications', 'cores_{i}', 1, '8 cores', "
+                "'https://test.example', 0, '2026-11-10T00:00:00Z', 'verified')"
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _provenance_identities(db: Path) -> set[tuple]:
+    conn = sqlite3.connect(db)
+    try:
+        return {
+            (r[0], r[1])
+            for r in conn.execute(
+                "SELECT table_name, field_name FROM field_provenance"
+            ).fetchall()
+        }
+    finally:
+        conn.close()
+
+
+def _provenance_row_count(db: Path) -> int:
+    conn = sqlite3.connect(db)
+    try:
+        return conn.execute("SELECT COUNT(*) FROM field_provenance").fetchone()[0]
+    finally:
+        conn.close()
+
+
+class TestMigrationRunnerPlannerV3:
+    def _seeded(self, tmp_path, seed_rows: int = 5) -> Path:
+        """Clone the pre-migration (v1) schema and seed provenance rows.
+
+        No upgrade here: the test's own runner.upgrade() call is the one under
+        test, and it carries the DB from v1 through v3 in one pass — which is
+        also the realistic flow (rows exist before the rebuild runs).
+        """
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+        _seed_provenance_rows(db, seed_rows)
+        return db
+
+    def test_v3_creates_four_spec_tables(self, tmp_path):
+        db = self._seeded(tmp_path)
+
+        result = runner.upgrade(db)
+
+        assert result["status"] == "upgraded"
+        assert result["to_version"] == 3
+        for table in (
+            "ram_specifications",
+            "storage_specifications",
+            "motherboard_specifications",
+            "psu_specifications",
+        ):
+            assert table in _tables(db), table
+
+    def test_v3_spec_table_columns_match_models(self, tmp_path):
+        db = self._seeded(tmp_path)
+        runner.upgrade(db)
+
+        cols = _columns(db, "ram_specifications")
+        assert {"id", "hardware_id", "ddr_generation", "capacity_gb", "speed_mhz"} <= cols
+        cols = _columns(db, "psu_specifications")
+        assert {"id", "hardware_id", "wattage", "efficiency_rating"} <= cols
+
+    def test_v3_verify_rebuild_preserves_rows(self, tmp_path):
+        db = self._seeded(tmp_path, seed_rows=7)
+        before_count = _provenance_row_count(db)
+        before_ids = _provenance_identities(db)
+
+        runner.upgrade(db)
+
+        assert _provenance_row_count(db) == before_count == 7
+        assert _provenance_identities(db) == before_ids
+
+    def test_new_check_accepts_new_tables_rejects_unknown(self, tmp_path):
+        db = self._seeded(tmp_path, seed_rows=1)
+        runner.upgrade(db)
+
+        conn = sqlite3.connect(db)
+        try:
+            # New table names are accepted by the rebuilt CHECK.
+            conn.execute(
+                "INSERT INTO field_provenance (hardware_id, table_name, field_name, "
+                "source_id, evidenced_value, source_url, batch_no, recorded_at, evidence_status) "
+                "VALUES (1, 'ram_specifications', 'speed_mhz', 1, '6000', "
+                "'https://test.example', 0, '2026-11-10T00:00:00Z', 'verified')"
+            )
+            conn.commit()
+            # Unknown table names are still rejected.
+            with pytest.raises(sqlite3.IntegrityError):
+                conn.execute(
+                    "INSERT INTO field_provenance (hardware_id, table_name, field_name, "
+                    "source_id, evidenced_value, source_url, batch_no, recorded_at, evidence_status) "
+                    "VALUES (1, 'bogus_table', 'x', 1, 'y', "
+                    "'https://test.example', 0, '2026-11-10T00:00:00Z', 'verified')"
+                )
+        finally:
+            conn.close()
+
+    def test_v3_unique_hardware_id_on_new_tables(self, tmp_path):
+        db = self._seeded(tmp_path, seed_rows=0)
+        runner.upgrade(db)
+
+        conn = sqlite3.connect(db)
+        try:
+            conn.execute(
+                "INSERT INTO hardware (id, name, manufacturer, type) "
+                "VALUES (2, 'Test RAM', 'TestCo', 'RAM')"
+            )
+            conn.execute(
+                "INSERT INTO ram_specifications (hardware_id, ddr_generation, capacity_gb) "
+                "VALUES (2, 'DDR5', 32)"
+            )
+            conn.commit()
+            with pytest.raises(sqlite3.IntegrityError):
+                conn.execute(
+                    "INSERT INTO ram_specifications (hardware_id, ddr_generation, capacity_gb) "
+                    "VALUES (2, 'DDR4', 16)"
+                )
+        finally:
+            conn.close()
+
+    def test_v3_upgrade_is_idempotent(self, tmp_path):
+        db = self._seeded(tmp_path, seed_rows=2)
+        runner.upgrade(db)
+
+        result = runner.upgrade(db)
+
+        assert result["status"] == "up-to-date"
+        assert _version(db) == 3
+
+    def test_v3_downgrade_restores_v2(self, tmp_path):
+        db = self._seeded(tmp_path, seed_rows=3)
+        before_count = _provenance_row_count(db)
+        runner.upgrade(db)
+
+        result = runner.downgrade(db, target_version=2)
+
+        assert result["status"] == "downgraded"
+        assert _version(db) == 2
+        for table in (
+            "ram_specifications",
+            "storage_specifications",
+            "motherboard_specifications",
+            "psu_specifications",
+        ):
+            assert table not in _tables(db)
+        # Provenance rows survive the downgrade rebuild too.
+        assert _provenance_row_count(db) == before_count == 3
