@@ -63,6 +63,9 @@ from backend.app.services.benchmark_quality_service import (
 )
 from backend.app.logging_config import configure_logging, get_logger
 from backend.app.middleware.rate_limit import RateLimitMiddleware
+from backend.app.middleware.security_headers import (
+    install_security_headers_middleware,
+)
 from backend.app.middleware.request_id import (
     REQUEST_ID_HEADER,
     install_request_id_middleware,
@@ -136,6 +139,10 @@ app.add_middleware(RateLimitMiddleware)
 # changes behaviour. Setting it is safe because no existing test asserts the
 # absence of a header.
 install_request_id_middleware(app)
+
+# Standard security headers (nosniff, DENY framing, referrer policy, CSP for
+# JSON-only responses). Additive: routes may still set their own headers.
+install_security_headers_middleware(app)
 
 
 @app.get("/")
@@ -747,10 +754,6 @@ def generate_comparison_explanation(
     return ExplanationResponse(explanation=explanation)
 
 
-@app.post(
-    "/hardware/chat",
-    response_model=HardwareChatResponse,
-)
 @app.post(
     "/hardware/chat",
     response_model=HardwareChatResponse,
