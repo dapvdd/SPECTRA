@@ -47,6 +47,33 @@ class ReadinessTests(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(main.app)
 
+    def test_metrics_endpoint_aggregates(self):
+        # Hit a couple of routes, then scrape.
+        self.client.get("/health")
+        response = self.client.get("/metrics")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("total_requests", data)
+        self.assertIn("status_classes", data)
+        self.assertIn("routes", data)
+        # Aggregate only: the snapshot must not contain raw paths with IDs,
+        # query strings, or any recorded body content.
+        self.assertNotIn("?", repr(data)[:2000] if False else repr(data["routes"]))
+        health_entry = next(
+            (v for k, v in data["routes"].items() if k == "/health"), None
+        )
+        self.assertIsNotNone(health_entry)
+
+    def test_release_endpoint_reports_identity(self):
+        response = self.client.get("/release")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        # Fields exist and carry no secret material.
+        for field in ("version", "git_sha", "built_at", "auth_enabled", "ai_provider"):
+            self.assertIn(field, data)
+        body = response.text
+        self.assertNotIn("SECRET", body.upper().replace("SHOULD-NOT-APPEAR", ""))
+
     def test_ready_returns_200_when_db_reachable(self):
         response = self.client.get("/ready")
         self.assertEqual(response.status_code, 200)

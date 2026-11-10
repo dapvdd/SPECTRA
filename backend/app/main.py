@@ -67,6 +67,10 @@ from backend.app.middleware.rate_limit import RateLimitMiddleware
 from backend.app.middleware.security_headers import (
     install_security_headers_middleware,
 )
+from backend.app.middleware.metrics import (
+    collector as metrics_collector,
+    install_metrics_middleware,
+)
 from backend.app.middleware.request_id import (
     REQUEST_ID_HEADER,
     install_request_id_middleware,
@@ -145,6 +149,10 @@ install_request_id_middleware(app)
 # JSON-only responses). Additive: routes may still set their own headers.
 install_security_headers_middleware(app)
 
+# Aggregate request metrics (status classes, bounded latency samples per
+# route template). Exposed read-only at /metrics. No bodies, no user data.
+install_metrics_middleware(app)
+
 
 @app.get("/")
 def root():
@@ -170,6 +178,17 @@ def release_identity() -> ReleaseIdentity:
     state, and AI provider state. Never reports secrets or internal paths.
     """
     return get_release_identity()
+
+
+@app.get("/metrics")
+def metrics() -> dict:
+    """Aggregate request metrics (M3.3).
+
+    Counters per status class and per route template, plus bounded latency
+    samples (avg/p50/p95) per route. Aggregate only: no request bodies, no
+    user identifiers, no raw paths with IDs.
+    """
+    return metrics_collector.snapshot()
 
 
 @app.get("/ready")
