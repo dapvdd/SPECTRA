@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import re
+import threading
 import time
 from urllib import error, request
 from urllib.parse import quote
@@ -18,6 +19,21 @@ _MAX_LOG_MESSAGE_LENGTH = 2000
 _MAX_RETRIES = 3
 _RETRYABLE_HTTP_STATUS_CODES = frozenset({408, 429, 500, 502, 503, 504})
 _RETRY_DELAYS = (1, 2, 4)
+
+# M4.4 concurrency limit: bound simultaneous provider calls so a slow or
+# hanging provider cannot accumulate unbounded in-flight requests (each one
+# holds a worker thread and client connection). Configurable; a value of 0
+# or less disables the limit.
+_CONCURRENCY_LIMIT = max(0, int(os.getenv("SPECTRA_AI_CONCURRENCY", "4")))
+_concurrency_semaphore = (
+    threading.BoundedSemaphore(_CONCURRENCY_LIMIT)
+    if _CONCURRENCY_LIMIT > 0
+    else None
+)
+
+
+class ProviderBusyError(RuntimeError):
+    """Too many concurrent provider requests; the caller should retry later."""
 
 
 class ProviderUnavailableError(RuntimeError):
@@ -179,8 +195,34 @@ def _get_provider() -> GeminiProvider:
 
 
 def generate_explanation(comparison: ComparisonFacts) -> str:
-    return _get_provider().generate(comparison)
+    return _run_with_concurrency_limit(
+        lambda: _get_provider().generate(comparison)
+    )
 
 
 def generate_chat_response(system_prompt: str, user_text: str) -> str:
-    return _get_provider().generate_text(system_prompt, user_text)
+    return _run_with_concurrency_limit(
+        lambda: _get_provider().generate_text(system_prompt, user_text)
+    )
+
+
+def _run_with_concurrency_limit(call):
+    """Run a provider call under the global concurrency bound (M4.4).
+
+    Non-blocking acquire: when the bound is reached the caller gets
+    ProviderBusyError immediately (mapped to 429 by main.py) instead of
+    queueing behind an unbounded pile of in-flight provider requests.
+    """
+    if _concurrency_semaphore is None:
+        return call()
+
+    acquired = _concurrency_semaphore.acquire(blocking=False)
+    if not acquired:
+        raise ProviderBusyError(
+            "The AI service is at its concurrent request limit. "
+            "Please retry shortly."
+        )
+    try:
+        return call()
+    finally:
+        _concurrency_semaphore.release()

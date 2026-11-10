@@ -112,6 +112,7 @@ from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
 from backend.app.services import comparison_service
 from backend.app.services import explanation_service
+from backend.app.services.explanation_service import ProviderBusyError
 from backend.app.services import hardware_chat_service
 from backend.app.services import source_service
 
@@ -779,6 +780,8 @@ def generate_comparison_explanation(
         )
     except explanation_service.ProviderUnavailableError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderBusyError as error:
+        raise HTTPException(status_code=429, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
 
@@ -797,6 +800,8 @@ def generate_hardware_chat_answer(
         answer = hardware_chat_service.generate_chat_answer(request_data)
     except explanation_service.ProviderUnavailableError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderBusyError as error:
+        raise HTTPException(status_code=429, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
 
@@ -815,6 +820,8 @@ def generate_build_chat_answer(
         return build_chat_service.generate_build_chat_answer(request_data)
     except explanation_service.ProviderUnavailableError as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
+    except explanation_service.ProviderBusyError as error:
+        raise HTTPException(status_code=429, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
 

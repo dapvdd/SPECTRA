@@ -33,6 +33,7 @@ class ReleaseIdentity(BaseModel):
     image_digest: str | None
     auth_enabled: bool
     ai_provider: str
+    ai_provider_state: str
 
 
 def _env(name: str, default: str = "unknown") -> str | None:
@@ -45,6 +46,24 @@ def _env(name: str, default: str = "unknown") -> str | None:
     return stripped
 
 
+def provider_state(*, has_key: bool, has_model: bool) -> str:
+    """Detailed provider state for diagnostics (M4.3).
+
+    States: "unconfigured" (no key), "unusable" (key but no model),
+    "configured" (key + model). Never contains the key value itself. Runtime
+    failure states (timeout/rate-limit) are surfaced through error counters
+    on /metrics and the ai_provider_failure alert, not through this static
+    configuration probe.
+    """
+    if not has_key and not has_model:
+        return "unconfigured"
+    if has_key and not has_model:
+        return "unusable"
+    if not has_key and has_model:
+        return "unusable"
+    return "configured"
+
+
 def get_release_identity() -> ReleaseIdentity:
     """Collect the release identity from injected environment variables.
 
@@ -52,10 +71,9 @@ def get_release_identity() -> ReleaseIdentity:
     SHA or version. ``ai_provider`` reports only the configured state
     ("configured" / "unconfigured"), never a key value.
     """
-    provider_configured = bool(
-        os.getenv("GEMINI_API_KEY", "").strip()
-        and os.getenv("GEMINI_MODEL", "").strip()
-    )
+    api_key = os.getenv("GEMINI_API_KEY", "").strip()
+    model = os.getenv("GEMINI_MODEL", "").strip()
+    provider_configured = bool(api_key and model)
 
     image_digest_raw = os.getenv("SPECTRA_IMAGE_DIGEST")
     image_digest: str | None = None
@@ -73,4 +91,7 @@ def get_release_identity() -> ReleaseIdentity:
         image_digest=image_digest,
         auth_enabled=auth_enabled,
         ai_provider="configured" if provider_configured else "unconfigured",
+        ai_provider_state=provider_state(
+            has_key=bool(api_key), has_model=bool(model)
+        ),
     )

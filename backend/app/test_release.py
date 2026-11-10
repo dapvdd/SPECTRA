@@ -19,6 +19,34 @@ def client():
     return TestClient(main.app)
 
 
+class TestProviderState:
+    def test_unconfigured_when_nothing_set(self):
+        assert al_state(False, False) == "unconfigured"
+
+    def test_unusable_when_key_without_model(self):
+        assert al_state(True, False) == "unusable"
+
+    def test_unusable_when_model_without_key(self):
+        assert al_state(False, True) == "unusable"
+
+    def test_configured_when_both(self):
+        assert al_state(True, True) == "configured"
+
+    def test_endpoint_reports_unusable_state(self, client, monkeypatch):
+        monkeypatch.setenv("GEMINI_API_KEY", "some-real-looking-key")
+        monkeypatch.setenv("GEMINI_MODEL", "")
+        resp = client.get("/release")
+        data = resp.json()
+        assert data["ai_provider"] == "unconfigured"
+        assert data["ai_provider_state"] == "unusable"
+        assert "some-real-looking-key" not in resp.text
+
+
+def al_state(has_key: bool, has_model: bool) -> str:
+    from backend.app.release import provider_state
+    return provider_state(has_key=has_key, has_model=has_model)
+
+
 class TestReleaseEndpoint:
     def test_unknown_when_env_unset(self, client, monkeypatch):
         # Patch the helper so it sees an empty environment regardless of what
