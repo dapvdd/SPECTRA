@@ -1,0 +1,15 @@
+{
+  "cpu_cards": 12,
+  "cpu_comparison_headers": [
+    "CPU",
+    "CPU"
+  ],
+  "cpu_comparison_rows": 7,
+  "cpu_detail": "AMD Athlon Gold 7220C",
+  "cpu_build_ready": "CPU | SELECTED | AMD Athlon Gold 7220C | AMD | 2C / 4T | Cores | 2 | Threads | 4 | Base Clock | 2.4 GHz | Boost Clock | 3.7 GHz | TDP | 15 W | Socket | ",
+  "build_states": [
+    "ready",
+    "empty"
+  ],
+  "errors": []
+}

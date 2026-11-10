@@ -1,0 +1,40 @@
+{
+  "lfl--catalog-default--dark--desktop-1440.png": {
+    "theme": "dark",
+    "headline": "Know your hardware. Beyond the specs.",
+    "hero_stage_svg": 1,
+    "cards": 12,
+    "active_filter": "All hardware",
+    "errors": []
+  },
+  "lfl--catalog-gpu--dark--desktop-1440.png": {
+    "theme": "dark",
+    "headline": "Know your hardware. Beyond the specs.",
+    "hero_stage_svg": 1,
+    "cards": 0,
+    "active_filter": "GPU1879",
+    "errors": []
+  },
+  "lfl--catalog-default--light--desktop-1440.png": {
+    "theme": "light",
+    "headline": "Know your hardware. Beyond the specs.",
+    "hero_stage_svg": 1,
+    "cards": 12,
+    "active_filter": "All hardware",
+    "errors": []
+  },
+  "lfl--catalog-gpu--light--desktop-1440.png": {
+    "theme": "light",
+    "headline": "Know your hardware. Beyond the specs.",
+    "hero_stage_svg": 1,
+    "cards": 12,
+    "active_filter": "GPU1879",
+    "errors": []
+  },
+  "lfl--catalog-default--dark--mobile-390.png": {
+    "theme": "dark",
+    "headline": "Know your hardware. Beyond the specs.",
+    "hero_stage_svg": 1,
+    "cards": 12
+  }
+}

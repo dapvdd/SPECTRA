@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "hero headline",
+      "ok": true,
+      "detail": "Know your hardware.\nBeyond the specs."
+    },
+    {
+      "check": "hero stage mounted",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "check": "catalog cards",
+      "ok": true,
+      "detail": "12"
+    },
+    {
+      "check": "facets",
+      "ok": true,
+      "detail": "All hardware\nCPU3501\nGPU1879"
+    },
+    {
+      "check": "dark theme",
+      "ok": true,
+      "detail": "dark"
+    },
+    {
+      "check": "GPU filter active",
+      "ok": true,
+      "detail": "GPU1879"
+    },
+    {
+      "check": "GPU comparison headers",
+      "ok": true,
+      "detail": "['GPU', 'GPU']"
+    },
+    {
+      "check": "GPU comparison rows",
+      "ok": true,
+      "detail": "11"
+    },
+    {
+      "check": "build slot identity",
+      "ok": true,
+      "detail": "GPU | SELECTED | i752 Graphics | Intel | System Shared | VRAM | N/A | Memory Type | System Shared | Core Clock | 100 MHz | Boost Clock | N/A | Bandwidth | N/A | TDP | N/A | Interface | N/A | Archite"
+    },
+    {
+      "check": "light theme",
+      "ok": true,
+      "detail": "light"
+    },
+    {
+      "check": "390px no horizontal overflow",
+      "ok": true,
+      "detail": "390/390"
+    }
+  ],
+  "console_errors": [],
+  "page_errors": [],
+  "failed_requests": [],
+  "passed": true
+}
