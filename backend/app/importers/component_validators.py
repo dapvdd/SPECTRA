@@ -169,6 +169,8 @@ def validate_component_row(category: str, row: dict[str, Any]) -> dict[str, Any]
             f"field 'type' must be '{expected}' for category "
             f"'{category}', got '{raw_type}'"
         )
+    else:
+        out["type"] = raw_type
 
     # --- spec fields (optional; blank -> absent) ---
     for field, (py_type, max_len) in _FIELDS[category].items():

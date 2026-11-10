@@ -72,8 +72,7 @@ class FieldProvenance(Base):
             name="ck_field_provenance_evidence_status",
         ),
         CheckConstraint(
-            "table_name IN ('hardware', 'cpu_specifications', 'gpu_specifications', "
-            "'benchmark_results')",
+            "table_name IN (" + ", ".join(f"'{t}'" for t in VALID_TABLES) + ")",
             name="ck_field_provenance_table_name",
         ),
         CheckConstraint(
