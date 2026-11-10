@@ -251,6 +251,36 @@ class TestFullPreflight:
         result = dp.run_preflight(release_dir, GOOD_SHA_A)
         assert result.all_passed, [c.detail for c in result.checks if not c.passed]
 
+    def test_ops_dir_with_separate_source_checkout(self, tmp_path, patch_vcs,
+                                                   patch_docker, monkeypatch):
+        """The production shape: bare -ops dir (compose.json + backups) plus a
+        sibling clean git checkout holding the source."""
+        ops_dir = tmp_path / "spectra-75eba50-ops"
+        ops_dir.mkdir()
+        source_dir = tmp_path / "spectra-75eba50"
+        source_dir.mkdir()
+
+        patch_vcs(GOOD_SHA_A)
+        patch_docker(volumes=["spectra-sqlite-data"])
+        _write_compose(ops_dir, backend_tag=GOOD_SHA_A, frontend_tag=GOOD_SHA_A)
+        _write_backup(ops_dir, version=2, age_hours=1)
+
+        # Stub the runner import: repo_root points at an empty stub tree.
+        stub_root = tmp_path / "stub-repo"
+        (stub_root / "backend" / "app" / "migrations").mkdir(parents=True)
+        (stub_root / "backend" / "__init__.py").write_text("")
+        (stub_root / "backend" / "app" / "__init__.py").write_text("")
+        (stub_root / "backend" / "app" / "migrations" / "__init__.py").write_text("")
+        (stub_root / "backend" / "app" / "migrations" / "runner.py").write_text(
+            "MIGRATIONS = []\nclass _M:\n    version = 2\n"
+            "MIGRATIONS = [_M()]\n"
+        )
+
+        result = dp.run_preflight(
+            ops_dir, GOOD_SHA_A, source_dir=source_dir, repo_root=stub_root
+        )
+        assert result.all_passed, [c.detail for c in result.checks if not c.passed]
+
     def test_legacy_collision_detected(self, release_dir, patch_vcs, patch_docker):
         """The legacy-takeover scenario: running containers share the release
         container names but come from different images."""

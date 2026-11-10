@@ -113,14 +113,28 @@ def _load_compose_compatibility(path: Path) -> dict:
 # Check functions
 # ---------------------------------------------------------------------------
 
-def check_release_sha(release_dir: Path, expected_sha: str) -> CheckResult:
-    """Verify the release directory is checked out at the expected SHA."""
-    actual = _git_sha_at(release_dir)
+def check_release_sha(release_dir: Path, expected_sha: str,
+                      source_dir: Path | None = None) -> CheckResult:
+    """Verify the release identity matches the expected SHA.
+
+    Two accepted shapes:
+    - ``source_dir`` (a git checkout) — SHA is read with ``git rev-parse``.
+    - release_dir itself is a git checkout.
+    A bare ops directory (compose.json + evidence, no .git) is NOT an error
+    when the sibling source checkout verifies: the ops dir is derived from
+    the release, and its compose.json image tags are checked separately
+    (check_image_tags).
+    """
+    git_dir = source_dir if source_dir is not None else release_dir
+    actual = _git_sha_at(git_dir)
     if actual is None:
         return CheckResult(
             name="release_sha",
             passed=False,
-            detail="Could not determine git SHA of release directory",
+            detail=(
+                "Could not determine git SHA: neither the release directory "
+                "nor a --source-dir checkout is a git repository"
+            ),
             blocker=True,
         )
     if actual != expected_sha:
@@ -130,12 +144,15 @@ def check_release_sha(release_dir: Path, expected_sha: str) -> CheckResult:
             detail=f"Expected {expected_sha}, got {actual}",
             blocker=True,
         )
-    return CheckResult(name="release_sha", passed=True, detail=actual)
+    detail = str(git_dir) if source_dir else actual
+    return CheckResult(name="release_sha", passed=True, detail=detail)
 
 
-def check_git_clean(release_dir: Path) -> CheckResult:
-    """Verify the release directory is clean of modified tracked files."""
-    clean, detail = _git_status_clean(release_dir)
+def check_git_clean(release_dir: Path,
+                    source_dir: Path | None = None) -> CheckResult:
+    """Verify the release source is clean of modified tracked files."""
+    git_dir = source_dir if source_dir is not None else release_dir
+    clean, detail = _git_status_clean(git_dir)
     return CheckResult(
         name="git_clean",
         passed=clean,
@@ -309,11 +326,13 @@ def check_backup_available(release_dir: Path) -> CheckResult:
     return CheckResult(name="backup_available", passed=True, detail=detail)
 
 
-def check_migration_compatible(release_dir: Path) -> CheckResult:
+def check_migration_compatible(release_dir: Path,
+                               repo_root: Path | None = None) -> CheckResult:
     """Verify the release's DB backup is at or below the runner's latest migration version.
 
-    The runner knows the current schema_version. We import it dynamically so
-    this preflight works without needing the full backend import path.
+    The runner knows the current schema_version. ``repo_root`` overrides the
+    import root (used when the preflight runs from a standalone copy on the
+    host rather than inside the repo).
     """
     # Find the most recent backup to check.
     backups = sorted(release_dir.glob("backup*.db"), reverse=True)
@@ -326,7 +345,8 @@ def check_migration_compatible(release_dir: Path) -> CheckResult:
         )
 
     db_path = backups[0]
-    sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+    import_root = repo_root if repo_root is not None else Path(__file__).resolve().parents[3]
+    sys.path.insert(0, str(import_root))
     try:
         from backend.app.migrations.runner import MIGRATIONS
     except ImportError:
@@ -426,15 +446,17 @@ def check_volume_identity(release_dir: Path, expected_volume: str = "spectra-sql
 # Main entry point
 # ---------------------------------------------------------------------------
 
-def run_preflight(release_dir: Path, expected_sha: str) -> PreflightResult:
+def run_preflight(release_dir: Path, expected_sha: str,
+                  source_dir: Path | None = None,
+                  repo_root: Path | None = None) -> PreflightResult:
     result = PreflightResult()
 
-    result.checks.append(check_release_sha(release_dir, expected_sha))
-    result.checks.append(check_git_clean(release_dir))
+    result.checks.append(check_release_sha(release_dir, expected_sha, source_dir))
+    result.checks.append(check_git_clean(release_dir, source_dir))
     result.checks.append(check_compose_collision(release_dir))
     result.checks.append(check_image_tags(release_dir))
     result.checks.append(check_backup_available(release_dir))
-    result.checks.append(check_migration_compatible(release_dir))
+    result.checks.append(check_migration_compatible(release_dir, repo_root))
     result.checks.append(check_disk_space(release_dir))
     result.checks.append(check_volume_identity(release_dir))
 
@@ -458,6 +480,21 @@ def main() -> int:
         help="Expected Git SHA for this release (e.g. 75eba50b1f09052f40409f6066a2ac030344d1a0).",
     )
     parser.add_argument(
+        "--source-dir",
+        type=Path,
+        default=None,
+        help=(
+            "Git checkout holding the release source (when the release dir "
+            "itself is a bare ops directory without .git)."
+        ),
+    )
+    parser.add_argument(
+        "--repo-root",
+        type=Path,
+        default=None,
+        help="Repo root for importing the migrations runner (standalone use).",
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="Output results as JSON.",
@@ -468,7 +505,10 @@ def main() -> int:
         print(f"ERROR: release directory not found: {args.release_dir}", file=sys.stderr)
         return 2
 
-    result = run_preflight(args.release_dir, args.expected_sha)
+    result = run_preflight(
+        args.release_dir, args.expected_sha,
+        source_dir=args.source_dir, repo_root=args.repo_root,
+    )
 
     if args.json:
         print(json.dumps(result.to_dict(), indent=2, default=str))
