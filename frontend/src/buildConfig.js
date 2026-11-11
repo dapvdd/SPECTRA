@@ -502,30 +502,6 @@ export const getBuildFacts = (cpuDetail, gpuDetail) => {
   return facts;
 };
 
-const SLOT_PROMPT_NOUNS = {
-  CPU: "CPU",
-  GPU: "GPU",
-  RAM: "RAM",
-  STORAGE: "Storage",
-  MOTHERBOARD: "Motherboard",
-  PSU: "PSU",
-};
-
-const summarizeSlot = (detail) =>
-  detail
-    ? {
-        id: detail.id,
-        name: detail.name,
-        manufacturer: detail.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : {
-        id: null,
-        name: `Select a ${SLOT_PROMPT_NOUNS[detail?.slotType] ?? "component"}`,
-        manufacturer: "",
-        isSelected: false,
-      };
-
 export const getBuildSummary = (state) => ({
   cpu: state.cpu
     ? {

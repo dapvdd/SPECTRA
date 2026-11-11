@@ -2541,10 +2541,10 @@ function BuildCompatibilitySection({ buildConfig, compatibility }) {
         </div>
 
         <span
-          className={`performance-status ${COMPATIBILITY_STATUS_CLASS[state]}`}
+          className={`performance-status ${COMPATIBILITY_STATUS_CLASS[state] ?? "performance-status-partial"}`}
           role="status"
         >
-          {isLoading ? "Checking…" : COMPATIBILITY_STATUS_LABELS[state]}
+          {isLoading ? "Checking…" : (COMPATIBILITY_STATUS_LABELS[state] ?? "Compatibility unknown")}
         </span>
       </div>
 
@@ -2872,8 +2872,6 @@ function App() {
 
         setCompatibility({
           state: data.state ?? "UNKNOWN",
-          explanation: data.explanation ?? "",
-          rulesVersion: data.rules_version ?? "",
           ruleResults: Array.isArray(data.rule_results) ? data.rule_results : [],
           error: "",
           isLoading: false,
@@ -3185,6 +3183,13 @@ function App() {
   };
 
   const restoreBuildConversationForSlot = (type, detail) => {
+    /* The build chat conversation is a CPU+GPU feature (M1). The four M2
+       slots must not enter it: for RAM/STORAGE/MOTHERBOARD/PSU the 2-slot
+       pairing below would post the wrong detail as the GPU. */
+    if (type !== "CPU" && type !== "GPU") {
+      return;
+    }
+
     const otherSlot = type === "CPU" ? "GPU" : "CPU";
     const otherDetail = getBuildSlotDetail(buildDetailState, otherSlot);
     const cpuDetail = type === "CPU" ? detail : otherDetail;
