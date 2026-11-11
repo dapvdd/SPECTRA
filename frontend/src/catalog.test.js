@@ -25,8 +25,30 @@ const gpuItem = {
   type: "GPU",
 };
 
-test("catalog exposes All, CPU, and GPU type filters", () => {
-  assert.deepEqual(HARDWARE_TYPES, ["All", "CPU", "GPU"]);
+test("catalog exposes the Build Planner category filters in order", () => {
+  // M1 Task 5: the four new categories join the existing filters in order.
+  assert.deepEqual(HARDWARE_TYPES, [
+    "All", "CPU", "GPU", "RAM", "STORAGE", "MOTHERBOARD", "PSU",
+  ]);
+});
+
+test("new categories get human type labels", () => {
+  assert.equal(getCatalogTypeLabel("RAM"), "RAM");
+  assert.equal(getCatalogTypeLabel("STORAGE"), "Storage");
+  assert.equal(getCatalogTypeLabel("MOTHERBOARD"), "Motherboards");
+  assert.equal(getCatalogTypeLabel("PSU"), "PSUs");
+});
+
+test("getCatalogFilterState handles new category values", () => {
+  const active = getCatalogFilterState("RAM", "RAM");
+  assert.equal(active.isActive, true);
+  assert.equal(active.pressed, true);
+  assert.equal(active.className, "filter-button active");
+
+  const inactive = getCatalogFilterState("PSU", "RAM");
+  assert.equal(inactive.isActive, false);
+  assert.equal(inactive.pressed, false);
+  assert.equal(inactive.className, "filter-button");
 });
 
 test("catalog exposes the All, Intel, AMD, NVIDIA, and ATI manufacturer filters", () => {

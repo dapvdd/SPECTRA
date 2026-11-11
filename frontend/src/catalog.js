@@ -4,7 +4,9 @@ import {
   validateCatalogPayload,
 } from "./apiValidation.js";
 
-export const HARDWARE_TYPES = ["All", "CPU", "GPU"];
+export const HARDWARE_TYPES = [
+  "All", "CPU", "GPU", "RAM", "STORAGE", "MOTHERBOARD", "PSU",
+];
 
 /* Derived from the current DB snapshot (3,501 CPU + 1,879 GPU records):
    CPU vendors: Intel (2,784), AMD (717)
@@ -22,6 +24,10 @@ export const MANUFACTURER_FILTERS = [
 const TYPE_LABELS = {
   CPU: "CPUs",
   GPU: "GPUs",
+  RAM: "RAM",
+  STORAGE: "Storage",
+  MOTHERBOARD: "Motherboards",
+  PSU: "PSUs",
 };
 
 export const getCatalogTypeLabel = (type) => TYPE_LABELS[type] || "hardware records";
