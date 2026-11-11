@@ -79,6 +79,10 @@ from backend.app.schemas.build_chat import (
     BuildHardwareChatRequest,
     BuildHardwareChatResponse,
 )
+from backend.app.schemas.build_compatibility import (
+    BuildCompatibilityRequest,
+    BuildCompatibilityResponse,
+)
 from backend.app.schemas.build_conversation import (
     BuildConversationCreateRequest,
     BuildConversationResponse,
@@ -111,6 +115,7 @@ from backend.app.services.benchmark_service import (
 from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
 from backend.app.services import comparison_service
+from backend.app.services import compatibility_service
 from backend.app.services import explanation_service
 from backend.app.services.explanation_service import ProviderBusyError
 from backend.app.services import hardware_chat_service
@@ -1054,6 +1059,25 @@ def generate_build_chat_answer(
         raise HTTPException(status_code=429, detail=str(error)) from error
     except explanation_service.ProviderError as error:
         raise HTTPException(status_code=502, detail=str(error)) from error
+
+
+@app.post(
+    "/build/compatibility/check",
+    response_model=BuildCompatibilityResponse,
+)
+def check_build_compatibility(
+    request_data: BuildCompatibilityRequest,
+    _user_id: int | None = Depends(require_auth),
+) -> BuildCompatibilityResponse:
+    try:
+        payload = compatibility_service.check_build_compatibility(
+            request_data.model_dump()
+        )
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return BuildCompatibilityResponse(**payload)
 
 
 @app.post(

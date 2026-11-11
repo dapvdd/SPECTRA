@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable
 
-from backend.app.services.compatibility_service import (
+from backend.app.services.compatibility_model import (
     COMPATIBLE,
     INCOMPATIBLE,
     NOT_APPLICABLE,
