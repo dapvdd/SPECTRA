@@ -29,6 +29,7 @@ from sqlalchemy import select
 from backend.app.database import SessionLocal  # noqa: F401  (monkeypatch target)
 from backend.app.models import (
     CPUSpecification,
+    FieldProvenance,
     GPUSpecification,
     Hardware,
     MotherboardSpecification,
@@ -149,7 +150,6 @@ def _provenance_for_fields(
     ]
     if not field_pairs:
         return []
-    from backend.app.models import FieldProvenance  # local import: avoid cycles
 
     rows = session.execute(
         select(FieldProvenance).where(
@@ -180,9 +180,6 @@ def check_build_compatibility(component_ids: dict[str, int | None]) -> dict[str,
     """
     with SessionLocal() as session:
         specs, provided = load_build_specifications(session, component_ids)
-        ids_echo: dict[str, int | None] = {
-            slot: provided.get(slot) for slot in COMPONENT_SLOTS
-        }
 
         cpu = specs.get("cpu")
         gpu = specs.get("gpu")

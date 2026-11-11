@@ -17,6 +17,7 @@ Honest boundaries (verified in tests):
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any, Callable
 
@@ -337,7 +338,7 @@ def rule_psu_build_wattage(
             spec_fields,
         )
 
-    required = round(total_draw * (1 + PSU_HEADROOM_FRACTION))
+    required = math.floor(total_draw * (1 + PSU_HEADROOM_FRACTION) + 0.5)
     connector_note = (
         " PSU connector requirements are not evaluated (GPU connector data "
         "is not recorded)."
