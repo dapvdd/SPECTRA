@@ -1,0 +1,5 @@
+name,manufacturer,type,ddr_generation,capacity_gb,speed_mhz,modules,ecc,voltage_v,form_factor
+Corsair Vengeance LPX 32GB (2x16GB) DDR4-3200,Corsair,RAM,DDR4,32,3200,2,false,1.35,UDIMM
+G.Skill Trident Z5 RGB 32GB (2x16GB) DDR5-6000,G.Skill,RAM,DDR5,32,6000,2,false,1.35,UDIMM
+Kingston Fury Beast 16GB (1x16GB) DDR4-3200,Kingston,RAM,DDR4,16,3200,1,false,1.2,UDIMM
+Kingston FURY Beast 8GB (1x8GB) DDR4-3200,Kingston,RAM,DDR4,8,3200,1,false,1.2,UDIMM
