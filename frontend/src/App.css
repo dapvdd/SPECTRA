@@ -2511,10 +2511,95 @@ h1 {
 .build-context,
 .build-facts,
 .build-ai-note,
-.build-chat {
+.build-chat,
+.build-compatibility {
   margin-top: var(--spectra-space-2xl);
   padding-top: var(--spectra-space-xl);
   border-top: 1px solid var(--spectra-hairline);
+}
+
+/* ---- M2: Compatibility Check panel -------------------------------------- */
+
+.build-compatibility-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spectra-space-md);
+}
+
+.build-compatibility-head h3 {
+  margin: 0;
+}
+
+.build-compatibility-note {
+  margin: 0.5rem 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.build-compatibility-rules {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.build-compatibility-rule {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-md);
+  background: var(--surface-app);
+}
+
+.build-compatibility-rule-incompatible {
+  border-color: var(--spectra-red-a45);
+}
+
+.build-compatibility-rule-unknown {
+  border-color: var(--spectra-amber-a45);
+}
+
+.build-compatibility-rule-compatible {
+  border-color: var(--spectra-green-a40);
+}
+
+.build-compatibility-rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.build-compatibility-rule-head strong {
+  font-family: var(--spectra-font-mono);
+  font-size: 0.8rem;
+}
+
+.build-compatibility-rule p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.build-compatibility-missing {
+  font-family: var(--spectra-font-mono);
+  font-size: 0.75rem !important;
+}
+
+.build-compatibility-provenance {
+  font-size: 0.75rem !important;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.build-compatibility-error {
+  margin: 0.75rem 0 0;
+  color: var(--danger-soft);
+  font-size: 0.85rem;
 }
 
 .build-context-note,

@@ -155,12 +155,119 @@ export function HardwareVisual({
 }
 
 /* Slot-sized visual used inside build slots and comparison slots. The same
-   primitives render in a smaller frame with a soft signal well behind them. */
+   primitives render in a smaller frame with a soft signal well behind them.
+   M2: adds stylized slot visuals for the four new Build Planner categories
+   (RAM stick, drive, board, PSU box). Same identity-illustration rules:
+   abstract geometry, aria-hidden, theme tokens only. */
 export function HardwareSlotVisual({ kind, className = "" }) {
+  let visual;
+  if (kind === "gpu") {
+    visual = <GraphicsVisual />;
+  } else if (kind === "ram") {
+    visual = <RamStickVisual />;
+  } else if (kind === "storage") {
+    visual = <DriveVisual />;
+  } else if (kind === "motherboard") {
+    visual = <BoardVisual />;
+  } else if (kind === "psu") {
+    visual = <PsuBoxVisual />;
+  } else {
+    visual = <ProcessorVisual />;
+  }
+
   return (
     <span className={`hwv-slot ${className}`.trim()} aria-hidden="true">
-      {kind === "gpu" ? <GraphicsVisual /> : <ProcessorVisual />}
+      {visual}
     </span>
+  );
+}
+
+/* A stylized DIMM stick seen edge-on: PCB, chips, connector edge. */
+export function RamStickVisual({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 320 160"
+      fill="none"
+      focusable="false"
+      className={`hwv-svg hwv-slot-svg ${className}`.trim()}
+      role="presentation"
+    >
+      <rect x="30" y="40" width="260" height="64" rx="6" fill="var(--spectra-vis-body)" />
+      <rect x="30" y="96" width="260" height="14" rx="3" fill="var(--spectra-vis-body-deep)" />
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((chip) => (
+        <rect
+          key={chip}
+          x={44 + chip * 30}
+          y={56}
+          width={22}
+          height={30}
+          rx={3}
+          fill="var(--spectra-vis-die-a)"
+          opacity="0.85"
+        />
+      ))}
+    </svg>
+  );
+}
+
+/* A stylized drive seen face-on: enclosure, label well, connector notch. */
+export function DriveVisual({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 320 160"
+      fill="none"
+      focusable="false"
+      className={`hwv-svg hwv-slot-svg ${className}`.trim()}
+      role="presentation"
+    >
+      <rect x="34" y="36" width="252" height="88" rx="8" fill="var(--spectra-vis-body)" />
+      <rect x="52" y="54" width="140" height="52" rx="4" fill="var(--spectra-vis-die-b)" opacity="0.7" />
+      <rect x="216" y="54" width="52" height="52" rx="4" fill="var(--spectra-vis-body-deep)" />
+    </svg>
+  );
+}
+
+/* A stylized motherboard seen face-on: board, socket well, slot rows. */
+export function BoardVisual({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 320 160"
+      fill="none"
+      focusable="false"
+      className={`hwv-svg hwv-slot-svg ${className}`.trim()}
+      role="presentation"
+    >
+      <rect x="34" y="24" width="252" height="112" rx="8" fill="var(--spectra-vis-body)" />
+      <rect x="56" y="44" width="56" height="56" rx="4" fill="var(--spectra-vis-die-a)" opacity="0.85" />
+      {[0, 1, 2, 3].map((slot) => (
+        <rect
+          key={slot}
+          x={132}
+          y={40 + slot * 24}
+          width={132}
+          height={12}
+          rx={3}
+          fill="var(--spectra-vis-body-deep)"
+        />
+      ))}
+    </svg>
+  );
+}
+
+/* A stylized power supply seen face-on: enclosure, fan well, cable face. */
+export function PsuBoxVisual({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 320 160"
+      fill="none"
+      focusable="false"
+      className={`hwv-svg hwv-slot-svg ${className}`.trim()}
+      role="presentation"
+    >
+      <rect x="34" y="36" width="252" height="88" rx="8" fill="var(--spectra-vis-body)" />
+      <circle cx="120" cy="80" r="34" fill="var(--spectra-vis-die-b)" opacity="0.7" />
+      <rect x="196" y="56" width="72" height="48" rx="4" fill="var(--spectra-vis-body-deep)" />
+    </svg>
   );
 }
 

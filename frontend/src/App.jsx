@@ -158,10 +158,10 @@ import {
 import {
   BUILD_DETAIL_STATUS,
   BUILD_RESOLUTIONS,
+  BUILD_SLOTS,
   BUILD_USE_CASES,
   calculateListedTdpSum,
-  clearBuildCpu,
-  clearBuildGpu,
+  clearBuildComponent,
   clearBuildSlotDetail,
   completeBuildDetailRequest,
   createBuildConfig,
@@ -180,8 +180,7 @@ import {
   getBuildSlotRequestState,
   getBuildSummary,
   isBuildChatContextReady,
-  setBuildCpu,
-  setBuildGpu,
+  setBuildComponent,
   setBuildResolution,
   setBuildUseCase,
   startBuildDetailRequest,
@@ -2012,7 +2011,16 @@ function BuildComponentCard({
         </span>
       </div>
 
-      <HardwareSlotVisual kind={type === "GPU" ? "gpu" : "cpu"} />
+      <HardwareSlotVisual
+        kind={
+          type === "GPU" ? "gpu"
+            : type === "CPU" ? "cpu"
+              : type === "RAM" ? "ram"
+                : type === "STORAGE" ? "storage"
+                  : type === "MOTHERBOARD" ? "motherboard"
+                    : "psu"
+        }
+      />
 
       {!selection ? (
         <div className="build-component-empty">
@@ -2272,6 +2280,7 @@ function BuildConfigurationSection({
   buildChatReady,
   buildChatState,
   buildChatContextSummary,
+  compatibility,
   onSelectType,
   onClearSlot,
   onRetrySlot,
@@ -2315,8 +2324,9 @@ function BuildConfigurationSection({
         <p className="build-relationship">
           <strong>{summary.relationshipLabel}</strong>
           <span>
-            SPECTRA lists stored specifications for the selected components. It
-            does not assess motherboard, power supply, cooling, or case fit.
+            SPECTRA lists stored specifications for the selected components.
+            Compatibility evaluation runs from the Compatibility Check panel;
+            cooling and case fit are not assessed.
           </span>
         </p>
       </header>
@@ -2327,51 +2337,43 @@ function BuildConfigurationSection({
       <div className="build-workspace">
         <div className="build-column build-column-configuration">
           <div className="build-summary">
-            <div className="build-summary-item">
-              <span className="build-summary-label">CPU</span>
-              <strong>{summary.cpu.name}</strong>
-              {summary.cpu.isSelected ? (
-                <span>{summary.cpu.manufacturer}</span>
-              ) : (
-                <span className="build-summary-empty">Empty slot</span>
-              )}
-            </div>
+            {BUILD_SLOTS.map((type) => {
+              const slotKey = type.toLowerCase();
+              const slotSummary = summary[slotKey];
 
-            <span className="build-summary-join" aria-hidden="true">
-              +
-            </span>
-
-            <div className="build-summary-item">
-              <span className="build-summary-label">GPU</span>
-              <strong>{summary.gpu.name}</strong>
-              {summary.gpu.isSelected ? (
-                <span>{summary.gpu.manufacturer}</span>
-              ) : (
-                <span className="build-summary-empty">Empty slot</span>
-              )}
-            </div>
+              return (
+                <div className="build-summary-item" key={type}>
+                  <span className="build-summary-label">{type}</span>
+                  <strong>{slotSummary.name}</strong>
+                  {slotSummary.isSelected ? (
+                    <span>{slotSummary.manufacturer}</span>
+                  ) : (
+                    <span className="build-summary-empty">Empty slot</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="build-components">
-            <BuildComponentCard
-              type="CPU"
-              selection={buildConfig.cpu}
-              detail={cpuDetail}
-              requestState={cpuRequestState}
-              onChange={() => onSelectType("CPU")}
-              onClear={() => onClearSlot("CPU")}
-              onRetry={() => onRetrySlot("CPU")}
-            />
+            {BUILD_SLOTS.map((type) => {
+              const slotKey = type.toLowerCase();
+              const slotDetail = getBuildSlotDetail(buildDetailState, type);
+              const requestState = getBuildSlotRequestState(buildDetailState, type);
 
-            <BuildComponentCard
-              type="GPU"
-              selection={buildConfig.gpu}
-              detail={gpuDetail}
-              requestState={gpuRequestState}
-              onChange={() => onSelectType("GPU")}
-              onClear={() => onClearSlot("GPU")}
-              onRetry={() => onRetrySlot("GPU")}
-            />
+              return (
+                <BuildComponentCard
+                  key={type}
+                  type={type}
+                  selection={buildConfig[slotKey]}
+                  detail={slotDetail}
+                  requestState={requestState}
+                  onChange={() => onSelectType(type)}
+                  onClear={() => onClearSlot(type)}
+                  onRetry={() => onRetrySlot(type)}
+                />
+              );
+            })}
           </div>
         </div>
 
@@ -2415,6 +2417,11 @@ function BuildConfigurationSection({
       </div>
 
       <div className="build-lower">
+        <BuildCompatibilitySection
+          buildConfig={buildConfig}
+          compatibility={compatibility}
+        />
+
         <div className="build-context">
           <p className="detail-section-label">CONTEXT</p>
 
@@ -2493,6 +2500,96 @@ function BuildConfigurationSection({
         </div>
       )}
       </div>
+    </section>
+  );
+}
+
+/* ---- M2: Compatibility Check panel -------------------------------------- */
+/* Renders the backend verdict for the current build. States are honest:
+   INCOMPATIBLE warns, UNKNOWN explains what is unresolved, COMPATIBLE
+   confirms only applicable checks passed. An empty build never shows green. */
+
+const COMPATIBILITY_STATUS_LABELS = {
+  COMPATIBLE: "Compatible",
+  INCOMPATIBLE: "Incompatible",
+  UNKNOWN: "Compatibility unknown",
+};
+
+const COMPATIBILITY_STATUS_CLASS = {
+  COMPATIBLE: "performance-status-available",
+  INCOMPATIBLE: "performance-status-error",
+  UNKNOWN: "performance-status-partial",
+};
+
+function BuildCompatibilitySection({ buildConfig, compatibility }) {
+  const selectedCount = BUILD_SLOTS.filter(
+    (type) => buildConfig[type.toLowerCase()],
+  ).length;
+  const state = compatibility?.state ?? "UNKNOWN";
+  const isLoading = compatibility?.isLoading ?? false;
+
+  return (
+    <section
+      className="build-compatibility"
+      aria-labelledby="build-compatibility-title"
+      aria-busy={isLoading}
+    >
+      <div className="build-compatibility-head">
+        <div>
+          <p className="detail-section-label">COMPATIBILITY CHECK</p>
+          <h3 id="build-compatibility-title">What the build rules verify</h3>
+        </div>
+
+        <span
+          className={`performance-status ${COMPATIBILITY_STATUS_CLASS[state]}`}
+          role="status"
+        >
+          {isLoading ? "Checking…" : COMPATIBILITY_STATUS_LABELS[state]}
+        </span>      </div>
+
+      <p className="build-compatibility-note">
+        Rules run server-side from stored specifications with provenance.
+        Missing data is reported as unknown — it is never treated as proof of
+        compatibility. {selectedCount} of {BUILD_SLOTS.length} slots filled.
+      </p>
+
+      {compatibility?.ruleResults?.length > 0 && (
+        <ul className="build-compatibility-rules">
+          {compatibility.ruleResults.map((rule) => (
+            <li
+              key={rule.rule_id}
+              className={`build-compatibility-rule build-compatibility-rule-${rule.state.toLowerCase()}`}
+            >
+              <div className="build-compatibility-rule-head">
+                <strong>{rule.rule_id}</strong>
+                <span
+                  className={`performance-status ${COMPATIBILITY_STATUS_CLASS[rule.state] ?? ""}`}
+                >
+                  {COMPATIBILITY_STATUS_LABELS[rule.state] ?? rule.state}
+                </span>
+              </div>
+              <p>{rule.explanation}</p>
+              {rule.missing_information.length > 0 && (
+                <p className="build-compatibility-missing">
+                  Missing: {rule.missing_information.join(", ")}
+                </p>
+              )}
+              {rule.provenance.length > 0 && (
+                <p className="build-compatibility-provenance">
+                  {rule.provenance.length} provenance record
+                  {rule.provenance.length === 1 ? "" : "s"} referenced.
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {compatibility?.error && (
+        <p className="build-compatibility-error" role="alert">
+          {compatibility.error}
+        </p>
+      )}
     </section>
   );
 }
@@ -2616,8 +2713,18 @@ function App() {
     createBuildDetailState,
   );
   const [buildUserContext, setBuildUserContext] = useState(createBuildUserContext);
+  const [compatibility, setCompatibility] = useState({
+    state: "UNKNOWN",
+    ruleResults: [],
+    error: "",
+    isLoading: false,
+  });
   const buildCpuGuardRef = useRef(createDetailRequestGuard());
   const buildGpuGuardRef = useRef(createDetailRequestGuard());
+  const buildRamGuardRef = useRef(createDetailRequestGuard());
+  const buildStorageGuardRef = useRef(createDetailRequestGuard());
+  const buildMotherboardGuardRef = useRef(createDetailRequestGuard());
+  const buildPsuGuardRef = useRef(createDetailRequestGuard());
   const buildChatGuardRef = useRef(createChatRequestGuard());
   const buildConversationGuardRef = useRef(createChatRequestGuard());
   const buildConversationIdRef = useRef(null);
@@ -2728,6 +2835,65 @@ function App() {
     CPU: buildCpuDetail ? (benchmarkStates[buildCpuDetail.id] ?? null) : null,
     GPU: buildGpuDetail ? (benchmarkStates[buildGpuDetail.id] ?? null) : null,
   };
+
+  /* M2: compatibility check refreshes whenever a slot selection changes.
+     The request idiom follows the catalog page fetch: AbortController,
+     stale responses can never overwrite newer ones. */
+  const buildSlotIds = {
+    cpu: buildConfig.cpu?.id ?? null,
+    gpu: buildConfig.gpu?.id ?? null,
+    ram: buildConfig.ram?.id ?? null,
+    storage: buildConfig.storage?.id ?? null,
+    motherboard: buildConfig.motherboard?.id ?? null,
+    psu: buildConfig.psu?.id ?? null,
+  };
+  const buildSlotIdsKey = JSON.stringify(buildSlotIds);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    setCompatibility((prev) => ({ ...prev, isLoading: true, error: "" }));
+
+    fetch(apiUrl("/build/compatibility/check"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: buildSlotIdsKey,
+      signal,
+    })
+      .then((response) => {
+        return assertSuccessfulResponse(response).json();
+      })
+      .then((data) => {
+        if (signal.aborted) {
+          return;
+        }
+
+        setCompatibility({
+          state: data.state ?? "UNKNOWN",
+          explanation: data.explanation ?? "",
+          rulesVersion: data.rules_version ?? "",
+          ruleResults: Array.isArray(data.rule_results) ? data.rule_results : [],
+          error: "",
+          isLoading: false,
+        });
+      })
+      .catch((error) => {
+        if (error?.name === "AbortError" || signal.aborted) {
+          return;
+        }
+
+        console.error("Failed to check build compatibility:", error);
+        setCompatibility((prev) => ({
+          ...prev,
+          state: "UNKNOWN",
+          error: "Compatibility check is unavailable right now.",
+          isLoading: false,
+        }));
+      });
+
+    return () => controller.abort();
+  }, [buildSlotIdsKey]);
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
@@ -3036,8 +3202,29 @@ function App() {
     );
   };
 
-  const getBuildGuard = (type) =>
-    type === "GPU" ? buildGpuGuardRef.current : buildCpuGuardRef.current;
+  const getBuildGuard = (type) => {
+    if (type === "GPU") {
+      return buildGpuGuardRef.current;
+    }
+
+    if (type === "RAM") {
+      return buildRamGuardRef.current;
+    }
+
+    if (type === "STORAGE") {
+      return buildStorageGuardRef.current;
+    }
+
+    if (type === "MOTHERBOARD") {
+      return buildMotherboardGuardRef.current;
+    }
+
+    if (type === "PSU") {
+      return buildPsuGuardRef.current;
+    }
+
+    return buildCpuGuardRef.current;
+  };
 
   const loadBuildSlotDetail = (type, hardwareId) => {
     const guard = getBuildGuard(type);
@@ -3090,7 +3277,7 @@ function App() {
   };
 
   const addToBuild = (hardware) => {
-    if (hardware?.type !== "CPU" && hardware?.type !== "GPU") {
+    if (!BUILD_SLOTS.includes(hardware?.type)) {
       return;
     }
 
@@ -3105,11 +3292,7 @@ function App() {
       );
     }
 
-    setBuildConfig((prev) =>
-      hardware.type === "CPU"
-        ? setBuildCpu(prev, hardware)
-        : setBuildGpu(prev, hardware),
-    );
+    setBuildConfig((prev) => setBuildComponent(prev, hardware));
 
     if (!alreadySelected) {
       loadBuildSlotDetail(hardware.type, hardware.id);
@@ -3134,9 +3317,7 @@ function App() {
       })
     );
 
-    setBuildConfig((prev) =>
-      type === "CPU" ? clearBuildCpu(prev) : clearBuildGpu(prev),
-    );
+    setBuildConfig((prev) => clearBuildComponent(prev, type));
     setBuildDetailState((prev) => clearBuildSlotDetail(prev, type));
   };
 
@@ -4424,6 +4605,7 @@ function App() {
           buildChatReady={buildChatReady}
           buildChatState={buildChatState}
           buildChatContextSummary={buildChatContextSummary}
+          compatibility={compatibility}
           onSelectType={browseForBuildType}
           onClearSlot={clearBuildSlot}
           onRetrySlot={retryBuildSlot}
