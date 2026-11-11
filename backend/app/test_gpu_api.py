@@ -143,11 +143,12 @@ class TestGpuApi:
         assert items[0]["type"] == "CPU"
         assert items[0]["name"] == "AMD Ryzen 5 5600"
 
-    def test_catalog_unknown_type_returns_empty(self):
+    def test_catalog_unknown_type_rejected_422(self):
+        # M1 contract change: unknown type values are a client error (422),
+        # not a silently empty 200 — fail closed per the Build Planner plan.
         response = self.client.get("/hardware?type=SSD")
 
-        assert response.status_code == 200
-        assert response.json() == []
+        assert response.status_code == 422
 
     def test_cpu_detail_regression(self):
         response = self.client.get(f"/hardware/{self.cpu_id}")

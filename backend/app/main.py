@@ -116,6 +116,11 @@ from backend.app.services.explanation_service import ProviderBusyError
 from backend.app.services import hardware_chat_service
 from backend.app.services import source_service
 
+# Closed vocabulary for the catalog ``type`` filter: the two original types
+# plus the four Build Planner categories (M1). An unknown value is a client
+# error (422), not an empty result — fail closed.
+CATALOG_TYPES = ("CPU", "GPU", "RAM", "STORAGE", "MOTHERBOARD", "PSU")
+
 
 # Configure structured JSON logging before any request handling. Running the
 # JSON handler twice is a no-op thanks to configure_logging idempotency.
@@ -339,6 +344,15 @@ def get_hardware(
     filters (the full filtered set, not the page), so clients can page without
     guessing.
     """
+    if hardware_type is not None and hardware_type not in CATALOG_TYPES:
+        raise HTTPException(
+            status_code=422,
+            detail=(
+                f"unknown hardware type '{hardware_type}' "
+                f"(expected one of {', '.join(CATALOG_TYPES)})"
+            ),
+        )
+
     page, total = query_hardware(
         hardware_type=hardware_type,
         q=q,
@@ -383,6 +397,15 @@ def get_hardware_facet_counts(
     Declared before ``/hardware/{hardware_id}`` so the literal ``facets`` path
     is not shadowed by the id route.
     """
+    if hardware_type is not None and hardware_type not in CATALOG_TYPES:
+        raise HTTPException(
+            status_code=422,
+            detail=(
+                f"unknown hardware type '{hardware_type}' "
+                f"(expected one of {', '.join(CATALOG_TYPES)})"
+            ),
+        )
+
     facets = get_hardware_facets(
         hardware_type=hardware_type,
         q=q,
@@ -497,6 +520,210 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                     "length_mm": (
                         gpu_spec.length_mm
                         if gpu_spec
+                        else None
+                    ),
+                },
+            }
+
+        if hardware.type == "RAM":
+            ram_spec = hardware.ram_specification
+
+            return {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+                "segment": hardware.segment,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
+
+                "specifications": {
+                    "ddr_generation": (
+                        ram_spec.ddr_generation
+                        if ram_spec
+                        else None
+                    ),
+                    "capacity_gb": (
+                        ram_spec.capacity_gb
+                        if ram_spec
+                        else None
+                    ),
+                    "speed_mhz": (
+                        ram_spec.speed_mhz
+                        if ram_spec
+                        else None
+                    ),
+                    "modules": (
+                        ram_spec.modules
+                        if ram_spec
+                        else None
+                    ),
+                    "ecc": (
+                        ram_spec.ecc
+                        if ram_spec
+                        else None
+                    ),
+                    "voltage_v": (
+                        ram_spec.voltage_v
+                        if ram_spec
+                        else None
+                    ),
+                    "form_factor": (
+                        ram_spec.form_factor
+                        if ram_spec
+                        else None
+                    ),
+                },
+            }
+
+        if hardware.type == "STORAGE":
+            storage_spec = hardware.storage_specification
+
+            return {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+                "segment": hardware.segment,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
+
+                "specifications": {
+                    "storage_type": (
+                        storage_spec.storage_type
+                        if storage_spec
+                        else None
+                    ),
+                    "capacity_gb": (
+                        storage_spec.capacity_gb
+                        if storage_spec
+                        else None
+                    ),
+                    "interface": (
+                        storage_spec.interface
+                        if storage_spec
+                        else None
+                    ),
+                    "read_mb_s": (
+                        storage_spec.read_mb_s
+                        if storage_spec
+                        else None
+                    ),
+                    "write_mb_s": (
+                        storage_spec.write_mb_s
+                        if storage_spec
+                        else None
+                    ),
+                    "dram_cache": (
+                        storage_spec.dram_cache
+                        if storage_spec
+                        else None
+                    ),
+                    "form_factor": (
+                        storage_spec.form_factor
+                        if storage_spec
+                        else None
+                    ),
+                },
+            }
+
+        if hardware.type == "MOTHERBOARD":
+            mobo_spec = hardware.motherboard_specification
+
+            return {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+                "segment": hardware.segment,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
+
+                "specifications": {
+                    "socket": (
+                        mobo_spec.socket
+                        if mobo_spec
+                        else None
+                    ),
+                    "chipset": (
+                        mobo_spec.chipset
+                        if mobo_spec
+                        else None
+                    ),
+                    "form_factor": (
+                        mobo_spec.form_factor
+                        if mobo_spec
+                        else None
+                    ),
+                    "ram_type": (
+                        mobo_spec.ram_type
+                        if mobo_spec
+                        else None
+                    ),
+                    "ram_slots": (
+                        mobo_spec.ram_slots
+                        if mobo_spec
+                        else None
+                    ),
+                    "max_ram_gb": (
+                        mobo_spec.max_ram_gb
+                        if mobo_spec
+                        else None
+                    ),
+                    "m2_slots": (
+                        mobo_spec.m2_slots
+                        if mobo_spec
+                        else None
+                    ),
+                    "sata_ports": (
+                        mobo_spec.sata_ports
+                        if mobo_spec
+                        else None
+                    ),
+                    "pcie_slots": (
+                        mobo_spec.pcie_slots
+                        if mobo_spec
+                        else None
+                    ),
+                },
+            }
+
+        if hardware.type == "PSU":
+            psu_spec = hardware.psu_specification
+
+            return {
+                "id": hardware.id,
+                "name": hardware.name,
+                "manufacturer": hardware.manufacturer,
+                "type": hardware.type,
+                "segment": hardware.segment,
+                "release_date": hardware.release_date,
+                "architecture": hardware.architecture,
+
+                "specifications": {
+                    "wattage": (
+                        psu_spec.wattage
+                        if psu_spec
+                        else None
+                    ),
+                    "efficiency_rating": (
+                        psu_spec.efficiency_rating
+                        if psu_spec
+                        else None
+                    ),
+                    "modular": (
+                        psu_spec.modular
+                        if psu_spec
+                        else None
+                    ),
+                    "pcie_8pin_count": (
+                        psu_spec.pcie_8pin_count
+                        if psu_spec
+                        else None
+                    ),
+                    "pcie_12vhpwr": (
+                        psu_spec.pcie_12vhpwr
+                        if psu_spec
                         else None
                     ),
                 },
