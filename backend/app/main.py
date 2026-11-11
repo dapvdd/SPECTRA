@@ -455,6 +455,9 @@ def get_recommendations(
     response_model=HardwareDetail,
 )
 def get_hardware_detail(hardware_id: int) -> HardwareDetail:
+    # Note: session.get lazy-loads the spec relationships (one extra query
+    # per access), matching the existing CPU/GPU detail pattern. If detail
+    # latency matters later, eager-load via selectinload here.
     with SessionLocal() as session:
         hardware = session.get(
             Hardware,

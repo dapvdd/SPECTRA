@@ -4278,6 +4278,11 @@ function App() {
         )}
 
         {detailView && selectedHardware && (
+          // M1 note: non-GPU types (CPU and the Build Planner categories
+          // RAM/STORAGE/MOTHERBOARD/PSU) render via CpuDetailView, which
+          // shows identity + CPU spec keys. The new categories' spec blocks
+          // arrive from the API (GET /hardware/{id}) but are not yet wired
+          // into this view — the M2 Build Planner view replaces this path.
           selectedHardware.type === "GPU" ? (
             <GpuHardwareDetail
               hardware={selectedHardware}

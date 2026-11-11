@@ -162,7 +162,6 @@ def _verify_v3(conn: sqlite3.Connection) -> None:
         if table not in tables:
             raise RuntimeError(f"v3 verification FAILED: missing table '{table}'")
 
-    expected = _EXPECTED_TABLES_V3[table] if False else None  # placeholder guard
     for table, expected_cols in _EXPECTED_TABLES_V3.items():
         if table == "field_provenance":
             continue
