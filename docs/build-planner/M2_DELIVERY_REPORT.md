@@ -1,6 +1,6 @@
 # M2 Delivery Report — Build Planner Compatibility Engine & Component-Aware Experience
 
-Branch: `feat/build-planner-m2-compatibility` · Base: `92931d9` (origin/main) · HEAD: `b339c25` · 2026-11-11
+Branch: `feat/build-planner-m2-compatibility` · Base: `92931d9` (origin/main) · HEAD: `586e832` · 2026-11-12
 
 ## Verdict: **READY_FOR_MERGE_REVIEW**
 
@@ -93,7 +93,39 @@ Docs: `M2_BASELINE_AUDIT.md`, `M2_COMPATIBILITY_RULES.md`, `M2_API_CONTRACT.md`,
 5. Existing test expectations for the 2-slot config shape were updated (6
    assertions) — intentional contract change, documented in the test matrix.
 
-## 7. Suggested merge review focus
+## 7. Independent review rounds
+
+Two fresh-eyes review passes were run against the branch diff.
+
+**Backend review** (rules, service, API, schema) — verdict
+READY_FOR_MERGE_REVIEW; 0 Critical / 0 Important. Three Minor findings were
+fixed in `5e56ea8`: top-level `FieldProvenance` import, dead `ids_echo`
+removed, explicit PSU rounding (`math.floor(x + 0.5)`). Remaining Nits,
+disclosed as follow-ups: `scalar_one_or_none` without a limit can 500 on
+duplicate spec rows; no explicit rollback on the read-only session
+(harmless); provenance rows are not attributed per `hardware_id`.
+
+**Frontend review** (App.jsx, detail.js, buildConfig.js, tests) — initial
+verdict CONDITIONAL_REVIEW; all findings addressed in `586e832`:
+- **Critical (fixed):** `restoreBuildConversationForSlot` assumed the M1
+  2-slot shape and would post a RAM/STORAGE/MOTHERBOARD/PSU detail as the
+  GPU in the chat restore; the four M2 slots now return early.
+- **Important (fixed):** aggregate badge lacked a fallback for an
+  unexpected backend state string (rule rows already had one).
+- **Minor (fixed):** dead `compatibility.explanation`/`rulesVersion` state
+  and dead `summarizeSlot`/`SLOT_PROMPT_NOUNS` removed.
+- **Important (disclosed, pre-existing at base `92931d9`):** the restore
+  reads `buildDetailState` from a stale render closure, so a GPU loading
+  after the CPU can skip the chat restore. This is M1 behavior, not
+  introduced by M2; fixing it is a refactor scheduled for M3.
+- **Nit (disclosed, pre-existing):** `aria-labelledby="build-slot-{type}"`
+  targets an id no element carries.
+
+Re-verification after fixes: frontend `663 passed, 0 failed` +
+`npx vite build` OK; backend suite `1228 passed, 2 skipped, 2 deselected`;
+final verdict for both scopes: **READY_FOR_MERGE_REVIEW**.
+
+## 8. Suggested merge review focus
 
 1. `backend/app/services/compatibility_rules.py` — rule boundaries and
    UNKNOWN naming.
