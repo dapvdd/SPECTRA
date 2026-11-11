@@ -45,6 +45,7 @@ import {
 import { GPU_METRICS } from "./comparison.js";
 import { buildGpuInsightsFromStatus } from "./comparisonGpuInsights.js";
 import {
+  getCategoryDetailViewModel,
   getCpuDetailViewModel,
   getDetailBackLabel,
   getDetailComparisonAction,
@@ -1376,6 +1377,94 @@ function CpuDetailView({
       />
 
       <HardwareChatSection chatState={chatState} onAsk={onAskQuestion} />
+    </section>
+  );
+}
+
+function GenericCategoryDetailView({
+  hardware,
+  buildAction,
+  onBack,
+  onAddToBuild,
+  onOpenFit,
+  provenance,
+}) {
+  const viewModel = getCategoryDetailViewModel(hardware);
+  const type = hardware?.type || "HARDWARE";
+  const overview = buildSpecSourceItems(viewModel.overview, type, provenance);
+  const keySpecifications = buildSpecSourceItems(
+    viewModel.keySpecifications,
+    type,
+    provenance,
+  );
+  const technicalSpecifications = buildSpecSourceItems(
+    viewModel.technicalSpecifications,
+    type,
+    provenance,
+  );
+  const backLabel = getDetailBackLabel(type);
+
+  return (
+    <section className="hardware-detail" aria-labelledby="generic-detail-title">
+      <button
+        type="button"
+        className="back-button"
+        onClick={onBack}
+        aria-label={`${backLabel} and close this detail view`}
+      >
+        <span aria-hidden="true">←</span> {backLabel}
+      </button>
+
+      <div className="hardware-detail-header">
+        <div>
+          <p className="eyebrow detail-type">{type} DETAIL</p>
+          <h2 id="generic-detail-title" tabIndex={-1}>
+            {viewModel.name}
+          </h2>
+          <p className="hardware-meta">
+            <span className="manufacturer-mark" aria-hidden="true">
+              {viewModel.manufacturer.slice(0, 1)}
+            </span>
+            {viewModel.manufacturer} · {viewModel.type}
+          </p>
+        </div>
+
+        <div className="detail-header-actions">
+          <button
+            type="button"
+            className={`detail-build-button ${
+              buildAction.alreadySelected ? "added" : ""
+            }`}
+            onClick={onAddToBuild}
+            aria-pressed={buildAction.alreadySelected}
+          >
+            {buildAction.actionLabel}
+          </button>
+
+          <button
+            type="button"
+            className="detail-compare-button hardware-fit-btn"
+            onClick={onOpenFit}
+          >
+            Hardware Fit
+          </button>
+        </div>
+      </div>
+
+      <div className="detail-specifications">
+        <p className="detail-section-label">OVERVIEW</p>
+        <DetailSpecGrid items={overview} />
+
+        <p className="detail-section-label technical-label">
+          KEY SPECIFICATIONS
+        </p>
+        <DetailSpecGrid items={keySpecifications} />
+
+        <p className="detail-section-label technical-label">
+          TECHNICAL SPECIFICATIONS
+        </p>
+        <DetailSpecGrid items={technicalSpecifications} />
+      </div>
     </section>
   );
 }
@@ -4278,13 +4367,20 @@ function App() {
         )}
 
         {detailView && selectedHardware && (
-          // M1 note: non-GPU types (CPU and the Build Planner categories
-          // RAM/STORAGE/MOTHERBOARD/PSU) render via CpuDetailView, which
-          // shows identity + CPU spec keys. The new categories' spec blocks
-          // arrive from the API (GET /hardware/{id}) but are not yet wired
-          // into this view — the M2 Build Planner view replaces this path.
           selectedHardware.type === "GPU" ? (
             <GpuHardwareDetail
+              hardware={selectedHardware}
+              buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
+              onBack={returnToCatalog}
+              onAddToBuild={() => addToBuild(selectedHardware)}
+              onOpenFit={() => setShowFit(true)}
+              provenance={specProvenanceById[selectedHardware.id]}
+            />
+          ) : selectedHardware.type === "RAM" ||
+            selectedHardware.type === "STORAGE" ||
+            selectedHardware.type === "MOTHERBOARD" ||
+            selectedHardware.type === "PSU" ? (
+            <GenericCategoryDetailView
               hardware={selectedHardware}
               buildAction={getBuildComponentAction(buildConfig, selectedHardware)}
               onBack={returnToCatalog}
