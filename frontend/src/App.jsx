@@ -2545,7 +2545,8 @@ function BuildCompatibilitySection({ buildConfig, compatibility }) {
           role="status"
         >
           {isLoading ? "Checking…" : COMPATIBILITY_STATUS_LABELS[state]}
-        </span>      </div>
+        </span>
+      </div>
 
       <p className="build-compatibility-note">
         Rules run server-side from stored specifications with provenance.
