@@ -18,6 +18,7 @@ import {
   createBuildUserContext,
   getBuildChatContextSummary,
   getBuildChatSnapshot,
+  getBuildChatSlotKey,
   getBuildComponentAction,
   getBuildComponentSpecs,
   getBuildComponentSummary,
@@ -96,8 +97,10 @@ const gpuDetail = (overrides = {}) => ({
 });
 
 test("build config initializes with no CPU and no GPU", () => {
-  assert.deepEqual(createBuildConfig(), { cpu: null, gpu: null });
-  assert.equal(BUILD_SLOTS.join(","), "CPU,GPU");
+  assert.deepEqual(createBuildConfig(), {
+    cpu: null, gpu: null, ram: null, storage: null, motherboard: null, psu: null,
+  });
+  assert.equal(BUILD_SLOTS.join(","), "CPU,GPU,RAM,STORAGE,MOTHERBOARD,PSU");
 });
 
 test("CPU selection stores a CPU in the cpu slot only", () => {
@@ -118,10 +121,10 @@ test("GPU selection stores a GPU in the gpu slot only", () => {
 
 test("a GPU cannot be stored in the CPU slot and a CPU cannot be stored in the GPU slot", () => {
   const withGpuInCpu = setBuildCpu(createBuildConfig(), gpuItem());
-  assert.deepEqual(withGpuInCpu, { cpu: null, gpu: null });
+  assert.deepEqual(withGpuInCpu, createBuildConfig());
 
   const withCpuInGpu = setBuildGpu(createBuildConfig(), cpuItem());
-  assert.deepEqual(withCpuInGpu, { cpu: null, gpu: null });
+  assert.deepEqual(withCpuInGpu, createBuildConfig());
 });
 
 test("replacing the CPU keeps the GPU selection untouched", () => {
@@ -157,7 +160,7 @@ test("clearing the CPU keeps the GPU and vice versa", () => {
   assert.equal(gpuCleared.gpu, null);
   assert.equal(gpuCleared.cpu.id, 1);
 
-  assert.deepEqual(clearBuildConfig(), { cpu: null, gpu: null });
+  assert.deepEqual(clearBuildConfig(), createBuildConfig());
   assert.equal(clearBuildCpu(cpuCleared), cpuCleared);
   assert.equal(clearBuildGpu(gpuCleared), gpuCleared);
 });
@@ -226,7 +229,7 @@ test("component action reports non-build hardware types as out of scope", () => 
 
   assert.equal(action.isBuildSlot, true);
   assert.equal(
-    getBuildComponentAction(createBuildConfig(), { id: 5, type: "PSU" }).isBuildSlot,
+    getBuildComponentAction(createBuildConfig(), { id: 5, type: "MONITOR" }).isBuildSlot,
     false
   );
   assert.equal(
@@ -316,9 +319,8 @@ test("GPU specification rows never convert missing values into zero", () => {
   );
 });
 
-test("specification rows are empty for missing or unsupported detail", () => {
+test("specification rows are empty for missing detail", () => {
   assert.deepEqual(getBuildComponentSpecs(null), []);
-  assert.deepEqual(getBuildComponentSpecs({ type: "PSU" }), []);
 });
 
 test("listed TDP sum adds CPU and GPU listed TDP values", () => {
@@ -573,11 +575,11 @@ test("starting a new slot request discards the previous detail", () => {
 
 test("unsupported build slots are rejected", () => {
   assert.throws(
-    () => startBuildDetailRequest(createBuildDetailState(), "PSU", 1),
+    () => startBuildDetailRequest(createBuildDetailState(), "COOLER", 1),
     /Unsupported build slot/
   );
   assert.throws(
-    () => clearBuildSlotDetail(createBuildDetailState(), "RAM"),
+    () => clearBuildSlotDetail(createBuildDetailState(), "CASE"),
     /Unsupported build slot/
   );
 });
@@ -876,6 +878,16 @@ test("build chat snapshot identifies the build that produced an answer", () => {
   });
 });
 
+test("chat token slot key maps CPU and GPU only; other slots never touch the token", () => {
+  assert.equal(getBuildChatSlotKey("CPU"), "cpuId");
+  assert.equal(getBuildChatSlotKey("GPU"), "gpuId");
+  assert.equal(getBuildChatSlotKey("RAM"), null);
+  assert.equal(getBuildChatSlotKey("STORAGE"), null);
+  assert.equal(getBuildChatSlotKey("MOTHERBOARD"), null);
+  assert.equal(getBuildChatSlotKey("PSU"), null);
+  assert.equal(getBuildChatSlotKey("UNKNOWN_TYPE"), null);
+});
+
 test("build chat snapshot is stable for unchanged identity and null for empty build", () => {
   assert.deepEqual(
     getBuildChatSnapshot(cpuDetail(), gpuDetail(), {
@@ -947,7 +959,9 @@ test("build chat state is independent from comparison state", () => {
   assert.equal(compareList.length, 2);
   assert.equal(JSON.stringify(compareList), before);
   assert.equal(compareList.some((item) => item.id === 2), false);
-  assert.deepEqual(createBuildConfig(), { cpu: null, gpu: null });
+  assert.deepEqual(createBuildConfig(), {
+    cpu: null, gpu: null, ram: null, storage: null, motherboard: null, psu: null,
+  });
 });
 
 test("build configuration state is independent from comparison state", () => {

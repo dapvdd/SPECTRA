@@ -1,6 +1,8 @@
 import { formatDetailValue } from "./detail.js";
 
-export const BUILD_SLOTS = ["CPU", "GPU"];
+export const BUILD_SLOTS = [
+  "CPU", "GPU", "RAM", "STORAGE", "MOTHERBOARD", "PSU",
+];
 
 export const BUILD_USE_CASES = [
   "Gaming",
@@ -46,9 +48,19 @@ const isSupportedBuildType = (type) => BUILD_SLOTS.includes(type);
 export const createBuildConfig = () => ({
   cpu: null,
   gpu: null,
+  ram: null,
+  storage: null,
+  motherboard: null,
+  psu: null,
 });
 
-const getSlot = (type) => (type === "GPU" ? "gpu" : "cpu");
+const getSlot = (type) => {
+  if (type === "CPU" || type === "GPU") {
+    return type.toLowerCase();
+  }
+
+  return BUILD_SLOTS.includes(type) ? type.toLowerCase() : null;
+};
 
 export const setBuildCpu = (state, hardware) => {
   if (hardware?.type !== "CPU") {
@@ -80,11 +92,40 @@ export const clearBuildCpu = (state) =>
 export const clearBuildGpu = (state) =>
   state.gpu === null ? state : { ...state, gpu: null };
 
+/* Generic slot mutation for all six build categories (M2 Task 5). The
+   CPU/GPU-specific setters above are kept: existing flows and tests rely on
+   their exact state-identity semantics. */
+export const setBuildComponent = (state, hardware) => {
+  const slot = getSlot(hardware?.type);
+
+  if (!slot) {
+    return state;
+  }
+
+  if (state[slot]?.id === hardware.id) {
+    return state;
+  }
+
+  return { ...state, [slot]: hardware };
+};
+
+export const clearBuildComponent = (state, type) => {
+  if (!BUILD_SLOTS.includes(type)) {
+    throw new Error(`Unsupported build slot: ${type}`);
+  }
+
+  const slot = type.toLowerCase();
+  return state[slot] === null || state[slot] === undefined
+    ? state
+    : { ...state, [slot]: null };
+};
+
 export const clearBuildConfig = () => createBuildConfig();
 
 export const getBuildSelection = (state, type) => {
   const slot = getSlot(type);
-  return slot === "gpu" ? state.gpu : state.cpu;
+
+  return slot ? state[slot] : null;
 };
 
 export const isBuildComplete = (state) =>
@@ -103,7 +144,7 @@ export const getBuildComponentAction = (state, hardware) => {
 
   const selected = getBuildSelection(state, hardware.type);
   const alreadySelected = selected?.id === hardware.id;
-  const noun = hardware.type === "GPU" ? "GPU" : "CPU";
+  const noun = hardware.type;
 
   return {
     isBuildSlot: true,
@@ -150,6 +191,64 @@ export const getBuildComponentSummary = (detail) => {
         ? specifications.memory_type.trim()
         : "";
     const subtitle = [memoryLabel, typeLabel].filter(Boolean).join(" ");
+
+    return { name, manufacturer, subtitle };
+  }
+
+  if (detail.type === "RAM") {
+    const capacityLabel = isPositiveNumber(specifications.capacity_gb)
+      ? `${specifications.capacity_gb} GB`
+      : "";
+    const generationLabel =
+      typeof specifications.ddr_generation === "string" &&
+      specifications.ddr_generation.trim() !== ""
+        ? specifications.ddr_generation.trim()
+        : "";
+    const subtitle = [capacityLabel, generationLabel].filter(Boolean).join(" ");
+
+    return { name, manufacturer, subtitle };
+  }
+
+  if (detail.type === "STORAGE") {
+    const capacityLabel = isPositiveNumber(specifications.capacity_gb)
+      ? `${specifications.capacity_gb} GB`
+      : "";
+    const typeLabel =
+      typeof specifications.storage_type === "string" &&
+      specifications.storage_type.trim() !== ""
+        ? specifications.storage_type.trim()
+        : "";
+    const subtitle = [typeLabel, capacityLabel].filter(Boolean).join(" ");
+
+    return { name, manufacturer, subtitle };
+  }
+
+  if (detail.type === "MOTHERBOARD") {
+    const socketLabel =
+      typeof specifications.socket === "string" &&
+      specifications.socket.trim() !== ""
+        ? specifications.socket.trim()
+        : "";
+    const formLabel =
+      typeof specifications.form_factor === "string" &&
+      specifications.form_factor.trim() !== ""
+        ? specifications.form_factor.trim()
+        : "";
+    const subtitle = [socketLabel, formLabel].filter(Boolean).join(" · ");
+
+    return { name, manufacturer, subtitle };
+  }
+
+  if (detail.type === "PSU") {
+    const wattageLabel = isPositiveNumber(specifications.wattage)
+      ? `${specifications.wattage} W`
+      : "";
+    const efficiencyLabel =
+      typeof specifications.efficiency_rating === "string" &&
+      specifications.efficiency_rating.trim() !== ""
+        ? specifications.efficiency_rating.trim()
+        : "";
+    const subtitle = [wattageLabel, efficiencyLabel].filter(Boolean).join(" · ");
 
     return { name, manufacturer, subtitle };
   }
@@ -217,7 +316,81 @@ export const getBuildComponentSpecs = (detail) => {
     return getBuildGpuSpecs(detail);
   }
 
+  if (detail?.type === "RAM") {
+    return getBuildRamSpecs(detail);
+  }
+
+  if (detail?.type === "STORAGE") {
+    return getBuildStorageSpecs(detail);
+  }
+
+  if (detail?.type === "MOTHERBOARD") {
+    return getBuildMotherboardSpecs(detail);
+  }
+
+  if (detail?.type === "PSU") {
+    return getBuildPsuSpecs(detail);
+  }
+
   return [];
+};
+
+const getBuildRamSpecs = (detail) => {
+  const specifications = detail?.specifications || {};
+
+  return [
+    { label: "Capacity", value: formatDetailValue(specifications.capacity_gb, "GB") },
+    { label: "DDR Generation", value: formatDetailValue(specifications.ddr_generation) },
+    { label: "Speed", value: formatDetailValue(specifications.speed_mhz, "MHz") },
+    { label: "Modules", value: formatDetailValue(specifications.modules) },
+    { label: "Form Factor", value: formatDetailValue(specifications.form_factor) },
+  ];
+};
+
+const getBuildStorageSpecs = (detail) => {
+  const specifications = detail?.specifications || {};
+
+  return [
+    { label: "Capacity", value: formatDetailValue(specifications.capacity_gb, "GB") },
+    { label: "Storage Type", value: formatDetailValue(specifications.storage_type) },
+    { label: "Interface", value: formatDetailValue(specifications.interface) },
+    { label: "Form Factor", value: formatDetailValue(specifications.form_factor) },
+    { label: "Sequential Read", value: formatDetailValue(specifications.read_mb_s, "MB/s") },
+  ];
+};
+
+const getBuildMotherboardSpecs = (detail) => {
+  const specifications = detail?.specifications || {};
+
+  return [
+    { label: "Socket", value: formatDetailValue(specifications.socket) },
+    { label: "Chipset", value: formatDetailValue(specifications.chipset) },
+    { label: "Form Factor", value: formatDetailValue(specifications.form_factor) },
+    { label: "Memory Type", value: formatDetailValue(specifications.ram_type) },
+    { label: "Memory Slots", value: formatDetailValue(specifications.ram_slots) },
+    { label: "Max Memory", value: formatDetailValue(specifications.max_ram_gb, "GB") },
+    { label: "M.2 Slots", value: formatDetailValue(specifications.m2_slots) },
+    { label: "SATA Ports", value: formatDetailValue(specifications.sata_ports) },
+    { label: "PCIe Slots", value: formatDetailValue(specifications.pcie_slots) },
+  ];
+};
+
+const getBuildPsuSpecs = (detail) => {
+  const specifications = detail?.specifications || {};
+  const modularLabel =
+    specifications.modular === null || specifications.modular === undefined
+      ? "N/A"
+      : specifications.modular
+        ? "Yes"
+        : "No";
+
+  return [
+    { label: "Rated Wattage", value: formatDetailValue(specifications.wattage, "W") },
+    { label: "Efficiency Rating", value: formatDetailValue(specifications.efficiency_rating) },
+    { label: "Modular", value: modularLabel },
+    { label: "PCIe 8-pin Connectors", value: formatDetailValue(specifications.pcie_8pin_count) },
+    { label: "12VHPWR Connectors", value: formatDetailValue(specifications.pcie_12vhpwr) },
+  ];
 };
 
 const getListedTdp = (detail) => {
@@ -346,6 +519,38 @@ export const getBuildSummary = (state) => ({
         isSelected: true,
       }
     : { id: null, name: "Select a GPU", manufacturer: "", isSelected: false },
+  ram: state.ram
+    ? {
+        id: state.ram.id,
+        name: state.ram.name,
+        manufacturer: state.ram.manufacturer || "N/A",
+        isSelected: true,
+      }
+    : { id: null, name: "Select a RAM", manufacturer: "", isSelected: false },
+  storage: state.storage
+    ? {
+        id: state.storage.id,
+        name: state.storage.name,
+        manufacturer: state.storage.manufacturer || "N/A",
+        isSelected: true,
+      }
+    : { id: null, name: "Select a Storage", manufacturer: "", isSelected: false },
+  motherboard: state.motherboard
+    ? {
+        id: state.motherboard.id,
+        name: state.motherboard.name,
+        manufacturer: state.motherboard.manufacturer || "N/A",
+        isSelected: true,
+      }
+    : { id: null, name: "Select a Motherboard", manufacturer: "", isSelected: false },
+  psu: state.psu
+    ? {
+        id: state.psu.id,
+        name: state.psu.name,
+        manufacturer: state.psu.manufacturer || "N/A",
+        isSelected: true,
+      }
+    : { id: null, name: "Select a PSU", manufacturer: "", isSelected: false },
   isComplete: isBuildComplete(state),
   relationshipLabel: "CPU + GPU configuration",
 });
@@ -391,10 +596,16 @@ export const setBuildResolution = (context, value) =>
     : context;
 
 export const createBuildDetailState = () => ({
-  detailsBySlot: { CPU: null, GPU: null },
+  detailsBySlot: {
+    CPU: null, GPU: null, RAM: null, STORAGE: null, MOTHERBOARD: null, PSU: null,
+  },
   requestStatesBySlot: {
     CPU: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
     GPU: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
+    RAM: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
+    STORAGE: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
+    MOTHERBOARD: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
+    PSU: { status: BUILD_DETAIL_STATUS.idle, requestId: 0, message: "" },
   },
 });
 
@@ -477,8 +688,11 @@ export const clearBuildSlotDetail = (state, slot) => {
 };
 
 export const getBuildSlotRequestState = (state, slot) =>
-  state.requestStatesBySlot[slot] ??
-  createBuildDetailState().requestStatesBySlot[slot];
+  state.requestStatesBySlot[slot] ?? {
+    status: BUILD_DETAIL_STATUS.idle,
+    requestId: 0,
+    message: "",
+  };
 
 export const getBuildSlotDetail = (state, slot) => state.detailsBySlot[slot];
 
@@ -678,6 +892,22 @@ export const getBuildChatSnapshot = (cpuDetail, gpuDetail, userContext) => ({
   useCase: userContext?.useCase ?? "Not specified",
   resolution: userContext?.resolution ?? "Not specified",
 });
+
+/* The build chat conversation is a CPU+GPU feature (M1). Slot changes for
+   the other M2 categories must never touch the chat token — mapping them
+   onto cpuId/gpuId would wipe the visible conversation and collide tokens
+   with the real GPU slot. Non-chat slots map to null (no token change). */
+export const getBuildChatSlotKey = (type) => {
+  if (type === "CPU") {
+    return "cpuId";
+  }
+
+  if (type === "GPU") {
+    return "gpuId";
+  }
+
+  return null;
+};
 
 const UNSPECIFIED_CONTEXT_LABEL = "Not specified";
 
