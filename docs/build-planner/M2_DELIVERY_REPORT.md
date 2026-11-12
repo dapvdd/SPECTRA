@@ -1,8 +1,8 @@
 # M2 Delivery Report — Build Planner Compatibility Engine & Component-Aware Experience
 
-Branch: `feat/build-planner-m2-compatibility` · Base: `92931d9` (origin/main) · HEAD: `586e832` · 2026-11-12
+Branch: `feat/build-planner-m2-compatibility` · Base: `92931d9` (origin/main) · HEAD: `196ca75` · 2026-11-12
 
-## Verdict: **READY_FOR_MERGE_REVIEW**
+## Verdict: **MERGED** (release gate executed 2026-11-12; see §9)
 
 All 7 planned tasks are complete, committed, pushed, and green. Production
 (`main`, production DB) was never touched. One merge-blocking concern is
@@ -125,6 +125,21 @@ Re-verification after fixes: frontend `663 passed, 0 failed` +
 `npx vite build` OK; backend suite `1228 passed, 2 skipped, 2 deselected`;
 final verdict for both scopes: **READY_FOR_MERGE_REVIEW**.
 
+**Pre-merge release review (2026-11-12):** a third delta review of the
+full `92931d9..38a52ba` diff found one more M2-exposed IMPORTANT bug:
+`addToBuild`/`clearBuildSlot` mapped every slot type onto the M1 chat
+token's `cpuId`/`gpuId` keys, so adding/clearing RAM/STORAGE/MOTHERBOARD/PSU
+wiped the visible CPU+GPU conversation and collided chat tokens with the
+real GPU slot. Fixed test-first in `196ca75` with a pure
+`getBuildChatSlotKey` helper (CPU→`cpuId`, GPU→`gpuId`, all other slots and
+unknown types→`null` — no token change); both call sites now guard on it;
+CPU/GPU behavior is byte-identical to before. Frontend suite after the fix:
+`664 passed, 0 failed` (+1 test) and build OK; backend untouched by the
+fix. Round-2 verification by the same reviewer: **PASS**, no new findings.
+The duplicate-spec `scalar_one_or_none` nit from the backend review was
+re-examined: all six spec tables declare `hardware_id` `unique=True`, so
+`MultipleResultsFound` is unreachable today (documented, no action).
+
 ## 8. Suggested merge review focus
 
 1. `backend/app/services/compatibility_rules.py` — rule boundaries and
@@ -132,5 +147,24 @@ final verdict for both scopes: **READY_FOR_MERGE_REVIEW**.
 2. `backend/app/services/compatibility_service.py` — loader validation
    (404/422 mapping) and read-only guarantee.
 3. `frontend/src/App.jsx` — compatibility effect (AbortController, keyed on
-   slot ids) and `BuildCompatibilitySection` honest states.
+   slot ids), `BuildCompatibilitySection` honest states, and the chat-token
+   guard (`getBuildChatSlotKey`).
 4. The 12 evidence PNGs (human visual pass).
+
+## 9. Release gate record (2026-11-12)
+
+All five mandatory gates passed; merge authorized by the user's conditional
+auto-merge directive.
+
+| Gate | Status | Evidence |
+|---|---|---|
+| A — Git integrity | PASS | origin/main `92931d9` (= M2 base, unmoved); remote branch `196ca75`; 15 verified commits; no secrets/artifacts (scan clean); M2 touches no migration files |
+| B — Final code review | PASS | 3 review rounds; every Critical/Important fixed & verified (5e56ea8, 586e832, 196ca75); remaining findings are Nits, disclosed |
+| C — Visual | PASS (CSS + browser-rendered) | Independent reviewer: static CSS PASS; browser-rendered checks: grid 2×3 real (grid tracks), status chip renders amber border+text, dark-theme tokens applied, 0 page errors. PNG pixels not machine-readable (disclosed); human eyeball of the 12 PNGs still recommended |
+| D — Regression | PASS | Backend 1228/2sk/2des; frontend 664/0; vite build OK; security+API+compatibility focused 49 passed; migration rehearsal on a disposable copy v0→3 verified, `integrity_check: ok`, 5380 rows preserved; browser smoke 11/11 product-correct; static checks not configured (N/A) |
+| E — Security & data safety | PASS | `POST /build/compatibility/check` uses `Depends(require_auth)` like neighboring endpoints; parameterized ORM `select()` only; 404/422 mapping tested; no DB writes from the check path (tested); production DB read-only (copy-first rehearsal); no destructive migrations in M2 |
+
+Merge method: remote-side `gh pr merge` (the main working copy is checked
+out on the user's `feat/spectra-v3.1-production-hardening` branch and is
+never touched). PR: `github.com/dapvdd/SPECTRA/pull/2`. Merge commit and
+post-merge verification are recorded in the PR and release report.
