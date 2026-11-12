@@ -24,6 +24,7 @@ import {
   getBuildComponentSummary,
   getBuildFacts,
   getBuildSelection,
+  getBuildSlotDisplayName,
   getBuildSlotDetail,
   getBuildSlotErrorMessage,
   getBuildSlotChecklistItem,
@@ -33,6 +34,7 @@ import {
   isBuildComplete,
   isBuildSlotBusy,
   isBuildSlotErrored,
+  setBuildComponent,
   setBuildCpu,
   setBuildGpu,
   setBuildResolution,
@@ -180,7 +182,6 @@ test("build summary reports missing components with select prompts", () => {
   assert.equal(empty.gpu.name, "Select a GPU");
   assert.equal(empty.gpu.isSelected, false);
   assert.equal(empty.isComplete, false);
-  assert.equal(empty.relationshipLabel, "CPU + GPU configuration");
 
   const cpuOnly = getBuildSummary(setBuildCpu(createBuildConfig(), cpuItem()));
   assert.equal(cpuOnly.cpu.name, "Ryzen 7 7800X3D");
@@ -190,9 +191,71 @@ test("build summary reports missing components with select prompts", () => {
   const both = getBuildSummary(
     setBuildGpu(setBuildCpu(createBuildConfig(), cpuItem()), gpuItem())
   );
-  assert.equal(both.isComplete, true);
   assert.equal(both.gpu.name, "GeForce RTX 5070 Ti");
   assert.equal(both.gpu.manufacturer, "NVIDIA");
+});
+
+test("six-slot build summary counts selected slots out of six", () => {
+  // M2.5 Task 3: the workspace describes a six-slot build, so the summary
+  // carries the real completeness figures, not CPU/GPU-only counts.
+  const empty = getBuildSummary(createBuildConfig());
+  assert.equal(empty.selectedCount, 0);
+  assert.equal(empty.totalSlotCount, 6);
+
+  const two = getBuildSummary(
+    setBuildGpu(setBuildCpu(createBuildConfig(), cpuItem()), gpuItem())
+  );
+  assert.equal(two.selectedCount, 2);
+  assert.equal(two.totalSlotCount, 6);
+});
+
+test("build relationship label derives from populated slots", () => {
+  // M2.5 Task 3: "CPU + GPU configuration" is legacy copy. The label must
+  // reflect the actual six-slot state in BUILD_SLOTS order.
+  assert.equal(
+    getBuildSummary(createBuildConfig()).relationshipLabel,
+    "Empty six-slot build"
+  );
+  assert.equal(
+    getBuildSummary(
+      setBuildComponent(
+        setBuildCpu(createBuildConfig(), cpuItem()),
+        { id: 5, name: "RM850x", manufacturer: "Corsair", type: "PSU" }
+      )
+    ).relationshipLabel,
+    "CPU + PSU build"
+  );
+
+  const fullState = BUILD_SLOTS.reduce(
+    (state, type, index) =>
+      setBuildComponent(state, {
+        id: index + 1,
+        name: `Part ${type}`,
+        manufacturer: "MFR",
+        type,
+      }),
+    createBuildConfig()
+  );
+  assert.equal(
+    getBuildSummary(fullState).relationshipLabel,
+    "Complete six-component build"
+  );
+  // A fully-populated build is complete in slot terms...
+  assert.equal(getBuildSummary(fullState).selectedCount, 6);
+  // ...and the CPU+GPU chat-completeness invariant is preserved.
+  assert.equal(getBuildSummary(fullState).isComplete, true);
+});
+
+test("build slot display names humanize raw type constants", () => {
+  // M2.5 Task 3/6: "Change STORAGE" leaks the storage constant into prose.
+  // Display names are title-cased per slot; unknown types fall back.
+  assert.equal(getBuildSlotDisplayName("CPU"), "CPU");
+  assert.equal(getBuildSlotDisplayName("GPU"), "GPU");
+  assert.equal(getBuildSlotDisplayName("RAM"), "RAM");
+  assert.equal(getBuildSlotDisplayName("STORAGE"), "Storage");
+  assert.equal(getBuildSlotDisplayName("MOTHERBOARD"), "Motherboard");
+  assert.equal(getBuildSlotDisplayName("PSU"), "PSU");
+  assert.equal(getBuildSlotDisplayName("MYSTERY"), "MYSTERY");
 });
 
 test("component action labels distinguish add, change, and already selected", () => {

@@ -178,6 +178,7 @@ import {
   getBuildComponentSummary,
   getBuildFacts,
   getBuildSelection,
+  getBuildSlotDisplayName,
   getBuildSlotDetail,
   getBuildSlotChecklistItem,
   getBuildSlotRequestState,
@@ -1992,6 +1993,7 @@ function BuildComponentCard({
       : errored
         ? "error"
         : "ready";
+  const displayName = getBuildSlotDisplayName(type);
 
   return (
     <section
@@ -2000,8 +2002,12 @@ function BuildComponentCard({
       data-state={state}
     >
       <div className="build-component-slot-head">
-        <span className="build-component-slot-class" aria-hidden="true">
-          {type}
+        <span
+          className="build-component-slot-class"
+          aria-hidden="true"
+          id={`build-slot-${type}`}
+        >
+          {displayName}
         </span>
         <span className="build-component-slot-status">
           {!selection
@@ -2054,13 +2060,13 @@ function BuildComponentCard({
           {busy && (
             <p className="build-component-status" role="status" aria-live="polite">
               <span className="state-spinner" aria-hidden="true" />
-              Loading {type} details...
+              Loading {displayName} details...
             </p>
           )}
 
           {errored && (
             <div className="build-component-error" role="alert">
-              <strong>{type} details unavailable</strong>
+              <strong>{displayName} details unavailable</strong>
               <span>{requestState.message}</span>
               <button
                 type="button"
@@ -2089,7 +2095,7 @@ function BuildComponentCard({
               className="build-action-button"
               onClick={onChange}
             >
-              Change {type}
+              Change {displayName}
             </button>
 
             <button
@@ -2136,7 +2142,7 @@ function BuildIntelligenceSignalList({ signals, titleId }) {
   );
 }
 
-function BuildIntelligenceSection({ intelligence }) {
+function BuildIntelligenceSection({ intelligence, buildSummary }) {
   const { overview, power, completeness, benchmarkCoverage } = intelligence;
   const isEmpty = intelligence.status === BUILD_INTELLIGENCE_STATUS.empty;
 
@@ -2196,8 +2202,10 @@ function BuildIntelligenceSection({ intelligence }) {
             </div>
 
             <div className="build-intelligence-fact">
-              <dt>Populated slots</dt>
-              <dd>{overview.populatedSlotCount} of 2</dd>
+              <dt>Components selected</dt>
+              <dd>
+                {buildSummary.selectedCount} of {buildSummary.totalSlotCount}
+              </dd>
             </div>
 
             <div className="build-intelligence-fact">
@@ -2381,7 +2389,10 @@ function BuildConfigurationSection({
         </div>
 
         <div className="build-column build-column-intelligence">
-          <BuildIntelligenceSection intelligence={buildIntelligence} />
+          <BuildIntelligenceSection
+            intelligence={buildIntelligence}
+            buildSummary={summary}
+          />
         </div>
       </div>
 

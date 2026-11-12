@@ -43,6 +43,21 @@ const isPositiveNumber = (value) => isFiniteNumber(value) && value > 0;
 
 const roundForDisplay = (value) => Math.round(value * 100) / 100;
 
+/* M2.5: raw type constants are storage-shaped ("STORAGE", "MOTHERBOARD");
+   prose and headings use these humanized names. Unknown types fall back to
+   the raw value so nothing renders as "undefined". */
+const BUILD_SLOT_DISPLAY_NAMES = {
+  CPU: "CPU",
+  GPU: "GPU",
+  RAM: "RAM",
+  STORAGE: "Storage",
+  MOTHERBOARD: "Motherboard",
+  PSU: "PSU",
+};
+
+export const getBuildSlotDisplayName = (type) =>
+  BUILD_SLOT_DISPLAY_NAMES[type] || type;
+
 const isSupportedBuildType = (type) => BUILD_SLOTS.includes(type);
 
 export const createBuildConfig = () => ({
@@ -502,58 +517,75 @@ export const getBuildFacts = (cpuDetail, gpuDetail) => {
   return facts;
 };
 
-export const getBuildSummary = (state) => ({
-  cpu: state.cpu
-    ? {
-        id: state.cpu.id,
-        name: state.cpu.name,
-        manufacturer: state.cpu.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a CPU", manufacturer: "", isSelected: false },
-  gpu: state.gpu
-    ? {
-        id: state.gpu.id,
-        name: state.gpu.name,
-        manufacturer: state.gpu.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a GPU", manufacturer: "", isSelected: false },
-  ram: state.ram
-    ? {
-        id: state.ram.id,
-        name: state.ram.name,
-        manufacturer: state.ram.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a RAM", manufacturer: "", isSelected: false },
-  storage: state.storage
-    ? {
-        id: state.storage.id,
-        name: state.storage.name,
-        manufacturer: state.storage.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a Storage", manufacturer: "", isSelected: false },
-  motherboard: state.motherboard
-    ? {
-        id: state.motherboard.id,
-        name: state.motherboard.name,
-        manufacturer: state.motherboard.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a Motherboard", manufacturer: "", isSelected: false },
-  psu: state.psu
-    ? {
-        id: state.psu.id,
-        name: state.psu.name,
-        manufacturer: state.psu.manufacturer || "N/A",
-        isSelected: true,
-      }
-    : { id: null, name: "Select a PSU", manufacturer: "", isSelected: false },
-  isComplete: isBuildComplete(state),
-  relationshipLabel: "CPU + GPU configuration",
-});
+export const getBuildSummary = (state) => {
+  /* M2.5 Task 3: the workspace is a six-slot build. Completeness figures
+     and the relationship label derive from every BUILD_SLOTS entry, while
+     `isComplete` intentionally keeps its CPU+GPU meaning: it gates the
+     CPU/GPU chat context readiness (M2 invariant, commit 196ca75). */
+  const selectedSlots = BUILD_SLOTS.filter((type) => Boolean(state[type.toLowerCase()]));
+
+  const relationshipLabel =
+    selectedSlots.length === 0
+      ? "Empty six-slot build"
+      : selectedSlots.length === BUILD_SLOTS.length
+        ? "Complete six-component build"
+        : `${selectedSlots.join(" + ")} build`;
+
+  return {
+    cpu: state.cpu
+      ? {
+          id: state.cpu.id,
+          name: state.cpu.name,
+          manufacturer: state.cpu.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a CPU", manufacturer: "", isSelected: false },
+    gpu: state.gpu
+      ? {
+          id: state.gpu.id,
+          name: state.gpu.name,
+          manufacturer: state.gpu.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a GPU", manufacturer: "", isSelected: false },
+    ram: state.ram
+      ? {
+          id: state.ram.id,
+          name: state.ram.name,
+          manufacturer: state.ram.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a RAM", manufacturer: "", isSelected: false },
+    storage: state.storage
+      ? {
+          id: state.storage.id,
+          name: state.storage.name,
+          manufacturer: state.storage.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a Storage", manufacturer: "", isSelected: false },
+    motherboard: state.motherboard
+      ? {
+          id: state.motherboard.id,
+          name: state.motherboard.name,
+          manufacturer: state.motherboard.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a Motherboard", manufacturer: "", isSelected: false },
+    psu: state.psu
+      ? {
+          id: state.psu.id,
+          name: state.psu.name,
+          manufacturer: state.psu.manufacturer || "N/A",
+          isSelected: true,
+        }
+      : { id: null, name: "Select a PSU", manufacturer: "", isSelected: false },
+    isComplete: isBuildComplete(state),
+    selectedCount: selectedSlots.length,
+    totalSlotCount: BUILD_SLOTS.length,
+    relationshipLabel,
+  };
+};
 
 export const getBuildSlotChecklistItem = (type, selection, requestState) => {
   const status = requestState?.status || BUILD_DETAIL_STATUS.idle;
