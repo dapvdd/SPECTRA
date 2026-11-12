@@ -50,6 +50,16 @@ export const BENCHMARK_SUPPORT_LABELS = {
   unavailable: "NO DATA",
 };
 
+/* M2.5 Task 2: the comparison backend (/comparison/gpu, /comparison/
+   explanation) and both metric tables (CPU_TABLE_SPECS, GPU_TABLE_SPECS)
+   are CPU/GPU-shaped. Any other category must report unsupported so the
+   UI hides the Compare action instead of offering one that silently
+   fails or produces a wrong cross-category table. */
+const COMPARISON_SUPPORTED_TYPES = new Set(["CPU", "GPU"]);
+
+export const isComparisonSupported = (type) =>
+  COMPARISON_SUPPORTED_TYPES.has(type);
+
 const isComparablePair = (compareDetails) =>
   Array.isArray(compareDetails) && compareDetails.length === 2;
 

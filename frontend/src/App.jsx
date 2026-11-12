@@ -30,6 +30,7 @@ import {
   DECISION_STATUS,
   buildComparisonDecisionSummary,
   buildComparisonSpecRows,
+  isComparisonSupported,
 } from "./comparisonDecision.js";
 import {
   BUILD_INTELLIGENCE_STATUS,
@@ -111,11 +112,12 @@ import {
 } from "./buildConversation.js";
 import {
   HARDWARE_TYPES,
-  MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
+  deriveManufacturerOptions,
   getCatalogFilterState,
   getCatalogReadout,
   getCatalogResultSummary,
+  getNextManufacturerFilter,
   mergeTypeFacetCounts,
   requestHardwareCatalog,
   requestHardwareCatalogPage,
@@ -3450,8 +3452,19 @@ function App() {
       });
   };
 
+  /* M2.5 Task 2: when the category changes, the previous manufacturer
+     selection may not exist in the new category's vendor set. A stale
+     selection would silently produce an empty catalog, so it resets to
+     "All" unless it is still a live option. The fetch effects below depend
+     on manufacturerFilter, so this reset re-issues the narrowed query. */
   const changeHardwareTypeFilter = (type) => {
     setHardwareTypeFilter(type);
+    setManufacturerFilter((current) =>
+      getNextManufacturerFilter(
+        current,
+        deriveManufacturerOptions(hardwareFacets?.manufacturers)
+      )
+    );
     setHardwareLoading(true);
     setHardwareError("");
     setCardSpecsById({});
@@ -3610,6 +3623,14 @@ function App() {
       manufacturerFacetCounts[facet.value] = facet.count;
     });
   }
+
+  /* M2.5 Task 2: manufacturer options come from the live facet data for the
+     active category (the backend counts each facet without its own filter,
+     so the list stays complete while a vendor is selected). No vendor name
+     is ever invented here. */
+  const manufacturerOptions = deriveManufacturerOptions(
+    hardwareFacets?.manufacturers
+  );
 
   const typeFacetCounts = typeFacetCountsState;
 
@@ -4223,7 +4244,7 @@ function App() {
             role="group"
             aria-label="Filter hardware by manufacturer"
           >
-            {MANUFACTURER_FILTERS.map((manufacturer) => {
+            {manufacturerOptions.map((manufacturer) => {
               const filterState = getCatalogFilterState(
                 manufacturer,
                 manufacturerFilter
@@ -4460,31 +4481,33 @@ function App() {
                       </button>
 
                       <div className="hardware-card-actions">
-                        <button
-                          type="button"
-                          className={`compare-button ${inComparison ? "added" : ""}`}
-                          aria-pressed={inComparison}
-                          aria-label={
-                            inComparison
-                              ? `Remove ${item.name} from comparison`
-                              : `Add ${item.name} to comparison`
-                          }
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            if (inComparison) {
-                              removeFromCompare(item.id);
-                              return;
+                        {isComparisonSupported(item.type) && (
+                          <button
+                            type="button"
+                            className={`compare-button ${inComparison ? "added" : ""}`}
+                            aria-pressed={inComparison}
+                            aria-label={
+                              inComparison
+                                ? `Remove ${item.name} from comparison`
+                                : `Add ${item.name} to comparison`
                             }
-                            addToCompare(item);
-                          }}
-                          disabled={comparisonFull}
-                        >
-                          {inComparison
-                            ? "✓ In Comparison"
-                            : comparisonFull
-                              ? "Comparison Full"
-                              : "Compare"}
-                        </button>
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              if (inComparison) {
+                                removeFromCompare(item.id);
+                                return;
+                              }
+                              addToCompare(item);
+                            }}
+                            disabled={comparisonFull}
+                          >
+                            {inComparison
+                              ? "✓ In Comparison"
+                              : comparisonFull
+                                ? "Comparison Full"
+                                : "Compare"}
+                          </button>
+                        )}
 
                         {buildAction.isBuildSlot && (
                           <button

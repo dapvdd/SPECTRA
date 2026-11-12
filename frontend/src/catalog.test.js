@@ -4,12 +4,13 @@ import assert from "node:assert/strict";
 import { apiUrl } from "./api.js";
 import {
   HARDWARE_TYPES,
-  MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
+  deriveManufacturerOptions,
   getCatalogFilterState,
   getCatalogReadout,
   getCatalogResultSummary,
   getCatalogTypeLabel,
+  getNextManufacturerFilter,
   getHardwareCatalogUrl,
   getHardwareFacetsUrl,
   mergeTypeFacetCounts,
@@ -17,6 +18,7 @@ import {
   requestHardwareCatalogPage,
   requestHardwareFacets,
 } from "./catalog.js";
+import { isComparisonSupported } from "./comparisonDecision.js";
 
 const gpuItem = {
   id: 7,
@@ -51,8 +53,45 @@ test("getCatalogFilterState handles new category values", () => {
   assert.equal(inactive.className, "filter-button");
 });
 
-test("catalog exposes the All, Intel, AMD, NVIDIA, and ATI manufacturer filters", () => {
-  assert.deepEqual(MANUFACTURER_FILTERS, ["All", "Intel", "AMD", "NVIDIA", "ATI"]);
+test("manufacturer options derive from live facet data, All first", () => {
+  // M2.5 Task 2: the static CPU/GPU-era list is gone; options must come
+  // from the facets endpoint so a PSU catalog never shows Intel/NVIDIA.
+  assert.deepEqual(
+    deriveManufacturerOptions([
+      { value: "Corsair", count: 12 },
+      { value: "Seasonic", count: 7 },
+    ]),
+    ["All", "Corsair", "Seasonic"]
+  );
+});
+
+test("manufacturer options fall back to All when no facet data", () => {
+  assert.deepEqual(deriveManufacturerOptions([]), ["All"]);
+  assert.deepEqual(deriveManufacturerOptions(null), ["All"]);
+  assert.deepEqual(deriveManufacturerOptions(undefined), ["All"]);
+});
+
+test("manufacturer filter resets when the selection leaves the option set", () => {
+  // Switching category (or data changing) can drop the active manufacturer;
+  // a stale selection must fall back to All instead of silently emptying
+  // the catalog.
+  assert.equal(getNextManufacturerFilter("ATI", ["All", "Intel", "AMD"]), "All");
+  assert.equal(getNextManufacturerFilter("AMD", ["All", "Intel", "AMD"]), "AMD");
+  assert.equal(getNextManufacturerFilter("All", ["All"]), "All");
+  assert.equal(getNextManufacturerFilter(undefined, ["All", "Corsair"]), "All");
+});
+
+test("comparison support matrix covers only CPU and GPU", () => {
+  // The comparison backend and metric tables are CPU/GPU-shaped; every
+  // other category must report unsupported so the UI can hide the action.
+  assert.equal(isComparisonSupported("CPU"), true);
+  assert.equal(isComparisonSupported("GPU"), true);
+  assert.equal(isComparisonSupported("RAM"), false);
+  assert.equal(isComparisonSupported("STORAGE"), false);
+  assert.equal(isComparisonSupported("MOTHERBOARD"), false);
+  assert.equal(isComparisonSupported("PSU"), false);
+  assert.equal(isComparisonSupported(undefined), false);
+  assert.equal(isComparisonSupported("NOTACAT"), false);
 });
 
 test("catalog type labels pluralize known types and fall back generically", () => {

@@ -75,21 +75,36 @@ def get_hardware_facets(
 ) -> dict[str, list[dict[str, object]]]:
     """Accurate facet counts for the active filter set.
 
-    Each facet list (types, manufacturers, segments) is counted with the same
-    WHERE clauses the query applies, so a facet count always reflects the rows
-    currently visible under the other active filters. ``None`` facet values are
-    excluded: a missing value is unknown and is not reported as a facet.
+    Each facet list (types, manufacturers, segments) is counted with the
+    same WHERE clauses the query applies — except its own dimension: a facet
+    never applies its own filter to itself (M2.5). Filtering by ``type``
+    constrains the manufacturer facet, but the manufacturers facet stays
+    complete under the remaining filters so the option list never collapses
+    to the active vendor. ``None`` facet values are excluded: a missing
+    value is unknown and is not reported as a facet.
     """
-    base_filters = []
+    dimension_filters = {
+        "types": [],
+        "manufacturers": [],
+        "segments": [],
+    }
     if hardware_type is not None:
-        base_filters.append(Hardware.type == hardware_type)
+        type_filter = Hardware.type == hardware_type
+        dimension_filters["manufacturers"].append(type_filter)
+        dimension_filters["segments"].append(type_filter)
     if q:
         pattern = f"%{q}%"
-        base_filters.append(Hardware.name.ilike(pattern))
+        q_filter = Hardware.name.ilike(pattern)
+        for filters in dimension_filters.values():
+            filters.append(q_filter)
     if manufacturer is not None:
-        base_filters.append(Hardware.manufacturer == manufacturer)
+        manufacturer_filter = Hardware.manufacturer == manufacturer
+        dimension_filters["types"].append(manufacturer_filter)
+        dimension_filters["segments"].append(manufacturer_filter)
     if segment is not None:
-        base_filters.append(Hardware.segment == segment)
+        segment_filter = Hardware.segment == segment
+        dimension_filters["types"].append(segment_filter)
+        dimension_filters["manufacturers"].append(segment_filter)
 
     facets: dict[str, list[dict[str, object]]] = {}
 
@@ -100,7 +115,7 @@ def get_hardware_facets(
     ):
         statement = (
             select(column, func.count())
-            .where(*base_filters)
+            .where(*dimension_filters[label])
             .where(column.is_not(None))
             .group_by(column)
             .order_by(func.count().desc(), column.asc())

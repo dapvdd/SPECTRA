@@ -163,10 +163,63 @@ class TestCatalogCategoriesApi:
 
         assert response.status_code == 200
         body = response.json()
-        assert body["types"] == [{"value": "RAM", "count": 1}]
         assert body["manufacturers"] == [
             {"value": "Corsair", "count": 1}
         ]
+
+    def test_manufacturer_facet_excludes_its_own_filter(self):
+        # M2.5 Task 2: with a manufacturer filter active, the manufacturer
+        # facet must still list every vendor visible under the OTHER filters
+        # (type/q/segment) — otherwise the option list collapses to the
+        # active vendor and the user can never switch back.
+        with self.session_factory() as session:
+            seasonic = Hardware(
+                name="Seasonic Focus GX-750", manufacturer="Seasonic",
+                type="PSU",
+            )
+            seasonic.psu_specification = PSUSpecification(
+                wattage=750, efficiency_rating="80 Plus Gold",
+            )
+            session.add(seasonic)
+            session.commit()
+
+        response = self.client.get(
+            "/hardware/facets",
+            params={"type": "PSU", "manufacturer": "Corsair"},
+        )
+
+        assert response.status_code == 200
+        body = response.json()
+        # The types facet keeps the type filter OUT but the manufacturer
+        # filter IN: both Corsair rows (RAM + PSU) count.
+        assert body["types"] == [
+            {"value": "PSU", "count": 1},
+            {"value": "RAM", "count": 1},
+        ]
+        # ...but the manufacturer facet keeps every PSU vendor with its
+        # count under the remaining (non-manufacturer) filters.
+        assert body["manufacturers"] == [
+            {"value": "Corsair", "count": 1},
+            {"value": "Seasonic", "count": 1},
+        ]
+
+    def test_type_facet_excludes_its_own_filter(self):
+        # Same rule for the types facet: while a type is active, the type
+        # buttons keep their full counts (the type filter does not apply to
+        # its own facet), so switching categories never loses counts.
+        response = self.client.get(
+            "/hardware/facets", params={"type": "RAM"}
+        )
+
+        assert response.status_code == 200
+        types = {
+            item["value"]: item["count"]
+            for item in response.json()["types"]
+        }
+        assert types == {
+            "CPU": 1, "GPU": 1, "RAM": 1,
+            "STORAGE": 1, "MOTHERBOARD": 1, "PSU": 1,
+        }
 
     def test_facets_empty_result_is_zero_not_error(self):
         response = self.client.get(
