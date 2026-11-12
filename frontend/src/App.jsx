@@ -2179,7 +2179,8 @@ function BuildIntelligenceSection({ intelligence, buildSummary }) {
         <div className="build-intelligence-empty">
           <HardwareSlotVisual kind="cpu" className="build-intelligence-empty-art" />
           <p>
-            Select a CPU or a GPU to build verified intelligence for this build.
+            Select components to build verified intelligence for this build.
+            Performance evidence covers the CPU and GPU slots.
           </p>
         </div>
       ) : (
@@ -2323,6 +2324,12 @@ function BuildConfigurationSection({
     gpuRequestStatus: gpuRequestState.status,
     cpuBenchmarkState: buildBenchmarkStates.CPU,
     gpuBenchmarkState: buildBenchmarkStates.GPU,
+    /* M2.5 Task 4: six-slot state so the platform gap names only the slots
+       that are actually empty. */
+    platformSlots: [
+      { type: "MOTHERBOARD", isSelected: Boolean(buildConfig.motherboard) },
+      { type: "PSU", isSelected: Boolean(buildConfig.psu) },
+    ],
   });
 
   return (

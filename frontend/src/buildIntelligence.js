@@ -84,11 +84,13 @@ export const THERMAL_GAP = "No thermal measurements.";
 export const FRAME_RATE_GAP =
   "No frame rate or rendering performance estimate.";
 export const BALANCE_GAP = "No component-balance or limiting-factor analysis.";
-export const COMMERCIAL_GAP = "No price, value, or compatibility data.";
+/* M2.5 Task 4: compatibility data exists (seven M2 rules run on the build);
+   the commercial gap only claims what is actually absent. */
+export const COMMERCIAL_GAP = "No verified price or value data.";
 export const PLATFORM_GAP =
   "No motherboard, power supply, cooling, or case data.";
-export const TDP_CONSIDERATION =
-  "Listed component TDP should not be interpreted as total system power.";
+export const PLATFORM_PARTIAL_GAP =
+  "No cooling or case data.";
 
 const UNAVAILABLE_DISPLAY = "—";
 const NOT_SELECTED_DISPLAY = "Not selected";
@@ -369,6 +371,31 @@ const buildSignal = ({
 const coverageValue = (coverage) =>
   `${coverage.presentCount} of ${coverage.expectedCount} stored fields`;
 
+/* M2.5 Task 4: the platform gap names only what is actually absent.
+   Motherboard and PSU data exist whenever those slots are selected; cooling
+   and case data are never recorded in this milestone. */
+const platformGapLabel = (platformSlots) => {
+  const isSelected = (type) =>
+    platformSlots.some((slot) => slot?.type === type && slot.isSelected);
+
+  const missing = [];
+  if (!isSelected("MOTHERBOARD")) {
+    missing.push("motherboard");
+  }
+  if (!isSelected("PSU")) {
+    missing.push("power supply");
+  }
+  missing.push("cooling", "case");
+
+  if (missing.length === 4) {
+    return PLATFORM_GAP;
+  }
+  if (missing.length === 2) {
+    return PLATFORM_PARTIAL_GAP;
+  }
+  return `No ${missing.join(", ")}.`.replace(", case", ", or case");
+};
+
 const benchmarkValue = (coverage) =>
   `${coverage.availableCount} of ${coverage.expectedCount} verified metrics`;
 
@@ -462,6 +489,10 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
     gpuRequestStatus = null,
     cpuBenchmarkState = null,
     gpuBenchmarkState = null,
+    /* M2.5 Task 4: six-slot state for the platform gap. Each entry is
+       { type, isSelected } for the non-performance slots; absent entries
+       count as not selected. */
+    platformSlots = [],
   } = options ?? {};
 
   const cpu = buildSlotView({
@@ -489,13 +520,13 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
   pushUnique(unknown, FRAME_RATE_GAP);
   pushUnique(unknown, BALANCE_GAP);
   pushUnique(unknown, COMMERCIAL_GAP);
-  pushUnique(unknown, PLATFORM_GAP);
+  pushUnique(unknown, platformGapLabel(platformSlots));
 
   if (!cpu.isSelected && !gpu.isSelected) {
     model.unknown = unknown;
     model.interpretations = ["No components are selected for this build yet."];
     model.considerations = [
-      "Select a CPU or a GPU to build verified intelligence for this build.",
+      "Select components to build verified intelligence for this build.",
     ];
     model.dataGaps = ["No component data is loaded for this build."];
 
@@ -514,10 +545,10 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
       .join(" + "),
     slotLabel:
       cpu.isSelected && gpu.isSelected
-        ? "CPU + GPU configuration"
+        ? "CPU + GPU · performance scope"
         : cpu.isSelected
-          ? "CPU only · GPU slot empty"
-          : "GPU only · CPU slot empty",
+          ? "CPU · performance scope"
+          : "GPU · performance scope",
     cpuName: cpu.name,
     gpuName: gpu.name,
     hasCpu: cpu.isSelected,
@@ -829,6 +860,8 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
     );
   }
 
+  /* M2.5 Task 4: the X-of-Y coverage figure is single-sourced in `known`;
+     interpretations and strengths no longer repeat it. */
   const bothSlotsSelected = cpu.isSelected && gpu.isSelected;
 
   if (bothSlotsSelected && missingTdpSlots.length === 0) {
@@ -954,13 +987,6 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
     if (slot.benchmark.hasAnyValue) {
       pushUnique(strengths, `Verified ${slot.type} benchmark records are available.`);
     }
-
-    if (!slot.isPending && !slot.specification.isEmpty) {
-      pushUnique(
-        strengths,
-        `${slot.type} specification data covers ${slot.specification.presentCount} of ${slot.specification.expectedCount} stored fields.`,
-      );
-    }
   }
 
   if (bothSlotsSelected && missingTdpSlots.length === 0) {
@@ -1045,7 +1071,9 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
     );
   }
 
-  pushUnique(considerations, TDP_CONSIDERATION);
+  /* M2.5 Task 4: the authoritative TDP disclaimer lives once in the power
+     notice (rendered with the facts); a second phrasing here only repeated
+     the same boundary. */
 
   if (model.completeness.expectedCount > 0 && !model.completeness.isComplete) {
     pushUnique(
@@ -1059,7 +1087,6 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
   /* ---------- Data gaps ---------- */
 
   const dataGaps = [
-    "No measured system power data.",
     THERMAL_GAP,
     FRAME_RATE_GAP,
     BALANCE_GAP,
@@ -1081,6 +1108,9 @@ export const buildBuildIntelligence = (cpuDetail = null, gpuDetail = null, optio
   for (const label of model.completeness.missingLabels) {
     pushUnique(dataGaps, `No verified data is available for ${label}.`);
   }
+
+  // M2.5 Task 4: the measured-power absence lives once in the unknown list
+  // (SYSTEM_POWER_GAP); this list must not repeat a shortened variant.
 
   model.dataGaps = dataGaps;
 
