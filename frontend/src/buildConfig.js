@@ -893,6 +893,22 @@ export const getBuildChatSnapshot = (cpuDetail, gpuDetail, userContext) => ({
   resolution: userContext?.resolution ?? "Not specified",
 });
 
+/* The build chat conversation is a CPU+GPU feature (M1). Slot changes for
+   the other M2 categories must never touch the chat token — mapping them
+   onto cpuId/gpuId would wipe the visible conversation and collide tokens
+   with the real GPU slot. Non-chat slots map to null (no token change). */
+export const getBuildChatSlotKey = (type) => {
+  if (type === "CPU") {
+    return "cpuId";
+  }
+
+  if (type === "GPU") {
+    return "gpuId";
+  }
+
+  return null;
+};
+
 const UNSPECIFIED_CONTEXT_LABEL = "Not specified";
 
 export const getBuildChatContextSummary = (

@@ -168,6 +168,7 @@ import {
   createBuildDetailState,
   createBuildUserContext,
   failBuildDetailRequest,
+  getBuildChatSlotKey,
   getBuildChatSnapshot,
   getBuildChatContextSummary,
   getBuildComponentAction,
@@ -3291,11 +3292,16 @@ function App() {
       getBuildSelection(buildConfig, hardware.type)?.id === hardware.id;
 
     if (!alreadySelected) {
-      resetBuildChat(
-        getNextBuildChatToken({
-          [hardware.type === "CPU" ? "cpuId" : "gpuId"]: hardware.id,
-        })
-      );
+      /* Only CPU/GPU changes belong to the chat token; other slots must
+         not map onto gpuId (would wipe the conversation and collide). */
+      const chatSlotKey = getBuildChatSlotKey(hardware.type);
+      if (chatSlotKey) {
+        resetBuildChat(
+          getNextBuildChatToken({
+            [chatSlotKey]: hardware.id,
+          })
+        );
+      }
     }
 
     setBuildConfig((prev) => setBuildComponent(prev, hardware));
@@ -3317,11 +3323,16 @@ function App() {
 
   const clearBuildSlot = (type) => {
     getBuildGuard(type).invalidate();
-    resetBuildChat(
-      getNextBuildChatToken({
-        [type === "CPU" ? "cpuId" : "gpuId"]: null,
-      })
-    );
+    /* CPU/GPU clears reset the chat token; the four M2 slots must not
+       touch it (getBuildChatSlotKey returns null for them). */
+    const chatSlotKey = getBuildChatSlotKey(type);
+    if (chatSlotKey) {
+      resetBuildChat(
+        getNextBuildChatToken({
+          [chatSlotKey]: null,
+        })
+      );
+    }
 
     setBuildConfig((prev) => clearBuildComponent(prev, type));
     setBuildDetailState((prev) => clearBuildSlotDetail(prev, type));

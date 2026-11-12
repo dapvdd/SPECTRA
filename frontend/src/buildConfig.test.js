@@ -18,6 +18,7 @@ import {
   createBuildUserContext,
   getBuildChatContextSummary,
   getBuildChatSnapshot,
+  getBuildChatSlotKey,
   getBuildComponentAction,
   getBuildComponentSpecs,
   getBuildComponentSummary,
@@ -875,6 +876,16 @@ test("build chat snapshot identifies the build that produced an answer", () => {
     useCase: "Gaming",
     resolution: "1440p",
   });
+});
+
+test("chat token slot key maps CPU and GPU only; other slots never touch the token", () => {
+  assert.equal(getBuildChatSlotKey("CPU"), "cpuId");
+  assert.equal(getBuildChatSlotKey("GPU"), "gpuId");
+  assert.equal(getBuildChatSlotKey("RAM"), null);
+  assert.equal(getBuildChatSlotKey("STORAGE"), null);
+  assert.equal(getBuildChatSlotKey("MOTHERBOARD"), null);
+  assert.equal(getBuildChatSlotKey("PSU"), null);
+  assert.equal(getBuildChatSlotKey("UNKNOWN_TYPE"), null);
 });
 
 test("build chat snapshot is stable for unchanged identity and null for empty build", () => {
