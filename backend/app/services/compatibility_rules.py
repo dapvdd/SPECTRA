@@ -30,11 +30,15 @@ from backend.app.services.compatibility_model import (
     RuleResult,
 )
 
-# Explicit headroom policy for PSU wattage: required power is the sum of
-# component TDPs plus this margin (fraction of the sum). A PSU below the
-# required total is INCOMPATIBLE; at or above it is COMPATIBLE. This policy
-# is intentionally simple and documented — not a fabrication of load curves.
-PSU_HEADROOM_FRACTION = 0.3
+# PSU/TDP reference policy (M2.5): listed CPU/GPU TDP values are not
+# measurements of system power draw, so TDP arithmetic can never confirm a
+# PSU as COMPATIBLE. It yields a documented, clearly-labeled REFERENCE
+# (sum of listed TDPs plus this fraction) with exactly two decisive uses:
+# below the reference -> INCOMPATIBLE (hard headroom-floor constraint);
+# at/above it -> UNKNOWN (advisory only; measured consumption and connector
+# requirements are not recorded). This policy is intentionally simple and
+# documented — not a fabrication of load curves.
+PSU_TDP_REFERENCE_FRACTION = 0.3
 
 _PCIE_PATTERN_PREFIX = "pcie"
 
@@ -289,11 +293,21 @@ def rule_psu_build_wattage(
     *,
     ids: dict[str, int | None],
 ) -> RuleResult:
-    """PSU rated capacity vs CPU+GPU TDP with explicit headroom policy.
+    """PSU rated capacity vs a listed-TDP reference (two-tier, M2.5).
 
-    ``build`` carries the power-drawing components evaluated so far
-    (``cpu``/``gpu`` spec dicts or None). Missing wattage or a missing TDP
-    for a present component -> UNKNOWN.
+    Listed CPU/GPU TDP values are manufacturer ratings, not measurements of
+    system power draw, and their sum is not a validated PSU requirement.
+    Therefore:
+
+    - wattage below the TDP reference (sum + PSU_TDP_REFERENCE_FRACTION)
+      violates the documented headroom-floor constraint -> INCOMPATIBLE;
+    - wattage at/above the reference -> UNKNOWN: the estimate is advisory
+      and non-authoritative (no measured consumption, no connector data);
+    - missing wattage or a missing TDP for a present component -> UNKNOWN;
+    - no CPU/GPU selected -> NOT_APPLICABLE.
+
+    GPU connector needs are not recorded in the schema, so connector fit is
+    always declared missing information, never silently skipped.
     """
     spec_fields = (
         "psu_specifications.wattage",
@@ -309,8 +323,8 @@ def rule_psu_build_wattage(
             spec_fields, missing,
         )
 
-    draw_parts: list[str] = []
-    total_draw = 0
+    tdp_parts: list[str] = []
+    total_tdp = 0
     missing: list[str] = []
     for slot in ("cpu", "gpu"):
         spec = (build or {}).get(slot)
@@ -320,17 +334,17 @@ def rule_psu_build_wattage(
         if tdp is None:
             missing.append(f"{slot}_specifications.tdp_w")
         else:
-            total_draw += tdp
-            draw_parts.append(f"{slot.upper()} {tdp} W")
+            total_tdp += tdp
+            tdp_parts.append(f"{slot.upper()} {tdp} W listed TDP")
 
     if missing:
         return _make_result(
             "psu-build-wattage", ids, UNKNOWN,
-            "Cannot evaluate PSU capacity: TDP is not recorded for "
+            "Cannot evaluate PSU capacity: listed TDP is not recorded for "
             + ", ".join(missing) + ".",
             spec_fields, tuple(missing),
         )
-    if not draw_parts:
+    if not tdp_parts:
         return _make_result(
             "psu-build-wattage", ids, NOT_APPLICABLE,
             "No CPU/GPU selected yet: PSU capacity check has nothing to "
@@ -338,25 +352,36 @@ def rule_psu_build_wattage(
             spec_fields,
         )
 
-    required = math.floor(total_draw * (1 + PSU_HEADROOM_FRACTION) + 0.5)
-    connector_note = (
-        " PSU connector requirements are not evaluated (GPU connector data "
-        "is not recorded)."
+    reference = math.floor(total_tdp * (1 + PSU_TDP_REFERENCE_FRACTION) + 0.5)
+    connector_gaps = (
+        "psu_specifications.pcie_8pin_count",
+        "psu_specifications.pcie_12vhpwr",
+        "gpu connector requirements",
     )
-    if wattage >= required:
+    connector_note = (
+        " Connector requirements are not evaluated: PSU connector counts and "
+        "GPU connector needs are not recorded for this comparison."
+    )
+    if wattage < reference:
         return _make_result(
-            "psu-build-wattage", ids, COMPATIBLE,
-            f"PSU {wattage} W covers {total_draw} W draw ({', '.join(draw_parts)}) "
-            f"plus {int(PSU_HEADROOM_FRACTION * 100)}% headroom "
-            f"(required >= {required} W)." + connector_note,
-            spec_fields,
+            "psu-build-wattage", ids, INCOMPATIBLE,
+            f"PSU {wattage} W is below the documented reference floor of "
+            f"{reference} W (sum of listed TDPs {total_tdp} W — "
+            f"{', '.join(tdp_parts)} — plus "
+            f"{int(PSU_TDP_REFERENCE_FRACTION * 100)}% reference headroom; "
+            "listed TDP values are not measured power consumption)."
+            + connector_note,
+            spec_fields, connector_gaps,
         )
     return _make_result(
-        "psu-build-wattage", ids, INCOMPATIBLE,
-        f"PSU {wattage} W is below the required {required} W "
-        f"({total_draw} W draw with {int(PSU_HEADROOM_FRACTION * 100)}% "
-        f"headroom)." + connector_note,
-        spec_fields,
+        "psu-build-wattage", ids, UNKNOWN,
+        f"PSU {wattage} W meets the non-authoritative reference of "
+        f"{reference} W (sum of listed TDPs {total_tdp} W — "
+        f"{', '.join(tdp_parts)} — plus "
+        f"{int(PSU_TDP_REFERENCE_FRACTION * 100)}%), but listed TDP values "
+        "are not measured power consumption and connector requirements are "
+        "unknown, so compatibility cannot be confirmed." + connector_note,
+        spec_fields, connector_gaps,
     )
 
 

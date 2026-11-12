@@ -231,18 +231,32 @@ class TestStorageMotherboardInterface:
 
 
 class TestPsuBuildWattage:
-    def test_sufficient_wattage_with_headroom_is_compatible(self):
+    """M2.5 power semantics: TDP sums are not measured draw.
+
+    Two-tier policy (M2.5-RULES-v1):
+    - A PSU at/above the TDP-derived reference can never read COMPATIBLE
+      from TDP arithmetic alone -> UNKNOWN (advisory estimate labeled).
+    - A PSU below the TDP-derived reference violates a documented hard
+      constraint (the 30% reference headroom floor) -> INCOMPATIBLE.
+    - Missing wattage or missing TDP -> UNKNOWN, fields named.
+    - No CPU/GPU selected -> NOT_APPLICABLE.
+    Wording must never claim a measured "draw" or "covers" statement.
+    """
+
+    def test_wattage_at_tdp_reference_is_unknown_not_compatible(self):
         result = rule_psu_build_wattage(
             {"wattage": 750},
             {"cpu": {"tdp_w": 65}, "gpu": {"tdp_w": 220}},
             ids={"psu": 5, "cpu": 1, "gpu": 2},
         )
-        assert result.state is COMPATIBLE
+        assert result.state is UNKNOWN
 
-    def test_insufficient_wattage_is_incompatible(self):
+    def test_grossly_insufficient_wattage_is_incompatible(self):
+        # 125 W + 250 W = 375 W TDP; required reference = 488 W. A 450 W PSU
+        # fails the documented headroom-floor constraint.
         result = rule_psu_build_wattage(
-            {"wattage": 300},
-            {"cpu": {"tdp_w": 125}, "gpu": {"tdp_w": 450}},
+            {"wattage": 450},
+            {"cpu": {"tdp_w": 125}, "gpu": {"tdp_w": 250}},
             ids={"psu": 5, "cpu": 1, "gpu": 2},
         )
         assert result.state is INCOMPATIBLE
@@ -263,16 +277,42 @@ class TestPsuBuildWattage:
         )
         assert result.state is UNKNOWN
 
-    def test_connector_requirements_are_not_claimed(self):
-        # GPU connector fields do not exist; the rule must not pretend they
-        # were evaluated.
+    def test_unknown_explanation_is_non_authoritative_and_tdp_labeled(self):
+        result = rule_psu_build_wattage(
+            {"wattage": 750},
+            {"cpu": {"tdp_w": 65}, "gpu": {"tdp_w": 220}},
+            ids={"psu": 5, "cpu": 1, "gpu": 2},
+        )
+        text = result.explanation.lower()
+        assert "non-authoritative" in text
+        assert "listed tdp" in text
+        assert "draw" not in text
+        assert "covers" not in text
+
+    def test_incompatible_explanation_labels_tdp_reference(self):
+        result = rule_psu_build_wattage(
+            {"wattage": 450},
+            {"cpu": {"tdp_w": 125}, "gpu": {"tdp_w": 250}},
+            ids={"psu": 5, "cpu": 1, "gpu": 2},
+        )
+        text = result.explanation.lower()
+        # Names the hard constraint honestly, without measured-draw claims.
+        assert "450 w" in text
+        assert "488 w" in text
+        assert "draw" not in text
+        assert "covers" not in text
+
+    def test_missing_connector_info_is_declared(self):
+        # PSU connector fields exist in the schema; GPU connector needs do
+        # not. The rule must not pretend connectors were evaluated.
         result = rule_psu_build_wattage(
             {"wattage": 750, "pcie_8pin_count": 2, "pcie_12vhpwr": 0},
             {"cpu": {"tdp_w": 65}, "gpu": {"tdp_w": 220}},
             ids={"psu": 5, "cpu": 1, "gpu": 2},
         )
-        text = result.explanation.lower()
-        assert "12vhpwr" not in text.replace("pcie_12vhpwr", "")
+        assert result.state is UNKNOWN
+        assert "psu_specifications.pcie_8pin_count" in result.missing_information
+        assert "gpu connector" in " ".join(result.missing_information).lower()
 
     def test_no_gpus_still_evaluates_cpu(self):
         result = rule_psu_build_wattage(
@@ -280,7 +320,15 @@ class TestPsuBuildWattage:
             {"cpu": {"tdp_w": 65}, "gpu": None},
             ids={"psu": 5, "cpu": 1, "gpu": None},
         )
-        assert result.state is COMPATIBLE
+        assert result.state is UNKNOWN
+
+    def test_no_cpu_or_gpu_is_not_applicable(self):
+        result = rule_psu_build_wattage(
+            {"wattage": 750},
+            {"cpu": None, "gpu": None},
+            ids={"psu": 5, "cpu": None, "gpu": None},
+        )
+        assert result.state is NOT_APPLICABLE
 
 
 class TestGpuMotherboardSlot:

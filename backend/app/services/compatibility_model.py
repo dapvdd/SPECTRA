@@ -12,7 +12,7 @@ import enum
 from dataclasses import dataclass, field
 from typing import Any
 
-RULES_VERSION = "M2-RULES-v1"
+RULES_VERSION = "M2.5-RULES-v1"
 
 # Component slot names used in requests, rule results, and explanations.
 COMPONENT_SLOTS = ("cpu", "gpu", "ram", "storage", "motherboard", "psu")
