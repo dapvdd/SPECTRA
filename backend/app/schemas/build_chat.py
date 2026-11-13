@@ -9,6 +9,17 @@ ScalarValue: TypeAlias = str | int | float | bool | None
 MAX_HISTORY_MESSAGES = 10
 MAX_HISTORY_MESSAGE_LENGTH = 4000
 
+# M2.5 Task 5: the compatibility digest is a bounded summary of the last
+# SPECTRA compatibility check. The M2 rule set has seven rules; the digest
+# carries at most that many entries so a client cannot inflate the prompt.
+MAX_COMPATIBILITY_RULE_RESULTS = 7
+MAX_COMPATIBILITY_RULE_EXPLANATION_LENGTH = 600
+MAX_COMPATIBILITY_UNRESOLVED_ITEMS = 7
+MAX_COMPATIBILITY_UNRESOLVED_ITEM_LENGTH = 300
+MAX_COMPATIBILITY_SLOTS = 6
+
+COMPATIBILITY_STATES = ("COMPATIBLE", "INCOMPATIBLE", "UNKNOWN")
+
 MAX_EVIDENCE_ITEMS = 10
 MAX_EVIDENCE_ITEM_LENGTH = 1000
 
@@ -141,12 +152,64 @@ class BuildUserContext(BaseModel):
     resolution: BuildResolution = BuildResolution.unspecified
 
 
+class BuildCompatibilityRuleDigest(BaseModel):
+    """One rule result from the last SPECTRA compatibility check.
+
+    A pass-through of a SPECTRA-computed fact: rule_id, state, and the
+    explanation SPECTRA already produced. Nothing here is derived, scored,
+    or extended by the assistant.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    rule_id: str = Field(min_length=1, max_length=100)
+    state: Literal["COMPATIBLE", "INCOMPATIBLE", "UNKNOWN"]
+    explanation: str = Field(
+        min_length=1, max_length=MAX_COMPATIBILITY_RULE_EXPLANATION_LENGTH
+    )
+
+
+class BuildCompatibilityDigest(BaseModel):
+    """Bounded compatibility summary for the six-slot build.
+
+    ``aggregate_state`` is the report-level verdict from the last
+    compatibility check; ``rule_results`` carries the individual outcomes
+    (at most MAX_COMPATIBILITY_RULE_RESULTS entries); ``unresolved`` names
+    checks that could not be completed and why; ``slots`` maps slot name ->
+    selected hardware id (six-slot identity without serializing records).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    aggregate_state: Literal["COMPATIBLE", "INCOMPATIBLE", "UNKNOWN"]
+    rule_results: list[BuildCompatibilityRuleDigest] = Field(
+        default_factory=list,
+        max_length=MAX_COMPATIBILITY_RULE_RESULTS,
+    )
+    unresolved: list[
+        Annotated[
+            str, Field(min_length=1, max_length=MAX_COMPATIBILITY_UNRESOLVED_ITEM_LENGTH)
+        ]
+    ] = Field(
+        default_factory=list,
+        max_length=MAX_COMPATIBILITY_UNRESOLVED_ITEMS,
+    )
+    slots: dict[
+        Annotated[str, Field(min_length=1, max_length=20)],
+        Annotated[int, Field(gt=0)],
+    ] = Field(
+        default_factory=dict,
+        max_length=MAX_COMPATIBILITY_SLOTS,
+    )
+
+
 class BuildContext(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     cpu: BuildCpuContext
     gpu: BuildGpuContext
     context: BuildUserContext = Field(default_factory=BuildUserContext)
+    compatibility: BuildCompatibilityDigest | None = None
 
 
 class BuildChatMessageRole(str, Enum):

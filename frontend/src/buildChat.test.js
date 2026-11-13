@@ -12,6 +12,7 @@ import {
   BuildChatError,
   CHAT_ERROR_KIND,
   CHAT_STATUS,
+  buildBuildChatCompatibilityDigest,
   buildChatPayload,
   completeBuildChatRequest,
   createBuildChatState,
@@ -1302,4 +1303,215 @@ test("composed flow keeps user context setters mapped to the build identity", ()
     "1:3361:productivity:unspecified"
   );
   assert.equal(tokenFor(cpuDetail, gpuDetail, context), "1:3361:unspecified:unspecified");
+});
+
+/* ---------- 31. six-component compatibility context (M2.5 Task 5) ---------- */
+
+const settledCompatibility = (overrides = {}) => ({
+  state: "INCOMPATIBLE",
+  ruleResults: [
+    {
+      rule_id: "cpu-motherboard-socket",
+      component_hardware_ids: { cpu: 1, motherboard: 9 },
+      state: "INCOMPATIBLE",
+      explanation: "CPU socket AM5 does not match motherboard socket AM4.",
+      spec_fields: ["cpu_specifications.socket"],
+      missing_information: [],
+      provenance: [],
+    },
+    {
+      rule_id: "psu-build-wattage",
+      component_hardware_ids: { psu: 5, cpu: 1 },
+      state: "UNKNOWN",
+      explanation: "Cannot evaluate PSU capacity: wattage is not recorded.",
+      spec_fields: ["psu_specifications.wattage"],
+      missing_information: ["psu_specifications.wattage"],
+      provenance: [],
+    },
+  ],
+  error: "",
+  isLoading: false,
+  ...overrides,
+});
+
+const slotIds = {
+  cpu: 1,
+  gpu: 3361,
+  ram: null,
+  storage: null,
+  motherboard: 9,
+  psu: 5,
+};
+
+test("the compatibility digest is withheld while the check is loading", () => {
+  assert.equal(
+    buildBuildChatCompatibilityDigest(
+      settledCompatibility({ isLoading: true }),
+      slotIds
+    ),
+    null
+  );
+});
+
+test("the compatibility digest is withheld when the check failed", () => {
+  assert.equal(
+    buildBuildChatCompatibilityDigest(
+      settledCompatibility({ error: "Compatibility check is unavailable right now." }),
+      slotIds
+    ),
+    null
+  );
+});
+
+test("a settled compatibility state becomes a bounded digest", () => {
+  const digest = buildBuildChatCompatibilityDigest(settledCompatibility(), slotIds);
+
+  assert.equal(digest.aggregate_state, "INCOMPATIBLE");
+  assert.deepEqual(digest.rule_results, [
+    {
+      rule_id: "cpu-motherboard-socket",
+      state: "INCOMPATIBLE",
+      explanation: "CPU socket AM5 does not match motherboard socket AM4.",
+    },
+    {
+      rule_id: "psu-build-wattage",
+      state: "UNKNOWN",
+      explanation: "Cannot evaluate PSU capacity: wattage is not recorded.",
+    },
+  ]);
+  assert.deepEqual(digest.unresolved, [
+    "psu-build-wattage: psu_specifications.wattage",
+  ]);
+  assert.deepEqual(digest.slots, { cpu: 1, gpu: 3361, motherboard: 9, psu: 5 });
+});
+
+test("the digest drops rules whose state is not a compatibility verdict", () => {
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({
+      ruleResults: [
+        {
+          rule_id: "psu-build-wattage",
+          state: "NOT_APPLICABLE",
+          explanation: "No CPU/GPU selected yet.",
+          missing_information: [],
+        },
+        {
+          rule_id: "cpu-motherboard-socket",
+          state: "COMPATIBLE",
+          explanation: "CPU and motherboard sockets match.",
+          missing_information: [],
+        },
+      ],
+    }),
+    {}
+  );
+
+  assert.deepEqual(
+    digest.rule_results.map((rule) => rule.rule_id),
+    ["cpu-motherboard-socket"]
+  );
+  assert.deepEqual(digest.unresolved, []);
+});
+
+test("the digest never exceeds the bounded rule-result and unresolved counts", () => {
+  const rules = Array.from({ length: 12 }, (_, index) => ({
+    rule_id: `rule-${index}`,
+    state: "UNKNOWN",
+    explanation: `Explanation ${index}.`,
+    missing_information: [`slot_${index}.field`],
+  }));
+
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({ ruleResults: rules }),
+    {}
+  );
+
+  assert.equal(digest.rule_results.length, 7);
+  assert.equal(digest.unresolved.length, 7);
+});
+
+test("the digest truncates over-long explanations and unresolved text", () => {
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({
+      ruleResults: [
+        {
+          rule_id: "r",
+          state: "UNKNOWN",
+          explanation: "x".repeat(900),
+          missing_information: ["y".repeat(500)],
+        },
+      ],
+    }),
+    {}
+  );
+
+  assert.equal(digest.rule_results[0].explanation.length, 600);
+  assert.equal(digest.unresolved[0].length, 300);
+});
+
+test("the digest keeps only positive integer slot ids", () => {
+  const digest = buildBuildChatCompatibilityDigest(settledCompatibility(), {
+    cpu: 1,
+    gpu: null,
+    ram: 0,
+    storage: -3,
+    motherboard: 9.5,
+    psu: "5",
+  });
+
+  assert.deepEqual(digest.slots, { cpu: 1 });
+});
+
+test("the digest falls back to the rule explanation when no field is named", () => {
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({
+      ruleResults: [
+        {
+          rule_id: "gpu-motherboard-slot",
+          state: "UNKNOWN",
+          explanation: "Motherboard PCIe slot generation is unknown.",
+          missing_information: [],
+        },
+      ],
+    }),
+    {}
+  );
+
+  assert.deepEqual(digest.unresolved, [
+    "gpu-motherboard-slot: Motherboard PCIe slot generation is unknown.",
+  ]);
+});
+
+test("the chat payload carries the compatibility digest inside the build context", () => {
+  const digest = buildBuildChatCompatibilityDigest(settledCompatibility(), slotIds);
+  const payload = buildChatPayload(
+    cpuDetail,
+    gpuDetail,
+    userContext,
+    "q",
+    { CPU: cpuBenchmarks, GPU: [] },
+    [],
+    digest
+  );
+
+  assert.deepEqual(payload.build.compatibility, digest);
+  assert.equal(payload.build.cpu.id, 1);
+  assert.equal(payload.build.gpu.id, 3361);
+});
+
+test("the chat payload omits the compatibility key when no digest is supplied", () => {
+  const payload = buildChatPayload(cpuDetail, gpuDetail, userContext, "q");
+
+  assert.equal("compatibility" in payload.build, false);
+  assert.deepEqual(Object.keys(payload.build).sort(), ["context", "cpu", "gpu"]);
+});
+
+test("App wires the settled compatibility check into every build chat request", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  assert.equal(source.includes("buildBuildChatCompatibilityDigest"), true);
+  assert.equal(
+    source.includes("buildBuildChatCompatibilityDigest(compatibility, buildSlotIds)"),
+    true
+  );
 });

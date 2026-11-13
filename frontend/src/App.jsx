@@ -80,6 +80,7 @@ import {
   BUILD_CHAT_CONVERSATION_STATUS,
   BUILD_CHAT_MESSAGE_ROLE,
   BUILD_CHAT_SUGGESTED_QUESTIONS,
+  buildBuildChatCompatibilityDigest,
   buildChatPayload,
   completeBuildChatConversationLoad,
   completeBuildChatConversationSave,
@@ -3859,6 +3860,7 @@ function App() {
         question,
         getBuildBenchmarksBySlot(),
         buildChatState.messages,
+        buildBuildChatCompatibilityDigest(compatibility, buildSlotIds),
       );
     } catch (error) {
       setBuildChatState((prev) =>
