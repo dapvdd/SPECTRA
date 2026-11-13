@@ -3,6 +3,9 @@ import {
   BUILD_CHAT_ENDPOINT_PATH,
   BUILD_CHAT_INTEGRATION_STATUS,
   buildBuildChatContext,
+  getBuildChatSnapshot,
+  getBuildSlotDetail,
+  isBuildChatContextReady,
   toBuildUserContext,
 } from "./buildConfig.js";
 import {
@@ -566,6 +569,33 @@ export const getBuildChatToken = (snapshot) => {
 };
 
 export const isSameBuildChatToken = (token, other) => token === other;
+
+/* M2.5 Task 6 (F6): resolve the chat restore pair from an explicit build
+   detail-state snapshot. The caller passes a live ref mirror so a slot that
+   completes after the other slot already committed reads the current pairing
+   instead of the render-scope snapshot captured when its request started. */
+export const resolveBuildChatRestore = (detailState, type, detail, userContext) => {
+  if (type !== "CPU" && type !== "GPU") {
+    return null;
+  }
+
+  const otherSlot = type === "CPU" ? "GPU" : "CPU";
+  const otherDetail = getBuildSlotDetail(detailState, otherSlot);
+  const cpuDetail = type === "CPU" ? detail : otherDetail;
+  const gpuDetail = type === "GPU" ? detail : otherDetail;
+
+  if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
+    return null;
+  }
+
+  return {
+    token: getBuildChatToken(
+      getBuildChatSnapshot(cpuDetail, gpuDetail, userContext)
+    ),
+    cpuId: cpuDetail.id,
+    gpuId: gpuDetail.id,
+  };
+};
 
 /* ---------- Conversation state ---------- */
 

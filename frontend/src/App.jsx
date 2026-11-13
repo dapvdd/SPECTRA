@@ -100,6 +100,7 @@ import {
   isSameBuildChatToken,
   requestBuildChatAnswer,
   resetBuildChatConversation,
+  resolveBuildChatRestore,
   startBuildChatConversationLoad,
   startBuildChatRequest,
 } from "./buildChat.js";
@@ -184,6 +185,7 @@ import {
   getBuildSlotChecklistItem,
   getBuildSlotRequestState,
   getBuildSummary,
+  hasSelectedBuildComponent,
   isBuildChatContextReady,
   setBuildComponent,
   setBuildResolution,
@@ -2034,7 +2036,7 @@ function BuildComponentCard({
 
       {!selection ? (
         <div className="build-component-empty">
-          <strong>Select a {type}</strong>
+          <strong>Select a {displayName}</strong>
           <span>
             Use Explore Hardware or a hardware detail page to choose one.
           </span>
@@ -2043,7 +2045,7 @@ function BuildComponentCard({
             className="build-component-select-button"
             onClick={onChange}
           >
-            Browse {type} catalog
+            Browse {displayName} catalog
           </button>
         </div>
       ) : (
@@ -2362,7 +2364,9 @@ function BuildConfigurationSection({
 
               return (
                 <div className="build-summary-item" key={type}>
-                  <span className="build-summary-label">{type}</span>
+                  <span className="build-summary-label">
+                    {getBuildSlotDisplayName(type)}
+                  </span>
                   <strong>{slotSummary.name}</strong>
                   {slotSummary.isSelected ? (
                     <span>{slotSummary.manufacturer}</span>
@@ -2541,6 +2545,16 @@ const COMPATIBILITY_STATUS_CLASS = {
   COMPATIBLE: "performance-status-available",
   INCOMPATIBLE: "performance-status-error",
   UNKNOWN: "performance-status-partial",
+};
+
+/* M2.5 Task 6 (F7): the honest verdict for an empty build. Derived during
+   render so an emptied build can never display — or send to the assistant —
+   rule results that belong to a previous slot configuration. */
+const EMPTY_BUILD_COMPATIBILITY = {
+  state: "UNKNOWN",
+  ruleResults: [],
+  error: "",
+  isLoading: false,
 };
 
 function BuildCompatibilitySection({ buildConfig, compatibility }) {
@@ -2735,6 +2749,15 @@ function App() {
   const [buildDetailState, setBuildDetailState] = useState(
     createBuildDetailState,
   );
+  /* M2.5 Task 6 (F6): a live mirror of buildDetailState. The chat restore must
+     read the state committed by the just-resolved slot request, not the
+     render-scope snapshot captured when that request started. Every write goes
+     through applyBuildDetailState so the mirror is never a render behind. */
+  const buildDetailStateRef = useRef(buildDetailState);
+  const applyBuildDetailState = (next) => {
+    buildDetailStateRef.current = next;
+    setBuildDetailState(next);
+  };
   const [buildUserContext, setBuildUserContext] = useState(createBuildUserContext);
   const [compatibility, setCompatibility] = useState({
     state: "UNKNOWN",
@@ -2871,8 +2894,20 @@ function App() {
     psu: buildConfig.psu?.id ?? null,
   };
   const buildSlotIdsKey = JSON.stringify(buildSlotIds);
+  const buildHasSelection = hasSelectedBuildComponent(buildSlotIds);
+  /* Derived in render: an empty build reads as the honest empty verdict, so
+     neither the panel nor the chat digest can surface stale rule results. */
+  const buildCompatibility = buildHasSelection
+    ? compatibility
+    : EMPTY_BUILD_COMPATIBILITY;
 
   useEffect(() => {
+    /* M2.5 Task 6 (F7): an empty build proves nothing, so skip the POST
+       entirely instead of spending a round trip on it. */
+    if (!buildHasSelection) {
+      return undefined;
+    }
+
     const controller = new AbortController();
     const { signal } = controller;
 
@@ -2905,16 +2940,18 @@ function App() {
         }
 
         console.error("Failed to check build compatibility:", error);
-        setCompatibility((prev) => ({
-          ...prev,
+        /* Drop any previous rule results: they belong to an earlier slot
+           configuration and must not read as a verdict for the current one. */
+        setCompatibility({
           state: "UNKNOWN",
+          ruleResults: [],
           error: "Compatibility check is unavailable right now.",
           isLoading: false,
-        }));
+        });
       });
 
     return () => controller.abort();
-  }, [buildSlotIdsKey]);
+  }, [buildSlotIdsKey, buildHasSelection]);
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
@@ -3206,28 +3243,24 @@ function App() {
 
   const restoreBuildConversationForSlot = (type, detail) => {
     /* The build chat conversation is a CPU+GPU feature (M1). The four M2
-       slots must not enter it: for RAM/STORAGE/MOTHERBOARD/PSU the 2-slot
-       pairing below would post the wrong detail as the GPU. */
-    if (type !== "CPU" && type !== "GPU") {
-      return;
-    }
+       slots must not enter it: the 2-slot pairing would otherwise post the
+       wrong detail as the GPU.
 
-    const otherSlot = type === "CPU" ? "GPU" : "CPU";
-    const otherDetail = getBuildSlotDetail(buildDetailState, otherSlot);
-    const cpuDetail = type === "CPU" ? detail : otherDetail;
-    const gpuDetail = type === "GPU" ? detail : otherDetail;
-
-    if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
-      return;
-    }
-
-    loadBuildConversation(
-      getBuildChatToken(
-        getBuildChatSnapshot(cpuDetail, gpuDetail, buildUserContext)
-      ),
-      cpuDetail.id,
-      gpuDetail.id
+       M2.5 Task 6 (F6): read the live ref mirror, not the render-scope
+       buildDetailState, so a slot that resolves after its partner committed
+       pairs against the current detail instead of a stale snapshot. */
+    const restore = resolveBuildChatRestore(
+      buildDetailStateRef.current,
+      type,
+      detail,
+      buildUserContext,
     );
+
+    if (!restore) {
+      return;
+    }
+
+    loadBuildConversation(restore.token, restore.cpuId, restore.gpuId);
   };
 
   const getBuildGuard = (type) => {
@@ -3258,8 +3291,8 @@ function App() {
     const guard = getBuildGuard(type);
     const requestId = guard.begin();
 
-    setBuildDetailState((prev) =>
-      startBuildDetailRequest(prev, type, requestId),
+    applyBuildDetailState(
+      startBuildDetailRequest(buildDetailStateRef.current, type, requestId),
     );
 
     requestHardwareDetail(hardwareId)
@@ -3268,8 +3301,13 @@ function App() {
           return;
         }
 
-        setBuildDetailState((prev) =>
-          completeBuildDetailRequest(prev, type, requestId, data),
+        applyBuildDetailState(
+          completeBuildDetailRequest(
+            buildDetailStateRef.current,
+            type,
+            requestId,
+            data,
+          ),
         );
 
         restoreBuildConversationForSlot(type, data);
@@ -3280,9 +3318,9 @@ function App() {
         }
 
         console.error("Failed to load build hardware detail:", error);
-        setBuildDetailState((prev) =>
+        applyBuildDetailState(
           failBuildDetailRequest(
-            prev,
+            buildDetailStateRef.current,
             type,
             requestId,
             `Failed to load ${type} details for the build configuration.`,
@@ -3356,7 +3394,7 @@ function App() {
     }
 
     setBuildConfig((prev) => clearBuildComponent(prev, type));
-    setBuildDetailState((prev) => clearBuildSlotDetail(prev, type));
+    applyBuildDetailState(clearBuildSlotDetail(buildDetailStateRef.current, type));
   };
 
   const changeBuildUseCase = (value) => {
@@ -3860,7 +3898,7 @@ function App() {
         question,
         getBuildBenchmarksBySlot(),
         buildChatState.messages,
-        buildBuildChatCompatibilityDigest(compatibility, buildSlotIds),
+        buildBuildChatCompatibilityDigest(buildCompatibility, buildSlotIds),
       );
     } catch (error) {
       setBuildChatState((prev) =>
@@ -4665,7 +4703,7 @@ function App() {
           buildChatReady={buildChatReady}
           buildChatState={buildChatState}
           buildChatContextSummary={buildChatContextSummary}
-          compatibility={compatibility}
+          compatibility={buildCompatibility}
           onSelectType={browseForBuildType}
           onClearSlot={clearBuildSlot}
           onRetrySlot={retryBuildSlot}

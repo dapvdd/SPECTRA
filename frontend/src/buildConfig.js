@@ -58,6 +58,13 @@ const BUILD_SLOT_DISPLAY_NAMES = {
 export const getBuildSlotDisplayName = (type) =>
   BUILD_SLOT_DISPLAY_NAMES[type] || type;
 
+/* M2.5 Task 6 (F7): the compatibility check must not POST for an empty build.
+   A slot counts only when it holds a usable (positive integer) hardware id. */
+export const hasSelectedBuildComponent = (slotIds) =>
+  Object.values(slotIds ?? {}).some(
+    (id) => typeof id === "number" && Number.isInteger(id) && id > 0
+  );
+
 const isSupportedBuildType = (type) => BUILD_SLOTS.includes(type);
 
 export const createBuildConfig = () => ({

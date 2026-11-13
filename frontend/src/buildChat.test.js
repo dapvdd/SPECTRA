@@ -1511,7 +1511,7 @@ test("App wires the settled compatibility check into every build chat request", 
 
   assert.equal(source.includes("buildBuildChatCompatibilityDigest"), true);
   assert.equal(
-    source.includes("buildBuildChatCompatibilityDigest(compatibility, buildSlotIds)"),
+    source.includes("buildBuildChatCompatibilityDigest(buildCompatibility, buildSlotIds)"),
     true
   );
 });
