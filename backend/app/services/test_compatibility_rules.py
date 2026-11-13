@@ -375,6 +375,18 @@ class TestRuleRegistry:
         ids = [rule.rule_id for rule in RULES]
         assert len(ids) == len(set(ids))
 
+    def test_registry_descriptions_avoid_measured_power_language(self):
+        """The M2.5 power invariant holds for the registry metadata too.
+
+        A listed-TDP sum is not measured draw and a PSU is never described as
+        covering it, so no rule description may use that vocabulary either —
+        not only the user-facing explanation strings.
+        """
+        for rule in RULES:
+            text = rule.description.lower()
+            assert "draw" not in text, rule.rule_id
+            assert "covers" not in text, rule.rule_id
+
     def test_rule_result_requires_ids_and_specs(self):
         # Rules receive ids; results echo them for explainability.
         result: RuleResult = rule_cpu_motherboard_socket(

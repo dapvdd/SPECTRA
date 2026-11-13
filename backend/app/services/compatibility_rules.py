@@ -474,7 +474,7 @@ RULES: tuple[Rule, ...] = (
     ),
     Rule(
         "psu-build-wattage",
-        "PSU capacity vs CPU+GPU draw with 30% headroom policy.",
+        "PSU capacity vs CPU+GPU listed-TDP reference with 30% headroom policy.",
         rule_psu_build_wattage,
     ),
     Rule(
