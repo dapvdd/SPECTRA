@@ -2352,101 +2352,58 @@ function BuildConfigurationSection({
         </p>
       </header>
 
-      {/* Workspace: configuration on the left, live analysis on the right.
-          DOM order matches reading order, so keyboard and screen-reader
-          traversal follow the same path as the eye. */}
-      <div className="build-workspace">
-        <div className="build-column build-column-configuration">
-          <div className="build-summary">
-            {BUILD_SLOTS.map((type) => {
-              const slotKey = type.toLowerCase();
-              const slotSummary = summary[slotKey];
+      {/* Reading order is the build hierarchy: what the build is, whether it
+          is compatible, what it is configured with, the listed detail, the
+          live intelligence, then the assistant. DOM order matches that order,
+          so keyboard and screen-reader traversal follow the same path as the
+          eye. */}
+      <BuildCompatibilitySection
+        buildConfig={buildConfig}
+        compatibility={compatibility}
+      />
 
-              return (
-                <div className="build-summary-item" key={type}>
-                  <span className="build-summary-label">
-                    {getBuildSlotDisplayName(type)}
-                  </span>
-                  <strong>{slotSummary.name}</strong>
-                  {slotSummary.isSelected ? (
-                    <span>{slotSummary.manufacturer}</span>
-                  ) : (
-                    <span className="build-summary-empty">Empty slot</span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+      <div className="build-configuration">
+        <div className="build-summary">
+          {BUILD_SLOTS.map((type) => {
+            const slotKey = type.toLowerCase();
+            const slotSummary = summary[slotKey];
 
-          <div className="build-components">
-            {BUILD_SLOTS.map((type) => {
-              const slotKey = type.toLowerCase();
-              const slotDetail = getBuildSlotDetail(buildDetailState, type);
-              const requestState = getBuildSlotRequestState(buildDetailState, type);
-
-              return (
-                <BuildComponentCard
-                  key={type}
-                  type={type}
-                  selection={buildConfig[slotKey]}
-                  detail={slotDetail}
-                  requestState={requestState}
-                  onChange={() => onSelectType(type)}
-                  onClear={() => onClearSlot(type)}
-                  onRetry={() => onRetrySlot(type)}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="build-column build-column-intelligence">
-          <BuildIntelligenceSection
-            intelligence={buildIntelligence}
-            buildSummary={summary}
-          />
-        </div>
-      </div>
-
-      <div className="build-facts">
-        <p className="detail-section-label">BUILD FACTS</p>
-
-        {facts.length === 0 ? (
-          <p className="build-facts-empty">
-            {summary.isComplete
-              ? "No listed specification values are available for these components."
-              : "Select a CPU and a GPU to list their stored specification values."}
-          </p>
-        ) : (
-          <div className="build-facts-list">
-            {facts.map((fact) => (
-              <div
-                key={fact.id}
-                className={`build-fact${
-                  fact.id === "listed-tdp-sum" ? " build-fact-highlight" : ""
-                }`}
-              >
-                <span>{fact.label}</span>
-                <strong>{fact.value}</strong>
+            return (
+              <div className="build-summary-item" key={type}>
+                <span className="build-summary-label">
+                  {getBuildSlotDisplayName(type)}
+                </span>
+                <strong>{slotSummary.name}</strong>
+                {slotSummary.isSelected ? (
+                  <span>{slotSummary.manufacturer}</span>
+                ) : (
+                  <span className="build-summary-empty">Empty slot</span>
+                )}
               </div>
-            ))}
-          </div>
-        )}
+            );
+          })}
+        </div>
 
-        {tdpSum !== null && (
-          <p className="build-facts-note">
-            Listed component TDP values ({`${tdpSum} W`}) are summed for reference
-            only. This is not a measurement of system power draw and is not a
-            power supply requirement.
-          </p>
-        )}
-      </div>
+        <div className="build-components">
+          {BUILD_SLOTS.map((type) => {
+            const slotKey = type.toLowerCase();
+            const slotDetail = getBuildSlotDetail(buildDetailState, type);
+            const requestState = getBuildSlotRequestState(buildDetailState, type);
 
-      <div className="build-lower">
-        <BuildCompatibilitySection
-          buildConfig={buildConfig}
-          compatibility={compatibility}
-        />
+            return (
+              <BuildComponentCard
+                key={type}
+                type={type}
+                selection={buildConfig[slotKey]}
+                detail={slotDetail}
+                requestState={requestState}
+                onChange={() => onSelectType(type)}
+                onClear={() => onClearSlot(type)}
+                onRetry={() => onRetrySlot(type)}
+              />
+            );
+          })}
+        </div>
 
         <div className="build-context">
           <p className="detail-section-label">CONTEXT</p>
@@ -2488,8 +2445,50 @@ function BuildConfigurationSection({
             </label>
           </div>
         </div>
+      </div>
 
-        {buildChatReady ? (
+      <div className="build-facts">
+        <p className="detail-section-label">BUILD FACTS</p>
+
+        {facts.length === 0 ? (
+          <p className="build-facts-empty">
+            {summary.isComplete
+              ? "No listed specification values are available for these components."
+              : "Select a CPU and a GPU to list their stored specification values."}
+          </p>
+        ) : (
+          <div className="build-facts-list">
+            {facts.map((fact) => (
+              <div
+                key={fact.id}
+                className={`build-fact${
+                  fact.id === "listed-tdp-sum" ? " build-fact-highlight" : ""
+                }`}
+              >
+                <span>{fact.label}</span>
+                <strong>{fact.value}</strong>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tdpSum !== null && (
+          <p className="build-facts-note">
+            Listed component TDP values ({`${tdpSum} W`}) are summed for reference
+            only. This is not a measurement of system power draw and is not a
+            power supply requirement.
+          </p>
+        )}
+      </div>
+
+      <div className="build-column-intelligence">
+        <BuildIntelligenceSection
+          intelligence={buildIntelligence}
+          buildSummary={summary}
+        />
+      </div>
+
+      {buildChatReady ? (
         <div className="build-conversation">
           <BuildChatSection
             contextSummary={buildChatContextSummary}
@@ -2525,7 +2524,6 @@ function BuildConfigurationSection({
           </div>
         </div>
       )}
-      </div>
     </section>
   );
 }

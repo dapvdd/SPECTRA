@@ -143,3 +143,31 @@ test("build slot prose never leaks the raw uppercase slot constants", () => {
   );
   assert.equal(appSource.includes("getBuildSlotDisplayName"), true);
 });
+
+/* ---------- Task 7: build workspace reading order ---------- */
+
+test("the build workspace reads overview, compatibility, configuration, detail, intelligence, assistant", () => {
+  const markers = [
+    'className="build-head"',
+    "<BuildCompatibilitySection",
+    'className="build-configuration"',
+    'className="build-facts"',
+    'className="build-column-intelligence"',
+    'className="build-conversation"',
+  ];
+
+  const positions = markers.map((marker) => appSource.indexOf(marker));
+
+  assert.equal(positions.every((position) => position >= 0), true);
+  assert.deepEqual(
+    positions,
+    [...positions].sort((a, b) => a - b),
+    "build sections must appear in the documented reading order"
+  );
+});
+
+test("the dissolved workspace wrappers are gone from the build markup", () => {
+  assert.equal(appSource.includes("build-workspace"), false);
+  assert.equal(appSource.includes("build-lower"), false);
+  assert.equal(appSource.includes("build-column-configuration"), false);
+});

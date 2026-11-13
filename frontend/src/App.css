@@ -2267,6 +2267,13 @@ h1 {
   letter-spacing: 0.04em;
 }
 
+/* The configuration group (summary strip, component cards, context) reads as
+   one region. Its top rule is the summary strip's own hairline, so the group
+   carries only the section gap rather than a second border. */
+.build-configuration {
+  margin-top: var(--spectra-space-2xl);
+}
+
 /* Two slots read as one strip separated by a hairline, not as two more
    containers competing with the components below them. */
 .build-summary {
@@ -2512,7 +2519,8 @@ h1 {
 .build-facts,
 .build-ai-note,
 .build-chat,
-.build-compatibility {
+.build-compatibility,
+.build-column-intelligence {
   margin-top: var(--spectra-space-2xl);
   padding-top: var(--spectra-space-xl);
   border-top: 1px solid var(--spectra-hairline);
@@ -2769,6 +2777,12 @@ h1 {
   border: 0;
   border-left: 2px solid var(--spectra-blue-accent);
   border-radius: 0;
+}
+
+/* The wrapper owns the section rule and its top gap, so the panel drops its
+   own top padding and the vertical rhythm matches the other build sections. */
+.build-column-intelligence > .build-intelligence {
+  padding-top: 0;
 }
 
 .build-column-intelligence .build-intelligence-header,
