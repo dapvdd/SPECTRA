@@ -19,6 +19,9 @@ MAX_COMPATIBILITY_UNRESOLVED_ITEM_LENGTH = 300
 MAX_COMPATIBILITY_SLOTS = 6
 
 COMPATIBILITY_STATES = ("COMPATIBLE", "INCOMPATIBLE", "UNKNOWN")
+"""Canonical aggregate/rule verdict vocabulary, mirrored by the Literal types
+below and by the frontend (`buildChat.js`). Kept as data so tests and future
+callers can enumerate the states without re-deriving them."""
 
 MAX_EVIDENCE_ITEMS = 10
 MAX_EVIDENCE_ITEM_LENGTH = 1000

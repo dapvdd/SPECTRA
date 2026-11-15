@@ -146,6 +146,12 @@ test("build slot prose never leaks the raw uppercase slot constants", () => {
 
 /* ---------- Task 7: build workspace reading order ---------- */
 
+/* Last-occurrence positions: the markers live in the build JSX near the end
+   of App.jsx, so a first-occurrence scan could be fooled by an earlier
+   duplicate (e.g. an import or a helper mentioning the same class). The
+   rendered order is what this test locks. */
+const lastIndexOf = (source, marker) => source.lastIndexOf(marker);
+
 test("the build workspace reads overview, compatibility, configuration, detail, intelligence, assistant", () => {
   const markers = [
     'className="build-head"',
@@ -156,7 +162,7 @@ test("the build workspace reads overview, compatibility, configuration, detail, 
     'className="build-conversation"',
   ];
 
-  const positions = markers.map((marker) => appSource.indexOf(marker));
+  const positions = markers.map((marker) => lastIndexOf(appSource, marker));
 
   assert.equal(positions.every((position) => position >= 0), true);
   assert.deepEqual(
