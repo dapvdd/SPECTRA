@@ -1,6 +1,8 @@
 # M2.5 Delivery Report — Unified Build Experience
 
-Branch: `feat/spectra-m2.5-unified-build-experience` · Base: `abb2548` (origin/main) · HEAD: `e622771` (pushed, remote SHA verified) · 2026-11-15
+Branch: `feat/spectra-m2.5-unified-build-experience` · Base: `abb2548` (origin/main) · HEAD: `807bf2f` (pushed, remote SHA verified) · 2026-11-15
+Review rounds (§7) covered the full code diff `abb2548..e622771`; the only
+commit after the reviews is this documentation update.
 
 ## Verdict: **READY_FOR_MERGE_REVIEW**
 
@@ -138,8 +140,9 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 
 ## 7. Independent review rounds (all completed 2026-11-14/15)
 
-Five independent scopes reviewed the full branch diff
-(`abb2548..e622771`). Every scope's verdict: **READY_FOR_MERGE_REVIEW**.
+Five independent scopes reviewed the full branch code diff
+(`abb2548..e622771`; commit `807bf2f` is documentation only). Every scope's
+verdict: **READY_FOR_MERGE_REVIEW**.
 
 **Security** — 0 Critical / 0 Important. One Minor accepted as designed: the
 compatibility digest is a client-supplied pass-through (self-affecting only;
