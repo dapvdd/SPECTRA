@@ -40,7 +40,11 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
   `docs/design/evidence/m2-5/`, captured against a **disposable** local preview
   (backend :8010 on a fresh temp DB built by `Base.metadata.create_all` + 18
   `PREVIEW M25` fixtures; vite preview :4180). Production and staging were
-  never contacted; both preview servers were stopped after capture.
+  never contacted; both preview servers were stopped after capture. The
+  evidence tooling is committed for reproducibility:
+  `backend/app/scripts/capture_m2_5_preview.py` (capture + 43 DOM assertions,
+  adapted from `capture_m2_preview.py`) and
+  `backend/app/scripts/seed_m2_5_preview.py` (disposable fixture DB).
 - **Suggested merge review focus:** `compatibility_rules.py::rule_psu_build_wattage`
   (two-tier semantics), `schemas/build_chat.py` + `build_chat_service.py` rule 14
   (digest contract), `App.jsx` compatibility effect + digest wiring, and the
@@ -52,7 +56,8 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
    visual claim is backed by **43 DOM assertions** executed in the live page
    during capture (slot counts, chip text per build state, rule-row
    composition, wording bans, reading-order offsets, overflow, resolved theme
-   attribute). The capture script and `dom-checks.json` are committed. **A
+   attribute). The capture script and `dom-checks.json` are committed
+   (`backend/app/scripts/capture_m2_5_preview.py`, `dom-checks.json`). **A
    human should still eyeball the 15 PNGs before merge** — especially
    `15-build-planner-dark.png` (theme verified via
    `document.documentElement.dataset.theme === "dark"`, not by reading
