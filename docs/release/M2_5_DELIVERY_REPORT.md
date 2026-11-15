@@ -29,6 +29,7 @@ M2 staging deployment were never touched.
 | 8b | Capture/seed scripts committed (evidence provenance) | `ae989de` | — |
 | 8c | Power-semantics doc corrections (hardware review) | `7b8ed62` | — |
 | 8d | Review minors: stale comment, constant doc, order pin | `e622771` | — |
+| 8e | CI unblock: restore-rehearsal guard ordering (pre-existing main failure) | — | +1 regression assert |
 
 Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 `docs/build-planner/M2_5_POWER_SEMANTICS.md`,
@@ -43,6 +44,19 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 - **Frontend:** `697 passed, 0 failed` (M2 baseline 664 → +33);
   `npm run build` ✓; `npm run lint` passes (pre-existing-style warnings only),
   re-run at final HEAD.
+
+- **CI unblock (2026-11-15, commit `0099dbc` follow-up):** the branch's first
+  CI run failed on `test_refuses_live_app_path`
+  (`backend/app/scripts/test_restore_rehearsal.py`) — a **pre-existing main
+  failure** (main @ `abb2548`, this PR's own base, ran red on 2026-11-12 with
+  the identical `1 failed, 1227 passed`). Root cause:
+  `restore_rehearsal()` ran `target.parent.mkdir()` **before** the live-path
+  guard, so on the Linux runner `mkdir("/app/data")` raised
+  `PermissionError` before the intended `ValueError`. It passed locally on
+  Windows because the path resolves to a creatable `C:\app\data`. Fix: the
+  guard (pure string inspection) now precedes every filesystem side effect,
+  with a new deterministic regression assertion (`tmp_path/data` must not be
+  created) that was observed RED before the fix on Windows too.
 - **Browser evidence:** 15 PNGs + `dom-checks.json` (43/43) in
   `docs/design/evidence/m2-5/`, captured against a **disposable** local preview
   (backend :8010 on a fresh temp DB built by `Base.metadata.create_all` + 18
