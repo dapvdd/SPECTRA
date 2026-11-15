@@ -72,8 +72,14 @@ class TestRestoreRehearsal:
             rr.restore_rehearsal(backup_file, Path("/app/data/spectra.db"))
 
     def test_refuses_relative_live_path(self, backup_file, tmp_path):
+        # Regression (CI, 2026-11-15): the live-path guard must fire BEFORE
+        # target.parent.mkdir() — on the Linux runner, mkdir("/app/data")
+        # raised PermissionError before the ValueError was ever raised. The
+        # guard must precede every filesystem side effect; the side effect
+        # is observable here because tmp_path is writable on every OS.
         with pytest.raises(ValueError, match="live-looking path"):
             rr.restore_rehearsal(backup_file, tmp_path / "data" / "spectra.db")
+        assert not (tmp_path / "data").exists()
 
     def test_refuses_same_target_as_backup(self, backup_file):
         with pytest.raises(ValueError, match="must differ"):

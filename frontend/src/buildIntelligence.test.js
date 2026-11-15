@@ -142,7 +142,7 @@ test("an empty build reports the empty state with no signals", () => {
   assert.deepEqual(model.strengths, []);
   assert.deepEqual(model.known, []);
   assert.deepEqual(model.considerations, [
-    "Select a CPU or a GPU to build verified intelligence for this build.",
+    "Select components to build verified intelligence for this build.",
   ]);
   assert.deepEqual(model.unknown.length > 0, true);
   assert.equal(model.completeness.expectedCount, 0);
@@ -190,7 +190,7 @@ test("a CPU-only build reports the CPU slot and an empty GPU slot", () => {
   assert.equal(model.overview.hasGpu, false);
   assert.equal(model.overview.isComplete, false);
   assert.equal(model.overview.populatedSlotCount, 1);
-  assert.equal(model.overview.slotLabel, "CPU only · GPU slot empty");
+  assert.equal(model.overview.slotLabel, "CPU · performance scope");
   assert.equal(model.overview.headline, "CPU Ryzen 7 7800X3D");
   assert.equal(model.overview.cpuName, "Ryzen 7 7800X3D");
   assert.equal(model.overview.gpuName, null);
@@ -216,7 +216,7 @@ test("a GPU-only build reports the GPU slot and an empty CPU slot", () => {
   assert.equal(model.overview.hasCpu, false);
   assert.equal(model.overview.hasGpu, true);
   assert.equal(model.overview.populatedSlotCount, 1);
-  assert.equal(model.overview.slotLabel, "GPU only · CPU slot empty");
+  assert.equal(model.overview.slotLabel, "GPU · performance scope");
   assert.equal(model.overview.headline, "GPU GeForce RTX 4070");
   assert.equal(findSignal(model, "cpu-benchmark").state, BUILD_SIGNAL_STATES.notSelected);
   assert.equal(model.benchmarkCoverage.cpu, null);
@@ -239,7 +239,7 @@ test("a complete build names both selections and both slots", () => {
 
   assert.equal(model.overview.isComplete, true);
   assert.equal(model.overview.populatedSlotCount, 2);
-  assert.equal(model.overview.slotLabel, "CPU + GPU configuration");
+  assert.equal(model.overview.slotLabel, "CPU + GPU · performance scope");
   assert.equal(
     model.overview.headline,
     "CPU Ryzen 7 7800X3D + GPU GeForce RTX 4070",
@@ -671,14 +671,110 @@ test("data gaps describe measurement limits rather than hardware weakness", () =
   });
 
   assert.deepEqual(model.dataGaps, [
-    "No measured system power data.",
     "No thermal measurements.",
     "No frame rate or rendering performance estimate.",
     "No component-balance or limiting-factor analysis.",
-    "No price, value, or compatibility data.",
+    "No verified price or value data.",
     "No verified GPU gaming benchmark data.",
     "No verified CPU cache size data.",
   ]);
+});
+
+test("the measured-power gap appears once, not in two lists", () => {
+  // M2.5 Task 4: the unknown list owns the measured-power gap; the dataGaps
+  // list must not repeat a shortened variant of the same absence.
+  const model = buildBuildIntelligence(cpuDetail(), gpuDetail());
+
+  const powerGaps = [
+    ...model.unknown.filter((gap) => gap.includes("system power")),
+    ...model.dataGaps.filter((gap) => gap.includes("system power")),
+  ];
+  assert.equal(powerGaps.length, 1);
+});
+
+test("the specification coverage figure is single-sourced", () => {
+  // M2.5 Task 4: the X of Y stored-fields figure previously appeared in
+  // interpretations, known, AND strengths. It lives in known only.
+  const model = buildBuildIntelligence(cpuDetail(), gpuDetail(), {
+    cpuBenchmarkState: cpuBenchmarks(),
+  });
+
+  const coverageLines = [
+    ...model.known,
+    ...model.interpretations,
+    ...model.strengths,
+  ].filter((line) => line.includes("stored fields"));
+  assert.equal(coverageLines.length, 2); // one per selected slot
+  assert.ok(model.known.some((line) => line.includes("stored fields")));
+  assert.equal(
+    model.strengths.some((line) => line.includes("stored fields")),
+    false
+  );
+  assert.equal(
+    model.interpretations.some((line) => line.includes("stored fields")),
+    false
+  );
+});
+
+test("data gaps never claim compatibility data is missing", () => {
+  // M2.5 Task 4: M2 added seven compatibility rules; claiming "no
+  // compatibility data" is false. Price/value remain honest gaps.
+  const model = buildBuildIntelligence(cpuDetail(), gpuDetail());
+
+  for (const gap of model.dataGaps) {
+    assert.equal(gap.includes("compatibility"), false);
+  }
+  assert.ok(model.dataGaps.includes("No verified price or value data."));
+});
+
+test("platform gap reflects selected slots instead of a blanket claim", () => {
+  // M2.5 Task 4: motherboard/PSU data now exists when those slots are
+  // selected; cooling and case data never exist. The gap (in the unknown
+  // list) must name only what is actually absent.
+  const withPlatform = buildBuildIntelligence(cpuDetail(), gpuDetail(), {
+    platformSlots: [
+      { type: "MOTHERBOARD", isSelected: true },
+      { type: "PSU", isSelected: true },
+    ],
+  });
+
+  const platformGap = withPlatform.unknown.find(
+    (gap) => gap.includes("cooling") || gap.includes("case")
+  );
+  assert.ok(platformGap, "cooling/case gap stays visible");
+  assert.equal(platformGap, "No cooling or case data.");
+  assert.equal(platformGap.includes("motherboard"), false);
+  assert.equal(platformGap.includes("power supply"), false);
+
+  const withoutPlatform = buildBuildIntelligence(cpuDetail(), gpuDetail(), {
+    platformSlots: [
+      { type: "MOTHERBOARD", isSelected: false },
+      { type: "PSU", isSelected: false },
+    ],
+  });
+  assert.ok(
+    withoutPlatform.unknown.includes(
+      "No motherboard, power supply, cooling, or case data."
+    )
+  );
+});
+
+test("power disclaimers appear at most once outside the power notice", () => {
+  // M2.5 Task 4: the TDP notice renders once in the facts note; the
+  // considerations list must not repeat a third phrasing of the same
+  // disclaimer.
+  const model = buildBuildIntelligence(cpuDetail(), gpuDetail());
+
+  const disclaimerCount = model.considerations.filter(
+    (line) => line.includes("TDP") && line.includes("system power")
+  ).length;
+  assert.equal(disclaimerCount, 0);
+  assert.equal(
+    model.considerations.includes(
+      "Listed component TDP should not be interpreted as total system power."
+    ),
+    false
+  );
 });
 
 test("every data gap is a bounded absence statement", () => {
@@ -713,8 +809,8 @@ test("strengths are generated only from verified populated data", () => {
   assert.deepEqual(model.strengths, [
     "Both CPU and GPU slots are populated for this build.",
     "Verified CPU benchmark records are available.",
-    "CPU specification data covers 7 of 7 stored fields.",
-    "GPU specification data covers 9 of 9 stored fields.",
+    // M2.5 Task 4: the X-of-Y stored-fields figure is single-sourced in
+    // `known` and intentionally no longer repeated as a strength.
     "Both CPU and GPU have listed TDP values.",
     "Architecture and release date are recorded for both components.",
   ]);
@@ -740,18 +836,24 @@ test("a GPU-only build never claims a populated CPU strength", () => {
 /* ---------- 14. consideration generation ---------- */
 
 test("considerations always separate listed TDP from system power", () => {
+  // M2.5 Task 4: the disclaimer is deduplicated — the power notice is the
+  // single authoritative statement; considerations no longer repeat a
+  // second phrasing of the same boundary.
   const model = buildBuildIntelligence(cpuDetail(), gpuDetail());
 
-  assert.ok(
-    model.considerations.includes(
-      "Listed component TDP should not be interpreted as total system power.",
-    ),
-  );
   assert.equal(model.power.notice, LISTED_TDP_NOTICE);
+  assert.match(model.power.notice, /not a measurement of system power draw/i);
+  assert.match(model.power.notice, /not a power supply requirement/i);
   assert.ok(
     model.considerations.every(
       (consideration) => consideration.trim().length > 0,
     ),
+  );
+  assert.equal(
+    model.considerations.some(
+      (line) => line.includes("TDP") && line.includes("system power"),
+    ),
+    false,
   );
 });
 
@@ -784,11 +886,8 @@ test("a fully verified build still states its coverage boundary", () => {
     ),
     false,
   );
-  assert.ok(
-    model.considerations.includes(
-      "Listed component TDP should not be interpreted as total system power.",
-    ),
-  );
+  // The single authoritative TDP disclaimer stays in the power notice.
+  assert.match(model.power.notice, /not a measurement of system power draw/i);
   assert.equal(model.benchmarkCoverage.totalExpectedCount, 2);
 });
 
@@ -1005,11 +1104,12 @@ test("listed TDP is explicitly distinguished from measured system power", () => 
   assert.equal(model.power.notice, LISTED_TDP_NOTICE);
   assert.match(model.power.notice, /not a measurement of system power draw/i);
   assert.match(model.power.notice, /not a power supply requirement/i);
-  assert.ok(
-    collectStrings(model).includes(
-      "Listed component TDP should not be interpreted as total system power.",
-    ),
-  );
+  // The notice is the single authoritative disclaimer: it appears in the
+  // model via the power block, and the power signal detail — nowhere else.
+  const noticeCount = collectStrings(model).filter(
+    (text) => text === LISTED_TDP_NOTICE
+  ).length;
+  assert.ok(noticeCount >= 2, "notice stays present in power + signal detail");
   assert.equal(
     findSignal(model, "listed-component-tdp").detail,
     LISTED_TDP_NOTICE,

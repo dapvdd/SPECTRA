@@ -30,6 +30,7 @@ import {
   DECISION_STATUS,
   buildComparisonDecisionSummary,
   buildComparisonSpecRows,
+  isComparisonSupported,
 } from "./comparisonDecision.js";
 import {
   BUILD_INTELLIGENCE_STATUS,
@@ -79,6 +80,7 @@ import {
   BUILD_CHAT_CONVERSATION_STATUS,
   BUILD_CHAT_MESSAGE_ROLE,
   BUILD_CHAT_SUGGESTED_QUESTIONS,
+  buildBuildChatCompatibilityDigest,
   buildChatPayload,
   completeBuildChatConversationLoad,
   completeBuildChatConversationSave,
@@ -98,6 +100,7 @@ import {
   isSameBuildChatToken,
   requestBuildChatAnswer,
   resetBuildChatConversation,
+  resolveBuildChatRestore,
   startBuildChatConversationLoad,
   startBuildChatRequest,
 } from "./buildChat.js";
@@ -111,11 +114,12 @@ import {
 } from "./buildConversation.js";
 import {
   HARDWARE_TYPES,
-  MANUFACTURER_FILTERS,
   createCatalogLoadGuard,
+  deriveManufacturerOptions,
   getCatalogFilterState,
   getCatalogReadout,
   getCatalogResultSummary,
+  getNextManufacturerFilter,
   mergeTypeFacetCounts,
   requestHardwareCatalog,
   requestHardwareCatalogPage,
@@ -176,10 +180,12 @@ import {
   getBuildComponentSummary,
   getBuildFacts,
   getBuildSelection,
+  getBuildSlotDisplayName,
   getBuildSlotDetail,
   getBuildSlotChecklistItem,
   getBuildSlotRequestState,
   getBuildSummary,
+  hasSelectedBuildComponent,
   isBuildChatContextReady,
   setBuildComponent,
   setBuildResolution,
@@ -1990,6 +1996,7 @@ function BuildComponentCard({
       : errored
         ? "error"
         : "ready";
+  const displayName = getBuildSlotDisplayName(type);
 
   return (
     <section
@@ -1998,8 +2005,12 @@ function BuildComponentCard({
       data-state={state}
     >
       <div className="build-component-slot-head">
-        <span className="build-component-slot-class" aria-hidden="true">
-          {type}
+        <span
+          className="build-component-slot-class"
+          aria-hidden="true"
+          id={`build-slot-${type}`}
+        >
+          {displayName}
         </span>
         <span className="build-component-slot-status">
           {!selection
@@ -2025,7 +2036,7 @@ function BuildComponentCard({
 
       {!selection ? (
         <div className="build-component-empty">
-          <strong>Select a {type}</strong>
+          <strong>Select a {displayName}</strong>
           <span>
             Use Explore Hardware or a hardware detail page to choose one.
           </span>
@@ -2034,7 +2045,7 @@ function BuildComponentCard({
             className="build-component-select-button"
             onClick={onChange}
           >
-            Browse {type} catalog
+            Browse {displayName} catalog
           </button>
         </div>
       ) : (
@@ -2052,13 +2063,13 @@ function BuildComponentCard({
           {busy && (
             <p className="build-component-status" role="status" aria-live="polite">
               <span className="state-spinner" aria-hidden="true" />
-              Loading {type} details...
+              Loading {displayName} details...
             </p>
           )}
 
           {errored && (
             <div className="build-component-error" role="alert">
-              <strong>{type} details unavailable</strong>
+              <strong>{displayName} details unavailable</strong>
               <span>{requestState.message}</span>
               <button
                 type="button"
@@ -2087,7 +2098,7 @@ function BuildComponentCard({
               className="build-action-button"
               onClick={onChange}
             >
-              Change {type}
+              Change {displayName}
             </button>
 
             <button
@@ -2134,7 +2145,7 @@ function BuildIntelligenceSignalList({ signals, titleId }) {
   );
 }
 
-function BuildIntelligenceSection({ intelligence }) {
+function BuildIntelligenceSection({ intelligence, buildSummary }) {
   const { overview, power, completeness, benchmarkCoverage } = intelligence;
   const isEmpty = intelligence.status === BUILD_INTELLIGENCE_STATUS.empty;
 
@@ -2171,7 +2182,8 @@ function BuildIntelligenceSection({ intelligence }) {
         <div className="build-intelligence-empty">
           <HardwareSlotVisual kind="cpu" className="build-intelligence-empty-art" />
           <p>
-            Select a CPU or a GPU to build verified intelligence for this build.
+            Select components to build verified intelligence for this build.
+            Performance evidence covers the CPU and GPU slots.
           </p>
         </div>
       ) : (
@@ -2194,8 +2206,10 @@ function BuildIntelligenceSection({ intelligence }) {
             </div>
 
             <div className="build-intelligence-fact">
-              <dt>Populated slots</dt>
-              <dd>{overview.populatedSlotCount} of 2</dd>
+              <dt>Components selected</dt>
+              <dd>
+                {buildSummary.selectedCount} of {buildSummary.totalSlotCount}
+              </dd>
             </div>
 
             <div className="build-intelligence-fact">
@@ -2313,6 +2327,12 @@ function BuildConfigurationSection({
     gpuRequestStatus: gpuRequestState.status,
     cpuBenchmarkState: buildBenchmarkStates.CPU,
     gpuBenchmarkState: buildBenchmarkStates.GPU,
+    /* M2.5 Task 4: six-slot state so the platform gap names only the slots
+       that are actually empty. */
+    platformSlots: [
+      { type: "MOTHERBOARD", isSelected: Boolean(buildConfig.motherboard) },
+      { type: "PSU", isSelected: Boolean(buildConfig.psu) },
+    ],
   });
 
   return (
@@ -2332,96 +2352,58 @@ function BuildConfigurationSection({
         </p>
       </header>
 
-      {/* Workspace: configuration on the left, live analysis on the right.
-          DOM order matches reading order, so keyboard and screen-reader
-          traversal follow the same path as the eye. */}
-      <div className="build-workspace">
-        <div className="build-column build-column-configuration">
-          <div className="build-summary">
-            {BUILD_SLOTS.map((type) => {
-              const slotKey = type.toLowerCase();
-              const slotSummary = summary[slotKey];
+      {/* Reading order is the build hierarchy: what the build is, whether it
+          is compatible, what it is configured with, the listed detail, the
+          live intelligence, then the assistant. DOM order matches that order,
+          so keyboard and screen-reader traversal follow the same path as the
+          eye. */}
+      <BuildCompatibilitySection
+        buildConfig={buildConfig}
+        compatibility={compatibility}
+      />
 
-              return (
-                <div className="build-summary-item" key={type}>
-                  <span className="build-summary-label">{type}</span>
-                  <strong>{slotSummary.name}</strong>
-                  {slotSummary.isSelected ? (
-                    <span>{slotSummary.manufacturer}</span>
-                  ) : (
-                    <span className="build-summary-empty">Empty slot</span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+      <div className="build-configuration">
+        <div className="build-summary">
+          {BUILD_SLOTS.map((type) => {
+            const slotKey = type.toLowerCase();
+            const slotSummary = summary[slotKey];
 
-          <div className="build-components">
-            {BUILD_SLOTS.map((type) => {
-              const slotKey = type.toLowerCase();
-              const slotDetail = getBuildSlotDetail(buildDetailState, type);
-              const requestState = getBuildSlotRequestState(buildDetailState, type);
-
-              return (
-                <BuildComponentCard
-                  key={type}
-                  type={type}
-                  selection={buildConfig[slotKey]}
-                  detail={slotDetail}
-                  requestState={requestState}
-                  onChange={() => onSelectType(type)}
-                  onClear={() => onClearSlot(type)}
-                  onRetry={() => onRetrySlot(type)}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="build-column build-column-intelligence">
-          <BuildIntelligenceSection intelligence={buildIntelligence} />
-        </div>
-      </div>
-
-      <div className="build-facts">
-        <p className="detail-section-label">BUILD FACTS</p>
-
-        {facts.length === 0 ? (
-          <p className="build-facts-empty">
-            {summary.isComplete
-              ? "No listed specification values are available for these components."
-              : "Select a CPU and a GPU to list their stored specification values."}
-          </p>
-        ) : (
-          <div className="build-facts-list">
-            {facts.map((fact) => (
-              <div
-                key={fact.id}
-                className={`build-fact${
-                  fact.id === "listed-tdp-sum" ? " build-fact-highlight" : ""
-                }`}
-              >
-                <span>{fact.label}</span>
-                <strong>{fact.value}</strong>
+            return (
+              <div className="build-summary-item" key={type}>
+                <span className="build-summary-label">
+                  {getBuildSlotDisplayName(type)}
+                </span>
+                <strong>{slotSummary.name}</strong>
+                {slotSummary.isSelected ? (
+                  <span>{slotSummary.manufacturer}</span>
+                ) : (
+                  <span className="build-summary-empty">Empty slot</span>
+                )}
               </div>
-            ))}
-          </div>
-        )}
+            );
+          })}
+        </div>
 
-        {tdpSum !== null && (
-          <p className="build-facts-note">
-            Listed component TDP values ({`${tdpSum} W`}) are summed for reference
-            only. This is not a measurement of system power draw and is not a
-            power supply requirement.
-          </p>
-        )}
-      </div>
+        <div className="build-components">
+          {BUILD_SLOTS.map((type) => {
+            const slotKey = type.toLowerCase();
+            const slotDetail = getBuildSlotDetail(buildDetailState, type);
+            const requestState = getBuildSlotRequestState(buildDetailState, type);
 
-      <div className="build-lower">
-        <BuildCompatibilitySection
-          buildConfig={buildConfig}
-          compatibility={compatibility}
-        />
+            return (
+              <BuildComponentCard
+                key={type}
+                type={type}
+                selection={buildConfig[slotKey]}
+                detail={slotDetail}
+                requestState={requestState}
+                onChange={() => onSelectType(type)}
+                onClear={() => onClearSlot(type)}
+                onRetry={() => onRetrySlot(type)}
+              />
+            );
+          })}
+        </div>
 
         <div className="build-context">
           <p className="detail-section-label">CONTEXT</p>
@@ -2463,8 +2445,50 @@ function BuildConfigurationSection({
             </label>
           </div>
         </div>
+      </div>
 
-        {buildChatReady ? (
+      <div className="build-facts">
+        <p className="detail-section-label">BUILD FACTS</p>
+
+        {facts.length === 0 ? (
+          <p className="build-facts-empty">
+            {summary.isComplete
+              ? "No listed specification values are available for these components."
+              : "Select a CPU and a GPU to list their stored specification values."}
+          </p>
+        ) : (
+          <div className="build-facts-list">
+            {facts.map((fact) => (
+              <div
+                key={fact.id}
+                className={`build-fact${
+                  fact.id === "listed-tdp-sum" ? " build-fact-highlight" : ""
+                }`}
+              >
+                <span>{fact.label}</span>
+                <strong>{fact.value}</strong>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tdpSum !== null && (
+          <p className="build-facts-note">
+            Listed component TDP values ({`${tdpSum} W`}) are summed for reference
+            only. This is not a measurement of system power draw and is not a
+            power supply requirement.
+          </p>
+        )}
+      </div>
+
+      <div className="build-column-intelligence">
+        <BuildIntelligenceSection
+          intelligence={buildIntelligence}
+          buildSummary={summary}
+        />
+      </div>
+
+      {buildChatReady ? (
         <div className="build-conversation">
           <BuildChatSection
             contextSummary={buildChatContextSummary}
@@ -2500,7 +2524,6 @@ function BuildConfigurationSection({
           </div>
         </div>
       )}
-      </div>
     </section>
   );
 }
@@ -2520,6 +2543,16 @@ const COMPATIBILITY_STATUS_CLASS = {
   COMPATIBLE: "performance-status-available",
   INCOMPATIBLE: "performance-status-error",
   UNKNOWN: "performance-status-partial",
+};
+
+/* M2.5 Task 6 (F7): the honest verdict for an empty build. Derived during
+   render so an emptied build can never display — or send to the assistant —
+   rule results that belong to a previous slot configuration. */
+const EMPTY_BUILD_COMPATIBILITY = {
+  state: "UNKNOWN",
+  ruleResults: [],
+  error: "",
+  isLoading: false,
 };
 
 function BuildCompatibilitySection({ buildConfig, compatibility }) {
@@ -2714,6 +2747,15 @@ function App() {
   const [buildDetailState, setBuildDetailState] = useState(
     createBuildDetailState,
   );
+  /* M2.5 Task 6 (F6): a live mirror of buildDetailState. The chat restore must
+     read the state committed by the just-resolved slot request, not the
+     render-scope snapshot captured when that request started. Every write goes
+     through applyBuildDetailState so the mirror is never a render behind. */
+  const buildDetailStateRef = useRef(buildDetailState);
+  const applyBuildDetailState = (next) => {
+    buildDetailStateRef.current = next;
+    setBuildDetailState(next);
+  };
   const [buildUserContext, setBuildUserContext] = useState(createBuildUserContext);
   const [compatibility, setCompatibility] = useState({
     state: "UNKNOWN",
@@ -2850,8 +2892,20 @@ function App() {
     psu: buildConfig.psu?.id ?? null,
   };
   const buildSlotIdsKey = JSON.stringify(buildSlotIds);
+  const buildHasSelection = hasSelectedBuildComponent(buildSlotIds);
+  /* Derived in render: an empty build reads as the honest empty verdict, so
+     neither the panel nor the chat digest can surface stale rule results. */
+  const buildCompatibility = buildHasSelection
+    ? compatibility
+    : EMPTY_BUILD_COMPATIBILITY;
 
   useEffect(() => {
+    /* M2.5 Task 6 (F7): an empty build proves nothing, so skip the POST
+       entirely instead of spending a round trip on it. */
+    if (!buildHasSelection) {
+      return undefined;
+    }
+
     const controller = new AbortController();
     const { signal } = controller;
 
@@ -2884,16 +2938,18 @@ function App() {
         }
 
         console.error("Failed to check build compatibility:", error);
-        setCompatibility((prev) => ({
-          ...prev,
+        /* Drop any previous rule results: they belong to an earlier slot
+           configuration and must not read as a verdict for the current one. */
+        setCompatibility({
           state: "UNKNOWN",
+          ruleResults: [],
           error: "Compatibility check is unavailable right now.",
           isLoading: false,
-        }));
+        });
       });
 
     return () => controller.abort();
-  }, [buildSlotIdsKey]);
+  }, [buildSlotIdsKey, buildHasSelection]);
 
   const selectedComparisonType = compareList[0]?.type || null;
   const isGpuComparison = selectedComparisonType === "GPU";
@@ -3185,28 +3241,24 @@ function App() {
 
   const restoreBuildConversationForSlot = (type, detail) => {
     /* The build chat conversation is a CPU+GPU feature (M1). The four M2
-       slots must not enter it: for RAM/STORAGE/MOTHERBOARD/PSU the 2-slot
-       pairing below would post the wrong detail as the GPU. */
-    if (type !== "CPU" && type !== "GPU") {
-      return;
-    }
+       slots must not enter it: the 2-slot pairing would otherwise post the
+       wrong detail as the GPU.
 
-    const otherSlot = type === "CPU" ? "GPU" : "CPU";
-    const otherDetail = getBuildSlotDetail(buildDetailState, otherSlot);
-    const cpuDetail = type === "CPU" ? detail : otherDetail;
-    const gpuDetail = type === "GPU" ? detail : otherDetail;
-
-    if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
-      return;
-    }
-
-    loadBuildConversation(
-      getBuildChatToken(
-        getBuildChatSnapshot(cpuDetail, gpuDetail, buildUserContext)
-      ),
-      cpuDetail.id,
-      gpuDetail.id
+       M2.5 Task 6 (F6): read the live ref mirror, not the render-scope
+       buildDetailState, so a slot that resolves after its partner committed
+       pairs against the current detail instead of a stale snapshot. */
+    const restore = resolveBuildChatRestore(
+      buildDetailStateRef.current,
+      type,
+      detail,
+      buildUserContext,
     );
+
+    if (!restore) {
+      return;
+    }
+
+    loadBuildConversation(restore.token, restore.cpuId, restore.gpuId);
   };
 
   const getBuildGuard = (type) => {
@@ -3237,8 +3289,8 @@ function App() {
     const guard = getBuildGuard(type);
     const requestId = guard.begin();
 
-    setBuildDetailState((prev) =>
-      startBuildDetailRequest(prev, type, requestId),
+    applyBuildDetailState(
+      startBuildDetailRequest(buildDetailStateRef.current, type, requestId),
     );
 
     requestHardwareDetail(hardwareId)
@@ -3247,8 +3299,13 @@ function App() {
           return;
         }
 
-        setBuildDetailState((prev) =>
-          completeBuildDetailRequest(prev, type, requestId, data),
+        applyBuildDetailState(
+          completeBuildDetailRequest(
+            buildDetailStateRef.current,
+            type,
+            requestId,
+            data,
+          ),
         );
 
         restoreBuildConversationForSlot(type, data);
@@ -3259,9 +3316,9 @@ function App() {
         }
 
         console.error("Failed to load build hardware detail:", error);
-        setBuildDetailState((prev) =>
+        applyBuildDetailState(
           failBuildDetailRequest(
-            prev,
+            buildDetailStateRef.current,
             type,
             requestId,
             `Failed to load ${type} details for the build configuration.`,
@@ -3335,7 +3392,7 @@ function App() {
     }
 
     setBuildConfig((prev) => clearBuildComponent(prev, type));
-    setBuildDetailState((prev) => clearBuildSlotDetail(prev, type));
+    applyBuildDetailState(clearBuildSlotDetail(buildDetailStateRef.current, type));
   };
 
   const changeBuildUseCase = (value) => {
@@ -3450,8 +3507,19 @@ function App() {
       });
   };
 
+  /* M2.5 Task 2: when the category changes, the previous manufacturer
+     selection may not exist in the new category's vendor set. A stale
+     selection would silently produce an empty catalog, so it resets to
+     "All" unless it is still a live option. The fetch effects below depend
+     on manufacturerFilter, so this reset re-issues the narrowed query. */
   const changeHardwareTypeFilter = (type) => {
     setHardwareTypeFilter(type);
+    setManufacturerFilter((current) =>
+      getNextManufacturerFilter(
+        current,
+        deriveManufacturerOptions(hardwareFacets?.manufacturers)
+      )
+    );
     setHardwareLoading(true);
     setHardwareError("");
     setCardSpecsById({});
@@ -3610,6 +3678,14 @@ function App() {
       manufacturerFacetCounts[facet.value] = facet.count;
     });
   }
+
+  /* M2.5 Task 2: manufacturer options come from the live facet data for the
+     active category (the backend counts each facet without its own filter,
+     so the list stays complete while a vendor is selected). No vendor name
+     is ever invented here. */
+  const manufacturerOptions = deriveManufacturerOptions(
+    hardwareFacets?.manufacturers
+  );
 
   const typeFacetCounts = typeFacetCountsState;
 
@@ -3820,6 +3896,7 @@ function App() {
         question,
         getBuildBenchmarksBySlot(),
         buildChatState.messages,
+        buildBuildChatCompatibilityDigest(buildCompatibility, buildSlotIds),
       );
     } catch (error) {
       setBuildChatState((prev) =>
@@ -4223,7 +4300,7 @@ function App() {
             role="group"
             aria-label="Filter hardware by manufacturer"
           >
-            {MANUFACTURER_FILTERS.map((manufacturer) => {
+            {manufacturerOptions.map((manufacturer) => {
               const filterState = getCatalogFilterState(
                 manufacturer,
                 manufacturerFilter
@@ -4460,31 +4537,33 @@ function App() {
                       </button>
 
                       <div className="hardware-card-actions">
-                        <button
-                          type="button"
-                          className={`compare-button ${inComparison ? "added" : ""}`}
-                          aria-pressed={inComparison}
-                          aria-label={
-                            inComparison
-                              ? `Remove ${item.name} from comparison`
-                              : `Add ${item.name} to comparison`
-                          }
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            if (inComparison) {
-                              removeFromCompare(item.id);
-                              return;
+                        {isComparisonSupported(item.type) && (
+                          <button
+                            type="button"
+                            className={`compare-button ${inComparison ? "added" : ""}`}
+                            aria-pressed={inComparison}
+                            aria-label={
+                              inComparison
+                                ? `Remove ${item.name} from comparison`
+                                : `Add ${item.name} to comparison`
                             }
-                            addToCompare(item);
-                          }}
-                          disabled={comparisonFull}
-                        >
-                          {inComparison
-                            ? "✓ In Comparison"
-                            : comparisonFull
-                              ? "Comparison Full"
-                              : "Compare"}
-                        </button>
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              if (inComparison) {
+                                removeFromCompare(item.id);
+                                return;
+                              }
+                              addToCompare(item);
+                            }}
+                            disabled={comparisonFull}
+                          >
+                            {inComparison
+                              ? "✓ In Comparison"
+                              : comparisonFull
+                                ? "Comparison Full"
+                                : "Compare"}
+                          </button>
+                        )}
 
                         {buildAction.isBuildSlot && (
                           <button
@@ -4622,7 +4701,7 @@ function App() {
           buildChatReady={buildChatReady}
           buildChatState={buildChatState}
           buildChatContextSummary={buildChatContextSummary}
-          compatibility={compatibility}
+          compatibility={buildCompatibility}
           onSelectType={browseForBuildType}
           onClearSlot={clearBuildSlot}
           onRetrySlot={retryBuildSlot}

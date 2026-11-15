@@ -3,6 +3,9 @@ import {
   BUILD_CHAT_ENDPOINT_PATH,
   BUILD_CHAT_INTEGRATION_STATUS,
   buildBuildChatContext,
+  getBuildChatSnapshot,
+  getBuildSlotDetail,
+  isBuildChatContextReady,
   toBuildUserContext,
 } from "./buildConfig.js";
 import {
@@ -29,6 +32,21 @@ export const BUILD_CHAT_EVIDENCE_MAX_ITEMS = 10;
 export const BUILD_CHAT_EVIDENCE_MAX_ITEM_LENGTH = 1000;
 export const BUILD_CHAT_ANALYSIS_MAX_ITEMS = 5;
 export const BUILD_CHAT_ANALYSIS_MAX_ITEM_LENGTH = 500;
+
+/* M2.5 Task 5: the compatibility digest mirrors the backend schema bounds
+   (backend/app/schemas/build_chat.py). The M2 rule set has seven rules, so a
+   client cannot inflate the prompt beyond these limits. */
+export const BUILD_CHAT_COMPATIBILITY_STATES = [
+  "COMPATIBLE",
+  "INCOMPATIBLE",
+  "UNKNOWN",
+];
+export const BUILD_CHAT_COMPATIBILITY_MAX_RULES = 7;
+export const BUILD_CHAT_COMPATIBILITY_MAX_EXPLANATION_LENGTH = 600;
+export const BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED = 7;
+export const BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED_LENGTH = 300;
+export const BUILD_CHAT_COMPATIBILITY_MAX_SLOTS = 6;
+export const BUILD_CHAT_COMPATIBILITY_MAX_RULE_ID_LENGTH = 100;
 
 export const BUILD_CHAT_EVIDENCE_SECTION = {
   knownFacts: "known_facts",
@@ -129,13 +147,140 @@ export const buildBuildChatHistory = (messages) => {
 export const getBuildChatHistory = (state) =>
   buildBuildChatHistory(state?.messages);
 
+const COMPATIBILITY_STATE_SET = new Set(BUILD_CHAT_COMPATIBILITY_STATES);
+
+const toBoundedChatText = (value, maxLength) => {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return "";
+  }
+
+  return trimmed.length > maxLength ? trimmed.slice(0, maxLength) : trimmed;
+};
+
+const normalizeCompatibilityRule = (rule) => {
+  if (rule === null || typeof rule !== "object" || Array.isArray(rule)) {
+    return null;
+  }
+
+  const ruleId = toBoundedChatText(
+    rule.rule_id,
+    BUILD_CHAT_COMPATIBILITY_MAX_RULE_ID_LENGTH
+  );
+  const explanation = toBoundedChatText(
+    rule.explanation,
+    BUILD_CHAT_COMPATIBILITY_MAX_EXPLANATION_LENGTH
+  );
+
+  if (!ruleId || !COMPATIBILITY_STATE_SET.has(rule.state) || !explanation) {
+    return null;
+  }
+
+  return { rule_id: ruleId, state: rule.state, explanation };
+};
+
+const toUnresolvedText = (rule, ruleId) => {
+  const missing = Array.isArray(rule?.missing_information)
+    ? rule.missing_information
+        .map((entry) =>
+          toBoundedChatText(
+            entry,
+            BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED_LENGTH
+          )
+        )
+        .filter(Boolean)
+    : [];
+
+  if (missing.length > 0) {
+    return `${ruleId}: ${missing.join(", ")}`;
+  }
+
+  const explanation = toBoundedChatText(
+    rule?.explanation,
+    BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED_LENGTH
+  );
+
+  return explanation ? `${ruleId}: ${explanation}` : "";
+};
+
+/* The digest is a pass-through of SPECTRA's own compatibility verdicts: the
+   client never derives, scores, or extends a rule. It is withheld entirely
+   while the check is loading or when it failed, so the assistant is never
+   handed a stale or partial verdict. Rules whose state is not a compatibility
+   verdict (NOT_APPLICABLE) are omitted rather than mislabeled. */
+export const buildBuildChatCompatibilityDigest = (compatibility, slotIds = {}) => {
+  if (!compatibility || compatibility.isLoading || compatibility.error) {
+    return null;
+  }
+
+  const sourceRules = Array.isArray(compatibility.ruleResults)
+    ? compatibility.ruleResults
+    : [];
+
+  const ruleResults = [];
+  const unresolved = [];
+
+  for (const rule of sourceRules) {
+    const normalized = normalizeCompatibilityRule(rule);
+
+    if (normalized === null) {
+      continue;
+    }
+
+    if (ruleResults.length < BUILD_CHAT_COMPATIBILITY_MAX_RULES) {
+      ruleResults.push(normalized);
+    }
+
+    if (
+      normalized.state === "UNKNOWN" &&
+      unresolved.length < BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED
+    ) {
+      const text = toBoundedChatText(
+        toUnresolvedText(rule, normalized.rule_id),
+        BUILD_CHAT_COMPATIBILITY_MAX_UNRESOLVED_LENGTH
+      );
+
+      if (text) {
+        unresolved.push(text);
+      }
+    }
+  }
+
+  const slots = {};
+
+  for (const [slot, id] of Object.entries(slotIds ?? {})) {
+    if (Object.keys(slots).length >= BUILD_CHAT_COMPATIBILITY_MAX_SLOTS) {
+      break;
+    }
+
+    if (typeof id === "number" && Number.isInteger(id) && id > 0) {
+      slots[slot] = id;
+    }
+  }
+
+  return {
+    aggregate_state: COMPATIBILITY_STATE_SET.has(compatibility.state)
+      ? compatibility.state
+      : "UNKNOWN",
+    rule_results: ruleResults,
+    unresolved,
+    slots,
+  };
+};
+
 export const buildChatPayload = (
   cpuDetail,
   gpuDetail,
   userContext,
   question,
   benchmarksBySlot = {},
-  messages = []
+  messages = [],
+  compatibilityDigest = null
 ) => {
   const normalizedQuestion = normalizeBuildChatQuestion(question);
 
@@ -146,14 +291,18 @@ export const buildChatPayload = (
   }
 
   const history = buildBuildChatHistory(messages);
-  const payload = {
-    build: buildBuildChatContext(
-      cpuDetail,
-      gpuDetail,
-      userContext,
-      benchmarksBySlot
-    ),
-  };
+  const build = buildBuildChatContext(
+    cpuDetail,
+    gpuDetail,
+    userContext,
+    benchmarksBySlot
+  );
+
+  if (compatibilityDigest) {
+    build.compatibility = compatibilityDigest;
+  }
+
+  const payload = { build };
 
   if (history.length > 0) {
     payload.messages = history;
@@ -420,6 +569,33 @@ export const getBuildChatToken = (snapshot) => {
 };
 
 export const isSameBuildChatToken = (token, other) => token === other;
+
+/* M2.5 Task 6 (F6): resolve the chat restore pair from an explicit build
+   detail-state snapshot. The caller passes a live ref mirror so a slot that
+   completes after the other slot already committed reads the current pairing
+   instead of the render-scope snapshot captured when its request started. */
+export const resolveBuildChatRestore = (detailState, type, detail, userContext) => {
+  if (type !== "CPU" && type !== "GPU") {
+    return null;
+  }
+
+  const otherSlot = type === "CPU" ? "GPU" : "CPU";
+  const otherDetail = getBuildSlotDetail(detailState, otherSlot);
+  const cpuDetail = type === "CPU" ? detail : otherDetail;
+  const gpuDetail = type === "GPU" ? detail : otherDetail;
+
+  if (!isBuildChatContextReady(cpuDetail, gpuDetail)) {
+    return null;
+  }
+
+  return {
+    token: getBuildChatToken(
+      getBuildChatSnapshot(cpuDetail, gpuDetail, userContext)
+    ),
+    cpuId: cpuDetail.id,
+    gpuId: gpuDetail.id,
+  };
+};
 
 /* ---------- Conversation state ---------- */
 

@@ -8,18 +8,30 @@ export const HARDWARE_TYPES = [
   "All", "CPU", "GPU", "RAM", "STORAGE", "MOTHERBOARD", "PSU",
 ];
 
-/* Derived from the current DB snapshot (3,501 CPU + 1,879 GPU records):
-   CPU vendors: Intel (2,784), AMD (717)
-   GPU vendors: NVIDIA (876), AMD (722), Intel (175), ATI (106 legacy)
-   All GPU ATI records carry manufacturer "ATI"; they are AMD-branded legacy parts
-   kept distinct for provenance accuracy. */
-export const MANUFACTURER_FILTERS = [
-  "All",
-  "Intel",
-  "AMD",
-  "NVIDIA",
-  "ATI",
-];
+/* M2.5 Task 2: manufacturer filter options are derived from live facet
+   data (GET /hardware/facets, which counts with the same WHERE clauses as
+   the catalog query). The static CPU/GPU-era list is gone: a RAM/PSU/…
+   catalog must never offer Intel/NVIDIA/ATI unless those rows exist for
+   the active category. "All" always leads. Names are never invented. */
+export const deriveManufacturerOptions = (facetManufacturers) => {
+  if (!Array.isArray(facetManufacturers)) {
+    return ["All"];
+  }
+  const names = facetManufacturers
+    .map((facet) => facet?.value)
+    .filter((value) => typeof value === "string" && value.length > 0);
+  return ["All", ...names];
+};
+
+/* M2.5 Task 2: a manufacturer selection that no longer exists in the
+   active option set (category switched, data narrowed) must fall back to
+   "All" instead of silently producing an empty catalog. */
+export const getNextManufacturerFilter = (current, options) => {
+  if (typeof current !== "string" || !options.includes(current)) {
+    return "All";
+  }
+  return current;
+};
 
 const TYPE_LABELS = {
   CPU: "CPUs",

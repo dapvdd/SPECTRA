@@ -217,7 +217,8 @@ def check_build_compatibility(component_ids: dict[str, int | None]) -> dict[str,
                     storage, motherboard, ids=ids_for("storage", "motherboard")
                 )
             )
-        # R6: PSU x build draw (needs PSU + at least one of CPU/GPU).
+        # R6: PSU capacity vs the listed-TDP reference (needs PSU + at least
+        # one of CPU/GPU). Two-tier policy, see M2_5_POWER_SEMANTICS.md.
         if psu is not None and (cpu is not None or gpu is not None):
             results.append(
                 rule_psu_build_wattage(

@@ -67,15 +67,18 @@ def restore_rehearsal(backup: Path, target: Path) -> dict:
     if target.resolve() == backup.resolve():
         raise ValueError("restore target must differ from the backup file")
 
-    target.parent.mkdir(parents=True, exist_ok=True)
-
     # Guard: refuse targets that look like a live app database path. A
-    # rehearsal writes only to scratch files.
+    # rehearsal writes only to scratch files. This check is pure string
+    # inspection and MUST precede any filesystem side effect (CI regression
+    # 2026-11-15: target.parent.mkdir() ran first, so Path("/app/data/…")
+    # raised PermissionError on the Linux runner before this ValueError).
     forbidden = re.compile(r"/app/data/spectra\.db$|data[/\\]spectra\.db$")
     if forbidden.search(str(target)):
         raise ValueError(
             f"refusing to rehearse against a live-looking path: {target}"
         )
+
+    target.parent.mkdir(parents=True, exist_ok=True)
 
     # File-copy restore (the realistic recovery action: put the backup file
     # where the app expects it). Verification then proves the copy is sound.

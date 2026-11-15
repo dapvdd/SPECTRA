@@ -969,41 +969,15 @@ h4 {
    column in source order, never a squeezed two-column layout.
    ========================================================================== */
 
-/* ---- Build workspace: configuration left, live analysis right ---------- */
+/* ---- Build planner: one vertical reading order ------------------------ */
 
-.build-workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(1.5rem, 3vw, 2.75rem);
-  align-items: start;
-}
-
-.build-column {
-  min-width: 0;
-}
-
-/* ---- Build lower zone: context narrow, conversation wide -------------- */
-
-.build-lower {
-  display: grid;
-  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
-  gap: clamp(1.5rem, 3vw, 2.75rem);
-  align-items: start;
-}
-
-.build-lower > * {
-  min-width: 0;
-}
+/* The planner reads top to bottom — overview, compatibility, configuration,
+   listed detail, intelligence, assistant. Internal density (the component
+   grid, the facts list) carries the horizontal interest instead of a
+   two-column split, so the sequence is never interrupted on wide screens. */
 
 .build-conversation {
   min-width: 0;
-}
-
-/* The lower zone's own top rule belongs to the grid, not to each child, so
-   the two columns read as one band. */
-.build-lower > .build-context,
-.build-lower > .build-conversation {
-  margin-top: var(--spectra-space-2xl);
 }
 
 /* ---- Comparison: an A vs B pair -------------------------------------- */
@@ -1074,12 +1048,6 @@ h4 {
 
   .signal {
     max-width: 32rem;
-  }
-
-  .build-workspace,
-  .build-lower {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--spectra-space-2xl);
   }
 
   /* The A/B divider only makes sense while the pair is side by side. */

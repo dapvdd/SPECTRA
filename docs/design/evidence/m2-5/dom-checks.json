@@ -1,0 +1,224 @@
+{
+  "base": "http://localhost:4180",
+  "api": "http://127.0.0.1:8010",
+  "checks": [
+    {
+      "label": "six slot cards present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "empty build: compatibility is unknown",
+      "ok": true,
+      "detail": "Compatibility unknown"
+    },
+    {
+      "label": "empty build: note counts 0 of 6 slots",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "empty build: no rule results (no POST)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added CPU (PREVIEW M25 Core i5-14600K)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added GPU (PREVIEW M25 RTX 4070)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added RAM (PREVIEW M25 Vengeance DDR5 32GB)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added STORAGE (PREVIEW M25 980 Pro 1TB)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added MOTHERBOARD (PREVIEW M25 Pro Z690-A)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added PSU (PREVIEW M25 RM850x)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build A chip is Compatibility unknown",
+      "ok": true,
+      "detail": "Compatibility unknown"
+    },
+    {
+      "label": "build A shows 7 rules",
+      "ok": true,
+      "detail": "7"
+    },
+    {
+      "label": "build A: 5 compatible, PSU and GPU-slot rules unknown",
+      "ok": true,
+      "detail": "compatible=5 unknown=2"
+    },
+    {
+      "label": "build A copy avoids 'draw' / 'covers'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build A copy marks PSU estimate non-authoritative",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added CPU (PREVIEW M25 Ryzen 7 5800X)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added GPU (PREVIEW M25 RX 7900 XTX)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added RAM (PREVIEW M25 Vengeance LPX DDR4 16GB)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added STORAGE (PREVIEW M25 Barracuda 2TB HDD)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added MOTHERBOARD (PREVIEW M25 Pro Z690-A (B))",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added PSU (PREVIEW M25 CV450)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build B chip is Incompatible",
+      "ok": true,
+      "detail": "Incompatible"
+    },
+    {
+      "label": "build B names socket mismatch",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build B names PSU shortfall",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build B never claims ready",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added CPU (PREVIEW M25 Core i9-13900K partial)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added GPU (PREVIEW M25 RTX 4080 partial)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added RAM (PREVIEW M25 Fury DDR5 64GB partial)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added STORAGE (PREVIEW M25 870 EVO 2TB)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added MOTHERBOARD (PREVIEW M25 X670-E partial)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "added PSU (PREVIEW M25 RM1000x)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build C chip is Compatibility unknown",
+      "ok": true,
+      "detail": "Compatibility unknown"
+    },
+    {
+      "label": "build C reports Missing lines",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "build sections read in the documented order",
+      "ok": true,
+      "detail": "[1517, 1710, 2670, 5293, 5455, 7670]"
+    },
+    {
+      "label": "dissolved wrappers absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "RAM detail free of CPU-only fields",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "MOTHERBOARD detail free of CPU-only fields",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "STORAGE detail free of CPU-only fields",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "PSU detail free of CPU-only fields",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "mobile: six slot cards",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "label": "mobile: no horizontal overflow",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "label": "dark theme control present",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "label": "dark theme applied to document",
+      "ok": true,
+      "detail": "dark"
+    }
+  ],
+  "passed": 43,
+  "total": 43,
+  "failed": []
+}

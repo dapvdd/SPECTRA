@@ -121,17 +121,43 @@ class TestCompatibilityCheckApi:
         response = self.client.post("/build/compatibility/check", json=self._body())
         assert response.status_code == 200
         payload = response.json()
-        assert payload["state"] == "UNKNOWN"  # GPU slot rule stays unknown
-        assert payload["rules_version"] == "M2-RULES-v1"
+        assert payload["state"] == "UNKNOWN"  # GPU + PSU rules stay unknown
+        assert payload["rules_version"] == "M2.5-RULES-v1"
         results = {r["rule_id"]: r for r in payload["rule_results"]}
         assert results["cpu-motherboard-socket"]["state"] == "COMPATIBLE"
         assert results["ram-motherboard-generation"]["state"] == "COMPATIBLE"
         assert results["ram-motherboard-capacity"]["state"] == "COMPATIBLE"
         assert results["ram-motherboard-slots"]["state"] == "COMPATIBLE"
         assert results["storage-motherboard-interface"]["state"] == "COMPATIBLE"
-        assert results["psu-build-wattage"]["state"] == "COMPATIBLE"
+        # M2.5: TDP arithmetic alone never yields full PSU compatibility.
+        assert results["psu-build-wattage"]["state"] == "UNKNOWN"
+        assert "non-authoritative" in results["psu-build-wattage"]["explanation"]
         # GPU rule: slot count known, generation unknown.
         assert results["gpu-motherboard-slot"]["state"] == "UNKNOWN"
+
+    def test_insufficient_psu_tdp_reference_is_incompatible(self):
+        # M2.5: a PSU below the documented TDP-reference floor stays a hard
+        # INCOMPATIBLE even though the figure is only an advisory estimate.
+        with self.session_factory() as session:
+            psu = Hardware(name="STAGING-FIXTURE PSU 400W", manufacturer="Test", type="PSU")
+            psu.psu_specification = PSUSpecification(
+                wattage=400, efficiency_rating="80 Plus Gold", modular=True,
+                pcie_8pin_count=2, pcie_12vhpwr=0,
+            )
+            session.add(psu)
+            session.commit()
+            psu_id = psu.id
+
+        response = self.client.post(
+            "/build/compatibility/check",
+            json=self._body(psu=psu_id),
+        )
+        payload = response.json()
+        assert payload["state"] == "INCOMPATIBLE"
+        results = {r["rule_id"]: r for r in payload["rule_results"]}
+        psu_rule = results["psu-build-wattage"]
+        assert psu_rule["state"] == "INCOMPATIBLE"
+        assert "not measured power consumption" in psu_rule["explanation"]
 
     def test_incompatible_socket_build(self):
         with self.session_factory() as session:
