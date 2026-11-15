@@ -1,13 +1,14 @@
 # M2.5 Delivery Report — Unified Build Experience
 
-Branch: `feat/spectra-m2.5-unified-build-experience` · Base: `abb2548` (origin/main) · HEAD: `8f86a1d` · 2026-11-13
+Branch: `feat/spectra-m2.5-unified-build-experience` · Base: `abb2548` (origin/main) · HEAD: `e622771` (pushed, remote SHA verified) · 2026-11-15
 
-## Verdict: **CONDITIONAL_REVIEW**
+## Verdict: **READY_FOR_MERGE_REVIEW**
 
-All 8 planned tasks are complete, committed, and green. Independent review
-passes and the push are still pending (§7) — release recommendation withheld
-until they complete. Production (`main`, production DB) and the M2 staging
-deployment were never touched.
+All 8 planned tasks are complete, committed, pushed, and green. All five
+independent review scopes returned READY_FOR_MERGE_REVIEW (§7); every
+Critical/Important finding was verified against source and resolved or
+corrected at the docs level (§7). Production (`main`, production DB) and the
+M2 staging deployment were never touched.
 
 ## 1. Scope executed (8/8 tasks)
 
@@ -22,7 +23,10 @@ deployment were never touched.
 | 5 | Verified six-component compatibility context for build chat | `672109f` | +12 backend, +11 frontend |
 | 6 | Hardening: stale-closure restore, fetch hygiene, a11y | `aebc688` | +9 frontend |
 | 7 | Reading-order hierarchy + density polish | `9489197` | +2 frontend |
-| 8 | Delivery evidence + reports (this commit) | — | 43 DOM checks |
+| 8 | Delivery evidence + reports (this commit) | `7be9afd` | 43 DOM checks |
+| 8b | Capture/seed scripts committed (evidence provenance) | `ae989de` | — |
+| 8c | Power-semantics doc corrections (hardware review) | `7b8ed62` | — |
+| 8d | Review minors: stale comment, constant doc, order pin | `e622771` | — |
 
 Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 `docs/build-planner/M2_5_POWER_SEMANTICS.md`,
@@ -32,10 +36,11 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 ## 2. Verification evidence
 
 - **Backend:** `1247 passed, 2 skipped, 2 deselected` (M2 baseline 1228 → +19).
-  CI-parity command with the four documented ignores/deselects, re-run after
-  the final code change.
+  CI-parity command with the four documented ignores/deselects, re-run at
+  final HEAD (`e622771`).
 - **Frontend:** `697 passed, 0 failed` (M2 baseline 664 → +33);
-  `npm run build` ✓; `npm run lint` passes (pre-existing-style warnings only).
+  `npm run build` ✓; `npm run lint` passes (pre-existing-style warnings only),
+  re-run at final HEAD.
 - **Browser evidence:** 15 PNGs + `dom-checks.json` (43/43) in
   `docs/design/evidence/m2-5/`, captured against a **disposable** local preview
   (backend :8010 on a fresh temp DB built by `Base.metadata.create_all` + 18
@@ -131,13 +136,59 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 `13-build-mobile-390.png`, `14-build-mobile-390-full.png`,
 `15-build-planner-dark.png`, `dom-checks.json` (43/43).
 
-## 7. Outstanding before release recommendation
+## 7. Independent review rounds (all completed 2026-11-14/15)
 
-1. **Push the branch** and verify the remote SHA.
-2. **Independent review passes** — backend correctness (power semantics,
-   digest contract), frontend regression (App.jsx effects), security
-   (auth/ownership unchanged, bounded digest), hardware-domain (PSU/TDP
-   semantics), visual (human PNG pass).
-3. Prod non-interference verification immediately before handoff (container
-   IDs `fb2f3aa8bb46` / `8bb67a872fdd`; prod DB sha `7d1dca46…`; staging @
-   :8095 untouched).
+Five independent scopes reviewed the full branch diff
+(`abb2548..e622771`). Every scope's verdict: **READY_FOR_MERGE_REVIEW**.
+
+**Security** — 0 Critical / 0 Important. One Minor accepted as designed: the
+compatibility digest is a client-supplied pass-through (self-affecting only;
+the invariant that keeps this Minor is that the digest never influences auth,
+ownership, persistence, or conversation identity — if a future milestone
+persists or scores it, it must become server-derived). Two Nits disclosed:
+slot-key pattern not regex-restricted; no strip validators on
+`rule_id`/`explanation` (bounded at 600 chars, consistency only).
+
+**Backend correctness** — 0 Critical / 0 Important; 64 targeted tests pass.
+Two Minor disclosed: the `+0.5` pre-floor term is inherited from the old
+formula and makes the floor asymmetric (behavior intentional and pinned by
+tests; doc example matches); a `tdp_w=0` edge case yields an all-UNKNOWN
+power check rather than a floor violation (edge case, not a contract
+breach). Two Nits fixed in `e622771`: stale `compatibility_service.py:220`
+comment reworded; `COMPATIBILITY_STATES` documented as the canonical
+vocabulary constant.
+
+**Frontend regression** — 0 Critical / 0 Important; 697/0 + build OK.
+One Minor disclosed: `buildHardening.test.js` source-string assertions pin
+implementation names (acceptable tripwires, brittle beyond strict
+necessity). Two Nits: reading-order pin hardened in `e622771`
+(last-occurrence positions so a duplicate marker cannot silently weaken it);
+manufacturer liveness on type change judges against the outgoing category's
+facets (documented "still a live option" intent, not a regression).
+
+**Hardware domain** — 0 Critical / 0 Important; 39 rule tests pass. The one
+Important finding was a **doc defect, not a code defect**:
+`M2_5_POWER_SEMANTICS.md` claimed the frontend "renders the same two-tier
+meaning" while the live planner renders server rule results exclusively (the
+1.25× one-tier client module is dead code, referenced only by its own
+tests) — corrected in `7b8ed62`, plus the build B worked example now names
+its own fixtures. Two Minor/Nit disclosed: populated PSU connector fields
+are listed in `missing_information` because the *evaluation* is blocked by
+unrecorded GPU connector needs (wording kept verbatim); the 30% margin can
+understate real transients (~2× TGP) — bounded by the invariant that the
+upper tier never emits COMPATIBLE (disclosure added to this report §5).
+
+**Visual/UX structure** — 0 Critical / 0 Important. Verified statically and
+via `dom-checks.json` (43/43): reading-order offsets strictly increasing,
+dissolved wrappers fully deleted including their media-query overrides, no
+orphaned selectors, token-only spacing, Intelligence 2px accent edge intact,
+mobile 390px zero overflow, dark capture genuine
+(`dataset.theme === "dark"`). One Nit disclosed: `.build-conversation`'s
+section gap relies on margin-collapse through the wrapper (visually
+equivalent, spacing ownership subtle). The Important provenance condition
+(capture script not committed) was resolved in `ae989de` and withdrawn by
+the reviewer.
+
+**Remaining human step (disclosed):** the 15 PNGs remain un-reveted by any
+automated pixel review (model limitation); a human eyeball pass is
+recommended before merge — especially `15-build-planner-dark.png`.
