@@ -65,10 +65,16 @@ and `test_incompatible_explanation_labels_tdp_reference`
 internal rule-registry description
 (`test_registry_descriptions_avoid_measured_power_language`).
 
-Frontend mirror: `buildCompatibility.js` renders the same two-tier meaning with
-the same restraint (`"It is not a measured system draw and not a PSU
-manufacturer requirement."`), and Task 4's `LISTED_TDP_NOTICE` is the single
-authoritative disclaimer for the Intelligence panel — see `M2_5_UX_DECISIONS.md`.
+Frontend copy: the planner's authoritative power statements are the backend
+explanations rendered verbatim in the Compatibility panel, Task 4's
+`LISTED_TDP_NOTICE` (the single disclaimer in the Intelligence panel — see
+`M2_5_UX_DECISIONS.md`), and the Build Facts note ("This is not a measurement
+of system power draw and is not a power supply requirement."). The separate
+legacy client module `frontend/src/buildCompatibility.js`
+(`buildCompatibilityReport` / `buildPowerSuggestion`, a 1.25× one-tier
+suggestion) is **not part of the M2.5 power path** — it is exported but
+referenced only by its own tests, and the live planner renders server rule
+results exclusively.
 
 ## What is deliberately still not evaluated
 
@@ -77,11 +83,14 @@ authoritative disclaimer for the Intelligence panel — see `M2_5_UX_DECISIONS.m
 - ❌ Transient/spike behaviour, efficiency curves, PSU age or rail quality
 - ❌ Recommended wattage for a future upgrade path
 
-## Worked example (preview fixture build A, verified in evidence)
+## Worked examples (preview fixtures, verified in evidence)
 
-CPU 125 W listed TDP + GPU 200 W listed TDP = 325 W sum → reference
+Build A: CPU 125 W listed TDP + GPU 200 W listed TDP = 325 W sum → reference
 `floor(325 × 1.3 + 0.5) = 423 W`. A 850 W PSU → **UNKNOWN** with the
-non-authoritative label and connector gaps; a 450 W PSU against a 598 W
-reference would be **INCOMPATIBLE**. Aggregate of the six-slot build: UNKNOWN —
-the designed honest outcome, captured in `dom-checks.json` and discussed in the
-delivery report's limitations.
+non-authoritative label and connector gaps. Aggregate of the six-slot build:
+UNKNOWN — the designed honest outcome, captured in `dom-checks.json` and
+discussed in the delivery report's limitations.
+
+Build B (incompatible fixture): CPU 105 W + GPU 355 W = 460 W sum → reference
+598 W; its 450 W PSU → **INCOMPATIBLE** against 598 W (different fixtures from
+build A, per `backend/app/scripts/seed_m2_5_preview.py`).

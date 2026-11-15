@@ -74,6 +74,24 @@ Docs: `docs/design/M2_5_PRODUCT_AUDIT.md`, `docs/design/M2_5_UX_DECISIONS.md`,
 4. **No prices, benchmarks of unrecorded workloads, or measured power exist:**
    nothing was fabricated to fill gaps; gaps are named (Task 4 copy rules,
    prompt rules 37–40).
+5. **Connector-gap naming (hardware-domain review):** the PSU rule lists
+   populated PSU connector fields (`pcie_8pin_count`, `pcie_12vhpwr`) in
+   `missing_information` on both branches, because the comparison they would
+   feed is blocked by the unrecorded GPU connector needs — the fields are not
+   absent, the *evaluation* is. The explanation states why
+   (`compatibility_rules.py:361-364`); kept verbatim rather than special-cased.
+6. **30% reference margin vs real transients (hardware-domain review):** real
+   GPU transient spikes can approach ~2× listed TGP and turbo behavior exceeds
+   labelled TDP, so the reference floor understates worst-case draw by design.
+   The invariant that bounds this: the upper tier can never emit COMPATIBLE
+   (UNKNOWN at best), so an undersized floor errs toward "unknown", never
+   green. A measured-draw data model would be required to do better.
+7. **Legacy client power-suggestion module (hardware-domain review):**
+   `frontend/src/buildCompatibility.js` (`buildCompatibilityReport` /
+   `buildPowerSuggestion`, 1.25× one-tier) is exported but referenced only by
+   its own tests — it is dead code in the M2.5 planner, which renders server
+   rule results exclusively. Not wired into the power path; removal is a
+   trivial follow-up and deliberately out of M2.5 scope.
 
 ## 4. Contract compliance
 
