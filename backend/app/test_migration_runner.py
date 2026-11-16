@@ -223,8 +223,9 @@ class TestMigrationRunnerUpgradeBaseline:
         assert result["from_version"] == 0
         # v3.1: the runner now carries the Build Planner v3 migration too, so
         # a fresh clone upgrades all the way to the latest version.
+        # M3: v4 (identity/lifecycle/ops tables) is part of the full upgrade.
         assert result["to_version"] == runner.LATEST_VERSION
-        assert [m["version"] for m in result["applied"]] == [1, 2, 3]
+        assert [m["version"] for m in result["applied"]] == [1, 2, 3, 4]
 
     def test_upgrade_is_idempotent_on_already_baseline_db(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -293,7 +294,7 @@ class TestMigrationRunnerVerify:
 
         assert result["status"] == "verified"
         assert result["version"] == runner.LATEST_VERSION
-        assert result["name"] == "planner-component-categories"
+        assert result["name"] == "m3-catalog-expansion-identity-lifecycle"
 
     def test_verify_fails_when_table_is_missing(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -320,8 +321,8 @@ class TestMigrationRunnerReport:
         result = runner.report(db)
 
         assert result["current_version"] == 0
-        assert result["pending_count"] == 3
-        assert [m["version"] for m in result["pending"]] == [1, 2, 3]
+        assert result["pending_count"] == 4
+        assert [m["version"] for m in result["pending"]] == [1, 2, 3, 4]
 
     def test_report_shows_zero_pending_after_upgrade(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -438,7 +439,9 @@ class TestMigrationRunnerPlannerV3:
         result = runner.upgrade(db)
 
         assert result["status"] == "upgraded"
-        assert result["to_version"] == 3
+        # M3: a full upgrade now passes through v4 as well; v3's contract is
+        # covered by the four spec tables existing after the full pass.
+        assert result["to_version"] == runner.LATEST_VERSION
         for table in (
             "ram_specifications",
             "storage_specifications",
@@ -521,7 +524,7 @@ class TestMigrationRunnerPlannerV3:
         result = runner.upgrade(db)
 
         assert result["status"] == "up-to-date"
-        assert _version(db) == 3
+        assert _version(db) == runner.LATEST_VERSION
 
     def test_v3_downgrade_restores_v2(self, tmp_path):
         db = self._seeded(tmp_path, seed_rows=3)
