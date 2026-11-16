@@ -1,0 +1,16 @@
+=== RUN 2026-11-16T01:57:42Z ===
+=== 8096 ready ===
+{"status":"ready","database":"reachable","migrations":"tracked-version-3"}
+=== 8096 release ===
+{"version":"M2.5-staging","git_sha":"dcfd7df3d77ba011bb92d8a3144615c5c3d373ec","built_at":"2026-11-15T14:00:00Z","image_digest":null,"auth_enabled":false,"ai_provider":"unconfigured","ai_provider_state":"unconfigured"}
+=== 8095 (M2) ready ===
+{"status":"ready","database":"reachable","migrations":"tracked-version-3"}
+=== 8080 (prod) ready ===
+{"status":"ready","database":"reachable","migrations":"tracked-version-2"}
+=== all container states ===
+spectra-m25-frontend: Up 16 hours
+spectra-m25-backend: Up 16 hours (healthy)
+spectra-m2-staging-backend-1: Up 3 days (healthy)
+spectra-m2-staging-frontend-1: Up 3 days
+spectra-frontend: Up 6 days
+spectra-backend: Up 6 days (healthy)
