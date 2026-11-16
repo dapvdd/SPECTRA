@@ -1,0 +1,67 @@
+=== RUN_DATE_UTC 2026-11-15T14:25:45Z ===
+=== HOST ===
+david-lab
+Linux 6.12.113+deb13-amd64 x86_64 GNU/Linux
+ 21:25:45 up 22 days, 11 min, 19 users,  load average: 3.76, 2.62, 2.22
+cpus=4
+               total        used        free      shared  buff/cache   available
+Mem:           7.6Gi       4.9Gi       453Mi       416Mi       2.9Gi       2.7Gi
+Swap:          3.8Gi       1.3Gi       2.5Gi
+=== DISK ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda5       905G  119G  740G  14% /
+/dev/sda5       905G  119G  740G  14% /
+=== DOCKER VERSIONS ===
+Docker version 29.9.2, build a82e528
+Docker Compose version v5.6.1
+=== PROD CONTAINERS project=spectra ===
+fb2f3aa8bb46 | spectra-frontend | spectra-frontend:75eba50b1f09052f40409f6066a2ac030344d1a0 | Up 5 days | 80/tcp, 100.113.157.0:8080->8080/tcp
+8bb67a872fdd | spectra-backend | spectra-backend:75eba50b1f09052f40409f6066a2ac030344d1a0 | Up 5 days (healthy) | 8000/tcp
+=== CONTAINER DETAILS ===
+/spectra-frontend | wd=/home/david/releases/spectra-75eba50-ops | cfg=/home/david/releases/spectra-75eba50-ops/compose.json | svc=frontend | started=2026-11-09T16:36:02.909402933Z | image=sha256:6dec82c38484fc93e3d55f2a0e1fb3c4b2694b0558ae46c928124e0e5ff5e233 | oom=false | restart=unless-stopped | privileged=false
+/spectra-backend | wd=/home/david/releases/spectra-75eba50-ops | cfg=/home/david/releases/spectra-75eba50-ops/compose.json | svc=backend | started=2026-11-09T16:35:18.408755638Z | image=sha256:8cb02c8b7e18d95df5af80ae3601d76dfcf403bb9df5764dc158a3a21c77bcd5 | oom=false | restart=unless-stopped | privileged=false
+=== IMAGE DETAILS ===
+img=sha256:6dec82c38484fc93e3d55f2a0e1fb3c4b2694b0558ae46c928124e0e5ff5e233 | tags=spectra-frontend:75eba50b1f09052f40409f6066a2ac030344d1a0 | created=2026-11-09T23:32:52.851132818+07:00 | size=94303231
+img=sha256:8cb02c8b7e18d95df5af80ae3601d76dfcf403bb9df5764dc158a3a21c77bcd5 | tags=spectra-backend:75eba50b1f09052f40409f6066a2ac030344d1a0 | created=2026-11-09T23:31:04.74196123+07:00 | size=326488158
+=== MOUNTS ===
+--/spectra-frontend
+
+--/spectra-backend
+volume spectra-sqlite-data /var/lib/docker/volumes/spectra-sqlite-data/_data -> /app/data rw=true
+
+=== NETWORKS ===
+/spectra-frontend: spectra_default=172.19.0.3 
+/spectra-backend: spectra_default=172.19.0.2 
+=== PORT PUBLISH ===
+spectra-frontend: 80/tcp, 100.113.157.0:8080->8080/tcp
+spectra-backend: 8000/tcp
+=== ENV VAR NAMES ONLY ===
+--/spectra-frontend
+ACME_VERSION
+PATH
+NGINX_VERSION
+PKG_RELEASE
+DYNPKG_RELEASE
+NJS_VERSION
+NJS_RELEASE
+
+--/spectra-backend
+PATH
+PYTHON_VERSION
+GEMINI_MODEL
+GEMINI_API_KEY
+GPG_KEY
+PYTHON_SHA256
+SPECTRA_DATABASE_URL
+SPECTRA_CORS_ORIGINS
+LANG
+
+=== HEALTH ENDPOINTS (localhost) ===
+GET / -> 000 in 0.000241s
+GET /api/hardware?limit=1 -> 000 in 0.000238s
+ready:
+
+release:
+
+=== PROD CHECKOUT GIT STATE ===
+workdir=/home/david/releases/spectra-75eba50-ops

@@ -1,0 +1,57 @@
+diff --git a/Dockerfile.frontend b/Dockerfile.frontend
+index dee563c..6368eca 100644
+--- a/Dockerfile.frontend
++++ b/Dockerfile.frontend
+@@ -21,7 +21,31 @@ RUN printf 'server {\n\
+     server_name localhost;\n\
+     root /usr/share/nginx/html;\n\
+     index index.html;\n\
++\n\
++    # S-1 security headers (defined at server level; locations that set any\n\
++    # add_header of their own re-declare them, because nginx inherits\n\
++    # add_header only when a block defines none of its own).\n\
++    add_header X-Content-Type-Options nosniff always;\n\
++    add_header X-Frame-Options DENY always;\n\
++    add_header Referrer-Policy no-referrer always;\n\
++    # CSP derived from the served artifact: one inline theme-boot script\n\
++    # (hash-pinned), Vite hashed assets, Google Fonts (style + font fetch).\n\
++    # script-src has no unsafe-inline/eval; style-src keeps unsafe-inline so\n\
++    # dynamic theme styling can never break under future asset changes.\n\
++    add_header Content-Security-Policy "default-src '"'"'self'"'"'; script-src '"'"'self'"'"' '"'"'sha256-w9eABZuoe9jkbDmw0yxZTUjdDLgEWhWOqkKI0M+zbNM='"'"'; style-src '"'"'self'"'"' '"'"'unsafe-inline'"'"' https://fonts.googleapis.com; font-src '"'"'self'"'"' https://fonts.gstatic.com; img-src '"'"'self'"'"'; connect-src '"'"'self'"'"'; object-src '"'"'none'"'"'; frame-ancestors '"'"'none'"'"'; base-uri '"'"'self'"'"'; form-action '"'"'self'"'"'" always;\n\
++\n\
+     location /api/ {\n\
++        # Backend sets its own strict security headers (CSP default-src 'none').\n\
++        # Hide them here and re-declare explicitly so responses carry ONE clean\n\
++        # header set instead of duplicates (nginx server-level + backend).\n\
++        proxy_hide_header X-Content-Type-Options;\n\
++        proxy_hide_header X-Frame-Options;\n\
++        proxy_hide_header Referrer-Policy;\n\
++        proxy_hide_header Content-Security-Policy;\n\
++        add_header X-Content-Type-Options nosniff always;\n\
++        add_header X-Frame-Options DENY always;\n\
++        add_header Referrer-Policy no-referrer always;\n\
++        add_header Content-Security-Policy "default-src '"'"'none'"'"'; frame-ancestors '"'"'none'"'"'" always;\n\
+         proxy_pass http://backend:8000/;\n\
+         proxy_http_version 1.1;\n\
+         proxy_set_header Host $host;\n\
+@@ -34,12 +58,20 @@ RUN printf 'server {\n\
+     location /assets/ {\n\
+         expires 1y;\n\
+         add_header Cache-Control "public, immutable";\n\
++        add_header X-Content-Type-Options nosniff always;\n\
++        add_header X-Frame-Options DENY always;\n\
++        add_header Referrer-Policy no-referrer always;\n\
++        add_header Content-Security-Policy "default-src '"'"'self'"'"'; script-src '"'"'self'"'"' '"'"'sha256-w9eABZuoe9jkbDmw0yxZTUjdDLgEWhWOqkKI0M+zbNM='"'"'; style-src '"'"'self'"'"' '"'"'unsafe-inline'"'"' https://fonts.googleapis.com; font-src '"'"'self'"'"' https://fonts.gstatic.com; img-src '"'"'self'"'"'; connect-src '"'"'self'"'"'; object-src '"'"'none'"'"'; frame-ancestors '"'"'none'"'"'; base-uri '"'"'self'"'"'; form-action '"'"'self'"'"'" always;\n\
+     }\n\
+     # The HTML shell references the hashed assets by name, so it must always\n\
+     # be revalidated: no-cache keeps the ETag revalidation but never serves\n\
+     # a stale shell pointing at assets that no longer exist.\n\
+     location = /index.html {\n\
+         add_header Cache-Control "no-cache";\n\
++        add_header X-Content-Type-Options nosniff always;\n\
++        add_header X-Frame-Options DENY always;\n\
++        add_header Referrer-Policy no-referrer always;\n\
++        add_header Content-Security-Policy "default-src '"'"'self'"'"'; script-src '"'"'self'"'"' '"'"'sha256-w9eABZuoe9jkbDmw0yxZTUjdDLgEWhWOqkKI0M+zbNM='"'"'; style-src '"'"'self'"'"' '"'"'unsafe-inline'"'"' https://fonts.googleapis.com; font-src '"'"'self'"'"' https://fonts.gstatic.com; img-src '"'"'self'"'"'; connect-src '"'"'self'"'"'; object-src '"'"'none'"'"'; frame-ancestors '"'"'none'"'"'; base-uri '"'"'self'"'"'; form-action '"'"'self'"'"'" always;\n\
+     }\n\
+     location / {\n\
+         try_files $uri $uri/ /index.html;\n\

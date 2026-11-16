@@ -1,0 +1,81 @@
+=== RUN 2026-11-15T15:34:16Z ===
+=== PROD frontend headers (via Tailscale IP) ===
+HTTP/1.1 200 OK
+Server: nginx/1.31.8
+Date: Sun, 15 Nov 2026 15:34:16 GMT
+Content-Type: text/html
+Content-Length: 2712
+Last-Modified: Mon, 09 Nov 2026 16:32:39 GMT
+Connection: keep-alive
+ETag: "6af1f5a7-a98"
+Cache-Control: no-cache
+Accept-Ranges: bytes
+
+=== PROD API headers ===
+HTTP/1.1 405 Method Not Allowed
+Server: nginx/1.31.8
+Date: Sun, 15 Nov 2026 15:34:16 GMT
+Content-Type: application/json
+Content-Length: 31
+Connection: keep-alive
+allow: GET
+x-request-id: 55a3279e2e264617b5cc3116ac9fed23
+
+=== PROD CORS preflight ===
+400
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+access-control-max-age: 600
+access-control-allow-credentials: true
+=== M2 staging (8095) headers ===
+HTTP/1.1 200 OK
+Server: nginx/1.31.8
+Date: Sun, 15 Nov 2026 15:34:16 GMT
+Content-Type: text/html
+Content-Length: 2712
+Last-Modified: Thu, 12 Nov 2026 07:59:14 GMT
+Connection: keep-alive
+ETag: "6af571d2-a98"
+Cache-Control: no-cache
+Accept-Ranges: bytes
+
+=== M2.5 staging (8096) headers ===
+HTTP/1.1 200 OK
+Server: nginx/1.31.8
+Date: Sun, 15 Nov 2026 15:34:16 GMT
+Content-Type: text/html
+Content-Length: 2712
+Last-Modified: Sun, 15 Nov 2026 09:35:40 GMT
+Connection: keep-alive
+ETag: "6af97cec-a98"
+Cache-Control: no-cache
+Accept-Ranges: bytes
+
+=== M2.5 API headers ===
+HTTP/1.1 405 Method Not Allowed
+Server: nginx/1.31.8
+Date: Sun, 15 Nov 2026 15:34:16 GMT
+Content-Type: application/json
+Content-Length: 31
+Connection: keep-alive
+allow: GET
+x-request-id: 823a83f005c74870b241c56bfed99145
+x-content-type-options: nosniff
+x-frame-options: DENY
+referrer-policy: no-referrer
+content-security-policy: default-src 'none'; frame-ancestors 'none'
+=== CONTAINER PRIVILEGES / MOUNTS (prod) ===
+/spectra-backend privileged=false caps=[] ro=false mounts=volume:/app/data:rw=true 
+/spectra-frontend privileged=false caps=[] ro=false mounts=
+=== DOCKER SOCKET exposure ===
+/spectra-backend sock=volume 
+/spectra-frontend sock=
+/spectra-m25-backend sock=bind 
+/spectra-m25-frontend sock=
+=== AUTH STATE ===
+{"auth_enabled":false}
+{"auth_enabled":false}
+=== BACKUP DIR PERMISSIONS ===
+total 50000
+drwxrwxr-x 2 david david     4096 Nov 15 21:40 .
+drwxrwxr-x 3 david david     4096 Nov 15 21:40 ..
+-rw------- 1 david david 51191808 Nov 15 21:38 spectra-prod-v2-20261115T143818Z.db
