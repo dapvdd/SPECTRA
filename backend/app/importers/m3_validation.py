@@ -111,6 +111,12 @@ _CROSS_FIELD_RULES: dict[str, tuple] = {}
 
 def _rule_ram_kit_consistency(spec: dict) -> str | None:
     modules, capacity = spec.get("modules"), spec.get("capacity_gb")
+    # Fail-closed on malformed (non-numeric) values: a string or bool here
+    # becomes an explicit blocker, never a TypeError mid-batch.
+    for field_name, value in (("modules", modules), ("capacity_gb", capacity)):
+        failure = _type_check_failure(field_name, value)
+        if failure:
+            return failure
     if modules and capacity and capacity % modules != 0:
         return (
             f"capacity_gb {capacity} is not divisible by modules {modules} "
@@ -121,6 +127,10 @@ def _rule_ram_kit_consistency(spec: dict) -> str | None:
 
 def _rule_mobo_slots_vs_max_ram(spec: dict) -> str | None:
     slots, max_ram = spec.get("ram_slots"), spec.get("max_ram_gb")
+    for field_name, value in (("ram_slots", slots), ("max_ram_gb", max_ram)):
+        failure = _type_check_failure(field_name, value)
+        if failure:
+            return failure
     if slots and max_ram:
         per_slot = max_ram / slots
         # No DIMM larger than 256 GB exists in the desktop DDR4/DDR5 era.
@@ -141,6 +151,26 @@ _CROSS_FIELD_RULES["MOTHERBOARD"] = (_rule_mobo_slots_vs_max_ram,)
 # ---------------------------------------------------------------------------
 
 
+def _type_check_failure(field_name: str, value: object) -> str | None:
+    """Fail-closed type gate for numeric spec fields.
+
+    Only real int/float values may participate in range comparisons. A
+    malformed value (string like ``"32"`` or ``"abc"``, or a bool, which is
+    an int subclass and would silently pass as 1) must become an explicit
+    rejection reason — never a TypeError that aborts a whole publication
+    batch with an opaque traceback. None stays "field absent".
+    """
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return (
+            f"field '{field_name}' has non-numeric value {value!r} "
+            f"(type {type(value).__name__}) — refusing to compare; "
+            "fix the unit transcription or curate the row"
+        )
+    return None
+
+
 def unit_checks(hardware_type: str, spec: dict) -> CheckResult:
     """Unit-semantics validation (MT/s sanity, MB/s vs Gb/s, rated watts)."""
     failures: list[str] = []
@@ -148,6 +178,10 @@ def unit_checks(hardware_type: str, spec: dict) -> CheckResult:
     for field_name, (low, high) in ranges.items():
         value = spec.get(field_name)
         if value is None:
+            continue
+        type_failure = _type_check_failure(field_name, value)
+        if type_failure:
+            failures.append(type_failure)
             continue
         if not (low <= value <= high):
             failures.append(
