@@ -71,8 +71,11 @@ Results:
 
 ## 3. Independent review scopes (Phase 10)
 
-Seven read-only scopes executed by independent reviewer agents; verdicts and
-finding dispositions are consolidated in `M3_FINAL_DELIVERY.md` §reviews.
+Seven read-only scopes executed by independent reviewer agents. Verdicts:
+**2 PASS** (scope 4 compatibility, scope 6 ops/security, scope 7 pilot data —
+3 PASS counting the pilot audit), **4 CONCERNS** (scopes 1, 2, 3, 5), no
+FAIL. Every Critical/High finding and both gate gaps were fixed in
+`d02ba42` + `006e8fa` (dispositions in `M3_FINAL_DELIVERY.md` §reviews).
 
 ## 4. Gate checklist
 
@@ -83,15 +86,20 @@ finding dispositions are consolidated in `M3_FINAL_DELIVERY.md` §reviews.
 | TDD | RED→GREEN→REGRESSION per phase | evidenced per phase |
 | Safety | zero prod writes/staging mutations/main merges | held throughout |
 | Compatibility | M2.5-RULES-v1 byte-unchanged, no false positives | PASS (scope 4) |
-| Security | no Critical/High findings open | see consolidated verdict |
+| Security | no Critical/High findings open | 0 open (all fixed + regression 1396) |
 
 ## 5. Residual risks for the merge reviewer
 
-1. Same-source conflict detection gap + unwired conflict gate (scope 2,
-   Medium ×2) — dispositions in the final report.
-2. `lastVerifiedOn` includes non-verified records (scope 5, Medium).
-3. v4 column rollback requires file-restore, not in-place downgrade (§2.3).
-4. `data/spectra.db` in the worktree is an untracked pre-v4 dev artifact
+1. v4 column rollback requires file-restore, not in-place downgrade (§2.3;
+   `downgrade()` now refuses the range with a precise reason — `006e8fa`).
+2. `data/spectra.db` in the worktree is an untracked pre-v4 dev artifact
    (has `owner_id`, no `schema_version`) — `upgrade()` on it fails loudly
    (`duplicate column name: owner_id`) rather than corrupting; production DB
    hygiene (tracked migrations, copy-first) unaffected.
+3. Stuck-'running' `ingestion_runs` rows on a killed process (scope 3,
+   Medium — documented, unfixed; dev-only visibility impact).
+4. Concurrent `batch_no` collision (scope 3, Low — safe rollback, unfixed).
+5. Spec-column f-string interpolation in `_insert_record` (scope 3, Medium —
+   fail-closed anyway: unknown columns abort the batch).
+6. `q` LIKE wildcards + `sourceUrl` href allowlist (pre-existing Phase 1.3 /
+   UX behavior, unchanged by M3).
