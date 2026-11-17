@@ -445,3 +445,37 @@ test("getHardwareSourceMeta ignores malformed access dates and junk fields", () 
   });
   assert.equal(allMalformed.lastVerifiedOn, null);
 });
+
+test("getHardwareSourceMeta counts only verified records toward last-verified", () => {
+  // Review scope 5 finding: a fresh uncertain record's access date must
+  // not display as "Last verified".
+  const meta = getHardwareSourceMeta({
+    fields: [
+      {
+        table_name: "psu_specifications",
+        field_name: "wattage",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({ id: 21, access_date: "2026-11-17",
+                     evidence_status: "uncertain" }),
+          m3Record({ id: 22, access_date: "2026-11-15",
+                     evidence_status: "verified" }),
+        ],
+      },
+      {
+        table_name: "hardware",
+        field_name: "release_date",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({ id: 23, access_date: "2026-11-16",
+                     evidence_status: "unattributed" }),
+        ],
+      },
+    ],
+  });
+
+  // Max over VERIFIED records only: 2026-11-15, not 2026-11-17.
+  assert.equal(meta.lastVerifiedOn, "2026-11-15");
+});

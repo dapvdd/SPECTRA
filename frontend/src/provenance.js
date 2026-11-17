@@ -355,7 +355,11 @@ export const getHardwareSourceMeta = (provenance) => {
     for (const rawRecord of records) {
       const record = normalizeRecord(rawRecord);
       const accessDate = record?.accessDate;
+      // Only VERIFIED records count toward "Last verified": a fresh
+      // uncertain/unattributed record's access date must not present
+      // itself as verification (review scope 5 finding).
       if (
+        record?.evidenceStatus === "verified" &&
         typeof accessDate === "string" &&
         /^\d{4}-\d{2}-\d{2}$/.test(accessDate)
       ) {
