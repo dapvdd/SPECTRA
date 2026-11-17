@@ -30,7 +30,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from backend.app.identity.lifecycle import APPROVED, PUBLISHED
-from backend.app.importers.m3_validation import validate_record
+from backend.app.importers.m3_validation import detect_conflicts, validate_record
 from backend.app.migrations.runner import _current_version
 
 _PROD_FORBIDDEN = "data/spectra.db"
@@ -107,6 +107,97 @@ def _hardware_id_by_canonical_key(
         "SELECT id FROM hardware WHERE canonical_key = ?", (canonical_key,)
     ).fetchone()
     return row[0] if row else None
+
+
+def _published_spec_by_key(
+    conn: sqlite3.Connection, canonical_key: str, table: str
+) -> dict:
+    """Read an already-published record's spec values for conflict checks."""
+    hardware_id = _hardware_id_by_canonical_key(conn, canonical_key)
+    if hardware_id is None:
+        return {}
+    columns = [r[1] for r in conn.execute(f"PRAGMA table_info({table})")]
+    spec_columns = [c for c in columns if c != "hardware_id"]
+    if not spec_columns:
+        return {}
+    row = conn.execute(
+        f"SELECT {', '.join(spec_columns)} FROM {table} "
+        "WHERE hardware_id = ?",
+        (hardware_id,),
+    ).fetchone()
+    return dict(zip(spec_columns, row))
+
+
+def _conflict_message(
+    incoming: dict, other_source: str, field_name: str
+) -> str:
+    return (
+        f"{incoming.get('name', '?')}: unresolved source conflict on "
+        f"'{field_name}' with {other_source!r}; same canonical_key with "
+        "differing facts is never auto-merged — resolve and resubmit"
+    )
+
+
+def _norm_spec(spec: dict) -> dict:
+    """Normalize a spec dict for conflict comparison.
+
+    Bools become ints (SQLite stores True as 1 and reads it back as an
+    int, so an incoming ``True`` must compare equal to a published ``1``)
+    and NULL values are dropped (absent counts as absent on both sides).
+    """
+    return {
+        key: int(value) if isinstance(value, bool) else value
+        for key, value in spec.items()
+        if value is not None
+    }
+
+
+def _apply_conflict_gate(
+    conn: sqlite3.Connection,
+    staged: list[dict],
+) -> tuple[list[dict], list[str]]:
+    """Reject ALL records involved in an intra-batch conflict (fail-closed).
+
+    Two staged records with the same canonical_key but differing fact
+    values are a source conflict (R2): never auto-merged, never published —
+    both are rejected with a named reason. (Conflict against an
+    already-published record is handled earlier, in the staging loop, so a
+    differing-value re-import is a rejection rather than a silent skip.)
+    """
+    by_key: dict[str, list[dict]] = {}
+    for record in staged:
+        by_key.setdefault(record["canonical_key"], []).append(record)
+
+    rejected_keys: set[str] = set()
+    reasons: list[str] = []
+    for key, group in by_key.items():
+        if len(group) < 2:
+            continue
+        conflicts = detect_conflicts(
+            [
+                {**_norm_spec(record.get("spec", {})),
+                 "canonical_key": key,
+                 "_type": str(record.get("category", "")).upper(),
+                 "source_name": str(record.get("approved_by") or "batch")}
+                for record in group
+            ]
+        )
+        if conflicts:
+            rejected_keys.add(key)
+            # One named reason per involved record: the result must account
+            # for EVERY rejected record, not just one per conflict group.
+            for record in group:
+                reasons.append(_conflict_message(
+                    record, group[1].get("name", "?") if record is group[0]
+                    else group[0].get("name", "?"),
+                    conflicts[0].field,
+                ))
+
+    surviving: list[dict] = [
+        record for record in staged
+        if record["canonical_key"] not in rejected_keys
+    ]
+    return surviving, reasons
 
 
 def _validate_lifecycle(record: dict) -> str | None:
@@ -248,10 +339,54 @@ def publish_batch(
                 )
                 continue
 
-            if _hardware_id_by_canonical_key(conn, record["canonical_key"]):
-                result.skipped_existing += 1
+            existing_id = _hardware_id_by_canonical_key(
+                conn, record["canonical_key"]
+            )
+            if existing_id is not None:
+                # Same canonical_key as a published row: identical values are
+                # an idempotent re-import (skipped_existing); differing fact
+                # values are a source conflict — the incoming record is
+                # rejected and the published row is untouched (R2: conflicts
+                # are never auto-merged, and skip-existing must not hide a
+                # conflict behind an identical key).
+                table = _CATEGORY_TABLES[str(record["category"]).upper()]
+                published_spec = _published_spec_by_key(
+                    conn, record["canonical_key"], table
+                )
+                conflicts = (
+                    detect_conflicts(
+                        [
+                            {**_norm_spec(record.get("spec", {})),
+                             "canonical_key": record["canonical_key"],
+                             "_type": str(record["category"]).upper(),
+                             "source_name": "incoming"},
+                            {**_norm_spec(published_spec),
+                             "canonical_key": record["canonical_key"],
+                             "_type": str(record["category"]).upper(),
+                             "source_name": "published"},
+                        ]
+                    )
+                    if published_spec
+                    else []
+                )
+                if conflicts:
+                    result.rejected += 1
+                    result.rejection_reasons.append(_conflict_message(
+                        record, "the published record", conflicts[0].field,
+                    ))
+                else:
+                    result.skipped_existing += 1
                 continue
             staged.append(record)
+
+        # Conflict gate (R2/mission §6): the same canonical_key with
+        # differing fact values is a conflict — never auto-merged and never
+        # published. Intra-batch conflicts reject ALL involved records;
+        # a conflict against an already-published record rejects the
+        # incoming one. detect_conflicts compares spec fields only.
+        staged, conflict_reasons = _apply_conflict_gate(conn, staged)
+        result.rejected += len(conflict_reasons)
+        result.rejection_reasons += conflict_reasons
 
         # Transactional batch: stage everything, commit once.
         try:
@@ -292,6 +427,26 @@ def publish_batch(
         conn.close()
 
 
+def _unregistered_sources(
+    conn: sqlite3.Connection, record: dict
+) -> list[str]:
+    """Cited source names missing from the registry for this record."""
+    cited = {
+        prov.get("source_name")
+        for prov in (record.get("provenance") or {}).values()
+        if isinstance(prov, dict)
+    }
+    if not cited:
+        return []
+    placeholders = ", ".join("?" for _ in cited)
+    rows = conn.execute(
+        f"SELECT name FROM sources WHERE name IN ({placeholders})",
+        tuple(cited),
+    ).fetchall()
+    known = {row[0] for row in rows}
+    return sorted(name for name in cited if name and name not in known)
+
+
 def dry_run_batch(
     db_path: str | Path, records: list[dict]
 ) -> PublicationResult:
@@ -308,6 +463,17 @@ def dry_run_batch(
                 result.rejected += 1
                 result.rejection_reasons.append(
                     f"{record.get('name', '?')}: {reason}"
+                )
+                continue
+            # Mirror apply-time fail-closed: cite an unregistered source and
+            # the record WILL be rejected at publish — dry-run must say so
+            # (never overstate success).
+            unregistered = _unregistered_sources(conn, record)
+            if unregistered:
+                result.rejected += 1
+                result.rejection_reasons.append(
+                    f"{record.get('name', '?')}: cites unregistered source "
+                    f"{unregistered[0]!r}"
                 )
                 continue
             if _hardware_id_by_canonical_key(conn, record["canonical_key"]):
