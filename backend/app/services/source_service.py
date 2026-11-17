@@ -17,7 +17,7 @@ fallback, so a missing value is reported as unknown rather than invented.
 
 from __future__ import annotations
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import selectinload
 
 from backend.app.database import SessionLocal
@@ -406,3 +406,72 @@ def get_benchmark_provenance(benchmark_result_id: int) -> dict:
             "source": _source_dict(benchmark.source),
             "records": records,
         }
+
+
+class OpsTableUnavailableError(RuntimeError):
+    """Raised when the queried ops table does not exist (pre-v4 database)."""
+
+
+# Ops tables have no ORM models (they are created by migration v4 DDL on
+# databases that may never be touched by the ORM); visibility reads go through
+# parameterless SQL with a hard column allow-list, ordered and bounded.
+_OPS_LIMIT_MAX = 100
+
+_INGESTION_RUN_COLUMNS = (
+    "id", "run_type", "source_id", "category", "mode", "status",
+    "rows_seen", "rows_applied", "rows_rejected", "rows_quarantined",
+    "started_at", "finished_at", "notes",
+)
+
+_PUBLICATION_BATCH_COLUMNS = (
+    "id", "batch_no", "category", "record_count", "approved_by", "status",
+    "created_at", "published_at", "notes",
+)
+
+
+def _ops_rows(
+    table: str,
+    columns: tuple[str, ...],
+    order_column: str,
+    limit: int,
+) -> list[dict]:
+    """Read one ops table, newest first, bounded. Fail-closed on absence."""
+    if table not in ("ingestion_runs", "publication_batches"):
+        raise OpsTableUnavailableError(f"unknown ops table: {table!r}")
+    limit = max(1, min(int(limit), _OPS_LIMIT_MAX))
+    with SessionLocal() as session:
+        exists = session.execute(
+            text(
+                "SELECT name FROM sqlite_master WHERE type='table' "
+                "AND name=:name"
+            ),
+            {"name": table},
+        ).scalar()
+        if not exists:
+            raise OpsTableUnavailableError(
+                f"ops table {table!r} does not exist on this database "
+                "(migration v4 has not been applied); no data to report"
+            )
+        col_list = ", ".join(columns)
+        rows = session.execute(
+            text(
+                f"SELECT {col_list} FROM {table} "
+                f"ORDER BY {order_column} DESC LIMIT :limit"
+            ),
+            {"limit": limit},
+        ).mappings().all()
+        return [dict(row) for row in rows]
+
+
+def list_ingestion_runs(limit: int = 50) -> list[dict]:
+    """Ingestion audit trail, newest first (read-only visibility)."""
+    return _ops_rows(
+        "ingestion_runs", _INGESTION_RUN_COLUMNS, "id", limit
+    )
+
+
+def list_publication_batches(limit: int = 50) -> list[dict]:
+    """Publication batch audit trail, newest first (read-only visibility)."""
+    return _ops_rows(
+        "publication_batches", _PUBLICATION_BATCH_COLUMNS, "batch_no", limit
+    )

@@ -10,12 +10,16 @@ session factory is redirected at it, matching the existing benchmark API tests.
 from datetime import date, datetime
 
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine, event
+from sqlalchemy import create_engine, event, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from backend.app import main
 from backend.app.database import Base
+from backend.app.migrations.runner import (
+    _INGESTION_RUNS_DDL,
+    _PUBLICATION_BATCHES_DDL,
+)
 from backend.app.models import (
     BenchmarkResult,
     CPUSpecification,
@@ -638,3 +642,108 @@ class TestBackwardCompatibility(ProvenanceAPITestBase):
             "quality",
         }
         assert set(body[0]["source"]) == {"id", "name", "url"}
+
+
+class TestOpsVisibility(ProvenanceAPITestBase):
+    """M3 Phase 8: read-only admin visibility for the ingestion_runs and
+    publication_batches ops tables (migration v4). The tables are plain SQL
+    (no ORM models) so the endpoints probe for their existence and report
+    503-style honesty when a pre-v4 database is queried, rather than 500ing."""
+
+    def _seed_ops_rows(self):
+        with self.session_factory() as session:
+            session.execute(text(
+                "INSERT INTO ingestion_runs (run_type, category, mode, "
+                "status, rows_seen, rows_applied, rows_rejected, "
+                "rows_quarantined, started_at, finished_at, notes) VALUES ("
+                "'publication', 'ALL', 'apply', 'success', 10, 10, 0, 0, "
+                "'2026-11-16T00:00:00+00:00', "
+                "'2026-11-16T00:00:01+00:00', 'm3 pilot RAM batch 10')"
+            ))
+            session.execute(text(
+                "INSERT INTO publication_batches (batch_no, category, "
+                "record_count, approved_by, status, created_at, published_at, "
+                "notes) VALUES (1, 'ALL', 10, 'm3-curator', 'published', "
+                "'2026-11-16T00:00:00+00:00', "
+                "'2026-11-16T00:00:01+00:00', 'm3 pilot first batch')"
+            ))
+            session.commit()
+
+    def test_ops_tables_exist_on_v4_schema(self):
+        # The in-memory test DB is created via Base.metadata (v3 tables only);
+        # the ops tables come from migration v4. Create them here the way the
+        # migration does so the endpoint contract can be exercised.
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+        with self.session_factory() as session:
+            session.execute(text(
+                "SELECT 1 FROM ingestion_runs"
+            ))
+        self._seed_ops_rows()
+
+        ingestion = self.client.get("/ops/ingestion-runs").json()
+        assert len(ingestion) == 1
+        assert ingestion[0]["run_type"] == "publication"
+        assert ingestion[0]["status"] == "success"
+        assert ingestion[0]["rows_applied"] == 10
+
+        batches = self.client.get("/ops/publication-batches").json()
+        assert len(batches) == 1
+        assert batches[0]["batch_no"] == 1
+        assert batches[0]["approved_by"] == "m3-curator"
+        assert batches[0]["status"] == "published"
+        assert batches[0]["record_count"] == 10
+
+    def test_ops_endpoints_require_auth_when_auth_enabled(self):
+        # Auth-off suite: the dependency returns None and the endpoints stay
+        # readable (same contract as /hardware). Auth-on behavior is covered
+        # by test_auth_security's protected-route matrix.
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+
+        assert self.client.get("/ops/ingestion-runs").status_code == 200
+        assert self.client.get("/ops/publication-batches").status_code == 200
+
+    def test_ops_endpoints_report_unavailable_on_pre_v4_database(self):
+        # No ops tables (pre-v4 database): honest 503, never a 500 traceback.
+        response = self.client.get("/ops/ingestion-runs")
+        assert response.status_code == 503
+        assert "ingestion_runs" in response.json()["detail"]
+
+        response = self.client.get("/ops/publication-batches")
+        assert response.status_code == 503
+        assert "publication_batches" in response.json()["detail"]
+
+    def test_ops_endpoints_limit_and_order_deterministically(self):
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+        with self.session_factory() as session:
+            for i in range(1, 6):
+                session.execute(text(
+                    "INSERT INTO publication_batches (batch_no, category, "
+                    "record_count, approved_by, status, created_at) VALUES "
+                    f"({i}, 'ALL', {i}, 'm3-curator', 'published', "
+                    f"'2026-11-16T00:00:0{i}+00:00')"
+                ))
+            session.commit()
+
+        body = self.client.get("/ops/publication-batches?limit=3").json()
+        assert len(body) == 3
+        # Newest batch first (id DESC): a visibility feed, not an export.
+        assert [row["batch_no"] for row in body] == [5, 4, 3]
+
+        full = self.client.get("/ops/publication-batches").json()
+        assert len(full) == 5
+
+        assert self.client.get(
+            "/ops/publication-batches?limit=500"
+        ).status_code == 422
+        assert self.client.get(
+            "/ops/publication-batches?limit=0"
+        ).status_code == 422

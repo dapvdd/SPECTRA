@@ -107,6 +107,8 @@ from backend.app.schemas.hardware_chat import (
 from backend.app.schemas.provenance import (
     BenchmarkProvenanceResponse,
     HardwareProvenanceResponse,
+    IngestionRunResponse,
+    PublicationBatchResponse,
     SourceSummaryResponse,
 )
 from backend.app.services.benchmark_service import (
@@ -871,6 +873,50 @@ def get_benchmark_provenance(
         return source_service.get_benchmark_provenance(benchmark_result_id)
     except source_service.ProvenanceLookupError as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
+
+
+@app.get(
+    "/ops/ingestion-runs",
+    response_model=list[IngestionRunResponse],
+)
+def list_ingestion_runs(
+    limit: int = Query(default=50, ge=1, le=100),
+    _user_id: int | None = Depends(require_auth),
+) -> list[IngestionRunResponse]:
+    """Read-only ingestion audit trail, newest first (M3 Phase 8).
+
+    Visibility for the migration v4 ``ingestion_runs`` ops table: what ran,
+    when, with what row counts and status. Bounded (1-100) and ordered
+    deterministically. When the ops table does not exist yet (pre-v4
+    database) the endpoint reports 503 honestly instead of a 500 traceback.
+    Requires a valid token when SPECTRA_AUTH_ENABLED=1.
+    """
+    try:
+        return source_service.list_ingestion_runs(limit)
+    except source_service.OpsTableUnavailableError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
+
+
+@app.get(
+    "/ops/publication-batches",
+    response_model=list[PublicationBatchResponse],
+)
+def list_publication_batches(
+    limit: int = Query(default=50, ge=1, le=100),
+    _user_id: int | None = Depends(require_auth),
+) -> list[PublicationBatchResponse]:
+    """Read-only publication batch audit trail, newest first (M3 Phase 8).
+
+    Visibility for the migration v4 ``publication_batches`` ops table: which
+    batch, which approver, how many records, published when. Bounded (1-100)
+    and ordered deterministically. Reports 503 when the ops table does not
+    exist yet (pre-v4 database). Requires a valid token when
+    SPECTRA_AUTH_ENABLED=1.
+    """
+    try:
+        return source_service.list_publication_batches(limit)
+    except source_service.OpsTableUnavailableError as error:
+        raise HTTPException(status_code=503, detail=str(error)) from error
 
 
 def _load_hardware_for_suitability(session, hardware_id: int):
