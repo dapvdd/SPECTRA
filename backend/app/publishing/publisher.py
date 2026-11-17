@@ -35,6 +35,27 @@ from backend.app.migrations.runner import _current_version
 
 _PROD_FORBIDDEN = "data/spectra.db"
 
+
+def _is_prod_path(path: Path) -> bool:
+    """True when the path points at the production-named database.
+
+    Case-insensitive and separator-normalized: on Windows/macOS the
+    filesystem is case-insensitive, so ``DATA/SPECTRA.DB`` opens the same
+    file as ``data/spectra.db`` — the refusal must match both.
+    """
+    return (
+        str(path).replace("\\", "/").casefold().endswith(_PROD_FORBIDDEN)
+    )
+
+
+def _check_db_path(db_path: str | Path) -> Path:
+    path = Path(db_path)
+    if _is_prod_path(path):
+        raise ValueError(
+            f"publisher refuses production path {str(path)!r}; "
+            "publication targets isolated dev databases only"
+        )
+
 _CATEGORY_TABLES = {
     "RAM": "ram_specifications",
     "STORAGE": "storage_specifications",
@@ -62,7 +83,7 @@ class PublicationResult:
 
 def _check_db_path(db_path: str | Path) -> Path:
     path = Path(db_path)
-    if str(path).replace("\\", "/").endswith(_PROD_FORBIDDEN):
+    if _is_prod_path(path):
         raise ValueError(
             f"publisher refuses production path {str(path)!r}; "
             "publication targets isolated dev databases only"
@@ -148,7 +169,7 @@ def _insert_record(
                 f"record {record['name']!r}: field '{field_name}' has no "
                 "provenance; refusing to publish unattributed values"
             )
-        conn.execute(
+        cursor = conn.execute(
             "INSERT INTO field_provenance (hardware_id, source_id, table_name, "
             "field_name, evidenced_value, source_url, license_name, "
             "evidence_status, access_date, match_method, batch_no, recorded_at) "
@@ -168,6 +189,17 @@ def _insert_record(
                 prov["source_name"],
             ),
         )
+        if cursor.rowcount != 1:
+            # Fail-closed (R1): INSERT..SELECT matched no source row. A
+            # silently-skipped provenance insert would publish a spec value
+            # with NO provenance — the exact contract violation the
+            # rowcount check prevents. Abort the batch; the transaction
+            # rollback removes everything this record wrote.
+            raise ValueError(
+                f"record {record['name']!r}: field '{field_name}' cites "
+                f"unregistered source {prov['source_name']!r}; refusing to "
+                "publish values whose source is not in the registry"
+            )
 
 
 def publish_batch(

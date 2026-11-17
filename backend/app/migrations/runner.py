@@ -634,8 +634,26 @@ def _pending_migrations(current: int) -> list[Migration]:
 LATEST_VERSION = max(m.version for m in MIGRATIONS)
 
 
+def _ensure_not_prod_path(target: Path) -> None:
+    """Refuse the production-named database on any schema-mutating path.
+
+    The migration runner is copy-first by design (module docstring): the
+    production DB is upgraded only by the owner running a rehearsed plan on
+    an explicitly chosen path. A bare ``python runner.py`` defaulting to
+    ``data/spectra.db`` must not silently mutate it.
+    """
+    normalized = str(target).replace("\\", "/").casefold()
+    if normalized.endswith("data/spectra.db"):
+        raise RuntimeError(
+            f"refusing production database path {str(target)!r}; "
+            "run migrations against a disposable copy "
+            "(--database data/spectra_copy.db)"
+        )
+
+
 def upgrade(target: Path, dry_run: bool = False) -> dict:
     """Apply all pending migrations on the target DB. Returns a result dict."""
+    _ensure_not_prod_path(target)
     conn = sqlite3.connect(target)
     try:
         conn.execute("PRAGMA foreign_keys=ON")
@@ -707,6 +725,7 @@ def verify(target: Path) -> dict:
 
 def downgrade(target: Path, target_version: int) -> dict:
     """Revert to a previous version (only for reversible migrations)."""
+    _ensure_not_prod_path(target)
     conn = sqlite3.connect(target)
     try:
         conn.execute("PRAGMA foreign_keys=ON")
@@ -724,10 +743,19 @@ def downgrade(target: Path, target_version: int) -> dict:
         to_revert = sorted(to_revert, key=lambda m: m.version, reverse=True)
 
         for migration in to_revert:
-            if migration.downgrade is None:
+            # The reversible flag is the migration author's statement that
+            # the downgrade list fully restores the prior shape. v4 adds
+            # columns SQLite <3.35 cannot drop, so it is NOT reversible: a
+            # partial revert (ops tables dropped, columns left) would brick
+            # re-upgrade with duplicate-column errors. Refuse it outright.
+            if not migration.reversible or migration.downgrade is None:
                 return {
                     "status": "blocked",
-                    "reason": f"migration {migration.version} ({migration.name}) is not reversible",
+                    "reason": (
+                        f"migration {migration.version} ({migration.name}) "
+                        "is not reversible; restore the pre-migration file "
+                        "copy instead of downgrading in place"
+                    ),
                 }
             print(f"  reverting migration {migration.version}: {migration.name}")
 

@@ -151,7 +151,17 @@ def canonical_key(
     components = [c for c in (manufacturer_norm, hardware_type.lower(),
                               model_norm, variant_norm) if c]
     key = "|".join(components)
-    return key[:300]
+    if len(key) <= 300:
+        return key
+    # Naive truncation at the cap can cut the variant component off
+    # entirely, silently merging distinct SKUs (identity collapse). Keep a
+    # deterministic 16-hex-digit suffix of the full key's SHA-256 so two
+    # different inputs never share a truncated key (collision probability
+    # ~2^-64 per pair), while the readable prefix is preserved.
+    import hashlib
+
+    digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
+    return f"{key[:283]}~{digest}"
 
 
 def duplicate_candidates(

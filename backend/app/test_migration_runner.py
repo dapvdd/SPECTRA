@@ -279,7 +279,22 @@ class TestMigrationRunnerAuthV2:
     def test_v2_run_on_copy_then_rollback(self, tmp_path):
         db = tmp_path / "spectra.db"
         _clone_schema(db)
-        runner.upgrade(db)
+        # Stop at v2 so the v2-only rollback path stays exercisable: a full
+        # upgrade now reaches v4, which is NOT reversible, and the downgrade
+        # correctly refuses any range containing a non-reversible migration.
+        conn = sqlite3.connect(db)
+        conn.execute("PRAGMA foreign_keys=ON")
+        runner._ensure_schema_version(conn)
+        for migration in runner.MIGRATIONS:
+            if migration.version > 2:
+                break
+            for statement in migration.statements:
+                conn.execute(statement)
+            if migration.verify is not None:
+                migration.verify(conn)
+            runner._record_version(conn, migration.version)
+        conn.commit()
+        conn.close()
 
         result = runner.downgrade(db, target_version=1)
 
@@ -287,6 +302,23 @@ class TestMigrationRunnerAuthV2:
         assert _version(db) == 1
         assert "users" not in _tables(db)
         assert "owner_id" not in _columns(db, "build_conversations")
+
+    def test_downgrade_refuses_range_containing_non_reversible_v4(
+        self, tmp_path
+    ):
+        # M3: v4 is not reversible (SQLite <3.35 cannot drop its columns);
+        # a downgrade whose range includes v4 must be refused, not partially
+        # executed (a partial revert bricks re-upgrade with duplicate-column
+        # errors).
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+        runner.upgrade(db)
+
+        result = runner.downgrade(db, target_version=3)
+
+        assert result["status"] == "blocked"
+        assert "not reversible" in result["reason"]
+        assert _version(db) == runner.LATEST_VERSION  # nothing changed
 
 
 class TestMigrationRunnerVerify:
@@ -534,7 +566,21 @@ class TestMigrationRunnerPlannerV3:
     def test_v3_downgrade_restores_v2(self, tmp_path):
         db = self._seeded(tmp_path, seed_rows=3)
         before_count = _provenance_row_count(db)
-        runner.upgrade(db)
+        # Upgrade through v3 only (stop before the non-reversible v4): apply
+        # migrations 1..3 manually, mirroring the pre-v4 flow this test pins.
+        conn = sqlite3.connect(db)
+        conn.execute("PRAGMA foreign_keys=ON")
+        runner._ensure_schema_version(conn)
+        for migration in runner.MIGRATIONS:
+            if migration.version > 3:
+                break
+            for statement in migration.statements:
+                conn.execute(statement)
+            if migration.verify is not None:
+                migration.verify(conn)
+            runner._record_version(conn, migration.version)
+        conn.commit()
+        conn.close()
 
         result = runner.downgrade(db, target_version=2)
 

@@ -255,7 +255,12 @@ def detect_conflicts(records: list[dict]) -> list[Conflict]:
             values: dict[str, object] = {}
             for record in group:
                 if field_name in record:
-                    values[str(record.get("source_name", "?"))] = record[field_name]
+                    # Key by index, not source_name: two records from the
+                    # SAME source with differing facts must stay distinct
+                    # entries, or one overwrites the other and the conflict
+                    # is silently missed.
+                    values[str(record.get("source_name", "?")) +
+                           f"#{group.index(record)}"] = record[field_name]
             distinct = {repr(v) for v in values.values()}
             if len(distinct) > 1:
                 conflicts.append(
@@ -279,16 +284,9 @@ def quality_score(hardware_type: str, record: dict) -> int:
     optional = _OPTIONAL_FIELDS.get(hardware_type, ())
     if not critical and not optional:
         return 0
-    total = len(critical) + len(optional)
     populated_critical = sum(1 for f in critical if record.get(f) not in (None, ""))
     populated_optional = sum(1 for f in optional if record.get(f) not in (None, ""))
     # Critical fields carry 80% of the weight; optional 20%.
-    score = round(
-        80 * (populated_critical / len(critical)) if critical else 0
-        + 20 * (populated_optional / len(optional)) if optional else 0
-    )
-    # The expression above binds ambiguously without parentheses in Python's
-    # conditional expressions; compute defensively:
     score = 0
     if critical:
         score += round(80 * populated_critical / len(critical))
