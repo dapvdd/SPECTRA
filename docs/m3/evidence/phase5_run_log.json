@@ -1,0 +1,332 @@
+{
+ "upgrade": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "dry_run": {
+  "would_publish": 40,
+  "provenance_rows_planned": 250
+ },
+ "batches": [
+  {
+   "category": "RAM",
+   "size": 10,
+   "published": 10,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 1,
+   "duration_s": 0.009,
+   "hardware_by_type": {
+    "RAM": 10
+   },
+   "provenance_total": 60,
+   "batches_rows": 1,
+   "batches_records": 10
+  },
+  {
+   "category": "RAM",
+   "size": 15,
+   "published": 15,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 2,
+   "duration_s": 0.009,
+   "hardware_by_type": {
+    "RAM": 25
+   },
+   "provenance_total": 150,
+   "batches_rows": 2,
+   "batches_records": 25
+  },
+  {
+   "category": "RAM",
+   "size": 25,
+   "published": 25,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 3,
+   "duration_s": 0.013,
+   "hardware_by_type": {
+    "RAM": 50
+   },
+   "provenance_total": 300,
+   "batches_rows": 3,
+   "batches_records": 50
+  },
+  {
+   "category": "RAM",
+   "size": 50,
+   "published": 50,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 4,
+   "duration_s": 0.02,
+   "hardware_by_type": {
+    "RAM": 100
+   },
+   "provenance_total": 600,
+   "batches_rows": 4,
+   "batches_records": 100
+  },
+  {
+   "category": "STORAGE",
+   "size": 10,
+   "published": 10,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 5,
+   "duration_s": 0.01,
+   "hardware_by_type": {
+    "RAM": 100,
+    "STORAGE": 10
+   },
+   "provenance_total": 650,
+   "batches_rows": 5,
+   "batches_records": 110
+  },
+  {
+   "category": "STORAGE",
+   "size": 15,
+   "published": 15,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 6,
+   "duration_s": 0.011,
+   "hardware_by_type": {
+    "RAM": 100,
+    "STORAGE": 25
+   },
+   "provenance_total": 725,
+   "batches_rows": 6,
+   "batches_records": 125
+  },
+  {
+   "category": "STORAGE",
+   "size": 25,
+   "published": 25,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 7,
+   "duration_s": 0.015,
+   "hardware_by_type": {
+    "RAM": 100,
+    "STORAGE": 50
+   },
+   "provenance_total": 850,
+   "batches_rows": 7,
+   "batches_records": 150
+  },
+  {
+   "category": "STORAGE",
+   "size": 50,
+   "published": 50,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 8,
+   "duration_s": 0.021,
+   "hardware_by_type": {
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 1100,
+   "batches_rows": 8,
+   "batches_records": 200
+  },
+  {
+   "category": "MOTHERBOARD",
+   "size": 10,
+   "published": 10,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 9,
+   "duration_s": 0.014,
+   "hardware_by_type": {
+    "MOTHERBOARD": 10,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 1190,
+   "batches_rows": 9,
+   "batches_records": 210
+  },
+  {
+   "category": "MOTHERBOARD",
+   "size": 15,
+   "published": 15,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 10,
+   "duration_s": 0.018,
+   "hardware_by_type": {
+    "MOTHERBOARD": 25,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 1325,
+   "batches_rows": 10,
+   "batches_records": 225
+  },
+  {
+   "category": "MOTHERBOARD",
+   "size": 25,
+   "published": 25,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 11,
+   "duration_s": 0.02,
+   "hardware_by_type": {
+    "MOTHERBOARD": 50,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 1550,
+   "batches_rows": 11,
+   "batches_records": 250
+  },
+  {
+   "category": "MOTHERBOARD",
+   "size": 50,
+   "published": 50,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 12,
+   "duration_s": 0.021,
+   "hardware_by_type": {
+    "MOTHERBOARD": 100,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 2000,
+   "batches_rows": 12,
+   "batches_records": 300
+  },
+  {
+   "category": "PSU",
+   "size": 10,
+   "published": 10,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 13,
+   "duration_s": 0.012,
+   "hardware_by_type": {
+    "MOTHERBOARD": 100,
+    "PSU": 10,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 2050,
+   "batches_rows": 13,
+   "batches_records": 310
+  },
+  {
+   "category": "PSU",
+   "size": 15,
+   "published": 15,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 14,
+   "duration_s": 0.013,
+   "hardware_by_type": {
+    "MOTHERBOARD": 100,
+    "PSU": 25,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 2125,
+   "batches_rows": 14,
+   "batches_records": 325
+  },
+  {
+   "category": "PSU",
+   "size": 25,
+   "published": 25,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 15,
+   "duration_s": 0.013,
+   "hardware_by_type": {
+    "MOTHERBOARD": 100,
+    "PSU": 50,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 2250,
+   "batches_rows": 15,
+   "batches_records": 350
+  },
+  {
+   "category": "PSU",
+   "size": 50,
+   "published": 50,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 16,
+   "duration_s": 0.019,
+   "hardware_by_type": {
+    "MOTHERBOARD": 100,
+    "PSU": 100,
+    "RAM": 100,
+    "STORAGE": 100
+   },
+   "provenance_total": 2500,
+   "batches_rows": 16,
+   "batches_records": 400
+  }
+ ],
+ "reimport": {
+  "published": 0,
+  "skipped_existing": 400
+ },
+ "final": {
+  "hardware_by_type": {
+   "MOTHERBOARD": 100,
+   "PSU": 100,
+   "RAM": 100,
+   "STORAGE": 100
+  },
+  "hardware_total": 400,
+  "provenance_total": 2500,
+  "provenance_verified": 2500,
+  "canonical_keys_unique": 400,
+  "canonical_keys_total": 400,
+  "publication_batches": 32,
+  "ingestion_runs": {
+   "success": 32
+  },
+  "spec_rows": {
+   "ram_specifications": 100,
+   "storage_specifications": 100,
+   "motherboard_specifications": 100,
+   "psu_specifications": 100
+  },
+  "fk_violations": [
+   [
+    "ram_specifications->hardware",
+    0
+   ],
+   [
+    "storage_specifications->hardware",
+    0
+   ],
+   [
+    "motherboard_specifications->hardware",
+    0
+   ],
+   [
+    "psu_specifications->hardware",
+    0
+   ],
+   [
+    "field_provenance->hardware",
+    0
+   ],
+   [
+    "field_provenance->sources",
+    0
+   ]
+  ],
+  "integrity_check": "ok"
+ }
+}

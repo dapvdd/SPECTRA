@@ -60,7 +60,10 @@ def _clone_schema(target: Path) -> None:
         target_engine.dispose()
 
     # Simulate the real pre-v2 database: no `users` table, no owner_id column,
-    # and none of the v3 planner tables.
+    # and none of the v3 planner tables. build_conversations keeps its PRIMARY
+    # KEY (the M3 pilot harness runs PRAGMA foreign_key_check on the migrated
+    # clone; dropping the PK makes build_messages' FK reference unresolvable —
+    # "foreign key mismatch" — even on an empty table).
     conn = sqlite3.connect(target)
     conn.execute("DROP TABLE IF EXISTS users")
     for v3_table in (
@@ -71,9 +74,11 @@ def _clone_schema(target: Path) -> None:
     ):
         conn.execute(f"DROP TABLE IF EXISTS {v3_table}")
     conn.execute(
-        "CREATE TABLE build_conversations_v1 AS "
-        "SELECT id, cpu_hardware_id, gpu_hardware_id, created_at, updated_at "
-        "FROM build_conversations"
+        "CREATE TABLE build_conversations_v1 "
+        "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "cpu_hardware_id INTEGER REFERENCES hardware(id), "
+        "gpu_hardware_id INTEGER REFERENCES hardware(id), "
+        "created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL)"
     )
     conn.execute("DROP TABLE build_conversations")
     conn.execute(
