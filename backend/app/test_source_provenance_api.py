@@ -20,7 +20,11 @@ from backend.app.models import (
     BenchmarkResult,
     CPUSpecification,
     Hardware,
+    MotherboardSpecification,
+    PSUSpecification,
+    RAMSpecification,
     Source,
+    StorageSpecification,
 )
 from backend.app.models.source import LICENSE_STATUSES
 from backend.app.services import benchmark_service, source_service
@@ -364,9 +368,11 @@ class TestHardwareProvenanceEndpoint(ProvenanceAPITestBase):
 
         assert response.status_code == 200
         assert len(response.json()["fields"][0]["records"]) >= 0
-        # Fixed number of batched queries (hardware, spec provenance + source,
-        # benchmark provenance + source); it must not scale with row count.
-        assert len(statements) <= 8
+        # Fixed number of batched queries (hardware + one eager load per spec
+        # relationship + spec provenance + source, benchmark provenance +
+        # source); it must not scale with row count. M3 widens the eager
+        # loads from 2 to 6 spec relationships, hence the larger constant.
+        assert len(statements) <= 12
 
 
 class TestBenchmarkProvenanceEndpoint(ProvenanceAPITestBase):
@@ -409,6 +415,193 @@ class TestBenchmarkProvenanceEndpoint(ProvenanceAPITestBase):
 
         body = self.client.get(f"/benchmarks/{benchmark_id}/provenance").json()
         assert body["records"] == []
+
+
+class TestBuildPlannerCategoryProvenance(ProvenanceAPITestBase):
+    """M3: the provenance endpoint must cover the four Build Planner
+    categories with their spec tables and field order, honestly reporting
+    unattributed/unavailable fields exactly like CPU/GPU."""
+
+    def _add_psu(self, name="Test PSU"):
+        with self.session_factory() as session:
+            hardware = Hardware(
+                name=name,
+                manufacturer="Test",
+                type="PSU",
+                release_date=date(2024, 3, 1),
+            )
+            hardware.psu_specification = PSUSpecification(
+                wattage=850,
+                efficiency_rating="80 Plus Gold",
+                modular=True,
+                pcie_8pin_count=4,
+                pcie_12vhpwr=1,
+            )
+            session.add(hardware)
+            session.commit()
+            return hardware.id
+
+    def _add_ram(self, name="Test RAM"):
+        with self.session_factory() as session:
+            hardware = Hardware(
+                name=name, manufacturer="Test", type="RAM"
+            )
+            hardware.ram_specification = RAMSpecification(
+                ddr_generation="DDR5",
+                capacity_gb=32,
+                speed_mhz=6000,
+                modules=2,
+                ecc=False,
+                voltage_v=1.35,
+                form_factor="UDIMM",
+            )
+            session.add(hardware)
+            session.commit()
+            return hardware.id
+
+    def test_psu_fields_are_listed_with_verified_evidence(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_psu()
+        self._add_record(
+            hardware_id,
+            "psu_specifications",
+            "wattage",
+            evidenced_value="850",
+            license_name="site terms",
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        assert body["hardware_type"] == "PSU"
+
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        assert set(fields) == {
+            ("hardware", "release_date"),
+            ("hardware", "architecture"),
+            ("psu_specifications", "wattage"),
+            ("psu_specifications", "efficiency_rating"),
+            ("psu_specifications", "modular"),
+            ("psu_specifications", "pcie_8pin_count"),
+            ("psu_specifications", "pcie_12vhpwr"),
+        }
+
+        wattage = fields[("psu_specifications", "wattage")]
+        assert wattage["has_value"] is True
+        assert wattage["status"] == "verified"
+        assert len(wattage["records"]) == 1
+        assert wattage["records"][0]["evidenced_value"] == "850"
+        # Efficiency is populated but carries no provenance row yet: honest
+        # unattributed, never silently attributed.
+        assert fields[("psu_specifications", "efficiency_rating")][
+            "status"
+        ] == "unattributed"
+
+    def test_psu_missing_value_without_evidence_is_unavailable(self):
+        self._seed_metadata_into_db()
+        with self.session_factory() as session:
+            hardware = Hardware(name="Bare PSU", manufacturer="Test", type="PSU")
+            hardware.psu_specification = PSUSpecification()
+            session.add(hardware)
+            session.commit()
+            hardware_id = hardware.id
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        wattage = fields[("psu_specifications", "wattage")]
+        assert wattage["has_value"] is False
+        assert wattage["status"] == "unavailable"
+        assert fields[("hardware", "architecture")]["has_value"] is False
+
+    def test_ram_fields_are_listed_and_route_correctly(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_ram()
+        self._add_record(
+            hardware_id,
+            "ram_specifications",
+            "speed_mhz",
+            evidenced_value="6000",
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        assert body["hardware_type"] == "RAM"
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        assert set(fields) == {
+            ("hardware", "release_date"),
+            ("hardware", "architecture"),
+            ("ram_specifications", "ddr_generation"),
+            ("ram_specifications", "capacity_gb"),
+            ("ram_specifications", "speed_mhz"),
+            ("ram_specifications", "modules"),
+            ("ram_specifications", "ecc"),
+            ("ram_specifications", "voltage_v"),
+            ("ram_specifications", "form_factor"),
+        }
+        speed = fields[("ram_specifications", "speed_mhz")]
+        assert speed["status"] == "verified"
+        assert speed["records"][0]["evidenced_value"] == "6000"
+        assert fields[("ram_specifications", "modules")][
+            "status"
+        ] == "unattributed"
+
+    def test_storage_and_motherboard_route_to_their_tables(self):
+        self._seed_metadata_into_db()
+        with self.session_factory() as session:
+            storage = Hardware(name="Test SSD", manufacturer="Test", type="STORAGE")
+            storage.storage_specification = StorageSpecification(
+                storage_type="NVMe", capacity_gb=1024
+            )
+            motherboard = Hardware(
+                name="Test Board", manufacturer="Test", type="MOTHERBOARD"
+            )
+            motherboard.motherboard_specification = MotherboardSpecification(
+                socket="AM5", chipset="B650"
+            )
+            session.add_all([storage, motherboard])
+            session.commit()
+            storage_id, board_id = storage.id, motherboard.id
+
+        storage_body = self.client.get(
+            f"/hardware/{storage_id}/provenance"
+        ).json()
+        assert storage_body["hardware_type"] == "STORAGE"
+        storage_fields = {
+            (f["table_name"], f["field_name"]) for f in storage_body["fields"]
+        }
+        assert ("storage_specifications", "capacity_gb") in storage_fields
+        assert ("storage_specifications", "read_mb_s") in storage_fields
+        assert all(
+            table in {"hardware", "storage_specifications"}
+            for table, _ in storage_fields
+        )
+
+        board_body = self.client.get(
+            f"/hardware/{board_id}/provenance"
+        ).json()
+        assert board_body["hardware_type"] == "MOTHERBOARD"
+        board_fields = {
+            (f["table_name"], f["field_name"]) for f in board_body["fields"]
+        }
+        assert ("motherboard_specifications", "socket") in board_fields
+        assert ("motherboard_specifications", "pcie_slots") in board_fields
+        assert all(
+            table in {"hardware", "motherboard_specifications"}
+            for table, _ in board_fields
+        )
+
+    def test_psu_summary_counts_are_consistent(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_psu()
+        self._add_record(
+            hardware_id, "psu_specifications", "wattage", evidenced_value="850"
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        summary = body["summary"]
+        assert summary["total_fields"] == len(body["fields"])
+        assert summary["verified_fields"] == 1
+        # release_date + 4 populated-but-unattributed psu fields; `architecture`
+        # is NULL and `wattage` is verified, so unattributed = 1 + 4.
+        assert summary["unattributed_fields"] == 5
+        assert summary["unavailable_fields"] == 1
 
 
 class TestBackwardCompatibility(ProvenanceAPITestBase):

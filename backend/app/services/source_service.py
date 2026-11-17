@@ -53,6 +53,42 @@ SPEC_FIELD_ORDER: dict[str, tuple[str, ...]] = {
         "interface",
         "length_mm",
     ),
+    "ram_specifications": (
+        "ddr_generation",
+        "capacity_gb",
+        "speed_mhz",
+        "modules",
+        "ecc",
+        "voltage_v",
+        "form_factor",
+    ),
+    "storage_specifications": (
+        "storage_type",
+        "capacity_gb",
+        "interface",
+        "read_mb_s",
+        "write_mb_s",
+        "dram_cache",
+        "form_factor",
+    ),
+    "motherboard_specifications": (
+        "socket",
+        "chipset",
+        "form_factor",
+        "ram_type",
+        "ram_slots",
+        "max_ram_gb",
+        "m2_slots",
+        "sata_ports",
+        "pcie_slots",
+    ),
+    "psu_specifications": (
+        "wattage",
+        "efficiency_rating",
+        "modular",
+        "pcie_8pin_count",
+        "pcie_12vhpwr",
+    ),
 }
 
 _SOURCE_FIELDS = (
@@ -132,11 +168,10 @@ def _field_status(records: list[dict], has_value: bool) -> str:
 def _spec_value(hardware: Hardware, table_name: str, field_name: str):
     if table_name == "hardware":
         return getattr(hardware, field_name, None)
-    specification = (
-        hardware.cpu_specification
-        if table_name == "cpu_specifications"
-        else hardware.gpu_specification
-    )
+    relationship = _SPEC_TABLE_TO_RELATIONSHIP.get(table_name)
+    if relationship is None:
+        return None
+    specification = getattr(hardware, relationship, None)
     if specification is None:
         return None
     return getattr(specification, field_name, None)
@@ -201,14 +236,35 @@ def get_source(source_id: int) -> dict:
         return data
 
 
+_SPEC_TABLE_TO_RELATIONSHIP = {
+    "cpu_specifications": "cpu_specification",
+    "gpu_specifications": "gpu_specification",
+    "ram_specifications": "ram_specification",
+    "storage_specifications": "storage_specification",
+    "motherboard_specifications": "motherboard_specification",
+    "psu_specifications": "psu_specification",
+}
+
+_TYPE_TABLES = {
+    "CPU": ["hardware", "cpu_specifications"],
+    "GPU": ["hardware", "gpu_specifications"],
+    "RAM": ["hardware", "ram_specifications"],
+    "STORAGE": ["hardware", "storage_specifications"],
+    "MOTHERBOARD": ["hardware", "motherboard_specifications"],
+    "PSU": ["hardware", "psu_specifications"],
+}
+
+
 def get_hardware_provenance(hardware_id: int) -> dict:
     """Return specification and benchmark provenance for one hardware item."""
     with SessionLocal() as session:
         hardware = session.scalar(
             select(Hardware)
             .options(
-                selectinload(Hardware.cpu_specification),
-                selectinload(Hardware.gpu_specification),
+                *(
+                    selectinload(getattr(Hardware, relationship))
+                    for relationship in _SPEC_TABLE_TO_RELATIONSHIP.values()
+                )
             )
             .where(Hardware.id == hardware_id)
         )
@@ -231,12 +287,10 @@ def get_hardware_provenance(hardware_id: int) -> dict:
                 (record.table_name, record.field_name), []
             ).append(_record_dict(record, _source_dict(record.source)))
 
-        tables = ["hardware"]
-        if hardware.type == "CPU":
-            tables.append("cpu_specifications")
-        elif hardware.type == "GPU":
-            tables.append("gpu_specifications")
-
+        tables = _TYPE_TABLES.get(
+            hardware.type,
+            ["hardware"],
+        )
         fields = []
         summary = {
             "total_fields": 0,

@@ -50,6 +50,22 @@ VALID_FIELDS = {
         "vram_bandwidth_gbps", "memory_bus_width_bits", "tdp_w", "interface",
         "length_mm",
     }),
+    "ram_specifications": frozenset({
+        "ddr_generation", "capacity_gb", "speed_mhz", "modules", "ecc",
+        "voltage_v", "form_factor",
+    }),
+    "storage_specifications": frozenset({
+        "storage_type", "capacity_gb", "interface", "read_mb_s", "write_mb_s",
+        "dram_cache", "form_factor",
+    }),
+    "motherboard_specifications": frozenset({
+        "socket", "chipset", "form_factor", "ram_type", "ram_slots",
+        "max_ram_gb", "m2_slots", "sata_ports", "pcie_slots",
+    }),
+    "psu_specifications": frozenset({
+        "wattage", "efficiency_rating", "modular", "pcie_8pin_count",
+        "pcie_12vhpwr",
+    }),
     "benchmark_results": frozenset({"score"}),
 }
 

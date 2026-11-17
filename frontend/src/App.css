@@ -3872,6 +3872,22 @@ h1 {
   margin-bottom: 0.65rem;
 }
 
+/* ---------- M3 source-transparency footer (Phase 7) ---------- */
+
+/* Same visual register as the Batch 015 benchmark-source block: a quiet,
+   hairline-separated readout that keeps the specification value primary. */
+.source-transparency-footer {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+}
+
+.source-transparency-footer .detail-section-label {
+  margin-bottom: 0.65rem;
+}
+
 .benchmark-comparison-sources {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

@@ -56,6 +56,49 @@ export const SPEC_SOURCE_KEYS = {
     Length: ["gpu_specifications", "length_mm"],
     "Bus Interface": ["gpu_specifications", "interface"],
   },
+  MOTHERBOARD: {
+    Socket: ["motherboard_specifications", "socket"],
+    Chipset: ["motherboard_specifications", "chipset"],
+    "Form Factor": ["motherboard_specifications", "form_factor"],
+    "Memory Type": ["motherboard_specifications", "ram_type"],
+    "Memory Slots": ["motherboard_specifications", "ram_slots"],
+    "Max Memory": ["motherboard_specifications", "max_ram_gb"],
+    "M.2 Slots": ["motherboard_specifications", "m2_slots"],
+    "SATA Ports": ["motherboard_specifications", "sata_ports"],
+    "PCIe Slots": ["motherboard_specifications", "pcie_slots"],
+  },
+  RAM: {
+    "Release Date": ["hardware", "release_date"],
+    Architecture: ["hardware", "architecture"],
+    Capacity: ["ram_specifications", "capacity_gb"],
+    "DDR Generation": ["ram_specifications", "ddr_generation"],
+    Speed: ["ram_specifications", "speed_mhz"],
+    Modules: ["ram_specifications", "modules"],
+    ECC: ["ram_specifications", "ecc"],
+    Voltage: ["ram_specifications", "voltage_v"],
+    "Form Factor": ["ram_specifications", "form_factor"],
+  },
+  STORAGE: {
+    "Release Date": ["hardware", "release_date"],
+    Architecture: ["hardware", "architecture"],
+    Capacity: ["storage_specifications", "capacity_gb"],
+    "Storage Type": ["storage_specifications", "storage_type"],
+    Interface: ["storage_specifications", "interface"],
+    "Form Factor": ["storage_specifications", "form_factor"],
+    "Sequential Read": ["storage_specifications", "read_mb_s"],
+    "Sequential Write": ["storage_specifications", "write_mb_s"],
+    "DRAM Cache": ["storage_specifications", "dram_cache"],
+  },
+  PSU: {
+    "Release Date": ["hardware", "release_date"],
+    Architecture: ["hardware", "architecture"],
+    "Rated Wattage": ["psu_specifications", "wattage"],
+    Wattage: ["psu_specifications", "wattage"],
+    "Efficiency Rating": ["psu_specifications", "efficiency_rating"],
+    Modular: ["psu_specifications", "modular"],
+    "PCIe 8-pin Connectors": ["psu_specifications", "pcie_8pin_count"],
+    "12VHPWR Connectors": ["psu_specifications", "pcie_12vhpwr"],
+  },
 };
 
 const isRecord = (value) =>
@@ -271,5 +314,65 @@ export const summarizeHardwareSources = (provenance) => {
     specSources: [...specByKey.values()],
     benchmarkSources: [...benchmarkByKey.values()],
     unattributedFields,
+  };
+};
+
+/**
+ * Transparency meta for a category detail view (M3): how much of the shown
+ * specification carries recorded provenance, the most recent human access
+ * date across verified records, and the standing attribution notice. Missing
+ * or malformed input degrades honestly to nulls — nothing is invented.
+ */
+export const getHardwareSourceMeta = (provenance) => {
+  if (!isRecord(provenance) || !Array.isArray(provenance.fields)) {
+    return {
+      hasProvenance: false,
+      totalFields: 0,
+      verifiedFields: 0,
+      unattributedFields: 0,
+      lastVerifiedOn: null,
+      attribution: null,
+    };
+  }
+
+  let totalFields = 0;
+  let verifiedFields = 0;
+  let unattributedFields = 0;
+  let lastVerifiedOn = null;
+
+  for (const field of provenance.fields) {
+    if (!isRecord(field) || typeof field.table_name !== "string") {
+      continue;
+    }
+    totalFields += 1;
+    if (field.status === "verified") {
+      verifiedFields += 1;
+    } else if (field.status === "unattributed") {
+      unattributedFields += 1;
+    }
+
+    const records = Array.isArray(field.records) ? field.records : [];
+    for (const rawRecord of records) {
+      const record = normalizeRecord(rawRecord);
+      const accessDate = record?.accessDate;
+      if (
+        typeof accessDate === "string" &&
+        /^\d{4}-\d{2}-\d{2}$/.test(accessDate)
+      ) {
+        if (lastVerifiedOn === null || accessDate > lastVerifiedOn) {
+          lastVerifiedOn = accessDate;
+        }
+      }
+    }
+  }
+
+  return {
+    hasProvenance: true,
+    totalFields,
+    verifiedFields,
+    unattributedFields,
+    lastVerifiedOn,
+    attribution:
+      "Specs verified against sources including Wikipedia (CC BY-SA 4.0).",
   };
 };

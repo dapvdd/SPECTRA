@@ -54,6 +54,7 @@ import {
 import {
   buildSpecSourceItems,
   getBenchmarkSources,
+  getHardwareSourceMeta,
   getLicenseStatusLabel,
   getProvenanceStatusLabel,
   normalizeSource,
@@ -1182,6 +1183,48 @@ function DetailSpecGrid({ items }) {
   );
 }
 
+/* M3 source-transparency footer for the Build Planner category detail
+   views: completeness readout, most recent human verification date and the
+   standing attribution notice. Degrades to nothing when provenance failed
+   to load — it never blocks the specification view. */
+function SourceTransparencyFooter({ provenance }) {
+  const meta = getHardwareSourceMeta(provenance);
+
+  if (!meta.hasProvenance) {
+    return null;
+  }
+
+  const completeness =
+    meta.totalFields > 0
+      ? Math.round((meta.verifiedFields / meta.totalFields) * 100)
+      : 0;
+
+  return (
+    <div className="source-transparency-footer">
+      <p className="detail-section-label">SOURCE TRANSPARENCY</p>
+      <ul className="source-attribution-list">
+        <li className="source-attribution-item">
+          <span className="source-attribution-metric">Verified fields</span>
+          <span className="source-attribution-link">
+            {meta.verifiedFields} of {meta.totalFields} shown fields carry a
+            recorded source ({completeness}%)
+          </span>
+        </li>
+        <li className="source-attribution-item">
+          <span className="source-attribution-metric">Last verified</span>
+          <span className="source-attribution-link">
+            {meta.lastVerifiedOn ?? "Not recorded"}
+          </span>
+        </li>
+        <li className="source-attribution-item">
+          <span className="source-attribution-metric">Attribution</span>
+          <span className="source-attribution-link">{meta.attribution}</span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
 /* Key specifications as a readout strip under the detail name: the first
    instrument row of the masthead. Values come straight from the detail view
    model; nothing here re-derives or estimates. Unavailable values render the
@@ -1376,6 +1419,8 @@ function CpuDetailView({
         <DetailSpecGrid items={technicalSpecifications} />
       </div>
 
+      <SourceTransparencyFooter provenance={provenance} />
+
       <PerformanceSection
         benchmarkState={benchmarkState}
         titleId="cpu-performance-title"
@@ -1471,6 +1516,8 @@ function GenericCategoryDetailView({
         </p>
         <DetailSpecGrid items={technicalSpecifications} />
       </div>
+
+      <SourceTransparencyFooter provenance={provenance} />
     </section>
   );
 }
@@ -1564,6 +1611,8 @@ function GpuHardwareDetail({
         <GpuDetailSection label="POWER & PHYSICAL" items={powerPhysical} />
         <GpuDetailSection label="INTERFACE" items={interfaceItems} />
       </div>
+
+      <SourceTransparencyFooter provenance={provenance} />
     </section>
   );
 }
