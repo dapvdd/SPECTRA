@@ -89,7 +89,11 @@ class TestAcquiredValues:
             assert "CC BY-SA" in value.license_name
             assert value.source_url == record["citation_url"]
             assert value.source_reference.endswith("1378669134")
-            assert value.retrieved_at.startswith("2026-11-16")
+            # The human verification date is carried in source_publication_date
+            # (AcquiredValue has no dedicated access_date; the enrichment
+            # pipeline maps it into field_provenance.access_date).
+            assert value.source_publication_date == "2026-11-16"
+            assert value.retrieved_at  # fetch timestamp present
 
     def test_manual_values_keep_unknown_license(self):
         adapter = ManualOfficialCitationAdapter()
