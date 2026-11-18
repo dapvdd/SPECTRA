@@ -1,6 +1,6 @@
 # M3 Release Readiness (Phase 11)
 
-**Date**: 2026-11-17
+**Date**: 2026-11-18 (remediation revision; original 2026-11-17)
 **Branch**: `feat/m3-catalog-expansion` (draft PR target; main untouched at
 `5074211`; no merges, no force-push, no production writes at any point).
 
@@ -77,16 +77,25 @@ Seven read-only scopes executed by independent reviewer agents. Verdicts:
 FAIL. Every Critical/High finding and both gate gaps were fixed in
 `d02ba42` + `006e8fa` (dispositions in `M3_FINAL_DELIVERY.md` §reviews).
 
+**Post-Phase-10 merge review (PR #6, 2026-11-18)** returned **HOLD — data
+quality verification required**: the scope-7 "pilot data PASS" verdict was
+itself wrong — the 400 pilot records were generated family×spec
+combinations with family-level citations mislabeled as SKU-verified. The
+HOLD is remediated by the SKU evidence gate + honest pilot rebuild
+(`0a70cf5` + `63b0c2f`); see `M3_FINAL_DELIVERY.md` §4 finding #12 and the
+remediation evidence table, plus the updated gate checklist below.
+
 ## 4. Gate checklist
 
-| Gate | Criterion | Status |
-|---|---|---|
-| Deliverables | 14 docs + evidence | done (13 + final report at release) |
-| Pilot | 400 verified records, idempotent, provenance-complete | PASS (scope 7 audit) |
-| TDD | RED→GREEN→REGRESSION per phase | evidenced per phase |
-| Safety | zero prod writes/staging mutations/main merges | held throughout |
-| Compatibility | M2.5-RULES-v1 byte-unchanged, no false positives | PASS (scope 4) |
-| Security | no Critical/High findings open | 0 open (all fixed + regression 1396) |
+| Gate | Criterion | Status | Notes |
+|---|---|---|---|
+| Deliverables | 14 docs + evidence | PASS | |
+| Pilot | 2 verified + 443 quarantined; 0 conflicts; 0 fabrications | **CONDITIONAL_REVIEW** | Pre-remediation 400-target claim was wrong; honest 2 confirmed SKUs (Corsair CMK32GX5M2B6000C30, Seasonic FOCUS GX-750), 443 QUARANTINED variants pending per-SKU curation. Pipeline is fail-closed; curator must substantiate remaining variants. |
+| TDD | RED→GREEN→REGRESSION per phase | PASS | 14 remediation regression tests added (pilot evidence gate + validation evidence gate + dry-run mirroring) |
+| Safety | zero prod writes/staging mutations/main merges | PASS | remediation vendor-page fetches: manual, read-only, authorized public pages only |
+| Compatibility | M2.5-RULES-v1 byte-unchanged, no false positives | PASS | |
+| Security | no Critical/High findings open | PASS | 0 open; remediation did not introduce new vulnerabilities |
+| **Merge-review HOLD** | evidence gate closes the 400-record data-quality finding | **FIXED** | commits `0a70cf5` (gate) + `63b0c2f` (honest pilot + quarantine-aware batcher) |
 
 ## 5. Residual risks for the merge reviewer
 
@@ -103,3 +112,11 @@ FAIL. Every Critical/High finding and both gate gaps were fixed in
    fail-closed anyway: unknown columns abort the batch).
 6. `q` LIKE wildcards + `sourceUrl` href allowlist (pre-existing Phase 1.3 /
    UX behavior, unchanged by M3).
+7. **Merge-review HOLD remediation (2026-11-18)**: pilot published set is
+   now honestly small (2 confirmed SKUs; 443 quarantined variants pending
+   per-SKU curation). The evidence gate and pipeline are correct, but the
+   original 400-verified-record claim is retracted; see
+   `M3_FINAL_DELIVERY.md` §1 (CONDITIONAL_REVIEW) and §4 (finding #12 +
+   remediation evidence table). PR #6 stays draft until the curator
+   substantiates the quarantined variants or the product accepts the small
+   verified set.
