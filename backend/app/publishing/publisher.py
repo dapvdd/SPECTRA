@@ -325,7 +325,10 @@ def publish_batch(
                 outcome = validate_record(
                     record["category"].upper(),
                     {**record.get("spec", {}), "name": record["name"],
-                     "manufacturer": record["manufacturer"]},
+                     "manufacturer": record["manufacturer"],
+                     # SKU anchor must be visible to the evidence gate.
+                     "mpn": record.get("mpn"),
+                     "part_number": record.get("part_number")},
                     conflict_free=True,
                     identity_confirmed=record.get("identity_status", "confirmed")
                     == "confirmed",
@@ -487,7 +490,9 @@ def dry_run_batch(
             outcome = validate_record(
                 record["category"].upper(),
                 {**record.get("spec", {}), "name": record["name"],
-                 "manufacturer": record["manufacturer"]},
+                 "manufacturer": record["manufacturer"],
+                 "mpn": record.get("mpn"),
+                 "part_number": record.get("part_number")},
                 conflict_free=True,
                 identity_confirmed=record.get("identity_status", "confirmed")
                 == "confirmed",

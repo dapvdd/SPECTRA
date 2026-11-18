@@ -14,6 +14,21 @@ from __future__ import annotations
 import pytest
 
 from backend.app.catalog.pilot_seed import build_pilot_records
+from backend.app.importers.m3_validation import (
+    _FAMILY_LEVEL_ROOTS,
+    _SKU_URL_SIGNATURES,
+)
+
+_MPN_FIELDS = ("mpn", "part_number")
+
+
+def _has_sku_reference(record: dict, prov: dict) -> bool:
+    """Mirror the evidence-gate SKU reference rule (single source of truth
+    is m3_validation._evidence_gate; this mirrors it for pilot audit)."""
+    if any(str(record.get(f) or "").strip() for f in _MPN_FIELDS):
+        return True
+    url = prov.get("source_url", "")
+    return any(sig in url.lower() for sig in _SKU_URL_SIGNATURES)
 
 
 class TestEvidenceGatePilotSeed:
@@ -30,52 +45,38 @@ class TestEvidenceGatePilotSeed:
         """Every record claiming evidence_status='verified' on any field must
         have that field's provenance cite a per-SKU URL (not a family page)
         OR the record must carry an MPN field."""
-        FLEET_MPN_KEYWORDS = ("pn=", "product.aspx", "/product/", "-mpn",
-                              "sku=", "part-number")
         for category, batch in records.items():
             for record in batch:
                 for field_name, prov in record["provenance"].items():
                     if prov.get("evidence_status") == "verified":
-                        url = prov.get("source_url", "")
-                        has_mpn = "mpn" in record or "part_number" in record
-                        is_sku_url = any(kw in url.lower() for kw in FLEET_MPN_KEYWORDS)
-                        assert is_sku_url or has_mpn, (
+                        assert _has_sku_reference(record, prov), (
                             f"{category}/{record['name']}: field {field_name!r} "
                             f"claims evidence_status='verified' but source_url "
-                            f"{url!r} is family-level (no MPN or per-SKU path); "
-                            "evidence_status must be 'unverified' or lower"
+                            f"{prov.get('source_url', '')!r} is family-level "
+                            "(no MPN or per-SKU path); evidence_status must be "
+                            "'unverified' or lower"
                         )
 
     def test_family_level_citations_use_unverified_not_verified(self, records):
-        """Provenance cited from a vendor family page (gskill.com Trident-Z5
-        family listing, seasonic.com Focus GX series page) must NOT have
-        evidence_status='verified' for SKU-specific fields (speed_mhz,
-        capacity_gb, wattage, etc.)."""
-        FAMILY_LEVEL_ROOTS = (
-            "gskill.com/products/165",   # Trident-Z5 family listing
-            "corsair.com/us/en/c/memory", # Corsair RAM family pages
-            "seasonic.com/focus",         # Focus GX series page
-            "samsung.com/consumer-storage/support/990-pro",  # family support page
-            "westerndigital.com/products/internal-drives/wd-black-sn850x",  # family
-            "asus.com/us/motherboards/prime-b650",   # ASUS PRIME B650 family
-            "msi.com/Motherboard/MAG-B650",          # MSI MAG B650 family
-            "gigabyte.com/Motherboard/B650",         # Gigabyte B650 family
-            "asrock.com/MB/AMD/B650",                # ASRock B650 family
-            "bequiet.com/en/power-supply",           # be quiet! PSU family pages
-            "thermaltake.com/power-supply",          # Thermaltake PSU family
-            "coolermaster.com/catalog/power-supplies",  # CoolerMaster family
-        )
+        """Provenance cited from a vendor family page root must NOT have
+        evidence_status='verified' unless the record carries a SKU anchor
+        (MPN field) — family pages alone cannot verify SKU specs."""
         for category, batch in records.items():
             for record in batch:
                 for field_name, prov in record["provenance"].items():
                     url = prov.get("source_url", "")
-                    if any(root in url for root in FAMILY_LEVEL_ROOTS):
-                        assert prov.get("evidence_status") != "verified", (
-                            f"{category}/{record['name']}: field {field_name!r} "
-                            f"cites family-level URL {url!r} but claims "
-                            "evidence_status='verified'; must be "
-                            "'unverified' or 'uncertain'"
-                        )
+                    if any(root in url for root in _FAMILY_LEVEL_ROOTS):
+                        if prov.get("evidence_status") == "verified":
+                            assert any(
+                                str(record.get(f) or "").strip()
+                                for f in _MPN_FIELDS), (
+                                f"{category}/{record['name']}: field "
+                                f"{field_name!r} cites family-level URL "
+                                f"{url!r} with evidence_status='verified' "
+                                "but the record has no MPN; family pages "
+                                "cannot verify SKU specs without a "
+                                "manufacturer MPN"
+                            )
 
     def test_wikipedia_citations_never_verified_for_sku_fields(self, records):
         """Wikipedia technology articles (DDR4/DDR5/NVMe/ATX/80Plus/etc.)
@@ -96,20 +97,15 @@ class TestEvidenceGatePilotSeed:
     def test_identity_status_confirmed_requires_verified_evidence(self, records):
         """A record with identity_status='confirmed' must have at least one
         field with evidence_status='verified' AND that field's citation must
-        be per-SKU (not family-level). A record with no SKU-level verified
-        field must have identity_status='unconfirmed' or 'unverified'."""
+        be per-SKU (not family-level) or the record carries an MPN."""
         for category, batch in records.items():
             for record in batch:
                 if record.get("identity_status") == "confirmed":
-                    has_verified_sku = False
-                    for prov in record["provenance"].values():
-                        if prov.get("evidence_status") == "verified":
-                            url = prov.get("source_url", "")
-                            FLEET_MPN = ("pn=", "product.aspx", "/product/",
-                                         "-mpn", "sku=", "part-number")
-                            if any(kw in url.lower() for kw in FLEET_MPN):
-                                has_verified_sku = True
-                                break
+                    has_verified_sku = any(
+                        prov.get("evidence_status") == "verified"
+                        and _has_sku_reference(record, prov)
+                        for prov in record["provenance"].values()
+                    )
                     assert has_verified_sku, (
                         f"{category}/{record['name']}: identity_status='confirmed' "
                         "but no provenance field cites a per-SKU URL with "
@@ -126,13 +122,9 @@ class TestEvidenceGatePilotSeed:
             for record in batch:
                 for field_name, prov in record["provenance"].items():
                     if prov.get("evidence_status") == "verified":
-                        url = prov.get("source_url", "")
-                        FLEET = ("pn=", "product.aspx", "/product/", "-mpn",
-                                 "sku=", "part-number")
-                        if not any(kw in url.lower() for kw in FLEET):
-                            pytest.fail(
-                                f"{category}/{record['name']}: field {field_name!r} "
-                                "is marked verified but cites a generated-family "
-                                "URL without SKU-specific path; "
-                                "family enumeration cannot verify SKU existence"
-                            )
+                        assert _has_sku_reference(record, prov), (
+                            f"{category}/{record['name']}: field {field_name!r} "
+                            "is marked verified but cites a generated-family "
+                            "URL without SKU-specific path; "
+                            "family enumeration cannot verify SKU existence"
+                        )

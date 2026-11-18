@@ -286,8 +286,10 @@ class TestPublisherMalformedInput:
             "provenance": {
                 field: {
                     "source_name": "owner-manual",
-                    "source_url": "https://en.wikipedia.org/wiki/"
-                                  "Power_supply_unit_(computer)",
+                    # Per-SKU URL (/p/ + mpn segment): passes the SKU
+                    # evidence gate for 'verified' claims (M3 remediation).
+                    "source_url": "https://www.corsair.com/us/en/p/"
+                                  "psu/cp-9020200-na/rmx-series-rm850x",
                     "license_name": "CC BY-SA 4.0",
                     "evidence_status": "verified",
                     "access_date": "2026-11-16",
@@ -295,6 +297,7 @@ class TestPublisherMalformedInput:
                 for field in ("wattage", "efficiency_rating", "modular",
                               "pcie_8pin_count", "pcie_12vhpwr")
             },
+            "mpn": f"CP-9020200-NA-{n}",
         }
 
     def test_malformed_record_rejected_batch_survives(self, pub_db):

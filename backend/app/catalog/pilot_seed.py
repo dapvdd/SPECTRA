@@ -30,6 +30,10 @@ from backend.app.catalog.pilot_seed_data import (
     VENDOR,
     WIKI,
 )
+from backend.app.catalog.pilot_sku_verified import (
+    ACCESS_DATE_SKU,
+    VERIFIED_SKUS,
+)
 from backend.app.identity.canonical import canonical_key, variant_key
 
 PILOT_TARGETS = {"RAM": 100, "STORAGE": 100, "MOTHERBOARD": 100, "PSU": 100}
@@ -38,12 +42,16 @@ _APPROVER = "m3-curator"
 
 
 def _wiki_prov(wiki_key: str) -> dict:
-    """Technology-level citation (Wikipedia): NEVER 'verified'."""
+    """Technology-level citation (Wikipedia): NEVER 'verified'.
+
+    'uncertain' is the DB-vocabulary term for family/technology-tier
+    evidence (field_provenance CHECK: verified|uncertain|excluded|unmatched).
+    """
     return {
         "source_name": "Wikipedia (English) — curated",
         "source_url": WIKI[wiki_key],
         "license_name": "CC BY-SA 4.0",
-        "evidence_status": "unverified",
+        "evidence_status": "uncertain",
         "access_date": ACCESS_DATE,
     }
 
@@ -55,7 +63,7 @@ def _vendor_prov(vendor_key: str) -> dict:
         "source_name": "Official product pages — manual citations",
         "source_url": VENDOR[vendor_key],
         "license_name": "site terms (no redistribution license published)",
-        "evidence_status": "unverified",
+        "evidence_status": "uncertain",
         "access_date": ACCESS_DATE,
     }
 
@@ -198,11 +206,18 @@ def _psu_records() -> list[dict]:
 
 
 def build_pilot_records() -> dict[str, list[dict]]:
-    """Deterministic pilot record set (100 per category).
+    """Honest pilot record set (M3 remediation).
 
-    The curated grids exceed 100 per category; the first 100 records per
-    category (in the stable declaration order above) are the pilot — the
-    grid order is deterministic so the subset is reproducible.
+    Two record populations:
+    - SKU-verified subset (pilot_sku_verified.VERIFIED_SKUS): every material
+      spec carries a per-SKU citation + MPN -> evidence_status='verified',
+      identity_status='confirmed', record_status='APPROVED'. Publishable.
+    - Generated family×tier enumeration (pilot_seed_data grids): family/
+      technology citations only -> evidence_status='unverified',
+      identity_status='unconfirmed', record_status='QUARANTINED'. Included
+      for audit and future curation; never publishable as-is.
+
+    The old 100/category target is gone: no fabricated SKUs to hit it.
     """
     generated = {
         "RAM": _ram_records(),
@@ -210,10 +225,46 @@ def build_pilot_records() -> dict[str, list[dict]]:
         "MOTHERBOARD": _motherboard_records(),
         "PSU": _psu_records(),
     }
-    return {
-        category: records[:PILOT_TARGETS[category]]
-        for category, records in generated.items()
+
+    merged: dict[str, list[dict]] = {}
+    for category, records in generated.items():
+        # SKU-verified entries first (deterministic order), then the
+        # generated (quarantined) enumeration.
+        verified = [_sku_record(s) for s in VERIFIED_SKUS
+                    if s["category"] == category]
+        merged[category] = verified + records
+    return merged
+
+
+def _sku_record(entry: dict) -> dict:
+    """Build one SKU-verified record from a VERIFIED_SKUS entry.
+
+    Every material spec field cites the per-SKU page with
+    evidence_status='verified'; technology-level fields that the per-SKU
+    page does not establish cite Wikipedia with evidence_status='unverified'.
+    """
+    spec: dict = entry["spec"]
+    per_sku = {
+        "source_name": "Official product pages — manual citations",
+        "source_url": entry["per_sku_url"],
+        "license_name": "site terms (no redistribution license published)",
+        "evidence_status": "verified",
+        "access_date": ACCESS_DATE_SKU,
     }
+    prov_map: dict = {}
+    for field_name in spec:
+        if field_name in entry.get("tech_wiki", {}):
+            prov_map[field_name] = _wiki_prov(entry["tech_wiki"][field_name])
+        else:
+            prov_map[field_name] = dict(per_sku)
+    record = _record(
+        entry["category"], entry["name"], entry["manufacturer"],
+        entry["product_family"], spec, prov_map,
+    )
+    # SKU anchor: the MPN field makes the evidence gate's SKU reference
+    # explicit on the record itself (defense in depth for auditors).
+    record["mpn"] = entry["mpn"]
+    return record
 
 
 def iter_batches(

@@ -75,8 +75,11 @@ def _psu_record(n: int, source_name: str = "owner-manual") -> dict:
         "provenance": {
             field: {
                 "source_name": source_name,
-                "source_url": "https://en.wikipedia.org/wiki/"
-                              "Power_supply_unit_(computer)",
+                # Per-SKU URL (/p/ + mpn segment): passes the SKU evidence
+                # gate for 'verified' claims. Wikipedia = technology facts
+                # only, never SKU specs (M3 remediation contract).
+                "source_url": "https://www.corsair.com/us/en/p/"
+                              "psu/cp-9020200-na/rmx-series-rm850x",
                 "license_name": "CC BY-SA 4.0",
                 "evidence_status": "verified",
                 "access_date": "2026-11-16",
@@ -84,6 +87,7 @@ def _psu_record(n: int, source_name: str = "owner-manual") -> dict:
             for field in ("wattage", "efficiency_rating", "modular",
                           "pcie_8pin_count", "pcie_12vhpwr")
         },
+        "mpn": f"CP-9020200-NA-{n}",
     }
 
 
