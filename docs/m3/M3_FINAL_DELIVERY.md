@@ -1,7 +1,7 @@
 # M3 Final Delivery Report — Catalog Expansion & Data Dominance
 
 **Date**: 2026-11-18 (remediation revision; original 2026-11-17)
-**Branch**: `feat/m3-catalog-expansion` (HEAD `63b0c2f`, pushed; draft PR
+**Branch**: `feat/m3-catalog-expansion` (HEAD `3857de3`, pushed; draft PR
 target). Main untouched at `5074211`. Production untouched at
 `M2.5-production` (`dcfd7df`).
 
@@ -26,11 +26,16 @@ Basis:
 - Pilot rebuilt honestly in the isolated dev DB: **2 confirmed real SKUs**
   (Corsair `CMK32GX5M2B6000C30`; Seasonic FOCUS GX-750), **443 quarantined
   variants**, 8 verified + 2,744 uncertain provenance fields, 0 conflicts,
-  0 fabrications to preserve the 400 target (`remediation_audit` in
-  `docs/m3/evidence/phase5_run_log.json`).
+  0 fabrications (`remediation_audit` in
+  `docs/m3/evidence/phase5_run_log.json`; pilot rebuilt under the
+  strengthened three-layer evidence gate). The SKU-AUDIT-MANIFEST in
+  `pilot_sku_verified.py` records exact MPN, manufacturer source URL,
+  document revision, per-field evidence location, source value,
+  normalized value, and curator decision for every verified field.
 - Regression tests pin the contract: family-level citations alone cannot
-  establish SKU-level verification (catalog + importers + publishing
-  suites; backend 1,410 passed, frontend 681 passed).
+  establish SKU-level verification; 'verified' requires source_reference
+  (evidence locator) + allowed match_method vocabulary; dry-run mirrors
+  the gate (1410 backend, 681 frontend → **1425** with Layer 3 tests).
 - Safety contract held end-to-end: zero production DB writes, zero staging
   mutations, zero merges to main, zero force-push, no restricted-source
   scraping (vendor pages fetched manually, read-only, authorized).
@@ -49,7 +54,7 @@ CONDITIONS for READY_FOR_MERGE_REVIEW:
 | Sources | Gate 0 feasibility + registry; two curated adapters (Wikipedia CC BY-SA 4.0 `clear`; manual official citations honestly `unknown`), zero network I/O (AST + behavioral pins) |
 | Identity | `manufacturer\|type\|family_or_model\|variant` canonical keys; kit≠module; capacity variants; SHA-256 uniqueness suffix on 300-char truncation; duplicates → conflict candidates, never auto-merged |
 | Schema | Migration v4 (dev-only): 5 nullable hardware columns, unique-partial index, `ingestion_runs` + `publication_batches`; legacy rows structurally untouched (5,389-row rehearsal: 0 backfill, 0.04 s) |
-| Validation | Unit semantics (MT/s vs MHz, MB/s vs Gb/s, rated watts vs TDP), ranges, cross-field rules, fail-closed type gate, deterministic completeness-only quality score — **plus M3-remediation SKU evidence gate** (verified ⇒ MPN or per-SKU URL; Wikipedia/family pages fail-closed) |
+| Validation | Unit semantics (MT/s vs MHz, MB/s vs Gb/s, rated watts vs TDP), ranges, cross-field rules, fail-closed type gate, deterministic completeness-only quality score — **plus M3-remediation SKU evidence gate (strengthened): three fail-closed layers — source eligibility (Wikipedia = technology only; family pages = family facts only), identity verification (MPN or per-SKU URL), field verification (non-empty source_reference locator + allowed match_method: manual-curation | spec-table-row | manufacturer-declaration). No self-declared 'verified' status without a traceable curator assertion. Enforced in publish_batch AND mirrored in dry_run_batch.** |
 | Publication | Transactional fail-closed publisher: lifecycle gate, validation gate **(now with evidence gate; mpn forwarded)**, provenance rowcount gate, wired conflict gate (intra-batch + against-published), idempotent re-import, per-batch audit rows, case-insensitive prod-path refusal; dry-run mirrors evidence gate (never overstates success) |
 | API/UX | Provenance endpoint 6 categories, constant query bounds (eager loads ≤12), `/hardware` 2-query pagination, SourceTransparencyFooter with verified-only lastVerifiedOn, Neural Luxury tokens preserved, no new runtime deps |
 | Ops | `/ops/ingestion-runs` + `/ops/publication-batches`: allow-listed SQL, bound params, bounded limit (422 outside 1–100), 503 fail-closed pre-v4, feature-flagged auth (401 matrix) |
@@ -132,8 +137,9 @@ Regression tests pinning the remediation contract:
 ## 5. Test & evidence trail
 
 - Backend (CI-parity): 1342 → 1356 (P7) → 1362 (P8) → 1380 (P9) → 1392
-  (P10 fixes) → 1396 (P10b conflict gate) → **1410** (remediation evidence
-  gate + honest pilot) passed; 2 skipped, 2 deselected throughout.
+  (P10 fixes) → 1396 (P10b conflict gate) → 1410 (initial remediation) →
+  **1425** (strengthened evidence gate: +15 Layer 3 adversarial tests).
+  2 skipped, 2 deselected throughout.
 - Frontend: 680 (P7) → **681** (lastVerifiedOn pin) passed (re-run after
   remediation: 681 passed, 0 failed).
 - Rehearsal: 5,389-row prod-scale upgrade 0.04 s, legacy rows untouched;
@@ -176,8 +182,9 @@ Remediation-specific residual risks (merge-review HOLD):
    dataset is not. Merging this PR does not deliver a 400-record verified
    catalog; it delivers the machinery that makes such a claim verifiable.
 2. **Quarantined variants need curator throughput** — 443 records remain
-   quarantined until each gets an MPN + per-SKU citation. Nothing publishes
-   without that (fail-closed), but the curation backlog is real work.
+   quarantined until each gets an MPN + per-SKU citation + source_reference
+   locator + allowed match_method. Nothing publishes without all four
+   elements (fail-closed), but the curation backlog is real work.
 3. **Seasonic FOCUS GX-750 citation is series-level** — the FOCUS GX page
    carries per-wattage spec tables, so the 750 W variant's values are
    directly readable, but a reviewer may rule series pages categorically
@@ -187,6 +194,12 @@ Remediation-specific residual risks (merge-review HOLD):
    `verified|uncertain|excluded|unmatched`; family/technology-tier evidence
    is stamped `uncertain` (the review prompt's "unverified" has no DB
    representation). Semantics are documented here and in the audit block.
+5. **Evidence gate Layer 3 operational overhead** — every future 'verified'
+   provenance entry now requires source_reference (evidence locator) +
+   allowed match_method. This is a curation workflow change: curators must
+   name the exact table/heading/row/field when claiming 'verified'. The gate
+   is fail-closed on this requirement; any record omitting it cannot be
+   published. This is intentional — it enforces auditable traceability. |
 
 ## 8. Merge-review pointers
 

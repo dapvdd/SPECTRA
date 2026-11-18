@@ -1,6 +1,13 @@
 # M3 Data Quality Report (Phase 5)
 
 **Date**: 2026-11-17
+**Status**: Superseded by `M3_FINAL_DELIVERY.md` (2026-11-18 remediation revision).
+The headline claims (400 verified records, 2 500 verified provenance entries)
+were wrong — those records used family-level citations mislabeled as SKU-
+verified. See `M3_FINAL_DELIVERY.md` §4, finding #12 and the remediation
+evidence table for the honest pilot results (2 confirmed SKUs, 443
+quarantined, 0 fabrications). This file is preserved as a historical
+artifact of the Phase 5 deliverable at the time it was written.
 **Pilot DB**: `data/dev/m3_pilot.db` (isolated dev; schema v4; production untouched)
 **Run log**: `docs/m3/evidence/phase5_run_log.json` (machine-readable, full)
 

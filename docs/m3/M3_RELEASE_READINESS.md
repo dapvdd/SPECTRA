@@ -90,12 +90,12 @@ remediation evidence table, plus the updated gate checklist below.
 | Gate | Criterion | Status | Notes |
 |---|---|---|---|
 | Deliverables | 14 docs + evidence | PASS | |
-| Pilot | 2 verified + 443 quarantined; 0 conflicts; 0 fabrications | **CONDITIONAL_REVIEW** | Pre-remediation 400-target claim was wrong; honest 2 confirmed SKUs (Corsair CMK32GX5M2B6000C30, Seasonic FOCUS GX-750), 443 QUARANTINED variants pending per-SKU curation. Pipeline is fail-closed; curator must substantiate remaining variants. |
-| TDD | RED→GREEN→REGRESSION per phase | PASS | 14 remediation regression tests added (pilot evidence gate + validation evidence gate + dry-run mirroring) |
+| Pilot | 2 verified + 443 quarantined; 0 conflicts; 0 fabrications | **CONDITIONAL_REVIEW** | Pre-remediation 400-target claim was wrong; honest 2 confirmed SKUs (Corsair CMK32GX5M2B6000C30, Seasonic FOCUS GX-750), 443 QUARANTINED variants pending per-SKU curation (MPN + per-SKU URL + source_reference + match_method required). Pipeline is fail-closed; curator must substantiate remaining variants. |
+| TDD | RED→GREEN→REGRESSION per phase | PASS | 25 remediation regression tests (was 14): +11 Layer 3 adversarial cases (adversarial class in test_m3_validation_evidence_gate.py: fabricated MPN, family URL w/ unsupported variant, URL-syntax-only, missing locator, conflicting evidence, false verified w/o anchor, missing optional fields, dry-run/apply parity on Layer 3). |
 | Safety | zero prod writes/staging mutations/main merges | PASS | remediation vendor-page fetches: manual, read-only, authorized public pages only |
 | Compatibility | M2.5-RULES-v1 byte-unchanged, no false positives | PASS | |
 | Security | no Critical/High findings open | PASS | 0 open; remediation did not introduce new vulnerabilities |
-| **Merge-review HOLD** | evidence gate closes the 400-record data-quality finding | **FIXED** | commits `0a70cf5` (gate) + `63b0c2f` (honest pilot + quarantine-aware batcher) |
+| **Merge-review HOLD** | evidence gate closes the 400-record data-quality finding | **FIXED** | commits `0a70cf5` (gate v1) + `63b0c2f` (honest pilot) + `3857de3` (strengthened: three-layer gate, source_reference + match_method required for 'verified', SKU_AUDIT_MANIFEST, +15 adversarial tests) |
 
 ## 5. Residual risks for the merge reviewer
 
@@ -120,3 +120,10 @@ remediation evidence table, plus the updated gate checklist below.
    remediation evidence table). PR #6 stays draft until the curator
    substantiates the quarantined variants or the product accepts the small
    verified set.
+8. **Strengthened evidence gate (2026-11-18, `3857de3`)**: 'verified' now
+   additionally requires source_reference (evidence locator) + allowed
+   match_method (manual-curation | spec-table-row |
+   manufacturer-declaration); embedded `_provenance` is forwarded to the
+   gate in apply and dry-run (bypass closed). Curation throughput cost per
+   record rises accordingly; the SKU_AUDIT_MANIFEST in
+   `pilot_sku_verified.py` is the working example of the required shape.

@@ -1,6 +1,6 @@
 # M3 Test Matrix
 
-**Date**: 2026-11-17
+**Date**: 2026-11-18 (remediation revision; original 2026-11-17)
 **Command parity**: every command below was run in the M3 worktree
 (`C:\Users\user\spectra-m3`, branch `feat/m3-catalog-expansion`) with the
 CI-parity flags. Backend: Python 3.13, pytest. Frontend: Node's built-in test
@@ -50,11 +50,11 @@ python -m pytest backend -q ^
   --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
 ```
 
-- Phase 9 final run: **1380 passed, 2 skipped, 2 deselected** (43 s).
-  Delta vs Phase 8 (1362): +18 = `test_m3_security.py`.
-- Targeted RED evidence: `python -m pytest backend/app/test_m3_security.py -q`
-  → first run 8 failed / 10 passed (crash reproductions + 2 harness fixes),
-  after GREEN 18 passed.
+- Phase 11 remediation final run: **1425 passed**, 2 skipped, 2 deselected
+  (up from 1410 — +15 remediation tests for the strengthened evidence
+  gate: Layer 3 adversarial cases + pilot provenance completeness).
+- Targeted RED evidence: `python -m pytest backend/app/importers/test_m3_validation_evidence_gate.py -q`
+  → first run 10 failed (adversarial cases absent), after GREEN +15 passed.
 
 Frontend (unchanged by Phase 9; last full run in Phase 7):
 
