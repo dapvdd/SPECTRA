@@ -329,6 +329,11 @@ def publish_batch(
                     conflict_free=True,
                     identity_confirmed=record.get("identity_status", "confirmed")
                     == "confirmed",
+                    # Evidence gate (M3 remediation): the publisher is the
+                    # last fail-closed gate — a record claiming
+                    # evidence_status='verified' without an MPN or per-SKU
+                    # URL is rejected here, never published.
+                    provenance=record.get("provenance"),
                 )
                 if not outcome.passed:
                     reason = "; ".join(outcome.blockers)
@@ -474,6 +479,24 @@ def dry_run_batch(
                 result.rejection_reasons.append(
                     f"{record.get('name', '?')}: cites unregistered source "
                     f"{unregistered[0]!r}"
+                )
+                continue
+            # Mirror the evidence gate too (M3 remediation): a record claiming
+            # evidence_status='verified' without an MPN/per-SKU URL WILL be
+            # rejected at publish — dry-run must not overstate success.
+            outcome = validate_record(
+                record["category"].upper(),
+                {**record.get("spec", {}), "name": record["name"],
+                 "manufacturer": record["manufacturer"]},
+                conflict_free=True,
+                identity_confirmed=record.get("identity_status", "confirmed")
+                == "confirmed",
+                provenance=record.get("provenance"),
+            )
+            if not outcome.passed:
+                result.rejected += 1
+                result.rejection_reasons.append(
+                    f"{record.get('name', '?')}: {'; '.join(outcome.blockers)}"
                 )
                 continue
             if _hardware_id_by_canonical_key(conn, record["canonical_key"]):

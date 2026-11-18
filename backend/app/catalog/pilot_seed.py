@@ -1,16 +1,23 @@
 """M3 Phase 5 — pilot catalog generator.
 
-Composes the verified pilot records from the curated seed tables
+Composes the pilot records from the curated seed tables
 (`pilot_seed_data.py`) — documentary facts (cited Wikipedia articles) +
-official SKU ladders (cited vendor product-line pages). The generator adds
-no numbers of its own: it enumerates the families × tiers grid, builds
-deterministic canonical keys, attaches per-field provenance to the family's
-citations, and yields APPROVED-shaped records for publish_batch.
+official SKU ladders (cited vendor product-line pages).
 
-Every generated (family, tier) combination corresponds to a real SKU the
-vendor publishes on the cited product page; per-product Wikipedia articles
-exist for the families (Trident Z5, Vengeance, 990 PRO, RMx, etc. are
-documented on/under the cited technology articles and vendor pages).
+M3 remediation (evidence honesty):
+- A vendor FAMILY page (Trident Z5 listing, Focus GX series page) and a
+  Wikipedia technology article are NOT SKU-level sources. They support
+  family/technology facts only.
+- evidence_status='verified' requires a per-SKU citation (product.aspx?pn=,
+  per-model page) OR an MPN field on the record.
+- Generated family×tier combinations without SKU-level citations are marked
+  evidence_status='unverified' on their SKU-specific fields and the record's
+  identity_status is 'unconfirmed', record_status 'QUARANTINED' (fail-closed:
+  unverified records cannot be published without re-review).
+
+The generator adds no numbers of its own: it enumerates the families × tiers
+grid, builds deterministic canonical keys, attaches per-field provenance to
+the family's citations, and stamps evidence honestly.
 """
 from __future__ import annotations
 
@@ -31,26 +38,57 @@ _APPROVER = "m3-curator"
 
 
 def _wiki_prov(wiki_key: str) -> dict:
+    """Technology-level citation (Wikipedia): NEVER 'verified'."""
     return {
         "source_name": "Wikipedia (English) — curated",
         "source_url": WIKI[wiki_key],
         "license_name": "CC BY-SA 4.0",
-        "evidence_status": "verified",
+        "evidence_status": "unverified",
         "access_date": ACCESS_DATE,
     }
 
 
 def _vendor_prov(vendor_key: str) -> dict:
+    """Vendor family-page citation: NEVER 'verified' (family pages are not
+    per-SKU sources)."""
     return {
         "source_name": "Official product pages — manual citations",
         "source_url": VENDOR[vendor_key],
         "license_name": "site terms (no redistribution license published)",
-        "evidence_status": "verified",
+        "evidence_status": "unverified",
         "access_date": ACCESS_DATE,
     }
 
 
 def _record(category, name, manufacturer, family, spec, prov_map) -> dict:
+    """Build one pilot record with honest evidence stamps.
+
+    A record is identity-confirmed + APPROVED only when its provenance map
+    contains at least one per-SKU citation (or an MPN field). Otherwise it
+    is identity-'unconfirmed', record_status 'QUARANTINED'.
+    """
+    is_sku_backed = any(
+        isinstance(p, dict) and p.get("evidence_status") == "verified"
+        for p in prov_map.values()
+    )
+    if not is_sku_backed:
+        # No per-SKU evidence: the record's identity is unconfirmed and it
+        # cannot be APPROVED — it enters the pipeline QUARANTINED.
+        return {
+            "category": category,
+            "name": name,
+            "manufacturer": manufacturer,
+            "product_family": family,
+            "identity_status": "unconfirmed",
+            "record_status": "QUARANTINED",
+            "approved_by": None,
+            "canonical_key": canonical_key(
+                manufacturer, category, name,
+                variant_key(category, spec),
+            ),
+            "spec": spec,
+            "provenance": prov_map,
+        }
     return {
         "category": category,
         "name": name,

@@ -60,8 +60,10 @@ def _psu_record(n: int, *, wattage=850, key_suffix="850w",
         "provenance": {
             field: {
                 "source_name": source_name,
-                "source_url": "https://en.wikipedia.org/wiki/"
-                              "Power_supply_unit_(computer)",
+                # Per-SKU URL (/p/ + mpn path segment): passes the SKU
+                # evidence gate for 'verified' claims.
+                "source_url": "https://www.corsair.com/us/en/p/"
+                              "psu/cp-9020200-na/rmx-series-rm850x",
                 "license_name": "CC BY-SA 4.0",
                 "evidence_status": "verified",
                 "access_date": "2026-11-16",
@@ -69,6 +71,8 @@ def _psu_record(n: int, *, wattage=850, key_suffix="850w",
             for field in ("wattage", "efficiency_rating", "modular",
                           "pcie_8pin_count", "pcie_12vhpwr")
         },
+        # MPN field: the SKU anchor for the evidence gate.
+        "mpn": f"RPS0128-{n}",
     }
 
 

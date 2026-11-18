@@ -58,6 +58,7 @@ def _psu_record(n: int = 1) -> dict:
         "canonical_key": f"corsair|psu|rm850x #{n}|850w-gold-mod",
         "record_status": APPROVED,
         "approved_by": "curator",
+        "mpn": f"CP-9020200-NA{n}",  # SKU anchor for the evidence gate
         "spec": {
             "wattage": 850,
             "efficiency_rating": "80 Plus Gold",
@@ -68,7 +69,11 @@ def _psu_record(n: int = 1) -> dict:
         "provenance": {
             field: {
                 "source_name": "owner-manual",
-                "source_url": "https://en.wikipedia.org/wiki/Power_supply_unit_(computer)",
+                # Per-SKU product page (contains /p/ + MPN): passes the
+                # SKU evidence gate for 'verified' claims. Wikipedia is
+                # technology-vocabulary only and cannot back 'verified'.
+                "source_url": "https://www.corsair.com/us/en/p/"
+                              "psu/cp-9020200-na/rmx-series-rm850x",
                 "license_name": "CC BY-SA 4.0",
                 "evidence_status": "verified",
                 "access_date": "2026-11-16",
@@ -89,6 +94,31 @@ class TestDryRun:
     def test_dry_run_reports_provenance_plan(self, pub_db):
         result = dry_run_batch(pub_db, [_psu_record(1)])
         assert result.provenance_rows_planned == 5
+
+    def test_dry_run_rejects_verified_without_sku_evidence(self, pub_db):
+        """Regression (M3 remediation): dry-run must mirror the evidence
+        gate — a 'verified' claim with a Wikipedia citation and no MPN
+        (no per-SKU URL) will be rejected at publish; dry-run must report
+        it as rejected, never would_publish."""
+        record = _psu_record(7)
+        record["mpn"] = None
+        record["provenance"] = {
+            field: {
+                "source_name": "owner-manual",
+                "source_url": "https://en.wikipedia.org/wiki/"
+                              "Power_supply_unit_(computer)",
+                "license_name": "CC BY-SA 4.0",
+                "evidence_status": "verified",
+                "access_date": "2026-11-16",
+            }
+            for field in ("wattage", "efficiency_rating", "modular",
+                          "pcie_8pin_count", "pcie_12vhpwr")
+        }
+        result = dry_run_batch(pub_db, [record])
+        assert result.would_publish == 0
+        assert result.rejected == 1
+        assert any("evidence" in r.lower() for r in result.rejection_reasons), (
+            result.rejection_reasons)
 
 
 class TestPublish:

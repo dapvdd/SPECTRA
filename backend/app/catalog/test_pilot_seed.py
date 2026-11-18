@@ -1,19 +1,16 @@
-"""M3 Phase 5 — pilot catalog seed generator (RED-first contract tests).
+"""M3 Phase 5 — pilot catalog seed generator (contract tests).
 
-Builds the verified pilot dataset for the isolated dev DB:
-- 100 RAM + 100 Storage + 100 Motherboard + 100 PSU curated records,
-  every value citing a real, human-checkable source (Wikipedia CC BY-SA 4.0
-  article revisions or official product pages),
-- every record passes validate_record (fail-closed) and carries per-field
-  provenance before publication,
-- batches 10 → 25 → 50 → 100 per category via publish_batch.
-
-The generator produces records ONLY from the curated seed table below
-(family/model names + the specification values a curator verified against
-the cited articles). It never invents values: every spec value in the seed
-table is either (a) a JEDEC/documentary fact stated on the cited Wikipedia
-page (generation vocabularies, voltage classes, interface vocabularies,
-form factors, 80 Plus tiers) or (b) an official-product-page value.
+The honest pilot model (M3 remediation):
+- Vendor family pages and Wikipedia support family/technology facts only.
+  evidence_status='verified' requires an MPN field or per-SKU URL.
+- Records without SKU-level evidence are identity_status='unconfirmed',
+  record_status='QUARANTINED' — they are included in the pilot for audit
+  purposes but cannot enter the PUBLISHED set without re-review.
+- The total pilot set may be fewer than 400 (honest count); no fabrications
+  are created to preserve the 400 target.
+- Every record (quarantined or approved) passes validate_record (fail-closed
+  on spec integrity), carries per-field provenance, and has a canonical_key.
+- Batches 10 → 25 → 50 → 100 per category via publish_batch.
 """
 from __future__ import annotations
 
@@ -26,10 +23,10 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
 from backend.app.catalog.pilot_seed import (  # noqa: E402
-    PILOT_TARGETS,
     build_pilot_records,
     iter_batches,
 )
+from backend.app.identity.lifecycle import APPROVED, QUARANTINED
 
 
 class TestPilotTargets:
@@ -38,31 +35,68 @@ class TestPilotTargets:
                                  "MOTHERBOARD": 100, "PSU": 100}
 
 
+class TestPilotTargets:
+    def test_targets_defined(self):
+        # PILOT_TARGETS may now reflect honest count, not necessarily 400 total.
+        # The key contract is that build_pilot_records respects these caps.
+        from backend.app.catalog.pilot_seed import PILOT_TARGETS
+        assert set(PILOT_TARGETS.keys()) == {"RAM", "STORAGE", "MOTHERBOARD", "PSU"}
+
+
 class TestGeneratedRecords:
     @pytest.fixture(scope="class")
     def records(self):
         return build_pilot_records()
 
-    def test_100_per_category(self, records):
-        for category in ("RAM", "STORAGE", "MOTHERBOARD", "PSU"):
-            assert len(records[category]) == 100, category
-
-    def test_every_record_has_identity_and_approval(self, records):
+    def test_every_record_has_canonical_key(self, records):
         for category, batch in records.items():
             for record in batch:
                 assert record["category"] == category
-                assert record["record_status"] == "APPROVED"
-                assert record["approved_by"] == "m3-curator"
                 assert record["canonical_key"]
-                assert record["product_family"]
-                assert record["identity_status"] == "confirmed"
 
-    def test_every_populated_field_has_provenance(self, records):
+    def test_every_record_has_provenance_for_spec_fields(self, records):
         for category, batch in records.items():
             for record in batch:
                 for field_name in record["spec"]:
                     assert field_name in record["provenance"], (
-                        category, record["name"], field_name)
+                        f"{category}/{record['name']}: spec field {field_name!r} "
+                        "has no provenance entry"
+                    )
+
+    def test_quarantined_records_are_correctly_stamped(self, records):
+        """Any record without SKU-level verified provenance must be QUARANTINED
+        with identity_status='unconfirmed'."""
+        for category, batch in records.items():
+            for record in batch:
+                has_verified = any(
+                    isinstance(p, dict) and p.get("evidence_status") == "verified"
+                    for p in record["provenance"].values()
+                )
+                if not has_verified:
+                    assert record["record_status"] == QUARANTINED, (
+                        f"{category}/{record['name']}: no SKU-level verified "
+                        f"provenance but record_status={record['record_status']!r}; "
+                        "expected QUARANTINED"
+                    )
+                    assert record["identity_status"] == "unconfirmed"
+                    assert record["approved_by"] is None
+
+    def test_approved_records_are_correctly_stamped(self, records):
+        """An APPROVED record must have identity_status='confirmed',
+        approved_by non-empty, and at least one verified SKU-level provenance."""
+        for category, batch in records.items():
+            for record in batch:
+                if record["record_status"] == APPROVED:
+                    assert record["identity_status"] == "confirmed"
+                    assert record["approved_by"]
+                    has_verified = any(
+                        isinstance(p, dict) and p.get("evidence_status") == "verified"
+                        for p in record["provenance"].values()
+                    )
+                    assert has_verified, (
+                        f"{category}/{record['name']}: APPROVED but no "
+                        "SKU-level verified provenance"
+                    )
 
     def test_citations_are_real_documents(self, records):
         """Every citation URL points at the cited corpus (wikipedia.org or a
@@ -103,6 +137,10 @@ class TestGeneratedRecords:
         assert len(keys) == len(set(keys))
 
     def test_records_pass_fail_closed_validation(self, records):
+        """Every record (quarantined or approved) passes spec-level
+        validate_record — the evidence gate may add blockers only when a
+        'verified' claim lacks SKU backing, which cannot happen here
+        (pilot_seed no longer claims 'verified' without per-SKU evidence)."""
         from backend.app.importers.m3_validation import validate_record
 
         for category, batch in records.items():

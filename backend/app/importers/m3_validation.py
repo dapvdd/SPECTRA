@@ -221,6 +221,82 @@ def classify_missing(hardware_type: str, spec: dict) -> MissingClassification:
 
 
 # ---------------------------------------------------------------------------
+# Evidence gate (M3 remediation)
+# ---------------------------------------------------------------------------
+
+_SKU_URL_SIGNATURES = (
+    "pn=", "product.aspx", "/product/", "-mpn", "sku=",
+    "part-number", "model=", "p/", "mpn=", "/p/",
+)
+
+# Domains that host family-level pages (not per-SKU pages).
+# A URL pointing only to these paths is a family-page citation, not a
+# per-SKU citation, and cannot support 'verified' evidence_status.
+_FAMILY_LEVEL_ROOTS = (
+    "gskill.com/products/165", "corsair.com/us/en/c/memory",
+    "seasonic.com/focus", "samsung.com/consumer-storage/support/",
+    "westerndigital.com/products/internal-drives/",
+    "asus.com/us/motherboards/", "msi.com/Motherboard/",
+    "gigabyte.com/Motherboard/", "asrock.com/MB/",
+    "bequiet.com/en/power-supply", "thermaltake.com/power-supply",
+    "coolermaster.com/catalog/power-supplies/",
+)
+
+
+def _evidence_gate(hardware_type: str, record: dict,
+                   provenance: dict) -> list[str]:
+    """Block 'verified' claims that lack SKU-level evidence.
+
+    evidence_status='verified' on a spec field requires EITHER:
+    (a) the record carries an 'mpn' or 'part_number' field, OR
+    (b) the field's provenance cites a per-SKU URL (contains one of
+        _SKU_URL_SIGNATURES) — NOT a Wikipedia article or a vendor
+        family-page root.
+
+    Wikipedia may only support technology-level facts (DDR5 vocabulary,
+    NVMe interface names, ATX standard, 80 Plus tiers). It is never a
+    per-SKU source.
+
+    Returns a list of blocker strings; empty list means the gate passes.
+    """
+    blockers: list[str] = []
+    has_mpn = bool(
+        str(record.get("mpn") or "").strip()
+        or str(record.get("part_number") or "").strip()
+    )
+    for field_name, prov in provenance.items():
+        if not isinstance(prov, dict):
+            continue
+        if prov.get("evidence_status") != "verified":
+            continue
+        url = prov.get("source_url", "")
+
+        # Wikipedia: technology facts only, never SKU specs.
+        if "wikipedia.org" in url:
+            blockers.append(
+                f"field '{field_name}' has evidence_status='verified' "
+                f"citing Wikipedia ({url}); Wikipedia supports technology "
+                "vocabulary only, not SKU-specific specifications"
+            )
+            continue
+
+        # Vendor family page vs per-SKU page.
+        is_sku_url = any(sig in url.lower() for sig in _SKU_URL_SIGNATURES)
+        is_family_page = any(root in url for root in _FAMILY_LEVEL_ROOTS)
+
+        if is_family_page and not is_sku_url and not has_mpn:
+            blockers.append(
+                f"field '{field_name}' has evidence_status='verified' "
+                f"citing family-level URL {url!r} without an MPN field; "
+                "a vendor family-page citation cannot establish SKU-level "
+                "verification — use a per-SKU URL (product.aspx?pn=..., "
+                "or similar) or a manufacturer MPN"
+            )
+
+    return blockers
+
+
+# ---------------------------------------------------------------------------
 # Conflict detection
 # ---------------------------------------------------------------------------
 
@@ -302,12 +378,18 @@ def quality_score(hardware_type: str, record: dict) -> int:
 
 def validate_record(
     hardware_type: str, record: dict, *, conflict_free: bool = True,
-    identity_confirmed: bool = True,
+    identity_confirmed: bool = True, provenance: dict | None = None,
 ) -> ValidationOutcome:
-    """Full gate: unit + range + cross-field + critical fields + conflicts.
+    """Full gate: unit + range + cross-field + critical fields + evidence.
 
     Returns a ValidationOutcome; ``passed`` False means the record cannot
     enter the approved publication set (fail-closed).
+
+    The evidence gate checks that any field with evidence_status='verified'
+    is backed by an MPN field or a per-SKU source URL (product.aspx?pn=...,
+    /product/, -mpn, etc.). Wikipedia technology articles and vendor family
+    pages are not SKU-level sources; citing them with 'verified' is a
+    contract violation and blocks approval.
     """
     blockers: list[str] = []
     warnings: list[str] = []
@@ -326,6 +408,17 @@ def validate_record(
         blockers.append("unresolved source conflict")
     if not identity_confirmed:
         blockers.append("identity not confirmed (provisional)")
+
+    # ---- Evidence gate (M3 remediation) ----
+    # Provenance can be passed explicitly (publisher path) or embedded in
+    # the record dict under '_provenance' / 'provenance' (validation-only
+    # callers, tests). Explicit kwarg wins.
+    if provenance is None:
+        embedded = record.get("_provenance") or record.get("provenance")
+        if isinstance(embedded, dict):
+            provenance = embedded
+    if provenance is not None:
+        blockers += _evidence_gate(hardware_type, record, provenance)
 
     return ValidationOutcome(
         passed=not blockers,
