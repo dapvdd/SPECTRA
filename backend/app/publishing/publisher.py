@@ -263,8 +263,9 @@ def _insert_record(
         cursor = conn.execute(
             "INSERT INTO field_provenance (hardware_id, source_id, table_name, "
             "field_name, evidenced_value, source_url, license_name, "
-            "evidence_status, access_date, match_method, batch_no, recorded_at) "
-            "SELECT ?, id, ?, ?, ?, ?, ?, ?, ?, 'batch-publication', ?, ? "
+            "evidence_status, access_date, source_reference, match_method, "
+            "batch_no, recorded_at) "
+            "SELECT ?, id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? "
             "FROM sources WHERE name = ?",
             (
                 hardware_id,
@@ -275,6 +276,11 @@ def _insert_record(
                 prov.get("license_name"),
                 prov.get("evidence_status", "verified"),
                 prov.get("access_date"),
+                # Layer 3 (M3 merge-gate): persist the auditable curator
+                # assertion — the gate verified it in the dict; the DB row
+                # must carry it too or the traceability is lost on write.
+                prov.get("source_reference"),
+                prov.get("match_method"),
                 batch_no,
                 datetime.now(timezone.utc).isoformat(),
                 prov["source_name"],
@@ -335,8 +341,11 @@ def publish_batch(
                     # Evidence gate (M3 remediation): the publisher is the
                     # last fail-closed gate — a record claiming
                     # evidence_status='verified' without an MPN or per-SKU
-                    # URL is rejected here, never published.
-                    provenance=record.get("provenance"),
+                    # URL is rejected here, never published. Embedded
+                    # provenance ('_provenance') is forwarded too — a
+                    # record carrying it must never bypass the gate.
+                    provenance=record.get("provenance")
+                    or record.get("_provenance"),
                 )
                 if not outcome.passed:
                     reason = "; ".join(outcome.blockers)
@@ -487,6 +496,7 @@ def dry_run_batch(
             # Mirror the evidence gate too (M3 remediation): a record claiming
             # evidence_status='verified' without an MPN/per-SKU URL WILL be
             # rejected at publish — dry-run must not overstate success.
+            # Embedded provenance ('_provenance') is forwarded too.
             outcome = validate_record(
                 record["category"].upper(),
                 {**record.get("spec", {}), "name": record["name"],
@@ -496,7 +506,8 @@ def dry_run_batch(
                 conflict_free=True,
                 identity_confirmed=record.get("identity_status", "confirmed")
                 == "confirmed",
-                provenance=record.get("provenance"),
+                provenance=record.get("provenance")
+                or record.get("_provenance"),
             )
             if not outcome.passed:
                 result.rejected += 1

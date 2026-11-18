@@ -77,6 +77,9 @@ def _psu_record(n: int = 1) -> dict:
                 "license_name": "CC BY-SA 4.0",
                 "evidence_status": "verified",
                 "access_date": "2026-11-16",
+                # Layer 3: auditable curator assertion (M3 merge-gate)
+                "source_reference": "Tech Specs > " + field,
+                "match_method": "spec-table-row",
             }
             for field in ("wattage", "efficiency_rating", "modular",
                           "pcie_8pin_count", "pcie_12vhpwr")
@@ -143,6 +146,30 @@ class TestPublish:
         assert {r[0] for r in rows} == {"wattage", "efficiency_rating", "modular",
                                         "pcie_8pin_count", "pcie_12vhpwr"}
         assert all(r[1] == "verified" for r in rows)
+
+    def test_publish_persists_layer3_curator_assertion(self, pub_db):
+        """Regression (M3 merge-gate, Task 3): the DB row must carry the
+        auditable curator assertion — source_reference + match_method are
+        persisted alongside evidence_status, not lost on write. A 'verified'
+        row with an empty source_reference in the DB would be
+        indistinguishable from an untraceable one."""
+        publish_batch(pub_db, [_psu_record(1)], approved_by="curator")
+        conn = sqlite3.connect(pub_db)
+        rows = conn.execute(
+            "SELECT field_name, source_reference, match_method "
+            "FROM field_provenance WHERE table_name='psu_specifications'"
+        ).fetchall()
+        conn.close()
+        assert rows, "expected provenance rows"
+        for field_name, source_reference, match_method in rows:
+            assert source_reference, (
+                f"field {field_name!r}: source_reference not persisted — "
+                "the auditable curator assertion is lost on write"
+            )
+            assert match_method == "spec-table-row", (
+                f"field {field_name!r}: match_method not persisted "
+                f"(got {match_method!r})"
+            )
 
     def test_publish_records_batch_and_run(self, pub_db):
         result = publish_batch(pub_db, [_psu_record(1)], approved_by="curator")

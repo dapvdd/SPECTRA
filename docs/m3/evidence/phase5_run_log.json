@@ -35,7 +35,7 @@
    "rejected": 0,
    "skipped_existing": 0,
    "batch_no": 1,
-   "duration_s": 0.012,
+   "duration_s": 0.039,
    "hardware_by_type": {
     "RAM": 1
    },
@@ -50,7 +50,7 @@
    "rejected": 0,
    "skipped_existing": 0,
    "batch_no": 2,
-   "duration_s": 0.012,
+   "duration_s": 0.032,
    "hardware_by_type": {
     "PSU": 1,
     "RAM": 1
