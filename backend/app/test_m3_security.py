@@ -293,6 +293,9 @@ class TestPublisherMalformedInput:
                     "license_name": "CC BY-SA 4.0",
                     "evidence_status": "verified",
                     "access_date": "2026-11-16",
+                    # Layer 3: auditable curator assertion (M3 merge-gate)
+                    "source_reference": "Tech Specs > " + field,
+                    "match_method": "spec-table-row",
                 }
                 for field in ("wattage", "efficiency_rating", "modular",
                               "pcie_8pin_count", "pcie_12vhpwr")

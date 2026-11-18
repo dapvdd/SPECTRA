@@ -33,6 +33,7 @@ from backend.app.catalog.pilot_seed_data import (
 from backend.app.catalog.pilot_sku_verified import (
     ACCESS_DATE_SKU,
     VERIFIED_SKUS,
+    _verified_prov,
 )
 from backend.app.identity.canonical import canonical_key, variant_key
 
@@ -240,23 +241,20 @@ def _sku_record(entry: dict) -> dict:
     """Build one SKU-verified record from a VERIFIED_SKUS entry.
 
     Every material spec field cites the per-SKU page with
-    evidence_status='verified'; technology-level fields that the per-SKU
-    page does not establish cite Wikipedia with evidence_status='unverified'.
+    evidence_status='verified' plus a source_reference locator and an
+    allowed match_method (Layer 3 of the evidence-gate contract);
+    technology-level fields that the per-SKU page does not establish cite
+    Wikipedia with evidence_status='uncertain'.
     """
     spec: dict = entry["spec"]
-    per_sku = {
-        "source_name": "Official product pages — manual citations",
-        "source_url": entry["per_sku_url"],
-        "license_name": "site terms (no redistribution license published)",
-        "evidence_status": "verified",
-        "access_date": ACCESS_DATE_SKU,
-    }
     prov_map: dict = {}
     for field_name in spec:
         if field_name in entry.get("tech_wiki", {}):
             prov_map[field_name] = _wiki_prov(entry["tech_wiki"][field_name])
         else:
-            prov_map[field_name] = dict(per_sku)
+            prov_map[field_name] = _verified_prov(
+                field_name, entry["per_sku_url"], entry["category"]
+            )
     record = _record(
         entry["category"], entry["name"], entry["manufacturer"],
         entry["product_family"], spec, prov_map,

@@ -221,7 +221,7 @@ def classify_missing(hardware_type: str, spec: dict) -> MissingClassification:
 
 
 # ---------------------------------------------------------------------------
-# Evidence gate (M3 remediation)
+# Evidence gate (M3 remediation; strengthened per merge-gate contract)
 # ---------------------------------------------------------------------------
 
 _SKU_URL_SIGNATURES = (
@@ -242,24 +242,49 @@ _FAMILY_LEVEL_ROOTS = (
     "coolermaster.com/catalog/power-supplies/",
 )
 
+# Allowed match_method vocabulary for 'verified' provenance. A URL string
+# pattern alone is never proof: the curator must name HOW the value was
+# matched to the cited document. Anything outside this vocabulary fails
+# closed (auditable, structured manual-curation contract).
+_VERIFIED_MATCH_METHODS = (
+    "manual-curation",          # curator read the cited document directly
+    "spec-table-row",           # value read from a named spec table row
+    "manufacturer-declaration", # value from the manufacturer's own page
+)
 
-def _evidence_gate(hardware_type: str, record: dict,
-                   provenance: dict) -> list[str]:
-    """Block 'verified' claims that lack SKU-level evidence.
 
-    evidence_status='verified' on a spec field requires EITHER:
-    (a) the record carries an 'mpn' or 'part_number' field, OR
-    (b) the field's provenance cites a per-SKU URL (contains one of
-        _SKU_URL_SIGNATURES) — NOT a Wikipedia article or a vendor
-        family-page root.
+def _evidence_gate(hardware_type: str, provenance: dict,
+                   record: dict | None = None) -> list[str]:
+    """Fail-closed three-layer evidence contract for 'verified' claims.
 
-    Wikipedia may only support technology-level facts (DDR5 vocabulary,
-    NVMe interface names, ATX standard, 80 Plus tiers). It is never a
-    per-SKU source.
+    Layer 1 — SOURCE ELIGIBILITY: the cited document must be eligible to
+    support SKU-level facts at all. Wikipedia supports technology
+    vocabulary only (DDR5, NVMe, ATX, 80 Plus tiers); vendor family pages
+    support family-level facts only. Neither can ever back a 'verified'
+    SKU-specific value.
+
+    Layer 2 — IDENTITY VERIFICATION: a 'verified' claim requires a concrete
+    identity anchor: the record carries a manufacturer MPN/part_number, or
+    the citation URL identifies that exact model/variant (per-SKU page).
+    A URL whose *syntax* merely looks SKU-like is not sufficient by itself
+    without one of those anchors — the anchor, not the URL pattern, is what
+    Layer 2 verifies.
+
+    Layer 3 — FIELD VERIFICATION (auditable curator assertion): every
+    'verified' provenance entry must carry a non-empty ``source_reference``
+    (an evidence locator: the table/heading/row/field inside the cited
+    document where the value was read — fail-closed when missing) and a
+    ``match_method`` from the allowed manual-curation vocabulary
+    (``_VERIFIED_MATCH_METHODS``). Self-declared evidence_status without
+    this traceable assertion is rejected.
+
+    ``record`` (optional) supplies the MPN/part_number identity anchor;
+    when absent, no anchor is assumed (fail-closed).
 
     Returns a list of blocker strings; empty list means the gate passes.
     """
     blockers: list[str] = []
+    record = record or {}
     has_mpn = bool(
         str(record.get("mpn") or "").strip()
         or str(record.get("part_number") or "").strip()
@@ -271,6 +296,7 @@ def _evidence_gate(hardware_type: str, record: dict,
             continue
         url = prov.get("source_url", "")
 
+        # ---- Layer 1: source eligibility ----
         # Wikipedia: technology facts only, never SKU specs.
         if "wikipedia.org" in url:
             blockers.append(
@@ -280,10 +306,10 @@ def _evidence_gate(hardware_type: str, record: dict,
             )
             continue
 
-        # Vendor family page vs per-SKU page.
         is_sku_url = any(sig in url.lower() for sig in _SKU_URL_SIGNATURES)
         is_family_page = any(root in url for root in _FAMILY_LEVEL_ROOTS)
 
+        # ---- Layer 2: identity verification (MPN or per-SKU URL) ----
         if is_family_page and not is_sku_url and not has_mpn:
             blockers.append(
                 f"field '{field_name}' has evidence_status='verified' "
@@ -291,6 +317,32 @@ def _evidence_gate(hardware_type: str, record: dict,
                 "a vendor family-page citation cannot establish SKU-level "
                 "verification — use a per-SKU URL (product.aspx?pn=..., "
                 "or similar) or a manufacturer MPN"
+            )
+            continue
+
+        # ---- Layer 3: auditable field-level curator assertion ----
+        source_reference = str(prov.get("source_reference") or "").strip()
+        if not source_reference:
+            blockers.append(
+                f"field '{field_name}' has evidence_status='verified' "
+                "without a source_reference (evidence locator: the table/"
+                "heading/row/field in the cited document that shows the "
+                "value); a 'verified' claim must be traceable to where "
+                "the value was read — failing closed"
+            )
+        match_method = str(prov.get("match_method") or "").strip()
+        if not match_method:
+            blockers.append(
+                f"field '{field_name}' has evidence_status='verified' "
+                "without a match_method (curator assertion of HOW the "
+                "value was matched to the source); failing closed"
+            )
+        elif match_method not in _VERIFIED_MATCH_METHODS:
+            blockers.append(
+                f"field '{field_name}' has evidence_status='verified' "
+                f"with match_method {match_method!r} outside the allowed "
+                f"curation vocabulary {_VERIFIED_MATCH_METHODS}; failing "
+                "closed (no automatic approval from self-declared status)"
             )
 
     return blockers
@@ -385,11 +437,12 @@ def validate_record(
     Returns a ValidationOutcome; ``passed`` False means the record cannot
     enter the approved publication set (fail-closed).
 
-    The evidence gate checks that any field with evidence_status='verified'
-    is backed by an MPN field or a per-SKU source URL (product.aspx?pn=...,
-    /product/, -mpn, etc.). Wikipedia technology articles and vendor family
-    pages are not SKU-level sources; citing them with 'verified' is a
-    contract violation and blocks approval.
+    The evidence gate enforces a three-layer fail-closed contract on any
+    field with evidence_status='verified' (M3 merge-gate, strengthened):
+    source eligibility (Wikipedia/family pages never verify SKU specs),
+    identity verification (MPN or per-SKU URL), and field verification
+    (non-empty source_reference locator + allowed match_method — no
+    self-declared status without a traceable curator assertion).
     """
     blockers: list[str] = []
     warnings: list[str] = []
@@ -418,7 +471,7 @@ def validate_record(
         if isinstance(embedded, dict):
             provenance = embedded
     if provenance is not None:
-        blockers += _evidence_gate(hardware_type, record, provenance)
+        blockers += _evidence_gate(hardware_type, provenance, record)
 
     return ValidationOutcome(
         passed=not blockers,
