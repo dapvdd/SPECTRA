@@ -1,16 +1,21 @@
 # M3 Final Delivery Report — Catalog Expansion & Data Dominance
 
 **Date**: 2026-11-18 (remediation revision; original 2026-11-17)
-**Branch**: `feat/m3-catalog-expansion` (HEAD `3857de3`, pushed; draft PR
-target). Main untouched at `5074211`. Production untouched at
-`M2.5-production` (`dcfd7df`).
+**Branch**: `feat/m3-catalog-expansion` (HEAD `2031e6c`, pushed; PR #6
+marked ready for review). Main untouched at `5074211`. Production
+untouched at `M2.5-production` (`dcfd7df`).
 
 ## 1. Final verdict
 
-**CONDITIONAL_REVIEW** — the merge-review HOLD (data quality verification)
-is remediated in code and pipeline, but the published pilot is now honest
-about being SMALL: 2 independently substantiated SKUs published, 443
-generated variants quarantined pending per-SKU curation.
+**READY_FOR_MERGE_REVIEW** (2026-11-18, merge-gate round 2). The product
+decision is recorded: **accept the small, genuinely verified pilot for M3
+Core**; the 443 quarantined variants move to a future M3.1 Catalog
+Acquisition milestone. The evidence contract is strengthened to three
+fail-closed layers (source eligibility → identity → field verification
+with source_reference + match_method), the two confirmed SKUs carry a
+per-field audit manifest, and every adversarial bypass shape is pinned by
+regression tests. PR #6 is marked ready for review; merge and deployment
+remain separate approvals.
 
 Basis:
 - The reviewer's core finding is CONFIRMED and FIXED: the previous pilot
@@ -18,14 +23,19 @@ Basis:
   400 generated family×spec combinations cited only to family-level vendor
   pages and Wikipedia technology articles. A valid family and a plausible
   configuration do not establish an individual SKU's existence or specs.
-- Fail-closed SKU evidence gate shipped: `validate_record` now blocks any
-  `evidence_status='verified'` claim that lacks a manufacturer MPN/
-  part-number field or a per-SKU source URL. Wikipedia may support
-  technology vocabulary only; vendor family pages support family-level
-  facts only. Enforced in publish_batch AND mirrored in dry_run_batch.
+- Fail-closed SKU evidence gate shipped and **strengthened**: `validate_record`
+  blocks any `evidence_status='verified'` claim that lacks (1) an eligible
+  source (Wikipedia = technology only; family pages = family facts only),
+  (2) an identity anchor (manufacturer MPN/part-number or per-SKU URL), or
+  (3) a traceable field assertion (non-empty `source_reference` locator +
+  `match_method` from the allowed curation vocabulary). Enforced in
+  publish_batch AND mirrored in dry_run_batch; embedded `_provenance` is
+  forwarded (bypass closed); the assertion is persisted into
+  `field_provenance` (integrity-probe fix `f534be0`).
 - Pilot rebuilt honestly in the isolated dev DB: **2 confirmed real SKUs**
   (Corsair `CMK32GX5M2B6000C30`; Seasonic FOCUS GX-750), **443 quarantined
-  variants**, 8 verified + 2,744 uncertain provenance fields, 0 conflicts,
+  variants**, 8 verified + 2,744 uncertain provenance fields (all 8
+  verified rows carry source_reference + match_method), 0 conflicts,
   0 fabrications (`remediation_audit` in
   `docs/m3/evidence/phase5_run_log.json`; pilot rebuilt under the
   strengthened three-layer evidence gate). The SKU-AUDIT-MANIFEST in
@@ -35,17 +45,19 @@ Basis:
 - Regression tests pin the contract: family-level citations alone cannot
   establish SKU-level verification; 'verified' requires source_reference
   (evidence locator) + allowed match_method vocabulary; dry-run mirrors
-  the gate (1410 backend, 681 frontend → **1425** with Layer 3 tests).
+  the gate (1410 backend, 681 frontend → **1426** with Layer 3 tests).
 - Safety contract held end-to-end: zero production DB writes, zero staging
   mutations, zero merges to main, zero force-push, no restricted-source
   scraping (vendor pages fetched manually, read-only, authorized).
 
-CONDITIONS for READY_FOR_MERGE_REVIEW:
-1. Curator substantiates remaining quarantined variants against per-SKU
-   pages (MPN + variant-specific URL per record) — the pipeline now accepts
-   exactly those; nothing else publishes.
-2. Product decision on pilot scale: ship the small verified set (honest)
-   or expand curation capacity before claiming dataset scale.
+CONDITIONS for READY_FOR_MERGE_REVIEW — RESOLVED (2026-11-18):
+1. ~~Curator substantiates remaining quarantined variants~~ → resolved by
+   product decision: the small verified set is accepted for M3 Core; the
+   443 quarantined variants belong to M3.1 Catalog Acquisition (the
+   fail-closed gate accepts exactly substantiated records whenever that
+   curation happens).
+2. ~~Product decision on pilot scale~~ → recorded: ship the small honest
+   verified set.
 
 ## 2. What was delivered
 

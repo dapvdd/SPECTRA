@@ -81,21 +81,23 @@ FAIL. Every Critical/High finding and both gate gaps were fixed in
 quality verification required**: the scope-7 "pilot data PASS" verdict was
 itself wrong — the 400 pilot records were generated family×spec
 combinations with family-level citations mislabeled as SKU-verified. The
-HOLD is remediated by the SKU evidence gate + honest pilot rebuild
-(`0a70cf5` + `63b0c2f`); see `M3_FINAL_DELIVERY.md` §4 finding #12 and the
-remediation evidence table, plus the updated gate checklist below.
+HOLD is remediated: evidence gate strengthened to three-layer contract,
+honest pilot rebuilt, +16 adversarial regression tests, assertion
+persisted to DB. **READY_FOR_MERGE_REVIEW** (product decision 2026-11-18:
+accept small verified pilot; 443 quarantined → M3.1). PR #6 marked ready
+for review; merge and deploy are separate approvals.
 
 ## 4. Gate checklist
 
 | Gate | Criterion | Status | Notes |
 |---|---|---|---|
 | Deliverables | 14 docs + evidence | PASS | |
-| Pilot | 2 verified + 443 quarantined; 0 conflicts; 0 fabrications | **CONDITIONAL_REVIEW** | Pre-remediation 400-target claim was wrong; honest 2 confirmed SKUs (Corsair CMK32GX5M2B6000C30, Seasonic FOCUS GX-750), 443 QUARANTINED variants pending per-SKU curation (MPN + per-SKU URL + source_reference + match_method required). Pipeline is fail-closed; curator must substantiate remaining variants. |
+| Pilot | 2 verified + 443 quarantined; 0 conflicts; 0 fabrications | **READY_FOR_MERGE_REVIEW** | Product decision 2026-11-18: accept the small genuinely verified pilot for M3 Core; 443 quarantined variants → M3.1 Catalog Acquisition. Pre-remediation 400-target claim retracted; every verified field carries MPN + per-SKU citation + source_reference + match_method (SKU_AUDIT_MANIFEST). |
 | TDD | RED→GREEN→REGRESSION per phase | PASS | 25 remediation regression tests (was 14): +11 Layer 3 adversarial cases (adversarial class in test_m3_validation_evidence_gate.py: fabricated MPN, family URL w/ unsupported variant, URL-syntax-only, missing locator, conflicting evidence, false verified w/o anchor, missing optional fields, dry-run/apply parity on Layer 3). |
 | Safety | zero prod writes/staging mutations/main merges | PASS | remediation vendor-page fetches: manual, read-only, authorized public pages only |
 | Compatibility | M2.5-RULES-v1 byte-unchanged, no false positives | PASS | |
 | Security | no Critical/High findings open | PASS | 0 open; remediation did not introduce new vulnerabilities |
-| **Merge-review HOLD** | evidence gate closes the 400-record data-quality finding | **FIXED** | commits `0a70cf5` (gate v1) + `63b0c2f` (honest pilot) + `3857de3` (strengthened: three-layer gate, source_reference + match_method required for 'verified', SKU_AUDIT_MANIFEST, +15 adversarial tests) |
+| **Merge-review HOLD** | evidence gate closes the 400-record data-quality finding | **FIXED** | commits `0a70cf5` (gate v1) + `63b0c2f` (honest pilot) + `3857de3`/`2031e6c` (strengthened: three-layer gate, source_reference + match_method required for 'verified', SKU_AUDIT_MANIFEST, +16 adversarial tests) + `f534be0` (gate assertion persisted to field_provenance) |
 
 ## 5. Residual risks for the merge reviewer
 
@@ -112,14 +114,16 @@ remediation evidence table, plus the updated gate checklist below.
    fail-closed anyway: unknown columns abort the batch).
 6. `q` LIKE wildcards + `sourceUrl` href allowlist (pre-existing Phase 1.3 /
    UX behavior, unchanged by M3).
-7. **Merge-review HOLD remediation (2026-11-18)**: pilot published set is
+7. ~~**Merge-review HOLD remediation (2026-11-18)**: pilot published set is
    now honestly small (2 confirmed SKUs; 443 quarantined variants pending
    per-SKU curation). The evidence gate and pipeline are correct, but the
    original 400-verified-record claim is retracted; see
    `M3_FINAL_DELIVERY.md` §1 (CONDITIONAL_REVIEW) and §4 (finding #12 +
    remediation evidence table). PR #6 stays draft until the curator
    substantiates the quarantined variants or the product accepts the small
-   verified set.
+   verified set.~~ **RESOLVED** — product decision recorded 2026-11-18:
+   accept the small verified pilot; 443 quarantined → M3.1 Catalog
+   Acquisition. PR #6 marked ready for review.
 8. **Strengthened evidence gate (2026-11-18, `3857de3`)**: 'verified' now
    additionally requires source_reference (evidence locator) + allowed
    match_method (manual-curation | spec-table-row |
