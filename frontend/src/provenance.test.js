@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   buildSpecSourceItems,
   getBenchmarkSources,
+  getHardwareSourceMeta,
   getLicenseStatusLabel,
   getProvenanceFieldMap,
   getProvenanceStatusLabel,
@@ -203,4 +204,278 @@ test("summarizeHardwareSources collects distinct spec and benchmark sources", ()
   const empty = summarizeHardwareSources(null);
   assert.equal(empty.hasProvenance, false);
   assert.deepEqual(empty.specSources, []);
+});
+
+// ---- M3 Phase 7: Build Planner category transparency ---------------------
+
+const m3Record = (overrides = {}) =>
+  record({
+    id: 9,
+    source_id: 6,
+    source_name: "Wikipedia (English) — curated",
+    source_url: "https://en.wikipedia.org/wiki/DDR5_SDRAM",
+    field_name: "speed_mhz",
+    evidenced_value: "6000",
+    license_name: "CC BY-SA 4.0",
+    license_status: "clear",
+    access_date: "2026-11-16",
+    ...overrides,
+  });
+
+const psuProvenance = {
+  hardware_id: 14,
+  hardware_name: "RM750x",
+  hardware_type: "PSU",
+  fields: [
+    {
+      table_name: "hardware",
+      field_name: "release_date",
+      has_value: true,
+      status: "unattributed",
+      records: [],
+    },
+    {
+      table_name: "psu_specifications",
+      field_name: "wattage",
+      has_value: true,
+      status: "verified",
+      records: [
+        m3Record({
+          field_name: "wattage",
+          evidenced_value: "850",
+          source_url: "https://seasonic.com/focus-gx/",
+        }),
+      ],
+    },
+    {
+      table_name: "psu_specifications",
+      field_name: "efficiency_rating",
+      has_value: true,
+      status: "unattributed",
+      records: [],
+    },
+    {
+      table_name: "psu_specifications",
+      field_name: "modular",
+      has_value: false,
+      status: "unavailable",
+      records: [],
+    },
+  ],
+  benchmarks: [],
+  summary: {},
+};
+
+test("RAM detail labels resolve to their ram_specifications provenance fields", () => {
+  const items = [
+    { label: "Capacity", value: "32 GB" },
+    { label: "DDR Generation", value: "DDR5" },
+    { label: "Speed", value: "6000 MHz" },
+    { label: "Modules", value: "2" },
+    { label: "ECC", value: "No" },
+    { label: "Voltage", value: "1.35 V" },
+    { label: "Form Factor", value: "UDIMM" },
+    { label: "Release Date", value: "2024-05-01" },
+    { label: "Manufacturer", value: "Test" },
+  ];
+
+  const result = buildSpecSourceItems(items, "RAM", {
+    fields: [
+      {
+        table_name: "ram_specifications",
+        field_name: "speed_mhz",
+        has_value: true,
+        status: "verified",
+        records: [m3Record()],
+      },
+    ],
+  });
+
+  assert.equal(result[2].source.status, "verified");
+  assert.equal(result[2].source.records[0].fieldName, "speed_mhz");
+  // Labels without provenance rows stay untouched, mapped or not.
+  assert.equal(result[0].source, undefined);
+  assert.equal(result[8].source, undefined);
+});
+
+test("Storage detail labels resolve to their storage_specifications fields", () => {
+  const items = [
+    { label: "Capacity", value: "1024 GB" },
+    { label: "Storage Type", value: "NVMe" },
+    { label: "Interface", value: "PCIe 4.0 x4" },
+    { label: "Form Factor", value: "M.2 2280" },
+    { label: "Sequential Read", value: "7000 MB/s" },
+    { label: "Sequential Write", value: "5000 MB/s" },
+    { label: "DRAM Cache", value: "Yes" },
+  ];
+
+  const result = buildSpecSourceItems(items, "STORAGE", {
+    fields: [
+      {
+        table_name: "storage_specifications",
+        field_name: "read_mb_s",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({
+            field_name: "read_mb_s",
+            evidenced_value: "7000.0",
+          }),
+        ],
+      },
+    ],
+  });
+
+  assert.equal(result[4].source.status, "verified");
+  assert.equal(result[4].source.records[0].fieldName, "read_mb_s");
+  assert.equal(result[1].source, undefined);
+});
+
+test("Motherboard detail labels resolve to their motherboard_specifications fields", () => {
+  const items = [
+    { label: "Socket", value: "AM5" },
+    { label: "Chipset", value: "B650" },
+    { label: "Form Factor", value: "ATX" },
+    { label: "Memory Type", value: "DDR5" },
+    { label: "Memory Slots", value: "4" },
+    { label: "Max Memory", value: "192 GB" },
+    { label: "M.2 Slots", value: "3" },
+    { label: "SATA Ports", value: "4" },
+    { label: "PCIe Slots", value: "5" },
+  ];
+
+  const result = buildSpecSourceItems(items, "MOTHERBOARD", {
+    fields: [
+      {
+        table_name: "motherboard_specifications",
+        field_name: "ram_slots",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({
+            field_name: "ram_slots",
+            evidenced_value: "4",
+            source_url: "https://www.msi.com/Motherboard/MAG-B650-TOMAHAWK-WIFI",
+          }),
+        ],
+      },
+    ],
+  });
+
+  assert.equal(result[4].source.status, "verified");
+  assert.equal(result[4].source.records[0].fieldName, "ram_slots");
+  assert.equal(result[6].source, undefined);
+});
+
+test("PSU detail labels resolve to their psu_specifications fields", () => {
+  const items = [
+    { label: "Release Date", value: "2024-03-01" },
+    { label: "Rated Wattage", value: "850 W" },
+    { label: "Efficiency Rating", value: "80 Plus Gold" },
+    { label: "Modular", value: "Yes" },
+    { label: "PCIe 8-pin Connectors", value: "4" },
+    { label: "12VHPWR Connectors", value: "1" },
+  ];
+
+  const result = buildSpecSourceItems(items, "PSU", psuProvenance);
+
+  assert.equal(result[1].source.status, "verified");
+  assert.equal(result[1].source.records[0].fieldName, "wattage");
+  // Unattributed populated values surface the honest empty disclosure.
+  assert.deepEqual(result[0].source, { status: "unattributed", records: [] });
+  assert.deepEqual(result[2].source, { status: "unattributed", records: [] });
+  // Unavailable fields stay untouched.
+  assert.equal(result[3].source, undefined);
+});
+
+test("getHardwareSourceMeta reports completeness, last-verified date and attribution", () => {
+  const meta = getHardwareSourceMeta(psuProvenance);
+
+  assert.equal(meta.hasProvenance, true);
+  assert.equal(meta.totalFields, 4);
+  assert.equal(meta.verifiedFields, 1);
+  assert.equal(meta.unattributedFields, 2);
+  assert.equal(meta.lastVerifiedOn, "2026-11-16");
+  assert.equal(
+    meta.attribution,
+    "Specs verified against sources including Wikipedia (CC BY-SA 4.0).",
+  );
+
+  const unknown = getHardwareSourceMeta(null);
+  assert.equal(unknown.hasProvenance, false);
+  assert.equal(unknown.totalFields, 0);
+  assert.equal(unknown.verifiedFields, 0);
+  assert.equal(unknown.unattributedFields, 0);
+  assert.equal(unknown.lastVerifiedOn, null);
+  assert.equal(unknown.attribution, null);
+});
+
+test("getHardwareSourceMeta ignores malformed access dates and junk fields", () => {
+  const meta = getHardwareSourceMeta({
+    fields: [
+      { nope: true },
+      {
+        table_name: "psu_specifications",
+        field_name: "wattage",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({ id: 11, access_date: "not-a-date" }),
+          m3Record({ id: 12, access_date: "2026-11-15" }),
+        ],
+      },
+    ],
+  });
+
+  assert.equal(meta.totalFields, 1);
+  assert.equal(meta.verifiedFields, 1);
+  // The malformed date is skipped; the valid one is reported.
+  assert.equal(meta.lastVerifiedOn, "2026-11-15");
+
+  const allMalformed = getHardwareSourceMeta({
+    fields: [
+      {
+        table_name: "psu_specifications",
+        field_name: "wattage",
+        has_value: true,
+        status: "verified",
+        records: [m3Record({ access_date: "not-a-date" })],
+      },
+    ],
+  });
+  assert.equal(allMalformed.lastVerifiedOn, null);
+});
+
+test("getHardwareSourceMeta counts only verified records toward last-verified", () => {
+  // Review scope 5 finding: a fresh uncertain record's access date must
+  // not display as "Last verified".
+  const meta = getHardwareSourceMeta({
+    fields: [
+      {
+        table_name: "psu_specifications",
+        field_name: "wattage",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({ id: 21, access_date: "2026-11-17",
+                     evidence_status: "uncertain" }),
+          m3Record({ id: 22, access_date: "2026-11-15",
+                     evidence_status: "verified" }),
+        ],
+      },
+      {
+        table_name: "hardware",
+        field_name: "release_date",
+        has_value: true,
+        status: "verified",
+        records: [
+          m3Record({ id: 23, access_date: "2026-11-16",
+                     evidence_status: "unattributed" }),
+        ],
+      },
+    ],
+  });
+
+  // Max over VERIFIED records only: 2026-11-15, not 2026-11-17.
+  assert.equal(meta.lastVerifiedOn, "2026-11-15");
 });

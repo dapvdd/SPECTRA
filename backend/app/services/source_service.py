@@ -17,7 +17,7 @@ fallback, so a missing value is reported as unknown rather than invented.
 
 from __future__ import annotations
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import selectinload
 
 from backend.app.database import SessionLocal
@@ -52,6 +52,42 @@ SPEC_FIELD_ORDER: dict[str, tuple[str, ...]] = {
         "tdp_w",
         "interface",
         "length_mm",
+    ),
+    "ram_specifications": (
+        "ddr_generation",
+        "capacity_gb",
+        "speed_mhz",
+        "modules",
+        "ecc",
+        "voltage_v",
+        "form_factor",
+    ),
+    "storage_specifications": (
+        "storage_type",
+        "capacity_gb",
+        "interface",
+        "read_mb_s",
+        "write_mb_s",
+        "dram_cache",
+        "form_factor",
+    ),
+    "motherboard_specifications": (
+        "socket",
+        "chipset",
+        "form_factor",
+        "ram_type",
+        "ram_slots",
+        "max_ram_gb",
+        "m2_slots",
+        "sata_ports",
+        "pcie_slots",
+    ),
+    "psu_specifications": (
+        "wattage",
+        "efficiency_rating",
+        "modular",
+        "pcie_8pin_count",
+        "pcie_12vhpwr",
     ),
 }
 
@@ -132,11 +168,10 @@ def _field_status(records: list[dict], has_value: bool) -> str:
 def _spec_value(hardware: Hardware, table_name: str, field_name: str):
     if table_name == "hardware":
         return getattr(hardware, field_name, None)
-    specification = (
-        hardware.cpu_specification
-        if table_name == "cpu_specifications"
-        else hardware.gpu_specification
-    )
+    relationship = _SPEC_TABLE_TO_RELATIONSHIP.get(table_name)
+    if relationship is None:
+        return None
+    specification = getattr(hardware, relationship, None)
     if specification is None:
         return None
     return getattr(specification, field_name, None)
@@ -201,14 +236,35 @@ def get_source(source_id: int) -> dict:
         return data
 
 
+_SPEC_TABLE_TO_RELATIONSHIP = {
+    "cpu_specifications": "cpu_specification",
+    "gpu_specifications": "gpu_specification",
+    "ram_specifications": "ram_specification",
+    "storage_specifications": "storage_specification",
+    "motherboard_specifications": "motherboard_specification",
+    "psu_specifications": "psu_specification",
+}
+
+_TYPE_TABLES = {
+    "CPU": ["hardware", "cpu_specifications"],
+    "GPU": ["hardware", "gpu_specifications"],
+    "RAM": ["hardware", "ram_specifications"],
+    "STORAGE": ["hardware", "storage_specifications"],
+    "MOTHERBOARD": ["hardware", "motherboard_specifications"],
+    "PSU": ["hardware", "psu_specifications"],
+}
+
+
 def get_hardware_provenance(hardware_id: int) -> dict:
     """Return specification and benchmark provenance for one hardware item."""
     with SessionLocal() as session:
         hardware = session.scalar(
             select(Hardware)
             .options(
-                selectinload(Hardware.cpu_specification),
-                selectinload(Hardware.gpu_specification),
+                *(
+                    selectinload(getattr(Hardware, relationship))
+                    for relationship in _SPEC_TABLE_TO_RELATIONSHIP.values()
+                )
             )
             .where(Hardware.id == hardware_id)
         )
@@ -231,12 +287,10 @@ def get_hardware_provenance(hardware_id: int) -> dict:
                 (record.table_name, record.field_name), []
             ).append(_record_dict(record, _source_dict(record.source)))
 
-        tables = ["hardware"]
-        if hardware.type == "CPU":
-            tables.append("cpu_specifications")
-        elif hardware.type == "GPU":
-            tables.append("gpu_specifications")
-
+        tables = _TYPE_TABLES.get(
+            hardware.type,
+            ["hardware"],
+        )
         fields = []
         summary = {
             "total_fields": 0,
@@ -352,3 +406,72 @@ def get_benchmark_provenance(benchmark_result_id: int) -> dict:
             "source": _source_dict(benchmark.source),
             "records": records,
         }
+
+
+class OpsTableUnavailableError(RuntimeError):
+    """Raised when the queried ops table does not exist (pre-v4 database)."""
+
+
+# Ops tables have no ORM models (they are created by migration v4 DDL on
+# databases that may never be touched by the ORM); visibility reads go through
+# parameterless SQL with a hard column allow-list, ordered and bounded.
+_OPS_LIMIT_MAX = 100
+
+_INGESTION_RUN_COLUMNS = (
+    "id", "run_type", "source_id", "category", "mode", "status",
+    "rows_seen", "rows_applied", "rows_rejected", "rows_quarantined",
+    "started_at", "finished_at", "notes",
+)
+
+_PUBLICATION_BATCH_COLUMNS = (
+    "id", "batch_no", "category", "record_count", "approved_by", "status",
+    "created_at", "published_at", "notes",
+)
+
+
+def _ops_rows(
+    table: str,
+    columns: tuple[str, ...],
+    order_column: str,
+    limit: int,
+) -> list[dict]:
+    """Read one ops table, newest first, bounded. Fail-closed on absence."""
+    if table not in ("ingestion_runs", "publication_batches"):
+        raise OpsTableUnavailableError(f"unknown ops table: {table!r}")
+    limit = max(1, min(int(limit), _OPS_LIMIT_MAX))
+    with SessionLocal() as session:
+        exists = session.execute(
+            text(
+                "SELECT name FROM sqlite_master WHERE type='table' "
+                "AND name=:name"
+            ),
+            {"name": table},
+        ).scalar()
+        if not exists:
+            raise OpsTableUnavailableError(
+                f"ops table {table!r} does not exist on this database "
+                "(migration v4 has not been applied); no data to report"
+            )
+        col_list = ", ".join(columns)
+        rows = session.execute(
+            text(
+                f"SELECT {col_list} FROM {table} "
+                f"ORDER BY {order_column} DESC LIMIT :limit"
+            ),
+            {"limit": limit},
+        ).mappings().all()
+        return [dict(row) for row in rows]
+
+
+def list_ingestion_runs(limit: int = 50) -> list[dict]:
+    """Ingestion audit trail, newest first (read-only visibility)."""
+    return _ops_rows(
+        "ingestion_runs", _INGESTION_RUN_COLUMNS, "id", limit
+    )
+
+
+def list_publication_batches(limit: int = 50) -> list[dict]:
+    """Publication batch audit trail, newest first (read-only visibility)."""
+    return _ops_rows(
+        "publication_batches", _PUBLICATION_BATCH_COLUMNS, "batch_no", limit
+    )

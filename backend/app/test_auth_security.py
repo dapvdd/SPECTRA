@@ -412,4 +412,24 @@ class TestProtectedRoutesWhenAuthOn:
             f"/hardware/{auth.cpu_id}/benchmarks"
         ).status_code == 200
 
+    def test_ops_endpoints_require_a_token(self, auth):
+        # The M3 ops-visibility endpoints are protected like the AI endpoints:
+        # 401 without a token when auth is ON.
+        assert auth.client.get("/ops/ingestion-runs").status_code == 401
+        assert auth.client.get("/ops/publication-batches").status_code == 401
+
+    def test_ops_endpoints_readable_with_token(self, auth):
+        token = auth.register("opsviewer", "a-long-enough-password-123").json()[
+            "token"
+        ]
+        headers = {AUTH: BEARER + token}
+        # The in-memory schema has no ops tables (pre-v4): authenticated
+        # access reaches the handler, which reports 503 honestly.
+        ingestion = auth.client.get("/ops/ingestion-runs", headers=headers)
+        assert ingestion.status_code == 503
+        assert "ingestion_runs" in ingestion.json()["detail"]
+        batches = auth.client.get("/ops/publication-batches", headers=headers)
+        assert batches.status_code == 503
+        assert "publication_batches" in batches.json()["detail"]
+
 

@@ -60,7 +60,10 @@ def _clone_schema(target: Path) -> None:
         target_engine.dispose()
 
     # Simulate the real pre-v2 database: no `users` table, no owner_id column,
-    # and none of the v3 planner tables.
+    # and none of the v3 planner tables. build_conversations keeps its PRIMARY
+    # KEY (the M3 pilot harness runs PRAGMA foreign_key_check on the migrated
+    # clone; dropping the PK makes build_messages' FK reference unresolvable —
+    # "foreign key mismatch" — even on an empty table).
     conn = sqlite3.connect(target)
     conn.execute("DROP TABLE IF EXISTS users")
     for v3_table in (
@@ -71,9 +74,11 @@ def _clone_schema(target: Path) -> None:
     ):
         conn.execute(f"DROP TABLE IF EXISTS {v3_table}")
     conn.execute(
-        "CREATE TABLE build_conversations_v1 AS "
-        "SELECT id, cpu_hardware_id, gpu_hardware_id, created_at, updated_at "
-        "FROM build_conversations"
+        "CREATE TABLE build_conversations_v1 "
+        "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "cpu_hardware_id INTEGER REFERENCES hardware(id), "
+        "gpu_hardware_id INTEGER REFERENCES hardware(id), "
+        "created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL)"
     )
     conn.execute("DROP TABLE build_conversations")
     conn.execute(
@@ -223,8 +228,9 @@ class TestMigrationRunnerUpgradeBaseline:
         assert result["from_version"] == 0
         # v3.1: the runner now carries the Build Planner v3 migration too, so
         # a fresh clone upgrades all the way to the latest version.
+        # M3: v4 (identity/lifecycle/ops tables) is part of the full upgrade.
         assert result["to_version"] == runner.LATEST_VERSION
-        assert [m["version"] for m in result["applied"]] == [1, 2, 3]
+        assert [m["version"] for m in result["applied"]] == [1, 2, 3, 4]
 
     def test_upgrade_is_idempotent_on_already_baseline_db(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -273,7 +279,22 @@ class TestMigrationRunnerAuthV2:
     def test_v2_run_on_copy_then_rollback(self, tmp_path):
         db = tmp_path / "spectra.db"
         _clone_schema(db)
-        runner.upgrade(db)
+        # Stop at v2 so the v2-only rollback path stays exercisable: a full
+        # upgrade now reaches v4, which is NOT reversible, and the downgrade
+        # correctly refuses any range containing a non-reversible migration.
+        conn = sqlite3.connect(db)
+        conn.execute("PRAGMA foreign_keys=ON")
+        runner._ensure_schema_version(conn)
+        for migration in runner.MIGRATIONS:
+            if migration.version > 2:
+                break
+            for statement in migration.statements:
+                conn.execute(statement)
+            if migration.verify is not None:
+                migration.verify(conn)
+            runner._record_version(conn, migration.version)
+        conn.commit()
+        conn.close()
 
         result = runner.downgrade(db, target_version=1)
 
@@ -281,6 +302,23 @@ class TestMigrationRunnerAuthV2:
         assert _version(db) == 1
         assert "users" not in _tables(db)
         assert "owner_id" not in _columns(db, "build_conversations")
+
+    def test_downgrade_refuses_range_containing_non_reversible_v4(
+        self, tmp_path
+    ):
+        # M3: v4 is not reversible (SQLite <3.35 cannot drop its columns);
+        # a downgrade whose range includes v4 must be refused, not partially
+        # executed (a partial revert bricks re-upgrade with duplicate-column
+        # errors).
+        db = tmp_path / "spectra.db"
+        _clone_schema(db)
+        runner.upgrade(db)
+
+        result = runner.downgrade(db, target_version=3)
+
+        assert result["status"] == "blocked"
+        assert "not reversible" in result["reason"]
+        assert _version(db) == runner.LATEST_VERSION  # nothing changed
 
 
 class TestMigrationRunnerVerify:
@@ -293,7 +331,7 @@ class TestMigrationRunnerVerify:
 
         assert result["status"] == "verified"
         assert result["version"] == runner.LATEST_VERSION
-        assert result["name"] == "planner-component-categories"
+        assert result["name"] == "m3-catalog-expansion-identity-lifecycle"
 
     def test_verify_fails_when_table_is_missing(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -320,8 +358,8 @@ class TestMigrationRunnerReport:
         result = runner.report(db)
 
         assert result["current_version"] == 0
-        assert result["pending_count"] == 3
-        assert [m["version"] for m in result["pending"]] == [1, 2, 3]
+        assert result["pending_count"] == 4
+        assert [m["version"] for m in result["pending"]] == [1, 2, 3, 4]
 
     def test_report_shows_zero_pending_after_upgrade(self, tmp_path):
         db = tmp_path / "spectra.db"
@@ -438,7 +476,9 @@ class TestMigrationRunnerPlannerV3:
         result = runner.upgrade(db)
 
         assert result["status"] == "upgraded"
-        assert result["to_version"] == 3
+        # M3: a full upgrade now passes through v4 as well; v3's contract is
+        # covered by the four spec tables existing after the full pass.
+        assert result["to_version"] == runner.LATEST_VERSION
         for table in (
             "ram_specifications",
             "storage_specifications",
@@ -521,12 +561,26 @@ class TestMigrationRunnerPlannerV3:
         result = runner.upgrade(db)
 
         assert result["status"] == "up-to-date"
-        assert _version(db) == 3
+        assert _version(db) == runner.LATEST_VERSION
 
     def test_v3_downgrade_restores_v2(self, tmp_path):
         db = self._seeded(tmp_path, seed_rows=3)
         before_count = _provenance_row_count(db)
-        runner.upgrade(db)
+        # Upgrade through v3 only (stop before the non-reversible v4): apply
+        # migrations 1..3 manually, mirroring the pre-v4 flow this test pins.
+        conn = sqlite3.connect(db)
+        conn.execute("PRAGMA foreign_keys=ON")
+        runner._ensure_schema_version(conn)
+        for migration in runner.MIGRATIONS:
+            if migration.version > 3:
+                break
+            for statement in migration.statements:
+                conn.execute(statement)
+            if migration.verify is not None:
+                migration.verify(conn)
+            runner._record_version(conn, migration.version)
+        conn.commit()
+        conn.close()
 
         result = runner.downgrade(db, target_version=2)
 

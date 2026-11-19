@@ -106,3 +106,42 @@ class BenchmarkProvenanceResponse(BaseModel):
     score: float
     source: SourceResponse | None = None
     records: list[ProvenanceRecordResponse]
+
+
+class IngestionRunResponse(BaseModel):
+    """Read-only ops visibility row (M3 Phase 8).
+
+    Mirrors the migration v4 ``ingestion_runs`` table; nullable audit columns
+    stay optional because a running row has not finished yet.
+    """
+
+    id: int
+    run_type: str
+    source_id: int | None = None
+    category: str
+    mode: str
+    status: str
+    rows_seen: int
+    rows_applied: int
+    rows_rejected: int
+    rows_quarantined: int
+    started_at: str
+    finished_at: str | None = None
+    notes: str | None = None
+
+
+class PublicationBatchResponse(BaseModel):
+    """Read-only ops visibility row (M3 Phase 8).
+
+    Mirrors the migration v4 ``publication_batches`` table.
+    """
+
+    id: int
+    batch_no: int
+    category: str
+    record_count: int
+    approved_by: str
+    status: str
+    created_at: str
+    published_at: str | None = None
+    notes: str | None = None

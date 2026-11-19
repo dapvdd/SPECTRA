@@ -1,0 +1,152 @@
+{
+ "upgrade": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "generated": {
+  "RAM": 129,
+  "STORAGE": 109,
+  "MOTHERBOARD": 100,
+  "PSU": 107
+ },
+ "approved": {
+  "RAM": 1,
+  "STORAGE": 0,
+  "MOTHERBOARD": 0,
+  "PSU": 1
+ },
+ "quarantined": {
+  "RAM": 128,
+  "STORAGE": 109,
+  "MOTHERBOARD": 100,
+  "PSU": 106
+ },
+ "dry_run": {
+  "would_publish": 2,
+  "rejected": 0
+ },
+ "batches": [
+  {
+   "category": "RAM",
+   "size": 1,
+   "published": 1,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 1,
+   "duration_s": 0.039,
+   "hardware_by_type": {
+    "RAM": 1
+   },
+   "provenance_total": 6,
+   "batches_rows": 1,
+   "batches_records": 1
+  },
+  {
+   "category": "PSU",
+   "size": 1,
+   "published": 1,
+   "rejected": 0,
+   "skipped_existing": 0,
+   "batch_no": 2,
+   "duration_s": 0.032,
+   "hardware_by_type": {
+    "PSU": 1,
+    "RAM": 1
+   },
+   "provenance_total": 9,
+   "batches_rows": 2,
+   "batches_records": 2
+  }
+ ],
+ "reimport": {
+  "published": 0,
+  "skipped_existing": 2
+ },
+ "remediation_audit": {
+  "confirmed_real_skus": [
+   {
+    "name": "Corsair VENGEANCE 32GB (2x16GB) DDR5-6000 CL30 Kit",
+    "mpn": "CMK32GX5M2B6000C30",
+    "per_sku_url": "https://www.corsair.com/us/en/p/memory/cmk32gx5m2b6000c30/vengeance-rgb-32gb-2x16gb-ddr5-dram-6000mhz-c30-memory-kit"
+   },
+   {
+    "name": "Seasonic FOCUS GX-750",
+    "mpn": "FOCUS-GX-750",
+    "per_sku_url": "https://seasonic.com/focus-gx/"
+   }
+  ],
+  "unverified_variants": 443,
+  "quarantined_records": 443,
+  "quarantined_by_category": {
+   "RAM": 128,
+   "STORAGE": 109,
+   "MOTHERBOARD": 100,
+   "PSU": 106
+  },
+  "field_evidence_coverage": {
+   "total_spec_fields": 2752,
+   "verified_fields": 8,
+   "uncertain_fields": 2744
+  },
+  "missing_mpn_count": 443,
+  "missing_mpn_sample": [
+   "G.Skill Trident Z5 RGB 32GB (2x16GB) DDR5-6000 Kit",
+   "G.Skill Trident Z5 RGB 48GB (2x24GB) DDR5-6000 Kit",
+   "G.Skill Trident Z5 RGB 64GB (2x32GB) DDR5-6000 Kit",
+   "G.Skill Trident Z5 RGB 32GB (2x16GB) DDR5-6400 Kit",
+   "G.Skill Trident Z5 RGB 48GB (2x24GB) DDR5-6400 Kit"
+  ],
+  "conflicting_specs": 0,
+  "target_400_fabrications": 0
+ },
+ "final": {
+  "hardware_by_type": {
+   "PSU": 1,
+   "RAM": 1
+  },
+  "hardware_total": 2,
+  "provenance_total": 9,
+  "provenance_verified": 8,
+  "canonical_keys_unique": 2,
+  "canonical_keys_total": 2,
+  "publication_batches": 4,
+  "ingestion_runs": {
+   "success": 4
+  },
+  "spec_rows": {
+   "ram_specifications": 1,
+   "storage_specifications": 0,
+   "motherboard_specifications": 0,
+   "psu_specifications": 1
+  },
+  "fk_violations": [
+   [
+    "ram_specifications->hardware",
+    0
+   ],
+   [
+    "storage_specifications->hardware",
+    0
+   ],
+   [
+    "motherboard_specifications->hardware",
+    0
+   ],
+   [
+    "psu_specifications->hardware",
+    0
+   ],
+   [
+    "field_provenance->hardware",
+    0
+   ],
+   [
+    "field_provenance->sources",
+    0
+   ]
+  ],
+  "integrity_check": "ok"
+ }
+}

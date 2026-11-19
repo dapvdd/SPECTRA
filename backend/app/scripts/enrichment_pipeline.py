@@ -74,7 +74,9 @@ CPU_TABLE = "cpu_specifications"
 def field_for_acquisition(field: str, hardware_type: str):
     """Return (table_name, field_name) for an acquisition, else None.
 
-    ``hardware_type`` is "GPU"/"CPU" as carried by the acquisition.
+    ``hardware_type`` is "GPU"/"CPU" as carried by the acquisition, or one of
+    the four M3 Build Planner categories (RAM/STORAGE/MOTHERBOARD/PSU) whose
+    vocabulary is the import contract (docs/m3/M3_DATA_CONTRACT.md §4).
     """
     if hardware_type.upper() == "GPU" and field in GPU_FIELD_MAP:
         return (GPU_TABLE, GPU_FIELD_MAP[field])
@@ -84,7 +86,42 @@ def field_for_acquisition(field: str, hardware_type: str):
                                                      "tdp_w", "socket",
                                                      "process_node_nm"}:
         return (CPU_TABLE, field)
+    # M3: the four Build Planner categories. The vocabulary mirrors the spec
+    # models exactly (models/ram.py, storage.py, motherboard.py, psu.py);
+    # anything not listed is rejected as "unknown field" rather than guessed.
+    kind = hardware_type.upper()
+    if kind in M3_FIELD_MAPS:
+        table, vocabulary = M3_FIELD_MAPS[kind]
+        if field in vocabulary:
+            return (table, field)
     return None
+
+
+# M3 Build Planner field maps: one vocabulary per category (single source of
+# truth is the import contract; component_validators.py enforces the same
+# column set at CSV import time).
+M3_FIELD_MAPS: dict[str, tuple[str, set[str]]] = {
+    "RAM": (
+        "ram_specifications",
+        {"ddr_generation", "capacity_gb", "speed_mhz", "modules", "ecc",
+         "voltage_v", "form_factor"},
+    ),
+    "STORAGE": (
+        "storage_specifications",
+        {"storage_type", "capacity_gb", "interface", "read_mb_s",
+         "write_mb_s", "dram_cache", "form_factor"},
+    ),
+    "MOTHERBOARD": (
+        "motherboard_specifications",
+        {"socket", "chipset", "form_factor", "ram_type", "ram_slots",
+         "max_ram_gb", "m2_slots", "sata_ports", "pcie_slots"},
+    ),
+    "PSU": (
+        "psu_specifications",
+        {"wattage", "efficiency_rating", "modular", "pcie_8pin_count",
+         "pcie_12vhpwr"},
+    ),
+}
 
 
 def make_value(

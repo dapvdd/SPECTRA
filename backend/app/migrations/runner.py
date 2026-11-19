@@ -488,6 +488,124 @@ MIGRATIONS: list[Migration] = [
     ),
 ]
 
+# ---------------------------------------------------------------------------
+# v4 (M3 Phase 1): catalog expansion identity + lifecycle + ingestion ops.
+# Purely additive: 5 nullable columns on hardware (ALTER TABLE ADD COLUMN),
+# 2 new tables, 1 partial unique index. Pre-M3 rows keep NULL canonical keys
+# and NULL record_status; uniqueness applies only to non-NULL canonical keys,
+# so the existing 5,389-row production catalog is structurally untouched.
+# Column vocabularies (identity_status, record_status, run/batch status) are
+# plain string columns validated in application code + tests — the same
+# pattern sources.license_status uses, because SQLite cannot add a CHECK via
+# ALTER TABLE.
+# ---------------------------------------------------------------------------
+
+_HARDWARE_V4_COLUMNS: tuple[tuple[str, str], ...] = (
+    ("canonical_key", "VARCHAR(300)"),
+    ("product_family", "VARCHAR(200)"),
+    ("identity_status", "VARCHAR(20)"),
+    ("record_status", "VARCHAR(20)"),
+    ("superseded_by_id", "INTEGER REFERENCES hardware(id)"),
+)
+
+_INGESTION_RUNS_DDL = """
+CREATE TABLE IF NOT EXISTS ingestion_runs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_type VARCHAR(30) NOT NULL,
+    source_id INTEGER REFERENCES sources(id),
+    category VARCHAR(20) NOT NULL,
+    mode VARCHAR(20) NOT NULL DEFAULT 'apply',
+    status VARCHAR(20) NOT NULL DEFAULT 'running',
+    rows_seen INTEGER NOT NULL DEFAULT 0,
+    rows_applied INTEGER NOT NULL DEFAULT 0,
+    rows_rejected INTEGER NOT NULL DEFAULT 0,
+    rows_quarantined INTEGER NOT NULL DEFAULT 0,
+    started_at TEXT NOT NULL,
+    finished_at TEXT,
+    notes TEXT
+)
+"""
+
+_PUBLICATION_BATCHES_DDL = """
+CREATE TABLE IF NOT EXISTS publication_batches (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    batch_no INTEGER NOT NULL UNIQUE,
+    category VARCHAR(20) NOT NULL,
+    record_count INTEGER NOT NULL DEFAULT 0,
+    approved_by VARCHAR(100) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'prepared',
+    created_at TEXT NOT NULL,
+    published_at TEXT,
+    notes TEXT
+)
+"""
+
+
+def _verify_v4(conn: sqlite3.Connection) -> None:
+    """Verify the v4 schema: new hardware columns + 2 ops tables + index."""
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(hardware)").fetchall()}
+    missing = {name for name, _ in _HARDWARE_V4_COLUMNS} - cols
+    if missing:
+        raise RuntimeError(f"v4 verification FAILED: hardware missing columns: {missing}")
+
+    tables = {
+        r[0]
+        for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+        ).fetchall()
+    }
+    for table in ("ingestion_runs", "publication_batches"):
+        if table not in tables:
+            raise RuntimeError(f"v4 verification FAILED: missing table '{table}'")
+
+    indexes = {
+        r[1]
+        for r in conn.execute("PRAGMA index_list(hardware)").fetchall()
+    }
+    if "uq_hardware_canonical_key" not in indexes:
+        raise RuntimeError(
+            "v4 verification FAILED: uq_hardware_canonical_key index missing"
+        )
+    result = conn.execute("PRAGMA integrity_check").fetchone()
+    if result[0] != "ok":
+        raise RuntimeError(f"v4 verification FAILED: integrity_check {result[0]!r}")
+
+
+MIGRATIONS.append(
+    Migration(
+        version=4,
+        name="m3-catalog-expansion-identity-lifecycle",
+        description=(
+            "M3 Phase 1: adds canonical identity + lifecycle columns to "
+            "hardware (canonical_key unique-partial, product_family, "
+            "identity_status, record_status, superseded_by_id), the "
+            "ingestion_runs and publication_batches ops tables, and the "
+            "partial unique index enforcing canonical_key uniqueness for "
+            "non-NULL keys only. Pre-M3 rows keep NULL keys/status and are "
+            "structurally untouched."
+        ),
+        statements=[
+            *(f"ALTER TABLE hardware ADD COLUMN {name} {ddl}"
+              for name, ddl in _HARDWARE_V4_COLUMNS),
+            _INGESTION_RUNS_DDL,
+            _PUBLICATION_BATCHES_DDL,
+            "CREATE UNIQUE INDEX IF NOT EXISTS uq_hardware_canonical_key "
+            "ON hardware (canonical_key) WHERE canonical_key IS NOT NULL",
+        ],
+        downgrade=[
+            "DROP INDEX IF EXISTS uq_hardware_canonical_key",
+            "DROP TABLE IF EXISTS publication_batches",
+            "DROP TABLE IF EXISTS ingestion_runs",
+            # SQLite pre-3.35 cannot DROP COLUMN; documented manual rollback
+            # for the 5 hardware columns is a table rebuild (copy-first), so
+            # the downgrade here is intentionally limited to the additive
+            # objects that can be dropped safely.
+        ],
+        reversible=False,
+        verify=_verify_v4,
+    )
+)
+
 
 # ---------------------------------------------------------------------------
 # Core runner logic
@@ -516,8 +634,26 @@ def _pending_migrations(current: int) -> list[Migration]:
 LATEST_VERSION = max(m.version for m in MIGRATIONS)
 
 
+def _ensure_not_prod_path(target: Path) -> None:
+    """Refuse the production-named database on any schema-mutating path.
+
+    The migration runner is copy-first by design (module docstring): the
+    production DB is upgraded only by the owner running a rehearsed plan on
+    an explicitly chosen path. A bare ``python runner.py`` defaulting to
+    ``data/spectra.db`` must not silently mutate it.
+    """
+    normalized = str(target).replace("\\", "/").casefold()
+    if normalized.endswith("data/spectra.db"):
+        raise RuntimeError(
+            f"refusing production database path {str(target)!r}; "
+            "run migrations against a disposable copy "
+            "(--database data/spectra_copy.db)"
+        )
+
+
 def upgrade(target: Path, dry_run: bool = False) -> dict:
     """Apply all pending migrations on the target DB. Returns a result dict."""
+    _ensure_not_prod_path(target)
     conn = sqlite3.connect(target)
     try:
         conn.execute("PRAGMA foreign_keys=ON")
@@ -589,6 +725,7 @@ def verify(target: Path) -> dict:
 
 def downgrade(target: Path, target_version: int) -> dict:
     """Revert to a previous version (only for reversible migrations)."""
+    _ensure_not_prod_path(target)
     conn = sqlite3.connect(target)
     try:
         conn.execute("PRAGMA foreign_keys=ON")
@@ -606,10 +743,19 @@ def downgrade(target: Path, target_version: int) -> dict:
         to_revert = sorted(to_revert, key=lambda m: m.version, reverse=True)
 
         for migration in to_revert:
-            if migration.downgrade is None:
+            # The reversible flag is the migration author's statement that
+            # the downgrade list fully restores the prior shape. v4 adds
+            # columns SQLite <3.35 cannot drop, so it is NOT reversible: a
+            # partial revert (ops tables dropped, columns left) would brick
+            # re-upgrade with duplicate-column errors. Refuse it outright.
+            if not migration.reversible or migration.downgrade is None:
                 return {
                     "status": "blocked",
-                    "reason": f"migration {migration.version} ({migration.name}) is not reversible",
+                    "reason": (
+                        f"migration {migration.version} ({migration.name}) "
+                        "is not reversible; restore the pre-migration file "
+                        "copy instead of downgrading in place"
+                    ),
                 }
             print(f"  reverting migration {migration.version}: {migration.name}")
 

@@ -10,17 +10,25 @@ session factory is redirected at it, matching the existing benchmark API tests.
 from datetime import date, datetime
 
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine, event
+from sqlalchemy import create_engine, event, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from backend.app import main
 from backend.app.database import Base
+from backend.app.migrations.runner import (
+    _INGESTION_RUNS_DDL,
+    _PUBLICATION_BATCHES_DDL,
+)
 from backend.app.models import (
     BenchmarkResult,
     CPUSpecification,
     Hardware,
+    MotherboardSpecification,
+    PSUSpecification,
+    RAMSpecification,
     Source,
+    StorageSpecification,
 )
 from backend.app.models.source import LICENSE_STATUSES
 from backend.app.services import benchmark_service, source_service
@@ -364,9 +372,11 @@ class TestHardwareProvenanceEndpoint(ProvenanceAPITestBase):
 
         assert response.status_code == 200
         assert len(response.json()["fields"][0]["records"]) >= 0
-        # Fixed number of batched queries (hardware, spec provenance + source,
-        # benchmark provenance + source); it must not scale with row count.
-        assert len(statements) <= 8
+        # Fixed number of batched queries (hardware + one eager load per spec
+        # relationship + spec provenance + source, benchmark provenance +
+        # source); it must not scale with row count. M3 widens the eager
+        # loads from 2 to 6 spec relationships, hence the larger constant.
+        assert len(statements) <= 12
 
 
 class TestBenchmarkProvenanceEndpoint(ProvenanceAPITestBase):
@@ -411,6 +421,193 @@ class TestBenchmarkProvenanceEndpoint(ProvenanceAPITestBase):
         assert body["records"] == []
 
 
+class TestBuildPlannerCategoryProvenance(ProvenanceAPITestBase):
+    """M3: the provenance endpoint must cover the four Build Planner
+    categories with their spec tables and field order, honestly reporting
+    unattributed/unavailable fields exactly like CPU/GPU."""
+
+    def _add_psu(self, name="Test PSU"):
+        with self.session_factory() as session:
+            hardware = Hardware(
+                name=name,
+                manufacturer="Test",
+                type="PSU",
+                release_date=date(2024, 3, 1),
+            )
+            hardware.psu_specification = PSUSpecification(
+                wattage=850,
+                efficiency_rating="80 Plus Gold",
+                modular=True,
+                pcie_8pin_count=4,
+                pcie_12vhpwr=1,
+            )
+            session.add(hardware)
+            session.commit()
+            return hardware.id
+
+    def _add_ram(self, name="Test RAM"):
+        with self.session_factory() as session:
+            hardware = Hardware(
+                name=name, manufacturer="Test", type="RAM"
+            )
+            hardware.ram_specification = RAMSpecification(
+                ddr_generation="DDR5",
+                capacity_gb=32,
+                speed_mhz=6000,
+                modules=2,
+                ecc=False,
+                voltage_v=1.35,
+                form_factor="UDIMM",
+            )
+            session.add(hardware)
+            session.commit()
+            return hardware.id
+
+    def test_psu_fields_are_listed_with_verified_evidence(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_psu()
+        self._add_record(
+            hardware_id,
+            "psu_specifications",
+            "wattage",
+            evidenced_value="850",
+            license_name="site terms",
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        assert body["hardware_type"] == "PSU"
+
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        assert set(fields) == {
+            ("hardware", "release_date"),
+            ("hardware", "architecture"),
+            ("psu_specifications", "wattage"),
+            ("psu_specifications", "efficiency_rating"),
+            ("psu_specifications", "modular"),
+            ("psu_specifications", "pcie_8pin_count"),
+            ("psu_specifications", "pcie_12vhpwr"),
+        }
+
+        wattage = fields[("psu_specifications", "wattage")]
+        assert wattage["has_value"] is True
+        assert wattage["status"] == "verified"
+        assert len(wattage["records"]) == 1
+        assert wattage["records"][0]["evidenced_value"] == "850"
+        # Efficiency is populated but carries no provenance row yet: honest
+        # unattributed, never silently attributed.
+        assert fields[("psu_specifications", "efficiency_rating")][
+            "status"
+        ] == "unattributed"
+
+    def test_psu_missing_value_without_evidence_is_unavailable(self):
+        self._seed_metadata_into_db()
+        with self.session_factory() as session:
+            hardware = Hardware(name="Bare PSU", manufacturer="Test", type="PSU")
+            hardware.psu_specification = PSUSpecification()
+            session.add(hardware)
+            session.commit()
+            hardware_id = hardware.id
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        wattage = fields[("psu_specifications", "wattage")]
+        assert wattage["has_value"] is False
+        assert wattage["status"] == "unavailable"
+        assert fields[("hardware", "architecture")]["has_value"] is False
+
+    def test_ram_fields_are_listed_and_route_correctly(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_ram()
+        self._add_record(
+            hardware_id,
+            "ram_specifications",
+            "speed_mhz",
+            evidenced_value="6000",
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        assert body["hardware_type"] == "RAM"
+        fields = {(f["table_name"], f["field_name"]): f for f in body["fields"]}
+        assert set(fields) == {
+            ("hardware", "release_date"),
+            ("hardware", "architecture"),
+            ("ram_specifications", "ddr_generation"),
+            ("ram_specifications", "capacity_gb"),
+            ("ram_specifications", "speed_mhz"),
+            ("ram_specifications", "modules"),
+            ("ram_specifications", "ecc"),
+            ("ram_specifications", "voltage_v"),
+            ("ram_specifications", "form_factor"),
+        }
+        speed = fields[("ram_specifications", "speed_mhz")]
+        assert speed["status"] == "verified"
+        assert speed["records"][0]["evidenced_value"] == "6000"
+        assert fields[("ram_specifications", "modules")][
+            "status"
+        ] == "unattributed"
+
+    def test_storage_and_motherboard_route_to_their_tables(self):
+        self._seed_metadata_into_db()
+        with self.session_factory() as session:
+            storage = Hardware(name="Test SSD", manufacturer="Test", type="STORAGE")
+            storage.storage_specification = StorageSpecification(
+                storage_type="NVMe", capacity_gb=1024
+            )
+            motherboard = Hardware(
+                name="Test Board", manufacturer="Test", type="MOTHERBOARD"
+            )
+            motherboard.motherboard_specification = MotherboardSpecification(
+                socket="AM5", chipset="B650"
+            )
+            session.add_all([storage, motherboard])
+            session.commit()
+            storage_id, board_id = storage.id, motherboard.id
+
+        storage_body = self.client.get(
+            f"/hardware/{storage_id}/provenance"
+        ).json()
+        assert storage_body["hardware_type"] == "STORAGE"
+        storage_fields = {
+            (f["table_name"], f["field_name"]) for f in storage_body["fields"]
+        }
+        assert ("storage_specifications", "capacity_gb") in storage_fields
+        assert ("storage_specifications", "read_mb_s") in storage_fields
+        assert all(
+            table in {"hardware", "storage_specifications"}
+            for table, _ in storage_fields
+        )
+
+        board_body = self.client.get(
+            f"/hardware/{board_id}/provenance"
+        ).json()
+        assert board_body["hardware_type"] == "MOTHERBOARD"
+        board_fields = {
+            (f["table_name"], f["field_name"]) for f in board_body["fields"]
+        }
+        assert ("motherboard_specifications", "socket") in board_fields
+        assert ("motherboard_specifications", "pcie_slots") in board_fields
+        assert all(
+            table in {"hardware", "motherboard_specifications"}
+            for table, _ in board_fields
+        )
+
+    def test_psu_summary_counts_are_consistent(self):
+        self._seed_metadata_into_db()
+        hardware_id = self._add_psu()
+        self._add_record(
+            hardware_id, "psu_specifications", "wattage", evidenced_value="850"
+        )
+
+        body = self.client.get(f"/hardware/{hardware_id}/provenance").json()
+        summary = body["summary"]
+        assert summary["total_fields"] == len(body["fields"])
+        assert summary["verified_fields"] == 1
+        # release_date + 4 populated-but-unattributed psu fields; `architecture`
+        # is NULL and `wattage` is verified, so unattributed = 1 + 4.
+        assert summary["unattributed_fields"] == 5
+        assert summary["unavailable_fields"] == 1
+
+
 class TestBackwardCompatibility(ProvenanceAPITestBase):
     def test_hardware_detail_response_is_unchanged(self):
         self._seed_metadata_into_db()
@@ -445,3 +642,108 @@ class TestBackwardCompatibility(ProvenanceAPITestBase):
             "quality",
         }
         assert set(body[0]["source"]) == {"id", "name", "url"}
+
+
+class TestOpsVisibility(ProvenanceAPITestBase):
+    """M3 Phase 8: read-only admin visibility for the ingestion_runs and
+    publication_batches ops tables (migration v4). The tables are plain SQL
+    (no ORM models) so the endpoints probe for their existence and report
+    503-style honesty when a pre-v4 database is queried, rather than 500ing."""
+
+    def _seed_ops_rows(self):
+        with self.session_factory() as session:
+            session.execute(text(
+                "INSERT INTO ingestion_runs (run_type, category, mode, "
+                "status, rows_seen, rows_applied, rows_rejected, "
+                "rows_quarantined, started_at, finished_at, notes) VALUES ("
+                "'publication', 'ALL', 'apply', 'success', 10, 10, 0, 0, "
+                "'2026-11-16T00:00:00+00:00', "
+                "'2026-11-16T00:00:01+00:00', 'm3 pilot RAM batch 10')"
+            ))
+            session.execute(text(
+                "INSERT INTO publication_batches (batch_no, category, "
+                "record_count, approved_by, status, created_at, published_at, "
+                "notes) VALUES (1, 'ALL', 10, 'm3-curator', 'published', "
+                "'2026-11-16T00:00:00+00:00', "
+                "'2026-11-16T00:00:01+00:00', 'm3 pilot first batch')"
+            ))
+            session.commit()
+
+    def test_ops_tables_exist_on_v4_schema(self):
+        # The in-memory test DB is created via Base.metadata (v3 tables only);
+        # the ops tables come from migration v4. Create them here the way the
+        # migration does so the endpoint contract can be exercised.
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+        with self.session_factory() as session:
+            session.execute(text(
+                "SELECT 1 FROM ingestion_runs"
+            ))
+        self._seed_ops_rows()
+
+        ingestion = self.client.get("/ops/ingestion-runs").json()
+        assert len(ingestion) == 1
+        assert ingestion[0]["run_type"] == "publication"
+        assert ingestion[0]["status"] == "success"
+        assert ingestion[0]["rows_applied"] == 10
+
+        batches = self.client.get("/ops/publication-batches").json()
+        assert len(batches) == 1
+        assert batches[0]["batch_no"] == 1
+        assert batches[0]["approved_by"] == "m3-curator"
+        assert batches[0]["status"] == "published"
+        assert batches[0]["record_count"] == 10
+
+    def test_ops_endpoints_require_auth_when_auth_enabled(self):
+        # Auth-off suite: the dependency returns None and the endpoints stay
+        # readable (same contract as /hardware). Auth-on behavior is covered
+        # by test_auth_security's protected-route matrix.
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+
+        assert self.client.get("/ops/ingestion-runs").status_code == 200
+        assert self.client.get("/ops/publication-batches").status_code == 200
+
+    def test_ops_endpoints_report_unavailable_on_pre_v4_database(self):
+        # No ops tables (pre-v4 database): honest 503, never a 500 traceback.
+        response = self.client.get("/ops/ingestion-runs")
+        assert response.status_code == 503
+        assert "ingestion_runs" in response.json()["detail"]
+
+        response = self.client.get("/ops/publication-batches")
+        assert response.status_code == 503
+        assert "publication_batches" in response.json()["detail"]
+
+    def test_ops_endpoints_limit_and_order_deterministically(self):
+        with self.engine.connect() as conn:
+            conn.execute(text(_INGESTION_RUNS_DDL))
+            conn.execute(text(_PUBLICATION_BATCHES_DDL))
+            conn.commit()
+        with self.session_factory() as session:
+            for i in range(1, 6):
+                session.execute(text(
+                    "INSERT INTO publication_batches (batch_no, category, "
+                    "record_count, approved_by, status, created_at) VALUES "
+                    f"({i}, 'ALL', {i}, 'm3-curator', 'published', "
+                    f"'2026-11-16T00:00:0{i}+00:00')"
+                ))
+            session.commit()
+
+        body = self.client.get("/ops/publication-batches?limit=3").json()
+        assert len(body) == 3
+        # Newest batch first (id DESC): a visibility feed, not an export.
+        assert [row["batch_no"] for row in body] == [5, 4, 3]
+
+        full = self.client.get("/ops/publication-batches").json()
+        assert len(full) == 5
+
+        assert self.client.get(
+            "/ops/publication-batches?limit=500"
+        ).status_code == 422
+        assert self.client.get(
+            "/ops/publication-batches?limit=0"
+        ).status_code == 422
