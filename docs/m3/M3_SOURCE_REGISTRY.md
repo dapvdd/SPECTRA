@@ -50,3 +50,12 @@ relax any existing restriction.
 ## Change log
 
 - 2026-11-16: registry created (M3 Phase 0).
+- 2026-11-20: M3.1 addition — Wikipedia REST automation scoped (M3-1 row's
+  "REST API allowed for future automation with polite UA" is now exercised):
+  `backend/app/catalog/acquisition/wiki_rest.py` resolves article revision
+  anchors only (title → rev_id + timestamp), polite UA naming the project +
+  contact, min 1.0 s between requests, retry only retryable failures
+  (network/5xx/429) with capped exponential backoff. Manufacturer pages
+  (M3-2) remain human-citation-only: `backend/app/catalog/acquisition/
+  adapters.py` plans citations (pure functions, no fetch capability,
+  structural pin tests). No new source rows: M3.1 uses M3-1 and M3-2 only.
