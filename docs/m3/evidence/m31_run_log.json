@@ -1,0 +1,111 @@
+{
+  "rehearsal": "m31 publication rehearsal",
+  "database": "data/dev/m31_acquisition.db",
+  "manifests": [
+    "manifest_ram.json",
+    "manifest_storage.json",
+    "manifest_psu.json"
+  ],
+  "steps": [
+    {
+      "step": "schema_clone_upgrade",
+      "status": "upgraded",
+      "from_version": 0,
+      "to_version": 4,
+      "applied": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "step": "dry_run",
+      "manifest": "manifest_ram.json",
+      "unique_records": 32,
+      "would_publish": 0,
+      "rejected": 32,
+      "batches": 3
+    },
+    {
+      "step": "apply",
+      "manifest": "manifest_ram.json",
+      "published": 32,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantine": 0
+    },
+    {
+      "step": "idempotent_rerun",
+      "manifest": "manifest_ram.json",
+      "published": 0,
+      "skipped_existing": 32,
+      "idempotent": true
+    },
+    {
+      "step": "dry_run",
+      "manifest": "manifest_storage.json",
+      "unique_records": 10,
+      "would_publish": 10,
+      "rejected": 0,
+      "batches": 1
+    },
+    {
+      "step": "apply",
+      "manifest": "manifest_storage.json",
+      "published": 10,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantine": 0
+    },
+    {
+      "step": "idempotent_rerun",
+      "manifest": "manifest_storage.json",
+      "published": 0,
+      "skipped_existing": 10,
+      "idempotent": true
+    },
+    {
+      "step": "dry_run",
+      "manifest": "manifest_psu.json",
+      "unique_records": 7,
+      "would_publish": 7,
+      "rejected": 0,
+      "batches": 1
+    },
+    {
+      "step": "apply",
+      "manifest": "manifest_psu.json",
+      "published": 7,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantine": 0
+    },
+    {
+      "step": "idempotent_rerun",
+      "manifest": "manifest_psu.json",
+      "published": 0,
+      "skipped_existing": 7,
+      "idempotent": true
+    },
+    {
+      "step": "integrity",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0,
+      "hardware_rows": 49,
+      "provenance_rows": 270,
+      "provenance_entities": 49,
+      "note": "provenance_entities = DISTINCT hardware_id in field_provenance; evidence_status='verified' on all rows (RAM access 2026-11-22, STORAGE/PSU 2026-11-23)"
+    }
+  ],
+  "totals": {
+    "dry_run_published": 17,
+    "dry_run_rejected": 32,
+    "published": 49,
+    "skipped_existing": 0,
+    "rejected": 0,
+    "hardware_rows": 49,
+    "provenance_rows": 270,
+    "provenance_entities": 49
+  }
+}

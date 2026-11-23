@@ -50,3 +50,20 @@ relax any existing restriction.
 ## Change log
 
 - 2026-11-16: registry created (M3 Phase 0).
+- 2026-11-20: M3.1 addition — Wikipedia REST automation scoped (M3-1 row's
+  "REST API allowed for future automation with polite UA" is now exercised):
+  `backend/app/catalog/acquisition/wiki_rest.py` resolves article revision
+  anchors only (title → rev_id + timestamp), polite UA naming the project +
+  contact, min 1.0 s between requests, retry only retryable failures
+  (network/5xx/429) with capped exponential backoff. Manufacturer pages
+  (M3-2) remain human-citation-only: `backend/app/catalog/acquisition/
+  adapters.py` plans citations (pure functions, no fetch capability,
+  structural pin tests). No new source rows: M3.1 uses M3-1 and M3-2 only.
+- 2026-11-23: M3.1 acquisition executed (Tasks 4-8) — human-citation reads of
+  official manufacturer pages produced 49 verified SKUs (RAM 32 Corsair,
+  STORAGE 10 WD/Kingston, PSU 7 Corsair) with per-SKU URL + access date per
+  M3-2 rules; 394 candidates UNRESOLVED (JS-rendered/retired/404 source
+  pages) documented in `data/research/m31/02_resolution_report.json`.
+  Sources used: M3-1 (not needed for SKU fields), M3-2 (Corsair/Sandisk/
+  Kingston product pages + PDF datasheets, human-read via controller
+  webfetch/curl, one page at a time, no crawling). No new registry rows.
