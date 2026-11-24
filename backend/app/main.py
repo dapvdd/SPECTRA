@@ -338,15 +338,18 @@ def get_hardware(
     q: str | None = Query(default=None, min_length=1),
     manufacturer: str | None = Query(default=None),
     segment: str | None = Query(default=None),
+    verified: int = Query(default=0, ge=0, le=1),
     limit: int | None = Query(default=None, ge=1, le=200),
     offset: int = Query(default=0, ge=0),
 ) -> list[HardwareCatalogItem]:
-    """Server-side catalog query (Phase 1.3).
+    """Server-side catalog query (Phase 1.3, verified filter M3.2).
 
     All parameters are additive. With no parameters the endpoint returns the
     full catalog exactly as before 1.3 (byte-identical default behavior).
     ``q`` filters by case-insensitive name substring; ``type``/``manufacturer``/
-    ``segment`` filter exactly; ``limit``/``offset`` paginate the result. The
+    ``segment`` filter exactly; ``limit``/``offset`` paginate the result.
+    ``verified=1`` restricts the result to M3 verified-published rows
+    (record_status APPROVED + identity_status confirmed). The
     ``X-Total-Count`` header always carries the total rows under the active
     filters (the full filtered set, not the page), so clients can page without
     guessing.
@@ -365,6 +368,7 @@ def get_hardware(
         q=q,
         manufacturer=manufacturer,
         segment=segment,
+        verified=verified or None,
         limit=limit,
         offset=offset,
     )
@@ -396,11 +400,13 @@ def get_hardware_facet_counts(
     q: str | None = Query(default=None, min_length=1),
     manufacturer: str | None = Query(default=None),
     segment: str | None = Query(default=None),
+    verified: int = Query(default=0, ge=0, le=1),
 ) -> HardwareFacetsResponse:
     """Accurate facet counts for the active catalog filters.
 
     Counts are computed with the same WHERE clauses the catalog query applies,
     so each facet reflects the rows visible under the other active filters.
+    ``verified=1`` (M3.2) applies the verified-published filter to the counts.
     Declared before ``/hardware/{hardware_id}`` so the literal ``facets`` path
     is not shadowed by the id route.
     """
@@ -418,6 +424,7 @@ def get_hardware_facet_counts(
         q=q,
         manufacturer=manufacturer,
         segment=segment,
+        verified=verified or None,
     )
 
     return {

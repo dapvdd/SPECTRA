@@ -73,6 +73,7 @@ def _clone_schema(target: Path) -> None:
         "psu_specifications",
     ):
         conn.execute(f"DROP TABLE IF EXISTS {v3_table}")
+    _drop_v4_hardware_columns(conn)
     conn.execute(
         "CREATE TABLE build_conversations_v1 "
         "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -113,6 +114,62 @@ def _clone_v2_schema(target: Path) -> None:
         Base.metadata.create_all(bind=target_engine)
     finally:
         target_engine.dispose()
+
+    # The ORM now carries the v4 identity/lifecycle columns; a "v2 schema"
+    # clone predates them, so drop them to keep the simulation honest.
+    conn = sqlite3.connect(target)
+    _drop_v4_hardware_columns(conn)
+    conn.commit()
+    conn.close()
+
+
+def _drop_v4_hardware_columns(conn: sqlite3.Connection) -> None:
+    """Remove the v4 hardware columns from a fresh create_all-built clone.
+
+    The ORM mirrors the migration-owned v4 columns, so ``create_all`` builds
+    them. Simulated pre-v4 schemas (the v1 baseline and v2 clones) must not
+    contain them or migration v4's ALTER TABLE ADD COLUMN fails with
+    ``duplicate column name``. SQLite >= 3.35 supports DROP COLUMN directly;
+    a table rebuild (copy-first) is the portable fallback.
+    """
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(hardware)").fetchall()]
+    v4 = [c for c in ("canonical_key", "product_family", "identity_status",
+                      "record_status", "superseded_by_id") if c in cols]
+    if not v4:
+        return
+    version = conn.execute("SELECT sqlite_version()").fetchone()[0]
+    parts = version.split(".")
+    if (int(parts[0]), int(parts[1])) >= (3, 35):
+        for column in v4:
+            conn.execute(f"ALTER TABLE hardware DROP COLUMN {column}")
+        return
+    # Portable fallback: rebuild the hardware table without the v4 columns.
+    keep = [c for c in cols if c not in v4]
+    conn.execute("ALTER TABLE hardware RENAME TO hardware_v4_staging")
+    conn.execute(
+        "CREATE TABLE hardware ("
+        + ", ".join(_hardware_column_ddl(c) for c in keep)
+        + ")"
+    )
+    conn.execute(
+        f"INSERT INTO hardware ({', '.join(keep)}) "
+        f"SELECT {', '.join(keep)} FROM hardware_v4_staging"
+    )
+    conn.execute("DROP TABLE hardware_v4_staging")
+
+
+def _hardware_column_ddl(column: str) -> str:
+    """Column DDL for the portable hardware-table rebuild in clones."""
+    ddl = {
+        "id": "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "name": "name VARCHAR(200) NOT NULL",
+        "manufacturer": "manufacturer VARCHAR(100) NOT NULL",
+        "type": "type VARCHAR(50) NOT NULL",
+        "release_date": "release_date DATE",
+        "architecture": "architecture VARCHAR(100)",
+        "segment": "segment VARCHAR(50)",
+    }
+    return ddl.get(column, f"{column} VARCHAR(300)")
 
 
 def _clone_schema_with_missing_table(target: Path, missing_table: str) -> None:

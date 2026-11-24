@@ -20,14 +20,20 @@ def query_hardware(
     q: str | None = None,
     manufacturer: str | None = None,
     segment: str | None = None,
+    verified: int | None = None,
     limit: int | None = None,
     offset: int = 0,
 ) -> tuple[list[Hardware], int]:
     """Return ``(page_items, total_count)`` for the active filter set.
 
-    The total count reflects every filter (q/type/manufacturer/segment) with
-    pagination applied to the items only, so ``total`` always refers to the
-    full filtered result set, not the page.
+    The total count reflects every filter (q/type/manufacturer/segment/
+    verified) with pagination applied to the items only, so ``total``
+    always refers to the full filtered result set, not the page.
+
+    ``verified=1`` restricts the result to M3 verified-published rows
+    (``record_status='APPROVED' AND identity_status='confirmed'``).
+    Absent/``0`` applies no extra filter — default behavior byte-identical.
+    Rows with NULL lifecycle columns (pre-M3 legacy) are never verified.
     """
     statement = select(Hardware)
     count_statement = select(func.count()).select_from(Hardware)
@@ -53,6 +59,16 @@ def query_hardware(
         statement = statement.where(Hardware.segment == segment)
         count_statement = count_statement.where(Hardware.segment == segment)
 
+    if verified:
+        # M3 verified contract: both lifecycle conditions must hold. A row
+        # that is only half-confirmed (e.g. APPROVED but identity
+        # unconfirmed) is not verified.
+        verified_filter = (Hardware.record_status == "APPROVED") & (
+            Hardware.identity_status == "confirmed"
+        )
+        statement = statement.where(verified_filter)
+        count_statement = count_statement.where(verified_filter)
+
     with SessionLocal() as session:
         total = session.scalar(count_statement)
 
@@ -72,6 +88,7 @@ def get_hardware_facets(
     q: str | None = None,
     manufacturer: str | None = None,
     segment: str | None = None,
+    verified: int | None = None,
 ) -> dict[str, list[dict[str, object]]]:
     """Accurate facet counts for the active filter set.
 
@@ -81,7 +98,8 @@ def get_hardware_facets(
     constrains the manufacturer facet, but the manufacturers facet stays
     complete under the remaining filters so the option list never collapses
     to the active vendor. ``None`` facet values are excluded: a missing
-    value is unknown and is not reported as a facet.
+    value is unknown and is not reported as a facet. ``verified=1`` applies
+    the verified-published filter to every facet (M3.2).
     """
     dimension_filters = {
         "types": [],
@@ -105,6 +123,15 @@ def get_hardware_facets(
         segment_filter = Hardware.segment == segment
         dimension_filters["types"].append(segment_filter)
         dimension_filters["manufacturers"].append(segment_filter)
+    if verified:
+        # Verified applies to every facet dimension: facet counts reflect
+        # the rows visible under the active filter set (verified is a
+        # cross-cutting lifecycle filter, not a facet dimension itself).
+        verified_filter = (Hardware.record_status == "APPROVED") & (
+            Hardware.identity_status == "confirmed"
+        )
+        for filters in dimension_filters.values():
+            filters.append(verified_filter)
 
     facets: dict[str, list[dict[str, object]]] = {}
 
