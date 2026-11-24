@@ -67,6 +67,64 @@ def load_progress(manifest_path: str | Path) -> dict:
     return data
 
 
+def _database_fingerprint(db_path: str | Path) -> dict:
+    """Identify the database a checkpoint was written for.
+
+    Two cheap read-only signals: the normalized (casefolded, forward-slash)
+    database path and the current hardware row count. A fresh or different
+    database yields a different fingerprint; a restored/wiped same-path
+    database drifts in the row count. Either mismatch marks a checkpoint
+    stale — publication must run, never silently skip.
+    """
+    path = Path(db_path)
+    conn = sqlite3.connect(path)
+    try:
+        rows = conn.execute("SELECT COUNT(*) FROM hardware").fetchone()[0]
+    finally:
+        conn.close()
+    return {
+        "path": str(path.resolve()).replace("\\", "/").casefold(),
+        "hardware_rows": rows,
+    }
+
+
+def _checkpoint_is_current(progress: dict, db_path: str | Path) -> bool:
+    """True when the checkpoint may be trusted for THIS database.
+
+    New checkpoints carry ``db_fingerprint`` (path + hardware row count):
+    trusted only on an exact match, so a fresh, different, or restored
+    database is never silently skipped.
+
+    Legacy checkpoints (no fingerprint — the pre-gate shape) are
+    reconciled against the target database instead: trusted only when
+    EVERY record they name still exists in ``hardware``. On the database
+    they were written for, the named rows exist (crash recovery works);
+    on a fresh database they do not (no silent skip). The publisher's
+    canonical-key idempotency stays the second line of defense either way.
+    """
+    fingerprint = progress.get("db_fingerprint")
+    if isinstance(fingerprint, dict):
+        return fingerprint == _database_fingerprint(db_path)
+
+    named = progress.get("published_records") or []
+    if not named:
+        # Nothing named -> nothing the resume could skip; trusting it is
+        # equivalent to starting fresh.
+        return True
+    conn = sqlite3.connect(db_path)
+    try:
+        found = 0
+        for key in named:
+            row = conn.execute(
+                "SELECT 1 FROM hardware WHERE canonical_key = ?", (key,)
+            ).fetchone()
+            if row:
+                found += 1
+    finally:
+        conn.close()
+    return found == len(named)
+
+
 def save_progress(manifest_path: str | Path, progress: dict) -> None:
     """Atomically persist the checkpoint (write temp, then replace)."""
     path = progress_path(manifest_path)
@@ -260,6 +318,17 @@ def run_acquisition(
     progress = load_progress(manifest_path)
     done_batches = set(progress["completed_batches"])
 
+    # Database-aware checkpoint validation (M3.2 final gate): a checkpoint
+    # is only trusted when it was written for THIS database (path + hardware
+    # row count). A fresh, different, or restored database mismatches — the
+    # stale checkpoint is discarded and every batch runs. The publisher's
+    # canonical-key idempotency keeps an honest same-DB rerun a no-op.
+    checkpoint_discarded = False
+    if done_batches and not _checkpoint_is_current(progress, db_path):
+        progress = {"completed_batches": [], "published_records": []}
+        done_batches = set()
+        checkpoint_discarded = True
+
     batches = list(bounded_batches(unique_records))
     summary: dict = {
         "manifest_path": str(manifest_path),
@@ -288,6 +357,15 @@ def run_acquisition(
         return summary
 
     _ensure_source_registered(db_path)
+    if checkpoint_discarded:
+        # The stale checkpoint is dropped from the summary narrative too,
+        # so operators see why a "resume" turned into a full run.
+        summary["checkpoint_discarded"] = True
+        save_progress(manifest_path, {
+            "completed_batches": [],
+            "published_records": [],
+            "db_fingerprint": _database_fingerprint(db_path),
+        })
     for i, batch in enumerate(batches):
         if i in done_batches:
             # Checkpoint resume: skip completed batches entirely (no write).
@@ -312,10 +390,13 @@ def run_acquisition(
         if result.published > 0 or not result.rejected:
             # Persist progress AFTER the batch committed (checkpoint =
             # committed state only; a rolled-back batch is never marked).
+            # The fingerprint rides along so a later run against a fresh
+            # or different database can tell the checkpoint is stale.
             progress["completed_batches"].append(i)
             progress["published_records"] += [
                 r["canonical_key"] for r in batch
             ]
+            progress["db_fingerprint"] = _database_fingerprint(db_path)
             save_progress(manifest_path, progress)
             done_batches.add(i)
     return summary
