@@ -369,6 +369,8 @@ class TestRuleRegistry:
             "storage-motherboard-interface",
             "psu-build-wattage",
             "gpu-motherboard-slot",
+            "cpu-motherboard-generation",
+            "ram-motherboard-speed",
         ]
 
     def test_all_rule_ids_unique(self):

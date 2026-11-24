@@ -37,6 +37,7 @@ class RuleResultOut(BaseModel):
     explanation: str
     spec_fields: list[str]
     missing_information: list[str]
+    reason_code: str | None = None
     provenance: list[ProvenanceReference]
 
 
