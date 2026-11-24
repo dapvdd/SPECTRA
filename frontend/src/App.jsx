@@ -129,6 +129,7 @@ import {
 import {
   getCatalogRowSpecs,
   getGpuDetailViewModel,
+  getVerifiedChip,
 } from "./hardwareCard.js";
 import { requestGpuComparison } from "./comparisonGpu.js";
 import {
@@ -2652,6 +2653,14 @@ function BuildCompatibilitySection({ buildConfig, compatibility }) {
                   {COMPATIBILITY_STATUS_LABELS[rule.state] ?? rule.state}
                 </span>
               </div>
+              {/* M3.2: the machine-readable reason code is shown when the
+                  payload carries one — same vocabulary the rules engine
+                  emits, never invented client-side. */}
+              {rule.reason_code && (
+                <p className="build-compatibility-reason-code">
+                  <code>{rule.reason_code}</code>
+                </p>
+              )}
               <p>{rule.explanation}</p>
               {rule.missing_information.length > 0 && (
                 <p className="build-compatibility-missing">
@@ -2758,6 +2767,11 @@ function App() {
   const [cardSpecsById, setCardSpecsById] = useState({});
   const [search, setSearch] = useState("");
   const [manufacturerFilter, setManufacturerFilter] = useState("All");
+  /* M3.2 Task 5: "Verified only" narrows the server query to M3
+     verified-published rows (record_status APPROVED + identity confirmed).
+     The server owns the decision; this flag only rides along on the
+     request. Off by default so the catalog keeps its pre-M3.2 behavior. */
+  const [verifiedOnlyFilter, setVerifiedOnlyFilter] = useState(false);
   const [catalogSort, setCatalogSort] = useState("default");
   const [visibleCount, setVisibleCount] = useState(12);
   const [selectedHardware, setSelectedHardware] = useState(null);
@@ -3592,7 +3606,11 @@ function App() {
 
     requestHardwareCatalogPage(
       hardwareTypeFilter,
-      { q: search, manufacturer: manufacturerFilter },
+      {
+        q: search,
+        manufacturer: manufacturerFilter,
+        verified: verifiedOnlyFilter ? 1 : 0,
+      },
       (url, options) => fetch(url, { ...options, signal })
     )
       .then(({ totalCount }) => {
@@ -3604,7 +3622,12 @@ function App() {
       });
 
     requestHardwareFacets(
-      { type: hardwareTypeFilter, q: search, manufacturer: manufacturerFilter },
+      {
+        type: hardwareTypeFilter,
+        q: search,
+        manufacturer: manufacturerFilter,
+        verified: verifiedOnlyFilter ? 1 : 0,
+      },
       (url, options) => fetch(url, { ...options, signal })
     )
       .then((facets) => {
@@ -3617,7 +3640,7 @@ function App() {
       .catch(() => {});
 
     return () => controller.abort();
-  }, [hardwareTypeFilter, search, manufacturerFilter]);
+  }, [hardwareTypeFilter, search, manufacturerFilter, verifiedOnlyFilter]);
 
   useEffect(() => {
     fetch(apiUrl("/"))
@@ -4379,6 +4402,28 @@ function App() {
             })}
           </div>
 
+          {/* M3.2 Task 5: the verified toggle is a cross-cutting lifecycle
+              filter, not a facet dimension, so it sits outside the
+              manufacturer group and carries no facet count. */}
+          <div
+            className="filter-buttons filter-buttons-verified"
+            role="group"
+            aria-label="Filter hardware by verification status"
+          >
+            <button
+              type="button"
+              className={
+                verifiedOnlyFilter
+                  ? "filter-button active"
+                  : "filter-button"
+              }
+              aria-pressed={verifiedOnlyFilter}
+              onClick={() => setVerifiedOnlyFilter((current) => !current)}
+            >
+              Verified only
+            </button>
+          </div>
+
           <div className="catalog-command-sort">
             <label className="catalog-sort-label" htmlFor="catalog-sort">
               Sort
@@ -4515,6 +4560,9 @@ function App() {
                       : [];
                   const specEmpty =
                     specState === "loaded" && cardSpecRows.length === 0;
+                  /* M3.2: the chip mirrors the verified contract; absent on
+                     legacy rows without lifecycle columns. */
+                  const verifiedChip = getVerifiedChip(item);
 
                   return (
                     <article
@@ -4530,6 +4578,14 @@ function App() {
                       >
                         <span className="hardware-card-kicker">
                           {item.type || "CPU"}
+                          {/* M3.2: verified-published rows carry the chip;
+                              the helper mirrors the server contract and
+                              earns nothing on half-verified rows. */}
+                          {verifiedChip && (
+                            <span className="hardware-card-verified-chip">
+                              {verifiedChip}
+                            </span>
+                          )}
                         </span>
                         <h3>{item.name}</h3>
                         <span className="hardware-card-manufacturer">

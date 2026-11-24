@@ -181,7 +181,20 @@ const normalizeCompatibilityRule = (rule) => {
     return null;
   }
 
-  return { rule_id: ruleId, state: rule.state, explanation };
+  /* M3.2: the machine-readable reason code rides along when the payload
+     carries one. It gets the same bounding discipline as the rule id and
+     is null (never invented) for legacy payloads without the field. */
+  const reasonCode = toBoundedChatText(
+    rule.reason_code,
+    BUILD_CHAT_COMPATIBILITY_MAX_RULE_ID_LENGTH
+  );
+
+  return {
+    rule_id: ruleId,
+    state: rule.state,
+    explanation,
+    reason_code: reasonCode || null,
+  };
 };
 
 const toUnresolvedText = (rule, ruleId) => {

@@ -602,6 +602,23 @@ h1 {
   text-transform: uppercase;
 }
 
+/* M3.2: verified chip rides in the kicker row; green token marks the
+   verified-published contract without inventing a new palette. */
+.hardware-card-verified-chip {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--spectra-green-a40);
+  color: var(--spectra-green-soft);
+  background: var(--spectra-green-a08);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  vertical-align: 1px;
+}
+
 .hardware-card-main h3 {
   grid-area: name;
   align-self: end;
@@ -2591,6 +2608,23 @@ h1 {
   color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.5;
+}
+
+/* M3.2: machine-readable reason code — same mono voice as the rule id,
+   quieter than the explanation. */
+.build-compatibility-reason-code {
+  margin: 0.35rem 0 0 !important;
+}
+
+.build-compatibility-reason-code code {
+  font-family: var(--spectra-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  background: var(--surface-raised);
+  border: 1px solid var(--spectra-hairline-soft);
+  border-radius: var(--spectra-radius-sm);
+  padding: 0.1rem 0.4rem;
 }
 
 .build-compatibility-missing {

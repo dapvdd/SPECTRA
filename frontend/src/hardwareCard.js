@@ -80,6 +80,23 @@ export const formatReleaseDate = (value) => {
   return `${monthName} ${Number(day)}, ${year}`;
 };
 
+/* M3.2 Task 5: the verified chip mirrors the server's verified contract
+   exactly — record_status APPROVED AND identity_status confirmed. Rows
+   without lifecycle columns (pre-M3 legacy data) or half-verified rows
+   (approved record, unconfirmed identity, or quarantined record) earn no
+   chip: the label is never inferred. */
+export const getVerifiedChip = (identity) => {
+  if (!identity || typeof identity !== "object") {
+    return null;
+  }
+
+  const isVerified =
+    identity.record_status === "APPROVED" &&
+    identity.identity_status === "confirmed";
+
+  return isVerified ? "Verified" : null;
+};
+
 export const getGpuDetailViewModel = (hardware) => {
   const specifications = hardware?.specifications || {};
   const type = hardware?.type || "N/A";

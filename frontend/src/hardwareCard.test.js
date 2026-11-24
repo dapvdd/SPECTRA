@@ -5,6 +5,7 @@ import {
   formatReleaseDate,
   getCatalogRowSpecs,
   getGpuDetailViewModel,
+  getVerifiedChip,
 } from "./hardwareCard.js";
 
 const gpuSpecs = {
@@ -192,4 +193,30 @@ test("release date is formatted for humans and null stays N/A", () => {
   assert.equal(formatReleaseDate(""), "N/A");
   assert.equal(formatReleaseDate("2025-13-01"), "2025-13-01");
   assert.equal(formatReleaseDate("not-a-date"), "not-a-date");
+});
+
+/* --- M3.2 Task 5: verified chip on catalog cards --- */
+
+test("verified chip appears only for verified-published rows", () => {
+  assert.equal(
+    getVerifiedChip({ identity_status: "confirmed", record_status: "APPROVED" }),
+    "Verified"
+  );
+  assert.equal(
+    getVerifiedChip({ identity_status: "confirmed", record_status: "QUARANTINED" }),
+    null,
+    "confirmed identity alone is not verified"
+  );
+  assert.equal(
+    getVerifiedChip({ identity_status: "unconfirmed", record_status: "APPROVED" }),
+    null,
+    "approved record alone is not verified"
+  );
+  assert.equal(
+    getVerifiedChip(null),
+    null,
+    "pre-M3 legacy rows carry no lifecycle columns"
+  );
+  assert.equal(getVerifiedChip(undefined), null);
+  assert.equal(getVerifiedChip({}), null);
 });

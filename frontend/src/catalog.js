@@ -109,6 +109,7 @@ export const getHardwareCatalogUrl = (
     q = "",
     manufacturer = "All",
     segment = "",
+    verified = 0,
     limit,
     offset = 0,
   } = {}
@@ -129,6 +130,13 @@ export const getHardwareCatalogUrl = (
 
   if (segment) {
     params.set("segment", segment);
+  }
+
+  /* M3.2: verified=1 narrows the catalog to M3 verified-published rows
+     (record_status APPROVED + identity confirmed server-side). Falsy keeps
+     the default behavior byte-identical — no param is sent. */
+  if (verified) {
+    params.set("verified", "1");
   }
 
   if (limit != null) {
@@ -162,13 +170,14 @@ export const requestHardwareCatalogPage = async (
     q = "",
     manufacturer = "All",
     segment = "",
+    verified = 0,
     limit,
     offset = 0,
   } = {},
   fetchImplementation = fetch
 ) => {
   const response = await fetchImplementation(
-    getHardwareCatalogUrl(type, { q, manufacturer, segment, limit, offset })
+    getHardwareCatalogUrl(type, { q, manufacturer, segment, verified, limit, offset })
   );
 
   const totalCountHeader = response.headers?.get?.("x-total-count");
@@ -214,6 +223,7 @@ export const getHardwareFacetsUrl = (
     q = "",
     manufacturer = "All",
     segment = "",
+    verified = 0,
   } = {}
 ) => {
   const params = new URLSearchParams();
@@ -232,6 +242,12 @@ export const getHardwareFacetsUrl = (
 
   if (segment) {
     params.set("segment", segment);
+  }
+
+  /* M3.2: facet counts honor the verified filter like every other active
+     filter; falsy keeps the default behavior byte-identical. */
+  if (verified) {
+    params.set("verified", "1");
   }
 
   const query = params.toString();
