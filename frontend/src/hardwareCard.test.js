@@ -199,8 +199,13 @@ test("release date is formatted for humans and null stays N/A", () => {
 
 test("verified chip appears only for verified-published rows", () => {
   assert.equal(
-    getVerifiedChip({ identity_status: "confirmed", record_status: "APPROVED" }),
+    getVerifiedChip({ identity_status: "confirmed", record_status: "PUBLISHED" }),
     "Verified"
+  );
+  assert.equal(
+    getVerifiedChip({ identity_status: "confirmed", record_status: "APPROVED" }),
+    null,
+    "APPROVED is pre-publication; the publisher inserts at PUBLISHED"
   );
   assert.equal(
     getVerifiedChip({ identity_status: "confirmed", record_status: "QUARANTINED" }),
@@ -208,9 +213,9 @@ test("verified chip appears only for verified-published rows", () => {
     "confirmed identity alone is not verified"
   );
   assert.equal(
-    getVerifiedChip({ identity_status: "unconfirmed", record_status: "APPROVED" }),
+    getVerifiedChip({ identity_status: "unconfirmed", record_status: "PUBLISHED" }),
     null,
-    "approved record alone is not verified"
+    "published record alone is not verified"
   );
   assert.equal(
     getVerifiedChip(null),

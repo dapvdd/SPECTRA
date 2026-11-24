@@ -349,7 +349,7 @@ def get_hardware(
     ``q`` filters by case-insensitive name substring; ``type``/``manufacturer``/
     ``segment`` filter exactly; ``limit``/``offset`` paginate the result.
     ``verified=1`` restricts the result to M3 verified-published rows
-    (record_status APPROVED + identity_status confirmed). The
+    (record_status PUBLISHED + identity_status confirmed). The
     ``X-Total-Count`` header always carries the total rows under the active
     filters (the full filtered set, not the page), so clients can page without
     guessing.

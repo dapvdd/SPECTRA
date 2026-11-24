@@ -31,7 +31,7 @@ def query_hardware(
     always refers to the full filtered result set, not the page.
 
     ``verified=1`` restricts the result to M3 verified-published rows
-    (``record_status='APPROVED' AND identity_status='confirmed'``).
+    (``record_status='PUBLISHED' AND identity_status='confirmed'``).
     Absent/``0`` applies no extra filter — default behavior byte-identical.
     Rows with NULL lifecycle columns (pre-M3 legacy) are never verified.
     """
@@ -60,10 +60,13 @@ def query_hardware(
         count_statement = count_statement.where(Hardware.segment == segment)
 
     if verified:
-        # M3 verified contract: both lifecycle conditions must hold. A row
-        # that is only half-confirmed (e.g. APPROVED but identity
-        # unconfirmed) is not verified.
-        verified_filter = (Hardware.record_status == "APPROVED") & (
+        # M3 verified contract: both lifecycle conditions must hold. The
+        # publisher stamps PUBLISHED (the terminal lifecycle state reached
+        # from APPROVED) on every row it inserts; APPROVED-but-unpublished
+        # rows are not in the public catalog at all. A row that is only
+        # half-confirmed (e.g. PUBLISHED but identity unconfirmed) is not
+        # verified either.
+        verified_filter = (Hardware.record_status == "PUBLISHED") & (
             Hardware.identity_status == "confirmed"
         )
         statement = statement.where(verified_filter)
@@ -127,7 +130,9 @@ def get_hardware_facets(
         # Verified applies to every facet dimension: facet counts reflect
         # the rows visible under the active filter set (verified is a
         # cross-cutting lifecycle filter, not a facet dimension itself).
-        verified_filter = (Hardware.record_status == "APPROVED") & (
+        # PUBLISHED is the terminal state the publisher stamps; see
+        # query_hardware for the full contract.
+        verified_filter = (Hardware.record_status == "PUBLISHED") & (
             Hardware.identity_status == "confirmed"
         )
         for filters in dimension_filters.values():

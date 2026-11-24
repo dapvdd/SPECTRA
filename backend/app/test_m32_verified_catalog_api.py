@@ -6,8 +6,10 @@ Contract (additive, default behavior byte-identical):
   matches migration v4: canonical_key, product_family, identity_status,
   record_status, superseded_by_id (all nullable).
 - ``GET /hardware?verified=1`` filters to rows where
-  ``record_status='APPROVED' AND identity_status='confirmed'`` — the
-  M3 verified-published contract. ``verified`` absent or ``verified=0``
+  ``record_status='PUBLISHED' AND identity_status='confirmed'`` — the
+  M3 verified-published contract (the publisher stamps the terminal
+  PUBLISHED lifecycle state; APPROVED rows have not been published).
+  ``verified`` absent or ``verified=0``
   keeps the default behavior byte-identical (no new WHERE).
 - ``GET /hardware/facets?verified=1`` applies the same filter to facet
   counts (facet counts always reflect the active filter set).
@@ -17,7 +19,9 @@ Contract (additive, default behavior byte-identical):
 
 Honest boundary: a row with identity_status='confirmed' but
 record_status='QUARANTINED' is NOT verified (both conditions required),
-and rows with NULL v4 columns (pre-M3 legacy rows) are never verified.
+an APPROVED-but-unpublished row is NOT verified (APPROVED never reaches
+the public catalog — the publisher inserts at PUBLISHED), and rows with
+NULL v4 columns (pre-M3 legacy rows) are never verified.
 """
 from datetime import date
 
@@ -80,11 +84,12 @@ class _VerifiedApiBase:
     def _seed(self):
         with self.session_factory() as session:
             session.add_all([
-                # verified-published row (both conditions)
+                # verified-published row (both conditions; the publisher
+                # stamps the terminal PUBLISHED state on insertion)
                 self._hardware(
                     "ASUS PRIME B650-PLUS", "ASUS", "MOTHERBOARD",
                     segment="desktop",
-                    identity_status="confirmed", record_status="APPROVED",
+                    identity_status="confirmed", record_status="PUBLISHED",
                     canonical_key="asus|motherboard|prime b650-plus|"
                                   "atx-am5-b650",
                     product_family="PRIME",
@@ -98,11 +103,21 @@ class _VerifiedApiBase:
                                   "wifi|atx-am5-b650",
                     product_family="TUF Gaming",
                 ),
-                # approved record but unconfirmed identity — NOT verified
+                # approved-but-not-yet-published record — NOT verified
+                # (APPROVED never reaches the public catalog)
+                self._hardware(
+                    "ASUS ROG Strix B650E-F", "ASUS", "MOTHERBOARD",
+                    segment="desktop",
+                    identity_status="confirmed", record_status="APPROVED",
+                    canonical_key="asus|motherboard|rog strix "
+                                  "b650e-f|atx-am5-b650",
+                    product_family="ROG Strix",
+                ),
+                # published record but unconfirmed identity — NOT verified
                 self._hardware(
                     "Corsair Vengeance 32GB", "Corsair", "RAM",
                     segment="desktop",
-                    identity_status="unconfirmed", record_status="APPROVED",
+                    identity_status="unconfirmed", record_status="PUBLISHED",
                     canonical_key="corsair|ram|vengeance 32gb|"
                                   "kit-2x16-ddr56000",
                     product_family="Vengeance",
@@ -150,10 +165,11 @@ class TestVerifiedFilter(_VerifiedApiBase):
         assert names == [
             "ASUS PRIME B650-PLUS",
             "ASUS TUF Gaming B650-PLUS WIFI",
+            "ASUS ROG Strix B650E-F",
             "Corsair Vengeance 32GB",
             "AMD Ryzen 5 5600",
         ]
-        assert response.headers["X-Total-Count"] == "4"
+        assert response.headers["X-Total-Count"] == "5"
 
     def test_verified_0_matches_default(self):
         default = self.client.get("/hardware")
@@ -185,7 +201,15 @@ class TestVerifiedFilter(_VerifiedApiBase):
 
     def test_service_query_hardware_default_unchanged(self):
         page, total = hardware_catalog_service.query_hardware()
-        assert total == 4
+        assert total == 5
+
+    def test_approved_but_unpublished_row_is_not_verified(self):
+        """APPROVED is a pre-publication lifecycle state: the publisher
+        stamps PUBLISHED on insertion, so an APPROVED row (not yet run
+        through the publisher) must never satisfy the verified filter."""
+        page, total = hardware_catalog_service.query_hardware(verified=1)
+        assert "ASUS ROG Strix B650E-F" not in [h.name for h in page]
+        assert total == 1
 
 
 class TestVerifiedFacets(_VerifiedApiBase):
@@ -208,7 +232,7 @@ class TestVerifiedFacets(_VerifiedApiBase):
         assert response.status_code == 200
         facets = response.json()
         types = {f["value"]: f["count"] for f in facets["types"]}
-        assert types == {"MOTHERBOARD": 2, "RAM": 1, "CPU": 1}
+        assert types == {"MOTHERBOARD": 3, "RAM": 1, "CPU": 1}
 
 
 class TestCompatibilityReasonCodeInApi(_VerifiedApiBase):

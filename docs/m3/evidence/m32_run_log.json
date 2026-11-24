@@ -1,0 +1,67 @@
+{
+  "rehearsal": "m32 publication rehearsal",
+  "database": "data/dev/m32_acquisition.db",
+  "manifests": [
+    "manifest_motherboard.json"
+  ],
+  "steps": [
+    {
+      "step": "checkpoint_reset",
+      "checkpoint": "manifest_motherboard.json.progress.json"
+    },
+    {
+      "step": "schema_clone_upgrade",
+      "status": "upgraded",
+      "from_version": 0,
+      "to_version": 4,
+      "applied": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "step": "dry_run",
+      "manifest": "manifest_motherboard.json",
+      "unique_records": 13,
+      "would_publish": 0,
+      "rejected": 13,
+      "rejected_note": "unregistered-source rejections are expected on a fresh DB; apply registers the source",
+      "batches": 2
+    },
+    {
+      "step": "apply",
+      "manifest": "manifest_motherboard.json",
+      "published": 13,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantine": 0
+    },
+    {
+      "step": "idempotent_rerun",
+      "manifest": "manifest_motherboard.json",
+      "published": 0,
+      "skipped_existing": 13,
+      "idempotent": true
+    },
+    {
+      "step": "integrity",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0,
+      "hardware_rows": 13,
+      "verified_rows": 13,
+      "provenance_rows": 117
+    }
+  ],
+  "totals": {
+    "dry_run_published": 0,
+    "dry_run_rejected": 13,
+    "published": 13,
+    "skipped_existing": 0,
+    "rejected": 0,
+    "hardware_rows": 13,
+    "verified_rows": 13,
+    "provenance_rows": 117
+  }
+}
