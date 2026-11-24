@@ -68,32 +68,48 @@ def load_progress(manifest_path: str | Path) -> dict:
 
 
 def _database_fingerprint(db_path: str | Path) -> dict:
-    """Identify the database a checkpoint was written for.
+    """Identify the data state a checkpoint was written against.
 
-    Two cheap read-only signals: the normalized (casefolded, forward-slash)
-    database path and the current hardware row count. A fresh or different
-    database yields a different fingerprint; a restored/wiped same-path
-    database drifts in the row count. Either mismatch marks a checkpoint
-    stale — publication must run, never silently skip.
+    Two cheap read-only signals: the set of canonical keys already in
+    ``hardware`` and its row count. A fresh or different database yields a
+    different fingerprint; a restored/wiped same-path database drifts in
+    the key set. Either mismatch marks a checkpoint stale — publication
+    must run, never silently skip.
+
+    The fingerprint is deliberately content-based (NOT path-based): the
+    same database reached at another path (a moved/rebuilt rehearsal) is
+    still the same data state, and cumulative runs legitimately re-run the
+    same manifest against a DB that has grown since the checkpoint was
+    written. Path is recorded for operator diagnostics only.
     """
     path = Path(db_path)
     conn = sqlite3.connect(path)
     try:
+        keys = [
+            row[0]
+            for row in conn.execute(
+                "SELECT canonical_key FROM hardware "
+                "WHERE canonical_key IS NOT NULL ORDER BY canonical_key"
+            ).fetchall()
+        ]
         rows = conn.execute("SELECT COUNT(*) FROM hardware").fetchone()[0]
     finally:
         conn.close()
     return {
         "path": str(path.resolve()).replace("\\", "/").casefold(),
         "hardware_rows": rows,
+        "canonical_keys": keys,
     }
 
 
 def _checkpoint_is_current(progress: dict, db_path: str | Path) -> bool:
     """True when the checkpoint may be trusted for THIS database.
 
-    New checkpoints carry ``db_fingerprint`` (path + hardware row count):
-    trusted only on an exact match, so a fresh, different, or restored
-    database is never silently skipped.
+    New checkpoints carry ``db_fingerprint`` (canonical-key set + hardware
+    row count + path): the content components (key set + row count) must
+    match the live database exactly. A fresh, different, or restored
+    database mismatches — never silently skipped. The path is diagnostic
+    only: the same data state at another location still resumes.
 
     Legacy checkpoints (no fingerprint — the pre-gate shape) are
     reconciled against the target database instead: trusted only when
@@ -104,7 +120,11 @@ def _checkpoint_is_current(progress: dict, db_path: str | Path) -> bool:
     """
     fingerprint = progress.get("db_fingerprint")
     if isinstance(fingerprint, dict):
-        return fingerprint == _database_fingerprint(db_path)
+        live = _database_fingerprint(db_path)
+        return (
+            fingerprint.get("canonical_keys") == live["canonical_keys"]
+            and fingerprint.get("hardware_rows") == live["hardware_rows"]
+        )
 
     named = progress.get("published_records") or []
     if not named:
