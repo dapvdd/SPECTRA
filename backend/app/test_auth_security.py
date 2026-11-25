@@ -42,6 +42,7 @@ from backend.app.models import (  # noqa: E402
 from backend.app import main  # noqa: E402
 from backend.app.services import benchmark_service  # noqa: E402
 from backend.app.services import build_conversation_service  # noqa: E402
+from backend.app.services import source_service  # noqa: E402
 
 AUTH = "Authorization"
 BEARER = "Bearer "
@@ -67,6 +68,7 @@ class AuthSetup:
             "service.SessionLocal": build_conversation_service.SessionLocal,
             "benchmark.SessionLocal": benchmark_service.SessionLocal,
             "auth.SessionLocal": auth_module.SessionLocal,
+            "source.SessionLocal": source_service.SessionLocal,
             "auth.enabled": auth_module._AUTH_ENABLED,
             "auth.secret": auth_module._AUTH_SECRET,
         }
@@ -82,11 +84,16 @@ class AuthSetup:
             poolclass=StaticPool,
         )
         Base.metadata.create_all(bind=self.engine)
+        # The ops tables (ingestion_runs/publication_batches) have no ORM
+        # models — they exist only via migration v4 DDL. The ops-visibility
+        # tests expect them absent on this in-memory DB (the handler must
+        # report 503 honestly), so they are intentionally NOT created here.
         self.session_factory = sessionmaker(bind=self.engine)
         main.SessionLocal = self.session_factory
         build_conversation_service.SessionLocal = self.session_factory
         auth_module.SessionLocal = self.session_factory
         benchmark_service.SessionLocal = self.session_factory
+        source_service.SessionLocal = self.session_factory
 
         self.client = TestClient(main.app)
         self.cpu_id, self.gpu_id = self._seed()
@@ -127,6 +134,7 @@ class AuthSetup:
         build_conversation_service.SessionLocal = self._saved["service.SessionLocal"]
         auth_module.SessionLocal = self._saved["auth.SessionLocal"]
         benchmark_service.SessionLocal = self._saved["benchmark.SessionLocal"]
+        source_service.SessionLocal = self._saved["source.SessionLocal"]
         auth_module._AUTH_ENABLED = self._saved["auth.enabled"]
         auth_module._AUTH_SECRET = self._saved["auth.secret"]
         self.engine.dispose()

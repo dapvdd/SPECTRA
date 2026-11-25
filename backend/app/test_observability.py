@@ -80,10 +80,15 @@ class ReadinessTests(unittest.TestCase):
         data = response.json()
         self.assertEqual(data["status"], "ready")
         self.assertEqual(data["database"], "reachable")
-        # Migration state is informational; both tracked and untracked are valid.
+        # Migration state is informational; any tracked version (the repo
+        # template is migrated to LATEST by the release process) or an
+        # untracked/unknown DB is valid.
         self.assertIn(data["migrations"], {
-            "tracked-version-1",
             "tracked-version-0",
+            "tracked-version-1",
+            "tracked-version-2",
+            "tracked-version-3",
+            "tracked-version-4",
             "untracked",
             "unknown",
         })
