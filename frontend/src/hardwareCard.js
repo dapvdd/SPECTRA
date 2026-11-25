@@ -80,6 +80,25 @@ export const formatReleaseDate = (value) => {
   return `${monthName} ${Number(day)}, ${year}`;
 };
 
+/* M3.2 Task 5: the verified chip mirrors the server's verified contract
+   exactly — record_status PUBLISHED AND identity_status confirmed. The
+   publisher stamps the terminal PUBLISHED state on insertion (APPROVED
+   rows never reach the public catalog), so APPROVED cannot be a verified
+   marker. Rows without lifecycle columns (pre-M3 legacy data),
+   quarantined records, or unconfirmed identities earn no chip: the label
+   is never inferred. */
+export const getVerifiedChip = (identity) => {
+  if (!identity || typeof identity !== "object") {
+    return null;
+  }
+
+  const isVerified =
+    identity.record_status === "PUBLISHED" &&
+    identity.identity_status === "confirmed";
+
+  return isVerified ? "Verified" : null;
+};
+
 export const getGpuDetailViewModel = (hardware) => {
   const specifications = hardware?.specifications || {};
   const type = hardware?.type || "N/A";

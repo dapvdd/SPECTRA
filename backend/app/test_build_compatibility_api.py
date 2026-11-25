@@ -122,7 +122,7 @@ class TestCompatibilityCheckApi:
         assert response.status_code == 200
         payload = response.json()
         assert payload["state"] == "UNKNOWN"  # GPU + PSU rules stay unknown
-        assert payload["rules_version"] == "M2.5-RULES-v1"
+        assert payload["rules_version"] == "M32-RULES-v2"
         results = {r["rule_id"]: r for r in payload["rule_results"]}
         assert results["cpu-motherboard-socket"]["state"] == "COMPATIBLE"
         assert results["ram-motherboard-generation"]["state"] == "COMPATIBLE"

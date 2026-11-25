@@ -1372,11 +1372,13 @@ test("a settled compatibility state becomes a bounded digest", () => {
       rule_id: "cpu-motherboard-socket",
       state: "INCOMPATIBLE",
       explanation: "CPU socket AM5 does not match motherboard socket AM4.",
+      reason_code: null,
     },
     {
       rule_id: "psu-build-wattage",
       state: "UNKNOWN",
       explanation: "Cannot evaluate PSU capacity: wattage is not recorded.",
+      reason_code: null,
     },
   ]);
   assert.deepEqual(digest.unresolved, [
@@ -1515,3 +1517,135 @@ test("App wires the settled compatibility check into every build chat request", 
     true
   );
 });
+
+/* ---------- 33. reason codes in the digest (M3.2 Task 5) ---------- */
+
+test("the digest carries each rule's machine-readable reason code", () => {
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({
+      ruleResults: [
+        {
+          rule_id: "cpu-motherboard-socket",
+          component_hardware_ids: { cpu: 1, motherboard: 9 },
+          state: "INCOMPATIBLE",
+          explanation: "CPU socket AM5 does not match motherboard socket AM4.",
+          spec_fields: ["cpu_specifications.socket"],
+          missing_information: [],
+          provenance: [],
+          reason_code: "SOCKET_MISMATCH",
+        },
+        {
+          rule_id: "psu-build-wattage",
+          component_hardware_ids: { psu: 5, cpu: 1 },
+          state: "UNKNOWN",
+          explanation: "Cannot evaluate PSU capacity: wattage is not recorded.",
+          spec_fields: ["psu_specifications.wattage"],
+          missing_information: ["psu_specifications.wattage"],
+          provenance: [],
+          reason_code: "PSU_WATTAGE_UNKNOWN",
+        },
+      ],
+    }),
+    slotIds
+  );
+
+  assert.deepEqual(
+    digest.rule_results.map((rule) => rule.reason_code),
+    ["SOCKET_MISMATCH", "PSU_WATTAGE_UNKNOWN"]
+  );
+});
+
+test("the digest tolerates rules without a reason code (legacy payloads)", () => {
+  const digest = buildBuildChatCompatibilityDigest(settledCompatibility(), slotIds);
+
+  assert.deepEqual(
+    digest.rule_results.map((rule) => rule.reason_code),
+    [null, null]
+  );
+});
+
+test("the digest truncates an over-long reason code and drops an empty one", () => {
+  const digest = buildBuildChatCompatibilityDigest(
+    settledCompatibility({
+      ruleResults: [
+        {
+          rule_id: "r1",
+          state: "UNKNOWN",
+          explanation: "x",
+          reason_code: "C".repeat(150),
+        },
+        {
+          rule_id: "r2",
+          state: "UNKNOWN",
+          explanation: "y",
+          reason_code: "   ",
+        },
+      ],
+    }),
+    {}
+  );
+
+  assert.equal(digest.rule_results[0].reason_code.length, 100);
+  assert.equal(digest.rule_results[1].reason_code, null);
+});
+
+test("App renders the per-rule reason code inside the compatibility section", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  assert.equal(
+    source.includes("build-compatibility-reason-code"),
+    true,
+    "reason code paragraph class must be present"
+  );
+  assert.equal(
+    source.includes("rule.reason_code &&"),
+    true,
+    "the reason code renders only when the payload carries one"
+  );
+});
+
+test("App wires the verified-only filter into the catalog and facet requests", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  assert.equal(
+    source.includes("verifiedOnlyFilter"),
+    true,
+    "verified-only state must exist"
+  );
+  assert.equal(
+    source.includes("Verified only"),
+    true,
+    "the toggle button must be labeled"
+  );
+  assert.equal(
+    source.includes("aria-pressed={verifiedOnlyFilter}"),
+    true,
+    "the toggle must expose its pressed state"
+  );
+  assert.equal(
+    source.includes("verified: verifiedOnlyFilter ? 1 : 0"),
+    true,
+    "catalog page and facet requests carry the flag"
+  );
+  assert.equal(
+    /\[hardwareTypeFilter, search, manufacturerFilter, verifiedOnlyFilter\]/.test(source),
+    true,
+    "the fetch effect re-issues when the toggle flips"
+  );
+});
+
+test("App renders the verified chip on catalog cards", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  assert.equal(
+    source.includes("getVerifiedChip(item)"),
+    true,
+    "the chip helper runs per catalog item"
+  );
+  assert.equal(
+    source.includes("hardware-card-verified-chip"),
+    true,
+    "the chip has its presentation class"
+  );
+});
+

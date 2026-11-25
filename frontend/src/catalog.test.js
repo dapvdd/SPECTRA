@@ -444,3 +444,75 @@ test("facets client surfaces API errors", async () => {
     /HTTP error/
   );
 });
+
+/* --- M3.2 Task 5: verified filter pass-through --- */
+
+test("catalog URL passes verified=1 through to the query string", () => {
+  assert.equal(
+    getHardwareCatalogUrl("MOTHERBOARD", { verified: 1 }),
+    apiUrl("/hardware?type=MOTHERBOARD&verified=1")
+  );
+  assert.equal(
+    getHardwareCatalogUrl("All", { verified: 1, manufacturer: "ASUS" }),
+    apiUrl("/hardware?manufacturer=ASUS&verified=1")
+  );
+});
+
+test("catalog URL omits verified when falsy (default behavior unchanged)", () => {
+  assert.equal(getHardwareCatalogUrl("All", {}), apiUrl("/hardware"));
+  assert.equal(
+    getHardwareCatalogUrl("All", { verified: 0 }),
+    apiUrl("/hardware")
+  );
+  assert.equal(
+    getHardwareCatalogUrl("All", { verified: undefined }),
+    apiUrl("/hardware")
+  );
+});
+
+test("facets URL passes verified=1 through and omits it when falsy", () => {
+  assert.equal(
+    getHardwareFacetsUrl({ verified: 1 }),
+    apiUrl("/hardware/facets?verified=1")
+  );
+  assert.equal(
+    getHardwareFacetsUrl({ type: "GPU", verified: 1 }),
+    apiUrl("/hardware/facets?type=GPU&verified=1")
+  );
+  assert.equal(
+    getHardwareFacetsUrl({ verified: 0 }),
+    apiUrl("/hardware/facets")
+  );
+});
+
+test("catalog page request forwards verified to the URL", async () => {
+  let receivedUrl;
+  await requestHardwareCatalogPage(
+    "MOTHERBOARD",
+    { verified: 1 },
+    async (url) => {
+      receivedUrl = url;
+      return {
+        ok: true,
+        headers: { get: () => "1" },
+        json: async () => [],
+      };
+    }
+  );
+
+  assert.equal(
+    receivedUrl,
+    apiUrl("/hardware?type=MOTHERBOARD&verified=1")
+  );
+});
+
+test("verified filter state helper marks only the active state pressed", () => {
+  const active = getCatalogFilterState("verified", "verified");
+  assert.equal(active.isActive, true);
+  assert.equal(active.pressed, true);
+  assert.equal(active.className, "filter-button active");
+
+  const inactive = getCatalogFilterState("All", "verified");
+  assert.equal(inactive.isActive, false);
+  assert.equal(inactive.pressed, false);
+});

@@ -124,6 +124,9 @@ class TestGpuApi:
             assert set(item.keys()) == {
                 "id", "name", "manufacturer", "type", "segment",
                 "release_date", "architecture",
+                # M3.2: lifecycle fields ride on every identity payload
+                # (additive contract; nullable for pre-M3 legacy rows).
+                "record_status", "identity_status",
             }
 
     def test_catalog_gpu_filter(self):

@@ -61,6 +61,40 @@ class Hardware(Base):
         nullable=True,
     )
 
+    # --- M3 migration v4 identity/lifecycle columns (additive, nullable).
+    # The ORM mirrors the migration-owned columns (runner.py
+    # _HARDWARE_V4_COLUMNS) so create_all-built dev/CI DBs match the
+    # migrated schema. Pre-M3 rows keep NULL in all five columns; the
+    # unique partial index on canonical_key lives in the DB, not here.
+    canonical_key: Mapped[str | None] = mapped_column(
+        String(300),
+        nullable=True,
+    )
+
+    product_family: Mapped[str | None] = mapped_column(
+        String(200),
+        nullable=True,
+    )
+
+    # Vocabulary ('confirmed'/'unconfirmed') is validated in application
+    # code + tests (SQLite cannot add CHECK via ALTER TABLE).
+    identity_status: Mapped[str | None] = mapped_column(
+        String(20),
+        nullable=True,
+    )
+
+    # Vocabulary ('APPROVED'/'QUARANTINED'/'PUBLISHED' lifecycle) is
+    # validated in application code + tests.
+    record_status: Mapped[str | None] = mapped_column(
+        String(20),
+        nullable=True,
+    )
+
+    superseded_by_id: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
+
     cpu_specification: Mapped["CPUSpecification | None"] = relationship(
         back_populates="hardware",
         uselist=False,

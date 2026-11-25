@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "check": "RAM: manifest parsed, MATCHED=32 UNRESOLVED=96",
+      "ok": true,
+      "detail": "manifest_ram.json"
+    },
+    {
+      "check": "RAM: all 32 MATCHED rows are PUBLISHED+confirmed in DB with matching manufacturer",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "RAM: sampled 3 SKUs carry MPN + per-SKU URL + doc revision + APPROVED fields with URLs",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "RAM: sampled normalized values in DB equal manifest values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "RAM: none of the 96 UNRESOLVED rows are published",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "STORAGE: manifest parsed, MATCHED=10 UNRESOLVED=99",
+      "ok": true,
+      "detail": "manifest_storage.json"
+    },
+    {
+      "check": "STORAGE: all 10 MATCHED rows are PUBLISHED+confirmed in DB with matching manufacturer",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "STORAGE: sampled 3 SKUs carry MPN + per-SKU URL + doc revision + APPROVED fields with URLs",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "STORAGE: sampled normalized values in DB equal manifest values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "STORAGE: none of the 99 UNRESOLVED rows are published",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "PSU: manifest parsed, MATCHED=7 UNRESOLVED=99",
+      "ok": true,
+      "detail": "manifest_psu.json"
+    },
+    {
+      "check": "PSU: all 7 MATCHED rows are PUBLISHED+confirmed in DB with matching manufacturer",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "PSU: sampled 3 SKUs carry MPN + per-SKU URL + doc revision + APPROVED fields with URLs",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "PSU: sampled normalized values in DB equal manifest values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "PSU: none of the 99 UNRESOLVED rows are published",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "MOTHERBOARD: manifest parsed, MATCHED=13 UNRESOLVED=87",
+      "ok": true,
+      "detail": "manifest_motherboard.json"
+    },
+    {
+      "check": "MOTHERBOARD: all 13 MATCHED rows are PUBLISHED+confirmed in DB with matching manufacturer",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "MOTHERBOARD: sampled 3 SKUs carry MPN + per-SKU URL + doc revision + APPROVED fields with URLs",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "MOTHERBOARD: sampled normalized values in DB equal manifest values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "MOTHERBOARD: none of the 87 UNRESOLVED rows are published",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "provenance: 64/64 published rows carry verified field_provenance with source_url",
+      "ok": true,
+      "detail": "64/64"
+    },
+    {
+      "check": "no provenance rows outside verified/uncertain vocabulary",
+      "ok": true,
+      "detail": "0"
+    }
+  ],
+  "all_passed": true
+}

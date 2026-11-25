@@ -131,3 +131,13 @@ for review; merge and deploy are separate approvals.
    gate in apply and dry-run (bypass closed). Curation throughput cost per
    record rises accordingly; the SKU_AUDIT_MANIFEST in
    `pilot_sku_verified.py` is the working example of the required shape.
+9. **M3.2 final integration gate (2026-11-25)**: cumulative catalog is now
+   64 verified-published rows (RAM 33 / MOTHERBOARD 13 / STORAGE 10 /
+   PSU 8) across the M3 Core pilot + M3.1 + M3.2 manifests, all carrying
+   verified provenance (395 rows; 1 documented 'uncertain' Wikipedia
+   background row). Checkpoint durability + content fingerprint gate added
+   (`09f30cf`/`0eeb3d2`/`efae97d`); lifecycle fields ride on every hardware
+   API payload so the frontend verified chip renders on live data
+   (`fa5a549`). Residual: no published CPU/GPU acquisition manifests yet,
+   so CPU/GPU rule pairs (R1 socket paths) are exercised at unit level
+   only; catalog growth continues to be evidence-gated.

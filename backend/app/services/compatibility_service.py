@@ -50,12 +50,14 @@ from backend.app.services.compatibility_model import (  # noqa: F401  (re-export
     evaluate_rules,
 )
 from backend.app.services.compatibility_rules import (
+    rule_cpu_motherboard_generation,
     rule_cpu_motherboard_socket,
     rule_gpu_motherboard_slot,
     rule_psu_build_wattage,
     rule_ram_motherboard_capacity,
     rule_ram_motherboard_generation,
     rule_ram_motherboard_slots,
+    rule_ram_motherboard_speed,
     rule_storage_motherboard_interface,
 )
 
@@ -231,6 +233,21 @@ def check_build_compatibility(component_ids: dict[str, int | None]) -> dict[str,
         if {"gpu", "motherboard"} <= present:
             results.append(
                 rule_gpu_motherboard_slot(gpu, motherboard, ids=ids_for("gpu", "motherboard"))
+            )
+        # R8 (M3.2): documented CPU generation vs motherboard CPU support.
+        # Socket never implies generation: the rule is UNKNOWN unless BOTH
+        # sides carry documented generation data.
+        if {"cpu", "motherboard"} <= present:
+            results.append(
+                rule_cpu_motherboard_generation(
+                    cpu, motherboard, ids=ids_for("cpu", "motherboard")
+                )
+            )
+        # R9 (M3.2): nominal RAM speed vs board max (advisory: above-max is
+        # UNKNOWN, never INCOMPATIBLE).
+        if {"ram", "motherboard"} <= present:
+            results.append(
+                rule_ram_motherboard_speed(ram, motherboard, ids=ids_for("ram", "motherboard"))
             )
 
         report = evaluate_rules(results)

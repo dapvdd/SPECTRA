@@ -12,7 +12,7 @@ import enum
 from dataclasses import dataclass, field
 from typing import Any
 
-RULES_VERSION = "M2.5-RULES-v1"
+RULES_VERSION = "M32-RULES-v2"
 
 # Component slot names used in requests, rule results, and explanations.
 COMPONENT_SLOTS = ("cpu", "gpu", "ram", "storage", "motherboard", "psu")
@@ -37,6 +37,10 @@ class RuleResult:
 
     ``missing_information`` names the spec fields whose absence kept this
     rule UNKNOWN (empty for COMPATIBLE/INCOMPATIBLE/NOT_APPLICABLE).
+
+    ``reason_code`` is the machine-readable, stable-vocabulary code for the
+    outcome (M3.2). It is optional (defaults to ``None``) so M2 call sites
+    and payloads stay backward-compatible; rule evaluators always set it.
     """
 
     rule_id: str
@@ -46,6 +50,7 @@ class RuleResult:
     spec_fields: tuple[str, ...] = ()
     missing_information: tuple[str, ...] = ()
     provenance: tuple[dict[str, Any], ...] = field(default_factory=tuple)
+    reason_code: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -56,6 +61,7 @@ class RuleResult:
             "spec_fields": list(self.spec_fields),
             "missing_information": list(self.missing_information),
             "provenance": [dict(p) for p in self.provenance],
+            "reason_code": self.reason_code,
         }
 
 
