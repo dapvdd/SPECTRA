@@ -1,0 +1,208 @@
+{
+  "rehearsal": "m3.2 cumulative catalog rehearsal",
+  "database": "data/dev/m32_cumulative.db",
+  "sources": [
+    "m3 core pilot",
+    "manifest_ram.json",
+    "manifest_storage.json",
+    "manifest_psu.json",
+    "manifest_motherboard.json"
+  ],
+  "steps": [
+    {
+      "step": "schema_baseline_upgrade",
+      "status": "upgraded",
+      "applied": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "to_version": 4
+    },
+    {
+      "step": "m3_core_records",
+      "approved": {
+        "RAM": 1,
+        "STORAGE": 0,
+        "MOTHERBOARD": 0,
+        "PSU": 1
+      },
+      "quarantined": {
+        "RAM": 128,
+        "STORAGE": 109,
+        "MOTHERBOARD": 100,
+        "PSU": 106
+      }
+    },
+    {
+      "step": "m3_core_apply",
+      "batches": 2,
+      "published": 2,
+      "skipped_existing": 0,
+      "rejected": 0
+    },
+    {
+      "step": "manifest_apply",
+      "manifest": "manifest_ram.json",
+      "verified_skus": 128,
+      "matched": 32,
+      "unique_records": 32,
+      "published": 32,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantined_conflicts": 0
+    },
+    {
+      "step": "manifest_apply",
+      "manifest": "manifest_storage.json",
+      "verified_skus": 109,
+      "matched": 10,
+      "unique_records": 10,
+      "published": 10,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantined_conflicts": 0
+    },
+    {
+      "step": "manifest_apply",
+      "manifest": "manifest_psu.json",
+      "verified_skus": 106,
+      "matched": 7,
+      "unique_records": 7,
+      "published": 7,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantined_conflicts": 0
+    },
+    {
+      "step": "manifest_apply",
+      "manifest": "manifest_motherboard.json",
+      "verified_skus": 100,
+      "matched": 13,
+      "unique_records": 13,
+      "published": 13,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantined_conflicts": 0
+    },
+    {
+      "step": "cumulative_state",
+      "hardware_total": 64,
+      "by_type": {
+        "MOTHERBOARD": 13,
+        "PSU": 8,
+        "RAM": 33,
+        "STORAGE": 10
+      },
+      "verified_published_by_type": {
+        "MOTHERBOARD": 13,
+        "PSU": 8,
+        "RAM": 33,
+        "STORAGE": 10
+      },
+      "quarantined_by_type": {},
+      "provenance_total": 396,
+      "provenance_verified": 395,
+      "canonical_keys_total": 64,
+      "canonical_keys_unique": 64
+    },
+    {
+      "step": "idempotency_reruns",
+      "m3_core": {
+        "published": 0,
+        "skipped_existing": 2,
+        "rejected": 0
+      },
+      "manifest_ram.json": {
+        "published": 0,
+        "skipped_existing": 32,
+        "rejected": 0
+      },
+      "manifest_storage.json": {
+        "published": 0,
+        "skipped_existing": 10,
+        "rejected": 0
+      },
+      "manifest_psu.json": {
+        "published": 0,
+        "skipped_existing": 7,
+        "rejected": 0
+      },
+      "manifest_motherboard.json": {
+        "published": 0,
+        "skipped_existing": 13,
+        "rejected": 0
+      }
+    },
+    {
+      "step": "idempotency_no_drift",
+      "hardware_total": 64
+    },
+    {
+      "step": "integrity",
+      "integrity_check": "ok",
+      "foreign_key_violations": 0
+    }
+  ],
+  "totals": {
+    "m3_core_pilot": {
+      "published": 2,
+      "skipped_existing": 0,
+      "rejected": 0
+    },
+    "manifests": {
+      "published": 62,
+      "skipped_existing": 0,
+      "rejected": 0,
+      "quarantined_conflicts": 0
+    },
+    "final_state": {
+      "hardware_total": 64,
+      "by_type": {
+        "MOTHERBOARD": 13,
+        "PSU": 8,
+        "RAM": 33,
+        "STORAGE": 10
+      },
+      "verified_published_by_type": {
+        "MOTHERBOARD": 13,
+        "PSU": 8,
+        "RAM": 33,
+        "STORAGE": 10
+      },
+      "quarantined_by_type": {},
+      "provenance_total": 396,
+      "provenance_verified": 395,
+      "canonical_keys_total": 64,
+      "canonical_keys_unique": 64
+    },
+    "idempotency": {
+      "m3_core": {
+        "published": 0,
+        "skipped_existing": 2,
+        "rejected": 0
+      },
+      "manifest_ram.json": {
+        "published": 0,
+        "skipped_existing": 32,
+        "rejected": 0
+      },
+      "manifest_storage.json": {
+        "published": 0,
+        "skipped_existing": 10,
+        "rejected": 0
+      },
+      "manifest_psu.json": {
+        "published": 0,
+        "skipped_existing": 7,
+        "rejected": 0
+      },
+      "manifest_motherboard.json": {
+        "published": 0,
+        "skipped_existing": 13,
+        "rejected": 0
+      }
+    }
+  }
+}

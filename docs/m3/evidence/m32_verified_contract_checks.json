@@ -1,0 +1,108 @@
+{
+  "database": "data/dev/m32_cumulative.db",
+  "expected_total": 64,
+  "expected_by_type": {
+    "MOTHERBOARD": 13,
+    "PSU": 8,
+    "RAM": 33,
+    "STORAGE": 10
+  },
+  "checks": [
+    {
+      "check": "verified=1 returns 200",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "check": "verified=1 returns all eligible rows",
+      "ok": true,
+      "detail": "got 64, expected 64"
+    },
+    {
+      "check": "X-Total-Count matches",
+      "ok": true,
+      "detail": "64"
+    },
+    {
+      "check": "all four acquired categories present",
+      "ok": true,
+      "detail": "{'RAM': (33, 33), 'STORAGE': (10, 10), 'MOTHERBOARD': (13, 13), 'PSU': (8, 8)}"
+    },
+    {
+      "check": "facets verified=1 returns 200",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "facet type counts match DB truth",
+      "ok": true,
+      "detail": "{'RAM': (33, 33), 'STORAGE': (10, 10), 'MOTHERBOARD': (13, 13), 'PSU': (8, 8)}"
+    },
+    {
+      "check": "facet manufacturer total == row total",
+      "ok": true,
+      "detail": "64 vs 64"
+    },
+    {
+      "check": "page 1 returns 10",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "page 2 returns 10",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "pages do not overlap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "X-Total-Count stays the full set under pagination",
+      "ok": true,
+      "detail": "64"
+    },
+    {
+      "check": "search 'corsair' returns only Corsair verified rows",
+      "ok": true,
+      "detail": "40 rows"
+    },
+    {
+      "check": "facets under search match the row set",
+      "ok": true,
+      "detail": "40 vs 40"
+    },
+    {
+      "check": "type=RAM returns exactly the verified count",
+      "ok": true,
+      "detail": "33 vs 33"
+    },
+    {
+      "check": "type=STORAGE returns exactly the verified count",
+      "ok": true,
+      "detail": "10 vs 10"
+    },
+    {
+      "check": "type=MOTHERBOARD returns exactly the verified count",
+      "ok": true,
+      "detail": "13 vs 13"
+    },
+    {
+      "check": "type=PSU returns exactly the verified count",
+      "ok": true,
+      "detail": "8 vs 8"
+    },
+    {
+      "check": "no-verified default returns the same 64 rows (all are verified)",
+      "ok": true,
+      "detail": "64 vs 64"
+    },
+    {
+      "check": "spec payloads match DB truth exactly (no fabricated fields)",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "all_passed": true
+}

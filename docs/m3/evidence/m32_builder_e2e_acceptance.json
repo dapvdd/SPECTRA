@@ -1,0 +1,66 @@
+{
+  "database": "data/dev/m32_cumulative.db",
+  "checks": [
+    {
+      "check": "R2 DDR generation (DDR5 vs DDR5)",
+      "ok": true,
+      "detail": "DDR_GENERATION_MATCH"
+    },
+    {
+      "check": "R3 capacity (32GB vs 192GB max)",
+      "ok": true,
+      "detail": "RAM_CAPACITY_WITHIN_MAX"
+    },
+    {
+      "check": "R4 modules vs slots (2 vs 4)",
+      "ok": true,
+      "detail": "RAM_SLOTS_FIT"
+    },
+    {
+      "check": "R9 speed missing data -> RAM_SPEED_UNKNOWN (never INCOMPATIBLE)",
+      "ok": true,
+      "detail": "RAM_SPEED_UNKNOWN / UNKNOWN"
+    },
+    {
+      "check": "R5 storage interface (Western Digital SN850X 1024GB NVMe) evaluates without fabrication",
+      "ok": true,
+      "detail": "STORAGE_M2_SLOT_AVAILABLE / COMPATIBLE"
+    },
+    {
+      "check": "R6 PSU-only build: wattage rule absent or N/A (never guaranteed adequate)",
+      "ok": true,
+      "detail": "rules present: []"
+    },
+    {
+      "check": "no published CPU records in cumulative DB (socket/generation rules need CPU data; covered at unit level)",
+      "ok": true,
+      "detail": "cpus=0"
+    },
+    {
+      "check": "R8 without CPU -> rule absent from payload (never fabricated)",
+      "ok": true,
+      "detail": "rules present: []"
+    },
+    {
+      "check": "aggregate state is one of the documented vocabulary",
+      "ok": true,
+      "detail": "UNKNOWN"
+    },
+    {
+      "check": "partial build (3 slots filled) never declares unconditional COMPATIBLE",
+      "ok": true,
+      "detail": "aggregate=UNKNOWN states={'COMPATIBLE', 'UNKNOWN'}"
+    },
+    {
+      "check": "response carries rules_version",
+      "ok": true,
+      "detail": "M32-RULES-v2"
+    },
+    {
+      "check": "every rule result carries a provenance list",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "all_passed": true
+}
