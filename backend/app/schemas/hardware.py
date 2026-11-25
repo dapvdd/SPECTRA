@@ -14,6 +14,12 @@ class HardwareIdentity(BaseModel):
     segment: str | None = None
     release_date: date | None = None
     architecture: str | None = None
+    # M3.2: lifecycle fields ride on every identity payload so clients can
+    # render the verified chip from the same response they already receive
+    # (the verified contract: PUBLISHED + confirmed). Nullable — pre-M3
+    # legacy rows carry NULL and earn no chip.
+    record_status: str | None = None
+    identity_status: str | None = None
 
 
 class HardwareCatalogItem(HardwareIdentity):

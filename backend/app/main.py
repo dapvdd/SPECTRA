@@ -386,6 +386,10 @@ def get_hardware(
             "segment": hardware.segment,
             "release_date": hardware.release_date,
             "architecture": hardware.architecture,
+            # M3.2: lifecycle fields for the verified chip (PUBLISHED +
+            # confirmed contract). Additive — older clients ignore them.
+            "record_status": hardware.record_status,
+            "identity_status": hardware.identity_status,
         }
         for hardware in page
     ]
@@ -492,6 +496,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                 "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
+                # M3.2: lifecycle fields for the verified chip.
+                "record_status": hardware.record_status,
+                "identity_status": hardware.identity_status,
 
                 "specifications": {
                     "memory_gb": (
@@ -553,6 +560,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                 "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
+                # M3.2: lifecycle fields for the verified chip.
+                "record_status": hardware.record_status,
+                "identity_status": hardware.identity_status,
 
                 "specifications": {
                     "ddr_generation": (
@@ -604,6 +614,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                 "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
+                # M3.2: lifecycle fields for the verified chip.
+                "record_status": hardware.record_status,
+                "identity_status": hardware.identity_status,
 
                 "specifications": {
                     "storage_type": (
@@ -655,6 +668,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                 "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
+                # M3.2: lifecycle fields for the verified chip.
+                "record_status": hardware.record_status,
+                "identity_status": hardware.identity_status,
 
                 "specifications": {
                     "socket": (
@@ -716,6 +732,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
                 "segment": hardware.segment,
                 "release_date": hardware.release_date,
                 "architecture": hardware.architecture,
+                # M3.2: lifecycle fields for the verified chip.
+                "record_status": hardware.record_status,
+                "identity_status": hardware.identity_status,
 
                 "specifications": {
                     "wattage": (
@@ -756,6 +775,9 @@ def get_hardware_detail(hardware_id: int) -> HardwareDetail:
             "segment": hardware.segment,
             "release_date": hardware.release_date,
             "architecture": hardware.architecture,
+            # M3.2: lifecycle fields for the verified chip.
+            "record_status": hardware.record_status,
+            "identity_status": hardware.identity_status,
 
             "specifications": {
                 "cores": (

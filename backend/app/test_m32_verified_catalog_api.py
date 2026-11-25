@@ -235,6 +235,49 @@ class TestVerifiedFacets(_VerifiedApiBase):
         assert types == {"MOTHERBOARD": 3, "RAM": 1, "CPU": 1}
 
 
+class TestLifecycleFieldsInPayloads(_VerifiedApiBase):
+    """M3.2 gate: record_status + identity_status ride on every identity
+    payload (list + detail) so the frontend verified chip can mirror the
+    server contract from the response it already receives — the chip was
+    silently absent before because the API never carried the fields."""
+
+    def test_list_payload_carries_lifecycle_fields(self):
+        response = self.client.get("/hardware")
+
+        assert response.status_code == 200
+        items = {i["name"]: i for i in response.json()}
+        assert items["ASUS PRIME B650-PLUS"]["record_status"] == "PUBLISHED"
+        assert items["ASUS PRIME B650-PLUS"]["identity_status"] == "confirmed"
+        # Non-verified rows still carry their true lifecycle state — the
+        # chip is the client's decision, the API never hides the fields.
+        assert items["ASUS ROG Strix B650E-F"]["record_status"] == "APPROVED"
+        assert items["Corsair Vengeance 32GB"]["identity_status"] == \
+            "unconfirmed"
+        # Pre-M3 legacy rows: NULL lifecycle columns stay null.
+        assert items["AMD Ryzen 5 5600"]["record_status"] is None
+        assert items["AMD Ryzen 5 5600"]["identity_status"] is None
+
+    def test_detail_payload_carries_lifecycle_fields(self):
+        with self.session_factory() as session:
+            mb = session.query(Hardware).filter_by(
+                name="ASUS PRIME B650-PLUS").one()
+            mb_id = mb.id
+            legacy = session.query(Hardware).filter_by(
+                name="AMD Ryzen 5 5600").one()
+            legacy_id = legacy.id
+
+        response = self.client.get(f"/hardware/{mb_id}")
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["record_status"] == "PUBLISHED"
+        assert payload["identity_status"] == "confirmed"
+
+        legacy_response = self.client.get(f"/hardware/{legacy_id}")
+        assert legacy_response.status_code == 200
+        assert legacy_response.json()["record_status"] is None
+        assert legacy_response.json()["identity_status"] is None
+
+
 class TestCompatibilityReasonCodeInApi(_VerifiedApiBase):
     def _seed_compat_components(self):
         from backend.app.models import (
