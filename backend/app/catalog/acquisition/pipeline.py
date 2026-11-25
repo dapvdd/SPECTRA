@@ -121,6 +121,25 @@ def _checkpoint_is_current(progress: dict, db_path: str | Path) -> bool:
     fingerprint = progress.get("db_fingerprint")
     if isinstance(fingerprint, dict):
         live = _database_fingerprint(db_path)
+        manifest_keys = fingerprint.get("manifest_keys")
+        if manifest_keys is not None:
+            # Per-manifest validation: every key THIS checkpoint published
+            # must still exist. Other manifests' rows are irrelevant — a
+            # cumulative database legitimately grows between runs.
+            conn = sqlite3.connect(db_path)
+            try:
+                missing = [
+                    key for key in manifest_keys
+                    if conn.execute(
+                        "SELECT 1 FROM hardware WHERE canonical_key = ?",
+                        (key,),
+                    ).fetchone() is None
+                ]
+            finally:
+                conn.close()
+            return not missing
+        # Whole-DB fingerprint (legacy shape from the interim design):
+        # exact content match required.
         return (
             fingerprint.get("canonical_keys") == live["canonical_keys"]
             and fingerprint.get("hardware_rows") == live["hardware_rows"]
@@ -384,7 +403,10 @@ def run_acquisition(
         save_progress(manifest_path, {
             "completed_batches": [],
             "published_records": [],
-            "db_fingerprint": _database_fingerprint(db_path),
+            "db_fingerprint": {
+                **_database_fingerprint(db_path),
+                "manifest_keys": [],
+            },
         })
     for i, batch in enumerate(batches):
         if i in done_batches:
@@ -411,12 +433,19 @@ def run_acquisition(
             # Persist progress AFTER the batch committed (checkpoint =
             # committed state only; a rolled-back batch is never marked).
             # The fingerprint rides along so a later run against a fresh
-            # or different database can tell the checkpoint is stale.
+            # or different database can tell the checkpoint is stale. The
+            # fingerprint records THIS manifest's own completed key set —
+            # a later run validates against those keys' presence, not
+            # against the whole-DB state (other manifests legitimately
+            # grow the same database between runs).
             progress["completed_batches"].append(i)
             progress["published_records"] += [
                 r["canonical_key"] for r in batch
             ]
-            progress["db_fingerprint"] = _database_fingerprint(db_path)
+            progress["db_fingerprint"] = {
+                **_database_fingerprint(db_path),
+                "manifest_keys": sorted(progress["published_records"]),
+            }
             save_progress(manifest_path, progress)
             done_batches.add(i)
     return summary
