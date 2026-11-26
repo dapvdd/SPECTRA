@@ -87,8 +87,8 @@ def _schema_version(db_path: Path) -> int:
             return 0
         version = conn.execute(
             "SELECT version FROM schema_version WHERE id=1"
-        ).scalar()
-        return int(version) if version is not None else 0
+        ).fetchone()
+        return int(version[0]) if version is not None and version[0] is not None else 0
     finally:
         conn.close()
 
