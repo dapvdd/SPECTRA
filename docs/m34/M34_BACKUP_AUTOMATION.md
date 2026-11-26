@@ -59,3 +59,14 @@ existing channel). Release/rollback backups live in a separate directory
 - No DB files, manifests with source paths beyond the operator-known path,
   or secrets are committed. The example script contains no credentials.
 - Backup directories are host-local; nothing in the repo reads them.
+
+## 6. Acceptance evidence (scratch, 2026-11-26)
+
+Backup job exercised end-to-end on a scratch directory (NOT production):
+backup created + verified, manifest checksum `54ea53f4…` valid, verify-set
+audit passes (`last_good_ok: true`). The restore-rehearsal script correctly
+REFUSED the CI-seeded dev DB ("restored DB has no hardware rows — refusing
+to call this a successful restore"): the rehearsal primitive is fail-closed
+by design. On production data (5444 hardware rows) the same rehearsal
+passed during M3.3 — behavior is consistent, fail-closed here as well.
+
