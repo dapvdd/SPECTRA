@@ -79,7 +79,14 @@ class PreflightResult:
 # ---------------------------------------------------------------------------
 
 def _run(args: list[str], **kwargs) -> subprocess.CompletedProcess:
-    return subprocess.run(args, capture_output=True, text=True, **kwargs)
+    try:
+        return subprocess.run(args, capture_output=True, text=True, **kwargs)
+    except FileNotFoundError:
+        # Missing binary (e.g. docker/git not on PATH): fail closed as a
+        # failed command rather than crashing the whole preflight.
+        return subprocess.CompletedProcess(
+            args, returncode=127, stdout="", stderr=f"executable not found: {args[0]}"
+        )
 
 
 def _git_sha_at(dirpath: Path) -> str | None:

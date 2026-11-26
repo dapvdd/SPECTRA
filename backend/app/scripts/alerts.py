@@ -90,6 +90,17 @@ def evaluate(signals: dict) -> list[Alert]:
                 message=f"5xx rate {rate:.1%} over the last {total} requests (threshold {HIGH_5XX_RATE:.0%})",
                 runbook="docs/v3.1/PRODUCTION_RUNBOOK.md#high-5xx-rate",
             ))
+    # M3.4 Task 7: pre-computed rate input (from /metrics status classes)
+    # so a snapshot built without raw counters can still alert.
+    elif "http_5xx_rate" in signals:
+        rate = signals["http_5xx_rate"]
+        if isinstance(rate, (int, float)) and total and total > 20 and rate > HIGH_5XX_RATE:
+            alerts.append(Alert(
+                id="high_5xx_rate",
+                severity="critical",
+                message=f"5xx rate {rate:.1%} over the last {total} requests (threshold {HIGH_5XX_RATE:.0%})",
+                runbook="docs/v3.1/PRODUCTION_RUNBOOK.md#high-5xx-rate",
+            ))
 
     # Database integrity.
     integrity = _require(signals, "db_integrity")

@@ -46,6 +46,18 @@ RUN printf 'server {\n\
         add_header X-Frame-Options DENY always;\n\
         add_header Referrer-Policy no-referrer always;\n\
         add_header Content-Security-Policy "default-src '"'"'none'"'"'; frame-ancestors '"'"'none'"'"'" always;\n\
+        # M3.4 Task 6: keep large proxied JSON in memory instead of spilling\n\
+        # to a disk temp file (removes the 'upstream response is buffered to\n\
+        # a temporary file' warn + disk I/O on every unfiltered catalog load).\n\
+        proxy_max_temp_file_size 0;\n\
+        proxy_buffers 16 16k;\n\
+        proxy_buffer_size 16k;\n\
+        # Compress proxied JSON when the backend did not (defense in depth).\n\
+        gzip on;\n\
+        gzip_types application/json;\n\
+        gzip_min_length 1024;\n\
+        gzip_proxied any;\n\
+        gzip_vary on;\n\
         proxy_pass http://backend:8000/;\n\
         proxy_http_version 1.1;\n\
         proxy_set_header Host $host;\n\

@@ -1,0 +1,36 @@
+# Annotated release tag message (prepared M3.4 Task 1)
+
+# Subject: M3.3 production release (deployed 2026-11-25) — accounting corrected
+#
+# This file is the prepared tag message for annotated tag
+#   m33-production-5c2c7d9
+# pointing at the actual deployed production SHA. It is NOT created or
+# pushed yet: owner approval is required (mission constraint).
+#
+# After approval, run from any SPECTRA clone containing this commit:
+#   git tag -a m33-production-5c2c7d9 5c2c7d9a37109da99f20a34973503d1bd6deb236 \
+#     -F docs/m3/m33_release_tag_message.txt
+#   git push origin m33-production-5c2c7d9
+
+SPECTRA M3.3 production release (deployed 2026-11-25)
+
+Deployed SHA: 5c2c7d9a37109da99f20a34973503d1bd6deb236
+Images: spectra-backend:m33-rc-5c2c7d9, spectra-frontend:m33-rc-5c2c7d9
+Compose: /home/david/releases/spectra-75eba50-ops/compose-m33.json (project spectra)
+
+Functional verdict at release time: PRODUCTION_LIVE_AND_VERIFIED
+(21/21 API checks, 10/10 visual checks, stabilization clean).
+
+Accounting correction (M3.4 Task 1, see
+docs/m3/M33_RELEASE_ACCOUNTING_CORRECTION.md):
+
+- User-visible downtime: 33 min 24 s (15:30:13Z -> 16:03:37Z),
+  not "below 60 seconds". Operator verification pauses performed while
+  services were stopped count as downtime.
+- Post-healthy stabilization: approximately 58 minutes
+  (16:03:37Z -> ~17:02Z), not ">90 minutes of uptime".
+- Canonical downtime taxonomy for all future releases is defined in
+  docs/m3/M33_RELEASE_ACCOUNTING_CORRECTION.md section 2.
+
+Original release evidence: docs/m3/M33_PRODUCTION_RELEASE_REPORT.md
+(annotated copy: M33_PRODUCTION_RELEASE_REPORT_v1.1_ANNOTATED.md).
