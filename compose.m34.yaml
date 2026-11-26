@@ -1,0 +1,74 @@
+# SPECTRA M3.4 hardened production compose (Task 3).
+#
+# Usage (user-gated; never applied to production without owner approval):
+#   docker compose -f compose.yaml -f compose.m34.yaml -p spectra config
+#   # validate, then bring up through deploy_release.sh only
+#
+# Compatibility contract:
+# - The SQLite volume keeps its name and mountpoint
+#   (spectra-sqlite-data:/app/data) so M3.3 backups and rollback remain valid.
+# - The frontend host bind stays on the tailscale interface
+#   (FRONTEND_HOST_BIND default 100.113.157.0:8080), never 0.0.0.0.
+# - The backend healthcheck and restart policy are preserved.
+#
+# Hardening applied to both services:
+# - Non-root runtime users (backend uid/gid 10001 "spectra"; frontend uses
+#   the nginx-unprivileged image's uid 101).
+# - cap_drop: ALL (no Linux capabilities beyond the runtime default set).
+# - no-new-privileges (setuid/setgid escalation blocked).
+# - read_only root filesystem; writable paths are explicit:
+#   backend /tmp via tmpfs (sqlite temp store, curl), /app/data via the
+#   named volume; frontend /var/cache/nginx + /var/run via tmpfs.
+# - Resource limits: backend 512 MiB / 1.0 CPU, frontend 128 MiB / 0.5 CPU
+#   (measured idle-stable baseline: backend 74.3 MiB, frontend 4.9 MiB —
+#   generous headroom above the observed working set).
+services:
+  backend:
+    user: "10001:10001"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - spectra-sqlite-data:/app/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  frontend:
+    user: "101:101"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:size=32m,mode=755
+      - /var/run:size=8m,mode=755
+    ports:
+      - "${FRONTEND_HOST_BIND:-100.113.157.0:8080}:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.5"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  spectra-sqlite-data:
+    name: spectra-sqlite-data

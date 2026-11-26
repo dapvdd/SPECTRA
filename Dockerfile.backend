@@ -14,10 +14,20 @@ COPY data ./data-template
 COPY backend/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
+# M3.4 Task 3: non-root runtime. The data mount (named volume) is prepared
+# for the runtime user at start when needed; template copy in entrypoint.sh
+# works because /app (including data-template) is owned by spectra.
+RUN groupadd --gid 10001 spectra \
+    && useradd --uid 10001 --gid 10001 --system --no-create-home spectra \
+    && mkdir -p /app/data /tmp/spectra \
+    && chown -R spectra:spectra /app /tmp/spectra
+
 ENV SPECTRA_DATABASE_URL=sqlite:////app/data/spectra.db
 ENV SPECTRA_CORS_ORIGINS=http://localhost:8080
 
 EXPOSE 8000
+
+USER spectra
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
