@@ -26,8 +26,9 @@ from backend.app.auth import (
     InvalidCredentialsError,
     create_user,
     is_auth_enabled,
-    issue_token,
+    issue_token_or_placeholder,
     login_response,
+    registration_enabled,
     require_auth,
 )
 from backend.app.release import ReleaseIdentity, get_release_identity
@@ -292,10 +293,22 @@ def auth_status() -> AuthStatusResponse:
 
 @app.post("/auth/register", response_model=TokenResponse, status_code=201)
 def register(request_data: RegisterRequest) -> TokenResponse:
-    """Register a new user. Available regardless of SPECTRA_AUTH_ENABLED.
+    """Register a new user (M3.4 Task 2 explicit mode contract).
 
-    When auth is OFF this endpoint still works so users can pre-register;
-    the token it returns is only meaningful when auth is ON."""
+    Behavior matrix:
+    - Auth ON: 201 with a signed bearer token (unchanged).
+    - Auth OFF: 201 so users can pre-register; the token is a placeholder
+      that verifies nothing (it is not a bearer capability in any mode).
+      Before the M3.4 fix this path raised RuntimeError -> HTTP 500 (F-2).
+    - Registration disabled (SPECTRA_AUTH_REGISTRATION_ENABLED=0): 403
+      "Registration is disabled." — no user row is created. Applies in both
+      auth modes; existing users can still log in.
+    - Invalid credentials (empty/reserved username, short password,
+      duplicate): 422 with the reason.
+    """
+    if not registration_enabled():
+        raise HTTPException(status_code=403, detail="Registration is disabled.")
+
     try:
         user = create_user(
             username=request_data.username,
@@ -304,7 +317,7 @@ def register(request_data: RegisterRequest) -> TokenResponse:
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
 
-    token = issue_token(user.id)
+    token = issue_token_or_placeholder(user.id)
     return TokenResponse(token=token, token_type="bearer", username=user.username)
 
 

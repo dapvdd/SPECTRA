@@ -53,6 +53,13 @@ _AUTH_ENABLED: bool = (
     in {"1", "true", "yes", "on"}
 )
 _AUTH_SECRET: str | None = os.getenv("SPECTRA_AUTH_SECRET", "").strip() or None
+# M3.4 Task 2: registration is separately toggleable. Default keeps the
+# historical open-registration behavior; operators can fail-closed with
+# SPECTRA_AUTH_REGISTRATION_ENABLED=0 (documented in .env.example).
+_REGISTRATION_ENABLED: bool = (
+    os.getenv("SPECTRA_AUTH_REGISTRATION_ENABLED", "1").strip().lower()
+    in {"1", "true", "yes", "on"}
+)
 _TOKEN_TTL_SECONDS: int = int(os.getenv("SPECTRA_AUTH_TOKEN_TTL_SECONDS", "86400"))
 _MIN_PASSWORD_LENGTH: int = 12
 _BCRYPT_ROUNDS: int = 12
@@ -196,6 +203,25 @@ def issue_token(user_id: int, *, secret: str | None = None) -> str:
     payload = f"{user_id}{_TOKEN_SEP}{expiry}"
     digest = _sign(payload, secret)
     return f"{payload}{_TOKEN_SEP}{digest}"
+
+_PLACEHOLDER_TOKEN = "disabled:pre-registration-token"
+
+def issue_token_or_placeholder(user_id: int) -> str:
+    """M3.4 Task 2 (F-2 fix): token for /auth/register in ANY auth mode.
+
+    When auth is enabled (or a secret exists) this is exactly issue_token().
+    When auth is disabled and no secret is configured, registration still
+    succeeds (pre-registration contract), but the returned credential is a
+    constant placeholder that verify_token() can never accept (no separator
+    structure, unsigned). It is not a bearer capability in any mode.
+    """
+    if _AUTH_ENABLED or _AUTH_SECRET:
+        return issue_token(user_id)
+    return _PLACEHOLDER_TOKEN
+
+def registration_enabled() -> bool:
+    """True when new registrations are accepted (M3.4 Task 2)."""
+    return _REGISTRATION_ENABLED
 
 
 def verify_token(raw: str) -> int | None:
