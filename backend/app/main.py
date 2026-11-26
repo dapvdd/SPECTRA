@@ -49,6 +49,10 @@ from backend.app.schemas.suitability import (
     rating_to_response,
 )
 from backend.app.schemas.recommendation import RecommendationResponse
+from backend.app.schemas.intelligence import (  # M4
+    RecommendationConstraints,
+    RecommendationResult,
+)
 from backend.app.services.suitability_service import (
     WORKLOADS,
     rate_suitability,
@@ -467,6 +471,60 @@ def get_recommendations(
         budget_max=budget_max,
         limit=limit,
     )
+
+
+# --- M4 Task 4: intelligent recommendations (additive, declared before the
+# --- /hardware/{hardware_id} id route for the same shadowing reason as v1).
+
+@app.get(
+    "/hardware/recommend/v2",
+    response_model=RecommendationResult,
+)
+def get_recommendations_v2(
+    hardware_type: str = Query(..., alias="type"),
+    profile_key: str | None = Query(default=None),
+    budget_max: int | None = Query(default=None, ge=0),
+    resolution: str | None = Query(default=None),
+    power_limit_w: int | None = Query(default=None, ge=1),
+    priority: str | None = Query(default=None),
+    limit: int = Query(default=10, ge=1, le=50),
+) -> RecommendationResult:
+    """M4 intelligent recommendations: profiles, constraints echo, ledger."""
+    try:
+        constraints = RecommendationConstraints(
+            hardware_type=hardware_type,  # type: ignore[arg-type]
+            profile_key=profile_key,      # type: ignore[arg-type]
+            budget_max=budget_max, resolution=resolution,  # type: ignore[arg-type]
+            power_limit_w=power_limit_w, priority=priority,  # type: ignore[arg-type]
+            limit=limit,
+        )
+    except ValueError as validation_error:
+        raise HTTPException(status_code=422, detail=str(validation_error))
+    return _recommendations_v2_response(constraints)
+
+
+@app.post(
+    "/hardware/recommend/v2",
+    response_model=RecommendationResult,
+)
+def post_recommendations_v2(
+    constraints: RecommendationConstraints,
+) -> RecommendationResult:
+    """M4 intelligent recommendations with an existing-components context."""
+    return _recommendations_v2_response(constraints)
+
+
+def _recommendations_v2_response(
+    constraints: RecommendationConstraints,
+) -> RecommendationResult:
+    try:
+        result = recommendation_service.recommend_intelligent(
+            SessionLocal, constraints,
+        )
+    except KeyError as unknown_profile:
+        raise HTTPException(status_code=422, detail=str(unknown_profile).strip("'\""))
+    return RecommendationResult(**result)
+
 
 @app.get(
     "/hardware/{hardware_id}",
