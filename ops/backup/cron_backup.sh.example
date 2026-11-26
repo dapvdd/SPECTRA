@@ -1,0 +1,49 @@
+#!/bin/sh
+# SPECTRA scheduled backup — EXAMPLE ONLY (M3.4 Task 4).
+#
+# This file is a prepared configuration. It is NOT installed by any code in
+# this repository. Activation on david-lab requires explicit owner approval
+# (mission constraint: "Prepare scheduled backup configuration but do not
+# activate production scheduling without approval").
+#
+# Activation procedure (after owner approval):
+#   1. Copy to /home/david/ops/spectra_backup.sh on david-lab.
+#   2. chown david:david /home/david/ops/spectra_backup.sh && chmod 700 it.
+#   3. Add to david's crontab (crontab -e):
+#        17 3 * * *  /home/david/ops/spectra_backup.sh >> /home/david/ops/spectra_backup.log 2>&1
+#   4. Verify next morning: cat /home/david/ops/spectra_backup.log
+#      and ls /home/david/backups/spectra/scheduled
+#
+# Design notes:
+# - Runs INSIDE the running backend container via docker exec, using the
+#   SQLite Online Backup API (consistent under concurrent writes).
+# - Backups land in a host-mounted directory so they survive container
+#   replacement and are readable by the host operator account.
+# - Concurrency-safe: the job's lock file skips (not fails) an overlapping
+#   run; stale locks older than 1 h are broken automatically.
+# - Retention: keep 14 scheduled + the release/rollback backups are in a
+#   separate directory (never touched by retention).
+# - The last-known-good pointer (.last_good) is only advanced after full
+#   verification; retention NEVER deletes it.
+# - Failure reporting: non-zero exit + stderr line; cron mails the output
+#   to the local mailbox (mail is the operator's existing channel).
+
+set -eu
+
+BACKUP_DIR_HOST="/home/david/backups/spectra/scheduled"
+CONTAINER="spectra-backend"
+SOURCE_IN_CONTAINER="/app/data/spectra.db"
+KEEP=14
+
+mkdir -p "${BACKUP_DIR_HOST}"
+
+# Run the job inside the backend container; the backup directory is bind-
+# mounted read-write for this invocation only (compose: backups-rw volume).
+docker exec "${CONTAINER}" python -m backend.app.scripts.backup_job \
+    --source "${SOURCE_IN_CONTAINER}" \
+    --backup-dir /backups \
+    --keep "${KEEP}"
+
+# Failure alarm: if we got here with non-zero, set -e already exited; the
+# cron mail carries the output. Optional extra hook (owner-gated):
+#   non-zero exit code can be piped to the operator's preferred channel.
