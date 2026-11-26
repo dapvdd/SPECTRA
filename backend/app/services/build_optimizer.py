@@ -175,7 +175,7 @@ def optimize_build(component_ids: dict, profile_key: str | None = None,
     Read-only; composes the intelligence layer (features, scenarios,
     profiles) and the compatibility engine — no duplicated logic.
     """
-    session_factory = session_factory or SessionLocal
+    session_factory = session_factory or SessionLocal  # module-level monkeypatch point
     profile = resolve_profile(profile_key)
     prefs = {}
     if priority and priority != "balanced":
