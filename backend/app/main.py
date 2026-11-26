@@ -50,6 +50,8 @@ from backend.app.schemas.suitability import (
 )
 from backend.app.schemas.recommendation import RecommendationResponse
 from backend.app.schemas.intelligence import (  # M4
+    BuildIntelligenceRequest,
+    BuildIntelligenceResponse,
     RecommendationConstraints,
     RecommendationResult,
 )
@@ -120,6 +122,7 @@ from backend.app.services.benchmark_service import (
 )
 from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
+from backend.app.services import build_intelligence_service  # M4
 from backend.app.services import comparison_service
 from backend.app.services import compatibility_service
 from backend.app.services import explanation_service
@@ -1211,6 +1214,30 @@ def check_build_compatibility(
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     return BuildCompatibilityResponse(**payload)
+
+
+# --- M4 Task 5: build intelligence (additive; reuses the M32-RULES-v2 engine
+# --- verbatim plus the M4 scenario/profile layers).
+
+@app.post(
+    "/build/intelligence",
+    response_model=BuildIntelligenceResponse,
+)
+def build_intelligence(
+    request_data: BuildIntelligenceRequest,
+    _user_id: int | None = Depends(require_auth),
+) -> BuildIntelligenceResponse:
+    """Explainable build intelligence: balance, power reference, workload
+    suitability, compatibility summary, and evidence-gated upgrades."""
+    try:
+        payload = build_intelligence_service.analyze_build(
+            request_data.model_dump()
+        )
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return BuildIntelligenceResponse(**payload)
 
 
 @app.post(

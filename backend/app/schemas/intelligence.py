@@ -109,3 +109,94 @@ class RecommendationResult(BaseModel):
     profile: dict[str, Any]
     ranking_version: RankingVersion
     deterministic: Literal[True]
+
+
+# --------------------------------------------------------------------------
+# M4 Task 5: build intelligence (M4-BUILD-v1.0)
+# --------------------------------------------------------------------------
+
+BuildIntelSlot = Literal["cpu", "gpu", "motherboard", "ram", "storage", "psu"]
+
+
+class BuildIntelligenceRequest(BaseModel):
+    """Slot -> hardware id. Every slot optional: partial builds are valid."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    cpu: int | None = None
+    gpu: int | None = None
+    ram: int | None = None
+    storage: int | None = None
+    motherboard: int | None = None
+    psu: int | None = None
+
+
+class ComponentRef(BaseModel):
+    hardware_id: int
+    hardware_name: str
+    type: str
+
+
+class BalanceReport(BaseModel):
+    classification: Literal["cpu_bound", "gpu_bound", "balanced", "unknown"]
+    basis: str
+    uncertainty: Literal["low", "medium", "high"]
+    explanation: str
+
+
+class PowerReport(BaseModel):
+    mode: Literal["reference", "unknown"]
+    reference_w: int | None = None
+    sum_listed_tdp_w: int | None = None
+    basis: str
+    limitations: list[str] = Field(default_factory=list)
+
+
+class CompatibilitySummary(BaseModel):
+    overall: Literal["COMPATIBLE", "INCOMPATIBLE", "UNKNOWN", "NOT_EVALUATED"]
+    engine_state: str | None = None
+    explanation: str
+    incompatible_rules: list[str] = Field(default_factory=list)
+    unknown_rules: list[str] = Field(default_factory=list)
+    evaluated_rules: list[str] = Field(default_factory=list)
+    unknown_rules_detail: list[dict[str, Any]] = Field(default_factory=list)
+    rules_version: str | None = None
+    missing_slots: list[str] = Field(default_factory=list)
+
+
+class UpgradeCandidateHint(BaseModel):
+    hardware_id: int
+    hardware_name: str
+    socket_compatible: bool | None = None
+
+
+class UpgradeSuggestion(BaseModel):
+    target_slot: Literal["cpu", "gpu"]
+    direction: Literal["upgrade"]
+    evidence: Literal["benchmark", "spec"]
+    current_score: float
+    suggested_score: float
+    candidate_hint: UpgradeCandidateHint
+    rationale: str
+
+
+class WorkloadSuitabilityEntry(BaseModel):
+    score: float | None = None
+    confidence: str
+    profile_label: str
+    assumptions: list[str] = Field(default_factory=list)
+    per_component: dict[str, Any] = Field(default_factory=dict)
+
+
+class BuildIntelligenceResponse(BaseModel):
+    build_intelligence_version: BuildIntelVersion
+    components: dict[str, ComponentRef]
+    missing_slots: list[str]
+    balance: BalanceReport
+    power: PowerReport
+    workload_suitability: dict[str, WorkloadSuitabilityEntry]
+    compatibility: dict[str, Any] | None = None
+    compatibility_summary: CompatibilitySummary
+    upgrades: list[UpgradeSuggestion] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    budget_alternatives: list[Any] = Field(default_factory=list)
