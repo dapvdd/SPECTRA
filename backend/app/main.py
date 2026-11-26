@@ -142,6 +142,14 @@ app = FastAPI(
     version="0.1.0",
 )
 
+# M3.4 Task 6: gzip for large JSON payloads (the unfiltered catalog is ~1 MB).
+# Placed first among middlewares so it wraps the whole response chain.
+# minimum_size=1024 keeps probes/health/tiny JSON uncompressed. Clients that
+# do not send Accept-Encoding: gzip are byte-identical to before.
+from fastapi.middleware.gzip import GZipMiddleware
+
+app.add_middleware(GZipMiddleware, minimum_size=1024)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
