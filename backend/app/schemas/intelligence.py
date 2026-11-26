@@ -200,3 +200,48 @@ class BuildIntelligenceResponse(BaseModel):
     upgrades: list[UpgradeSuggestion] = Field(default_factory=list)
     limitations: list[str] = Field(default_factory=list)
     budget_alternatives: list[Any] = Field(default_factory=list)
+
+
+# --------------------------------------------------------------------------
+# M4 Task 6: bounded build optimizer (M4-OPT-v1.0)
+# --------------------------------------------------------------------------
+
+class OptimizationRequest(BaseModel):
+    """Bounded single-swap optimization request."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    components: BuildIntelligenceRequest
+    profile_key: WorkloadProfileKey | None = None
+    budget_max: int | None = Field(default=None, ge=0)
+    power_limit_w: int | None = Field(default=None, ge=1)
+    priority: Priority | None = None
+
+
+class SwapCandidateHint(BaseModel):
+    hardware_id: int
+    hardware_name: str
+    socket_compatible: bool | None = None
+
+
+class SwapSuggestion(BaseModel):
+    target_slot: Literal["cpu", "gpu"]
+    remove_hardware_id: int
+    remove_hardware_name: str
+    candidate_hint: SwapCandidateHint
+    before_score: float
+    after_score: float
+    improvement: float
+    scenario: str
+    evidence_basis: Literal["benchmark", "spec"]
+    rationale: str
+    trade_offs: list[str] = Field(default_factory=list)
+
+
+class OptimizationResponse(BaseModel):
+    optimizer_version: OptimizerVersion
+    build_intelligence_version: BuildIntelVersion
+    swaps: list[SwapSuggestion]
+    constraints_echo: dict[str, ConstraintEcho]
+    profile: dict[str, Any]
+    deterministic: Literal[True]

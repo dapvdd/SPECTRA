@@ -52,6 +52,8 @@ from backend.app.schemas.recommendation import RecommendationResponse
 from backend.app.schemas.intelligence import (  # M4
     BuildIntelligenceRequest,
     BuildIntelligenceResponse,
+    OptimizationRequest,
+    OptimizationResponse,
     RecommendationConstraints,
     RecommendationResult,
 )
@@ -1238,6 +1240,36 @@ def build_intelligence(
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     return BuildIntelligenceResponse(**payload)
+
+
+# --- M4 Task 6: bounded build optimizer (additive).
+
+@app.post(
+    "/build/optimize",
+    response_model=OptimizationResponse,
+)
+def build_optimize(
+    request_data: OptimizationRequest,
+    _user_id: int | None = Depends(require_auth),
+) -> OptimizationResponse:
+    """Bounded single-component swap suggestions (evidence-gated)."""
+    from backend.app.services import build_optimizer
+
+    try:
+        payload = build_optimizer.optimize_build(
+            request_data.components.model_dump(),
+            profile_key=request_data.profile_key,
+            budget_max=request_data.budget_max,
+            power_limit_w=request_data.power_limit_w,
+            priority=request_data.priority,
+        )
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    except KeyError as error:
+        raise HTTPException(status_code=422, detail=str(error).strip("'\""))
+    return OptimizationResponse(**payload)
 
 
 @app.post(
