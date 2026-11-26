@@ -312,3 +312,25 @@ def test_build_intelligence_route_404_unknown_id(env):
     _seed(env)
     resp = env.client.post("/build/intelligence", json={"cpu": 99999})
     assert resp.status_code == 404
+
+
+# ------------------------------------------------- scenarios (Task 7 route) --
+
+def test_hardware_scenarios_route(env):
+    _seed(env)
+    resp = env.client.get("/hardware/105/scenarios")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["scoring_version"] == "M4-SCORING-v2.0"
+    assert set(body["scenarios"]) == {"gaming", "workstation", "daily", "value"}
+    # VALUE is UNKNOWN without price data
+    assert body["scenarios"]["value"]["score"] is None
+    assert body["scenarios"]["value"]["confidence"] == "unknown"
+    # gaming has benchmark evidence -> scored
+    assert body["scenarios"]["gaming"]["score"] is not None
+
+
+def test_hardware_scenarios_route_404(env):
+    _seed(env)
+    resp = env.client.get("/hardware/99999/scenarios")
+    assert resp.status_code == 404

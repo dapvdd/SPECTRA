@@ -16,7 +16,7 @@ def load_backend_environment():
 load_backend_environment()
 
 from backend.app.database import SessionLocal
-from backend.app.models import Hardware
+from backend.app.models import BenchmarkResult, Hardware
 
 from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -56,6 +56,7 @@ from backend.app.schemas.intelligence import (  # M4
     OptimizationResponse,
     RecommendationConstraints,
     RecommendationResult,
+    ScenarioSetResponse,
 )
 from backend.app.services.suitability_service import (
     WORKLOADS,
@@ -127,6 +128,8 @@ from backend.app.services import build_conversation_service
 from backend.app.services import build_intelligence_service  # M4
 from backend.app.services import comparison_service
 from backend.app.services import compatibility_service
+from backend.app.services import intelligence_features  # M4
+from backend.app.services import scenario_scoring  # M4
 from backend.app.services import explanation_service
 from backend.app.services.explanation_service import ProviderBusyError
 from backend.app.services import hardware_chat_service
@@ -1060,6 +1063,51 @@ def get_hardware_suitability(
             "hardware_type": hardware.type,
             "ratings": ratings,
         }
+
+
+# --- M4 Task 7: per-hardware scenario ratings (M4-SCORING-v2.0), declared
+# --- after /hardware/recommend/v2 so route order stays unshadowed.
+
+@app.get(
+    "/hardware/{hardware_id}/scenarios",
+    response_model=ScenarioSetResponse,
+)
+def get_hardware_scenarios(hardware_id: int) -> ScenarioSetResponse:
+    """Four-scenario ratings for one hardware record.
+
+    Anchors are derived from the live benchmark population (same arithmetic
+    as the v1 suitability engine's anchors). VALUE is UNKNOWN without price
+    data; spec-based scenarios are capped and labeled. Nothing is fabricated.
+    """
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+        features = intelligence_features.features_from_hardware(hardware)
+
+        mc = list(
+            session.scalars(
+                select(BenchmarkResult.score).where(
+                    (BenchmarkResult.test_type == "multi-core")
+                    & (BenchmarkResult.score.is_not(None))
+                )
+            ).all()
+        )
+        sc = list(
+            session.scalars(
+                select(BenchmarkResult.score).where(
+                    (BenchmarkResult.test_type == "single-core")
+                    & (BenchmarkResult.score.is_not(None))
+                )
+            ).all()
+        )
+        anchors = {
+            "multi-core": scenario_scoring.derive_anchors(mc),
+            "single-core": scenario_scoring.derive_anchors(sc),
+        }
+
+        payload = scenario_scoring.score_scenarios(features, anchors=anchors)
+        return ScenarioSetResponse(**payload)
 
 
 @app.get(
