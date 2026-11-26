@@ -456,11 +456,17 @@ class TestBuildChatConversationProvider:
         assert result.answer == "Jawaban berbasis bukti."
 
         payload = json.loads(captured["user_text"])
+        # M4 Task 8: selected components (id 123) attach the intelligence
+        # digest inside the build context; the rest of the payload is
+        # unchanged.
+        expected_build = request.build.model_dump(mode="json")
+        actual_build = payload.pop("build")
         assert payload == {
-            "build": request.build.model_dump(mode="json"),
             "messages": [],
             "question": "Bagaimana karakter build ini?",
         }
+        assert actual_build.pop("intelligence", None) is not None
+        assert actual_build == expected_build
 
     def test_empty_gpu_benchmarks_remain_valid_with_history(self):
         captured = self._capture()

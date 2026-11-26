@@ -164,3 +164,58 @@ def features_from_hardware(hardware) -> dict:
         "provenance_verified_fields": _verified_provenance_fields(hardware),
         "data_freshness": _freshness(raw_benchmarks),
     }
+
+
+def features_from_benchmark_context(component) -> dict:
+    """Feature vector from a build-chat component context (M4 Task 8).
+
+    Accepts the BuildCpuContext/BuildGpuContext shells (id/name/specs/
+    benchmarks). No provenance or freshness data exists on these shells, so
+    those fields are disclosed as absent rather than guessed.
+    """
+    hardware_type = getattr(component, "type", None) or (
+        "CPU" if hasattr(component, "cpu_specification") else "CPU"
+    )
+    raw_benchmarks = getattr(component, "benchmarks", None) or ()
+    benchmark_scores = _best_score_by_family(raw_benchmarks)
+    families = sorted(benchmark_scores)
+
+    if hardware_type == "GPU":
+        applicable = GPU_FEATURES
+        spec_obj = getattr(component, "specifications", None)
+    else:
+        applicable = CPU_FEATURES
+        spec_obj = getattr(component, "specifications", None)
+
+    features: dict = {}
+    for key in applicable:
+        if key in ("single_core_score", "multi_core_score", "efficiency"):
+            continue
+        features[key] = getattr(spec_obj, key, None) if spec_obj is not None else None
+
+    for family in BENCHMARK_FAMILIES:
+        key = _BENCH_KEY[family]
+        if key in applicable:
+            features[key] = benchmark_scores.get(family)
+
+    if "efficiency" in applicable:
+        features["efficiency"] = derive_efficiency(
+            features.get("multi_core_score"), features.get("tdp_w")
+        )
+
+    missing = [k for k, v in features.items() if v is None]
+    coverage = (
+        round(sum(1 for v in features.values() if v is not None) / len(features), 4)
+        if features else 0.0
+    )
+
+    return {
+        "feature_version": FEATURE_VERSION,
+        "type": hardware_type,
+        "features": features,
+        "missing": missing,
+        "coverage": coverage,
+        "benchmark_families": families,
+        "provenance_verified_fields": [],
+        "data_freshness": {"recorded_at_present": False, "latest_recorded_at": None},
+    }
