@@ -332,7 +332,6 @@ def _rank_explanation(cand, profile) -> list[str]:
 def _trade_offs(cand) -> list[str]:
     trade_offs = []
     scenarios = cand["scenario_payload"]["scenarios"]
-    eff_entry = {}
     fv = cand.get("features", {}).get("features") or {}
     if fv.get("efficiency") is not None:
         trade_offs.append(
@@ -343,6 +342,23 @@ def _trade_offs(cand) -> list[str]:
     if scenarios.get("value", {}).get("confidence") == "unknown":
         trade_offs.append("value unknown: no price data in this dataset")
     return trade_offs
+
+
+# Candidate-level confidence = the strongest confidence among SCORED
+# scenarios (ordered high > medium > low > unknown). Unknown scenarios
+# never dominate the aggregate; a fully-unknown candidate stays unknown.
+_CONFIDENCE_RANK = {"high": 3, "medium": 2, "low": 1, "unknown": 0}
+
+
+def _aggregate_confidence(scenarios: dict) -> str:
+    scored = [
+        entry.get("confidence")
+        for entry in scenarios.values()
+        if entry.get("score") is not None
+    ]
+    if not scored:
+        return "unknown"
+    return max(scored, key=lambda c: _CONFIDENCE_RANK.get(c, -1))
 
 
 def recommend_intelligent(session_factory, constraints, anchors=None):
@@ -436,10 +452,8 @@ def recommend_intelligent(session_factory, constraints, anchors=None):
                  for s in item["scenario_payload"]["scenarios"].values()),
                 default=0,
             ),
-            "confidence": max(
-                (s.get("confidence", "unknown")
-                 for s in item["scenario_payload"]["scenarios"].values()),
-                default="unknown",
+            "confidence": _aggregate_confidence(
+                item["scenario_payload"]["scenarios"]
             ),
             "rank_explanation": _rank_explanation(item, profile),
             "trade_offs": _trade_offs(item),

@@ -235,6 +235,31 @@ def test_candidate_payload_shape(env):
     assert isinstance(out["alternatives"], list)
 
 
+def test_candidate_confidence_aggregates_scored_scenarios_only(env):
+    """Candidate-level confidence must come from SCORED scenarios (strongest
+    wins); the always-present VALUE-unknown (no price data) must not mask
+    measured medium/high evidence."""
+    _seed_anchored_population(env.session_factory())
+    out = recommend_intelligent(
+        env.session_factory,
+        RecommendationConstraints(hardware_type="CPU", limit=3),
+        anchors=_anchors_from_env(env),
+    )
+    assert out["candidates"], "expected scored candidates"
+    for cand in out["candidates"]:
+        scored = [
+            entry["confidence"]
+            for entry in cand["scenario_scores"].values()
+            if entry["score"] is not None
+        ]
+        expected = max(
+            scored,
+            key=lambda c: {"high": 3, "medium": 2, "low": 1,
+                           "unknown": 0}[c],
+        ) if scored else "unknown"
+        assert cand["confidence"] == expected, cand["hardware_name"]
+
+
 def test_power_limit_filters_only_with_tdp_evidence(env):
     with env.session_factory() as s:
         _seed_anchored_population(s)
