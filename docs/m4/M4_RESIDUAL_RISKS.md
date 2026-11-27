@@ -129,7 +129,11 @@ rendered panels end-to-end — but there are no permanent DOM tests in CI.
 **Found-and-fixed by that pass:** the build intelligence hook initially
 sent the wrong wire shape (wrapper object + full hardware records) and every
 panel request 422'd — invisible to pure-module tests. Fixed
-(commit `50516eb`) and pinned by contract tests.
+(commit `50516eb`) and pinned by contract tests. A later code-review probe
+also found the candidate-level confidence aggregation picking the
+lexicographically-largest label (VALUE's permanent `unknown` masking
+measured `medium`/`high` evidence); fixed with a documented rank order and a
+regression test.
 
 **What resolves it:** migrating the acceptance script into CI
 (webapp-testing) if the project wants permanent browser coverage.

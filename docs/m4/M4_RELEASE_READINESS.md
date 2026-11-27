@@ -15,7 +15,7 @@ Explainable hardware decision-support layer, additive to all existing engines:
 | Feature layer (`M4-FEATURES-v1`) | Done | `test_intelligence_features.py` 15/15 |
 | Scenario scoring (`M4-SCORING-v2.0`) | Done | `test_scenario_scoring.py` 19/19 |
 | Workload profiles (`M4-PROFILES-v1.0`) | Done | `test_workload_profiles.py` 15/15 |
-| Intelligent recommendations (`M4-REC-v2.0`, `/hardware/recommend/v2`) | Done | `test_recommendation_intelligent.py` 13/13 |
+| Intelligent recommendations (`M4-REC-v2.0`, `/hardware/recommend/v2`) | Done | `test_recommendation_intelligent.py` 14/14 |
 | Build intelligence (`M4-BUILD-v1.0`, `POST /build/intelligence`) | Done | `test_build_intelligence_service.py` 18/18 |
 | Bounded optimizer (`M4-OPT-v1.0`, `POST /build/optimize`) | Done | `test_build_optimizer.py` 12/12 |
 | AI digest rules 43–45 (`build.intelligence` payload) | Done | `test_build_chat_digest.py` 5/5 |
@@ -27,8 +27,8 @@ Explainable hardware decision-support layer, additive to all existing engines:
 ## 2. Test evidence (all commands run in this worktree)
 
 ```
-Backend M4 subset (8 files):        118 passed
-Backend full CI-parity:             1662 passed, 2 skipped, 2 deselected
+Backend M4 subset (8 files):        119 passed
+Backend full CI-parity:             1663 passed, 2 skipped, 2 deselected
 Frontend node --test:               707 pass, 0 fail (693 baseline + 14 M4)
 Frontend build (vite):              OK
 Frontend lint (oxlint):             pre-existing warnings only; none new
@@ -82,8 +82,41 @@ no new tables/columns).
 
 ## 7. Final review dispositions
 
-(Filled after the final review — see verdict.)
+Fresh-context reviewer subagents were attempted three times and each
+truncated on output limits (13-commit diff too large); per the
+executing-plans skill this fell back to a documented line-by-line
+self-review of every changed file plus targeted runtime probes. Findings
+and dispositions:
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| 1 | Important | M4 panel classNames (`.scenario-ratings`, `.build-intelligence-panel` grid/cards) had no CSS anywhere — panels rendered unstyled | Fixed (`543336f`): one additive CSS block reusing existing tokens |
+| 2 | Important | `useBuildIntelligence` wire shape violated `BuildIntelligenceRequest` (`extra="forbid"`) — every panel request 422'd | Found by browser acceptance; fixed (`50516eb`) + 4 contract tests |
+| 3 | Important | Candidate-level `confidence` used alphabetical `max()` over labels — VALUE's permanent `unknown` masked measured `medium`/`high` evidence on every candidate | Found by review probe; fixed (`ce5e217`): `_CONFIDENCE_RANK` over scored scenarios only + regression test |
+| 4 | Minor | v2 recommendation workspace + optimizer endpoints have no UI consumer | Disclosed as R11; UI follow-up task, not a blocker for an additive API release |
+| 5 | Minor | Multi-core anchor drift vs v1 doc example (~24.7% at p90) | Documented, not re-anchored (R1); anchors derive from live data by design |
+| 6 | Minor | Docs carried pre-fix test counts (13/118/1662 backend, 704 frontend) | Corrected in this pass to 14/119/1663 backend, 707 frontend |
+| 7 | Minor | Multi-core p90 drift means v1 doc example values no longer reproduce | Same as #5; documented in M4_RESIDUAL_RISKS.md R1 |
+
+Self-review verification notes (all verified by reading the diff and/or
+running probes): `recommendation_service.py` v1 diff = insertions only;
+`main.py` import change is additive; `build_chat_service.py` pure additions
+(rules 43–45 are summarizer-only); compatibility engine untouched
+(M32-RULES-v2 verbatim); CSS files other than App.css untouched;
+`formatInsightValue` still present (reformat artifact only); docs numbers
+re-checked against emitted `evaluation_results.json`.
 
 ## 8. Verdict
 
-(See end of document.)
+**READY_FOR_MERGE_REVIEW** (2026-11-27).
+
+Evidence: backend full CI-parity 1663 passed / 2 skipped / 2 deselected;
+M4 subset 119/119; frontend `node --test` 707 pass / 0 fail; `vite build`
+clean; lint shows pre-existing warnings only; browser acceptance 13/13 PASS
+against real backend + snapshot copy. No Critical findings. Three Important
+findings (#1–#3) were found and fixed with tests; remaining minors are
+disclosed as R1–R12 with owners and resolution paths. v1 engines verified
+byte-identical (insertions-only diff + regression tests). Merge is the
+owner's call: draft PR only, and note the M3.4 overlap on
+`backend/app/main.py` / `auth.py` — whichever branch merges second resolves
+textual conflicts.

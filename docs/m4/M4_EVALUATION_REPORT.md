@@ -49,7 +49,7 @@ Eight evaluation properties, each enforced by tests in
   backend/app/test_recommendation_intelligent.py backend/app/test_build_intelligence_service.py `
   backend/app/test_build_optimizer.py backend/app/test_build_chat_digest.py `
   backend/app/test_m4_evaluation.py -q
-→ 118 passed, 1 warning in 8.08s
+→ 119 passed, 1 warning in 8.08s
 
 # Full CI-parity suite
 .\backend\.venv\Scripts\python -m pytest backend -q `
@@ -57,7 +57,7 @@ Eight evaluation properties, each enforced by tests in
   --ignore=backend/app/importers/test_benchmark_cpu_import.py `
   --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_database_persistence_across_restart_cycle `
   --deselect=backend/app/test_deployment_config.py::PersistentStorageCycleTests::test_entrypoint_initialization_prevents_empty_volume_masking
-→ 1662 passed, 2 skipped, 2 deselected, 3 warnings in 76.18s
+→ 1663 passed, 2 skipped, 2 deselected, 3 warnings in 78.14s
 
 # Frontend
 npm test      → ✔ pass 704, fail 0
@@ -70,9 +70,9 @@ npm run lint  → pre-existing warnings only; no NEW warnings from M4 files
 ```
 
 Per-file M4 test counts: `intelligence_features` 15 · `scenario_scoring` 19 ·
-`workload_profiles` 15 · `recommendation_intelligent` 13 ·
+`workload_profiles` 15 · `recommendation_intelligent` 14 ·
 `build_intelligence_service` 18 · `build_optimizer` 12 ·
-`build_chat_digest` 5 · `m4_evaluation` 21 = **118**.
+`build_chat_digest` 5 · `m4_evaluation` 21 = **119**.
 
 ## 4. Emitted results (read from `evaluation_results.json`, not invented)
 
@@ -172,5 +172,5 @@ ids, drops null slots, no wrapper), pinned by 3 contract tests
 All 21 evaluation tests pass; the emitted JSON confirms determinism,
 evidence gating, UNKNOWN-first-class semantics, spec-cap enforcement, and
 compatibility passthrough. No property regressed against v1 suites
-(1662 backend + 704 frontend green). Detailed limitations are tracked in
+(1663 backend + 707 frontend green). Detailed limitations are tracked in
 `M4_RESIDUAL_RISKS.md`.

@@ -95,7 +95,7 @@ shape are unchanged (regression-tested in
 
 ## 9. Tests
 
-`backend/app/test_recommendation_intelligent.py` (13): constraint defaults,
+`backend/app/test_recommendation_intelligent.py` (14): constraint defaults,
 soft-budget echo, determinism + id tie-break, socket exclusion/unknown,
-ledger codes, profile echo, payload shape, power advisory, GET/POST API,
-422s, v1 shape.
+ledger codes, profile echo, payload shape, confidence aggregation
+(scored scenarios only), power advisory, GET/POST API, 422s, v1 shape.
