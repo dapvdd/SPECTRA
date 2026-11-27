@@ -42,3 +42,6 @@ data/research/batch017/verify_prod_nullguard_selfcontained.py
 Thumbs.db
 # Worktrees
 .worktrees/
+
+# M4 browser acceptance artifacts (regenerable via m4_browser_acceptance.py)
+backend/app/scripts/m4_acceptance_out/
