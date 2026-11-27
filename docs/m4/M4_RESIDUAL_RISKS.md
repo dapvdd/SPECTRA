@@ -118,16 +118,21 @@ pin migration state.
 **Mitigation:** enforced by existing tests; documented here so the
 placement is not reverted.
 
-## R9. Frontend panels are build-verified, not DOM-tested
+## R9. Frontend panels are build-verified and acceptance-passed, not DOM-tested
 
-**What the user gets:** panels (ScenarioRatings, BuildIntelligencePanel,
-v2 recommendation workspace) are wired additively; their display logic is
-tested as pure modules (`node --test`, 11 tests), and the app builds and
-lints clean — but there are no DOM/browser tests asserting the rendered
-tree.
+**What the user gets:** panels (ScenarioRatings, BuildIntelligencePanel)
+are wired additively; their display logic is tested as pure modules
+(`node --test`, 14 tests), the app builds and lints clean, and a Playwright
+browser-acceptance pass (13/13, real backend + snapshot data) verified the
+rendered panels end-to-end — but there are no permanent DOM tests in CI.
 
-**What resolves it:** the browser acceptance pass planned as part of this
-delivery (and/or future webapp-testing coverage).
+**Found-and-fixed by that pass:** the build intelligence hook initially
+sent the wrong wire shape (wrapper object + full hardware records) and every
+panel request 422'd — invisible to pure-module tests. Fixed
+(commit `50516eb`) and pinned by contract tests.
+
+**What resolves it:** migrating the acceptance script into CI
+(webapp-testing) if the project wants permanent browser coverage.
 
 ## R10. AI digest inherits engine limitations
 
@@ -139,7 +144,23 @@ UNKNOWN above is equally visible (and equally limiting) in conversation.
 **Why it stands:** the digest is a summarizer of authoritative engine
 output, never a source.
 
-## R11. Anchor provenance depends on the supplied population
+## R11. v2 recommendation workspace and optimizer have no UI consumer yet
+
+**What the user gets:** `GET/POST /hardware/recommend/v2` and
+`POST /build/optimize` are fully implemented, tested (API + service), and
+exposed; the frontend ships formatters and the endpoint builder for them
+(`recommendationV2.js`, pure + tested) but no mounted workspace/panel calls
+them yet. Users reach v2 recommendations and swap suggestions via API only.
+
+**Why it stands:** Task 7's scope prioritized the detail/build panels; the
+v2 workspace was scheduled as UI follow-up. Shipping the API + display layer
+unblocks it without backend changes.
+
+**What resolves it:** a follow-up UI task mounting the recommendation
+workspace (chip row + workspace section per the Task 7 plan) and an
+optimizer panel consuming `BUILD_OPTIMIZE_ENDPOINT`.
+
+## R12. Anchor provenance depends on the supplied population
 
 **What the user gets:** scenario scores differ between the API route
 (anchors derived from the live benchmarked population) and any consumer that

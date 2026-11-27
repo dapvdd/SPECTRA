@@ -122,11 +122,52 @@ bounded at 3 per slot.
   `data/dev/m4_snapshot.db`).
 - No load/performance testing of the new endpoints.
 - Frontend display modules are tested as pure functions (`node --test`,
-  11 new tests); panel mounting is verified by build + lint, not DOM tests.
+  14 new tests); the rendered app is covered by the browser acceptance pass
+  below, not by DOM unit tests.
 - The AI digest's LLM path is prompt-rule-tested and fallback-tested; no
   provider was called during evaluation.
 
-## 6. Verdict
+## 6. Browser acceptance (real backend, real UI)
+
+Playwright (headless chromium) drove the production build path
+(`vite dev` + `uvicorn`) against a throwaway copy of the M3.3 snapshot
+(`data/dev/m4_snapshot.db` → temp file; the snapshot and CI DBs untouched).
+Script: `backend/app/scripts/m4_browser_acceptance.py`. Result: **13/13 PASS**:
+
+```
+PASS  app_renders                     PASS  build_intelligence_panel_visible
+PASS  nav_present                     PASS  build_intelligence_version_shown
+PASS  explore_cards                   PASS  panel_card_balance
+PASS  scenario_panel_visible          PASS  panel_card_power
+PASS  gaming_stars_positive           PASS  panel_card_compatibility
+PASS  value_unknown_rendered          PASS  panel_names_missing_slots_or_unknown
+PASS  no_unexpected_console_errors
+```
+
+Verified in the live UI: scenario ratings render with positive gaming stars
+for a benchmarked CPU, VALUE renders its unknown/price gap, and the build
+intelligence panel shows `M4-BUILD-v1.0` with balance/power/compatibility
+cards and visible gap naming.
+
+**Defect found and fixed by this pass** (integration-level, invisible to the
+service/API suites): `useBuildIntelligence` POSTed
+`{"components": {…full hardware objects…}}` while
+`BuildIntelligenceRequest` requires top-level slot ids with
+`extra="forbid"` → every panel request 422'd. Fixed by extracting
+`buildIntelligenceRequestBody` into the pure module (normalizes objects →
+ids, drops null slots, no wrapper), pinned by 3 contract tests
+(`intelligenceDisplay.test.js`), commit `50516eb`.
+
+## 9. Risks (browser acceptance)
+
+- The acceptance pass runs one happy-path build (CPU added from a detail
+  view). GPU-first flows, motherboard/PSU slots, and the optimizer UI are
+  exercised at service/API level only (see §5).
+- One integration defect was found and fixed by this pass (§6); it
+  demonstrates the value of the pass and the residual risk of UI paths that
+  only the browser exercises.
+
+## 10. Verdict
 
 All 21 evaluation tests pass; the emitted JSON confirms determinism,
 evidence gating, UNKNOWN-first-class semantics, spec-cap enforcement, and
