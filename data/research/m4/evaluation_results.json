@@ -1,0 +1,244 @@
+{
+  "deterministic": true,
+  "excluded_count": 1,
+  "fixtures": {
+    "conflicting_benchmark_rows": 1,
+    "cpu_rows": 18,
+    "evidence_free_rows": 1,
+    "gpu_rows": 2,
+    "motherboard_rows": 1,
+    "outlier_rows": 1
+  },
+  "generated_by": "backend/app/scripts/m4_emit_evaluation.py",
+  "optimizer_deterministic": true,
+  "optimizer_swap_count": 4,
+  "recommendation_deterministic": true,
+  "recommendation_top8_ids": [
+    112,
+    900,
+    111,
+    931,
+    110,
+    910,
+    109,
+    108
+  ],
+  "scenario_samples": {
+    "101": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 0.93,
+          "spec_based": false
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 0.93,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 0.92,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    },
+    "105": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 2.11,
+          "spec_based": false
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 1.8,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 1.77,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    },
+    "300": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 2.3,
+          "spec_based": true
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 2.23,
+          "spec_based": true
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 2.3,
+          "spec_based": true
+        }
+      },
+      "type": "GPU"
+    },
+    "301": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 1.47,
+          "spec_based": true
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 1.54,
+          "spec_based": true
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 1.47,
+          "spec_based": true
+        }
+      },
+      "type": "GPU"
+    },
+    "900": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 5.0,
+          "spec_based": false
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 5.0,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 4.98,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    },
+    "901": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 1.46,
+          "spec_based": true
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 3.83,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 3.58,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    },
+    "930": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 1.99,
+          "spec_based": false
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 4.74,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 4.65,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    },
+    "931": {
+      "scenarios": {
+        "daily": {
+          "confidence": "medium",
+          "score": 4.84,
+          "spec_based": false
+        },
+        "gaming": {
+          "confidence": "medium",
+          "score": 2.85,
+          "spec_based": false
+        },
+        "value": {
+          "confidence": "unknown",
+          "score": null,
+          "spec_based": false
+        },
+        "workstation": {
+          "confidence": "medium",
+          "score": 2.71,
+          "spec_based": false
+        }
+      },
+      "type": "CPU"
+    }
+  },
+  "socket_incompatible_pair": {
+    "engine_state": "INCOMPATIBLE",
+    "incompatible_rules": [
+      "cpu-motherboard-socket"
+    ]
+  },
+  "value_unknown_everywhere": true,
+  "versions": {
+    "build_intelligence": "M4-BUILD-v1.0",
+    "compatibility_rules": "M32-RULES-v2",
+    "features": "M4-FEATURES-v1",
+    "optimizer": "M4-OPT-v1.0",
+    "profiles": "M4-PROFILES-v1.0",
+    "recommendation": "M4-REC-v2.0",
+    "scoring": "M4-SCORING-v2.0"
+  }
+}

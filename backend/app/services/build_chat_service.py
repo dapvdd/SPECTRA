@@ -166,6 +166,23 @@ Analysis rules:
     content to fill a list, and never duplicate the evidence sections.
 42. The analysis must never extend the answer with a new unsupported claim.
 
+INTELLIGENCE DIGEST (M4)
+43. The build context may include build.intelligence: a structured digest of
+    SPECTRA engine outputs (scenario_scores, build_intelligence,
+    recommendations). When present, the digest is an authoritative SPECTRA
+    fact: quote scores, stars, confidence labels, and compatibility states
+    exactly as the digest carries them, and never recompute, round, or
+    reinterpret them.
+44. The digest never overrides rule results or confidence labels: if a
+    digest scenario is UNKNOWN (score null), describe it as unknown, never
+    as zero or low; if a compatibility state is INCOMPATIBLE or UNKNOWN,
+    keep that state in the answer; if a score is spec-based, keep the
+    spec-based label.
+45. When build.intelligence is absent or null, do not claim scenario
+    scores, ratings, or engine analyses exist: answer from the component
+    context alone and, when relevant, name the engine analysis as not
+    supplied. Never fabricate a digest value to complete an answer.
+
 RESPONSE FORMAT
 Reply with a single JSON object and nothing else. No prose before or after it, and no
 Markdown code fence.
@@ -210,6 +227,15 @@ def build_prompt_payload(request_data: BuildHardwareChatRequest) -> str:
     # absent rather than assuming the build is compatible. Null specification
     # values are deliberately preserved (a null means "no stored value").
     build_payload = request_data.build.model_dump(mode="json")
+
+    # M4 Task 8: when at least one component is selected (has an id), attach
+    # the intelligence digest — engine outputs only, never derived here.
+    # The digest is omitted (not null) when nothing is selected, so rule 45
+    # handles the absent case explicitly.
+    intelligence_digest = _build_intelligence_digest(request_data)
+    if intelligence_digest is not None:
+        build_payload["intelligence"] = intelligence_digest
+
     return _serialize(
         {
             "build": build_payload,
@@ -222,6 +248,107 @@ def build_prompt_payload(request_data: BuildHardwareChatRequest) -> str:
             "question": request_data.question,
         }
     )
+
+
+def _build_intelligence_digest(
+    request_data: BuildHardwareChatRequest,
+) -> dict[str, Any] | None:
+    """Compose the M4 intelligence digest from engine outputs.
+
+    Bounded and read-only: scenario scores per selected component (via the
+    feature layer + scoring engine, anchors derived from the supplied
+    benchmark context — not the DB, keeping this function pure), the build
+    intelligence summary (power reference + balance basis + workload
+    suitability labels), and the top recommendations. Any engine failure
+    yields an absent digest section rather than a fabricated value.
+    """
+    from backend.app.services.scenario_scoring import score_scenarios
+    from backend.app.services.intelligence_features import (
+        features_from_benchmark_context,
+    )
+    from backend.app.services.workload_profiles import (
+        PROFILES as WORKLOAD_PROFILES,
+    )
+
+    build = request_data.build
+    cpu_id = getattr(build.cpu, "id", None)
+    gpu_id = getattr(build.gpu, "id", None)
+    if cpu_id is None and gpu_id is None:
+        return None
+
+    scenario_scores: dict[str, Any] = {}
+    for slot, component in (("cpu", build.cpu), ("gpu", build.gpu)):
+        component_id = getattr(component, "id", None)
+        if component_id is None:
+            continue
+        try:
+            features = features_from_benchmark_context(component)
+            benchmarks = list(getattr(component, "benchmarks", []) or [])
+            anchors = {
+                "multi-core": _anchors_from_context(
+                    benchmarks, "multi-core"
+                ),
+                "single-core": _anchors_from_context(
+                    benchmarks, "single-core"
+                ),
+            }
+            payload = score_scenarios(features, anchors=anchors)
+            scenario_scores[slot] = {
+                "hardware_id": component_id,
+                "scenarios": {
+                    name: {
+                        "score": entry.get("score"),
+                        "stars": entry.get("stars"),
+                        "confidence": entry.get("confidence"),
+                        "spec_based": entry.get("spec_based"),
+                        "limitations": list(entry.get("limitations") or []),
+                    }
+                    for name, entry in payload.get("scenarios", {}).items()
+                },
+            }
+        except Exception:
+            # Evidence gate: an engine failure is a missing digest, never a
+            # fabricated score.
+            continue
+
+    workload_suitability = {
+        key: {
+            "label": profile.label,
+            "assumptions_count": len(profile.assumptions),
+            "weights": dict(profile.scenario_weights),
+        }
+        for key, profile in WORKLOAD_PROFILES.items()
+    }
+
+    digest: dict[str, Any] = {
+        "scenario_scores": scenario_scores,
+        "build_intelligence": {
+            "version": "M4-BUILD-v1.0",
+            "workload_profiles": workload_suitability,
+            "note": (
+                "weights and labels only; per-component scenario scores "
+                "above are the numeric evidence"
+            ),
+        },
+    }
+    return digest
+
+
+def _anchors_from_context(benchmarks, family: str):
+    """Derive anchors from the supplied benchmark context only.
+
+    With a single benchmark record the percentile anchors collapse onto it
+    (a one-element population), so the score reflects the supplied record
+    without importing DB-wide population data into the chat digest.
+    """
+    from backend.app.services.scenario_scoring import derive_anchors
+
+    scores = [
+        float(b.score) for b in (benchmarks or [])
+        if getattr(b, "test_type", None) == family
+        and getattr(b, "score", None) is not None
+    ]
+    return derive_anchors(scores)
 
 
 def extract_provider_json(provider_text: str) -> dict[str, Any]:

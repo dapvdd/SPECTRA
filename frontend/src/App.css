@@ -4369,3 +4369,268 @@ h1 {
   color: var(--text-muted, var(--spectra-text-muted));
   font-weight: 600;
 }
+
+/* ============================================================
+   M4 Task 7: intelligence panels (scenario ratings + build
+   intelligence analysis). Additive only: existing tokens
+   (var(--spectra-*), suitability-* vocabulary) are reused;
+   no shared infra rules modified.
+   ============================================================ */
+
+.scenario-ratings,
+.build-intelligence-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-default, var(--spectra-hairline-strong));
+  border-radius: var(--radius-md, 10px);
+  background: var(--surface-raised, var(--spectra-surface-raised));
+}
+
+.scenario-ratings-header,
+.build-intelligence-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.scenario-ratings-title,
+.build-intelligence-panel-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--spectra-text-primary));
+}
+
+.build-intelligence-version {
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.scenario-ratings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.scenario-rating-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border-default, var(--spectra-hairline));
+  border-radius: var(--radius-md, 10px);
+  background: var(--surface-inset, var(--spectra-surface-inset));
+}
+
+.scenario-rating-card.spec-based {
+  border-left: 3px solid var(--spectra-amber);
+}
+
+.scenario-rating-card.scenario-unknown {
+  border-left: 3px solid var(--spectra-silver-muted);
+}
+
+.scenario-rating-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.scenario-rating-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--text-primary, var(--spectra-text-primary));
+}
+
+.scenario-rating-unknown {
+  margin: 0;
+  color: var(--text-secondary, var(--spectra-text-secondary));
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.scenario-rating-score {
+  margin-left: 0.4rem;
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.scenario-rating-limitations {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.scenario-ratings-population,
+.build-intelligence-limitations {
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.78rem;
+}
+
+.scenario-ratings-population p {
+  margin: 0.3rem 0 0;
+}
+
+.build-intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.85rem;
+}
+
+.build-intelligence-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border-default, var(--spectra-hairline));
+  border-radius: var(--radius-md, 10px);
+  background: var(--surface-inset, var(--spectra-surface-inset));
+}
+
+.build-intelligence-card h4 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, var(--spectra-text-muted));
+}
+
+.build-intelligence-balance-class,
+.build-intelligence-compat-overall {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--spectra-text-primary));
+}
+
+.build-intelligence-balance-note,
+.build-intelligence-power-note {
+  margin: 0;
+  color: var(--text-secondary, var(--spectra-text-secondary));
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.build-intelligence-power-reference {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--spectra-text-primary));
+}
+
+.build-intelligence-power-sum {
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+.build-intelligence-power-unknown {
+  margin: 0;
+  color: var(--text-secondary, var(--spectra-text-secondary));
+  font-size: 0.88rem;
+}
+
+.build-intelligence-missing-slots {
+  margin: 0;
+  color: var(--spectra-amber);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.build-intelligence-workload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.6rem;
+}
+
+.build-intelligence-workload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border-default, var(--spectra-hairline));
+  border-radius: 8px;
+  background: var(--surface-inset, var(--spectra-surface-inset));
+}
+
+.build-intelligence-workload.scenario-unknown {
+  border-left: 3px solid var(--spectra-silver-muted);
+}
+
+.build-intelligence-workload-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary, var(--spectra-text-secondary));
+}
+
+.build-intelligence-workload-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--spectra-text-primary));
+}
+
+.build-intelligence-upgrade-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.build-intelligence-upgrade {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.build-intelligence-upgrade-slot {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--spectra-hairline-strong);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary, var(--spectra-text-secondary));
+}
+
+.build-intelligence-upgrade-text {
+  color: var(--text-secondary, var(--spectra-text-secondary));
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.build-intelligence-upgrade-spec {
+  color: var(--spectra-amber);
+  font-style: italic;
+}
+
+.build-intelligence-limitation {
+  margin: 0;
+  color: var(--text-muted, var(--spectra-text-muted));
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.build-intelligence-workloads h4,
+.build-intelligence-upgrades h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, var(--spectra-text-muted));
+}

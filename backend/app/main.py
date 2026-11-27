@@ -16,7 +16,7 @@ def load_backend_environment():
 load_backend_environment()
 
 from backend.app.database import SessionLocal
-from backend.app.models import Hardware
+from backend.app.models import BenchmarkResult, Hardware
 
 from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -49,6 +49,15 @@ from backend.app.schemas.suitability import (
     rating_to_response,
 )
 from backend.app.schemas.recommendation import RecommendationResponse
+from backend.app.schemas.intelligence import (  # M4
+    BuildIntelligenceRequest,
+    BuildIntelligenceResponse,
+    OptimizationRequest,
+    OptimizationResponse,
+    RecommendationConstraints,
+    RecommendationResult,
+    ScenarioSetResponse,
+)
 from backend.app.services.suitability_service import (
     WORKLOADS,
     rate_suitability,
@@ -116,8 +125,11 @@ from backend.app.services.benchmark_service import (
 )
 from backend.app.services import build_chat_service
 from backend.app.services import build_conversation_service
+from backend.app.services import build_intelligence_service  # M4
 from backend.app.services import comparison_service
 from backend.app.services import compatibility_service
+from backend.app.services import intelligence_features  # M4
+from backend.app.services import scenario_scoring  # M4
 from backend.app.services import explanation_service
 from backend.app.services.explanation_service import ProviderBusyError
 from backend.app.services import hardware_chat_service
@@ -467,6 +479,60 @@ def get_recommendations(
         budget_max=budget_max,
         limit=limit,
     )
+
+
+# --- M4 Task 4: intelligent recommendations (additive, declared before the
+# --- /hardware/{hardware_id} id route for the same shadowing reason as v1).
+
+@app.get(
+    "/hardware/recommend/v2",
+    response_model=RecommendationResult,
+)
+def get_recommendations_v2(
+    hardware_type: str = Query(..., alias="type"),
+    profile_key: str | None = Query(default=None),
+    budget_max: int | None = Query(default=None, ge=0),
+    resolution: str | None = Query(default=None),
+    power_limit_w: int | None = Query(default=None, ge=1),
+    priority: str | None = Query(default=None),
+    limit: int = Query(default=10, ge=1, le=50),
+) -> RecommendationResult:
+    """M4 intelligent recommendations: profiles, constraints echo, ledger."""
+    try:
+        constraints = RecommendationConstraints(
+            hardware_type=hardware_type,  # type: ignore[arg-type]
+            profile_key=profile_key,      # type: ignore[arg-type]
+            budget_max=budget_max, resolution=resolution,  # type: ignore[arg-type]
+            power_limit_w=power_limit_w, priority=priority,  # type: ignore[arg-type]
+            limit=limit,
+        )
+    except ValueError as validation_error:
+        raise HTTPException(status_code=422, detail=str(validation_error))
+    return _recommendations_v2_response(constraints)
+
+
+@app.post(
+    "/hardware/recommend/v2",
+    response_model=RecommendationResult,
+)
+def post_recommendations_v2(
+    constraints: RecommendationConstraints,
+) -> RecommendationResult:
+    """M4 intelligent recommendations with an existing-components context."""
+    return _recommendations_v2_response(constraints)
+
+
+def _recommendations_v2_response(
+    constraints: RecommendationConstraints,
+) -> RecommendationResult:
+    try:
+        result = recommendation_service.recommend_intelligent(
+            SessionLocal, constraints,
+        )
+    except KeyError as unknown_profile:
+        raise HTTPException(status_code=422, detail=str(unknown_profile).strip("'\""))
+    return RecommendationResult(**result)
+
 
 @app.get(
     "/hardware/{hardware_id}",
@@ -999,6 +1065,51 @@ def get_hardware_suitability(
         }
 
 
+# --- M4 Task 7: per-hardware scenario ratings (M4-SCORING-v2.0), declared
+# --- after /hardware/recommend/v2 so route order stays unshadowed.
+
+@app.get(
+    "/hardware/{hardware_id}/scenarios",
+    response_model=ScenarioSetResponse,
+)
+def get_hardware_scenarios(hardware_id: int) -> ScenarioSetResponse:
+    """Four-scenario ratings for one hardware record.
+
+    Anchors are derived from the live benchmark population (same arithmetic
+    as the v1 suitability engine's anchors). VALUE is UNKNOWN without price
+    data; spec-based scenarios are capped and labeled. Nothing is fabricated.
+    """
+    with SessionLocal() as session:
+        hardware = _load_hardware_for_suitability(session, hardware_id)
+        if not hardware:
+            raise HTTPException(status_code=404, detail="Hardware not found")
+        features = intelligence_features.features_from_hardware(hardware)
+
+        mc = list(
+            session.scalars(
+                select(BenchmarkResult.score).where(
+                    (BenchmarkResult.test_type == "multi-core")
+                    & (BenchmarkResult.score.is_not(None))
+                )
+            ).all()
+        )
+        sc = list(
+            session.scalars(
+                select(BenchmarkResult.score).where(
+                    (BenchmarkResult.test_type == "single-core")
+                    & (BenchmarkResult.score.is_not(None))
+                )
+            ).all()
+        )
+        anchors = {
+            "multi-core": scenario_scoring.derive_anchors(mc),
+            "single-core": scenario_scoring.derive_anchors(sc),
+        }
+
+        payload = scenario_scoring.score_scenarios(features, anchors=anchors)
+        return ScenarioSetResponse(**payload)
+
+
 @app.get(
     "/hardware/{hardware_id}/suitability/{category}",
     response_model=SuitabilityRatingResponse,
@@ -1153,6 +1264,60 @@ def check_build_compatibility(
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     return BuildCompatibilityResponse(**payload)
+
+
+# --- M4 Task 5: build intelligence (additive; reuses the M32-RULES-v2 engine
+# --- verbatim plus the M4 scenario/profile layers).
+
+@app.post(
+    "/build/intelligence",
+    response_model=BuildIntelligenceResponse,
+)
+def build_intelligence(
+    request_data: BuildIntelligenceRequest,
+    _user_id: int | None = Depends(require_auth),
+) -> BuildIntelligenceResponse:
+    """Explainable build intelligence: balance, power reference, workload
+    suitability, compatibility summary, and evidence-gated upgrades."""
+    try:
+        payload = build_intelligence_service.analyze_build(
+            request_data.model_dump()
+        )
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return BuildIntelligenceResponse(**payload)
+
+
+# --- M4 Task 6: bounded build optimizer (additive).
+
+@app.post(
+    "/build/optimize",
+    response_model=OptimizationResponse,
+)
+def build_optimize(
+    request_data: OptimizationRequest,
+    _user_id: int | None = Depends(require_auth),
+) -> OptimizationResponse:
+    """Bounded single-component swap suggestions (evidence-gated)."""
+    from backend.app.services import build_optimizer
+
+    try:
+        payload = build_optimizer.optimize_build(
+            request_data.components.model_dump(),
+            profile_key=request_data.profile_key,
+            budget_max=request_data.budget_max,
+            power_limit_w=request_data.power_limit_w,
+            priority=request_data.priority,
+        )
+    except LookupError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    except KeyError as error:
+        raise HTTPException(status_code=422, detail=str(error).strip("'\""))
+    return OptimizationResponse(**payload)
 
 
 @app.post(

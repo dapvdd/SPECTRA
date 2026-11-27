@@ -6,9 +6,13 @@ import { HardwareFitModal } from "./components/HardwareFitModal.jsx";
 import { HardwareSlotVisual } from "./components/HardwareVisual.jsx";
 
 import { SuitabilityCard } from "./components/SuitabilityCard.jsx";
+import { ScenarioRatings } from "./components/ScenarioRatings.jsx";
+import { BuildIntelligencePanel } from "./components/BuildIntelligencePanel.jsx";
 import {
   CATEGORIES } from "./suitabilityDisplay.js";
 import { useSuitability } from "./hooks/useSuitability.js";
+import { useBuildIntelligence } from "./hooks/useBuildIntelligence.js";
+import { useScenarioRatings } from "./hooks/useScenarioRatings.js";
 import {
   CATALOG_SORTS,
   sortCatalogItems,
@@ -1422,6 +1426,8 @@ function CpuDetailView({
 
       <SourceTransparencyFooter provenance={provenance} />
 
+      <ScenarioRatingsSection hardwareId={hardware.id} />
+
       <PerformanceSection
         benchmarkState={benchmarkState}
         titleId="cpu-performance-title"
@@ -1614,12 +1620,27 @@ function GpuHardwareDetail({
       </div>
 
       <SourceTransparencyFooter provenance={provenance} />
+
+      <ScenarioRatingsSection hardwareId={hardware.id} />
     </section>
   );
 }
 
-const formatInsightValue = (value, format, unit) => {
-  const formattedValue =
+/* M4 Task 7: scenario ratings section (M4-SCORING-v2.0). Loads the
+   four-scenario payload for one hardware record and renders it faithfully —
+   UNKNOWN scenarios show their named gap, spec-based scores are labeled,
+   and the reference population is disclosed. Renders nothing on error. */
+function ScenarioRatingsSection({ hardwareId }) {
+  const { data, loading, error } = useScenarioRatings(hardwareId);
+
+  if (loading || error || !data) {
+    return null;
+  }
+
+  return <ScenarioRatings payload={data} />;
+}
+
+const formatInsightValue = (value, format, unit) => {  const formattedValue =
     format === "integer"
       ? value.toLocaleString()
       : value.toLocaleString(undefined, { maximumFractionDigits: 2 });
@@ -2385,6 +2406,19 @@ function BuildConfigurationSection({
     ],
   });
 
+  /* M4 Task 7: server-side build intelligence (M4-BUILD-v1.0). Additive to
+     the client-side signal list above; renders only when at least one slot
+     is selected, and names gaps (balance unknown, missing slots) rather
+     than estimating them. */
+  const m4Intelligence = useBuildIntelligence({
+    cpu: buildConfig.cpu ?? null,
+    gpu: buildConfig.gpu ?? null,
+    motherboard: buildConfig.motherboard ?? null,
+    ram: buildConfig.ram ?? null,
+    storage: buildConfig.storage ?? null,
+    psu: buildConfig.psu ?? null,
+  });
+
   return (
     <section id="build" className="build-section" aria-labelledby="build-title">
       <header className="build-head">
@@ -2536,6 +2570,9 @@ function BuildConfigurationSection({
           intelligence={buildIntelligence}
           buildSummary={summary}
         />
+        {m4Intelligence.data && (
+          <BuildIntelligencePanel intelligence={m4Intelligence.data} />
+        )}
       </div>
 
       {buildChatReady ? (
