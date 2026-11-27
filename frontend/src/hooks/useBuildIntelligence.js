@@ -8,7 +8,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { apiUrl } from "../api.js";
-import { BUILD_INTELLIGENCE_ENDPOINT } from "../recommendationV2.js";
+import {
+  BUILD_INTELLIGENCE_ENDPOINT,
+  buildIntelligenceRequestBody,
+} from "../recommendationV2.js";
 
 export function useBuildIntelligence(components) {
   const [data, setData] = useState(null);
@@ -19,7 +22,7 @@ export function useBuildIntelligence(components) {
 
   const analyze = useCallback(
     (nextComponents) => {
-      const body = JSON.stringify({ components: nextComponents || {} });
+      const body = JSON.stringify(buildIntelligenceRequestBody(nextComponents));
       setLoading(true);
       setError(null);
       return fetch(apiUrl(BUILD_INTELLIGENCE_ENDPOINT), {
@@ -64,7 +67,7 @@ export function useBuildIntelligence(components) {
     fetch(apiUrl(BUILD_INTELLIGENCE_ENDPOINT), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ components: parsed }),
+      body: JSON.stringify(buildIntelligenceRequestBody(parsed)),
     })
       .then((response) => {
         if (!response.ok) {

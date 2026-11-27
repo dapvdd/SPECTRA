@@ -15,7 +15,9 @@ import {
 } from "./intelligenceDisplay.js";
 import {
   RECOMMEND_V2_ENDPOINT,
+  BUILD_INTELLIGENCE_ENDPOINT,
   getRecommendationV2Endpoint,
+  buildIntelligenceRequestBody,
   formatRecommendationV2Candidate,
   formatScenarioEntry,
   formatScenarioSet,
@@ -97,6 +99,32 @@ test("formatScenarioSet orders scenarios canonically", () => {
   assert.equal(set.dataCoverage, 0.8);
 });
 
+// ---------------------------------------------------- build intelligence ----
+
+test("buildIntelligenceRequestBody sends slots at top level (no wrapper)", () => {
+  const body = buildIntelligenceRequestBody({
+    cpu: 101,
+    gpu: null,
+    motherboard: null,
+    ram: null,
+    storage: null,
+    psu: null,
+  });
+  assert.deepEqual(body, { cpu: 101 });
+});
+
+test("buildIntelligenceRequestBody keeps every selected slot", () => {
+  const body = buildIntelligenceRequestBody({
+    cpu: 101,
+    gpu: 300,
+    motherboard: 920,
+    ram: null,
+    storage: null,
+    psu: null,
+  });
+  assert.deepEqual(body, { cpu: 101, gpu: 300, motherboard: 920 });
+});
+
 // --------------------------------------------------------- recommend v2 -----
 
 test("getRecommendationV2Endpoint builds query params", () => {
@@ -114,6 +142,18 @@ test("getRecommendationV2Endpoint builds query params", () => {
 test("getRecommendationV2Endpoint omits unset params", () => {
   const endpoint = getRecommendationV2Endpoint({ hardwareType: "GPU" });
   assert.equal(endpoint, `${RECOMMEND_V2_ENDPOINT}?type=GPU`);
+});
+
+test("buildIntelligenceRequestBody normalizes full hardware objects to ids", () => {
+  const body = buildIntelligenceRequestBody({
+    cpu: { id: 1, name: "AMD Athlon Gold 7220C", type: "CPU" },
+    gpu: { id: 300, name: "GPU X", specifications: {} },
+    motherboard: null,
+    ram: null,
+    storage: null,
+    psu: null,
+  });
+  assert.deepEqual(body, { cpu: 1, gpu: 300 });
 });
 
 test("formatRecommendationV2Candidate normalizes rank + scenario scores", () => {

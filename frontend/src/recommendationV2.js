@@ -71,6 +71,36 @@ export const getRecommendationV2Endpoint = ({
 };
 
 /**
+ * Build the POST body for /build/intelligence. The wire contract is
+ * slot->hardware-id at the TOP LEVEL (BuildIntelligenceRequest has
+ * extra="forbid"): a {"components": ...} wrapper is a 422.
+ */
+export const buildIntelligenceRequestBody = (components) => {
+  const parsed = components || {};
+  const body = {};
+  for (const slot of [
+    "cpu",
+    "gpu",
+    "ram",
+    "storage",
+    "motherboard",
+    "psu",
+  ]) {
+    const value = parsed[slot];
+    if (value == null) {
+      continue;
+    }
+    /* Build config stores either a hardware id or the full detail object;
+       the wire contract wants the id. */
+    const id = typeof value === "object" ? value.id : value;
+    if (id != null) {
+      body[slot] = id;
+    }
+  }
+  return body;
+};
+
+/**
  * Normalize one scenario entry. UNKNOWN (score null) is rendered honestly:
  * stars stay 0, `unknown` is true, and the limitation text names the gap.
  */
